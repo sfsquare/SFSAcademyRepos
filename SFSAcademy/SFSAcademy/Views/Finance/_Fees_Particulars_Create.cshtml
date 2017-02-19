@@ -1,0 +1,69 @@
+﻿@model SFSAcademy.FINANCE_FEE_PARTICULAR
+@{    Layout = null;}
+
+<div class="label-field-pair">
+    <div class="label-container"> @Html.LabelFor(model => model.NAME, "Name", htmlAttributes: new { @class = "control-label col-md-2" })</div>
+    <div class="input-container">
+        @Html.EditorFor(model => model.NAME, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.NAME, "", new { @class = "text-danger" })
+    </div>
+</div>
+<div class="label-field-pair">
+    <div class="label-container">@Html.LabelFor(model => model.DESCR, "Description", htmlAttributes: new { @class = "control-label col-md-2" })</div>
+    <div class="input-container">
+        @Html.EditorFor(model => model.DESCR, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.DESCR, "", new { @class = "text-danger" })
+    </div>
+</div>
+<div class="label-field-pair2">
+    <div class="label-container2"><label>Create using</label></div>
+    <div class="input-container2">
+        @Html.RadioButton("radioName", "All", true, new { id = "id1", @onclick = "radiobuttontest('All');" }) All <br />
+        @Html.RadioButton("radioName", "Admission No.", false, new { id = "id2", @onclick = "radiobuttontest('Admission No');" }) Admission No.<br />
+        @Html.RadioButton("radioName", "Student Category", false, new { id = "id3", @onclick = "radiobuttontest('Student Category');" }) Student Category<br />
+        @Html.Hidden("FeePartOption")
+    </div>
+</div>
+<div id="AdmForm1">
+    <div class="label-field-pair">
+        <div class="label-container">@Html.LabelFor(model => model.ADMSN_NO, "Admission Number (Comma Seprated)", htmlAttributes: new { @class = "control-label col-md-2" })</div>
+        <div class="input-container">
+            @Html.EditorFor(model => model.ADMSN_NO, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.ADMSN_NO, "", new { @class = "text-danger" })
+        </div>
+    </div>
+</div>
+<div id="StdForm2">
+    <div class="label-field-pair">
+        <div class="label-container">@Html.LabelFor(model => model.STDNT_CAT_ID, "Select Category", htmlAttributes: new { @class = "control-label col-md-2" })</div>
+        <div class="text-input-bg">
+            @Html.DropDownList("STDNT_CAT_ID", null, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.STDNT_CAT_ID, "", new { @class = "text-danger" })
+        </div>
+    </div>
+</div>
+<div id="student"></div>
+<div class="label-field-pair">
+    <div class="label-container">@Html.LabelFor(model => model.AMT, "Amount", htmlAttributes: new { @class = "control-label col-md-2" })</div>
+    <div class="input-container">
+        @Html.EditorFor(model => model.AMT, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.AMT, "", new { @class = "text-danger" })
+    </div>
+</div>    
+
+
+<script type="text/javascript">
+
+    function radiobuttontest(obj) {
+        $('#FeePartOption').val(obj);
+        alert(obj);
+        if (obj == 'Admission No') {
+            $("#AdmForm1").show('slow');
+        }
+        else if (obj == 'Student Category') {
+            $("#StdForm2").show('slow');
+        }
+
+    }
+</script>
+

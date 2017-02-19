@@ -5,24 +5,30 @@
     bool CSSAll = true;
 }
 
+@if (CSSAll)
+{
+    DynamicHeader.AddStyleSheet(CSSDirection + "_layouts/style.css");
+    DynamicHeader.AddStyleSheet(CSSDirection + "_layouts/pdf.css");
+    DynamicHeader.AddStyleSheet(CSSDirection + "popup.css");
+    DynamicHeader.AddStyleSheet(CSSDirection + "_styles/ui.all.css");
+    DynamicHeader.AddStyleSheet(CSSDirection + "modalbox.css");
+    DynamicHeader.AddStyleSheet(CSSDirection + "calendar.css");
+    DynamicHeader.AddStyleSheet(CSSDirection + "autosuggest-menu.css");
+}
 
 @if (LocationHelper.IsCurrentControllerAndAction("USERs", "Dashboard", ViewContext))
 {
     DynamicHeader.AddStyleSheet(CSSDirection + "_layouts/dashboard.css");
+
 }
 else if (LocationHelper.IsCurrentControllerAndAction("USERs", "Login", ViewContext))
 {
     DynamicHeader.AddStyleSheet(CSSDirection + "_layouts/login.css");
+    DynamicHeader.AddStyleSheet(CSSDirection + "_layouts/forgotpw.css");
 }
-
-@if (CSSAll)
+else
 {
     DynamicHeader.AddStyleSheet(CSSDirection + "application.css");
-    DynamicHeader.AddStyleSheet(CSSDirection + "popup.css");
-    DynamicHeader.AddStyleSheet(CSSDirection + "_styles/ui.all.css");
-    DynamicHeader.AddStyleSheet(CSSDirection + "modalbox.css");
-    DynamicHeader.AddStyleSheet(CSSDirection + "autosuggest-menu.css");
-    DynamicHeader.AddStyleSheet(CSSDirection + "calendar.css");
 }
 
 @{
@@ -37,7 +43,7 @@ else if (LocationHelper.IsCurrentControllerAndAction("USERs", "Login", ViewConte
         for (var itemNumber = 0; itemNumber <= filesList.Count() - 1; itemNumber++)
         {
             if (ExitLoop) { break; }
-            if (String.Equals(filesList.ElementAt(itemNumber).ToString().Substring(0, filesList.ElementAt(itemNumber).ToString().IndexOf('.')), @ViewContext.RouteData.Values["action"]))
+            if (String.Equals(filesList.ElementAt(itemNumber).ToString().Substring(0, filesList.ElementAt(itemNumber).ToString().IndexOf('.')).ToUpper(), @ViewContext.RouteData.Values["action"].ToString().ToUpper()))
             {
                 DynamicHeader.AddStyleSheet(CSSDirection + @ViewContext.RouteData.Values["controller"] + "/" + filesList.ElementAt(itemNumber));
                 ExitLoop = true;
@@ -50,7 +56,7 @@ else if (LocationHelper.IsCurrentControllerAndAction("USERs", "Login", ViewConte
 }
 
 @{
-    DirectoryInfo Directory2 = new DirectoryInfo(ApplicationPhysicalPath + "Content/javascripts/tiny_mce/plugins/" + @ViewContext.RouteData.Values["controller"]+"/css");
+    DirectoryInfo Directory2 = new DirectoryInfo(ApplicationPhysicalPath + "Content/javascripts/tiny_mce/plugins/" + @ViewContext.RouteData.Values["controller"] + "/css");
     if (Directory2.Exists)
     {
         FileInfo[] files = Directory2.GetFiles();
@@ -60,7 +66,7 @@ else if (LocationHelper.IsCurrentControllerAndAction("USERs", "Login", ViewConte
         for (var itemNumber = 0; itemNumber <= filesList.Count() - 1; itemNumber++)
         {
             if (ExitLoop) { break; }
-            if (String.Equals(filesList.ElementAt(itemNumber).ToString().Substring(0, filesList.ElementAt(itemNumber).ToString().IndexOf('.')), @ViewContext.RouteData.Values["action"]))
+            if (String.Equals(filesList.ElementAt(itemNumber).ToString().Substring(0, filesList.ElementAt(itemNumber).ToString().IndexOf('.')).ToUpper(), @ViewContext.RouteData.Values["action"].ToString().ToUpper()))
             {
                 DynamicHeader.AddStyleSheet(JSDirection + @ViewContext.RouteData.Values["controller"] + "/css" + "/" + filesList.ElementAt(itemNumber));
                 ExitLoop = true;
