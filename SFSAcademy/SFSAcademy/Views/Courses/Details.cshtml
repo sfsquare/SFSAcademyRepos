@@ -1,0 +1,74 @@
+﻿@model SFSAcademy.COURSE
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>COURSE</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CRS_NAME)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CRS_NAME)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CODE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CODE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SECTN_NAME)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SECTN_NAME)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IS_DEL)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IS_DEL)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CREATED_AT)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CREATED_AT)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UPDATED_AT)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UPDATED_AT)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GRADING_TYPE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GRADING_TYPE)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
