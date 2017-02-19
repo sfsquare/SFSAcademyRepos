@@ -2264,6 +2264,17 @@
     <Content Include="Views\Student\Admission1.cshtml" />
     <Content Include="Views\Student\Admission2.cshtml" />
     <Content Include="Views\Student\Admission3.cshtml" />
+    <Content Include="Views\Finance\Create.cshtml" />
+    <Content Include="Views\Finance\Delete.cshtml" />
+    <Content Include="Views\Finance\Details.cshtml" />
+    <Content Include="Views\Finance\Edit.cshtml" />
+    <Content Include="Views\Finance\Index.cshtml" />
+    <Content Include="Views\Finance\Fees_Index.cshtml" />
+    <Content Include="Views\Finance\Master_Fees.cshtml" />
+    <Content Include="Views\Finance\_Master_Category_List.cshtml" />
+    <Content Include="Views\Finance\_Master_Category_Create_Form.cshtml" />
+    <Content Include="Views\Finance\Fees_Particulars_New.cshtml" />
+    <Content Include="Views\Finance\_Fees_Particulars_Create.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -2321,6 +2332,7 @@
       <DependentUpon>ModelSFSAcademy.tt</DependentUpon>
     </Compile>
     <Compile Include="Controllers\CoursesController.cs" />
+    <Compile Include="Controllers\FinanceController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\StudentController.cs" />
     <Compile Include="Controllers\USERsController.cs" />
@@ -2464,6 +2476,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ModelSFSAcademy.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\Finance.cs" />
     <Compile Include="Models\News.cs" />
     <Compile Include="Models\Student.cs" />
     <Compile Include="Models\User.cs" />

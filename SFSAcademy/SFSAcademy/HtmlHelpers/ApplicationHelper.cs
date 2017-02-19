@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using System.Web.UI.HtmlControls;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Collections.Generic;
 
 namespace SFSAcademy.HtmlHelpers
 {
@@ -310,6 +311,18 @@ namespace SFSAcademy.HtmlHelpers
             return AutoSuggestMenu;
         }
 
+        public static IEnumerable<int> StringToIntList(string str)
+        {
+            if (String.IsNullOrEmpty(str))
+                yield break;
+
+            foreach (var s in str.Split(','))
+            {
+                int num;
+                if (int.TryParse(s, out num))
+                    yield return num;
+            }
+        }
     }
 
     public class SHA1
