@@ -1,0 +1,31 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<div id="content-header">
+    <img src="~/Content/images/show_settings.png" alt="Settings Logo">
+    <h1>Courses</h1>
+    <h3>Home</h3>
+    <div id="app-back-button">
+        <a href='javascript:history.back()' onclick="return confirm('are you sure?')"><img src="~/Content/images/buttons/back.png"></a>
+    </div>
+</div>
+<div><img src="~/Content/images/_global/header_underline_.jpg" width="100%"></div>
+
+<div id="page-yield">
+    @if (Html.ValidationSummary() != null)
+    {
+        <p class="flash-msg"> @Html.ValidationSummary() </p>
+    }
+    <div class="box" style="width:60%">
+        <div class="link-box" style="float:left">
+            <div class="link-heading">@Html.ActionLink("Manage Course", "ManageCourse")</div>
+            <div class="link-descr">Manage Course and create batches</div>
+        </div>
+        <div class="link-box" style="float:right">
+            <div class="link-heading">@Html.ActionLink("Manage Batch", "ManageBatches")</div>
+            <div class="link-descr">Manage active batches</div>
+        </div>
+        <div class="extender"></div>
+    </div>
+</div>

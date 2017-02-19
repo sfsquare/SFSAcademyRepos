@@ -1,0 +1,349 @@
+/* Lenovo */
+
+@media only screen and (width: 1366px){
+
+.no-touch .single-case_studies .hero {
+	background: url("../images/video-poster.jpg");
+    background-size: cover;
+}
+
+.carousel.slick-initialized.slick-slider {
+	display: none;
+}
+
+.hero {
+    position: fixed;
+    height: 100%;
+    height: 100vh;
+    background: url("../images/video-poster.jpg");
+    background-size: cover;
+}
+
+.btn-play.hide, .vjs-sublime-skin .vjs-big-play-button.hide {
+    opacity: 1;
+    visibility: visible;
+    -webkit-transition: none;
+    transition: none;
+}
+}
+
+/* Wellington Lenovo */
+
+@media only screen and (width: 1366px) {
+
+.no-touch .single-case_studies .hero {
+	background: url("../images/video-poster.jpg");
+    background-size: cover;
+}
+
+.carousel.slick-initialized.slick-slider {
+	display: none;
+}
+
+.hero {
+    position: fixed;
+    height: 100%;
+    height: 100vh;
+    background: url("../images/video-poster.jpg");
+    background-size: cover;
+}
+
+.btn-play.hide, .vjs-sublime-skin .vjs-big-play-button.hide {
+    opacity: 1;
+    visibility: visible;
+    -webkit-transition: none;
+    transition: none;
+}
+}
+
+/* 1280px x 720px */
+
+@media only screen and (width: 1280px) and (height: 720px){
+
+.no-touch .single-case_studies .hero {
+	background: url("../images/video-poster.jpg");
+    background-size: cover;
+}
+
+.carousel.slick-initialized.slick-slider {
+	display: none;
+}
+
+
+.hero {
+    position: fixed;
+    height: 100%;
+    height: 100vh;
+    background: url("../images/video-poster.jpg");
+    background-size: cover;
+}
+
+.btn-play.hide, .vjs-sublime-skin .vjs-big-play-button.hide {
+    opacity: 1;
+    visibility: visible;
+    -webkit-transition: none;
+    transition: none;
+}
+}
+
+
+/* iPad Portrait */
+
+@media only screen and (max-width: 768px) {
+
+.hero img {
+	top: 12%;
+	bottom: inherit;
+}
+
+img.logo {
+	position: absolute;
+}
+
+.btn-play {
+	z-index: 4;
+	bottom: -8%;
+}
+
+.btn-play:before, .vjs-sublime-skin .vjs-big-play-button:before {
+	border: none;
+}
+
+.btn-play:hover:before,.vjs-sublime-skin .vjs-big-play-button:hover:before {
+	color: #fff;
+	background: none;
+}
+
+.site-branding .col-1, .site-branding .col-3 {
+	display: none;
+}
+
+.section-1-inner .col-1 {
+	display: block;
+	width: 100%;
+	padding: 80px 80px 0;
+}
+
+.section-1-inner .col-2 {
+	display: block;
+	width: 100%;
+	padding: 0 80px 80px;
+}
+
+.section-2 .col-2 {
+	width: 100%;
+	height: auto;
+	float: inherit;
+	margin: 0 auto;
+	padding: 60px 0;
+}
+
+.section-3 .col-1 {
+	display: block;
+	width: 100%;
+}
+
+.section-3 .col-2 {
+	width: 100%;
+	height: auto;
+	float: inherit;
+	margin: 0 auto;
+	padding: 60px 0;
+	display: block;
+}
+
+.section-4 .col-1 {
+	width: 100%;
+	height: auto;
+	float: inherit;
+	margin: 0 auto;
+	padding: 60px 0;
+}
+
+.section-4 h1 {
+	padding: 0 4em;
+}
+
+.section-5 .col-1 {
+	width: 100%;
+	display: block;
+}
+
+.section-5 object {
+	width: 60%;
+	margin-bottom: 60px;
+}
+
+.section-5 .col-2 {
+	width: 100%;
+	display: block;
+}
+
+img#stat-5-right {
+	display: none;
+}
+
+.section-6 .col-1 {
+	display: block;
+	width: 100%;
+}
+
+.section-6 .col-2 {
+	width: 100%;
+	height: auto;
+	float: inherit;
+	margin: 0 auto;
+	padding: 60px 0;
+	display: block;
+}
+
+footer#colophon.site-footer p span {
+	font-size: 11px;
+}
+
+
+footer#colophon.site-footer p {
+	font-size: 12px;
+}
+
+}
+
+
+@media only screen and (max-width: 768px) and (max-height: 414px) {
+.hero img {
+	top: 0;
+	bottom: 0;
+}
+}
+
+/* iPhone 7 Plus */
+
+@media only screen and (max-width: 425px) {
+
+img.logo {
+	width: 200px;
+}
+
+.hero img {
+	top: 9%;
+	width: 60%;
+}
+
+
+.btn-play {
+    bottom: -18%;
+}
+
+.section-1-inner .col-1 {
+		padding: 30px 30px 0;
+}
+
+.section-1-inner .col-2 {
+		padding: 0 30px 30px;
+}
+
+.section-3 .col-1, .section-6 .col-1 {
+	padding: 0;
+}
+
+.section-4 h1 {
+	padding: 0 .8em;
+}
+
+.section-6 p {padding: 0 2em;}
+
+.section-7 h1 {
+	font-size: 40px;
+}
+
+.section-7 img {
+	width: 200px;
+	margin-bottom: 25px;
+}
+
+.section-7 a {
+	display: table;
+	margin-left: 0;
+	margin-top: 12px;
+	padding-bottom: 0px;
+}
+
+.footer-left {
+	width: 100%;
+	display: block;
+	float: inherit;
+	text-align: center;
+}
+
+.footer-right {
+	width: 100%;
+	display: block;
+	float: inherit;
+	text-align: center;
+}
+
+footer#colophon.site-footer p {
+	text-align: center;
+}
+
+}
+
+/* iPhone 7  */
+
+@media only screen and (max-width: 375px) {
+
+.btn-play {
+    bottom: -20%;
+}
+
+.section-2 object {
+	width: 60%;
+}
+
+.section-2 .col-2 {
+	padding: 60px 0;
+}
+
+.section-3 .col-2 {
+		padding: 60px 0 0;
+}
+
+.section-4 .col-1 {
+	padding: 0 0 60px;
+}
+
+.section-4 object {
+	width: 50%;
+}
+
+.section-2 h1, .section-3 h1, .section-4 h1, .section-5 h1, .section-6 h1 {
+	padding: 0 .6em;
+}
+
+.section-5 .col-1 {
+	padding: 0 30px;
+}
+
+.section-5 object {
+	width: 90%;
+}
+
+.section-3, .section-4, .section-5, .section-6 {
+	padding: 80px 0;
+}
+
+}
+
+/* iPhone SE  */
+
+@media only screen and (max-width: 320px) {
+
+.btn-play {
+    bottom: -22%;
+}
+
+.btn-play:before {
+	bottom: -10px;
+}
+
+}

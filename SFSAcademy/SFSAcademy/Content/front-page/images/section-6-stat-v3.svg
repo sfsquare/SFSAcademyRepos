@@ -1,0 +1,60 @@
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 417.6 419.5" style="enable-background:new 0 0 417.6 419.5;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:none;stroke:#A85CA4;stroke-width:2;stroke-miterlimit:10;}
+	.st1{fill:none;stroke:#A85CA4;stroke-width:2;stroke-linecap:round;stroke-miterlimit:10;}
+	.st2{fill:none;stroke:#4B2D87;stroke-width:2;stroke-miterlimit:10;}
+</style>
+<defs>
+	
+	<style>
+	
+	.st0, .st1, .st2 {
+		stroke-dasharray: 1400;
+		stroke-offset: 0;
+		-webkit-animation: dash 5s linear forwards;
+		-o-animation: dash 5s linear forwards;
+		-moz-animation: dash 5s linear forwards;
+		animation: dash 5s linear forwards;
+		-webkit-animation-iteration-count: infinite; /* Safari 4.0 - 8.0 */
+		animation-iteration-count: infinite;
+		-webkit-animation-direction: alternate; /* Safari 4.0 - 8.0 */
+    	animation-direction: alternate;
+	}
+
+	
+	@-webkit-keyframes dash {
+		from {
+			stroke-dashoffset: 1400;
+		}
+		to {
+			stroke-dashoffset: 0;
+		}
+	}
+	
+	</style>
+	
+
+	
+</defs>
+
+
+
+<g>
+	<line class="st0" x1="101.7" y1="178.8" x2="101.7" y2="252.1"/>
+	<line class="st1" x1="101.7" y1="178.8" x2="82.6" y2="192.8"/>
+</g>
+<path class="st0" d="M157.7,253.6c-20.7,0-37.4-16.7-37.4-37.4s16.7-37.4,37.4-37.4"/>
+<path class="st2" d="M157.7,178.8c20.7,0,37.4,16.7,37.4,37.4s-16.7,37.4-37.4,37.4"/>
+<path class="st0" d="M207.8,216.2c0-20.7,16.7-37.4,37.4-37.4c20.7,0,37.4,16.7,37.4,37.4"/>
+<path class="st2" d="M282.6,216.2c0,20.7-16.7,37.4-37.4,37.4s-37.4-16.7-37.4-37.4"/>
+<line class="st0" x1="329" y1="178.9" x2="299.7" y2="227.5"/>
+<path class="st2" d="M295.3,187.9c0-5,4.1-9.1,9.1-9.1s9.1,4.1,9.1,9.1"/>
+<path class="st0" d="M313.5,187.9c0,5-4.1,9.1-9.1,9.1s-9.1-4.1-9.1-9.1"/>
+<circle class="st0" cx="325.7" cy="218.4" r="9.1"/>
+<path class="st2" d="M325.7,209.3c5,0,9.1,4.1,9.1,9.1s-4.1,9.1-9.1,9.1"/>
+<circle class="st0" cx="208.8" cy="209.8" r="164.4"/>
+<circle class="st0" cx="208.8" cy="209.8" r="177.4"/>
+<circle class="st0" cx="208.8" cy="209.8" r="191.4"/>
+<circle class="st0" cx="208.8" cy="209.8" r="205.5"/>
+</svg>

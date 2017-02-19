@@ -1,0 +1,14 @@
+﻿@{var c = new SFSAcademy.Models.News();}
+
+
+<div id="news_bar">
+    @foreach (var nEWS in c.Get_Latest().Select())
+    {
+        <div class="news_box">
+            <h5 class="news-title"><a href="@Url.Action("View", "News", new { id = nEWS["Id"] })">@nEWS["NewsTitle"]</a></h5>
+            <small class="news-time">Posted On: @nEWS["NewsDate"] </small>
+            <small class="comments-count"><a href="@Url.Action("View", "News", new { id = nEWS["Id"] })">@nEWS["NewsContent"]</a></small>
+        </div>
+    }
+
+</div>

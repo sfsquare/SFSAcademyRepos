@@ -1,0 +1,2589 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.3\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.3\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="..\packages\Microsoft.Net.Compilers.1.3.2\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.1.3.2\build\Microsoft.Net.Compilers.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{800E53F9-FE66-40A6-96EA-341A0BEFDAAD}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SFSAcademy</RootNamespace>
+    <AssemblyName>SFSAcademy</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Antlr3.Runtime, Version=3.5.0.2, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DynamicHeader, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DynamicHeader.1.0.1\lib\DynamicHeader.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="itextsharp, Version=5.5.10.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\iTextSharp.5.5.10\lib\itextsharp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.Agent.Intercept, Version=2.0.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.2.0.7\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.DependencyCollector, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.DependencyCollector.2.2.0\lib\net45\Microsoft.AI.DependencyCollector.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.PerfCounterCollector, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.PerfCounterCollector.2.2.0\lib\net45\Microsoft.AI.PerfCounterCollector.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.ServerTelemetryChannel, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel.2.2.0\lib\net45\Microsoft.AI.ServerTelemetryChannel.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.Web, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.Web.2.2.0\lib\net45\Microsoft.AI.Web.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.WindowsServer, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.WindowsServer.2.2.0\lib\net45\Microsoft.AI.WindowsServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.ApplicationInsights, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.2.2.0\lib\net45\Microsoft.ApplicationInsights.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.3\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Optimization, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="WebGrease, Version=1.6.5135.21930, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\front-page\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\front-page\fonts\MyFontsWebfontsKit.css" />
+    <Content Include="Content\front-page\images\160over90-logo.png" />
+    <Content Include="Content\front-page\images\betterway-title.svg" />
+    <Content Include="Content\front-page\images\bg-agency-mobile.jpg" />
+    <Content Include="Content\front-page\images\bg-agency.jpg" />
+    <Content Include="Content\front-page\images\cr-favicon-1-1-180x180SF.png" />
+    <Content Include="Content\front-page\images\cr-favicon-1-1-192x192SF.png" />
+    <Content Include="Content\front-page\images\cr-favicon-1-1-270x270SF.png" />
+    <Content Include="Content\front-page\images\cropped-favicon-1-1-32x32-S.png" />
+    <Content Include="Content\front-page\images\Graduation-275-2_Back2.jpg" />
+    <Content Include="Content\front-page\images\Graduation-275-2.jpg" />
+    <Content Include="Content\front-page\images\loading.svg" />
+    <Content Include="Content\front-page\images\School-Name-Logo.svg" />
+    <Content Include="Content\front-page\images\section-2-stat-v3.svg" />
+    <Content Include="Content\front-page\images\section-3-stat-v4.svg" />
+    <Content Include="Content\front-page\images\section-4-stat-v3.svg" />
+    <Content Include="Content\front-page\images\section-5-stat-v2.svg" />
+    <Content Include="Content\front-page\images\section-5-stat2.svg" />
+    <Content Include="Content\front-page\images\section-6-stat-v3.svg" />
+    <Content Include="Content\front-page\images\section-7-bg-dark.jpg" />
+    <Content Include="Content\front-page\images\section4-105.jpg" />
+    <Content Include="Content\front-page\images\video-poster.jpg" />
+    <Content Include="Content\front-page\images\_temp-featured-blog.jpg" />
+    <Content Include="Content\front-page\Scripts\analytics.js" />
+    <Content Include="Content\front-page\Scripts\jquery-migrate.min.js" />
+    <Content Include="Content\front-page\Scripts\jquery.js" />
+    <Content Include="Content\front-page\Scripts\jquery.min.js" />
+    <Content Include="Content\front-page\Scripts\navigation.js" />
+    <Content Include="Content\front-page\Scripts\preloader-script.js" />
+    <Content Include="Content\front-page\Scripts\skip-link-focus-fix.js" />
+    <Content Include="Content\front-page\Scripts\svg-inline-min.js" />
+    <Content Include="Content\front-page\Scripts\video-1.js" />
+    <Content Include="Content\front-page\Scripts\video-plugin.js" />
+    <Content Include="Content\front-page\Scripts\video.js" />
+    <Content Include="Content\front-page\Scripts\wp-embed.min.js" />
+    <Content Include="Content\front-page\Scripts\wsfade.js" />
+    <Content Include="Content\front-page\stylesheets\animate.min.css" />
+    <Content Include="Content\front-page\stylesheets\font-awesome.css" />
+    <Content Include="Content\front-page\stylesheets\fonts.css" />
+    <Content Include="Content\front-page\stylesheets\mobile.css" />
+    <Content Include="Content\front-page\stylesheets\style.css" />
+    <Content Include="Content\front-page\video\MP4_Background.mp4" />
+    <Content Include="Content\front-page\video\Why-Go-To-School.mp4" />
+    <Content Include="Content\images\login\SF_Square_Logo-Small.jpg" />
+    <Content Include="Content\images\login\SF_Square_Logo-Small.svg" />
+    <Content Include="Content\images\login\SF_Square_Logo.svg" />
+    <Content Include="Content\javascripts\fckeditor\editor\dialog\common\fck_dialog_common.css" />
+    <Content Include="Content\javascripts\fckeditor\editor\dialog\common\fck_dialog_common.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\dialog\common\images\locked.gif" />
+    <Content Include="Content\javascripts\fckeditor\editor\dialog\common\images\reset.gif" />
+    <Content Include="Content\javascripts\fckeditor\editor\dialog\common\images\unlocked.gif" />
+    <Content Include="Content\javascripts\fckeditor\editor\dialog\fck_about.html" />
+    <Content Include="Content\javascripts\fckeditor\editor\dialog\fck_about\logo_fckeditor.gif" />
+    <Content Include="Content\javascripts\fckeditor\editor\dialog\fck_about\logo_fredck.gif" />
+    <Content Include="Content\javascripts\fckeditor\editor\dialog\fck_about\sponsors\spellchecker_net.gif" />
+    <Content Include="Content\javascripts\fckeditor\editor\dialog\fck_anchor.html" />
+    <Content Include="Content\javascripts\fckeditor\editor\dialog\fck_button.html" />
+    <Content Include="Content\javascripts\fckeditor\editor\dialog\fck_checkbox.html" />
+    <Content Include="Content\javascripts\fckeditor\editor\dialog\fck_colorselector.html" />
+    <Content Include="Content\javascripts\fckeditor\editor\dialog\fck_docprops.html" />
+    <Content Include="Content\javascripts\fckeditor\editor\dialog\fck_docprops\fck_document_preview.html" />
+    <Content Include="Content\javascripts\fckeditor\editor\dialog\fck_find.html" />
+    <Content Include="Content\javascripts\fckeditor\editor\dialog\fck_flash.html" />
+    <Content Include="Content\javascripts\fckeditor\editor\dialog\fck_flash\fck_flash.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\dialog\fck_flash\fck_flash_preview.html" />
+    <Content Include="Content\javascripts\fckeditor\editor\dialog\fck_form.html" />
+    <Content Include="Content\javascripts\fckeditor\editor\dialog\fck_hiddenfield.html" />
+    <Content Include="Content\javascripts\fckeditor\editor\dialog\fck_image.html" />
+    <Content Include="Content\javascripts\fckeditor\editor\dialog\fck_image\fck_image.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\dialog\fck_image\fck_image_preview.html" />
+    <Content Include="Content\javascripts\fckeditor\editor\dialog\fck_link.html" />
+    <Content Include="Content\javascripts\fckeditor\editor\dialog\fck_link\fck_link.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\dialog\fck_listprop.html" />
+    <Content Include="Content\javascripts\fckeditor\editor\dialog\fck_paste.html" />
+    <Content Include="Content\javascripts\fckeditor\editor\dialog\fck_radiobutton.html" />
+    <Content Include="Content\javascripts\fckeditor\editor\dialog\fck_replace.html" />
+    <Content Include="Content\javascripts\fckeditor\editor\dialog\fck_select.html" />
+    <Content Include="Content\javascripts\fckeditor\editor\dialog\fck_select\fck_select.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\dialog\fck_smiley.html" />
+    <Content Include="Content\javascripts\fckeditor\editor\dialog\fck_source.html" />
+    <Content Include="Content\javascripts\fckeditor\editor\dialog\fck_specialchar.html" />
+    <Content Include="Content\javascripts\fckeditor\editor\dialog\fck_spellerpages.html" />
+    <Content Include="Content\javascripts\fckeditor\editor\dialog\fck_spellerpages\spellerpages\blank.html" />
+    <Content Include="Content\javascripts\fckeditor\editor\dialog\fck_spellerpages\spellerpages\controls.html" />
+    <Content Include="Content\javascripts\fckeditor\editor\dialog\fck_spellerpages\spellerpages\controlWindow.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\dialog\fck_spellerpages\spellerpages\spellchecker.html" />
+    <Content Include="Content\javascripts\fckeditor\editor\dialog\fck_spellerpages\spellerpages\spellChecker.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\dialog\fck_spellerpages\spellerpages\spellerStyle.css" />
+    <Content Include="Content\javascripts\fckeditor\editor\dialog\fck_spellerpages\spellerpages\wordWindow.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\dialog\fck_table.html" />
+    <Content Include="Content\javascripts\fckeditor\editor\dialog\fck_tablecell.html" />
+    <Content Include="Content\javascripts\fckeditor\editor\dialog\fck_template.html" />
+    <Content Include="Content\javascripts\fckeditor\editor\dialog\fck_template\images\template1.gif" />
+    <Content Include="Content\javascripts\fckeditor\editor\dialog\fck_template\images\template2.gif" />
+    <Content Include="Content\javascripts\fckeditor\editor\dialog\fck_template\images\template3.gif" />
+    <Content Include="Content\javascripts\fckeditor\editor\dialog\fck_textarea.html" />
+    <Content Include="Content\javascripts\fckeditor\editor\dialog\fck_textfield.html" />
+    <Content Include="Content\javascripts\fckeditor\editor\dtd\fck_dtd_test.html" />
+    <Content Include="Content\javascripts\fckeditor\editor\dtd\fck_xhtml10strict.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\dtd\fck_xhtml10transitional.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\fckdebug.html" />
+    <Content Include="Content\javascripts\fckeditor\editor\fckdialog.html" />
+    <Content Include="Content\javascripts\fckeditor\editor\fckeditor.html" />
+    <Content Include="Content\javascripts\fckeditor\editor\fckeditor.original.html" />
+    <Content Include="Content\javascripts\fckeditor\editor\filemanager\browser\default\browser.css" />
+    <Content Include="Content\javascripts\fckeditor\editor\filemanager\browser\default\browser.html" />
+    <Content Include="Content\javascripts\fckeditor\editor\filemanager\browser\default\frmactualfolder.html" />
+    <Content Include="Content\javascripts\fckeditor\editor\filemanager\browser\default\frmcreatefolder.html" />
+    <Content Include="Content\javascripts\fckeditor\editor\filemanager\browser\default\frmfolders.html" />
+    <Content Include="Content\javascripts\fckeditor\editor\filemanager\browser\default\frmresourceslist.html" />
+    <Content Include="Content\javascripts\fckeditor\editor\filemanager\browser\default\frmresourcetype.html" />
+    <Content Include="Content\javascripts\fckeditor\editor\filemanager\browser\default\frmupload.html" />
+    <Content Include="Content\javascripts\fckeditor\editor\filemanager\browser\default\images\ButtonArrow.gif" />
+    <Content Include="Content\javascripts\fckeditor\editor\filemanager\browser\default\images\Folder.gif" />
+    <Content Include="Content\javascripts\fckeditor\editor\filemanager\browser\default\images\Folder32.gif" />
+    <Content Include="Content\javascripts\fckeditor\editor\filemanager\browser\default\images\FolderOpened.gif" />
+    <Content Include="Content\javascripts\fckeditor\editor\filemanager\browser\default\images\FolderOpened32.gif" />
+    <Content Include="Content\javascripts\fckeditor\editor\filemanager\browser\default\images\FolderUp.gif" />
+    <Content Include="Content\javascripts\fckeditor\editor\filemanager\browser\default\images\icons\32\ai.gif" />
+    <Content Include="Content\javascripts\fckeditor\editor\filemanager\browser\default\images\icons\32\avi.gif" />
+    <Content Include="Content\javascripts\fckeditor\editor\filemanager\browser\default\images\icons\32\bmp.gif" />
+    <Content Include="Content\javascripts\fckeditor\editor\filemanager\browser\default\images\icons\32\cs.gif" />
+    <Content Include="Content\javascripts\fckeditor\editor\filemanager\browser\default\images\icons\32\default.icon.gif" />
+    <Content Include="Content\javascripts\fckeditor\editor\filemanager\browser\default\images\icons\32\dll.gif" />
+    <Content Include="Content\javascripts\fckeditor\editor\filemanager\browser\default\images\icons\32\doc.gif" />
+    <Content Include="Content\javascripts\fckeditor\editor\filemanager\browser\default\images\icons\32\exe.gif" />
+    <Content Include="Content\javascripts\fckeditor\editor\filemanager\browser\default\images\icons\32\fla.gif" />
+    <Content Include="Content\javascripts\fckeditor\editor\filemanager\browser\default\images\icons\32\gif.gif" />
+    <Content Include="Content\javascripts\fckeditor\editor\filemanager\browser\default\images\icons\32\htm.gif" />
+    <Content Include="Content\javascripts\fckeditor\editor\filemanager\browser\default\images\icons\32\html.gif" />
+    <Content Include="Content\javascripts\fckeditor\editor\filemanager\browser\default\images\icons\32\jpg.gif" />
+    <Content Include="Content\javascripts\fckeditor\editor\filemanager\browser\default\images\icons\32\js.gif" />
+    <Content Include="Content\javascripts\fckeditor\editor\filemanager\browser\default\images\icons\32\mdb.gif" />
+    <Content Include="Content\javascripts\fckeditor\editor\filemanager\browser\default\images\icons\32\mp3.gif" />
+    <Content Include="Content\javascripts\fckeditor\editor\filemanager\browser\default\images\icons\32\pdf.gif" />
+    <Content Include="Content\javascripts\fckeditor\editor\filemanager\browser\default\images\icons\32\png.gif" />
+    <Content Include="Content\javascripts\fckeditor\editor\filemanager\browser\default\images\icons\32\ppt.gif" />
+    <Content Include="Content\javascripts\fckeditor\editor\filemanager\browser\default\images\icons\32\rdp.gif" />
+    <Content Include="Content\javascripts\fckeditor\editor\filemanager\browser\default\images\icons\32\swf.gif" />
+    <Content Include="Content\javascripts\fckeditor\editor\filemanager\browser\default\images\icons\32\swt.gif" />
+    <Content Include="Content\javascripts\fckeditor\editor\filemanager\browser\default\images\icons\32\txt.gif" />
+    <Content Include="Content\javascripts\fckeditor\editor\filemanager\browser\default\images\icons\32\vsd.gif" />
+    <Content Include="Content\javascripts\fckeditor\editor\filemanager\browser\default\images\icons\32\xls.gif" />
+    <Content Include="Content\javascripts\fckeditor\editor\filemanager\browser\default\images\icons\32\xml.gif" />
+    <Content Include="Content\javascripts\fckeditor\editor\filemanager\browser\default\images\icons\32\zip.gif" />
+    <Content Include="Content\javascripts\fckeditor\editor\filemanager\browser\default\images\icons\ai.gif" />
+    <Content Include="Content\javascripts\fckeditor\editor\filemanager\browser\default\images\icons\avi.gif" />
+    <Content Include="Content\javascripts\fckeditor\editor\filemanager\browser\default\images\icons\bmp.gif" />
+    <Content Include="Content\javascripts\fckeditor\editor\filemanager\browser\default\images\icons\cs.gif" />
+    <Content Include="Content\javascripts\fckeditor\editor\filemanager\browser\default\images\icons\default.icon.gif" />
+    <Content Include="Content\javascripts\fckeditor\editor\filemanager\browser\default\images\icons\dll.gif" />
+    <Content Include="Content\javascripts\fckeditor\editor\filemanager\browser\default\images\icons\doc.gif" />
+    <Content Include="Content\javascripts\fckeditor\editor\filemanager\browser\default\images\icons\exe.gif" />
+    <Content Include="Content\javascripts\fckeditor\editor\filemanager\browser\default\images\icons\fla.gif" />
+    <Content Include="Content\javascripts\fckeditor\editor\filemanager\browser\default\images\icons\gif.gif" />
+    <Content Include="Content\javascripts\fckeditor\editor\filemanager\browser\default\images\icons\htm.gif" />
+    <Content Include="Content\javascripts\fckeditor\editor\filemanager\browser\default\images\icons\html.gif" />
+    <Content Include="Content\javascripts\fckeditor\editor\filemanager\browser\default\images\icons\jpg.gif" />
+    <Content Include="Content\javascripts\fckeditor\editor\filemanager\browser\default\images\icons\js.gif" />
+    <Content Include="Content\javascripts\fckeditor\editor\filemanager\browser\default\images\icons\mdb.gif" />
+    <Content Include="Content\javascripts\fckeditor\editor\filemanager\browser\default\images\icons\mp3.gif" />
+    <Content Include="Content\javascripts\fckeditor\editor\filemanager\browser\default\images\icons\pdf.gif" />
+    <Content Include="Content\javascripts\fckeditor\editor\filemanager\browser\default\images\icons\png.gif" />
+    <Content Include="Content\javascripts\fckeditor\editor\filemanager\browser\default\images\icons\ppt.gif" />
+    <Content Include="Content\javascripts\fckeditor\editor\filemanager\browser\default\images\icons\rdp.gif" />
+    <Content Include="Content\javascripts\fckeditor\editor\filemanager\browser\default\images\icons\swf.gif" />
+    <Content Include="Content\javascripts\fckeditor\editor\filemanager\browser\default\images\icons\swt.gif" />
+    <Content Include="Content\javascripts\fckeditor\editor\filemanager\browser\default\images\icons\txt.gif" />
+    <Content Include="Content\javascripts\fckeditor\editor\filemanager\browser\default\images\icons\vsd.gif" />
+    <Content Include="Content\javascripts\fckeditor\editor\filemanager\browser\default\images\icons\xls.gif" />
+    <Content Include="Content\javascripts\fckeditor\editor\filemanager\browser\default\images\icons\xml.gif" />
+    <Content Include="Content\javascripts\fckeditor\editor\filemanager\browser\default\images\icons\zip.gif" />
+    <Content Include="Content\javascripts\fckeditor\editor\filemanager\browser\default\images\spacer.gif" />
+    <Content Include="Content\javascripts\fckeditor\editor\filemanager\browser\default\js\common.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\filemanager\browser\default\js\fckxml.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\filemanager\connectors\aspx\config.ascx" />
+    <Content Include="Content\javascripts\fckeditor\editor\filemanager\connectors\aspx\connector.aspx" />
+    <Content Include="Content\javascripts\fckeditor\editor\filemanager\connectors\aspx\upload.aspx" />
+    <Content Include="Content\javascripts\fckeditor\editor\filemanager\connectors\asp\basexml.asp" />
+    <Content Include="Content\javascripts\fckeditor\editor\filemanager\connectors\asp\class_upload.asp" />
+    <Content Include="Content\javascripts\fckeditor\editor\filemanager\connectors\asp\commands.asp" />
+    <Content Include="Content\javascripts\fckeditor\editor\filemanager\connectors\asp\config.asp" />
+    <Content Include="Content\javascripts\fckeditor\editor\filemanager\connectors\asp\connector.asp" />
+    <Content Include="Content\javascripts\fckeditor\editor\filemanager\connectors\asp\io.asp" />
+    <Content Include="Content\javascripts\fckeditor\editor\filemanager\connectors\asp\upload.asp" />
+    <Content Include="Content\javascripts\fckeditor\editor\filemanager\connectors\asp\util.asp" />
+    <Content Include="Content\javascripts\fckeditor\editor\filemanager\connectors\py\htaccess.txt" />
+    <Content Include="Content\javascripts\fckeditor\editor\filemanager\connectors\test.html" />
+    <Content Include="Content\javascripts\fckeditor\editor\filemanager\connectors\uploadtest.html" />
+    <Content Include="Content\javascripts\fckeditor\editor\images\anchor.gif" />
+    <Content Include="Content\javascripts\fckeditor\editor\images\arrow_ltr.gif" />
+    <Content Include="Content\javascripts\fckeditor\editor\images\arrow_rtl.gif" />
+    <Content Include="Content\javascripts\fckeditor\editor\images\smiley\msn\angel_smile.gif" />
+    <Content Include="Content\javascripts\fckeditor\editor\images\smiley\msn\angry_smile.gif" />
+    <Content Include="Content\javascripts\fckeditor\editor\images\smiley\msn\broken_heart.gif" />
+    <Content Include="Content\javascripts\fckeditor\editor\images\smiley\msn\cake.gif" />
+    <Content Include="Content\javascripts\fckeditor\editor\images\smiley\msn\confused_smile.gif" />
+    <Content Include="Content\javascripts\fckeditor\editor\images\smiley\msn\cry_smile.gif" />
+    <Content Include="Content\javascripts\fckeditor\editor\images\smiley\msn\devil_smile.gif" />
+    <Content Include="Content\javascripts\fckeditor\editor\images\smiley\msn\embaressed_smile.gif" />
+    <Content Include="Content\javascripts\fckeditor\editor\images\smiley\msn\envelope.gif" />
+    <Content Include="Content\javascripts\fckeditor\editor\images\smiley\msn\heart.gif" />
+    <Content Include="Content\javascripts\fckeditor\editor\images\smiley\msn\kiss.gif" />
+    <Content Include="Content\javascripts\fckeditor\editor\images\smiley\msn\lightbulb.gif" />
+    <Content Include="Content\javascripts\fckeditor\editor\images\smiley\msn\omg_smile.gif" />
+    <Content Include="Content\javascripts\fckeditor\editor\images\smiley\msn\regular_smile.gif" />
+    <Content Include="Content\javascripts\fckeditor\editor\images\smiley\msn\sad_smile.gif" />
+    <Content Include="Content\javascripts\fckeditor\editor\images\smiley\msn\shades_smile.gif" />
+    <Content Include="Content\javascripts\fckeditor\editor\images\smiley\msn\teeth_smile.gif" />
+    <Content Include="Content\javascripts\fckeditor\editor\images\smiley\msn\thumbs_down.gif" />
+    <Content Include="Content\javascripts\fckeditor\editor\images\smiley\msn\thumbs_up.gif" />
+    <Content Include="Content\javascripts\fckeditor\editor\images\smiley\msn\tounge_smile.gif" />
+    <Content Include="Content\javascripts\fckeditor\editor\images\smiley\msn\whatchutalkingabout_smile.gif" />
+    <Content Include="Content\javascripts\fckeditor\editor\images\smiley\msn\wink_smile.gif" />
+    <Content Include="Content\javascripts\fckeditor\editor\images\spacer.gif" />
+    <Content Include="Content\javascripts\fckeditor\editor\js\fckadobeair.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\js\fckeditorcode_gecko.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\js\fckeditorcode_ie.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\lang\af.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\lang\ar.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\lang\bg.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\lang\bn.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\lang\bs.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\lang\ca.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\lang\cs.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\lang\da.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\lang\de.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\lang\el.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\lang\en-au.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\lang\en-ca.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\lang\en-uk.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\lang\en.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\lang\eo.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\lang\es.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\lang\et.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\lang\eu.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\lang\fa.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\lang\fi.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\lang\fo.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\lang\fr-ca.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\lang\fr.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\lang\gl.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\lang\he.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\lang\hi.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\lang\hr.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\lang\hu.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\lang\it.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\lang\ja.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\lang\km.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\lang\ko.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\lang\lt.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\lang\lv.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\lang\mn.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\lang\ms.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\lang\nb.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\lang\nl.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\lang\no.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\lang\pl.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\lang\pt-br.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\lang\pt.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\lang\ro.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\lang\ru.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\lang\sk.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\lang\sl.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\lang\sr-latn.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\lang\sr.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\lang\sv.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\lang\th.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\lang\tr.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\lang\uk.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\lang\vi.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\lang\zh-cn.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\lang\zh.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\lang\_translationstatus.txt" />
+    <Content Include="Content\javascripts\fckeditor\editor\plugins\autogrow\fckplugin.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\plugins\bbcode\fckplugin.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\plugins\bbcode\_sample\sample.config.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\plugins\bbcode\_sample\sample.html" />
+    <Content Include="Content\javascripts\fckeditor\editor\plugins\dragresizetable\fckplugin.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\plugins\placeholder\fckplugin.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\plugins\placeholder\fck_placeholder.html" />
+    <Content Include="Content\javascripts\fckeditor\editor\plugins\placeholder\lang\de.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\plugins\placeholder\lang\en.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\plugins\placeholder\lang\es.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\plugins\placeholder\lang\fr.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\plugins\placeholder\lang\it.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\plugins\placeholder\lang\pl.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\plugins\placeholder\placeholder.gif" />
+    <Content Include="Content\javascripts\fckeditor\editor\plugins\simplecommands\fckplugin.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\plugins\tablecommands\fckplugin.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\skins\default\fck_dialog.css" />
+    <Content Include="Content\javascripts\fckeditor\editor\skins\default\fck_dialog_ie6.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\skins\default\fck_editor.css" />
+    <Content Include="Content\javascripts\fckeditor\editor\skins\default\fck_strip.gif" />
+    <Content Include="Content\javascripts\fckeditor\editor\skins\default\images\dialog.sides.gif" />
+    <Content Include="Content\javascripts\fckeditor\editor\skins\default\images\dialog.sides.png" />
+    <Content Include="Content\javascripts\fckeditor\editor\skins\default\images\dialog.sides.rtl.png" />
+    <Content Include="Content\javascripts\fckeditor\editor\skins\default\images\sprites.gif" />
+    <Content Include="Content\javascripts\fckeditor\editor\skins\default\images\sprites.png" />
+    <Content Include="Content\javascripts\fckeditor\editor\skins\default\images\toolbar.arrowright.gif" />
+    <Content Include="Content\javascripts\fckeditor\editor\skins\default\images\toolbar.buttonarrow.gif" />
+    <Content Include="Content\javascripts\fckeditor\editor\skins\default\images\toolbar.collapse.gif" />
+    <Content Include="Content\javascripts\fckeditor\editor\skins\default\images\toolbar.end.gif" />
+    <Content Include="Content\javascripts\fckeditor\editor\skins\default\images\toolbar.expand.gif" />
+    <Content Include="Content\javascripts\fckeditor\editor\skins\default\images\toolbar.separator.gif" />
+    <Content Include="Content\javascripts\fckeditor\editor\skins\default\images\toolbar.start.gif" />
+    <Content Include="Content\javascripts\fckeditor\editor\skins\office2003\fck_dialog.css" />
+    <Content Include="Content\javascripts\fckeditor\editor\skins\office2003\fck_dialog_ie6.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\skins\office2003\fck_editor.css" />
+    <Content Include="Content\javascripts\fckeditor\editor\skins\office2003\fck_strip.gif" />
+    <Content Include="Content\javascripts\fckeditor\editor\skins\office2003\images\dialog.sides.gif" />
+    <Content Include="Content\javascripts\fckeditor\editor\skins\office2003\images\dialog.sides.png" />
+    <Content Include="Content\javascripts\fckeditor\editor\skins\office2003\images\dialog.sides.rtl.png" />
+    <Content Include="Content\javascripts\fckeditor\editor\skins\office2003\images\sprites.gif" />
+    <Content Include="Content\javascripts\fckeditor\editor\skins\office2003\images\sprites.png" />
+    <Content Include="Content\javascripts\fckeditor\editor\skins\office2003\images\toolbar.arrowright.gif" />
+    <Content Include="Content\javascripts\fckeditor\editor\skins\office2003\images\toolbar.bg.gif" />
+    <Content Include="Content\javascripts\fckeditor\editor\skins\office2003\images\toolbar.buttonarrow.gif" />
+    <Content Include="Content\javascripts\fckeditor\editor\skins\office2003\images\toolbar.collapse.gif" />
+    <Content Include="Content\javascripts\fckeditor\editor\skins\office2003\images\toolbar.end.gif" />
+    <Content Include="Content\javascripts\fckeditor\editor\skins\office2003\images\toolbar.expand.gif" />
+    <Content Include="Content\javascripts\fckeditor\editor\skins\office2003\images\toolbar.separator.gif" />
+    <Content Include="Content\javascripts\fckeditor\editor\skins\office2003\images\toolbar.start.gif" />
+    <Content Include="Content\javascripts\fckeditor\editor\skins\silver\fck_dialog.css" />
+    <Content Include="Content\javascripts\fckeditor\editor\skins\silver\fck_dialog_ie6.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\skins\silver\fck_editor.css" />
+    <Content Include="Content\javascripts\fckeditor\editor\skins\silver\fck_strip.gif" />
+    <Content Include="Content\javascripts\fckeditor\editor\skins\silver\images\dialog.sides.gif" />
+    <Content Include="Content\javascripts\fckeditor\editor\skins\silver\images\dialog.sides.png" />
+    <Content Include="Content\javascripts\fckeditor\editor\skins\silver\images\dialog.sides.rtl.png" />
+    <Content Include="Content\javascripts\fckeditor\editor\skins\silver\images\sprites.gif" />
+    <Content Include="Content\javascripts\fckeditor\editor\skins\silver\images\sprites.png" />
+    <Content Include="Content\javascripts\fckeditor\editor\skins\silver\images\toolbar.arrowright.gif" />
+    <Content Include="Content\javascripts\fckeditor\editor\skins\silver\images\toolbar.buttonarrow.gif" />
+    <Content Include="Content\javascripts\fckeditor\editor\skins\silver\images\toolbar.buttonbg.gif" />
+    <Content Include="Content\javascripts\fckeditor\editor\skins\silver\images\toolbar.collapse.gif" />
+    <Content Include="Content\javascripts\fckeditor\editor\skins\silver\images\toolbar.end.gif" />
+    <Content Include="Content\javascripts\fckeditor\editor\skins\silver\images\toolbar.expand.gif" />
+    <Content Include="Content\javascripts\fckeditor\editor\skins\silver\images\toolbar.separator.gif" />
+    <Content Include="Content\javascripts\fckeditor\editor\skins\silver\images\toolbar.start.gif" />
+    <Content Include="Content\javascripts\fckeditor\editor\skins\_fckviewstrips.html" />
+    <Content Include="Content\javascripts\fckeditor\fckconfig.js" />
+    <Content Include="Content\javascripts\fckeditor\fckeditor.js" />
+    <Content Include="Content\javascripts\fckeditor\fckpackager.xml" />
+    <Content Include="Content\javascripts\fckeditor\fckstyles.xml" />
+    <Content Include="Content\javascripts\fckeditor\fcktemplates.xml" />
+    <Content Include="Content\javascripts\fckeditor\license.txt" />
+    <Content Include="Content\javascripts\fckeditor\_documentation.html" />
+    <Content Include="Content\javascripts\fckeditor\_upgrade.html" />
+    <Content Include="Content\javascripts\fckeditor\_whatsnew.html" />
+    <Content Include="Content\javascripts\fckeditor\_whatsnew_history.html" />
+    <Content Include="Content\javascripts\jquery\jquery-1.3.2.min.js" />
+    <Content Include="Content\javascripts\jquery\jquery-ui.min.js" />
+    <Content Include="Content\javascripts\jquery\jquery.hotkeys.js" />
+    <Content Include="Content\javascripts\jquery\jquery.min.js" />
+    <Content Include="Content\javascripts\jquery\selectbox.js" />
+    <Content Include="Content\javascripts\scripts\nicetitle.js" />
+    <Content Include="Content\javascripts\tiny_mce\langs\en.js" />
+    <Content Include="Content\javascripts\tiny_mce\license.txt" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\advhr\css\advhr.css" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\advhr\editor_plugin.js" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\advhr\editor_plugin_src.js" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\advhr\js\rule.js" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\advhr\langs\en_dlg.js" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\advhr\rule.htm" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\advimage\css\advimage.css" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\advimage\editor_plugin.js" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\advimage\editor_plugin_src.js" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\advimage\image.htm" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\advimage\img\sample.gif" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\advimage\js\image.js" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\advimage\langs\en_dlg.js" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\advlink\css\advlink.css" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\advlink\editor_plugin.js" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\advlink\editor_plugin_src.js" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\advlink\js\advlink.js" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\advlink\langs\en_dlg.js" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\advlink\link.htm" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\advlist\editor_plugin.js" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\advlist\editor_plugin_src.js" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\autoresize\editor_plugin.js" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\autoresize\editor_plugin_src.js" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\autosave\editor_plugin.js" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\autosave\editor_plugin_src.js" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\autosave\langs\en.js" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\bbcode\editor_plugin.js" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\bbcode\editor_plugin_src.js" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\contextmenu\editor_plugin.js" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\contextmenu\editor_plugin_src.js" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\directionality\editor_plugin.js" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\directionality\editor_plugin_src.js" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\emotions\editor_plugin.js" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\emotions\editor_plugin_src.js" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\emotions\emotions.htm" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\emotions\img\smiley-cool.gif" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\emotions\img\smiley-cry.gif" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\emotions\img\smiley-embarassed.gif" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\emotions\img\smiley-foot-in-mouth.gif" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\emotions\img\smiley-frown.gif" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\emotions\img\smiley-innocent.gif" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\emotions\img\smiley-kiss.gif" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\emotions\img\smiley-laughing.gif" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\emotions\img\smiley-money-mouth.gif" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\emotions\img\smiley-sealed.gif" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\emotions\img\smiley-smile.gif" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\emotions\img\smiley-surprised.gif" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\emotions\img\smiley-tongue-out.gif" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\emotions\img\smiley-undecided.gif" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\emotions\img\smiley-wink.gif" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\emotions\img\smiley-yell.gif" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\emotions\js\emotions.js" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\emotions\langs\en_dlg.js" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\example\dialog.htm" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\example\editor_plugin.js" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\example\editor_plugin_src.js" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\example\img\example.gif" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\example\js\dialog.js" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\example\langs\en.js" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\example\langs\en_dlg.js" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\fullpage\css\fullpage.css" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\fullpage\editor_plugin.js" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\fullpage\editor_plugin_src.js" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\fullpage\fullpage.htm" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\fullpage\js\fullpage.js" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\fullpage\langs\en_dlg.js" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\fullscreen\editor_plugin.js" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\fullscreen\editor_plugin_src.js" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\fullscreen\fullscreen.htm" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\iespell\editor_plugin.js" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\iespell\editor_plugin_src.js" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\inlinepopups\editor_plugin.js" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\inlinepopups\editor_plugin_src.js" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\inlinepopups\skins\clearlooks2\img\alert.gif" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\inlinepopups\skins\clearlooks2\img\button.gif" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\inlinepopups\skins\clearlooks2\img\buttons.gif" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\inlinepopups\skins\clearlooks2\img\confirm.gif" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\inlinepopups\skins\clearlooks2\img\corners.gif" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\inlinepopups\skins\clearlooks2\img\horizontal.gif" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\inlinepopups\skins\clearlooks2\img\vertical.gif" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\inlinepopups\skins\clearlooks2\window.css" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\inlinepopups\template.htm" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\insertdatetime\editor_plugin.js" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\insertdatetime\editor_plugin_src.js" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\layer\editor_plugin.js" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\layer\editor_plugin_src.js" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\legacyoutput\editor_plugin.js" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\legacyoutput\editor_plugin_src.js" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\media\css\content.css" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\media\css\media.css" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\media\editor_plugin.js" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\media\editor_plugin_src.js" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\media\img\flash.gif" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\media\img\flv_player.swf" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\media\img\quicktime.gif" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\media\img\realmedia.gif" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\media\img\shockwave.gif" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\media\img\trans.gif" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\media\img\windowsmedia.gif" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\media\js\embed.js" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\media\js\media.js" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\media\langs\en_dlg.js" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\media\media.htm" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\nonbreaking\editor_plugin.js" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\nonbreaking\editor_plugin_src.js" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\noneditable\editor_plugin.js" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\noneditable\editor_plugin_src.js" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\pagebreak\css\content.css" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\pagebreak\editor_plugin.js" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\pagebreak\editor_plugin_src.js" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\pagebreak\img\pagebreak.gif" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\pagebreak\img\trans.gif" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\paste\editor_plugin.js" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\paste\editor_plugin_src.js" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\paste\js\pastetext.js" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\paste\js\pasteword.js" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\paste\langs\en_dlg.js" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\paste\pastetext.htm" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\paste\pasteword.htm" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\preview\editor_plugin.js" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\preview\editor_plugin_src.js" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\preview\example.html" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\preview\jscripts\embed.js" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\preview\preview.html" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\print\editor_plugin.js" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\print\editor_plugin_src.js" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\save\editor_plugin.js" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\save\editor_plugin_src.js" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\searchreplace\css\searchreplace.css" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\searchreplace\editor_plugin.js" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\searchreplace\editor_plugin_src.js" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\searchreplace\js\searchreplace.js" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\searchreplace\langs\en_dlg.js" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\searchreplace\searchreplace.htm" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\spellchecker\css\content.css" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\spellchecker\editor_plugin.js" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\spellchecker\editor_plugin_src.js" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\spellchecker\img\wline.gif" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\style\css\props.css" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\style\editor_plugin.js" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\style\editor_plugin_src.js" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\style\js\props.js" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\style\langs\en_dlg.js" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\style\props.htm" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\tabfocus\editor_plugin.js" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\tabfocus\editor_plugin_src.js" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\table\cell.htm" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\table\css\cell.css" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\table\css\row.css" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\table\css\table.css" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\table\editor_plugin.js" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\table\editor_plugin_src.js" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\table\js\cell.js" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\table\js\merge_cells.js" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\table\js\row.js" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\table\js\table.js" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\table\langs\en_dlg.js" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\table\merge_cells.htm" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\table\row.htm" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\table\table.htm" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\template\blank.htm" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\template\css\template.css" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\template\editor_plugin.js" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\template\editor_plugin_src.js" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\template\js\template.js" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\template\langs\en_dlg.js" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\template\template.htm" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\visualchars\editor_plugin.js" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\visualchars\editor_plugin_src.js" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\wordcount\editor_plugin.js" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\wordcount\editor_plugin_src.js" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\xhtmlxtras\abbr.htm" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\xhtmlxtras\acronym.htm" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\xhtmlxtras\attributes.htm" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\xhtmlxtras\cite.htm" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\xhtmlxtras\css\attributes.css" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\xhtmlxtras\css\popup.css" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\xhtmlxtras\del.htm" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\xhtmlxtras\editor_plugin.js" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\xhtmlxtras\editor_plugin_src.js" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\xhtmlxtras\ins.htm" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\xhtmlxtras\js\abbr.js" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\xhtmlxtras\js\acronym.js" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\xhtmlxtras\js\attributes.js" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\xhtmlxtras\js\cite.js" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\xhtmlxtras\js\del.js" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\xhtmlxtras\js\element_common.js" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\xhtmlxtras\js\ins.js" />
+    <Content Include="Content\javascripts\tiny_mce\plugins\xhtmlxtras\langs\en_dlg.js" />
+    <Content Include="Content\javascripts\tiny_mce\themes\advanced\about.htm" />
+    <Content Include="Content\javascripts\tiny_mce\themes\advanced\anchor.htm" />
+    <Content Include="Content\javascripts\tiny_mce\themes\advanced\charmap.htm" />
+    <Content Include="Content\javascripts\tiny_mce\themes\advanced\color_picker.htm" />
+    <Content Include="Content\javascripts\tiny_mce\themes\advanced\editor_template.js" />
+    <Content Include="Content\javascripts\tiny_mce\themes\advanced\editor_template_src.js" />
+    <Content Include="Content\javascripts\tiny_mce\themes\advanced\image.htm" />
+    <Content Include="Content\javascripts\tiny_mce\themes\advanced\img\colorpicker.jpg" />
+    <Content Include="Content\javascripts\tiny_mce\themes\advanced\img\icons.gif" />
+    <Content Include="Content\javascripts\tiny_mce\themes\advanced\js\about.js" />
+    <Content Include="Content\javascripts\tiny_mce\themes\advanced\js\anchor.js" />
+    <Content Include="Content\javascripts\tiny_mce\themes\advanced\js\charmap.js" />
+    <Content Include="Content\javascripts\tiny_mce\themes\advanced\js\color_picker.js" />
+    <Content Include="Content\javascripts\tiny_mce\themes\advanced\js\image.js" />
+    <Content Include="Content\javascripts\tiny_mce\themes\advanced\js\link.js" />
+    <Content Include="Content\javascripts\tiny_mce\themes\advanced\js\source_editor.js" />
+    <Content Include="Content\javascripts\tiny_mce\themes\advanced\langs\en.js" />
+    <Content Include="Content\javascripts\tiny_mce\themes\advanced\langs\en_dlg.js" />
+    <Content Include="Content\javascripts\tiny_mce\themes\advanced\link.htm" />
+    <Content Include="Content\javascripts\tiny_mce\themes\advanced\skins\default\content.css" />
+    <Content Include="Content\javascripts\tiny_mce\themes\advanced\skins\default\dialog.css" />
+    <Content Include="Content\javascripts\tiny_mce\themes\advanced\skins\default\img\buttons.png" />
+    <Content Include="Content\javascripts\tiny_mce\themes\advanced\skins\default\img\items.gif" />
+    <Content Include="Content\javascripts\tiny_mce\themes\advanced\skins\default\img\menu_arrow.gif" />
+    <Content Include="Content\javascripts\tiny_mce\themes\advanced\skins\default\img\menu_check.gif" />
+    <Content Include="Content\javascripts\tiny_mce\themes\advanced\skins\default\img\progress.gif" />
+    <Content Include="Content\javascripts\tiny_mce\themes\advanced\skins\default\img\tabs.gif" />
+    <Content Include="Content\javascripts\tiny_mce\themes\advanced\skins\default\ui.css" />
+    <Content Include="Content\javascripts\tiny_mce\themes\advanced\skins\o2k7\content.css" />
+    <Content Include="Content\javascripts\tiny_mce\themes\advanced\skins\o2k7\dialog.css" />
+    <Content Include="Content\javascripts\tiny_mce\themes\advanced\skins\o2k7\img\button_bg.png" />
+    <Content Include="Content\javascripts\tiny_mce\themes\advanced\skins\o2k7\img\button_bg_black.png" />
+    <Content Include="Content\javascripts\tiny_mce\themes\advanced\skins\o2k7\img\button_bg_silver.png" />
+    <Content Include="Content\javascripts\tiny_mce\themes\advanced\skins\o2k7\ui.css" />
+    <Content Include="Content\javascripts\tiny_mce\themes\advanced\skins\o2k7\ui_black.css" />
+    <Content Include="Content\javascripts\tiny_mce\themes\advanced\skins\o2k7\ui_silver.css" />
+    <Content Include="Content\javascripts\tiny_mce\themes\advanced\source_editor.htm" />
+    <Content Include="Content\javascripts\tiny_mce\themes\simple\editor_template.js" />
+    <Content Include="Content\javascripts\tiny_mce\themes\simple\editor_template_src.js" />
+    <Content Include="Content\javascripts\tiny_mce\themes\simple\img\icons.gif" />
+    <Content Include="Content\javascripts\tiny_mce\themes\simple\langs\en.js" />
+    <Content Include="Content\javascripts\tiny_mce\themes\simple\skins\default\content.css" />
+    <Content Include="Content\javascripts\tiny_mce\themes\simple\skins\default\ui.css" />
+    <Content Include="Content\javascripts\tiny_mce\themes\simple\skins\o2k7\content.css" />
+    <Content Include="Content\javascripts\tiny_mce\themes\simple\skins\o2k7\img\button_bg.png" />
+    <Content Include="Content\javascripts\tiny_mce\themes\simple\skins\o2k7\ui.css" />
+    <Content Include="Content\javascripts\tiny_mce\tiny_mce.js" />
+    <Content Include="Content\javascripts\tiny_mce\tiny_mce_popup.js" />
+    <Content Include="Content\javascripts\tiny_mce\tiny_mce_src.js" />
+    <Content Include="Content\javascripts\tiny_mce\utils\editable_selects.js" />
+    <Content Include="Content\javascripts\tiny_mce\utils\form_utils.js" />
+    <Content Include="Content\javascripts\tiny_mce\utils\mctabs.js" />
+    <Content Include="Content\javascripts\tiny_mce\utils\validate.js" />
+    <Content Include="Content\PagedList.css" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="ModelSFSAcademy.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModelSFSAcademy.edmx</DependentUpon>
+      <LastGenOutput>ModelSFSAcademy.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="ModelSFSAcademy.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModelSFSAcademy.edmx</DependentUpon>
+      <LastGenOutput>ModelSFSAcademy.cs</LastGenOutput>
+    </Content>
+    <Content Include="packages.config" />
+    <Content Include="Content\404.html" />
+    <Content Include="Content\422.html" />
+    <Content Include="Content\500.html" />
+    <Content Include="Content\blank_iframe.html" />
+    <Content Include="Content\favicon.ico" />
+    <Content Include="Content\images\404.png" />
+    <Content Include="Content\images\500.png" />
+    <Content Include="Content\images\admission\admission_page_logo.jpg" />
+    <Content Include="Content\images\admission\admission_page_logo_.jpg" />
+    <Content Include="Content\images\admission\edit_form_underline.jpg" />
+    <Content Include="Content\images\admission\edit_student_link.png" />
+    <Content Include="Content\images\admission\profile_picture_frame.png" />
+    <Content Include="Content\images\admission\text_input.jpg" />
+    <Content Include="Content\images\admission\vertical_separator.jpg" />
+    <Content Include="Content\images\announcement\add_news\add_news_logo.jpg" />
+    <Content Include="Content\images\announcement\add_news\news_content_text_box.jpg" />
+    <Content Include="Content\images\announcement\add_news\news_title_text_box.jpg" />
+    <Content Include="Content\images\application\app_back_button.png" />
+    <Content Include="Content\images\application\app_fedena_logo.jpg" />
+    <Content Include="Content\images\application\app_fedena_logo.png" />
+    <Content Include="Content\images\application\app_layout_footer_bg.jpg" />
+    <Content Include="Content\images\application\bg_pattern.png" />
+    <Content Include="Content\images\application\chat.png" />
+    <Content Include="Content\images\application\error_page_bg.png" />
+    <Content Include="Content\images\application\logout.png" />
+    <Content Include="Content\images\application\msg.png" />
+    <Content Include="Content\images\application\note-bg.png" />
+    <Content Include="Content\images\application\profile.png" />
+    <Content Include="Content\images\application\top-link-bg.png" />
+    <Content Include="Content\images\arrow-down.gif" />
+    <Content Include="Content\images\arrow-none.gif" />
+    <Content Include="Content\images\arrow-up.gif" />
+    <Content Include="Content\images\attendence\attendence.png" />
+    <Content Include="Content\images\attendence\attendence1.png" />
+    <Content Include="Content\images\backgrounds\list-bg-repeat.jpg" />
+    <Content Include="Content\images\buttons\add_new_parent.png" />
+    <Content Include="Content\images\buttons\back.png" />
+    <Content Include="Content\images\buttons\choose-file.gif" />
+    <Content Include="Content\images\buttons\create.png" />
+    <Content Include="Content\images\buttons\delete-new.png" />
+    <Content Include="Content\images\buttons\delete.png" />
+    <Content Include="Content\images\buttons\delete_round.png" />
+    <Content Include="Content\images\buttons\edit.png" />
+    <Content Include="Content\images\buttons\edit_role.png" />
+    <Content Include="Content\images\buttons\finish.png" />
+    <Content Include="Content\images\buttons\finish2.png" />
+    <Content Include="Content\images\buttons\go.png" />
+    <Content Include="Content\images\buttons\news_go.jpg" />
+    <Content Include="Content\images\buttons\pdf_button.png" />
+    <Content Include="Content\images\buttons\publish_news.png" />
+    <Content Include="Content\images\buttons\remove.png" />
+    <Content Include="Content\images\buttons\save_and_proceed.png" />
+    <Content Include="Content\images\buttons\send.png" />
+    <Content Include="Content\images\buttons\skip_this_step.png" />
+    <Content Include="Content\images\buttons\submit.png" />
+    <Content Include="Content\images\buttons\tt_delete.png" />
+    <Content Include="Content\images\buttons\tt_delete_1.png" />
+    <Content Include="Content\images\buttons\update.png" />
+    <Content Include="Content\images\buttons\view_pdf_report.png" />
+    <Content Include="Content\images\buttons\view_report.png" />
+    <Content Include="Content\images\calendar_date_select\calendar.gif" />
+    <Content Include="Content\images\create_users\create_users_logo.jpg" />
+    <Content Include="Content\images\create_users\underline_image.jpg" />
+    <Content Include="Content\images\dashboard_buttons\attendance.png" />
+    <Content Include="Content\images\dashboard_buttons\button_academics.png" />
+    <Content Include="Content\images\dashboard_buttons\button_admission.png" />
+    <Content Include="Content\images\dashboard_buttons\button_campus_news.png" />
+    <Content Include="Content\images\dashboard_buttons\button_examinations.gif" />
+    <Content Include="Content\images\dashboard_buttons\button_examinations.png" />
+    <Content Include="Content\images\dashboard_buttons\button_finance.png" />
+    <Content Include="Content\images\dashboard_buttons\button_Human.png" />
+    <Content Include="Content\images\dashboard_buttons\button_leaves.png" />
+    <Content Include="Content\images\dashboard_buttons\button_manage_news.png" />
+    <Content Include="Content\images\dashboard_buttons\button_manage_users.png" />
+    <Content Include="Content\images\dashboard_buttons\button_my_profile.png" />
+    <Content Include="Content\images\dashboard_buttons\button_reminders.png" />
+    <Content Include="Content\images\dashboard_buttons\button_reminders_unread.png" />
+    <Content Include="Content\images\dashboard_buttons\button_student_details.png" />
+    <Content Include="Content\images\dashboard_buttons\button_timetable.png" />
+    <Content Include="Content\images\dashboard_buttons\settings.png" />
+    <Content Include="Content\images\dashboard_buttons\untitled folder\attendance.png" />
+    <Content Include="Content\images\dashboard_buttons\untitled folder\button_academics.png" />
+    <Content Include="Content\images\dashboard_buttons\untitled folder\button_admission.png" />
+    <Content Include="Content\images\dashboard_buttons\untitled folder\button_campus_news.png" />
+    <Content Include="Content\images\dashboard_buttons\untitled folder\button_examinations.gif" />
+    <Content Include="Content\images\dashboard_buttons\untitled folder\button_examinations.png" />
+    <Content Include="Content\images\dashboard_buttons\untitled folder\button_finance.png" />
+    <Content Include="Content\images\dashboard_buttons\untitled folder\button_Human.png" />
+    <Content Include="Content\images\dashboard_buttons\untitled folder\button_leaves.png" />
+    <Content Include="Content\images\dashboard_buttons\untitled folder\button_manage_news.png" />
+    <Content Include="Content\images\dashboard_buttons\untitled folder\button_manage_users.png" />
+    <Content Include="Content\images\dashboard_buttons\untitled folder\button_my_profile.png" />
+    <Content Include="Content\images\dashboard_buttons\untitled folder\button_reminders.png" />
+    <Content Include="Content\images\dashboard_buttons\untitled folder\button_reminders_unread.png" />
+    <Content Include="Content\images\dashboard_buttons\untitled folder\button_student_details.png" />
+    <Content Include="Content\images\dashboard_buttons\untitled folder\button_timetable.png" />
+    <Content Include="Content\images\dashboard_buttons\untitled folder\settings.png" />
+    <Content Include="Content\images\edit_users\edit_users_logo.jpg" />
+    <Content Include="Content\images\edit_users\note_pen.jpg" />
+    <Content Include="Content\images\edit_users\underline_image.jpg" />
+    <Content Include="Content\images\examination\create\select_input.png" />
+    <Content Include="Content\images\examination\create\text_input.png" />
+    <Content Include="Content\images\examination\header_underline.jpg" />
+    <Content Include="Content\images\examination\header_underline_.jpg" />
+    <Content Include="Content\images\examination\header_underline_rtl.jpg" />
+    <Content Include="Content\images\examination\index\page_logo.jpg" />
+    <Content Include="Content\images\examination\show_exam.png" />
+    <Content Include="Content\images\examination_result\add\list-bg.jpg" />
+    <Content Include="Content\images\examination_result\add\page_logo.jpg" />
+    <Content Include="Content\images\examination_result\header_underline.jpg" />
+    <Content Include="Content\images\examination_result\view_class_examtype\list_bg.jpg" />
+    <Content Include="Content\images\examination_result\view_exam_subject\list_bg.jpg" />
+    <Content Include="Content\images\fedena_user\create_user\create_user_vertical_separator.jpg" />
+    <Content Include="Content\images\fedena_user\create_user\text_input.png" />
+    <Content Include="Content\images\fedena_user\dashboard\content_header_img.jpg" />
+    <Content Include="Content\images\fedena_user\dashboard\content_header_img_rtl.jpg" />
+    <Content Include="Content\images\fedena_user\dashboard\dash_news_top.jpg" />
+    <Content Include="Content\images\fedena_user\dashboard\news_feed_bg.jpg" />
+    <Content Include="Content\images\fedena_user\dashboard\news_feed_more_link.jpg" />
+    <Content Include="Content\images\fedena_user\user_edit\text_input.png" />
+    <Content Include="Content\images\fedena_user\user_profile\new_info_bg.jpg" />
+    <Content Include="Content\images\fedena_user\user_profile\new_info_top_bg.jpg" />
+    <Content Include="Content\images\foot.png" />
+    <Content Include="Content\images\footer-logo.png" />
+    <Content Include="Content\images\form_bg\approval_form_bg.jpg" />
+    <Content Include="Content\images\form_bg\remarks_text_bg.png" />
+    <Content Include="Content\images\form_bg\scroll-back.png" />
+    <Content Include="Content\images\form_bg\smalltextbox.jpg" />
+    <Content Include="Content\images\form_bg\text-input-bg.png" />
+    <Content Include="Content\images\HR\default_employee.png" />
+    <Content Include="Content\images\HR\leave-new.png" />
+    <Content Include="Content\images\HR\show_hr.png" />
+    <Content Include="Content\images\jquery.calendar\222222_11x11_icon_resize_se.gif" />
+    <Content Include="Content\images\jquery.calendar\333333_40x100_textures_02_glass_25.png" />
+    <Content Include="Content\images\jquery.calendar\444444_40x100_textures_02_glass_25.png" />
+    <Content Include="Content\images\jquery.calendar\999999_40x100_textures_02_glass_25.png" />
+    <Content Include="Content\images\jquery.calendar\a21111_40x100_textures_02_glass_35.png" />
+    <Content Include="Content\images\jquery.calendar\dashboard\admissions_button.png" />
+    <Content Include="Content\images\jquery.calendar\dashboard\admissions_button_glossy.png" />
+    <Content Include="Content\images\jquery.calendar\dashboard\admission_img.jpg" />
+    <Content Include="Content\images\jquery.calendar\dashboard\content_header_img.jpg" />
+    <Content Include="Content\images\jquery.calendar\dashboard\dash_news_top.jpg" />
+    <Content Include="Content\images\jquery.calendar\dashboard\manage_news_button.png" />
+    <Content Include="Content\images\jquery.calendar\dashboard\manage_news_button_glossy.png" />
+    <Content Include="Content\images\jquery.calendar\dashboard\manage_users_buttton.png" />
+    <Content Include="Content\images\jquery.calendar\dashboard\manage_users_buttton_glossy.png" />
+    <Content Include="Content\images\jquery.calendar\dashboard\manage_users_img.jpg" />
+    <Content Include="Content\images\jquery.calendar\dashboard\news_feed_bg.jpg" />
+    <Content Include="Content\images\jquery.calendar\dashboard\news_feed_more_link.jpg" />
+    <Content Include="Content\images\jquery.calendar\dashboard\student_details_button.png" />
+    <Content Include="Content\images\jquery.calendar\dashboard\student_details_button_glossy.png" />
+    <Content Include="Content\images\jquery.calendar\dashboard\student_details_img.jpg" />
+    <Content Include="Content\images\jquery.calendar\dia_bg.jpg" />
+    <Content Include="Content\images\jquery.calendar\d_box_border_top.gif" />
+    <Content Include="Content\images\jquery.calendar\eeeeee_11x11_icon_arrows_leftright.gif" />
+    <Content Include="Content\images\jquery.calendar\eeeeee_11x11_icon_arrows_updown.gif" />
+    <Content Include="Content\images\jquery.calendar\eeeeee_11x11_icon_close.gif" />
+    <Content Include="Content\images\jquery.calendar\eeeeee_11x11_icon_doc.gif" />
+    <Content Include="Content\images\jquery.calendar\eeeeee_11x11_icon_folder_closed.gif" />
+    <Content Include="Content\images\jquery.calendar\eeeeee_11x11_icon_folder_open.gif" />
+    <Content Include="Content\images\jquery.calendar\eeeeee_11x11_icon_minus.gif" />
+    <Content Include="Content\images\jquery.calendar\eeeeee_11x11_icon_plus.gif" />
+    <Content Include="Content\images\jquery.calendar\eeeeee_7x7_arrow_down.gif" />
+    <Content Include="Content\images\jquery.calendar\eeeeee_7x7_arrow_left.gif" />
+    <Content Include="Content\images\jquery.calendar\eeeeee_7x7_arrow_right.gif" />
+    <Content Include="Content\images\jquery.calendar\eeeeee_7x7_arrow_up.gif" />
+    <Content Include="Content\images\jquery.calendar\ffd40f_11x11_icon_arrows_leftright.gif" />
+    <Content Include="Content\images\jquery.calendar\ffd40f_11x11_icon_arrows_updown.gif" />
+    <Content Include="Content\images\jquery.calendar\ffd40f_11x11_icon_close.gif" />
+    <Content Include="Content\images\jquery.calendar\ffd40f_11x11_icon_doc.gif" />
+    <Content Include="Content\images\jquery.calendar\ffd40f_11x11_icon_folder_closed.gif" />
+    <Content Include="Content\images\jquery.calendar\ffd40f_11x11_icon_folder_open.gif" />
+    <Content Include="Content\images\jquery.calendar\ffd40f_11x11_icon_minus.gif" />
+    <Content Include="Content\images\jquery.calendar\ffd40f_11x11_icon_plus.gif" />
+    <Content Include="Content\images\jquery.calendar\ffd40f_7x7_arrow_down.gif" />
+    <Content Include="Content\images\jquery.calendar\ffd40f_7x7_arrow_left.gif" />
+    <Content Include="Content\images\jquery.calendar\ffd40f_7x7_arrow_right.gif" />
+    <Content Include="Content\images\jquery.calendar\ffd40f_7x7_arrow_up.gif" />
+    <Content Include="Content\images\jquery.calendar\ffffff_11x11_icon_arrows_leftright.gif" />
+    <Content Include="Content\images\jquery.calendar\ffffff_11x11_icon_arrows_updown.gif" />
+    <Content Include="Content\images\jquery.calendar\ffffff_11x11_icon_close.gif" />
+    <Content Include="Content\images\jquery.calendar\ffffff_11x11_icon_doc.gif" />
+    <Content Include="Content\images\jquery.calendar\ffffff_11x11_icon_folder_closed.gif" />
+    <Content Include="Content\images\jquery.calendar\ffffff_11x11_icon_folder_open.gif" />
+    <Content Include="Content\images\jquery.calendar\ffffff_11x11_icon_minus.gif" />
+    <Content Include="Content\images\jquery.calendar\ffffff_11x11_icon_plus.gif" />
+    <Content Include="Content\images\jquery.calendar\ffffff_7x7_arrow_down.gif" />
+    <Content Include="Content\images\jquery.calendar\ffffff_7x7_arrow_left.gif" />
+    <Content Include="Content\images\jquery.calendar\ffffff_7x7_arrow_right.gif" />
+    <Content Include="Content\images\jquery.calendar\ffffff_7x7_arrow_up.gif" />
+    <Content Include="Content\images\jquery.calendar\icon_cal.png" />
+    <Content Include="Content\images\loader.gif" />
+    <Content Include="Content\images\loader2.gif" />
+    <Content Include="Content\images\login\fedena_logo.jpg" />
+    <Content Include="Content\images\login\footer_bg.jpg" />
+    <Content Include="Content\images\login\form_bg.jpg" />
+    <Content Include="Content\images\login\login_box.jpg" />
+    <Content Include="Content\images\login\login_button.jpg" />
+    <Content Include="Content\images\login\text_box.jpg" />
+    <Content Include="Content\images\manage_news\manage_news_logo.png" />
+    <Content Include="Content\images\master_student\admission1\address_area_bg.jpg" />
+    <Content Include="Content\images\master_student\admission1\admission_step_bg.gif" />
+    <Content Include="Content\images\master_student\admission1\edit_form_underline.jpg" />
+    <Content Include="Content\images\master_student\admission1\profile_picture_frame.png" />
+    <Content Include="Content\images\master_student\admission1\text_input.png" />
+    <Content Include="Content\images\master_student\admission1\text_input_190px.png" />
+    <Content Include="Content\images\master_student\admission1\vertical_separator.jpg" />
+    <Content Include="Content\images\master_student\profile\default_student.png" />
+    <Content Include="Content\images\master_student\profile\new_info_bg.jpg" />
+    <Content Include="Content\images\master_student\profile\new_info_top_bg.jpg" />
+    <Content Include="Content\images\master_student\profile\topbanner.png" />
+    <Content Include="Content\images\master_student\profile\topbanner1.png" />
+    <Content Include="Content\images\master_student\profile\topbanner_rtl.png" />
+    <Content Include="Content\images\menu-top\menu-tabs-white.png" />
+    <Content Include="Content\images\modalbox\header-underline.jpg" />
+    <Content Include="Content\images\modalbox\header-underline_rtl.jpg" />
+    <Content Include="Content\images\ntbg.png" />
+    <Content Include="Content\images\rails.png" />
+    <Content Include="Content\images\redbox_spinner.gif" />
+    <Content Include="Content\images\reminder\reminder_small.png" />
+    <Content Include="Content\images\roller.gif" />
+    <Content Include="Content\images\search.png" />
+    <Content Include="Content\images\search_icon.png" />
+    <Content Include="Content\images\show_finance.png" />
+    <Content Include="Content\images\show_news\delete_news_button.jpg" />
+    <Content Include="Content\images\show_news\edit_news_button.png" />
+    <Content Include="Content\images\show_news\show_news_back_button.png" />
+    <Content Include="Content\images\show_news\show_news_logo.png" />
+    <Content Include="Content\images\show_settings.png" />
+    <Content Include="Content\images\show_timetable.png" />
+    <Content Include="Content\images\sms\sms_icon.png" />
+    <Content Include="Content\images\student_attendance\attendance_list\list_bg.jpg" />
+    <Content Include="Content\images\student_attendance\report_index\content_header_img.jpg" />
+    <Content Include="Content\images\student_details\ajax_result_underline.jpg" />
+    <Content Include="Content\images\student_details\edit_details.png" />
+    <Content Include="Content\images\student_details\search_box_bg.jpg" />
+    <Content Include="Content\images\student_details\send.png" />
+    <Content Include="Content\images\student_details\student_details_header_bg.jpg" />
+    <Content Include="Content\images\student_details\student_details_logo.jpg" />
+    <Content Include="Content\images\student_details\view_all_button.jpg" />
+    <Content Include="Content\images\user_profile\user_profile_logo.jpg" />
+    <Content Include="Content\images\user_profile\user_profile_vertical_separator.jpg" />
+    <Content Include="Content\images\_global\error.png" />
+    <Content Include="Content\images\_global\header_underline_.jpg" />
+    <Content Include="Content\images\_global\list-bg-repeat.jpg" />
+    <Content Include="Content\images\_global\student_details_logo.jpg" />
+    <Content Include="Content\images\_input_bg\mail-message.png" />
+    <Content Include="Content\images\_input_bg\text-input.png" />
+    <Content Include="Content\images\_input_bg\text-search.png" />
+    <Content Include="Content\images\_input_bg\text-small.png" />
+    <Content Include="Content\images\_input_bg\text-tiny.png" />
+    <Content Include="Content\javascripts\application.js" />
+    <Content Include="Content\javascripts\attendance.js" />
+    <Content Include="Content\javascripts\builder.js" />
+    <Content Include="Content\javascripts\calendar_date_select\calendar_date_select.js" />
+    <Content Include="Content\javascripts\calendar_date_select\format_american.js" />
+    <Content Include="Content\javascripts\calendar_date_select\format_danish.js" />
+    <Content Include="Content\javascripts\calendar_date_select\format_db.js" />
+    <Content Include="Content\javascripts\calendar_date_select\format_euro_24hr.js" />
+    <Content Include="Content\javascripts\calendar_date_select\format_euro_24hr_ymd.js" />
+    <Content Include="Content\javascripts\calendar_date_select\format_finnish.js" />
+    <Content Include="Content\javascripts\calendar_date_select\format_hyphen_ampm.js" />
+    <Content Include="Content\javascripts\calendar_date_select\format_iso_date.js" />
+    <Content Include="Content\javascripts\calendar_date_select\format_italian.js" />
+    <Content Include="Content\javascripts\calendar_date_select\locale\ar.js" />
+    <Content Include="Content\javascripts\calendar_date_select\locale\da.js" />
+    <Content Include="Content\javascripts\calendar_date_select\locale\de.js" />
+    <Content Include="Content\javascripts\calendar_date_select\locale\es.js" />
+    <Content Include="Content\javascripts\calendar_date_select\locale\fi.js" />
+    <Content Include="Content\javascripts\calendar_date_select\locale\fr.js" />
+    <Content Include="Content\javascripts\calendar_date_select\locale\hi.js" />
+    <Content Include="Content\javascripts\calendar_date_select\locale\it.js" />
+    <Content Include="Content\javascripts\calendar_date_select\locale\ja.js" />
+    <Content Include="Content\javascripts\calendar_date_select\locale\mr.js" />
+    <Content Include="Content\javascripts\calendar_date_select\locale\nl.js" />
+    <Content Include="Content\javascripts\calendar_date_select\locale\pl.js" />
+    <Content Include="Content\javascripts\calendar_date_select\locale\pt.js" />
+    <Content Include="Content\javascripts\calendar_date_select\locale\ru.js" />
+    <Content Include="Content\javascripts\calendar_date_select\locale\sl.js" />
+    <Content Include="Content\javascripts\calendar_date_select\locale\sv.js" />
+    <Content Include="Content\javascripts\controls.js" />
+    <Content Include="Content\javascripts\dashboard_hover.js" />
+    <Content Include="Content\javascripts\date.js" />
+    <Content Include="Content\javascripts\dragdrop.js" />
+    <Content Include="Content\javascripts\droplicious.js" />
+    <Content Include="Content\javascripts\effects.js" />
+    <Content Include="Content\javascripts\fckcustom.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\css\behaviors\disablehandles.htc" />
+    <Content Include="Content\javascripts\fckeditor\editor\css\behaviors\showtableborders.htc" />
+    <Content Include="Content\javascripts\fckeditor\editor\css\fck_editorarea.css" />
+    <Content Include="Content\javascripts\fckeditor\editor\css\fck_internal.css" />
+    <Content Include="Content\javascripts\fckeditor\editor\css\fck_showtableborders_gecko.css" />
+    <Content Include="Content\javascripts\fckeditor\editor\css\images\block_address.png" />
+    <Content Include="Content\javascripts\fckeditor\editor\css\images\block_blockquote.png" />
+    <Content Include="Content\javascripts\fckeditor\editor\css\images\block_div.png" />
+    <Content Include="Content\javascripts\fckeditor\editor\css\images\block_h1.png" />
+    <Content Include="Content\javascripts\fckeditor\editor\css\images\block_h2.png" />
+    <Content Include="Content\javascripts\fckeditor\editor\css\images\block_h3.png" />
+    <Content Include="Content\javascripts\fckeditor\editor\css\images\block_h4.png" />
+    <Content Include="Content\javascripts\fckeditor\editor\css\images\block_h5.png" />
+    <Content Include="Content\javascripts\fckeditor\editor\css\images\block_h6.png" />
+    <Content Include="Content\javascripts\fckeditor\editor\css\images\block_p.png" />
+    <Content Include="Content\javascripts\fckeditor\editor\css\images\block_pre.png" />
+    <Content Include="Content\javascripts\fckeditor\editor\css\images\fck_anchor.gif" />
+    <Content Include="Content\javascripts\fckeditor\editor\css\images\fck_flashlogo.gif" />
+    <Content Include="Content\javascripts\fckeditor\editor\css\images\fck_hiddenfield.gif" />
+    <Content Include="Content\javascripts\fckeditor\editor\css\images\fck_pagebreak.gif" />
+    <Content Include="Content\javascripts\fckeditor\editor\css\images\fck_plugin.gif" />
+    <Content Include="Content\javascripts\fckeditor\editor\_source\classes\fckcontextmenu.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\_source\classes\fckdataprocessor.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\_source\classes\fckdocumentfragment_gecko.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\_source\classes\fckdocumentfragment_ie.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\_source\classes\fckdomrange.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\_source\classes\fckdomrangeiterator.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\_source\classes\fckdomrange_gecko.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\_source\classes\fckdomrange_ie.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\_source\classes\fckeditingarea.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\_source\classes\fckelementpath.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\_source\classes\fckenterkey.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\_source\classes\fckevents.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\_source\classes\fckhtmliterator.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\_source\classes\fckicon.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\_source\classes\fckiecleanup.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\_source\classes\fckimagepreloader.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\_source\classes\fckkeystrokehandler.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\_source\classes\fckmenublock.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\_source\classes\fckmenublockpanel.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\_source\classes\fckmenuitem.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\_source\classes\fckpanel.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\_source\classes\fckplugin.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\_source\classes\fckspecialcombo.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\_source\classes\fckstyle.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\_source\classes\fcktoolbar.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\_source\classes\fcktoolbarbreak_gecko.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\_source\classes\fcktoolbarbreak_ie.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\_source\classes\fcktoolbarbutton.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\_source\classes\fcktoolbarbuttonui.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\_source\classes\fcktoolbarfontformatcombo.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\_source\classes\fcktoolbarfontscombo.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\_source\classes\fcktoolbarfontsizecombo.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\_source\classes\fcktoolbarpanelbutton.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\_source\classes\fcktoolbarspecialcombo.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\_source\classes\fcktoolbarstylecombo.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\_source\classes\fckw3crange.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\_source\classes\fckxml.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\_source\classes\fckxml_gecko.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\_source\classes\fckxml_ie.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\_source\commandclasses\fckblockquotecommand.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\_source\commandclasses\fckcorestylecommand.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\_source\commandclasses\fckfitwindow.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\_source\commandclasses\fckindentcommands.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\_source\commandclasses\fckjustifycommands.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\_source\commandclasses\fcklistcommands.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\_source\commandclasses\fcknamedcommand.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\_source\commandclasses\fckpasteplaintextcommand.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\_source\commandclasses\fckpastewordcommand.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\_source\commandclasses\fckremoveformatcommand.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\_source\commandclasses\fckshowblocks.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\_source\commandclasses\fckspellcheckcommand_gecko.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\_source\commandclasses\fckspellcheckcommand_ie.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\_source\commandclasses\fckstylecommand.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\_source\commandclasses\fcktablecommand.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\_source\commandclasses\fcktextcolorcommand.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\_source\commandclasses\fck_othercommands.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\_source\fckconstants.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\_source\fckeditorapi.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\_source\fckjscoreextensions.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\_source\fckscriptloader.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\_source\internals\fck.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\_source\internals\fckbrowserinfo.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\_source\internals\fckcodeformatter.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\_source\internals\fckcommands.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\_source\internals\fckconfig.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\_source\internals\fckdebug.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\_source\internals\fckdialog.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\_source\internals\fckdialog_gecko.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\_source\internals\fckdialog_ie.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\_source\internals\fckdocumentprocessor.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\_source\internals\fckdomtools.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\_source\internals\fcklanguagemanager.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\_source\internals\fcklisthandler.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\_source\internals\fcklistslib.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\_source\internals\fckplugins.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\_source\internals\fckregexlib.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\_source\internals\fckselection.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\_source\internals\fckselection_gecko.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\_source\internals\fckselection_ie.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\_source\internals\fckstyles.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\_source\internals\fcktablehandler.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\_source\internals\fcktablehandler_gecko.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\_source\internals\fcktablehandler_ie.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\_source\internals\fcktoolbaritems.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\_source\internals\fcktoolbarset.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\_source\internals\fcktools.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\_source\internals\fcktools_gecko.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\_source\internals\fcktools_ie.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\_source\internals\fckundo.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\_source\internals\fckurlparams.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\_source\internals\fckxhtml.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\_source\internals\fckxhtmlentities.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\_source\internals\fckxhtml_gecko.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\_source\internals\fckxhtml_ie.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\_source\internals\fck_contextmenu.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\_source\internals\fck_gecko.js" />
+    <Content Include="Content\javascripts\fckeditor\editor\_source\internals\fck_ie.js" />
+    <Content Include="Content\javascripts\fedena_plugin.js" />
+    <Content Include="Content\javascripts\modalbox.js" />
+    <Content Include="Content\javascripts\popup.js" />
+    <Content Include="Content\javascripts\prototype.js" />
+    <Content Include="Content\javascripts\redbox.js" />
+    <Content Include="Content\javascripts\scriptaculous.js" />
+    <Content Include="Content\javascripts\sortable.js" />
+    <Content Include="Content\javascripts\spinner.gif" />
+    <Content Include="Content\javascripts\subject_leave.js" />
+    <Content Include="Content\javascripts\swfobject.js" />
+    <Content Include="Content\javascripts\work_allotment.js" />
+    <Content Include="Content\open-flash-chart-bar-clicking.swf" />
+    <Content Include="Content\open-flash-chart.swf" />
+    <Content Include="Content\stylesheets\academic_year\index.css" />
+    <Content Include="Content\stylesheets\academic_year\migrate_classes.css" />
+    <Content Include="Content\stylesheets\academic_year\migrate_students.css" />
+    <Content Include="Content\stylesheets\additional_exams\create.css" />
+    <Content Include="Content\stylesheets\additional_exams\edit.css" />
+    <Content Include="Content\stylesheets\additional_exams\new.css" />
+    <Content Include="Content\stylesheets\additional_exams\show.css" />
+    <Content Include="Content\stylesheets\additional_exams\update.css" />
+    <Content Include="Content\stylesheets\additional_exam\create_additional_exam.css" />
+    <Content Include="Content\stylesheets\additional_exam_groups\create.css" />
+    <Content Include="Content\stylesheets\additional_exam_groups\create_exam.css" />
+    <Content Include="Content\stylesheets\additional_exam_groups\edit.css" />
+    <Content Include="Content\stylesheets\additional_exam_groups\edit_examtype.css" />
+    <Content Include="Content\stylesheets\additional_exam_groups\edit_grading.css" />
+    <Content Include="Content\stylesheets\additional_exam_groups\index.css" />
+    <Content Include="Content\stylesheets\additional_exam_groups\new.css" />
+    <Content Include="Content\stylesheets\additional_exam_groups\show.css" />
+    <Content Include="Content\stylesheets\application.css" />
+    <Content Include="Content\stylesheets\archived_employee\profile.css" />
+    <Content Include="Content\stylesheets\archived_employee\profile_pdf.css" />
+    <Content Include="Content\stylesheets\archived_student\delete.css" />
+    <Content Include="Content\stylesheets\archived_student\generated_report.css" />
+    <Content Include="Content\stylesheets\archived_student\generated_report4_pdf.css" />
+    <Content Include="Content\stylesheets\archived_student\generated_report_pdf.css" />
+    <Content Include="Content\stylesheets\archived_student\guardians.css" />
+    <Content Include="Content\stylesheets\archived_student\previous_years_marks_overview.css" />
+    <Content Include="Content\stylesheets\archived_student\profile.css" />
+    <Content Include="Content\stylesheets\archived_student\reports.css" />
+    <Content Include="Content\stylesheets\archived_student\student_report.css" />
+    <Content Include="Content\stylesheets\assessment_scores\fa_groups.css" />
+    <Content Include="Content\stylesheets\assessment_scores\fa_scores.css" />
+    <Content Include="Content\stylesheets\assessment_scores\index.css" />
+    <Content Include="Content\stylesheets\attendances\index.css" />
+    <Content Include="Content\stylesheets\attendance\index.css" />
+    <Content Include="Content\stylesheets\attendance\register.css" />
+    <Content Include="Content\stylesheets\attendance\report.css" />
+    <Content Include="Content\stylesheets\attendance\student_report.css" />
+    <Content Include="Content\stylesheets\attendance_reports\filter.css" />
+    <Content Include="Content\stylesheets\attendance_reports\filter_report_pdf.css" />
+    <Content Include="Content\stylesheets\attendance_reports\index.css" />
+    <Content Include="Content\stylesheets\attendance_reports\report_pdf.css" />
+    <Content Include="Content\stylesheets\attendance_reports\student_details.css" />
+    <Content Include="Content\stylesheets\autosuggest-menu.css" />
+    <Content Include="Content\stylesheets\batches\assign_tutor.css" />
+    <Content Include="Content\stylesheets\batches\create.css" />
+    <Content Include="Content\stylesheets\batches\edit.css" />
+    <Content Include="Content\stylesheets\batches\index.css" />
+    <Content Include="Content\stylesheets\batches\new.css" />
+    <Content Include="Content\stylesheets\batches\show.css" />
+    <Content Include="Content\stylesheets\batch_transfers\graduation.css" />
+    <Content Include="Content\stylesheets\batch_transfers\index.css" />
+    <Content Include="Content\stylesheets\batch_transfers\show.css" />
+    <Content Include="Content\stylesheets\batch_transfers\subject_transfer.css" />
+    <Content Include="Content\stylesheets\batch_transfers\transfer.css" />
+    <Content Include="Content\stylesheets\calendar.css" />
+    <Content Include="Content\stylesheets\calendar\index.css" />
+    <Content Include="Content\stylesheets\calendar\view.css" />
+    <Content Include="Content\stylesheets\calendar_date_select\blue.css" />
+    <Content Include="Content\stylesheets\calendar_date_select\default.css" />
+    <Content Include="Content\stylesheets\calendar_date_select\plain.css" />
+    <Content Include="Content\stylesheets\calendar_date_select\red.css" />
+    <Content Include="Content\stylesheets\calendar_date_select\silver.css" />
+    <Content Include="Content\stylesheets\cce_exam_categories\index.css" />
+    <Content Include="Content\stylesheets\cce_exam_categories\show.css" />
+    <Content Include="Content\stylesheets\cce_grade_sets\index.css" />
+    <Content Include="Content\stylesheets\cce_reports\create_reports.css" />
+    <Content Include="Content\stylesheets\cce_reports\index.css" />
+    <Content Include="Content\stylesheets\cce_reports\student_report_pdf.css" />
+    <Content Include="Content\stylesheets\cce_reports\student_wise_report.css" />
+    <Content Include="Content\stylesheets\cce_weightages\assign_courses.css" />
+    <Content Include="Content\stylesheets\cce_weightages\assign_weightages.css" />
+    <Content Include="Content\stylesheets\cce_weightages\index.css" />
+    <Content Include="Content\stylesheets\cce_weightages\show.css" />
+    <Content Include="Content\stylesheets\class_designations\index.css" />
+    <Content Include="Content\stylesheets\class_timings\edit.css" />
+    <Content Include="Content\stylesheets\class_timings\index.css" />
+    <Content Include="Content\stylesheets\configuration\index.css" />
+    <Content Include="Content\stylesheets\configuration\settings.css" />
+    <Content Include="Content\stylesheets\courses\assign_subject_amount.css" />
+    <Content Include="Content\stylesheets\courses\create.css" />
+    <Content Include="Content\stylesheets\courses\edit.css" />
+    <Content Include="Content\stylesheets\courses\edit_subject_amount.css" />
+    <Content Include="Content\stylesheets\courses\grouped_batches.css" />
+    <Content Include="Content\stylesheets\courses\index.css" />
+    <Content Include="Content\stylesheets\courses\manage_batches.css" />
+    <Content Include="Content\stylesheets\courses\manage_course.css" />
+    <Content Include="Content\stylesheets\courses\new.css" />
+    <Content Include="Content\stylesheets\courses\show.css" />
+    <Content Include="Content\stylesheets\courses\update.css" />
+    <Content Include="Content\stylesheets\course\create.css" />
+    <Content Include="Content\stylesheets\course\edit.css" />
+    <Content Include="Content\stylesheets\course\email.css" />
+    <Content Include="Content\stylesheets\course\upcoming_exams.css" />
+    <Content Include="Content\stylesheets\elective_groups\create.css" />
+    <Content Include="Content\stylesheets\elective_groups\edit.css" />
+    <Content Include="Content\stylesheets\elective_groups\index.css" />
+    <Content Include="Content\stylesheets\elective_groups\new.css" />
+    <Content Include="Content\stylesheets\elective_groups\show.css" />
+    <Content Include="Content\stylesheets\employee\add_additional_details.css" />
+    <Content Include="Content\stylesheets\employee\add_bank_details.css" />
+    <Content Include="Content\stylesheets\employee\add_category.css" />
+    <Content Include="Content\stylesheets\employee\add_department.css" />
+    <Content Include="Content\stylesheets\employee\add_grade.css" />
+    <Content Include="Content\stylesheets\employee\add_position.css" />
+    <Content Include="Content\stylesheets\employee\admission1.css" />
+    <Content Include="Content\stylesheets\employee\admission2.css" />
+    <Content Include="Content\stylesheets\employee\admission3.css" />
+    <Content Include="Content\stylesheets\employee\admission3_1.css" />
+    <Content Include="Content\stylesheets\employee\admission4.css" />
+    <Content Include="Content\stylesheets\employee\advanced_search.css" />
+    <Content Include="Content\stylesheets\employee\advanced_search_pdf.css" />
+    <Content Include="Content\stylesheets\employee\change_reporting_manager.css" />
+    <Content Include="Content\stylesheets\employee\change_to_former.css" />
+    <Content Include="Content\stylesheets\employee\create_monthly_payslip.css" />
+    <Content Include="Content\stylesheets\employee\department_payslip.css" />
+    <Content Include="Content\stylesheets\employee\department_payslip_pdf.css" />
+    <Content Include="Content\stylesheets\employee\edit1.css" />
+    <Content Include="Content\stylesheets\employee\edit2.css" />
+    <Content Include="Content\stylesheets\employee\edit3.css" />
+    <Content Include="Content\stylesheets\employee\edit3_1.css" />
+    <Content Include="Content\stylesheets\employee\edit4.css" />
+    <Content Include="Content\stylesheets\employee\edit_additional_details.css" />
+    <Content Include="Content\stylesheets\employee\edit_bank_details.css" />
+    <Content Include="Content\stylesheets\employee\edit_category.css" />
+    <Content Include="Content\stylesheets\employee\edit_contact.css" />
+    <Content Include="Content\stylesheets\employee\edit_department.css" />
+    <Content Include="Content\stylesheets\employee\edit_grade.css" />
+    <Content Include="Content\stylesheets\employee\edit_monthly_payslip.css" />
+    <Content Include="Content\stylesheets\employee\edit_personal.css" />
+    <Content Include="Content\stylesheets\employee\edit_position.css" />
+    <Content Include="Content\stylesheets\employee\edit_privilege.css" />
+    <Content Include="Content\stylesheets\employee\edit_rejected_payslip.css" />
+    <Content Include="Content\stylesheets\employee\employee_attendance.css" />
+    <Content Include="Content\stylesheets\employee\employee_individual_payslip_pdf.css" />
+    <Content Include="Content\stylesheets\employee\employee_management.css" />
+    <Content Include="Content\stylesheets\employee\hr.css" />
+    <Content Include="Content\stylesheets\employee\index.css" />
+    <Content Include="Content\stylesheets\employee\individual_payslip_pdf.css" />
+    <Content Include="Content\stylesheets\employee\leave_management.css" />
+    <Content Include="Content\stylesheets\employee\payslip.css" />
+    <Content Include="Content\stylesheets\employee\payslip_approve.css" />
+    <Content Include="Content\stylesheets\employee\profile.css" />
+    <Content Include="Content\stylesheets\employee\profile_pdf.css" />
+    <Content Include="Content\stylesheets\employee\rejected_payslip.css" />
+    <Content Include="Content\stylesheets\employee\remove.css" />
+    <Content Include="Content\stylesheets\employee\remove_subordinate_employee.css" />
+    <Content Include="Content\stylesheets\employee\search.css" />
+    <Content Include="Content\stylesheets\employee\select_department_employee.css" />
+    <Content Include="Content\stylesheets\employee\select_reporting_manager.css" />
+    <Content Include="Content\stylesheets\employee\settings.css" />
+    <Content Include="Content\stylesheets\employee\subject_assignment.css" />
+    <Content Include="Content\stylesheets\employee\timetable.css" />
+    <Content Include="Content\stylesheets\employee\timetable_pdf.css" />
+    <Content Include="Content\stylesheets\employee\view_all.css" />
+    <Content Include="Content\stylesheets\employee\view_employee_payslip.css" />
+    <Content Include="Content\stylesheets\employee\view_rejected_payslip.css" />
+    <Content Include="Content\stylesheets\employee_attendances\index.css" />
+    <Content Include="Content\stylesheets\employee_attendance\add_leave_types.css" />
+    <Content Include="Content\stylesheets\employee_attendance\apply_leave.css" />
+    <Content Include="Content\stylesheets\employee_attendance\edit_leave_types.css" />
+    <Content Include="Content\stylesheets\employee_attendance\employee_attendance_pdf.css" />
+    <Content Include="Content\stylesheets\employee_attendance\employee_leave_details.css" />
+    <Content Include="Content\stylesheets\employee_attendance\employee_leave_reset_all.css" />
+    <Content Include="Content\stylesheets\employee_attendance\employee_leave_reset_by_department.css" />
+    <Content Include="Content\stylesheets\employee_attendance\employee_leave_reset_by_employee.css" />
+    <Content Include="Content\stylesheets\employee_attendance\employee_weekday.css" />
+    <Content Include="Content\stylesheets\employee_attendance\emp_attendance.css" />
+    <Content Include="Content\stylesheets\employee_attendance\index.css" />
+    <Content Include="Content\stylesheets\employee_attendance\leaves.css" />
+    <Content Include="Content\stylesheets\employee_attendance\leave_app.css" />
+    <Content Include="Content\stylesheets\employee_attendance\leave_application.css" />
+    <Content Include="Content\stylesheets\employee_attendance\leave_history.css" />
+    <Content Include="Content\stylesheets\employee_attendance\leave_reset_settings.css" />
+    <Content Include="Content\stylesheets\employee_attendance\manual_reset.css" />
+    <Content Include="Content\stylesheets\employee_attendance\own_leave_application.css" />
+    <Content Include="Content\stylesheets\employee_attendance\register.css" />
+    <Content Include="Content\stylesheets\employee_attendance\report.css" />
+    <Content Include="Content\stylesheets\employee_attendance\reset_leave.css" />
+    <Content Include="Content\stylesheets\error_page.css" />
+    <Content Include="Content\stylesheets\event\edit_event.css" />
+    <Content Include="Content\stylesheets\event\index.css" />
+    <Content Include="Content\stylesheets\event\show.css" />
+    <Content Include="Content\stylesheets\exams\create.css" />
+    <Content Include="Content\stylesheets\exams\edit.css" />
+    <Content Include="Content\stylesheets\exams\new.css" />
+    <Content Include="Content\stylesheets\exams\show.css" />
+    <Content Include="Content\stylesheets\exams\update.css" />
+    <Content Include="Content\stylesheets\exam\attendance_rank.css" />
+    <Content Include="Content\stylesheets\exam\batch_rank.css" />
+    <Content Include="Content\stylesheets\exam\combined_grouped_exam_report_pdf.css" />
+    <Content Include="Content\stylesheets\exam\combined_report.css" />
+    <Content Include="Content\stylesheets\exam\consolidated_exam_report.css" />
+    <Content Include="Content\stylesheets\exam\consolidated_exam_report_pdf.css" />
+    <Content Include="Content\stylesheets\exam\course_rank.css" />
+    <Content Include="Content\stylesheets\exam\create.css" />
+    <Content Include="Content\stylesheets\exam\create_exam.css" />
+    <Content Include="Content\stylesheets\exam\create_examtype.css" />
+    <Content Include="Content\stylesheets\exam\edit.css" />
+    <Content Include="Content\stylesheets\exam\edit_examtype.css" />
+    <Content Include="Content\stylesheets\exam\edit_grading.css" />
+    <Content Include="Content\stylesheets\exam\edit_previous_marks.css" />
+    <Content Include="Content\stylesheets\exam\enter_result.css" />
+    <Content Include="Content\stylesheets\exam\exam_wise_report.css" />
+    <Content Include="Content\stylesheets\exam\generated_report.css" />
+    <Content Include="Content\stylesheets\exam\generated_report2.css" />
+    <Content Include="Content\stylesheets\exam\generated_report2_pdf.css" />
+    <Content Include="Content\stylesheets\exam\generated_report3.css" />
+    <Content Include="Content\stylesheets\exam\generated_report4.css" />
+    <Content Include="Content\stylesheets\exam\generated_report4_pdf.css" />
+    <Content Include="Content\stylesheets\exam\generated_report_pdf.css" />
+    <Content Include="Content\stylesheets\exam\generate_previous_reports.css" />
+    <Content Include="Content\stylesheets\exam\generate_reports.css" />
+    <Content Include="Content\stylesheets\exam\grouped_exam_report.css" />
+    <Content Include="Content\stylesheets\exam\grouping.css" />
+    <Content Include="Content\stylesheets\exam\index.css" />
+    <Content Include="Content\stylesheets\exam\previous_batch_exams.css" />
+    <Content Include="Content\stylesheets\exam\previous_years_marks_overview.css" />
+    <Content Include="Content\stylesheets\exam\previous_years_marks_overview_pdf.css" />
+    <Content Include="Content\stylesheets\exam\ranking_level_report.css" />
+    <Content Include="Content\stylesheets\exam\report_center.css" />
+    <Content Include="Content\stylesheets\exam\select_class.css" />
+    <Content Include="Content\stylesheets\exam\settings.css" />
+    <Content Include="Content\stylesheets\exam\student_attendance_rank.css" />
+    <Content Include="Content\stylesheets\exam\student_attendance_rank_pdf.css" />
+    <Content Include="Content\stylesheets\exam\student_batch_rank.css" />
+    <Content Include="Content\stylesheets\exam\student_batch_rank_pdf.css" />
+    <Content Include="Content\stylesheets\exam\student_combined_report.css" />
+    <Content Include="Content\stylesheets\exam\student_combined_report_pdf.css" />
+    <Content Include="Content\stylesheets\exam\student_course_rank.css" />
+    <Content Include="Content\stylesheets\exam\student_course_rank_pdf.css" />
+    <Content Include="Content\stylesheets\exam\student_ranking_level_report.css" />
+    <Content Include="Content\stylesheets\exam\student_ranking_level_report_pdf.css" />
+    <Content Include="Content\stylesheets\exam\student_school_rank.css" />
+    <Content Include="Content\stylesheets\exam\student_school_rank_pdf.css" />
+    <Content Include="Content\stylesheets\exam\student_subject_rank.css" />
+    <Content Include="Content\stylesheets\exam\student_subject_rank_pdf.css" />
+    <Content Include="Content\stylesheets\exam\student_transcript.css" />
+    <Content Include="Content\stylesheets\exam\student_transcript_pdf.css" />
+    <Content Include="Content\stylesheets\exam\subject_rank.css" />
+    <Content Include="Content\stylesheets\exam\subject_wise_report.css" />
+    <Content Include="Content\stylesheets\exam\timetable.css" />
+    <Content Include="Content\stylesheets\exam\transcript.css" />
+    <Content Include="Content\stylesheets\exam_groups\create.css" />
+    <Content Include="Content\stylesheets\exam_groups\edit.css" />
+    <Content Include="Content\stylesheets\exam_groups\index.css" />
+    <Content Include="Content\stylesheets\exam_groups\new.css" />
+    <Content Include="Content\stylesheets\exam_groups\show.css" />
+    <Content Include="Content\stylesheets\exam_reports\archived_batches_exam_report.css" />
+    <Content Include="Content\stylesheets\exam_reports\archived_batches_exam_report_pdf.css" />
+    <Content Include="Content\stylesheets\exam_reports\archived_exam_wise_report.css" />
+    <Content Include="Content\stylesheets\exam_reports\consolidated_exam_report.css" />
+    <Content Include="Content\stylesheets\exam_reports\consolidated_exam_report_pdf.css" />
+    <Content Include="Content\stylesheets\fa_groups\assign_fa_groups.css" />
+    <Content Include="Content\stylesheets\finance\additional_fees.css" />
+    <Content Include="Content\stylesheets\finance\additional_fees_create_form.css" />
+    <Content Include="Content\stylesheets\finance\additional_fees_list.css" />
+    <Content Include="Content\stylesheets\finance\additional_particulars.css" />
+    <Content Include="Content\stylesheets\finance\add_particulars.css" />
+    <Content Include="Content\stylesheets\finance\approve_monthly_payslip.css" />
+    <Content Include="Content\stylesheets\finance\asset.css" />
+    <Content Include="Content\stylesheets\finance\asset_liability.css" />
+    <Content Include="Content\stylesheets\finance\asset_pdf.css" />
+    <Content Include="Content\stylesheets\finance\automatic_transactions.css" />
+    <Content Include="Content\stylesheets\finance\batch_fees_report.css" />
+    <Content Include="Content\stylesheets\finance\categories.css" />
+    <Content Include="Content\stylesheets\finance\collection_details_view.css" />
+    <Content Include="Content\stylesheets\finance\compare_report.css" />
+    <Content Include="Content\stylesheets\finance\direct_expenses.css" />
+    <Content Include="Content\stylesheets\finance\direct_expenses_year.css" />
+    <Content Include="Content\stylesheets\finance\direct_income.css" />
+    <Content Include="Content\stylesheets\finance\direct_income_year.css" />
+    <Content Include="Content\stylesheets\finance\donation.css" />
+    <Content Include="Content\stylesheets\finance\donations_report.css" />
+    <Content Include="Content\stylesheets\finance\donations_report_year.css" />
+    <Content Include="Content\stylesheets\finance\donation_edit.css" />
+    <Content Include="Content\stylesheets\finance\donation_receipt.css" />
+    <Content Include="Content\stylesheets\finance\donation_receipt_pdf.css" />
+    <Content Include="Content\stylesheets\finance\donors.css" />
+    <Content Include="Content\stylesheets\finance\each_asset_view.css" />
+    <Content Include="Content\stylesheets\finance\each_liability_view.css" />
+    <Content Include="Content\stylesheets\finance\employee_payslip_monthly_report.css" />
+    <Content Include="Content\stylesheets\finance\expense_create.css" />
+    <Content Include="Content\stylesheets\finance\expense_edit.css" />
+    <Content Include="Content\stylesheets\finance\expense_list.css" />
+    <Content Include="Content\stylesheets\finance\expense_list_pdf.css" />
+    <Content Include="Content\stylesheets\finance\expense_list_update.css" />
+    <Content Include="Content\stylesheets\finance\fees_create.css" />
+    <Content Include="Content\stylesheets\finance\fees_defaulters.css" />
+    <Content Include="Content\stylesheets\finance\fees_index.css" />
+    <Content Include="Content\stylesheets\finance\fees_particulars.css" />
+    <Content Include="Content\stylesheets\finance\fees_particulars_create.css" />
+    <Content Include="Content\stylesheets\finance\fees_particulars_new.css" />
+    <Content Include="Content\stylesheets\finance\fees_report.css" />
+    <Content Include="Content\stylesheets\finance\fees_report_year.css" />
+    <Content Include="Content\stylesheets\finance\fees_structure_dates.css" />
+    <Content Include="Content\stylesheets\finance\fees_structure_student_search.css" />
+    <Content Include="Content\stylesheets\finance\fees_student_dates.css" />
+    <Content Include="Content\stylesheets\finance\fees_student_search.css" />
+    <Content Include="Content\stylesheets\finance\fees_student_specific.css" />
+    <Content Include="Content\stylesheets\finance\fees_student_structure_search.css" />
+    <Content Include="Content\stylesheets\finance\fees_submission_batch.css" />
+    <Content Include="Content\stylesheets\finance\fees_submission_index.css" />
+    <Content Include="Content\stylesheets\finance\fee_collection.css" />
+    <Content Include="Content\stylesheets\finance\fee_collection_create.css" />
+    <Content Include="Content\stylesheets\finance\fee_collection_new.css" />
+    <Content Include="Content\stylesheets\finance\fee_collection_view.css" />
+    <Content Include="Content\stylesheets\finance\fee_defaulters_pdf.css" />
+    <Content Include="Content\stylesheets\finance\fee_discounts.css" />
+    <Content Include="Content\stylesheets\finance\fee_discount_new.css" />
+    <Content Include="Content\stylesheets\finance\fee_submission.css" />
+    <Content Include="Content\stylesheets\finance\income_create.css" />
+    <Content Include="Content\stylesheets\finance\income_details.css" />
+    <Content Include="Content\stylesheets\finance\income_details_pdf.css" />
+    <Content Include="Content\stylesheets\finance\income_edit.css" />
+    <Content Include="Content\stylesheets\finance\income_list.css" />
+    <Content Include="Content\stylesheets\finance\income_list_pdf.css" />
+    <Content Include="Content\stylesheets\finance\income_list_update.css" />
+    <Content Include="Content\stylesheets\finance\index.css" />
+    <Content Include="Content\stylesheets\finance\liability.css" />
+    <Content Include="Content\stylesheets\finance\liability_pdf.css" />
+    <Content Include="Content\stylesheets\finance\master_category_particulars.css" />
+    <Content Include="Content\stylesheets\finance\master_fees.css" />
+    <Content Include="Content\stylesheets\finance\master_fees_index.css" />
+    <Content Include="Content\stylesheets\finance\monthly_report.css" />
+    <Content Include="Content\stylesheets\finance\payslip_index.css" />
+    <Content Include="Content\stylesheets\finance\pay_fees_defaulters.css" />
+    <Content Include="Content\stylesheets\finance\pdf_fee_structure.css" />
+    <Content Include="Content\stylesheets\finance\salary_department.css" />
+    <Content Include="Content\stylesheets\finance\salary_employee.css" />
+    <Content Include="Content\stylesheets\finance\salary_employee_year.css" />
+    <Content Include="Content\stylesheets\finance\student_fees_structure.css" />
+    <Content Include="Content\stylesheets\finance\student_fee_receipt_pdf.css" />
+    <Content Include="Content\stylesheets\finance\transactions.css" />
+    <Content Include="Content\stylesheets\finance\transaction_pdf.css" />
+    <Content Include="Content\stylesheets\finance\update_fees_specific.css" />
+    <Content Include="Content\stylesheets\finance\update_monthly_report.css" />
+    <Content Include="Content\stylesheets\finance\view_asset.css" />
+    <Content Include="Content\stylesheets\finance\view_employee_payslip.css" />
+    <Content Include="Content\stylesheets\finance\view_liability.css" />
+    <Content Include="Content\stylesheets\finance\view_monthly_payslip.css" />
+    <Content Include="Content\stylesheets\finance\view_monthly_payslip_search.css" />
+    <Content Include="Content\stylesheets\finance\view_payslip_dept.css" />
+    <Content Include="Content\stylesheets\finance\year_report.css" />
+    <Content Include="Content\stylesheets\grading_levels\index.css" />
+    <Content Include="Content\stylesheets\holiday\edit.css" />
+    <Content Include="Content\stylesheets\holiday\index.css" />
+    <Content Include="Content\stylesheets\modalbox.css" />
+    <Content Include="Content\stylesheets\news\add.css" />
+    <Content Include="Content\stylesheets\news\all.css" />
+    <Content Include="Content\stylesheets\news\edit.css" />
+    <Content Include="Content\stylesheets\news\index.css" />
+    <Content Include="Content\stylesheets\news\view.css" />
+    <Content Include="Content\stylesheets\observation_groups\assign_courses.css" />
+    <Content Include="Content\stylesheets\observation_groups\index.css" />
+    <Content Include="Content\stylesheets\observation_groups\show.css" />
+    <Content Include="Content\stylesheets\payroll\add_category.css" />
+    <Content Include="Content\stylesheets\payroll\edit_category.css" />
+    <Content Include="Content\stylesheets\payroll\edit_payroll_details.css" />
+    <Content Include="Content\stylesheets\payroll\index.css" />
+    <Content Include="Content\stylesheets\payroll\manage_payroll.css" />
+    <Content Include="Content\stylesheets\popup.css" />
+    <Content Include="Content\stylesheets\ranking_levels\index.css" />
+    <Content Include="Content\stylesheets\redbox.css" />
+    <Content Include="Content\stylesheets\reminder\create_reminder.css" />
+    <Content Include="Content\stylesheets\reminder\index.css" />
+    <Content Include="Content\stylesheets\reminder\sent_reminder.css" />
+    <Content Include="Content\stylesheets\reminder\view_reminder.css" />
+    <Content Include="Content\stylesheets\reminder\view_sent_reminder.css" />
+    <Content Include="Content\stylesheets\rtl\academic_year\index.css" />
+    <Content Include="Content\stylesheets\rtl\academic_year\migrate_classes.css" />
+    <Content Include="Content\stylesheets\rtl\academic_year\migrate_students.css" />
+    <Content Include="Content\stylesheets\rtl\additional_exams\create.css" />
+    <Content Include="Content\stylesheets\rtl\additional_exams\edit.css" />
+    <Content Include="Content\stylesheets\rtl\additional_exams\new.css" />
+    <Content Include="Content\stylesheets\rtl\additional_exams\show.css" />
+    <Content Include="Content\stylesheets\rtl\additional_exams\update.css" />
+    <Content Include="Content\stylesheets\rtl\additional_exam\create_additional_exam.css" />
+    <Content Include="Content\stylesheets\rtl\additional_exam_groups\create.css" />
+    <Content Include="Content\stylesheets\rtl\additional_exam_groups\create_exam.css" />
+    <Content Include="Content\stylesheets\rtl\additional_exam_groups\edit.css" />
+    <Content Include="Content\stylesheets\rtl\additional_exam_groups\edit_examtype.css" />
+    <Content Include="Content\stylesheets\rtl\additional_exam_groups\edit_grading.css" />
+    <Content Include="Content\stylesheets\rtl\additional_exam_groups\index.css" />
+    <Content Include="Content\stylesheets\rtl\additional_exam_groups\new.css" />
+    <Content Include="Content\stylesheets\rtl\additional_exam_groups\show.css" />
+    <Content Include="Content\stylesheets\rtl\application.css" />
+    <Content Include="Content\stylesheets\rtl\archived_employee\profile.css" />
+    <Content Include="Content\stylesheets\rtl\archived_employee\profile_pdf.css" />
+    <Content Include="Content\stylesheets\rtl\archived_student\delete.css" />
+    <Content Include="Content\stylesheets\rtl\archived_student\generated_report.css" />
+    <Content Include="Content\stylesheets\rtl\archived_student\generated_report4_pdf.css" />
+    <Content Include="Content\stylesheets\rtl\archived_student\generated_report_pdf.css" />
+    <Content Include="Content\stylesheets\rtl\archived_student\guardians.css" />
+    <Content Include="Content\stylesheets\rtl\archived_student\previous_years_marks_overview.css" />
+    <Content Include="Content\stylesheets\rtl\archived_student\profile.css" />
+    <Content Include="Content\stylesheets\rtl\archived_student\reports.css" />
+    <Content Include="Content\stylesheets\rtl\archived_student\student_report.css" />
+    <Content Include="Content\stylesheets\rtl\attendances\index.css" />
+    <Content Include="Content\stylesheets\rtl\attendance\index.css" />
+    <Content Include="Content\stylesheets\rtl\attendance\register.css" />
+    <Content Include="Content\stylesheets\rtl\attendance\report.css" />
+    <Content Include="Content\stylesheets\rtl\attendance\student_report.css" />
+    <Content Include="Content\stylesheets\rtl\attendance_reports\filter.css" />
+    <Content Include="Content\stylesheets\rtl\attendance_reports\filter_report_pdf.css" />
+    <Content Include="Content\stylesheets\rtl\attendance_reports\index.css" />
+    <Content Include="Content\stylesheets\rtl\attendance_reports\report_pdf.css" />
+    <Content Include="Content\stylesheets\rtl\attendance_reports\student_details.css" />
+    <Content Include="Content\stylesheets\rtl\autosuggest-menu.css" />
+    <Content Include="Content\stylesheets\rtl\batches\assign_tutor.css" />
+    <Content Include="Content\stylesheets\rtl\batches\create.css" />
+    <Content Include="Content\stylesheets\rtl\batches\edit.css" />
+    <Content Include="Content\stylesheets\rtl\batches\index.css" />
+    <Content Include="Content\stylesheets\rtl\batches\new.css" />
+    <Content Include="Content\stylesheets\rtl\batches\show.css" />
+    <Content Include="Content\stylesheets\rtl\batch_transfers\graduation.css" />
+    <Content Include="Content\stylesheets\rtl\batch_transfers\index.css" />
+    <Content Include="Content\stylesheets\rtl\batch_transfers\show.css" />
+    <Content Include="Content\stylesheets\rtl\batch_transfers\subject_transfer.css" />
+    <Content Include="Content\stylesheets\rtl\calendar\index.css" />
+    <Content Include="Content\stylesheets\rtl\calendar\view.css" />
+    <Content Include="Content\stylesheets\rtl\calendar_date_select\blue.css" />
+    <Content Include="Content\stylesheets\rtl\calendar_date_select\default.css" />
+    <Content Include="Content\stylesheets\rtl\calendar_date_select\plain.css" />
+    <Content Include="Content\stylesheets\rtl\calendar_date_select\red.css" />
+    <Content Include="Content\stylesheets\rtl\calendar_date_select\silver.css" />
+    <Content Include="Content\stylesheets\rtl\class_designations\index.css" />
+    <Content Include="Content\stylesheets\rtl\class_timings\edit.css" />
+    <Content Include="Content\stylesheets\rtl\class_timings\index.css" />
+    <Content Include="Content\stylesheets\rtl\configuration\index.css" />
+    <Content Include="Content\stylesheets\rtl\configuration\settings.css" />
+    <Content Include="Content\stylesheets\rtl\courses\create.css" />
+    <Content Include="Content\stylesheets\rtl\courses\edit.css" />
+    <Content Include="Content\stylesheets\rtl\courses\grouped_batches.css" />
+    <Content Include="Content\stylesheets\rtl\courses\index.css" />
+    <Content Include="Content\stylesheets\rtl\courses\manage_batches.css" />
+    <Content Include="Content\stylesheets\rtl\courses\manage_course.css" />
+    <Content Include="Content\stylesheets\rtl\courses\new.css" />
+    <Content Include="Content\stylesheets\rtl\courses\show.css" />
+    <Content Include="Content\stylesheets\rtl\courses\update.css" />
+    <Content Include="Content\stylesheets\rtl\course\create.css" />
+    <Content Include="Content\stylesheets\rtl\course\edit.css" />
+    <Content Include="Content\stylesheets\rtl\course\email.css" />
+    <Content Include="Content\stylesheets\rtl\course\upcoming_exams.css" />
+    <Content Include="Content\stylesheets\rtl\elective_groups\create.css" />
+    <Content Include="Content\stylesheets\rtl\elective_groups\edit.css" />
+    <Content Include="Content\stylesheets\rtl\elective_groups\index.css" />
+    <Content Include="Content\stylesheets\rtl\elective_groups\new.css" />
+    <Content Include="Content\stylesheets\rtl\elective_groups\show.css" />
+    <Content Include="Content\stylesheets\rtl\employee\add_additional_details.css" />
+    <Content Include="Content\stylesheets\rtl\employee\add_bank_details.css" />
+    <Content Include="Content\stylesheets\rtl\employee\add_category.css" />
+    <Content Include="Content\stylesheets\rtl\employee\add_department.css" />
+    <Content Include="Content\stylesheets\rtl\employee\add_grade.css" />
+    <Content Include="Content\stylesheets\rtl\employee\add_position.css" />
+    <Content Include="Content\stylesheets\rtl\employee\admission1.css" />
+    <Content Include="Content\stylesheets\rtl\employee\admission2.css" />
+    <Content Include="Content\stylesheets\rtl\employee\admission3.css" />
+    <Content Include="Content\stylesheets\rtl\employee\admission3_1.css" />
+    <Content Include="Content\stylesheets\rtl\employee\admission4.css" />
+    <Content Include="Content\stylesheets\rtl\employee\advanced_search.css" />
+    <Content Include="Content\stylesheets\rtl\employee\advanced_search_pdf.css" />
+    <Content Include="Content\stylesheets\rtl\employee\change_reporting_manager.css" />
+    <Content Include="Content\stylesheets\rtl\employee\change_to_former.css" />
+    <Content Include="Content\stylesheets\rtl\employee\create_monthly_payslip.css" />
+    <Content Include="Content\stylesheets\rtl\employee\department_payslip.css" />
+    <Content Include="Content\stylesheets\rtl\employee\department_payslip_pdf.css" />
+    <Content Include="Content\stylesheets\rtl\employee\edit1.css" />
+    <Content Include="Content\stylesheets\rtl\employee\edit2.css" />
+    <Content Include="Content\stylesheets\rtl\employee\edit3.css" />
+    <Content Include="Content\stylesheets\rtl\employee\edit3_1.css" />
+    <Content Include="Content\stylesheets\rtl\employee\edit4.css" />
+    <Content Include="Content\stylesheets\rtl\employee\edit_additional_details.css" />
+    <Content Include="Content\stylesheets\rtl\employee\edit_bank_details.css" />
+    <Content Include="Content\stylesheets\rtl\employee\edit_category.css" />
+    <Content Include="Content\stylesheets\rtl\employee\edit_contact.css" />
+    <Content Include="Content\stylesheets\rtl\employee\edit_department.css" />
+    <Content Include="Content\stylesheets\rtl\employee\edit_grade.css" />
+    <Content Include="Content\stylesheets\rtl\employee\edit_monthly_payslip.css" />
+    <Content Include="Content\stylesheets\rtl\employee\edit_personal.css" />
+    <Content Include="Content\stylesheets\rtl\employee\edit_position.css" />
+    <Content Include="Content\stylesheets\rtl\employee\edit_privilege.css" />
+    <Content Include="Content\stylesheets\rtl\employee\edit_rejected_payslip.css" />
+    <Content Include="Content\stylesheets\rtl\employee\employee_attendance.css" />
+    <Content Include="Content\stylesheets\rtl\employee\employee_individual_payslip_pdf.css" />
+    <Content Include="Content\stylesheets\rtl\employee\employee_management.css" />
+    <Content Include="Content\stylesheets\rtl\employee\hr.css" />
+    <Content Include="Content\stylesheets\rtl\employee\index.css" />
+    <Content Include="Content\stylesheets\rtl\employee\individual_payslip_pdf.css" />
+    <Content Include="Content\stylesheets\rtl\employee\leave_management.css" />
+    <Content Include="Content\stylesheets\rtl\employee\payslip.css" />
+    <Content Include="Content\stylesheets\rtl\employee\payslip_approve.css" />
+    <Content Include="Content\stylesheets\rtl\employee\profile.css" />
+    <Content Include="Content\stylesheets\rtl\employee\profile_pdf.css" />
+    <Content Include="Content\stylesheets\rtl\employee\rejected_payslip.css" />
+    <Content Include="Content\stylesheets\rtl\employee\remove.css" />
+    <Content Include="Content\stylesheets\rtl\employee\remove_subordinate_employee.css" />
+    <Content Include="Content\stylesheets\rtl\employee\search.css" />
+    <Content Include="Content\stylesheets\rtl\employee\select_department_employee.css" />
+    <Content Include="Content\stylesheets\rtl\employee\select_reporting_manager.css" />
+    <Content Include="Content\stylesheets\rtl\employee\settings.css" />
+    <Content Include="Content\stylesheets\rtl\employee\subject_assignment.css" />
+    <Content Include="Content\stylesheets\rtl\employee\timetable.css" />
+    <Content Include="Content\stylesheets\rtl\employee\timetable_pdf.css" />
+    <Content Include="Content\stylesheets\rtl\employee\view_all.css" />
+    <Content Include="Content\stylesheets\rtl\employee\view_employee_payslip.css" />
+    <Content Include="Content\stylesheets\rtl\employee\view_rejected_payslip.css" />
+    <Content Include="Content\stylesheets\rtl\employee_attendances\index.css" />
+    <Content Include="Content\stylesheets\rtl\employee_attendance\add_leave_types.css" />
+    <Content Include="Content\stylesheets\rtl\employee_attendance\apply_leave.css" />
+    <Content Include="Content\stylesheets\rtl\employee_attendance\edit_leave_types.css" />
+    <Content Include="Content\stylesheets\rtl\employee_attendance\employee_attendance_pdf.css" />
+    <Content Include="Content\stylesheets\rtl\employee_attendance\employee_leave_details.css" />
+    <Content Include="Content\stylesheets\rtl\employee_attendance\employee_leave_reset_all.css" />
+    <Content Include="Content\stylesheets\rtl\employee_attendance\employee_leave_reset_by_department.css" />
+    <Content Include="Content\stylesheets\rtl\employee_attendance\employee_leave_reset_by_employee.css" />
+    <Content Include="Content\stylesheets\rtl\employee_attendance\employee_weekday.css" />
+    <Content Include="Content\stylesheets\rtl\employee_attendance\emp_attendance.css" />
+    <Content Include="Content\stylesheets\rtl\employee_attendance\index.css" />
+    <Content Include="Content\stylesheets\rtl\employee_attendance\leaves.css" />
+    <Content Include="Content\stylesheets\rtl\employee_attendance\leave_app.css" />
+    <Content Include="Content\stylesheets\rtl\employee_attendance\leave_application.css" />
+    <Content Include="Content\stylesheets\rtl\employee_attendance\leave_history.css" />
+    <Content Include="Content\stylesheets\rtl\employee_attendance\leave_reset_settings.css" />
+    <Content Include="Content\stylesheets\rtl\employee_attendance\manual_reset.css" />
+    <Content Include="Content\stylesheets\rtl\employee_attendance\own_leave_application.css" />
+    <Content Include="Content\stylesheets\rtl\employee_attendance\register.css" />
+    <Content Include="Content\stylesheets\rtl\employee_attendance\report.css" />
+    <Content Include="Content\stylesheets\rtl\employee_attendance\reset_leave.css" />
+    <Content Include="Content\stylesheets\rtl\event\edit_event.css" />
+    <Content Include="Content\stylesheets\rtl\event\index.css" />
+    <Content Include="Content\stylesheets\rtl\event\show.css" />
+    <Content Include="Content\stylesheets\rtl\exams\create.css" />
+    <Content Include="Content\stylesheets\rtl\exams\edit.css" />
+    <Content Include="Content\stylesheets\rtl\exams\new.css" />
+    <Content Include="Content\stylesheets\rtl\exams\show.css" />
+    <Content Include="Content\stylesheets\rtl\exams\update.css" />
+    <Content Include="Content\stylesheets\rtl\exam\attendance_rank.css" />
+    <Content Include="Content\stylesheets\rtl\exam\batch_rank.css" />
+    <Content Include="Content\stylesheets\rtl\exam\combined_report.css" />
+    <Content Include="Content\stylesheets\rtl\exam\consolidated_exam_report.css" />
+    <Content Include="Content\stylesheets\rtl\exam\consolidated_exam_report_pdf.css" />
+    <Content Include="Content\stylesheets\rtl\exam\course_rank.css" />
+    <Content Include="Content\stylesheets\rtl\exam\create.css" />
+    <Content Include="Content\stylesheets\rtl\exam\create_exam.css" />
+    <Content Include="Content\stylesheets\rtl\exam\create_examtype.css" />
+    <Content Include="Content\stylesheets\rtl\exam\edit.css" />
+    <Content Include="Content\stylesheets\rtl\exam\edit_examtype.css" />
+    <Content Include="Content\stylesheets\rtl\exam\edit_grading.css" />
+    <Content Include="Content\stylesheets\rtl\exam\edit_previous_marks.css" />
+    <Content Include="Content\stylesheets\rtl\exam\enter_result.css" />
+    <Content Include="Content\stylesheets\rtl\exam\exam_wise_report.css" />
+    <Content Include="Content\stylesheets\rtl\exam\generated_report.css" />
+    <Content Include="Content\stylesheets\rtl\exam\generated_report2.css" />
+    <Content Include="Content\stylesheets\rtl\exam\generated_report2_pdf.css" />
+    <Content Include="Content\stylesheets\rtl\exam\generated_report3.css" />
+    <Content Include="Content\stylesheets\rtl\exam\generated_report4.css" />
+    <Content Include="Content\stylesheets\rtl\exam\generated_report4_pdf.css" />
+    <Content Include="Content\stylesheets\rtl\exam\generated_report_pdf.css" />
+    <Content Include="Content\stylesheets\rtl\exam\generate_previous_reports.css" />
+    <Content Include="Content\stylesheets\rtl\exam\generate_reports.css" />
+    <Content Include="Content\stylesheets\rtl\exam\grouped_exam_report.css" />
+    <Content Include="Content\stylesheets\rtl\exam\grouping.css" />
+    <Content Include="Content\stylesheets\rtl\exam\index.css" />
+    <Content Include="Content\stylesheets\rtl\exam\previous_batch_exams.css" />
+    <Content Include="Content\stylesheets\rtl\exam\previous_years_marks_overview.css" />
+    <Content Include="Content\stylesheets\rtl\exam\previous_years_marks_overview_pdf.css" />
+    <Content Include="Content\stylesheets\rtl\exam\ranking_level_report.css" />
+    <Content Include="Content\stylesheets\rtl\exam\report_center.css" />
+    <Content Include="Content\stylesheets\rtl\exam\select_class.css" />
+    <Content Include="Content\stylesheets\rtl\exam\settings.css" />
+    <Content Include="Content\stylesheets\rtl\exam\student_attendance_rank.css" />
+    <Content Include="Content\stylesheets\rtl\exam\student_attendance_rank_pdf.css" />
+    <Content Include="Content\stylesheets\rtl\exam\student_batch_rank.css" />
+    <Content Include="Content\stylesheets\rtl\exam\student_batch_rank_pdf.css" />
+    <Content Include="Content\stylesheets\rtl\exam\student_combined_report.css" />
+    <Content Include="Content\stylesheets\rtl\exam\student_combined_report_pdf.css" />
+    <Content Include="Content\stylesheets\rtl\exam\student_course_rank.css" />
+    <Content Include="Content\stylesheets\rtl\exam\student_course_rank_pdf.css" />
+    <Content Include="Content\stylesheets\rtl\exam\student_ranking_level_report.css" />
+    <Content Include="Content\stylesheets\rtl\exam\student_ranking_level_report_pdf.css" />
+    <Content Include="Content\stylesheets\rtl\exam\student_school_rank.css" />
+    <Content Include="Content\stylesheets\rtl\exam\student_school_rank_pdf.css" />
+    <Content Include="Content\stylesheets\rtl\exam\student_subject_rank.css" />
+    <Content Include="Content\stylesheets\rtl\exam\student_subject_rank_pdf.css" />
+    <Content Include="Content\stylesheets\rtl\exam\student_transcript.css" />
+    <Content Include="Content\stylesheets\rtl\exam\student_transcript_pdf.css" />
+    <Content Include="Content\stylesheets\rtl\exam\subject_rank.css" />
+    <Content Include="Content\stylesheets\rtl\exam\subject_wise_report.css" />
+    <Content Include="Content\stylesheets\rtl\exam\timetable.css" />
+    <Content Include="Content\stylesheets\rtl\exam\transcript.css" />
+    <Content Include="Content\stylesheets\rtl\exam_groups\create.css" />
+    <Content Include="Content\stylesheets\rtl\exam_groups\edit.css" />
+    <Content Include="Content\stylesheets\rtl\exam_groups\index.css" />
+    <Content Include="Content\stylesheets\rtl\exam_groups\new.css" />
+    <Content Include="Content\stylesheets\rtl\exam_groups\show.css" />
+    <Content Include="Content\stylesheets\rtl\exam_reports\archived_batches_exam_report.css" />
+    <Content Include="Content\stylesheets\rtl\exam_reports\archived_batches_exam_report_pdf.css" />
+    <Content Include="Content\stylesheets\rtl\exam_reports\archived_exam_wise_report.css" />
+    <Content Include="Content\stylesheets\rtl\exam_reports\consolidated_exam_report.css" />
+    <Content Include="Content\stylesheets\rtl\exam_reports\consolidated_exam_report_pdf.css" />
+    <Content Include="Content\stylesheets\rtl\finance\additional_fees.css" />
+    <Content Include="Content\stylesheets\rtl\finance\additional_fees_create_form.css" />
+    <Content Include="Content\stylesheets\rtl\finance\additional_fees_list.css" />
+    <Content Include="Content\stylesheets\rtl\finance\additional_particulars.css" />
+    <Content Include="Content\stylesheets\rtl\finance\add_particulars.css" />
+    <Content Include="Content\stylesheets\rtl\finance\approve_monthly_payslip.css" />
+    <Content Include="Content\stylesheets\rtl\finance\asset.css" />
+    <Content Include="Content\stylesheets\rtl\finance\asset_liability.css" />
+    <Content Include="Content\stylesheets\rtl\finance\asset_pdf.css" />
+    <Content Include="Content\stylesheets\rtl\finance\automatic_transactions.css" />
+    <Content Include="Content\stylesheets\rtl\finance\batch_fees_report.css" />
+    <Content Include="Content\stylesheets\rtl\finance\categories.css" />
+    <Content Include="Content\stylesheets\rtl\finance\collection_details_view.css" />
+    <Content Include="Content\stylesheets\rtl\finance\compare_report.css" />
+    <Content Include="Content\stylesheets\rtl\finance\direct_expenses.css" />
+    <Content Include="Content\stylesheets\rtl\finance\direct_expenses_year.css" />
+    <Content Include="Content\stylesheets\rtl\finance\direct_income.css" />
+    <Content Include="Content\stylesheets\rtl\finance\direct_income_year.css" />
+    <Content Include="Content\stylesheets\rtl\finance\donation.css" />
+    <Content Include="Content\stylesheets\rtl\finance\donations_report.css" />
+    <Content Include="Content\stylesheets\rtl\finance\donations_report_year.css" />
+    <Content Include="Content\stylesheets\rtl\finance\donation_edit.css" />
+    <Content Include="Content\stylesheets\rtl\finance\donation_receipt.css" />
+    <Content Include="Content\stylesheets\rtl\finance\donation_receipt_pdf.css" />
+    <Content Include="Content\stylesheets\rtl\finance\donors.css" />
+    <Content Include="Content\stylesheets\rtl\finance\each_asset_view.css" />
+    <Content Include="Content\stylesheets\rtl\finance\each_liability_view.css" />
+    <Content Include="Content\stylesheets\rtl\finance\employee_payslip_monthly_report.css" />
+    <Content Include="Content\stylesheets\rtl\finance\expense_create.css" />
+    <Content Include="Content\stylesheets\rtl\finance\expense_edit.css" />
+    <Content Include="Content\stylesheets\rtl\finance\expense_list.css" />
+    <Content Include="Content\stylesheets\rtl\finance\expense_list_pdf.css" />
+    <Content Include="Content\stylesheets\rtl\finance\fees_create.css" />
+    <Content Include="Content\stylesheets\rtl\finance\fees_defaulters.css" />
+    <Content Include="Content\stylesheets\rtl\finance\fees_index.css" />
+    <Content Include="Content\stylesheets\rtl\finance\fees_particulars.css" />
+    <Content Include="Content\stylesheets\rtl\finance\fees_particulars_create.css" />
+    <Content Include="Content\stylesheets\rtl\finance\fees_particulars_new.css" />
+    <Content Include="Content\stylesheets\rtl\finance\fees_report.css" />
+    <Content Include="Content\stylesheets\rtl\finance\fees_report_year.css" />
+    <Content Include="Content\stylesheets\rtl\finance\fees_structure_dates.css" />
+    <Content Include="Content\stylesheets\rtl\finance\fees_structure_student_search.css" />
+    <Content Include="Content\stylesheets\rtl\finance\fees_student_dates.css" />
+    <Content Include="Content\stylesheets\rtl\finance\fees_student_search.css" />
+    <Content Include="Content\stylesheets\rtl\finance\fees_student_specific.css" />
+    <Content Include="Content\stylesheets\rtl\finance\fees_student_structure_search.css" />
+    <Content Include="Content\stylesheets\rtl\finance\fees_submission_batch.css" />
+    <Content Include="Content\stylesheets\rtl\finance\fees_submission_index.css" />
+    <Content Include="Content\stylesheets\rtl\finance\fee_collection.css" />
+    <Content Include="Content\stylesheets\rtl\finance\fee_collection_create.css" />
+    <Content Include="Content\stylesheets\rtl\finance\fee_collection_new.css" />
+    <Content Include="Content\stylesheets\rtl\finance\fee_collection_view.css" />
+    <Content Include="Content\stylesheets\rtl\finance\fee_defaulters_pdf.css" />
+    <Content Include="Content\stylesheets\rtl\finance\fee_discounts.css" />
+    <Content Include="Content\stylesheets\rtl\finance\fee_discount_new.css" />
+    <Content Include="Content\stylesheets\rtl\finance\fee_submission.css" />
+    <Content Include="Content\stylesheets\rtl\finance\income_create.css" />
+    <Content Include="Content\stylesheets\rtl\finance\income_edit.css" />
+    <Content Include="Content\stylesheets\rtl\finance\income_list.css" />
+    <Content Include="Content\stylesheets\rtl\finance\income_list_pdf.css" />
+    <Content Include="Content\stylesheets\rtl\finance\index.css" />
+    <Content Include="Content\stylesheets\rtl\finance\liability.css" />
+    <Content Include="Content\stylesheets\rtl\finance\liability_pdf.css" />
+    <Content Include="Content\stylesheets\rtl\finance\master_category_particulars.css" />
+    <Content Include="Content\stylesheets\rtl\finance\master_fees.css" />
+    <Content Include="Content\stylesheets\rtl\finance\master_fees_index.css" />
+    <Content Include="Content\stylesheets\rtl\finance\monthly_report.css" />
+    <Content Include="Content\stylesheets\rtl\finance\payslip_index.css" />
+    <Content Include="Content\stylesheets\rtl\finance\pay_fees_defaulters.css" />
+    <Content Include="Content\stylesheets\rtl\finance\pdf_fee_structure.css" />
+    <Content Include="Content\stylesheets\rtl\finance\salary_department.css" />
+    <Content Include="Content\stylesheets\rtl\finance\salary_employee.css" />
+    <Content Include="Content\stylesheets\rtl\finance\salary_employee_year.css" />
+    <Content Include="Content\stylesheets\rtl\finance\student_fees_structure.css" />
+    <Content Include="Content\stylesheets\rtl\finance\student_fee_receipt_pdf.css" />
+    <Content Include="Content\stylesheets\rtl\finance\transactions.css" />
+    <Content Include="Content\stylesheets\rtl\finance\transaction_pdf.css" />
+    <Content Include="Content\stylesheets\rtl\finance\update_fees_specific.css" />
+    <Content Include="Content\stylesheets\rtl\finance\update_monthly_report.css" />
+    <Content Include="Content\stylesheets\rtl\finance\view_asset.css" />
+    <Content Include="Content\stylesheets\rtl\finance\view_employee_payslip.css" />
+    <Content Include="Content\stylesheets\rtl\finance\view_liability.css" />
+    <Content Include="Content\stylesheets\rtl\finance\view_monthly_payslip.css" />
+    <Content Include="Content\stylesheets\rtl\finance\view_monthly_payslip_search.css" />
+    <Content Include="Content\stylesheets\rtl\finance\view_payslip_dept.css" />
+    <Content Include="Content\stylesheets\rtl\finance\year_report.css" />
+    <Content Include="Content\stylesheets\rtl\grading_levels\index.css" />
+    <Content Include="Content\stylesheets\rtl\holiday\edit.css" />
+    <Content Include="Content\stylesheets\rtl\holiday\index.css" />
+    <Content Include="Content\stylesheets\rtl\modalbox.css" />
+    <Content Include="Content\stylesheets\rtl\news\add.css" />
+    <Content Include="Content\stylesheets\rtl\news\all.css" />
+    <Content Include="Content\stylesheets\rtl\news\edit.css" />
+    <Content Include="Content\stylesheets\rtl\news\index.css" />
+    <Content Include="Content\stylesheets\rtl\news\view.css" />
+    <Content Include="Content\stylesheets\rtl\payroll\add_category.css" />
+    <Content Include="Content\stylesheets\rtl\payroll\edit_category.css" />
+    <Content Include="Content\stylesheets\rtl\payroll\edit_payroll_details.css" />
+    <Content Include="Content\stylesheets\rtl\payroll\index.css" />
+    <Content Include="Content\stylesheets\rtl\payroll\manage_payroll.css" />
+    <Content Include="Content\stylesheets\rtl\popup.css" />
+    <Content Include="Content\stylesheets\rtl\ranking_levels\index.css" />
+    <Content Include="Content\stylesheets\rtl\redbox.css" />
+    <Content Include="Content\stylesheets\rtl\reminder\create_reminder.css" />
+    <Content Include="Content\stylesheets\rtl\reminder\index.css" />
+    <Content Include="Content\stylesheets\rtl\reminder\sent_reminder.css" />
+    <Content Include="Content\stylesheets\rtl\reminder\view_reminder.css" />
+    <Content Include="Content\stylesheets\rtl\reminder\view_sent_reminder.css" />
+    <Content Include="Content\stylesheets\rtl\sms\batches.css" />
+    <Content Include="Content\stylesheets\rtl\sms\departments.css" />
+    <Content Include="Content\stylesheets\rtl\sms\employees.css" />
+    <Content Include="Content\stylesheets\rtl\sms\index.css" />
+    <Content Include="Content\stylesheets\rtl\sms\settings.css" />
+    <Content Include="Content\stylesheets\rtl\sms\students.css" />
+    <Content Include="Content\stylesheets\rtl\spinner.gif" />
+    <Content Include="Content\stylesheets\rtl\student\academic_report.css" />
+    <Content Include="Content\stylesheets\rtl\student\academic_reports.css" />
+    <Content Include="Content\stylesheets\rtl\student\academic_report_all.css" />
+    <Content Include="Content\stylesheets\rtl\student\add_additional_details.css" />
+    <Content Include="Content\stylesheets\rtl\student\add_guardian.css" />
+    <Content Include="Content\stylesheets\rtl\student\admission1.css" />
+    <Content Include="Content\stylesheets\rtl\student\admission2.css" />
+    <Content Include="Content\stylesheets\rtl\student\admission3.css" />
+    <Content Include="Content\stylesheets\rtl\student\admission3_1.css" />
+    <Content Include="Content\stylesheets\rtl\student\admission4.css" />
+    <Content Include="Content\stylesheets\rtl\student\advanced_search.css" />
+    <Content Include="Content\stylesheets\rtl\student\advanced_search_pdf.css" />
+    <Content Include="Content\stylesheets\rtl\student\categories.css" />
+    <Content Include="Content\stylesheets\rtl\student\change_to_former.css" />
+    <Content Include="Content\stylesheets\rtl\student\delete.css" />
+    <Content Include="Content\stylesheets\rtl\student\edit.css" />
+    <Content Include="Content\stylesheets\rtl\student\edit_additional_details.css" />
+    <Content Include="Content\stylesheets\rtl\student\edit_admission4.css" />
+    <Content Include="Content\stylesheets\rtl\student\edit_guardian.css" />
+    <Content Include="Content\stylesheets\rtl\student\electives.css" />
+    <Content Include="Content\stylesheets\rtl\student\email.css" />
+    <Content Include="Content\stylesheets\rtl\student\exam_report.css" />
+    <Content Include="Content\stylesheets\rtl\student\fees.css" />
+    <Content Include="Content\stylesheets\rtl\student\fee_details.css" />
+    <Content Include="Content\stylesheets\rtl\student\generate_all_tc_pdf.css" />
+    <Content Include="Content\stylesheets\rtl\student\generate_tc_pdf.css" />
+    <Content Include="Content\stylesheets\rtl\student\guardians.css" />
+    <Content Include="Content\stylesheets\rtl\student\index.css" />
+    <Content Include="Content\stylesheets\rtl\student\previous_data.css" />
+    <Content Include="Content\stylesheets\rtl\student\previous_data_edit.css" />
+    <Content Include="Content\stylesheets\rtl\student\previous_years_marks_overview.css" />
+    <Content Include="Content\stylesheets\rtl\student\profile.css" />
+    <Content Include="Content\stylesheets\rtl\student\profile_pdf.css" />
+    <Content Include="Content\stylesheets\rtl\student\remove.css" />
+    <Content Include="Content\stylesheets\rtl\student\reports.css" />
+    <Content Include="Content\stylesheets\rtl\student\show_previous_details.css" />
+    <Content Include="Content\stylesheets\rtl\student\subject_wise_report.css" />
+    <Content Include="Content\stylesheets\rtl\student\view_all.css" />
+    <Content Include="Content\stylesheets\rtl\student_attendance\index.css" />
+    <Content Include="Content\stylesheets\rtl\student_attendance\student.css" />
+    <Content Include="Content\stylesheets\rtl\student_attendance\student_report.css" />
+    <Content Include="Content\stylesheets\rtl\subjects\index.css" />
+    <Content Include="Content\stylesheets\rtl\subject\create.css" />
+    <Content Include="Content\stylesheets\rtl\subject\edit.css" />
+    <Content Include="Content\stylesheets\rtl\subject\index.css" />
+    <Content Include="Content\stylesheets\rtl\timetable\edit.css" />
+    <Content Include="Content\stylesheets\rtl\timetable\edit2.css" />
+    <Content Include="Content\stylesheets\rtl\timetable\edit_master.css" />
+    <Content Include="Content\stylesheets\rtl\timetable\employee_timetable.css" />
+    <Content Include="Content\stylesheets\rtl\timetable\extra_class.css" />
+    <Content Include="Content\stylesheets\rtl\timetable\index.css" />
+    <Content Include="Content\stylesheets\rtl\timetable\new_timetable.css" />
+    <Content Include="Content\stylesheets\rtl\timetable\select_class.css" />
+    <Content Include="Content\stylesheets\rtl\timetable\select_class2.css" />
+    <Content Include="Content\stylesheets\rtl\timetable\student_view.css" />
+    <Content Include="Content\stylesheets\rtl\timetable\teachers_timetable.css" />
+    <Content Include="Content\stylesheets\rtl\timetable\timetable.css" />
+    <Content Include="Content\stylesheets\rtl\timetable\timetable_pdf.css" />
+    <Content Include="Content\stylesheets\rtl\timetable\update_timetable.css" />
+    <Content Include="Content\stylesheets\rtl\timetable\view.css" />
+    <Content Include="Content\stylesheets\rtl\timetable\work_allotment.css" />
+    <Content Include="Content\stylesheets\rtl\timetable_entries\new.css" />
+    <Content Include="Content\stylesheets\rtl\user\all.css" />
+    <Content Include="Content\stylesheets\rtl\user\change_password.css" />
+    <Content Include="Content\stylesheets\rtl\user\create.css" />
+    <Content Include="Content\stylesheets\rtl\user\dashboard.css" />
+    <Content Include="Content\stylesheets\rtl\user\edit.css" />
+    <Content Include="Content\stylesheets\rtl\user\edit_privilege.css" />
+    <Content Include="Content\stylesheets\rtl\user\index.css" />
+    <Content Include="Content\stylesheets\rtl\user\login.css" />
+    <Content Include="Content\stylesheets\rtl\user\profile.css" />
+    <Content Include="Content\stylesheets\rtl\user\user_change_password.css" />
+    <Content Include="Content\stylesheets\rtl\weekday\index.css" />
+    <Content Include="Content\stylesheets\rtl\_layouts\dashboard.css" />
+    <Content Include="Content\stylesheets\rtl\_layouts\forgotpw.css" />
+    <Content Include="Content\stylesheets\rtl\_layouts\login.css" />
+    <Content Include="Content\stylesheets\rtl\_layouts\pdf.css" />
+    <Content Include="Content\stylesheets\rtl\_layouts\style.css" />
+    <Content Include="Content\stylesheets\rtl\_styles\ui.all.css" />
+    <Content Include="Content\stylesheets\scheduled_jobs\index.css" />
+    <Content Include="Content\stylesheets\sms\batches.css" />
+    <Content Include="Content\stylesheets\sms\departments.css" />
+    <Content Include="Content\stylesheets\sms\employees.css" />
+    <Content Include="Content\stylesheets\sms\index.css" />
+    <Content Include="Content\stylesheets\sms\settings.css" />
+    <Content Include="Content\stylesheets\sms\students.css" />
+    <Content Include="Content\stylesheets\spinner.gif" />
+    <Content Include="Content\stylesheets\student\academic_report.css" />
+    <Content Include="Content\stylesheets\student\academic_reports.css" />
+    <Content Include="Content\stylesheets\student\academic_report_all.css" />
+    <Content Include="Content\stylesheets\student\add_additional_details.css" />
+    <Content Include="Content\stylesheets\student\add_guardian.css" />
+    <Content Include="Content\stylesheets\student\admission1.css" />
+    <Content Include="Content\stylesheets\student\admission2.css" />
+    <Content Include="Content\stylesheets\student\admission3.css" />
+    <Content Include="Content\stylesheets\student\admission3_1.css" />
+    <Content Include="Content\stylesheets\student\admission4.css" />
+    <Content Include="Content\stylesheets\student\advanced_search.css" />
+    <Content Include="Content\stylesheets\student\advanced_search_pdf.css" />
+    <Content Include="Content\stylesheets\student\categories.css" />
+    <Content Include="Content\stylesheets\student\change_to_former.css" />
+    <Content Include="Content\stylesheets\student\delete.css" />
+    <Content Include="Content\stylesheets\student\edit.css" />
+    <Content Include="Content\stylesheets\student\edit_additional_details.css" />
+    <Content Include="Content\stylesheets\student\edit_admission4.css" />
+    <Content Include="Content\stylesheets\student\edit_guardian.css" />
+    <Content Include="Content\stylesheets\student\electives.css" />
+    <Content Include="Content\stylesheets\student\email.css" />
+    <Content Include="Content\stylesheets\student\exam_report.css" />
+    <Content Include="Content\stylesheets\student\fees.css" />
+    <Content Include="Content\stylesheets\student\fee_details.css" />
+    <Content Include="Content\stylesheets\student\generate_all_tc_pdf.css" />
+    <Content Include="Content\stylesheets\student\generate_tc_pdf.css" />
+    <Content Include="Content\stylesheets\student\guardians.css" />
+    <Content Include="Content\stylesheets\student\index.css" />
+    <Content Include="Content\stylesheets\student\previous_data.css" />
+    <Content Include="Content\stylesheets\student\previous_data_edit.css" />
+    <Content Include="Content\stylesheets\student\previous_years_marks_overview.css" />
+    <Content Include="Content\stylesheets\student\profile.css" />
+    <Content Include="Content\stylesheets\student\profile_pdf.css" />
+    <Content Include="Content\stylesheets\student\remove.css" />
+    <Content Include="Content\stylesheets\student\reports.css" />
+    <Content Include="Content\stylesheets\student\show_previous_details.css" />
+    <Content Include="Content\stylesheets\student\subject_wise_report.css" />
+    <Content Include="Content\stylesheets\student\view_all.css" />
+    <Content Include="Content\stylesheets\student_attendance\index.css" />
+    <Content Include="Content\stylesheets\student_attendance\student.css" />
+    <Content Include="Content\stylesheets\student_attendance\student_report.css" />
+    <Content Include="Content\stylesheets\subjects\index.css" />
+    <Content Include="Content\stylesheets\subject\create.css" />
+    <Content Include="Content\stylesheets\subject\edit.css" />
+    <Content Include="Content\stylesheets\subject\index.css" />
+    <Content Include="Content\stylesheets\timetable\edit.css" />
+    <Content Include="Content\stylesheets\timetable\edit2.css" />
+    <Content Include="Content\stylesheets\timetable\edit_master.css" />
+    <Content Include="Content\stylesheets\timetable\employee_timetable.css" />
+    <Content Include="Content\stylesheets\timetable\extra_class.css" />
+    <Content Include="Content\stylesheets\timetable\index.css" />
+    <Content Include="Content\stylesheets\timetable\new_timetable.css" />
+    <Content Include="Content\stylesheets\timetable\select_class.css" />
+    <Content Include="Content\stylesheets\timetable\select_class2.css" />
+    <Content Include="Content\stylesheets\timetable\student_view.css" />
+    <Content Include="Content\stylesheets\timetable\teachers_timetable.css" />
+    <Content Include="Content\stylesheets\timetable\timetable.css" />
+    <Content Include="Content\stylesheets\timetable\timetable_pdf.css" />
+    <Content Include="Content\stylesheets\timetable\view.css" />
+    <Content Include="Content\stylesheets\timetable\work_allotment.css" />
+    <Content Include="Content\stylesheets\timetable_entries\new.css" />
+    <Content Include="Content\stylesheets\USERs\all.css" />
+    <Content Include="Content\stylesheets\USERs\change_password.css" />
+    <Content Include="Content\stylesheets\USERs\Create.css" />
+    <Content Include="Content\stylesheets\USERs\Dashboard.css" />
+    <Content Include="Content\stylesheets\USERs\Edit.css" />
+    <Content Include="Content\stylesheets\USERs\edit_privilege.css" />
+    <Content Include="Content\stylesheets\USERs\first_login_change_password.css" />
+    <Content Include="Content\stylesheets\USERs\Index.css" />
+    <Content Include="Content\stylesheets\USERs\Login.css" />
+    <Content Include="Content\stylesheets\USERs\profile.css" />
+    <Content Include="Content\stylesheets\USERs\user_change_password.css" />
+    <Content Include="Content\stylesheets\weekday\index.css" />
+    <Content Include="Content\stylesheets\_layouts\dashboard.css" />
+    <Content Include="Content\stylesheets\_layouts\forgotpw.css" />
+    <Content Include="Content\stylesheets\_layouts\login.css" />
+    <Content Include="Content\stylesheets\_layouts\pdf.css" />
+    <Content Include="Content\stylesheets\_layouts\style.css" />
+    <Content Include="Content\stylesheets\_styles\ui.all.css" />
+    <Content Include="Content\front-page\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\front-page\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\front-page\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\front-page\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Content\javascripts\fckeditor\editor\dialog\fck_spellerpages\spellerpages\server-scripts\spellchecker.cfm" />
+    <Content Include="Content\javascripts\fckeditor\editor\dialog\fck_spellerpages\spellerpages\server-scripts\spellchecker.php" />
+    <Content Include="Content\javascripts\fckeditor\editor\dialog\fck_spellerpages\spellerpages\server-scripts\spellchecker.pl" />
+    <Content Include="Content\javascripts\fckeditor\editor\filemanager\connectors\cfm\cf5_connector.cfm" />
+    <Content Include="Content\javascripts\fckeditor\editor\filemanager\connectors\cfm\cf5_upload.cfm" />
+    <Content Include="Content\javascripts\fckeditor\editor\filemanager\connectors\cfm\cf_basexml.cfm" />
+    <Content Include="Content\javascripts\fckeditor\editor\filemanager\connectors\cfm\cf_commands.cfm" />
+    <Content Include="Content\javascripts\fckeditor\editor\filemanager\connectors\cfm\cf_connector.cfm" />
+    <Content Include="Content\javascripts\fckeditor\editor\filemanager\connectors\cfm\cf_io.cfm" />
+    <Content Include="Content\javascripts\fckeditor\editor\filemanager\connectors\cfm\cf_upload.cfm" />
+    <Content Include="Content\javascripts\fckeditor\editor\filemanager\connectors\cfm\cf_util.cfm" />
+    <Content Include="Content\javascripts\fckeditor\editor\filemanager\connectors\cfm\config.cfm" />
+    <Content Include="Content\javascripts\fckeditor\editor\filemanager\connectors\cfm\connector.cfm" />
+    <Content Include="Content\javascripts\fckeditor\editor\filemanager\connectors\cfm\image.cfc" />
+    <Content Include="Content\javascripts\fckeditor\editor\filemanager\connectors\cfm\ImageObject.cfc" />
+    <Content Include="Content\javascripts\fckeditor\editor\filemanager\connectors\cfm\upload.cfm" />
+    <Content Include="Content\javascripts\fckeditor\editor\filemanager\connectors\lasso\config.lasso" />
+    <Content Include="Content\javascripts\fckeditor\editor\filemanager\connectors\lasso\connector.lasso" />
+    <Content Include="Content\javascripts\fckeditor\editor\filemanager\connectors\lasso\upload.lasso" />
+    <Content Include="Content\javascripts\fckeditor\editor\filemanager\connectors\perl\basexml.pl" />
+    <Content Include="Content\javascripts\fckeditor\editor\filemanager\connectors\perl\commands.pl" />
+    <Content Include="Content\javascripts\fckeditor\editor\filemanager\connectors\perl\connector.cgi" />
+    <Content Include="Content\javascripts\fckeditor\editor\filemanager\connectors\perl\io.pl" />
+    <Content Include="Content\javascripts\fckeditor\editor\filemanager\connectors\perl\upload.cgi" />
+    <Content Include="Content\javascripts\fckeditor\editor\filemanager\connectors\perl\upload_fck.pl" />
+    <Content Include="Content\javascripts\fckeditor\editor\filemanager\connectors\perl\util.pl" />
+    <Content Include="Content\javascripts\fckeditor\editor\filemanager\connectors\php\basexml.php" />
+    <Content Include="Content\javascripts\fckeditor\editor\filemanager\connectors\php\commands.php" />
+    <Content Include="Content\javascripts\fckeditor\editor\filemanager\connectors\php\config.php" />
+    <Content Include="Content\javascripts\fckeditor\editor\filemanager\connectors\php\connector.php" />
+    <Content Include="Content\javascripts\fckeditor\editor\filemanager\connectors\php\io.php" />
+    <Content Include="Content\javascripts\fckeditor\editor\filemanager\connectors\php\phpcompat.php" />
+    <Content Include="Content\javascripts\fckeditor\editor\filemanager\connectors\php\upload.php" />
+    <Content Include="Content\javascripts\fckeditor\editor\filemanager\connectors\php\util.php" />
+    <Content Include="Content\javascripts\fckeditor\editor\filemanager\connectors\py\config.py" />
+    <Content Include="Content\javascripts\fckeditor\editor\filemanager\connectors\py\connector.py" />
+    <Content Include="Content\javascripts\fckeditor\editor\filemanager\connectors\py\fckcommands.py" />
+    <Content Include="Content\javascripts\fckeditor\editor\filemanager\connectors\py\fckconnector.py" />
+    <Content Include="Content\javascripts\fckeditor\editor\filemanager\connectors\py\fckoutput.py" />
+    <Content Include="Content\javascripts\fckeditor\editor\filemanager\connectors\py\fckutil.py" />
+    <Content Include="Content\javascripts\fckeditor\editor\filemanager\connectors\py\upload.py" />
+    <Content Include="Content\javascripts\fckeditor\editor\filemanager\connectors\py\wsgi.py" />
+    <Content Include="Content\javascripts\fckeditor\editor\filemanager\connectors\py\zope.py" />
+    <Content Include="Content\javascripts\fckeditor\fckeditor.afp" />
+    <Content Include="Content\javascripts\fckeditor\fckeditor.lasso" />
+    <Content Include="Content\javascripts\fckeditor\fckutils.cfm" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\jquery-1.7.1.min.js" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-theme.min.css.map" />
+    <Content Include="Content\bootstrap-theme.css.map" />
+    <None Include="Scripts\jquery-3.1.1.intellisense.js" />
+    <Content Include="Scripts\jquery-3.1.1.js" />
+    <Content Include="Scripts\jquery-3.1.1.min.js" />
+    <Content Include="Scripts\jquery-3.1.1.slim.js" />
+    <Content Include="Scripts\jquery-3.1.1.slim.min.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Views\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\_Layout\Application.cshtml" />
+    <Content Include="Scripts\jquery-2.2.3.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Global.asax" />
+    <Content Include="ApplicationInsights.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\images\_global\Thumbs.db" />
+    <Content Include="Content\images\_input_bg\Thumbs.db" />
+    <Content Include="Content\images\admission\Thumbs.db" />
+    <Content Include="Content\images\application\Thumbs.db" />
+    <Content Include="Content\images\attendence\Thumbs.db" />
+    <Content Include="Content\images\backgrounds\Thumbs.db" />
+    <Content Include="Content\images\buttons\Thumbs.db" />
+    <Content Include="Content\images\calendar_date_select\Thumbs.db" />
+    <Content Include="Content\images\create_users\Thumbs.db" />
+    <Content Include="Content\images\edit_users\Thumbs.db" />
+    <Content Include="Content\images\examination\create\Thumbs.db" />
+    <Content Include="Content\images\examination\index\Thumbs.db" />
+    <Content Include="Content\images\form_bg\Thumbs.db" />
+    <Content Include="Content\images\fedena_user\dashboard\Thumbs.db" />
+    <Content Include="Content\images\fedena_user\user_profile\Thumbs.db" />
+    <Content Include="Content\images\HR\Thumbs.db" />
+    <Content Include="Content\images\jquery.calendar\Thumbs.db" />
+    <Content Include="Content\images\jquery.calendar\dashboard\Thumbs.db" />
+    <Content Include="Content\images\login\Thumbs.db" />
+    <Content Include="Content\images\manage_news\Thumbs.db" />
+    <Content Include="Content\images\master_student\admission1\Thumbs.db" />
+    <Content Include="Content\images\master_student\profile\Thumbs.db" />
+    <Content Include="Content\images\menu-top\Thumbs.db" />
+    <Content Include="Content\images\show_news\Thumbs.db" />
+    <Content Include="Content\images\student_details\Thumbs.db" />
+    <Content Include="Content\images\user_profile\Thumbs.db" />
+    <EntityDeploy Include="ModelSFSAcademy.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ModelSFSAcademy.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="ModelSFSAcademy.edmx.diagram">
+      <DependentUpon>ModelSFSAcademy.edmx</DependentUpon>
+    </Content>
+    <None Include="Scripts\jquery-2.2.3.intellisense.js" />
+    <Content Include="Scripts\jquery-2.2.3.js" />
+    <Content Include="Scripts\jquery-2.2.3.min.js" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Shared\_Partial\Main_Menu.cshtml" />
+    <Content Include="Views\Shared\_Layout\FrontPage.cshtml" />
+    <Content Include="Views\USERs\Create.cshtml" />
+    <Content Include="Views\USERs\Delete.cshtml" />
+    <Content Include="Views\USERs\Details.cshtml" />
+    <Content Include="Views\USERs\Edit.cshtml" />
+    <Content Include="Views\USERs\Index.cshtml" />
+    <Content Include="Views\Shared\_Layout\Login.cshtml" />
+    <Content Include="Views\Shared\_Partial\Get_Stylesheets.cshtml" />
+    <Content Include="Views\Shared\_Partial\Get_Forgotpw_Stylesheets.cshtml" />
+    <Content Include="Views\Shared\_Partial\Get_Pdf_Stylesheets.cshtml" />
+    <Content Include="Views\Shared\_Partial\Get_Javascript.cshtml" />
+    <Content Include="Views\USERs\Login.cshtml" />
+    <Content Include="Views\USERs\Dashboard.cshtml" />
+    <Content Include="Views\Shared\_Layout\Dashboard.cshtml" />
+    <Content Include="Views\Shared\_Partial\Autosuggest_Menu.cshtml" />
+    <Content Include="Views\Shared\_Partial\News_Bar.cshtml" />
+    <Content Include="Views\USERs\Edit_Privilege.cshtml" />
+    <Content Include="Scripts\jquery-3.1.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.1.1.min.map" />
+    <Content Include="Views\Student\Create.cshtml" />
+    <Content Include="Views\Student\Delete.cshtml" />
+    <Content Include="Views\Student\Details.cshtml" />
+    <Content Include="Views\Student\Edit.cshtml" />
+    <Content Include="Views\Student\Index.cshtml" />
+    <Content Include="Views\Student\_student_category_create_form.cshtml" />
+    <Content Include="Views\Student\Categories.cshtml" />
+    <Content Include="Views\Student\_CategoriesList.cshtml" />
+    <Content Include="Views\Student\_CategoriesEdit.cshtml" />
+    <Content Include="Views\Student\_CategoriesDelete.cshtml" />
+    <Content Include="Views\Courses\Create.cshtml" />
+    <Content Include="Views\Courses\Delete.cshtml" />
+    <Content Include="Views\Courses\Details.cshtml" />
+    <Content Include="Views\Courses\Edit.cshtml" />
+    <Content Include="Views\Courses\Index.cshtml" />
+    <Content Include="Views\Courses\ManageCourse.cshtml" />
+    <Content Include="Views\Courses\ManageBatches.cshtml" />
+    <Content Include="Views\Student\ViewAll.cshtml" />
+    <Content Include="Views\Student\AdvancedSearch.cshtml" />
+    <Content Include="Views\Student\_ListStudentsByCourse.cshtml" />
+    <Content Include="Views\Student\Profiles.cshtml" />
+    <Content Include="Views\Student\Admission1.cshtml" />
+    <Content Include="Views\Student\Admission2.cshtml" />
+    <Content Include="Views\Student\Admission3.cshtml" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="APPLY_LEAVE.cs">
+      <DependentUpon>ModelSFSAcademy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="ARCHIVED_STUDENT.cs">
+      <DependentUpon>ModelSFSAcademy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ASSESSMENT_SCORE.cs">
+      <DependentUpon>ModelSFSAcademy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ASSET.cs">
+      <DependentUpon>ModelSFSAcademy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ATTENDENCE.cs">
+      <DependentUpon>ModelSFSAcademy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BANK_FIELD.cs">
+      <DependentUpon>ModelSFSAcademy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BATCH.cs">
+      <DependentUpon>ModelSFSAcademy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CCE_EXAM_CATEGORY.cs">
+      <DependentUpon>ModelSFSAcademy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CCE_GRADE.cs">
+      <DependentUpon>ModelSFSAcademy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CCE_GRADE_SET.cs">
+      <DependentUpon>ModelSFSAcademy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CCE_REPORTS.cs">
+      <DependentUpon>ModelSFSAcademy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CCE_WEIGHTAGE.cs">
+      <DependentUpon>ModelSFSAcademy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CLASS_DESIGNATION.cs">
+      <DependentUpon>ModelSFSAcademy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CLASS_TIMING.cs">
+      <DependentUpon>ModelSFSAcademy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CONFIGURATION.cs">
+      <DependentUpon>ModelSFSAcademy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\CoursesController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\StudentController.cs" />
+    <Compile Include="Controllers\USERsController.cs" />
+    <Compile Include="COUNTRY.cs">
+      <DependentUpon>ModelSFSAcademy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="COURSE.cs">
+      <DependentUpon>ModelSFSAcademy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DESCRIPTIVE_INDICATOR.cs">
+      <DependentUpon>ModelSFSAcademy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ELECTIVE_GROUP.cs">
+      <DependentUpon>ModelSFSAcademy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EMPLOYEE.cs">
+      <DependentUpon>ModelSFSAcademy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EMPLOYEES_SUBJECT.cs">
+      <DependentUpon>ModelSFSAcademy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EMPLOYEE_ADDITIONAL_DETAIL.cs">
+      <DependentUpon>ModelSFSAcademy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EMPLOYEE_ATTENDENCES.cs">
+      <DependentUpon>ModelSFSAcademy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EMPLOYEE_BANK_DETAIL.cs">
+      <DependentUpon>ModelSFSAcademy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EMPLOYEE_CATEGORY.cs">
+      <DependentUpon>ModelSFSAcademy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EMPLOYEE_DEPARTMENT.cs">
+      <DependentUpon>ModelSFSAcademy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EMPLOYEE_DEPARTMENT_EVENT.cs">
+      <DependentUpon>ModelSFSAcademy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EMPLOYEE_GRADE.cs">
+      <DependentUpon>ModelSFSAcademy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EMPLOYEE_LEAVE.cs">
+      <DependentUpon>ModelSFSAcademy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EMPLOYEE_LEAVE_TYPE.cs">
+      <DependentUpon>ModelSFSAcademy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EMPLOYEE_POSITION.cs">
+      <DependentUpon>ModelSFSAcademy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EMPLOYEE_SALARY_STRUCTURE.cs">
+      <DependentUpon>ModelSFSAcademy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EVENT.cs">
+      <DependentUpon>ModelSFSAcademy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EXAM.cs">
+      <DependentUpon>ModelSFSAcademy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EXAM_GROUP.cs">
+      <DependentUpon>ModelSFSAcademy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EXAM_SCORE.cs">
+      <DependentUpon>ModelSFSAcademy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FA_CRITERIAS.cs">
+      <DependentUpon>ModelSFSAcademy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FA_GROUP.cs">
+      <DependentUpon>ModelSFSAcademy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FEE_COLLECTION_DISCOUNT.cs">
+      <DependentUpon>ModelSFSAcademy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FEE_COLLECTION_PARTICULAR.cs">
+      <DependentUpon>ModelSFSAcademy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FEE_DISCOUNT.cs">
+      <DependentUpon>ModelSFSAcademy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FINANCE_DONATION.cs">
+      <DependentUpon>ModelSFSAcademy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FINANCE_FEE.cs">
+      <DependentUpon>ModelSFSAcademy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FINANCE_FEE_CATGEORY.cs">
+      <DependentUpon>ModelSFSAcademy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FINANCE_FEE_COLLECTION.cs">
+      <DependentUpon>ModelSFSAcademy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FINANCE_FEE_PARTICULAR.cs">
+      <DependentUpon>ModelSFSAcademy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FINANCE_FEE_STRUCTURE_ELEMENT.cs">
+      <DependentUpon>ModelSFSAcademy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FINANCE_TRANSACTION.cs">
+      <DependentUpon>ModelSFSAcademy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FINANCE_TRANSACTION_CATEGORY.cs">
+      <DependentUpon>ModelSFSAcademy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FINANCE_TRANSACTION_TRIGGERS.cs">
+      <DependentUpon>ModelSFSAcademy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="GRADING_LEVEL.cs">
+      <DependentUpon>ModelSFSAcademy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GUARDIAN.cs">
+      <DependentUpon>ModelSFSAcademy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HtmlHelpers\ApplicationHelper.cs" />
+    <Compile Include="HtmlHelpers\AssetsHelper.cs" />
+    <Compile Include="HtmlHelpers\PdfTabularReport.cs" />
+    <Compile Include="HtmlHelpers\ReportConfiguration.cs" />
+    <Compile Include="INDIVIDUAL_PAYSLIP_CATGEORY.cs">
+      <DependentUpon>ModelSFSAcademy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Infrastructure\HandleErrorAttribute.cs" />
+    <Compile Include="LIABILITY.cs">
+      <DependentUpon>ModelSFSAcademy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelSFSAcademy.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelSFSAcademy.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelSFSAcademy.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelSFSAcademy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelSFSAcademy.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelSFSAcademy.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\News.cs" />
+    <Compile Include="Models\Student.cs" />
+    <Compile Include="Models\User.cs" />
+    <Compile Include="MONTHLY_PAYSLIP.cs">
+      <DependentUpon>ModelSFSAcademy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NEWS.cs">
+      <DependentUpon>ModelSFSAcademy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NEWS_COMMENTS.cs">
+      <DependentUpon>ModelSFSAcademy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OBSERVATION.cs">
+      <DependentUpon>ModelSFSAcademy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OBSERVATION_GROUP.cs">
+      <DependentUpon>ModelSFSAcademy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PAYROLL_CATEGORY.cs">
+      <DependentUpon>ModelSFSAcademy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RANKING_LEVEL.cs">
+      <DependentUpon>ModelSFSAcademy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SMS_LOG.cs">
+      <DependentUpon>ModelSFSAcademy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SMS_MESSAGE.cs">
+      <DependentUpon>ModelSFSAcademy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SMS_SETTING.cs">
+      <DependentUpon>ModelSFSAcademy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="STUDENT.cs">
+      <DependentUpon>ModelSFSAcademy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="STUDENT_ADDITIONAL_DETAIL.cs">
+      <DependentUpon>ModelSFSAcademy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="STUDENT_ADDITIONAL_FIELD.cs">
+      <DependentUpon>ModelSFSAcademy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="STUDENT_CATGEORY.cs">
+      <DependentUpon>ModelSFSAcademy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="STUDENT_PREVIOUS_DATA.cs">
+      <DependentUpon>ModelSFSAcademy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="STUDENT_PREVIOUS_SUBJECT_MARK.cs">
+      <DependentUpon>ModelSFSAcademy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="STUDENT_SUBJECT.cs">
+      <DependentUpon>ModelSFSAcademy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SUBJECT.cs">
+      <DependentUpon>ModelSFSAcademy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SUBJECT_LEAVE.cs">
+      <DependentUpon>ModelSFSAcademy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TIMETABLE.cs">
+      <DependentUpon>ModelSFSAcademy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TIMETABLE_ENTRY.cs">
+      <DependentUpon>ModelSFSAcademy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="USER.cs">
+      <DependentUpon>ModelSFSAcademy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="USERS_ACCESS.cs">
+      <DependentUpon>ModelSFSAcademy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WEEKDAY.cs">
+      <DependentUpon>ModelSFSAcademy.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>58949</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:58949/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.1.3.2\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.1.3.2\build\Microsoft.Net.Compilers.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.3\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.3\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

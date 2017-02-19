@@ -1,0 +1,60 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>@ViewBag.Title</title>
+
+    <link rel="icon" href="~/Content/front-page/images/cropped-favicon-1-1-32x32-S.png" sizes="32x32" />
+    <link rel="icon" href="~/Content/front-page/images/cr-favicon-1-1-192x192SF.png" sizes="192x192" />
+    <link rel="apple-touch-icon-precomposed" href="~/Content/front-page/images/cr-favicon-1-1-180x180SF.png" />
+    <meta name="msapplication-TileImage" content="/Content/front-page/images/cr-favicon-1-1-270x270SF.png" />
+    @Html.DynamicHeader()
+    @Html.Partial("_Partial/Get_Stylesheets")
+    @Html.Partial("_Partial/Get_Javascript")
+    <script type="text/javascript" src="~/Content/javascripts/scripts/nicetitle.js"></script>
+    <script type="text/javascript" src="~/Content/javascripts/fckeditor/fckeditor.js"></script>
+    <script type="text/javascript" src="~/Content/javascripts/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="~/Content/javascripts/jquery/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="~/Content/javascripts/jquery/jquery.hotkeys.js"></script>
+</head>
+<body>
+    <div id="header_bg">
+        <div id="header">
+            <div id="outer-header-link">
+                <div id="institution-name">
+                    S. F. Square Academy
+                </div>
+                <div id="header_link">
+                    <div id="messages-link">
+                        <a href="@Url.Action("Index", "Reminder")">Messages</a>@Html.Check_Reminders()
+                    </div>
+                    <div id="profile-link">
+                        <a href="@Url.Action("Details", "USERs", new { id = this.Session["UserId"] })" ; class="profile-link">Profile</a>
+                    </div>
+                    <div id="logout-link">
+                        <a href="@Url.Action("Logout", "USERs")">Log Out</a>
+                    </div>
+                </div>
+            </div>
+            <div id="outer-main-menu">
+                @Html.Partial("_Partial/Main_Menu")
+            </div>
+            <div id="outer-autosuggest-menu">
+                @Html.Partial("_Partial/Autosuggest_Menu")
+            </div>
+        </div>
+    </div>
+    <div id="content_wrapper">
+        <div id="content"> @RenderBody()  </div>
+        <div class="extender"></div>
+    </div>
+    <div id="footer">
+        <div id="footer_logo">
+            <div id="powered_by">
+                <a href="sfsquare.net">S. F. Square </a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
