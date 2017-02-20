@@ -230,16 +230,18 @@ namespace SFSAcademy.Controllers
                                 {
                                     db.FINANCE_FEE_PARTICULAR.Remove(detail);
                                 }
-                                try { db.SaveChanges(); }
-                                catch (Exception e) { Console.WriteLine(e); }
+                            }
+                            try { db.SaveChanges(); }
+                            catch (Exception e) { Console.WriteLine(e); }
+                            foreach (var StdRecordToDelete in StdResult)
+                            {
 
                                 fINANCE_FEE_pARTUCULAR.ADMSN_NO = StdRecordToDelete.ADMSN_NO;
                                 fINANCE_FEE_pARTUCULAR.STDNT_ID = StdRecordToDelete.ID;
                                 db.FINANCE_FEE_PARTICULAR.Add(fINANCE_FEE_pARTUCULAR);
-                                db.SaveChanges();
                             }
-                            
-                            
+                            db.SaveChanges();
+
                         }
                         else
                         {
