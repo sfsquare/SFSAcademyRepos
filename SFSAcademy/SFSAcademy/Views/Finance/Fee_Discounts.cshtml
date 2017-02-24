@@ -1,0 +1,136 @@
+﻿@model PagedList.IPagedList<SFSAcademy.Models.FeeDiscount>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+@{
+    ViewBag.Title = "Fee_Discounts";
+}
+<script type="text/javascript">
+    function redirect(dropDownValue) {
+        window.location.href = '/Finance/_Update_Master_Fee_Category_List/' + dropDownValue;
+    }
+</script>
+<div id="content-header">
+    <img src="~/Content/images/show_finance.png" alt="Finance Logo">
+    <h1>Fee Discounts</h1>
+    <h3>Finance Management</h3>
+    <div id="app-back-button">
+        <a href='javascript:history.back()' onclick="return confirm('are you sure?')"><img src="~/Content/images/buttons/back.png"></a>
+    </div>
+</div>
+<div><img src="~/Content/images/_global/header_underline_.jpg" width="100%"></div>
+
+<div id="inner-tab-menu">
+    <ul>
+        <li>@Html.ActionLink("Create Discount", "Fee_Discount_New") </li>
+    </ul>
+</div>
+<div id="page-yield">
+    <div id="flash_box"> </div>
+    <div id="flash-notice"></div>
+    @if (Html.ValidationSummary() != null)
+    {
+        <p class="flash-msg"> @Html.ValidationSummary() </p>
+    }
+    <div class="bread_crumb">
+        @Html.ActionLink("Finance", "Index") &raquo;
+        @Html.ActionLink("Fees", "Fees_Index") &raquo;
+        @Html.ActionLink("Create Fees", "Master_Fees") &raquo;
+        Fee Discounts
+    </div>
+
+    <div id="search_box_bg">
+        @if (Html.ValidationSummary() != null)
+        {
+            <p class="flash-msg"> @Html.ValidationSummary() </p>
+        }
+        <div id="searchbox">
+            <form name="search-form" id="search-form" action="" style="display:inline;">
+                @using (Html.BeginForm("AdvancedSearch", "Student", FormMethod.Get))
+                {
+                    <div class="label-field-pair">
+                        @Html.Label("BTCH_ID", "Select A Batch :", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="text-input-bg">
+                            @Html.DropDownList("BTCH_ID", null, htmlAttributes: new { @class = "_select_change"})
+                        </div>
+                    </div>
+                    <div class="label-field-pair">
+                        @Html.Label("FINANCE_FEE_CATGEORY_ID", "Select a Fees Category :", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="text-input-bg">
+                            @Html.DropDownList("FINANCE_FEE_CATGEORY_ID", null, htmlAttributes: new { @class = "_select_change" })
+                        </div>
+                    </div>
+                    <p><input type="submit" value="Search Discounts" class="submit-button" /></p>                    
+                }
+            </form>
+        </div>
+    </div>
+
+    <div class="students-table">
+        <table id="listing" align="center" width="100%" cellpadding="1" cellspacing="1">
+            <tr class="tr-head">
+                <th>
+                    Sl. No.
+                </th>
+                <th>
+                    @Html.ActionLink("Discount Name", "Fee_Discounts", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })
+                </th>
+                <th>
+                    Student Category
+                </th>
+                <th>
+                    Student Name
+                </th>
+                <th>
+                    @Html.ActionLink("Admission Date", "Fee_Discounts", new { sortOrder = ViewBag.DateSortParm, currentFilter = ViewBag.CurrentFilter })
+                </th>
+                <th>
+                    Discount
+                </th>
+                <th></th>
+            </tr>
+            <tr class="tr-blank"></tr>
+            @{int i = 1; }
+            @foreach (var item in Model)
+            {
+                string selectedRow = "tr-even";
+                if (i % 2 == 0)
+                {
+                    selectedRow = "tr-odd";
+                }
+                <tr class="@selectedRow">
+                    <td class="col-1">@i</td>
+                    <td class="col-2">
+                        @Html.DisplayFor(modelItem => item.FeeDiscountData.NAME)
+                    </td>
+                    <td class="col-3">
+                        @Html.DisplayFor(modelItem => item.StudentCategoryData.NAME)
+                    </td>
+                    <td class="col-4">
+                        @Html.DisplayFor(modelItem => item.StudentData.FIRST_NAME)
+                    </td>
+                    <td class="col-5" nowrap>
+                        @Html.DisplayFor(modelItem => item.StudentData.ADMSN_DATE)
+                    </td>
+                    <td class="col-5" nowrap>
+                        @Html.DisplayFor(modelItem => item.FeeDiscountData.DISC)
+                    </td>
+                    <td class="col-6" nowrap>
+                        @Html.ActionLink("Edit ", "Edit_Fee_Discount", new { id = item.FeeDiscountData.ID })|@Html.ActionLink(" Delete", "Delete_Fee_Discount", new { id = item.FeeDiscountData.ID })
+                    </td>
+                </tr>
+                i = i + 1;
+            }
+        </table>
+        <br />
+        @Html.PagedListPager(Model, page => Url.Action("Fee_Discounts",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+    </div>
+
+    <div id="master-category-box">
+    </div>
+    <div id="discount-box"></div>
+    <div id="modal-box" style="display:none;"></div>
+</div>
+
+

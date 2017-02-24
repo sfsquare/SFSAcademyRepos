@@ -2275,6 +2275,12 @@
     <Content Include="Views\Finance\_Master_Category_Create_Form.cshtml" />
     <Content Include="Views\Finance\Fees_Particulars_New.cshtml" />
     <Content Include="Views\Finance\_Fees_Particulars_Create.cshtml" />
+    <Content Include="Views\Finance\Master_Category_Delete.cshtml" />
+    <Content Include="Views\Finance\Master_Category_Edit.cshtml" />
+    <Content Include="Views\Finance\Fee_Discounts.cshtml" />
+    <Content Include="Views\Finance\Fee_Discount_New.cshtml" />
+    <Content Include="Views\Finance\Edit_Fee_Discount.cshtml" />
+    <Content Include="Views\Finance\Delete_Fee_Discount.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
