@@ -1,0 +1,52 @@
+﻿@model SFSAcademy.FEE_DISCOUNT
+
+@{
+    ViewBag.Title = "Edit_Fee_Discount";
+}
+
+<div id="content-header">
+    <img src="~/Content/images/show_finance.png" alt="Finance Logo">
+    <h1>Edit Fee Discounts</h1>
+    <h3>Finance Management</h3>
+    <div id="app-back-button">
+        <a href='javascript:history.back()' onclick="return confirm('are you sure?')"><img src="~/Content/images/buttons/back.png"></a>
+    </div>
+</div>
+<div><img src="~/Content/images/_global/header_underline_.jpg" width="100%"></div>
+<div id="page-yield">
+    @if (Html.ValidationSummary() != null)
+    {
+        <p class="flash-msg"> @Html.ValidationSummary() </p>
+    } 
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.ID)
+
+            <div class="label-field-pair">
+                @Html.LabelFor(model => model.NAME, "Name", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="text-input-bg">
+                    @Html.EditorFor(model => model.NAME, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.NAME, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="label-field-pair">
+                @Html.LabelFor(model => model.DISC, "Discount", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="text-input-bg">
+                    @Html.EditorFor(model => model.DISC, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.DISC, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="Admission_form">
+                <div class="extender">
+                    <input type="submit" value="► Finish" class="submit_button3" name="Commit" />
+                </div>
+            </div>
+        </div>
+    }
+</div>
+

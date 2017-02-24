@@ -26,4 +26,20 @@ namespace SFSAcademy.Models
         public int Id { set; get; }
         public string Name { set; get; }
     }
+
+    public class FeeDiscount
+    {
+        public FEE_DISCOUNT FeeDiscountData { get; set; }
+        public FINANCE_FEE_CATGEORY FinanceFeeCategoryData { get; set; }
+        public STUDENT_CATGEORY StudentCategoryData { get; set; }
+        public STUDENT StudentData { get; set; }
+        public BATCH BatchData { get; set; }
+    }
+
+    public class BATCHList
+    {
+        public int ID { set; get; }
+        public string NAME { set; get; }
+    }
+
 }
