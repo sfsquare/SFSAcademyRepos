@@ -118,7 +118,7 @@ namespace SFSAcademy.Controllers
 
             if (ModelState.IsValid)
             {
-                if(fINANCE_FEE_cATAGORY.BTCH_ID.Equals(-1))
+                if (fINANCE_FEE_cATAGORY.BTCH_ID.Equals(-1))
                 {
                     foreach (var entity in db.BATCHes.Select(s => new { s.ID, s.NAME, s.CRS_ID, s.START_DATE, s.END_DATE, s.IS_DEL, s.EMP_ID }).Distinct().Where(a => a.IS_DEL.Equals("N")).ToList())
                     {
@@ -133,7 +133,7 @@ namespace SFSAcademy.Controllers
                     db.FINANCE_FEE_CATGEORY.Add(FF_cATAGORY);
                     db.SaveChanges();
                 }
-                
+
                 return RedirectToAction("Master_Fees");
             }
             List<SelectListItem> options = new SelectList(db.BATCHes, "ID", "NAME", fINANCE_FEE_cATAGORY.BTCH_ID).ToList();
@@ -165,7 +165,7 @@ namespace SFSAcademy.Controllers
         public ActionResult Master_Category_DeleteConfirmed(int id)
         {
             FINANCE_FEE_CATGEORY fINANCE_FEE_CATEGORY = db.FINANCE_FEE_CATGEORY.Find(id);
-            fINANCE_FEE_CATEGORY.IS_DEL="Y";
+            fINANCE_FEE_CATEGORY.IS_DEL = "Y";
             db.SaveChanges();
             return RedirectToAction("Master_Fees");
         }
@@ -263,7 +263,7 @@ namespace SFSAcademy.Controllers
                     {
                         FeeCatCount++;
                         fINANCE_FEE_pARTUCULAR.FIN_FEE_CAT_ID = item.FinanceFeeCategoryData.ID;
-                        if(HtmlHelpers.ApplicationHelper.StringToIntList(fINANCE_FEE_pARTUCULAR.ADMSN_NO).Count() != 0)
+                        if (HtmlHelpers.ApplicationHelper.StringToIntList(fINANCE_FEE_pARTUCULAR.ADMSN_NO).Count() != 0)
                         {
                             foreach (var AdmissionNoList in HtmlHelpers.ApplicationHelper.StringToIntList(fINANCE_FEE_pARTUCULAR.ADMSN_NO).ToList())
                             {
@@ -286,15 +286,16 @@ namespace SFSAcademy.Controllers
                                     fINANCE_FEE_pARTUCULAR.STDNT_ID = StdResult.FirstOrDefault().ID;
                                     db.FINANCE_FEE_PARTICULAR.Add(fINANCE_FEE_pARTUCULAR);
                                     db.SaveChanges();
-                                }                                                            
+                                }
 
 
                             }
                         }
-                        else if(fINANCE_FEE_pARTUCULAR.STDNT_CAT_ID != -1)
+                        else if (fINANCE_FEE_pARTUCULAR.STDNT_CAT_ID != -1)
                         {
-                            var StdResult = from st in db.STUDENTs                                          
-                                            where (st.STDNT_CAT_ID == fINANCE_FEE_pARTUCULAR.STDNT_CAT_ID) select st;
+                            var StdResult = from st in db.STUDENTs
+                                            where (st.STDNT_CAT_ID == fINANCE_FEE_pARTUCULAR.STDNT_CAT_ID)
+                                            select st;
 
                             foreach (var StdRecordToDelete in StdResult)
                             {
@@ -324,9 +325,9 @@ namespace SFSAcademy.Controllers
                         {
                             var StdResult = from st in db.STUDENTs
                                             join bt in db.BATCHes on st.BTCH_ID equals bt.ID
-                                            join ffc in db.FINANCE_FEE_CATGEORY on bt.ID equals ffc.BTCH_ID 
+                                            join ffc in db.FINANCE_FEE_CATGEORY on bt.ID equals ffc.BTCH_ID
                                             where (ffc.ID == item.FinanceFeeCategoryData.ID)
-                                            select new { Students = st, Batches = bt, FinanceFeeCategory = ffc};
+                                            select new { Students = st, Batches = bt, FinanceFeeCategory = ffc };
 
                             foreach (var StdRecordToDelete in StdResult)
                             {
@@ -334,10 +335,10 @@ namespace SFSAcademy.Controllers
                                                            where ffp.FIN_FEE_CAT_ID == fINANCE_FEE_pARTUCULAR.FIN_FEE_CAT_ID
                                                            && ffp.STDNT_ID == StdRecordToDelete.Students.ID
                                                            select ffp;
-                                if(CurrFinFeeParticular.Count() !=0)
+                                if (CurrFinFeeParticular.Count() != 0)
                                 {
                                     db.FINANCE_FEE_PARTICULAR.Remove(CurrFinFeeParticular.FirstOrDefault());
-                                }                              
+                                }
                             }
                             db.SaveChanges();
 
@@ -354,7 +355,7 @@ namespace SFSAcademy.Controllers
                 }
                 if (FeeCatCount.Equals(0))
                 {
-                    TempData["FeeCatError"] = "Please select valid Fee Category";                   
+                    TempData["FeeCatError"] = "Please select valid Fee Category";
                     return RedirectToAction("Fees_Particulars_New");
                 }
                 return RedirectToAction("Master_Fees");
@@ -385,18 +386,18 @@ namespace SFSAcademy.Controllers
 
             if (BTCH_ID != null)
             {
-                if(!BTCH_ID.Equals("ALL"))
+                if (!BTCH_ID.Equals("ALL"))
                 {
                     page = 1;
                 }
                 else { BTCH_ID = currentFilter; }
             }
-            else { BTCH_ID = currentFilter;}
+            else { BTCH_ID = currentFilter; }
             ViewBag.CurrentFilter = BTCH_ID;
 
             if (FINANCE_FEE_CATGEORY_ID != null)
             {
-                if(!FINANCE_FEE_CATGEORY_ID.Equals("ALL"))
+                if (!FINANCE_FEE_CATGEORY_ID.Equals("ALL"))
                 {
                     page = 1;
                 }
@@ -413,18 +414,18 @@ namespace SFSAcademy.Controllers
                                      join cat in db.STUDENT_CATGEORY on substd.STDNT_CAT_ID equals cat.ID into gl
                                      from subcat in gl.DefaultIfEmpty()
                                      orderby fd.NAME
-                                     select new Models.FeeDiscount { FeeDiscountData = fd, FinanceFeeCategoryData = ffc, BatchData=bt, StudentData = (substd == null ? null : substd), StudentCategoryData = (subcat == null ? null : subcat) }).Distinct();
+                                     select new Models.FeeDiscount { FeeDiscountData = fd, FinanceFeeCategoryData = ffc, BatchData = bt, StudentData = (substd == null ? null : substd), StudentCategoryData = (subcat == null ? null : subcat) }).Distinct();
 
             if (BTCH_ID != null)
             {
-                if(!BTCH_ID.Equals("ALL"))
+                if (!BTCH_ID.Equals("ALL"))
                 {
                     Fee_discountSData = Fee_discountSData.Where(s => s.BatchData.NAME.Contains(BTCH_ID));
                 }
             }
             if (FINANCE_FEE_CATGEORY_ID != null)
             {
-                if(!FINANCE_FEE_CATGEORY_ID.Equals("ALL"))
+                if (!FINANCE_FEE_CATGEORY_ID.Equals("ALL"))
                 {
                     Fee_discountSData = Fee_discountSData.Where(s => s.FinanceFeeCategoryData.NAME.Contains(FINANCE_FEE_CATGEORY_ID));
                 }
@@ -508,7 +509,7 @@ namespace SFSAcademy.Controllers
         {
             if (ModelState.IsValid)
             {
-                if(STUDENT_CATGEORY_ID.Equals(-1) && ADMSN_NO.Equals("") && !BATCH_ID.Equals(-1))
+                if (STUDENT_CATGEORY_ID.Equals(-1) && ADMSN_NO.Equals("") && !BATCH_ID.Equals(-1))
                 {
                     var BatchQuery = from std in db.STUDENTs
                                      join c in db.BATCHes on std.BTCH_ID equals c.ID
@@ -569,7 +570,7 @@ namespace SFSAcademy.Controllers
                     db.FEE_DISCOUNT.Add(fEEdISCOUNT);
                     db.SaveChanges();
                 }
-                
+
                 return RedirectToAction("Fee_Discounts");
             }
 

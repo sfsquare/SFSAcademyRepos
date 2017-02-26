@@ -17,7 +17,7 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div id="page-yield">
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.ID)
@@ -29,7 +29,7 @@
         </div>
         <div id="message"></div>
         <div class="label-field-pair">
-            @Html.LabelFor(model => model.NAME,"Fee Category Name", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.NAME, "Fee Category Name", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="text-input-bg">
                 @Html.EditorFor(model => model.NAME, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.NAME, "", new { @class = "text-danger" })
@@ -37,7 +37,7 @@
         </div>
 
         <div class="label-field-pair">
-            @Html.LabelFor(model => model.DESCR,"Fee Category Description", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.DESCR, "Fee Category Description", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="text-input-bg">
                 @Html.EditorFor(model => model.DESCR, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.DESCR, "", new { @class = "text-danger" })
@@ -45,7 +45,7 @@
         </div>
 
         <div class="label-field-pair">
-            @Html.LabelFor(model => model.BTCH_ID,"Student Batch Name", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.BTCH_ID, "Student Batch Name", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="text-input-bg">
                 @Html.DropDownList("BTCH_ID", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.BTCH_ID, "", new { @class = "text-danger" })
@@ -53,7 +53,7 @@
         </div>
 
         <div class="label-field-pair">
-            @Html.LabelFor(model => model.IS_DEL,"Is This Deleted", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.IS_DEL, "Is This Deleted", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="text-input-bg">
                 @Html.EditorFor(model => model.IS_DEL, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.IS_DEL, "", new { @class = "text-danger" })
@@ -61,7 +61,7 @@
         </div>
 
         <div class="label-field-pair">
-            @Html.LabelFor(model => model.IS_MSTR,"Is This Master Category", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.IS_MSTR, "Is This Master Category", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="text-input-bg">
                 @Html.EditorFor(model => model.IS_MSTR, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.IS_MSTR, "", new { @class = "text-danger" })
@@ -69,7 +69,7 @@
         </div>
 
         <div class="label-field-pair">
-            @Html.LabelFor(model => model.CREATED_AT,"Create Date", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.CREATED_AT, "Create Date", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="text-input-bg">
                 @Html.EditorFor(model => model.CREATED_AT, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.CREATED_AT, "", new { @class = "text-danger" })
@@ -77,7 +77,7 @@
         </div>
 
         <div class="label-field-pair">
-            @Html.LabelFor(model => model.UPDATED_AT,"Update Date", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.UPDATED_AT, "Update Date", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="text-input-bg">
                 @Html.EditorFor(model => model.UPDATED_AT, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.UPDATED_AT, "", new { @class = "text-danger" })
