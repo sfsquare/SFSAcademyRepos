@@ -1,0 +1,34 @@
+﻿@model IEnumerable<SFSAcademy.FINANCE_FEE_COLLECTION>
+
+@{
+    ViewBag.Title = "Fee_Collection";
+}
+
+<div id="content-header">
+    <img src="~/Content/images/show_finance.png" alt="Finance Logo">
+    <h1>Finance</h1>
+    <h3>Fees Collection Date</h3>
+    <div id="app-back-button">
+        <a href='javascript:history.back()' onclick="return confirm('are you sure?')"><img src="~/Content/images/buttons/back.png"></a>
+    </div>
+</div>
+<div><img src="~/Content/images/_global/header_underline_.jpg" width="100%"></div>
+
+<div id="page-yield">
+    @if (Html.ValidationSummary() != null)
+    {
+        <p class="flash-msg"> @Html.ValidationSummary() </p>
+    }
+    <div class="box">
+        <div id="message"></div>
+        <div class="link-box">
+            <div class="link-heading">@Html.ActionLink("Create Fee Collection", "Fee_Collection_New")</div>
+            <div class="link-descr">Creates New Fee Collecting Dates</div>
+        </div>
+        <div class="link-box">
+            <div class="link-heading">@Html.ActionLink("View", "Fee_Collection_View")</div>
+            <div class="link-descr">Displays Collection Dates</div>
+        </div>
+        <div id="modal-box" style="display:none;overflow:hidden; "></div>
+    </div>
+</div>

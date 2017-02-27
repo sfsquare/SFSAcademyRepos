@@ -1,0 +1,53 @@
+﻿@model SFSAcademy.FINANCE_FEE_COLLECTION
+@{    Layout = null;}
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+<link rel="stylesheet" href="/resources/demos/style.css" />
+<script>
+  $(function() {
+    $( "#datepicker" ).datepicker({
+      showOn: "button",
+      buttonImage: "/Content/images/calendar_date_select/calendar.gif",
+      buttonImageOnly: true
+    });
+      $( "#datepicker2" ).datepicker({
+      showOn: "button",
+      buttonImage: "/Content/images/calendar_date_select/calendar.gif",
+      buttonImageOnly: true
+    });
+  });
+</script>
+<script type="text/javascript">
+    $('.open-datetimepicker').click(function (event) {
+        event.preventDefault();
+        $('#datetimepicker').click();
+    });
+</script>
+
+<div class="label-field-pair">
+    <div class="label-container"> @Html.LabelFor(model => model.NAME, "Name", htmlAttributes: new { @class = "control-label col-md-2" })</div>
+    <div class="input-container">
+        @Html.EditorFor(model => model.NAME, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.NAME, "", new { @class = "text-danger" })
+    </div>
+</div>
+<div class="label-field-pair">
+    <div class="label-container">@Html.LabelFor(model => model.START_DATE, "Start Date", htmlAttributes: new { @class = "control-label col-md-2" })</div>
+    <div class="input-container">
+        @Html.EditorFor(model => model.START_DATE, new { htmlAttributes = new { @class = "form-control", @id = "datepicker", @Value = ViewBag.ReturnDate, @readonly = "readonly" } })
+        @Html.ValidationMessageFor(model => model.START_DATE, "", new { @class = "text-danger" })
+    </div>
+</div>
+<div class="label-field-pair">
+    <div class="label-container">@Html.LabelFor(model => model.END_DATE, "End Date", htmlAttributes: new { @class = "control-label col-md-2" })</div>
+    <div class="input-container">
+        @Html.EditorFor(model => model.END_DATE, new { htmlAttributes = new { @class = "form-control", @id = "datepicker2", @Value = ViewBag.ReturnDate, @readonly = "readonly" } })
+        @Html.ValidationMessageFor(model => model.END_DATE, "", new { @class = "text-danger" })
+    </div>
+</div>
+
+

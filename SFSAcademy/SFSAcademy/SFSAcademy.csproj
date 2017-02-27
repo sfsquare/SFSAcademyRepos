@@ -2283,6 +2283,11 @@
     <Content Include="Views\Finance\Fee_Discounts.cshtml" />
     <Content Include="Views\Finance\Master_Category_Delete.cshtml" />
     <Content Include="Views\Finance\Master_Category_Edit.cshtml" />
+    <Content Include="Views\Finance\Fee_Collection.cshtml" />
+    <Content Include="Views\Finance\Fee_Collection_New.cshtml" />
+    <Content Include="Views\Finance\_Fee_Collection_Create.cshtml" />
+    <Content Include="Views\Finance\Fee_Collection_View.cshtml" />
+    <Content Include="Views\Finance\Fees_Submission_Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
