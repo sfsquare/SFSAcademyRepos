@@ -682,6 +682,147 @@ namespace SFSAcademy.Controllers
             return RedirectToAction("Fee_Discounts");
         }
 
+
+        // GET: Fee Index
+        public ActionResult Fee_Collection()
+        {
+            return View();
+        }
+
+
+        [HttpGet]
+        public ActionResult Fee_Collection_New()
+        {
+            var fEEcATEGORYaACCESS = (from ffc in db.FINANCE_FEE_CATGEORY
+                                      join b in db.BATCHes on ffc.BTCH_ID equals b.ID into gi
+                                      from subb in gi.DefaultIfEmpty()
+                                      select new Models.SelectFeeCategory { FinanceFeeCategoryData = ffc, BatchData = (subb == null ? null : subb), Selected = false }).OrderBy(g => g.FinanceFeeCategoryData.ID).ToList();
+
+            return View(fEEcATEGORYaACCESS);
+        }
+
+        [HttpGet]
+        public ActionResult _Fee_Collection_Create()
+        {
+            ViewBag.ReturnDate = System.DateTime.Now;
+            return View();
+        }
+
+
+
+        // POST: Finance/Create
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult _Fee_Collection_Create([Bind(Include = "ID,NAME,START_DATE,END_DATE,FEE_CAT_ID,BTCH_ID,IS_DEL")] FINANCE_FEE_COLLECTION fINANCE_FEE_cOLLECTION, IList<SelectFeeCategory> model)
+        {
+
+            if (ModelState.IsValid)
+            {
+                int FeeCatCount = 0;
+                foreach (SelectFeeCategory item in model)
+                {
+                    if (item.Selected)
+                    {
+                        FeeCatCount++;
+                        fINANCE_FEE_cOLLECTION.FEE_CAT_ID = item.FinanceFeeCategoryData.ID;
+                        fINANCE_FEE_cOLLECTION.BTCH_ID = item.BatchData.ID;
+                        fINANCE_FEE_cOLLECTION.IS_DEL = "N";
+                        db.FINANCE_FEE_COLLECTION.Add(fINANCE_FEE_cOLLECTION);
+                        db.SaveChanges();
+                    }
+                }
+                if (FeeCatCount.Equals(0))
+                {
+                    TempData["FeeCatError"] = "Please select valid Fee Category";
+                    return RedirectToAction("_Fee_Collection_Create");
+                }
+                return RedirectToAction("Fee_Collection");
+            }
+
+            return View(fINANCE_FEE_cOLLECTION);
+        }
+
+
+        public ActionResult Fee_Collection_View(string sortOrder, string currentFilter, string searchString, int? page)
+        {
+            List<SelectListItem> options = new SelectList(db.BATCHes.OrderBy(x => x.ID), "NAME", "NAME").ToList();
+            // add the 'ALL' option
+            options.Insert(0, new SelectListItem() { Value = "ALL", Text = "ALL" });
+            ViewBag.searchString = options;
+
+            ViewBag.CurrentSort = sortOrder;
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
+
+
+            if (searchString != null)
+            {
+                if (!searchString.Equals("ALL"))
+                {
+                    page = 1;
+                }
+                else { searchString = currentFilter; }
+            }
+            else { searchString = currentFilter; }
+            ViewBag.CurrentFilter = searchString;
+
+            var FeeCollectionS = (from fc in db.FINANCE_FEE_COLLECTION
+                            join b in db.BATCHes on fc.BTCH_ID equals b.ID
+                            orderby fc.NAME
+                            select new Models.FeeCollection { FinanceFeeCollectionData = fc, BatchData = b }).Distinct();
+
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                if (!searchString.Equals("ALL"))
+                {
+                    FeeCollectionS = FeeCollectionS.Where(s => s.BatchData.NAME.Contains(searchString));
+                }
+            }
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    FeeCollectionS = FeeCollectionS.OrderByDescending(s => s.FinanceFeeCollectionData.NAME);
+                    break;
+                case "Date":
+                    FeeCollectionS = FeeCollectionS.OrderBy(s => s.FinanceFeeCollectionData.START_DATE);
+                    break;
+                case "date_desc":
+                    FeeCollectionS = FeeCollectionS.OrderByDescending(s => s.FinanceFeeCollectionData.START_DATE);
+                    break;
+                default:  // Name ascending 
+                    FeeCollectionS = FeeCollectionS.OrderBy(s => s.FinanceFeeCollectionData.NAME);
+                    break;
+            }
+
+            int pageSize = 3;
+            int pageNumber = (page ?? 1);
+            return View(FeeCollectionS.ToPagedList(pageNumber, pageSize));
+            //return View(db.USERS.ToList());
+        }
+
+
+        // GET: Fee Index
+        public ActionResult Fees_Submission_Index()
+        {
+            return View();
+        }
+
+        // GET: Fee Index
+        public ActionResult Fees_Submission_Batch()
+        {
+            return View();
+        }
+
+
+        // GET: Fee Index
+        public ActionResult Fees_Student_Search()
+        {
+            return View();
+        }
+
         // GET: Finance/Details/5
         public ActionResult Details(int? id)
         {

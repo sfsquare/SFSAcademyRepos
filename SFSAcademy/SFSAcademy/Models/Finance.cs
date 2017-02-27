@@ -42,4 +42,11 @@ namespace SFSAcademy.Models
         public string NAME { set; get; }
     }
 
+    public class FeeCollection
+    {
+        public FINANCE_FEE_COLLECTION FinanceFeeCollectionData { get; set; }
+        public FINANCE_FEE_CATGEORY FinanceFeeCategoryData { get; set; }
+        public BATCH BatchData { get; set; }
+    }
+
 }
