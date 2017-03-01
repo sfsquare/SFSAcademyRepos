@@ -2288,6 +2288,10 @@
     <Content Include="Views\Finance\_Fee_Collection_Create.cshtml" />
     <Content Include="Views\Finance\Fee_Collection_View.cshtml" />
     <Content Include="Views\Finance\Fees_Submission_Index.cshtml" />
+    <Content Include="Views\Finance\Fee_Collection_Edit.cshtml" />
+    <Content Include="Views\Finance\Fee_Collection_Delete.cshtml" />
+    <Content Include="Views\Finance\Fees_Submission_Batch.cshtml" />
+    <Content Include="Views\Finance\_student_fees_submission.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

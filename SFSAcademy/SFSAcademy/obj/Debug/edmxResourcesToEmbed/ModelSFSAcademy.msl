@@ -616,6 +616,7 @@
     <EntitySetMapping Name="FINANCE_FEE_COLLECTION">
       <EntityTypeMapping TypeName="SFSAcademyModel.FINANCE_FEE_COLLECTION">
         <MappingFragment StoreEntitySet="FINANCE_FEE_COLLECTION">
+          <ScalarProperty Name="DUE_DATE" ColumnName="DUE_DATE" />
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="NAME" ColumnName="NAME" />
           <ScalarProperty Name="START_DATE" ColumnName="START_DATE" />

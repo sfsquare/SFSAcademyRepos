@@ -19,6 +19,11 @@
       buttonImage: "/Content/images/calendar_date_select/calendar.gif",
       buttonImageOnly: true
     });
+  $( "#datepicker3" ).datepicker({
+      showOn: "button",
+      buttonImage: "/Content/images/calendar_date_select/calendar.gif",
+      buttonImageOnly: true
+  });
   });
 </script>
 <script type="text/javascript">
@@ -47,6 +52,13 @@
     <div class="input-container">
         @Html.EditorFor(model => model.END_DATE, new { htmlAttributes = new { @class = "form-control", @id = "datepicker2", @Value = ViewBag.ReturnDate, @readonly = "readonly" } })
         @Html.ValidationMessageFor(model => model.END_DATE, "", new { @class = "text-danger" })
+    </div>
+</div>
+<div class="label-field-pair">
+    <div class="label-container">@Html.LabelFor(model => model.DUE_DATE, "Due Date", htmlAttributes: new { @class = "control-label col-md-2" })</div>
+    <div class="input-container">
+        @Html.EditorFor(model => model.DUE_DATE, new { htmlAttributes = new { @class = "form-control", @id = "datepicker3", @Value = ViewBag.ReturnDate, @readonly = "readonly" } })
+        @Html.ValidationMessageFor(model => model.DUE_DATE, "", new { @class = "text-danger" })
     </div>
 </div>
 

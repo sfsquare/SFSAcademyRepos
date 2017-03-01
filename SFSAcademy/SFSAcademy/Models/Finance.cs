@@ -31,6 +31,18 @@ namespace SFSAcademy.Models
     {
         public FEE_DISCOUNT FeeDiscountData { get; set; }
         public FINANCE_FEE_CATGEORY FinanceFeeCategoryData { get; set; }
+        public FINANCE_FEE_PARTICULAR FinanceFeeParticularData { get; set; }
+        public STUDENT_CATGEORY StudentCategoryData { get; set; }
+        public STUDENT StudentData { get; set; }
+        public BATCH BatchData { get; set; }
+    }
+
+    public class FeeCollectionDiscount
+    {
+        public FEE_COLLECTION_DISCOUNT FeeCollectionDiscountData { get; set; }
+        public FINANCE_FEE_COLLECTION FinanceFeeCollectionData { get; set; }
+        public FINANCE_FEE_CATGEORY FinanceFeeCategoryData { get; set; }
+        public FINANCE_FEE_PARTICULAR FinanceFeeParticularData { get; set; }
         public STUDENT_CATGEORY StudentCategoryData { get; set; }
         public STUDENT StudentData { get; set; }
         public BATCH BatchData { get; set; }
@@ -47,6 +59,20 @@ namespace SFSAcademy.Models
         public FINANCE_FEE_COLLECTION FinanceFeeCollectionData { get; set; }
         public FINANCE_FEE_CATGEORY FinanceFeeCategoryData { get; set; }
         public BATCH BatchData { get; set; }
+    }
+
+    public class FeeSubmission
+    {
+        public FINANCE_FEE_COLLECTION FinanceFeeCollectionData { get; set; }
+        public FINANCE_FEE_CATGEORY FinanceFeeCategoryData { get; set; }
+        public BATCH BatchData { get; set; }
+        public STUDENT StudentData { get; set; }
+        public FINANCE_TRANSACTION FinanceTransactionData { get; set; }
+        public STUDENT_CATGEORY StudentCategoryData { get; set; }
+        public FEE_DISCOUNT FeeDiscountData { get; set; }
+        public FINANCE_FEE FinanceFeeData { get; set; }
+        public FEE_COLLECTION_PARTICULAR FeeCollectionParticularData { get; set; }
+        public FEE_COLLECTION_DISCOUNT FeeCollectionDiscountData { get; set; }
     }
 
 }

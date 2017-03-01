@@ -50,7 +50,10 @@
                     Batch
                 </th>
                 <th>
-                    @Html.ActionLink("Start Date", "Fee_Collection_View", new { sortOrder = ViewBag.DateSortParm, currentFilter = ViewBag.CurrentFilter })
+                    @Html.ActionLink("Due Date", "Fee_Collection_View", new { sortOrder = ViewBag.DateSortParm, currentFilter = ViewBag.CurrentFilter })
+                </th>
+                <th>
+                    Start Date
                 </th>
                 <th>
                     End Date
@@ -74,14 +77,17 @@
                     <td class="col-4">
                         @Html.DisplayFor(modelItem => item.BatchData.NAME)
                     </td>
+                    <td class="col-4">
+                        @Html.DisplayFor(modelItem => item.FinanceFeeCollectionData.DUE_DATE)
+                    </td>
                     <td class="col-5" nowrap>
                         @Html.DisplayFor(modelItem => item.FinanceFeeCollectionData.START_DATE)
                     </td>
-                    <td class="col-5" nowrap>
+                    <td class="col-6" nowrap>
                         @Html.DisplayFor(modelItem => item.FinanceFeeCollectionData.END_DATE)
                     </td>
-                    <td class="col-6" nowrap>
-                        @Html.ActionLink("Edit ", "Edit", new { id = item.FinanceFeeCollectionData.ID })|@Html.ActionLink(" Details ", "Details", new { id = item.FinanceFeeCollectionData.ID })|@Html.ActionLink(" Delete", "Delete", new { id = item.FinanceFeeCollectionData.ID })
+                    <td class="col-7" nowrap>
+                        @Html.ActionLink("Edit ", "Fee_Collection_Edit", new { id = item.FinanceFeeCollectionData.ID })|@Html.ActionLink(" Delete", "Fee_Collection_Delete", new { id = item.FinanceFeeCollectionData.ID })
                     </td>
                 </tr>
                 i = i + 1;

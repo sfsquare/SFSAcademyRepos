@@ -29,6 +29,7 @@ namespace SFSAcademy
         public Nullable<int> FEE_CAT_ID { get; set; }
         public Nullable<int> BTCH_ID { get; set; }
         public string IS_DEL { get; set; }
+        public Nullable<System.DateTime> DUE_DATE { get; set; }
     
         public virtual BATCH BATCH { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

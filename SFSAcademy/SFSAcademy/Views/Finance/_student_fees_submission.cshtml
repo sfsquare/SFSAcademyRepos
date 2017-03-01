@@ -1,0 +1,23 @@
+﻿@{    Layout = null;}
+
+
+<div class="label-field-pair">
+    <div class="label-container"> @Html.Label("BTCH_ID", "Select A Batch :", htmlAttributes: new { @class = "control-label col-md-2" })</div>
+    <div class="input-container">
+        @Html.DropDownList("BTCH_ID", null, htmlAttributes: new { @class = "BTCH_ID", id = "BTCH_ID" })
+    </div>
+</div>
+<div class="label-field-pair">
+    <div class="label-container">@Html.Label("COLLECTION_ID", "Select Fee Collection Date :", htmlAttributes: new { @class = "control-label col-md-2" })</div>
+    <div class="input-container">
+        @Html.DropDownList("COLLECTION_ID", null, htmlAttributes: new { @class = "COLLECTION_ID", id = "COLLECTION_ID" })
+    </div>
+</div>
+<div class="label-field-pair">
+    <div class="label-container">@Html.Label("ADMSN_NO", "Admission Number :", htmlAttributes: new { @class = "control-label col-md-2" })</div>
+    <div class="input-container">
+        @Html.DropDownList("ADMSN_NO", null, htmlAttributes: new { @class = "ADMSN_NO", id = "ADMSN_NO" })
+    </div>
+</div>
+
+
