@@ -715,7 +715,7 @@ namespace SFSAcademy.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult _Fee_Collection_Create([Bind(Include = "ID,NAME,START_DATE,END_DATE,FEE_CAT_ID,BTCH_ID,IS_DEL")] FINANCE_FEE_COLLECTION fINANCE_FEE_cOLLECTION, IList<SelectFeeCategory> model)
+        public ActionResult _Fee_Collection_Create([Bind(Include = "ID,NAME,START_DATE,END_DATE,FEE_CAT_ID,BTCH_ID,IS_DEL,DUE_DATE")] FINANCE_FEE_COLLECTION fINANCE_FEE_cOLLECTION, IList<SelectFeeCategory> model)
         {
 
             if (ModelState.IsValid)
@@ -787,10 +787,10 @@ namespace SFSAcademy.Controllers
                     FeeCollectionS = FeeCollectionS.OrderByDescending(s => s.FinanceFeeCollectionData.NAME);
                     break;
                 case "Date":
-                    FeeCollectionS = FeeCollectionS.OrderBy(s => s.FinanceFeeCollectionData.START_DATE);
+                    FeeCollectionS = FeeCollectionS.OrderBy(s => s.FinanceFeeCollectionData.DUE_DATE);
                     break;
                 case "date_desc":
-                    FeeCollectionS = FeeCollectionS.OrderByDescending(s => s.FinanceFeeCollectionData.START_DATE);
+                    FeeCollectionS = FeeCollectionS.OrderByDescending(s => s.FinanceFeeCollectionData.DUE_DATE);
                     break;
                 default:  // Name ascending 
                     FeeCollectionS = FeeCollectionS.OrderBy(s => s.FinanceFeeCollectionData.NAME);
@@ -803,6 +803,67 @@ namespace SFSAcademy.Controllers
             //return View(db.USERS.ToList());
         }
 
+        // GET: Finance/Edit/5
+        public ActionResult Fee_Collection_Edit(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            FINANCE_FEE_COLLECTION fINANCE_FEE_cOLLECTION = db.FINANCE_FEE_COLLECTION.Find(id);
+            if (fINANCE_FEE_cOLLECTION == null)
+            {
+                return HttpNotFound();
+            }
+            ViewBag.FEE_CAT_ID = new SelectList(db.FINANCE_FEE_CATGEORY, "ID", "NAME", fINANCE_FEE_cOLLECTION.FEE_CAT_ID);
+            ViewBag.BTCH_ID = new SelectList(db.BATCHes, "ID", "NAME", fINANCE_FEE_cOLLECTION.BTCH_ID);
+            return View(fINANCE_FEE_cOLLECTION);
+        }
+
+        // POST: Finance/Edit/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Fee_Collection_Edit([Bind(Include = "ID,NAME,START_DATE,END_DATE,FEE_CAT_ID,BTCH_ID,IS_DEL,DUE_DATE")] FINANCE_FEE_COLLECTION fINANCE_FEE_cOLLECTION)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(fINANCE_FEE_cOLLECTION).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Fee_Collection_View");
+            }
+            ViewBag.FEE_CAT_ID = new SelectList(db.FINANCE_FEE_CATGEORY, "ID", "NAME", fINANCE_FEE_cOLLECTION.FEE_CAT_ID);
+            ViewBag.BTCH_ID = new SelectList(db.BATCHes, "ID", "NAME", fINANCE_FEE_cOLLECTION.BTCH_ID);
+            return View(fINANCE_FEE_cOLLECTION);
+        }
+
+        // GET: Finance/Delete/5
+        public ActionResult Fee_Collection_Delete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            FINANCE_FEE_COLLECTION fINANCE_FEE_cOLLECTION = db.FINANCE_FEE_COLLECTION.Find(id);
+            if (fINANCE_FEE_cOLLECTION == null)
+            {
+                return HttpNotFound();
+            }
+            return View(fINANCE_FEE_cOLLECTION);
+        }
+
+        // POST: Finance/Delete/5
+        [HttpPost, ActionName("Fee_Collection_Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult Fee_Collection_DeleteConfirmed(int id)
+        {
+            FINANCE_FEE_COLLECTION fINANCE_FEE_cOLLECTION = db.FINANCE_FEE_COLLECTION.Find(id);
+            db.FINANCE_FEE_COLLECTION.Remove(fINANCE_FEE_cOLLECTION);
+            db.SaveChanges();
+            return RedirectToAction("Fee_Collection_View");
+        }
+
 
         // GET: Fee Index
         public ActionResult Fees_Submission_Index()
@@ -813,7 +874,210 @@ namespace SFSAcademy.Controllers
         // GET: Fee Index
         public ActionResult Fees_Submission_Batch()
         {
+            var FinanceFeeData = (from ff in db.FINANCE_FEE_COLLECTION
+                                  join ffc in db.FINANCE_FEE_CATGEORY on ff.FEE_CAT_ID equals ffc.ID
+                                  join bt in db.BATCHes on ffc.BTCH_ID equals bt.ID
+                                  join fcp in db.FEE_COLLECTION_PARTICULAR on ff.ID equals fcp.FIN_FEE_CLCT_ID
+                                  join std in db.STUDENTs on fcp.STDNT_ID equals std.ID
+                                  join cat in db.STUDENT_CATGEORY on fcp.STDNT_CAT_ID equals cat.ID
+                                  join fd in db.FEE_DISCOUNT on ffc.ID equals fd.FIN_FEE_CAT_ID into gn
+                                  from subfd in gn.DefaultIfEmpty()
+                                  join fff in db.FINANCE_FEE on ff.ID equals fff.FEE_CLCT_ID into go
+                                  from subfff in go.DefaultIfEmpty()
+                                  join ft in db.FINANCE_TRANSACTION on subfff.TRAN_ID equals ft.ID into gp
+                                  from subft in gp.DefaultIfEmpty()
+                                  join fcd in db.FEE_COLLECTION_DISCOUNT on fcp.FIN_FEE_CLCT_ID equals fcd.FIN_FEE_CLCT_ID into gq
+                                  from subfcd in gq.DefaultIfEmpty()
+                                  where !ff.IS_DEL.Equals("Y") && !fcp.IS_DEL.Equals("Y")
+                                  orderby ff.NAME
+                                  select new Models.FeeSubmission { FinanceFeeCollectionData = ff, FinanceFeeCategoryData = ffc, BatchData = bt, FeeCollectionParticularData = fcp, StudentData = std, StudentCategoryData = cat, FeeDiscountData = (subfd == null ? null : subfd), FinanceFeeData = (subfff == null ? null : subfff), FinanceTransactionData = (subft == null ? null : subft), FeeCollectionDiscountData = (subfcd == null ? null : subfcd) }).ToList();
+
+            return View(FinanceFeeData);
+            
+        }
+
+        // GET: Fee Index
+        public ActionResult _Student_Fees_Submission()
+        {
+            ViewBag.BTCH_ID = new SelectList(db.BATCHes, "ID", "NAME");
+
+            var queryCollection = from c in db.FINANCE_FEE_COLLECTION
+                                  select c;
+            List<SelectListItem> obj = new List<SelectListItem>();
+            foreach (var item in queryCollection)
+            {
+                string CollectionFullName = string.Concat(item.NAME, "-", Convert.ToDateTime(item.START_DATE).ToString("yyyy"), "-", Convert.ToDateTime(item.END_DATE).ToString("yyyy"));
+                var result = new SelectListItem();
+                result.Text = CollectionFullName;
+                result.Value = item.ID.ToString();
+                obj.Add(result);
+            }
+
+            ViewBag.COLLECTION_ID = obj;
+
+            ViewBag.ADMSN_NO = new SelectList(db.STUDENTs, "ADMSN_NO", "ADMSN_NO");
+
             return View();
+        }
+
+        // POST: Finance/Edit/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult _Student_Fees_Submission(int? BTCH_ID, int? COLLECTION_ID, string ADMSN_NO)
+        {
+     
+                var FinanceFeeData = (from ff in db.FINANCE_FEE_COLLECTION
+                                      join ffc in db.FINANCE_FEE_CATGEORY on ff.FEE_CAT_ID equals ffc.ID
+                                      join bt in db.BATCHes on ffc.BTCH_ID equals bt.ID
+                                      join fcp in db.FEE_COLLECTION_PARTICULAR on ff.ID equals fcp.FIN_FEE_CLCT_ID
+                                      join std in db.STUDENTs on fcp.STDNT_ID equals std.ID
+                                      join cat in db.STUDENT_CATGEORY on fcp.STDNT_CAT_ID equals cat.ID
+                                      join fd in db.FEE_DISCOUNT on ffc.ID equals fd.FIN_FEE_CAT_ID into gn
+                                      from subfd in gn.DefaultIfEmpty()
+                                      join fff in db.FINANCE_FEE on ff.ID equals fff.FEE_CLCT_ID into go
+                                      from subfff in go.DefaultIfEmpty()
+                                      join ft in db.FINANCE_TRANSACTION on subfff.TRAN_ID equals ft.ID into gp
+                                      from subft in gp.DefaultIfEmpty()
+                                      join fcd in db.FEE_COLLECTION_DISCOUNT on fcp.FIN_FEE_CLCT_ID equals fcd.FIN_FEE_CLCT_ID into gq
+                                      from subfcd in gq.DefaultIfEmpty()
+                                      where bt.ID == BTCH_ID && ff.ID == COLLECTION_ID && ff.IS_DEL != "Y" && fcp.IS_DEL != "Y"
+                                      orderby ff.NAME
+                                      select new Models.FeeSubmission { FinanceFeeCollectionData = ff, FinanceFeeCategoryData = ffc, BatchData = bt, FeeCollectionParticularData = fcp, StudentData = std, StudentCategoryData = cat, FeeDiscountData = (subfd == null ? null : subfd), FinanceFeeData = (subfff == null ? null : subfff), FinanceTransactionData = (subft == null ? null : subft), FeeCollectionDiscountData = (subfcd == null ? null : subfcd) }).Distinct();
+
+            if (!String.IsNullOrEmpty(ADMSN_NO))
+            {
+                FinanceFeeData = FinanceFeeData.Where(s => s.FeeCollectionParticularData.ADMSN_NO.Contains(ADMSN_NO));
+            }
+
+            decimal TotalCollectionValue = 0;
+            decimal TotalDiscountValue = 0;
+            decimal TotalAmountToPayValue = 0;
+
+            foreach (var item in FinanceFeeData)
+            {
+                TotalCollectionValue = TotalCollectionValue + item.FeeCollectionParticularData.AMT.GetValueOrDefault(0m);
+
+            }
+
+            var Fee_discountSData = (from fd in db.FEE_DISCOUNT
+                                     join ffc in db.FINANCE_FEE_CATGEORY on fd.FIN_FEE_CAT_ID equals ffc.ID
+                                     join ffp in db.FINANCE_FEE_PARTICULAR on ffc.ID equals ffp.FIN_FEE_CAT_ID
+                                     join bt in db.BATCHes on ffc.BTCH_ID equals bt.ID
+                                     join std in db.STUDENTs on fd.RCVR_ID equals std.ID 
+                                     join cat in db.STUDENT_CATGEORY on std.STDNT_CAT_ID equals cat.ID
+                                     where bt.ID == BTCH_ID
+                                     orderby fd.ID,ffc.ID
+                                     select new Models.FeeDiscount { FeeDiscountData = fd, FinanceFeeCategoryData = ffc, FinanceFeeParticularData = ffp, BatchData = bt, StudentData = std, StudentCategoryData = cat }).Distinct();
+
+            if (!String.IsNullOrEmpty(ADMSN_NO))
+            {
+                Fee_discountSData = Fee_discountSData.Where(s => s.FinanceFeeParticularData.ADMSN_NO.Contains(ADMSN_NO));
+            }
+            int FeeDiscountIdVal = 0;
+            decimal FinanceFee = 0;
+            decimal DiscountVal = 0;
+            string IsAmoutVal = "N";
+
+            foreach (var item in Fee_discountSData)
+            {
+                if(FeeDiscountIdVal== item.FeeDiscountData.ID || FeeDiscountIdVal==0)
+                {
+                    FinanceFee = FinanceFee + item.FinanceFeeParticularData.AMT.GetValueOrDefault(0m);
+                    DiscountVal = item.FeeDiscountData.DISC.GetValueOrDefault(0m);
+                    IsAmoutVal = item.FeeDiscountData.IS_AMT;
+                    FeeDiscountIdVal = item.FeeDiscountData.ID;
+                }
+                else if(FeeDiscountIdVal != item.FeeDiscountData.ID && FeeDiscountIdVal!= 0)
+                {
+                    if (IsAmoutVal.Equals("Y"))
+                    {
+                        TotalDiscountValue = TotalDiscountValue + DiscountVal;
+                    }
+                    else
+                    {
+                        TotalDiscountValue = TotalDiscountValue + FinanceFee * DiscountVal/100;
+                    }
+                    FinanceFee = item.FinanceFeeParticularData.AMT.GetValueOrDefault(0m);
+                    DiscountVal =item.FeeDiscountData.DISC.GetValueOrDefault(0m);
+                    IsAmoutVal = item.FeeDiscountData.IS_AMT;
+                    FeeDiscountIdVal = item.FeeDiscountData.ID;
+                }
+                
+            }
+
+            var Fee_CollectionDiscountData = (from fcd in db.FEE_COLLECTION_DISCOUNT
+                                              join ffcl in db.FINANCE_FEE_COLLECTION on fcd.FIN_FEE_CLCT_ID equals ffcl.ID
+                                              join ffc in db.FINANCE_FEE_CATGEORY on ffcl.FEE_CAT_ID equals ffc.ID
+                                              join ffp in db.FINANCE_FEE_PARTICULAR on ffc.ID equals ffp.FIN_FEE_CAT_ID
+                                              join bt in db.BATCHes on ffc.BTCH_ID equals bt.ID
+                                              join std in db.STUDENTs on fcd.RCVR_ID equals std.ID
+                                              join cat in db.STUDENT_CATGEORY on std.STDNT_CAT_ID equals cat.ID
+                                              where bt.ID == BTCH_ID
+                                              orderby fcd.ID, ffcl.ID, ffc.ID
+                                              select new Models.FeeCollectionDiscount { FeeCollectionDiscountData = fcd, FinanceFeeCollectionData = ffcl, FinanceFeeCategoryData = ffc, FinanceFeeParticularData = ffp, BatchData = bt, StudentData = std, StudentCategoryData = cat }).Distinct();
+            if (!String.IsNullOrEmpty(ADMSN_NO))
+            {
+                Fee_CollectionDiscountData = Fee_CollectionDiscountData.Where(s => s.FinanceFeeParticularData.ADMSN_NO.Contains(ADMSN_NO));
+            }
+            int FeeCollectionDiscountIdVal = 0;
+            decimal FinanceFeeCol = 0;
+            decimal DiscountValCol = 0;
+            string IsAmoutValCol = "N";
+
+            foreach (var item in Fee_CollectionDiscountData)
+            {
+                if (FeeCollectionDiscountIdVal == item.FeeCollectionDiscountData.ID || FeeCollectionDiscountIdVal == 0)
+                {
+                    FinanceFeeCol = FinanceFeeCol + item.FinanceFeeParticularData.AMT.GetValueOrDefault(0m);
+                    DiscountValCol = item.FeeCollectionDiscountData.DISC.GetValueOrDefault(0m);
+                    IsAmoutValCol = item.FeeCollectionDiscountData.IS_AMT;
+                    FeeCollectionDiscountIdVal = item.FeeCollectionDiscountData.ID;
+                }
+                else if (FeeCollectionDiscountIdVal != item.FeeCollectionDiscountData.ID && FeeCollectionDiscountIdVal != 0)
+                {
+                    if (IsAmoutValCol.Equals("Y"))
+                    {
+                        TotalDiscountValue = TotalDiscountValue + DiscountVal;
+                    }
+                    else
+                    {
+                        TotalDiscountValue = TotalDiscountValue + FinanceFeeCol * DiscountValCol / 100;
+                    }
+                    FinanceFeeCol = item.FinanceFeeParticularData.AMT.GetValueOrDefault(0m);
+                    DiscountValCol = item.FeeCollectionDiscountData.DISC.GetValueOrDefault(0m);
+                    IsAmoutValCol = item.FeeCollectionDiscountData.IS_AMT;
+                    FeeCollectionDiscountIdVal = item.FeeCollectionDiscountData.ID;
+                }
+
+            }
+
+            TotalAmountToPayValue = TotalCollectionValue- TotalDiscountValue;
+
+            ViewBag.TotalCollectionValue = TotalCollectionValue;
+            ViewBag.TotalDiscountValue = TotalDiscountValue;
+            ViewBag.TotalAmountToPayValue = TotalAmountToPayValue;
+            ViewBag.AmountPaid = 0;
+
+
+            ViewBag.BTCH_ID = new SelectList(db.BATCHes, "ID", "NAME");
+
+            var queryCollection = from c in db.FINANCE_FEE_COLLECTION
+                                  select c;
+            List<SelectListItem> obj = new List<SelectListItem>();
+            foreach (var item in queryCollection)
+            {
+                string CollectionFullName = string.Concat(item.NAME, "-", Convert.ToDateTime(item.START_DATE).ToString("yyyy"), "-", Convert.ToDateTime(item.END_DATE).ToString("yyyy"));
+                var result = new SelectListItem();
+                result.Text = CollectionFullName;
+                result.Value = item.ID.ToString();
+                obj.Add(result);
+            }
+
+            ViewBag.COLLECTION_ID = obj;
+
+            return View(FinanceFeeData);
         }
 
 

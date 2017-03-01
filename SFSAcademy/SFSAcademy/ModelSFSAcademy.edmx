@@ -601,6 +601,7 @@
           <Property Name="FEE_CAT_ID" Type="int" />
           <Property Name="BTCH_ID" Type="int" />
           <Property Name="IS_DEL" Type="varchar" MaxLength="1" />
+          <Property Name="DUE_DATE" Type="datetime" />
         </EntityType>
         <EntityType Name="FINANCE_FEE_PARTICULAR">
           <Key>
@@ -3714,6 +3715,7 @@
           <NavigationProperty Name="FINANCE_FEE_CATGEORY" Relationship="Self.R_105" FromRole="FINANCE_FEE_COLLECTION" ToRole="FINANCE_FEE_CATGEORY" />
           <NavigationProperty Name="FINANCE_FEE_STRUCTURE_ELEMENT" Relationship="Self.R_121" FromRole="FINANCE_FEE_COLLECTION" ToRole="FINANCE_FEE_STRUCTURE_ELEMENT" />
           <NavigationProperty Name="FEE_COLLECTION_PARTICULAR" Relationship="SFSAcademyModel.FIN_F_FINA_FEE__NI2" FromRole="FINANCE_FEE_COLLECTION" ToRole="FEE_COLLECTION_PARTICULAR" />
+          <Property Name="DUE_DATE" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="FINANCE_FEE_PARTICULAR">
           <Key>
@@ -3841,7 +3843,7 @@
           <Property Name="CITY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="STATE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="CTRY_ID" Type="Int32" />
-          <Property Name="DOB" Type="DateTime" />
+          <Property Name="DOB" Type="DateTime" Precision="3" />
           <Property Name="OCCP" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="INCM" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="ED" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
@@ -6844,6 +6846,7 @@
           <EntitySetMapping Name="FINANCE_FEE_COLLECTION">
             <EntityTypeMapping TypeName="SFSAcademyModel.FINANCE_FEE_COLLECTION">
               <MappingFragment StoreEntitySet="FINANCE_FEE_COLLECTION">
+                <ScalarProperty Name="DUE_DATE" ColumnName="DUE_DATE" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="NAME" ColumnName="NAME" />
                 <ScalarProperty Name="START_DATE" ColumnName="START_DATE" />

@@ -596,6 +596,7 @@
     <Property Name="FEE_CAT_ID" Type="int" />
     <Property Name="BTCH_ID" Type="int" />
     <Property Name="IS_DEL" Type="varchar" MaxLength="1" />
+    <Property Name="DUE_DATE" Type="datetime" />
   </EntityType>
   <EntityType Name="FINANCE_FEE_PARTICULAR">
     <Key>
