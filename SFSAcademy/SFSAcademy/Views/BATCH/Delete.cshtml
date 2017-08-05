@@ -1,0 +1,72 @@
+﻿@model SFSAcademy.BATCH
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>BATCH</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NAME)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NAME)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.START_DATE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.START_DATE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.END_DATE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.END_DATE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IS_DEL)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IS_DEL)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EMP_ID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EMP_ID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.COURSE.CRS_NAME)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.COURSE.CRS_NAME)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>
