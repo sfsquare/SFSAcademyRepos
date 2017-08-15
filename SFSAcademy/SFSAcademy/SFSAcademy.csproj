@@ -2256,7 +2256,7 @@
     <Content Include="Views\Courses\Edit.cshtml" />
     <Content Include="Views\Courses\Index.cshtml" />
     <Content Include="Views\Courses\ManageCourse.cshtml" />
-    <Content Include="Views\Courses\ManageBatches.cshtml" />
+    <Content Include="Views\BATCH\ManageBatches.cshtml" />
     <Content Include="Views\Student\ViewAll.cshtml" />
     <Content Include="Views\Student\AdvancedSearch.cshtml" />
     <Content Include="Views\Student\_ListStudentsByCourse.cshtml" />
@@ -2292,6 +2292,11 @@
     <Content Include="Views\Finance\Fee_Collection_Delete.cshtml" />
     <Content Include="Views\Finance\Fees_Submission_Batch.cshtml" />
     <Content Include="Views\Finance\_student_fees_submission.cshtml" />
+    <Content Include="Views\BATCH\Create.cshtml" />
+    <Content Include="Views\BATCH\Delete.cshtml" />
+    <Content Include="Views\BATCH\Details.cshtml" />
+    <Content Include="Views\BATCH\Edit.cshtml" />
+    <Content Include="Views\BATCH\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -2348,6 +2353,7 @@
     <Compile Include="CONFIGURATION.cs">
       <DependentUpon>ModelSFSAcademy.tt</DependentUpon>
     </Compile>
+    <Compile Include="Controllers\BATCHController.cs" />
     <Compile Include="Controllers\CoursesController.cs" />
     <Compile Include="Controllers\FinanceController.cs" />
     <Compile Include="Controllers\HomeController.cs" />

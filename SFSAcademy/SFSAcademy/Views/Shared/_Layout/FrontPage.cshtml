@@ -118,6 +118,17 @@ var cssTarget = "img.";
                             <div class="hero">
                                 <img src="~/Content/front-page/images/betterway-title.svg" alt="A S. F. Square Title">
                                 <i class="btn-play btn-play-main hide"></i>
+                                
+                                <div class="carousel">
+                                    <div class="slide" data-lazy="true" data-ui-color="white">
+                                        <i class="btn-play btn-play-mobile" data-mp4="~/Content/front-page/video/Why-Go-To-School.mp4"></i>
+                                        <div class="inside video-slide video-height-1080" data-layzr="~/Content/front-page/images/video-poster.jpg" data-layzr-bg data-mp4="~/Content/front-page/video/Why-Go-To-School.mp4" data-lrg="~/Content/front-page/images/video-poster.jpg">
+                                            <img style='min-height:100%;min-width:100%;height:auto;width:auto;position:absolute;top:-100%; bottom:-100%;left:-100%; right:-100%;margin:auto;' src="~/Content/front-page/images/video-poster.jpg" alt="A S. F. Square Title">
+                                            
+                                        </div>
+                                    </div>
+                                </div>                         
+                                <!--
                                 <div class="carousel">
                                     <div class="slide" data-lazy="true" data-ui-color="white">
                                         <i class="btn-play btn-play-mobile" data-mp4="~/Content/front-page/video/Why-Go-To-School.mp4"></i>
@@ -126,8 +137,8 @@ var cssTarget = "img.";
                                             <div class="video-poster" data-layzr="~/Content/front-page/images/video-poster.jpg" data-layzr-bg data-lrg="~/Content/front-page/images/video-poster.jpg"></div>
                                         </div>
                                     </div>
-
-                                </div>
+                                </div>    
+                                -->
                             </div>
 
 
@@ -151,7 +162,7 @@ var cssTarget = "img.";
 
                                         <div class="col-2">
 
-                                            <a href="http://www.sfsquare.net" alt="visit S. F. Square" target="_blank">visit S. F. Square Trust</a>
+                                            <a href="@Url.Action("Login", "USERs")" alt="sfsquareacademy.org">Login to SFSquare Academy</a>
 
                                             <a href="http://sfsquare.net/ContactAndHelpUs/HelpCenter" alt="request information" target="_blank">Request Information</a>
 
