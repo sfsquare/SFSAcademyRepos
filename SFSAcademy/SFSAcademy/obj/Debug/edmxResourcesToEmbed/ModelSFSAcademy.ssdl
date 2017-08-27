@@ -713,6 +713,19 @@
     <Property Name="UPDATED_AT" Type="datetime" />
     <Property Name="USRID" Type="int" />
   </EntityType>
+  <EntityType Name="IMAGE_DOCUMENTS">
+    <Key>
+      <PropertyRef Name="DocumentId" />
+    </Key>
+    <Property Name="DocumentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Size" Type="bigint" Nullable="false" />
+    <Property Name="Type" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="FileContent" Type="varbinary(max)" Nullable="false" />
+    <Property Name="IsDeleted" Type="bit" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="ModifiedOn" Type="datetime" />
+  </EntityType>
   <EntityType Name="INDIVIDUAL_PAYSLIP_CATGEORY">
     <Key>
       <PropertyRef Name="ID" />
@@ -892,7 +905,7 @@
     <Property Name="IS_SMS_ENABL" Type="varchar" MaxLength="1" />
     <Property Name="PHTO_FILENAME" Type="varchar" MaxLength="20" />
     <Property Name="PHTO_CNTNT_TYPE" Type="varchar" MaxLength="20" />
-    <Property Name="PHTO_DATA" Type="varchar" MaxLength="2000" />
+    <Property Name="PHTO_DATA" Type="int" />
     <Property Name="STAT_DESCR" Type="varchar" MaxLength="20" />
     <Property Name="IS_ACT" Type="varchar" MaxLength="1" />
     <Property Name="IS_DEL" Type="varchar" MaxLength="1" />
@@ -2501,6 +2514,7 @@
     <EntitySet Name="FINANCE_TRANSACTION_TRIGGERS" EntityType="Self.FINANCE_TRANSACTION_TRIGGERS" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="GRADING_LEVEL" EntityType="Self.GRADING_LEVEL" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="GUARDIAN" EntityType="Self.GUARDIAN" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="IMAGE_DOCUMENTS" EntityType="Self.IMAGE_DOCUMENTS" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="INDIVIDUAL_PAYSLIP_CATGEORY" EntityType="Self.INDIVIDUAL_PAYSLIP_CATGEORY" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="LIABILITY" EntityType="Self.LIABILITY" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="MONTHLY_PAYSLIP" EntityType="Self.MONTHLY_PAYSLIP" Schema="dbo" store:Type="Tables" />

@@ -20,8 +20,8 @@ namespace SFSAcademy
             this.EMPLOYEEs = new HashSet<EMPLOYEE>();
             this.FINANCE_FEE_STRUCTURE_ELEMENT = new HashSet<FINANCE_FEE_STRUCTURE_ELEMENT>();
             this.GUARDIANs = new HashSet<GUARDIAN>();
-            this.STUDENTs = new HashSet<STUDENT>();
             this.USERS_ACCESS = new HashSet<USERS_ACCESS>();
+            this.STUDENTs = new HashSet<STUDENT>();
         }
     
         public int ID { get; set; }
@@ -47,8 +47,8 @@ namespace SFSAcademy
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<GUARDIAN> GUARDIANs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<STUDENT> STUDENTs { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<USERS_ACCESS> USERS_ACCESS { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<STUDENT> STUDENTs { get; set; }
     }
 }

@@ -25,7 +25,7 @@ namespace SFSAcademy
         public Nullable<System.DateTime> UPDATED_AT { get; set; }
     
         public virtual EXAM EXAM { get; set; }
-        public virtual STUDENT STUDENT { get; set; }
         public virtual GRADING_LEVEL GRADING_LEVEL { get; set; }
+        public virtual STUDENT STUDENT { get; set; }
     }
 }

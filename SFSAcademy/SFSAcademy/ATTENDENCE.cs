@@ -23,7 +23,7 @@ namespace SFSAcademy
         public Nullable<System.DateTime> MONTH_DATE { get; set; }
         public Nullable<int> BTCH_ID { get; set; }
     
-        public virtual STUDENT STUDENT { get; set; }
         public virtual BATCH BATCH { get; set; }
+        public virtual STUDENT STUDENT { get; set; }
     }
 }

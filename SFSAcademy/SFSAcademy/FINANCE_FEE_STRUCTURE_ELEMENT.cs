@@ -25,9 +25,9 @@ namespace SFSAcademy
         public string DEL { get; set; }
     
         public virtual BATCH BATCH { get; set; }
-        public virtual FINANCE_FEE_COLLECTION FINANCE_FEE_COLLECTION { get; set; }
         public virtual STUDENT_CATGEORY STUDENT_CATGEORY { get; set; }
-        public virtual STUDENT STUDENT { get; set; }
         public virtual USER USER { get; set; }
+        public virtual FINANCE_FEE_COLLECTION FINANCE_FEE_COLLECTION { get; set; }
+        public virtual STUDENT STUDENT { get; set; }
     }
 }
