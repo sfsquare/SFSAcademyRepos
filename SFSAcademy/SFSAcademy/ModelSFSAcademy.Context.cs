@@ -68,7 +68,6 @@ namespace SFSAcademy
         public virtual DbSet<FINANCE_DONATION> FINANCE_DONATION { get; set; }
         public virtual DbSet<FINANCE_FEE> FINANCE_FEE { get; set; }
         public virtual DbSet<FINANCE_FEE_CATGEORY> FINANCE_FEE_CATGEORY { get; set; }
-        public virtual DbSet<FINANCE_FEE_COLLECTION> FINANCE_FEE_COLLECTION { get; set; }
         public virtual DbSet<FINANCE_FEE_PARTICULAR> FINANCE_FEE_PARTICULAR { get; set; }
         public virtual DbSet<FINANCE_FEE_STRUCTURE_ELEMENT> FINANCE_FEE_STRUCTURE_ELEMENT { get; set; }
         public virtual DbSet<FINANCE_TRANSACTION> FINANCE_TRANSACTION { get; set; }
@@ -87,7 +86,6 @@ namespace SFSAcademy
         public virtual DbSet<SMS_LOG> SMS_LOG { get; set; }
         public virtual DbSet<SMS_MESSAGE> SMS_MESSAGE { get; set; }
         public virtual DbSet<SMS_SETTING> SMS_SETTING { get; set; }
-        public virtual DbSet<STUDENT> STUDENTs { get; set; }
         public virtual DbSet<STUDENT_ADDITIONAL_DETAIL> STUDENT_ADDITIONAL_DETAIL { get; set; }
         public virtual DbSet<STUDENT_ADDITIONAL_FIELD> STUDENT_ADDITIONAL_FIELD { get; set; }
         public virtual DbSet<STUDENT_CATGEORY> STUDENT_CATGEORY { get; set; }
@@ -103,5 +101,8 @@ namespace SFSAcademy
         public virtual DbSet<FEE_COLLECTION_PARTICULAR> FEE_COLLECTION_PARTICULAR { get; set; }
         public virtual DbSet<RANKING_LEVEL> RANKING_LEVEL { get; set; }
         public virtual DbSet<USERS_ACCESS> USERS_ACCESS { get; set; }
+        public virtual DbSet<FINANCE_FEE_COLLECTION> FINANCE_FEE_COLLECTION { get; set; }
+        public virtual DbSet<IMAGE_DOCUMENTS> IMAGE_DOCUMENTS { get; set; }
+        public virtual DbSet<STUDENT> STUDENTs { get; set; }
     }
 }

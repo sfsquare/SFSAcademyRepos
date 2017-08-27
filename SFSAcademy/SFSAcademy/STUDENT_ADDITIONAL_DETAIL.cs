@@ -19,7 +19,7 @@ namespace SFSAcademy
         public int ID { get; set; }
         public Nullable<int> ADDL_FLD_ID { get; set; }
     
-        public virtual STUDENT STUDENT { get; set; }
         public virtual STUDENT_ADDITIONAL_FIELD STUDENT_ADDITIONAL_FIELD { get; set; }
+        public virtual STUDENT STUDENT { get; set; }
     }
 }

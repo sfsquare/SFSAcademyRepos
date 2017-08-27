@@ -22,7 +22,7 @@ namespace SFSAcademy
         public Nullable<decimal> DISC { get; set; }
         public string IS_AMT { get; set; }
     
-        public virtual STUDENT STUDENT { get; set; }
         public virtual FINANCE_FEE_CATGEORY FINANCE_FEE_CATGEORY { get; set; }
+        public virtual STUDENT STUDENT { get; set; }
     }
 }

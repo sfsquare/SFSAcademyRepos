@@ -53,7 +53,7 @@ namespace SFSAcademy
         public Nullable<int> STDNT_CAT_ID { get; set; }
     
         public virtual COUNTRY COUNTRY { get; set; }
-        public virtual STUDENT STUDENT { get; set; }
         public virtual STUDENT_CATGEORY STUDENT_CATGEORY { get; set; }
+        public virtual STUDENT STUDENT { get; set; }
     }
 }

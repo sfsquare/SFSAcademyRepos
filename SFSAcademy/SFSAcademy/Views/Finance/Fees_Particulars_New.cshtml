@@ -21,7 +21,8 @@
     </ul>
 </div>
 <div id="page-yield">
-    <div id="flash_box"> <p class="flash-msg"> @ViewBag.FeeCatError</p>
+    <div id="flash_box">
+        <p class="flash-msg"> @ViewBag.FeeCatError</p>
     </div>
     @if (Html.ValidationSummary() != null)
     {
@@ -30,11 +31,11 @@
 
     <div id="grading-levels-form">
 
-    @using (Html.BeginForm())
-    {
-        @Html.AntiForgeryToken()
-        <div id="form-errors">@Html.ValidationSummary()</div>
-        <div id="form-errors"></div>
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            <div id="form-errors">@Html.ValidationSummary()</div>
+            <div id="form-errors"></div>
             <div id="right-side-inputs">
                 <div class="label-field-pair category_list">
                     <div class="label-container">
@@ -53,7 +54,7 @@
                                 @Html.CheckBoxFor(x => x[j].Selected, new { @class = "category_select", @id = "category_select" }) <label>@Model[j].FinanceFeeCategoryData.NAME - @Model[j].BatchData.NAME - @(Model[j].BatchData.START_DATE.HasValue ? Model[j].BatchData.START_DATE.Value.ToString("yyyy") : "") - @(Model[j].BatchData.END_DATE.HasValue ? Model[j].BatchData.END_DATE.Value.ToString("yyyy") : "")</label>
                             </div>
                             <div class="each_category">
-                                @Html.HiddenFor(x => x[j].FinanceFeeCategoryData.ID) 
+                                @Html.HiddenFor(x => x[j].FinanceFeeCategoryData.ID)
                             </div>
                             <div class="each_category">
                                 @Html.HiddenFor(x => x[j].BatchData.ID)
@@ -66,8 +67,8 @@
                 @{Html.RenderAction("_Fees_Particulars_Create", "Finance");}
             </div>
 
-           <input type="submit" value="Create" class="submit_button" formaction='@Url.Action("_Fees_Particulars_Create", "Finance")'/>
-    }
+            <input type="submit" value="Create" class="submit_button" formaction='@Url.Action("_Fees_Particulars_Create", "Finance")' />
+                    }
     </div>
 </div>
 
