@@ -2147,6 +2147,7 @@
     <Content Include="Content\javascripts\fckeditor\fckutils.cfm" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\dropzone.js" />
     <Content Include="Scripts\jquery-1.7.1.min.js" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -2256,7 +2257,7 @@
     <Content Include="Views\Courses\Edit.cshtml" />
     <Content Include="Views\Courses\Index.cshtml" />
     <Content Include="Views\Courses\ManageCourse.cshtml" />
-    <Content Include="Views\Courses\ManageBatches.cshtml" />
+    <Content Include="Views\BATCH\ManageBatches.cshtml" />
     <Content Include="Views\Student\ViewAll.cshtml" />
     <Content Include="Views\Student\AdvancedSearch.cshtml" />
     <Content Include="Views\Student\_ListStudentsByCourse.cshtml" />
@@ -2275,6 +2276,28 @@
     <Content Include="Views\Finance\_Master_Category_Create_Form.cshtml" />
     <Content Include="Views\Finance\Fees_Particulars_New.cshtml" />
     <Content Include="Views\Finance\_Fees_Particulars_Create.cshtml" />
+    <Content Include="Views\Finance\_student_admission_particulars.cshtml" />
+    <Content Include="Views\Finance\_student_category_particulars.cshtml" />
+    <Content Include="Views\Finance\Delete_Fee_Discount.cshtml" />
+    <Content Include="Views\Finance\Edit_Fee_Discount.cshtml" />
+    <Content Include="Views\Finance\Fee_Discount_New.cshtml" />
+    <Content Include="Views\Finance\Fee_Discounts.cshtml" />
+    <Content Include="Views\Finance\Master_Category_Delete.cshtml" />
+    <Content Include="Views\Finance\Master_Category_Edit.cshtml" />
+    <Content Include="Views\Finance\Fee_Collection.cshtml" />
+    <Content Include="Views\Finance\Fee_Collection_New.cshtml" />
+    <Content Include="Views\Finance\_Fee_Collection_Create.cshtml" />
+    <Content Include="Views\Finance\Fee_Collection_View.cshtml" />
+    <Content Include="Views\Finance\Fees_Submission_Index.cshtml" />
+    <Content Include="Views\Finance\Fee_Collection_Edit.cshtml" />
+    <Content Include="Views\Finance\Fee_Collection_Delete.cshtml" />
+    <Content Include="Views\Finance\Fees_Submission_Batch.cshtml" />
+    <Content Include="Views\Finance\_student_fees_submission.cshtml" />
+    <Content Include="Views\BATCH\Create.cshtml" />
+    <Content Include="Views\BATCH\Delete.cshtml" />
+    <Content Include="Views\BATCH\Details.cshtml" />
+    <Content Include="Views\BATCH\Edit.cshtml" />
+    <Content Include="Views\BATCH\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -2331,6 +2354,7 @@
     <Compile Include="CONFIGURATION.cs">
       <DependentUpon>ModelSFSAcademy.tt</DependentUpon>
     </Compile>
+    <Compile Include="Controllers\BATCHController.cs" />
     <Compile Include="Controllers\CoursesController.cs" />
     <Compile Include="Controllers\FinanceController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -2454,6 +2478,9 @@
     <Compile Include="HtmlHelpers\AssetsHelper.cs" />
     <Compile Include="HtmlHelpers\PdfTabularReport.cs" />
     <Compile Include="HtmlHelpers\ReportConfiguration.cs" />
+    <Compile Include="IMAGE_DOCUMENTS.cs">
+      <DependentUpon>ModelSFSAcademy.tt</DependentUpon>
+    </Compile>
     <Compile Include="INDIVIDUAL_PAYSLIP_CATGEORY.cs">
       <DependentUpon>ModelSFSAcademy.tt</DependentUpon>
     </Compile>
@@ -2476,6 +2503,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ModelSFSAcademy.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\PictureUpload.cs" />
     <Compile Include="Models\Finance.cs" />
     <Compile Include="Models\News.cs" />
     <Compile Include="Models\Student.cs" />

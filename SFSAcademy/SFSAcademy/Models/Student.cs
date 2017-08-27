@@ -11,6 +11,7 @@ namespace SFSAcademy.Models
         public STUDENT_CATGEORY CategoryData { get; set; }
         public EMPLOYEE EmployeeData { get; set; }
         public GRADING_LEVEL GradeData { get; set; }
+        public IMAGE_DOCUMENTS ImageData { get; set; }
     }
 
     public class StudentsBatch

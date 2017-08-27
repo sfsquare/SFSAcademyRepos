@@ -48,9 +48,9 @@ namespace SFSAcademy
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<FINANCE_FEE> FINANCE_FEE1 { get; set; }
         public virtual FINANCE_FEE_CATGEORY FINANCE_FEE_CATGEORY { get; set; }
-        public virtual STUDENT STUDENT { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<FINANCE_TRANSACTION> FINANCE_TRANSACTION1 { get; set; }
         public virtual FINANCE_TRANSACTION FINANCE_TRANSACTION2 { get; set; }
+        public virtual STUDENT STUDENT { get; set; }
     }
 }

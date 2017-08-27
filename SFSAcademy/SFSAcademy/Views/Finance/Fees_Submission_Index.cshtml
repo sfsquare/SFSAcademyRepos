@@ -1,0 +1,31 @@
+﻿
+@{
+    ViewBag.Title = "Fees_Submission_Index";
+}
+
+<div id="content-header">
+    <img src="~/Content/images/show_finance.png" alt="Finance Logo">
+    <h1>Fees Submission</h1>
+    <h3>Student Fees Submission</h3>
+    <div id="app-back-button">
+        <a href='javascript:history.back()' onclick="return confirm('are you sure?')"><img src="~/Content/images/buttons/back.png"></a>
+    </div>
+</div>
+<div><img src="~/Content/images/_global/header_underline_.jpg" width="100%"></div>
+
+<div id="page-yield">
+    <div class="box">
+        @if (Html.ValidationSummary() != null)
+        {
+            <p class="flash-msg"> @Html.ValidationSummary() </p>
+        }
+        <div class="link-box">
+            <div class="link-heading">@Html.ActionLink("Fees Submission By Course", "Fees_Submission_Batch")</div>
+            <div class="link-descr">Fees Submit By Each Course</div>
+        </div>
+        <div class="link-box">
+            <div class="link-heading">@Html.ActionLink("Fees Submit For Student", "Fees_Student_Search")</div>
+        </div>
+    </div>
+</div>
+

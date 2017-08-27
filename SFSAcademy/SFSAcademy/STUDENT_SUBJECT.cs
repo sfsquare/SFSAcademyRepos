@@ -20,7 +20,7 @@ namespace SFSAcademy
         public Nullable<int> BTCH_ID { get; set; }
     
         public virtual BATCH BATCH { get; set; }
-        public virtual STUDENT STUDENT { get; set; }
         public virtual SUBJECT SUBJECT { get; set; }
+        public virtual STUDENT STUDENT { get; set; }
     }
 }

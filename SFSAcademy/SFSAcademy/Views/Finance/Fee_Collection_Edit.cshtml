@@ -1,0 +1,88 @@
+﻿@model SFSAcademy.FINANCE_FEE_COLLECTION
+
+@{
+    ViewBag.Title = "Fee_Collection_Edit";
+}
+
+<div id="content-header">
+    <img src="~/Content/images/show_finance.png" alt="Finance Logo">
+    <h1>Fee Collection Dates</h1>
+    <h3>Edit Fee Collection Dates</h3>
+    <div id="app-back-button">
+        <a href='javascript:history.back()' onclick="return confirm('are you sure?')"><img src="~/Content/images/buttons/back.png"></a>
+    </div>
+</div>
+<div><img src="~/Content/images/_global/header_underline_.jpg" width="100%"></div>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div id="page-yield">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.ID)
+        <div class="label-field-pair">
+            @Html.LabelFor(model => model.NAME, "Fee Collection Name", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="text-input-bg">
+                @Html.EditorFor(model => model.NAME, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.NAME, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="label-field-pair">
+            @Html.LabelFor(model => model.BTCH_ID, "Student Batch Name", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="text-input-bg">
+                @Html.DropDownList("BTCH_ID", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.BTCH_ID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="label-field-pair">
+            @Html.LabelFor(model => model.FEE_CAT_ID, "Fee Category Name", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="text-input-bg">
+                @Html.DropDownList("FEE_CAT_ID", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.FEE_CAT_ID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="label-field-pair">
+            @Html.LabelFor(model => model.START_DATE, "Start Date", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="text-input-bg">
+                @Html.EditorFor(model => model.START_DATE, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.START_DATE, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="label-field-pair">
+            @Html.LabelFor(model => model.END_DATE, "End Date", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="text-input-bg">
+                @Html.EditorFor(model => model.END_DATE, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.END_DATE, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="label-field-pair">
+            @Html.LabelFor(model => model.DUE_DATE, "Due Date", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="text-input-bg">
+                @Html.EditorFor(model => model.DUE_DATE, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.DUE_DATE, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="label-field-pair">
+            @Html.LabelFor(model => model.IS_DEL, "IS this Deleted?", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="text-input-bg">
+                @Html.EditorFor(model => model.IS_DEL, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.IS_DEL, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="submit_button" />
+            </div>
+        </div>
+    </div>
+}
+
+
