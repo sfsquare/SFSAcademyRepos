@@ -10,6 +10,7 @@ using SFSAcademy.HtmlHelpers;
 using System.Collections.Generic;
 using System.Web;
 using System.Data;
+using System.IO;
 
 namespace SFSAcademy.Controllers
 {
@@ -146,14 +147,17 @@ namespace SFSAcademy.Controllers
                             from subcat in gl.DefaultIfEmpty()
                             join emp in db.EMPLOYEEs on subb.EMP_ID equals emp.ID into gm
                             from subemp in gm.DefaultIfEmpty()
+                            join img in db.IMAGE_DOCUMENTS on st.PHTO_DATA equals img.DocumentId into gn
+                            from subimg in gn.DefaultIfEmpty()
                             where st.ID == id
                            orderby st.LAST_NAME, subb.NAME
-                           select new Models.Student { StudentData = st, BatcheData = (subb == null ? null : subb), CourseData = (subc == null ? null : subc), CountryData = (subct == null ? null : subct), CategoryData = (subcat == null ? null : subcat), EmployeeData = (subemp == null ? null : subemp) }).Distinct();
+                           select new Models.Student { StudentData = st, BatcheData = (subb == null ? null : subb), CourseData = (subc == null ? null : subc), CountryData = (subct == null ? null : subct), CategoryData = (subcat == null ? null : subcat), EmployeeData = (subemp == null ? null : subemp), ImageData = (subimg == null ? null : subimg) }).Distinct();
 
             if (StudentS == null)
             {
                 return HttpNotFound();
             }
+
             return View(StudentS.FirstOrDefault());
         }
 
@@ -515,14 +519,50 @@ namespace SFSAcademy.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Admission1([Bind(Include = "ID,ADMSN_NO,CLS_ROLL_NO,ADMSN_DATE,FIRST_NAME,MID_NAME,LAST_NAME,BTCH_ID,DOB,GNDR,BLOOD_GRP,BIRTH_PLACE,LANG,RLGN,ADDR_LINE1,ADDR_LINE2,CITY,STATE,PIN_CODE,CTRY_ID,PH1,PH2,EML,IMMDT_CNTCT_ID,IS_SMS_ENABL,PHTO_FILENAME,PHTO_CNTNT_TYPE,PHTO_DATA,STAT_DESCR,IS_ACT,IS_DEL,CREATED_AT,UPDATED_AT,HAS_PD_FE,PHTO_FILE_SIZE,USRID,STDNT_CAT_ID,NTLTY_ID")] STUDENT sTUDENT)
+        public ActionResult Admission1([Bind(Include = "ID,ADMSN_NO,CLS_ROLL_NO,ADMSN_DATE,FIRST_NAME,MID_NAME,LAST_NAME,BTCH_ID,DOB,GNDR,BLOOD_GRP,BIRTH_PLACE,LANG,RLGN,ADDR_LINE1,ADDR_LINE2,CITY,STATE,PIN_CODE,CTRY_ID,PH1,PH2,EML,IMMDT_CNTCT_ID,IS_SMS_ENABL,PHTO_FILENAME,PHTO_CNTNT_TYPE,PHTO_DATA,STAT_DESCR,IS_ACT,IS_DEL,CREATED_AT,UPDATED_AT,HAS_PD_FE,PHTO_FILE_SIZE,USRID,STDNT_CAT_ID,NTLTY_ID")] STUDENT sTUDENT, HttpPostedFileBase[] PHTO_FILENAME, string selectedTags)
         {
             int UserId = Convert.ToInt32(this.Session["UserId"]);
             sTUDENT.USRID = UserId;
             if (ModelState.IsValid)
             {
-                db.STUDENTs.Add(sTUDENT);
-                db.SaveChanges();
+                /////Picture Upload Code
+                string FileName = null;
+                SuccessModel viewModel = new SuccessModel();
+                if (Request.Files.Count == 1)
+                {
+                    var name = Request.Files[0].FileName;
+                    var size = Request.Files[0].ContentLength;
+                    var type = Request.Files[0].ContentType;
+                    FileName = name;
+                    viewModel.Success = HandleUpload(Request.Files[0].InputStream, name, size, type);
+                    var PicDocumentId = (from C in db.IMAGE_DOCUMENTS
+                                         where C.Name == FileName
+                                         select C.DocumentId).FirstOrDefault().ToString();
+
+                    sTUDENT.PHTO_DATA = Convert.ToInt32(PicDocumentId);
+                    sTUDENT.PHTO_FILENAME = null;
+                    sTUDENT.PHTO_CNTNT_TYPE = null;
+                }
+                else
+                {
+                    sTUDENT.PHTO_DATA = 1;
+                    sTUDENT.PHTO_FILENAME = null;
+                    sTUDENT.PHTO_CNTNT_TYPE = null;
+                }
+                ////End to Picture Upload Code
+
+
+                try
+                {
+                    db.STUDENTs.Add(sTUDENT);
+                    db.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+
+
                 var result = from u in db.CONFIGURATIONs where (u.CONFIG_KEY == "AdmissionNumberAutoIncrement") select u;
                 if (result.Count() != 0)
                 {
@@ -755,6 +795,34 @@ namespace SFSAcademy.Controllers
         {
             if (ModelState.IsValid)
             {
+
+                /////Picture Upload Code
+                string FileName = null;
+                SuccessModel viewModel = new SuccessModel();
+                if (Request.Files.Count == 1)
+                {
+                    var name = Request.Files[0].FileName;
+                    var size = Request.Files[0].ContentLength;
+                    var type = Request.Files[0].ContentType;
+                    FileName = name;
+                    viewModel.Success = HandleUpload(Request.Files[0].InputStream, name, size, type);
+                    var PicDocumentId = (from C in db.IMAGE_DOCUMENTS
+                                         where C.Name == FileName
+                                         select C.DocumentId).FirstOrDefault().ToString();
+
+                    sTUDENT.PHTO_DATA = Convert.ToInt32(PicDocumentId);
+                    sTUDENT.PHTO_FILENAME = null;
+                    sTUDENT.PHTO_CNTNT_TYPE = null;
+                }
+                else
+                {
+                    sTUDENT.PHTO_DATA = 1;
+                    sTUDENT.PHTO_FILENAME = null;
+                    sTUDENT.PHTO_CNTNT_TYPE = null;
+                }
+                ////End to Picture Upload Code
+
+
                 db.Entry(sTUDENT).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -896,6 +964,79 @@ namespace SFSAcademy.Controllers
 
             return View(sTUDENTcATEGORY);
         }
+
+
+        /////Document Upload related methods////////////////////////////////////////////////////////////////
+
+        [HttpGet]
+        public ActionResult Show(int? id)
+        {
+            string mime;
+            byte[] bytes = LoadImage(id.Value, out mime);
+            return File(bytes, mime);
+        }
+
+        [HttpPost]
+        public ActionResult Upload()
+        {
+            SuccessModel viewModel = new SuccessModel();
+            if (Request.Files.Count == 1)
+            {
+                var name = Request.Files[0].FileName;
+                var size = Request.Files[0].ContentLength;
+                var type = Request.Files[0].ContentType;
+                viewModel.Success = HandleUpload(Request.Files[0].InputStream, name, size, type);
+            }
+            return Json(viewModel);
+        }
+
+        private bool HandleUpload(Stream fileStream, string name, int size, string type)
+        {
+            bool handled = false;
+
+            try
+            {
+                // Convert image to buffered stream
+                var imageBufferedStream = new BufferedStream(fileStream);
+                byte[] documentBytes = new byte[imageBufferedStream.Length];
+                imageBufferedStream.Read(documentBytes, 0, documentBytes.Length);
+
+
+                IMAGE_DOCUMENTS databaseDocument = new IMAGE_DOCUMENTS
+                {
+                    CreatedOn = DateTime.Now,
+                    FileContent = documentBytes,
+                    IsDeleted = false,
+                    Name = name,
+                    Size = size,
+                    Type = type
+                };
+
+                db.IMAGE_DOCUMENTS.Add(databaseDocument);
+                handled = (db.SaveChanges() > 0);
+            }
+            catch (Exception ex)
+            {
+                throw ex; // Oops, something went wrong, handle the exception
+            }
+
+            return handled;
+        }
+
+        private byte[] LoadImage(int id, out string type)
+        {
+            byte[] fileBytes = null;
+            string fileType = null;
+            var databaseDocument = db.IMAGE_DOCUMENTS.FirstOrDefault(doc => doc.DocumentId == id);
+            if (databaseDocument != null)
+            {
+                fileBytes = databaseDocument.FileContent;
+                fileType = databaseDocument.Type;
+            }
+            type = fileType;
+            return fileBytes;
+        }
+
 
     }
 }

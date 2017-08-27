@@ -2147,6 +2147,7 @@
     <Content Include="Content\javascripts\fckeditor\fckutils.cfm" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\dropzone.js" />
     <Content Include="Scripts\jquery-1.7.1.min.js" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -2477,6 +2478,9 @@
     <Compile Include="HtmlHelpers\AssetsHelper.cs" />
     <Compile Include="HtmlHelpers\PdfTabularReport.cs" />
     <Compile Include="HtmlHelpers\ReportConfiguration.cs" />
+    <Compile Include="IMAGE_DOCUMENTS.cs">
+      <DependentUpon>ModelSFSAcademy.tt</DependentUpon>
+    </Compile>
     <Compile Include="INDIVIDUAL_PAYSLIP_CATGEORY.cs">
       <DependentUpon>ModelSFSAcademy.tt</DependentUpon>
     </Compile>
@@ -2499,6 +2503,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ModelSFSAcademy.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\PictureUpload.cs" />
     <Compile Include="Models\Finance.cs" />
     <Compile Include="Models\News.cs" />
     <Compile Include="Models\Student.cs" />
