@@ -225,9 +225,11 @@
     <Content Include="Content\front-page\stylesheets\style.css" />
     <Content Include="Content\front-page\video\MP4_Background.mp4" />
     <Content Include="Content\front-page\video\Why-Go-To-School.mp4" />
+    <Content Include="Content\images\dashboard_buttons\button_store.png" />
     <Content Include="Content\images\login\SF_Square_Logo-Small.jpg" />
     <Content Include="Content\images\login\SF_Square_Logo-Small.svg" />
     <Content Include="Content\images\login\SF_Square_Logo.svg" />
+    <Content Include="Content\images\show_store.png" />
     <Content Include="Content\javascripts\fckeditor\editor\dialog\common\fck_dialog_common.css" />
     <Content Include="Content\javascripts\fckeditor\editor\dialog\common\fck_dialog_common.js" />
     <Content Include="Content\javascripts\fckeditor\editor\dialog\common\images\locked.gif" />
@@ -784,6 +786,12 @@
     <Content Include="Content\javascripts\tiny_mce\utils\mctabs.js" />
     <Content Include="Content\javascripts\tiny_mce\utils\validate.js" />
     <Content Include="Content\PagedList.css" />
+    <Content Include="Content\stylesheets\store\create.css" />
+    <Content Include="Content\stylesheets\store\edit.css" />
+    <Content Include="Content\stylesheets\store\index.css" />
+    <Content Include="Content\stylesheets\store\new.css" />
+    <Content Include="Content\stylesheets\store\purchase.css" />
+    <Content Include="Content\stylesheets\store\show.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="ModelSFSAcademy.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -2298,6 +2306,22 @@
     <Content Include="Views\BATCH\Details.cshtml" />
     <Content Include="Views\BATCH\Edit.cshtml" />
     <Content Include="Views\BATCH\Index.cshtml" />
+    <Content Include="Views\Store\Create.cshtml" />
+    <Content Include="Views\Store\Delete.cshtml" />
+    <Content Include="Views\Store\Details.cshtml" />
+    <Content Include="Views\Store\Edit.cshtml" />
+    <Content Include="Views\Store\Index.cshtml" />
+    <Content Include="Views\Store\ListAllProducts.cshtml" />
+    <Content Include="Views\Store\ViewAll.cshtml" />
+    <Content Include="Views\Store\Categories.cshtml" />
+    <Content Include="Views\Store\_product_category_create_form.cshtml" />
+    <Content Include="Views\Store\_CategoriesList.cshtml" />
+    <Content Include="Views\Store\_CategoriesDelete.cshtml" />
+    <Content Include="Views\Store\_CategoriesEdit.cshtml" />
+    <Content Include="Views\Store\Purchase.cshtml" />
+    <Content Include="Views\Store\ListAllSellings.cshtml" />
+    <Content Include="Views\Store\ViewAllSelling.cshtml" />
+    <Content Include="Views\Store\EditSelling.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -2358,6 +2382,7 @@
     <Compile Include="Controllers\CoursesController.cs" />
     <Compile Include="Controllers\FinanceController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\StoreController.cs" />
     <Compile Include="Controllers\StudentController.cs" />
     <Compile Include="Controllers\USERsController.cs" />
     <Compile Include="COUNTRY.cs">
@@ -2503,6 +2528,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ModelSFSAcademy.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\Products.cs" />
     <Compile Include="Models\PictureUpload.cs" />
     <Compile Include="Models\Finance.cs" />
     <Compile Include="Models\News.cs" />
@@ -2537,6 +2563,15 @@
       <DependentUpon>ModelSFSAcademy.tt</DependentUpon>
     </Compile>
     <Compile Include="SMS_SETTING.cs">
+      <DependentUpon>ModelSFSAcademy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="STORE_CATEGORY.cs">
+      <DependentUpon>ModelSFSAcademy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="STORE_PRODUCTS.cs">
+      <DependentUpon>ModelSFSAcademy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="STORE_PURCHAGE.cs">
       <DependentUpon>ModelSFSAcademy.tt</DependentUpon>
     </Compile>
     <Compile Include="STUDENT.cs">

@@ -2742,6 +2742,17 @@
       <End Role="USER" EntitySet="USERS" />
       <End Role="STUDENT" EntitySet="STUDENTs" />
     </AssociationSet>
+    <EntitySet Name="STORE_CATEGORY" EntityType="SFSAcademyModel.STORE_CATEGORY" />
+    <EntitySet Name="STORE_PRODUCTS" EntityType="SFSAcademyModel.STORE_PRODUCTS" />
+    <EntitySet Name="STORE_PURCHAGE" EntityType="SFSAcademyModel.STORE_PURCHAGE" />
+    <AssociationSet Name="STCAT_STPROD_ASSE_NI" Association="SFSAcademyModel.STCAT_STPROD_ASSE_NI">
+      <End Role="STORE_CATEGORY" EntitySet="STORE_CATEGORY" />
+      <End Role="STORE_PRODUCTS" EntitySet="STORE_PRODUCTS" />
+    </AssociationSet>
+    <AssociationSet Name="STPROD_STPUR_ASSE_NI" Association="SFSAcademyModel.STPROD_STPUR_ASSE_NI">
+      <End Role="STORE_PRODUCTS" EntitySet="STORE_PRODUCTS" />
+      <End Role="STORE_PURCHAGE" EntitySet="STORE_PURCHAGE" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="FEE_COLLECTION_PARTICULAR">
     <Key>
@@ -3235,6 +3246,86 @@
       </Principal>
       <Dependent Role="STUDENT">
         <PropertyRef Name="USRID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="STORE_CATEGORY">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NAME" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="IS_ACT" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="IS_DEL" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="CREATED_AT" Type="DateTime" Precision="3" />
+    <Property Name="UPDATED_AT" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="STORE_PRODUCTS" Relationship="SFSAcademyModel.STCAT_STPROD_ASSE_NI" FromRole="STORE_CATEGORY" ToRole="STORE_PRODUCTS" />
+  </EntityType>
+  <EntityType Name="STORE_PRODUCTS">
+    <Key>
+      <PropertyRef Name="PRODUCT_ID" />
+    </Key>
+    <Property Name="PRODUCT_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NAME" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CATEGORY_ID" Type="Int32" />
+    <Property Name="BRAND" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="TOTAL_UNIT" Type="Int32" />
+    <Property Name="TOTAL_COST" Type="Int32" />
+    <Property Name="COST_PER_UNIT" Type="Int32" />
+    <Property Name="SELL_PRICE_PER_UNIT" Type="Int32" />
+    <Property Name="PURCHASED_ON" Type="DateTime" Precision="3" />
+    <Property Name="PURCHASED_THROUGH" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="BAR_CODE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="PAID_BY" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="UNIT_LEFT" Type="Int32" />
+    <Property Name="IS_ACT" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="IS_DEL" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="CREATED_AT" Type="DateTime" Precision="3" />
+    <Property Name="UPDATED_AT" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="STORE_CATEGORY" Relationship="SFSAcademyModel.STCAT_STPROD_ASSE_NI" FromRole="STORE_PRODUCTS" ToRole="STORE_CATEGORY" />
+    <NavigationProperty Name="STORE_PURCHAGE" Relationship="SFSAcademyModel.STPROD_STPUR_ASSE_NI" FromRole="STORE_PRODUCTS" ToRole="STORE_PURCHAGE" />
+  </EntityType>
+  <EntityType Name="STORE_PURCHAGE">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PRODUCT_ID" Type="Int32" Nullable="false" />
+    <Property Name="UNIT_SOLD" Type="Int32" />
+    <Property Name="SOLD_PRICE" Type="Int32" />
+    <Property Name="SOLD_BY" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="SOLD_ON" Type="DateTime" Precision="3" />
+    <Property Name="STUDENT_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="STUDENT_CONTACT_NO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="MONEY_RECEIVED_BY" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="IS_DEPOSITED" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="IS_ACT" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="IS_DEL" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="CREATED_AT" Type="DateTime" Precision="3" />
+    <Property Name="UPDATED_AT" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="STORE_PRODUCTS" Relationship="SFSAcademyModel.STPROD_STPUR_ASSE_NI" FromRole="STORE_PURCHAGE" ToRole="STORE_PRODUCTS" />
+  </EntityType>
+  <Association Name="STCAT_STPROD_ASSE_NI">
+    <End Type="SFSAcademyModel.STORE_CATEGORY" Role="STORE_CATEGORY" Multiplicity="0..1" />
+    <End Type="SFSAcademyModel.STORE_PRODUCTS" Role="STORE_PRODUCTS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="STORE_CATEGORY">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="STORE_PRODUCTS">
+        <PropertyRef Name="CATEGORY_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="STPROD_STPUR_ASSE_NI">
+    <End Type="SFSAcademyModel.STORE_PRODUCTS" Role="STORE_PRODUCTS" Multiplicity="1" />
+    <End Type="SFSAcademyModel.STORE_PURCHAGE" Role="STORE_PURCHAGE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="STORE_PRODUCTS">
+        <PropertyRef Name="PRODUCT_ID" />
+      </Principal>
+      <Dependent Role="STORE_PURCHAGE">
+        <PropertyRef Name="PRODUCT_ID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

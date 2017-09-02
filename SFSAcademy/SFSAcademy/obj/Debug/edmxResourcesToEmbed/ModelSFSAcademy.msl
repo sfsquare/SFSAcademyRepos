@@ -1149,5 +1149,60 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="STORE_CATEGORY">
+      <EntityTypeMapping TypeName="SFSAcademyModel.STORE_CATEGORY">
+        <MappingFragment StoreEntitySet="STORE_CATEGORY">
+          <ScalarProperty Name="UPDATED_AT" ColumnName="UPDATED_AT" />
+          <ScalarProperty Name="CREATED_AT" ColumnName="CREATED_AT" />
+          <ScalarProperty Name="IS_DEL" ColumnName="IS_DEL" />
+          <ScalarProperty Name="IS_ACT" ColumnName="IS_ACT" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="STORE_PRODUCTS">
+      <EntityTypeMapping TypeName="SFSAcademyModel.STORE_PRODUCTS">
+        <MappingFragment StoreEntitySet="STORE_PRODUCTS">
+          <ScalarProperty Name="UPDATED_AT" ColumnName="UPDATED_AT" />
+          <ScalarProperty Name="CREATED_AT" ColumnName="CREATED_AT" />
+          <ScalarProperty Name="IS_DEL" ColumnName="IS_DEL" />
+          <ScalarProperty Name="IS_ACT" ColumnName="IS_ACT" />
+          <ScalarProperty Name="UNIT_LEFT" ColumnName="UNIT_LEFT" />
+          <ScalarProperty Name="PAID_BY" ColumnName="PAID_BY" />
+          <ScalarProperty Name="BAR_CODE" ColumnName="BAR_CODE" />
+          <ScalarProperty Name="PURCHASED_THROUGH" ColumnName="PURCHASED_THROUGH" />
+          <ScalarProperty Name="PURCHASED_ON" ColumnName="PURCHASED_ON" />
+          <ScalarProperty Name="SELL_PRICE_PER_UNIT" ColumnName="SELL_PRICE_PER_UNIT" />
+          <ScalarProperty Name="COST_PER_UNIT" ColumnName="COST_PER_UNIT" />
+          <ScalarProperty Name="TOTAL_COST" ColumnName="TOTAL_COST" />
+          <ScalarProperty Name="TOTAL_UNIT" ColumnName="TOTAL_UNIT" />
+          <ScalarProperty Name="BRAND" ColumnName="BRAND" />
+          <ScalarProperty Name="CATEGORY_ID" ColumnName="CATEGORY_ID" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="PRODUCT_ID" ColumnName="PRODUCT_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="STORE_PURCHAGE">
+      <EntityTypeMapping TypeName="SFSAcademyModel.STORE_PURCHAGE">
+        <MappingFragment StoreEntitySet="STORE_PURCHAGE">
+          <ScalarProperty Name="UPDATED_AT" ColumnName="UPDATED_AT" />
+          <ScalarProperty Name="CREATED_AT" ColumnName="CREATED_AT" />
+          <ScalarProperty Name="IS_DEL" ColumnName="IS_DEL" />
+          <ScalarProperty Name="IS_ACT" ColumnName="IS_ACT" />
+          <ScalarProperty Name="IS_DEPOSITED" ColumnName="IS_DEPOSITED" />
+          <ScalarProperty Name="MONEY_RECEIVED_BY" ColumnName="MONEY_RECEIVED_BY" />
+          <ScalarProperty Name="STUDENT_CONTACT_NO" ColumnName="STUDENT_CONTACT_NO" />
+          <ScalarProperty Name="STUDENT_NAME" ColumnName="STUDENT_NAME" />
+          <ScalarProperty Name="SOLD_ON" ColumnName="SOLD_ON" />
+          <ScalarProperty Name="SOLD_BY" ColumnName="SOLD_BY" />
+          <ScalarProperty Name="SOLD_PRICE" ColumnName="SOLD_PRICE" />
+          <ScalarProperty Name="UNIT_SOLD" ColumnName="UNIT_SOLD" />
+          <ScalarProperty Name="PRODUCT_ID" ColumnName="PRODUCT_ID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>
