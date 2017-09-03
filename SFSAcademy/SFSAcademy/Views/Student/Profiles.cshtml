@@ -73,7 +73,10 @@
             <tr class="even left"><td>Gender :</td><td class="right">@Model.StudentData.GNDR</td></tr>
             <tr class="odd left"><td>Nationality :</td><td class="right">@Model.CountryData.NTLTY</td></tr>
             <tr class="even left"><td>Language :</td><td class="right">@Model.StudentData.LANG</td></tr>
-            <tr class="odd left"><td>Category :</td><td class="right">@Model.CategoryData.NAME</td></tr>
+            @if (Model.CategoryData != null)
+            {
+                <tr class="odd left"><td>Category :</td><td class="right">@Model.CategoryData.NAME</td></tr>
+            }
             <tr class="even left"><td>Religion :</td><td class="right">@Model.StudentData.RLGN</td></tr>
             <tr class="odd left"><td>Address :</td><td class="right">@Model.StudentData.ADDR_LINE1 ,</td></tr>
 

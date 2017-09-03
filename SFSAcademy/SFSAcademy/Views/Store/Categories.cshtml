@@ -1,0 +1,31 @@
+﻿@model IEnumerable<SFSAcademy.STORE_CATEGORY>
+
+@{
+    ViewBag.Title = "Categories";
+}
+
+<div id="content-header">
+    <img src="~/Content/images/show_store.png" alt="Store Logo">
+    <h1>Store</h1>
+    <h3>Categories</h3>
+    <div id="app-back-button">
+        <a href='javascript:history.back()' onclick="return confirm('are you sure?')"><img src="~/Content/images/buttons/back.png"></a>
+    </div>
+</div>
+<div><img src="~/Content/images/_global/header_underline_.jpg" width="100%"></div>
+
+<div id="page-yield">
+    <div id="flash_box"></div>
+    @if (Html.ValidationSummary() != null)
+    {
+        <p class="flash-msg"> @Html.ValidationSummary() </p>
+    }
+    <div id="student-category-form">
+        @Html.Partial("~/Views/Store/_product_category_create_form.cshtml", new SFSAcademy.STORE_CATEGORY())
+    </div>
+    <br /><br />
+    <div id="student-category-list">
+        @{Html.RenderAction("_CategoriesList", "Store");}
+
+    </div>
+</div>

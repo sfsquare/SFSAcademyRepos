@@ -1,0 +1,42 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<div id="content-header">
+    <img src="~/Content/images/show_store.png" alt="Settings Logo">
+    <h1>Store</h1>
+    <h3>Home</h3>
+    <div id="app-back-button">
+        <a href='javascript:history.back()' onclick="return confirm('are you sure?')"><img src="~/Content/images/buttons/back.png"></a>
+    </div>
+</div>
+<div><img src="~/Content/images/_global/header_underline_.jpg" width="100%"></div>
+
+<div id="page-yield">
+    @if (Html.ValidationSummary() != null)
+    {
+        <p class="flash-msg"> @Html.ValidationSummary() </p>
+    }
+    <div class="box">
+        <div class="link-box">
+            <div class="link-heading">@Html.ActionLink("Manage Category", "Categories")</div>
+            <div class="link-descr">Manage Product Category in the Store</div>
+        </div>
+
+        <div class="link-box">
+            <div class="link-heading">@Html.ActionLink("Manage Products", "ViewAll")</div>
+            <div class="link-descr">Manage All Products and Add New Product in the Store</div>
+        </div>
+
+        <div class="link-box">
+            <div class="link-heading">@Html.ActionLink("Manage Selling", "ViewAllSelling")</div>
+            <div class="link-descr">Manage All Sellings Through Store</div>
+        </div>
+        <div class="extender"></div>
+    </div>
+</div>
+@section Styles {
+    <link href="@Url.Content("~/Content/stylesheets/application.css")" rel="stylesheet" type="text/css" />
+<link href="@Url.Content("~/Content/stylesheets/_layouts/style.css")" rel="stylesheet" type="text/css" />
+<link href="@Url.Content("~/Content/stylesheets/popup.css")" rel="stylesheet" type="text/css" />
+}

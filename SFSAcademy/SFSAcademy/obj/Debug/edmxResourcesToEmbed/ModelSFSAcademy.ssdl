@@ -874,6 +874,58 @@
     <Property Name="SETS_KEY" Type="varchar" MaxLength="50" />
     <Property Name="IS_ENABL" Type="varchar" MaxLength="1" />
   </EntityType>
+  <EntityType Name="STORE_CATEGORY">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NAME" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="IS_ACT" Type="varchar" MaxLength="1" />
+    <Property Name="IS_DEL" Type="varchar" MaxLength="1" />
+    <Property Name="CREATED_AT" Type="datetime" />
+    <Property Name="UPDATED_AT" Type="datetime" />
+  </EntityType>
+  <EntityType Name="STORE_PRODUCTS">
+    <Key>
+      <PropertyRef Name="PRODUCT_ID" />
+    </Key>
+    <Property Name="PRODUCT_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NAME" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="CATEGORY_ID" Type="int" />
+    <Property Name="BRAND" Type="varchar" MaxLength="50" />
+    <Property Name="TOTAL_UNIT" Type="int" />
+    <Property Name="TOTAL_COST" Type="int" />
+    <Property Name="COST_PER_UNIT" Type="int" />
+    <Property Name="SELL_PRICE_PER_UNIT" Type="int" />
+    <Property Name="PURCHASED_ON" Type="datetime" />
+    <Property Name="PURCHASED_THROUGH" Type="varchar" MaxLength="50" />
+    <Property Name="BAR_CODE" Type="varchar" MaxLength="50" />
+    <Property Name="PAID_BY" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="UNIT_LEFT" Type="int" />
+    <Property Name="IS_ACT" Type="varchar" MaxLength="1" />
+    <Property Name="IS_DEL" Type="varchar" MaxLength="1" />
+    <Property Name="CREATED_AT" Type="datetime" />
+    <Property Name="UPDATED_AT" Type="datetime" />
+  </EntityType>
+  <EntityType Name="STORE_PURCHAGE">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PRODUCT_ID" Type="int" Nullable="false" />
+    <Property Name="UNIT_SOLD" Type="int" />
+    <Property Name="SOLD_PRICE" Type="int" />
+    <Property Name="SOLD_BY" Type="varchar" MaxLength="50" />
+    <Property Name="SOLD_ON" Type="datetime" />
+    <Property Name="STUDENT_NAME" Type="varchar" MaxLength="50" />
+    <Property Name="STUDENT_CONTACT_NO" Type="varchar" MaxLength="50" />
+    <Property Name="MONEY_RECEIVED_BY" Type="varchar" MaxLength="50" />
+    <Property Name="IS_DEPOSITED" Type="varchar" MaxLength="1" />
+    <Property Name="IS_ACT" Type="varchar" MaxLength="1" />
+    <Property Name="IS_DEL" Type="varchar" MaxLength="1" />
+    <Property Name="CREATED_AT" Type="datetime" />
+    <Property Name="UPDATED_AT" Type="datetime" />
+  </EntityType>
   <EntityType Name="STUDENT">
     <Key>
       <PropertyRef Name="ID" />
@@ -2089,6 +2141,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="STCAT_STPROD_ASSE_NI">
+    <End Role="STORE_CATEGORY" Type="Self.STORE_CATEGORY" Multiplicity="0..1" />
+    <End Role="STORE_PRODUCTS" Type="Self.STORE_PRODUCTS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="STORE_CATEGORY">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="STORE_PRODUCTS">
+        <PropertyRef Name="CATEGORY_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="STDNT_STUD_ARCH_NI">
     <End Role="STUDENT_CATGEORY" Type="Self.STUDENT_CATGEORY" Multiplicity="0..1" />
     <End Role="ARCHIVED_STUDENT" Type="Self.ARCHIVED_STUDENT" Multiplicity="*" />
@@ -2302,6 +2366,18 @@
       </Principal>
       <Dependent Role="SUBJECT_LEAVE">
         <PropertyRef Name="STDNT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="STPROD_STPUR_ASSE_NI">
+    <End Role="STORE_PRODUCTS" Type="Self.STORE_PRODUCTS" Multiplicity="1" />
+    <End Role="STORE_PURCHAGE" Type="Self.STORE_PURCHAGE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="STORE_PRODUCTS">
+        <PropertyRef Name="PRODUCT_ID" />
+      </Principal>
+      <Dependent Role="STORE_PURCHAGE">
+        <PropertyRef Name="PRODUCT_ID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -2527,6 +2603,9 @@
     <EntitySet Name="SMS_LOG" EntityType="Self.SMS_LOG" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SMS_MESSAGE" EntityType="Self.SMS_MESSAGE" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SMS_SETTING" EntityType="Self.SMS_SETTING" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="STORE_CATEGORY" EntityType="Self.STORE_CATEGORY" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="STORE_PRODUCTS" EntityType="Self.STORE_PRODUCTS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="STORE_PURCHAGE" EntityType="Self.STORE_PURCHAGE" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="STUDENT" EntityType="Self.STUDENT" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="STUDENT_ADDITIONAL_DETAIL" EntityType="Self.STUDENT_ADDITIONAL_DETAIL" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="STUDENT_ADDITIONAL_FIELD" EntityType="Self.STUDENT_ADDITIONAL_FIELD" Schema="dbo" store:Type="Tables" />
@@ -2881,6 +2960,10 @@
       <End Role="STUDENT" EntitySet="STUDENT" />
       <End Role="ASSESSMENT_SCORE" EntitySet="ASSESSMENT_SCORE" />
     </AssociationSet>
+    <AssociationSet Name="STCAT_STPROD_ASSE_NI" Association="Self.STCAT_STPROD_ASSE_NI">
+      <End Role="STORE_CATEGORY" EntitySet="STORE_CATEGORY" />
+      <End Role="STORE_PRODUCTS" EntitySet="STORE_PRODUCTS" />
+    </AssociationSet>
     <AssociationSet Name="STDNT_STUD_ARCH_NI" Association="Self.STDNT_STUD_ARCH_NI">
       <End Role="STUDENT_CATGEORY" EntitySet="STUDENT_CATGEORY" />
       <End Role="ARCHIVED_STUDENT" EntitySet="ARCHIVED_STUDENT" />
@@ -2952,6 +3035,10 @@
     <AssociationSet Name="STDNT_STUD_SUBJ_NI" Association="Self.STDNT_STUD_SUBJ_NI">
       <End Role="STUDENT" EntitySet="STUDENT" />
       <End Role="SUBJECT_LEAVE" EntitySet="SUBJECT_LEAVE" />
+    </AssociationSet>
+    <AssociationSet Name="STPROD_STPUR_ASSE_NI" Association="Self.STPROD_STPUR_ASSE_NI">
+      <End Role="STORE_PRODUCTS" EntitySet="STORE_PRODUCTS" />
+      <End Role="STORE_PURCHAGE" EntitySet="STORE_PURCHAGE" />
     </AssociationSet>
     <AssociationSet Name="SUBJ__SUBJ_EMPL_NI" Association="Self.SUBJ__SUBJ_EMPL_NI">
       <End Role="SUBJECT" EntitySet="SUBJECT" />
