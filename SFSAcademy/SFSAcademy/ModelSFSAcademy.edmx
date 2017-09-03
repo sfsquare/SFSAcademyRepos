@@ -879,6 +879,58 @@
           <Property Name="SETS_KEY" Type="varchar" MaxLength="50" />
           <Property Name="IS_ENABL" Type="varchar" MaxLength="1" />
         </EntityType>
+        <EntityType Name="STORE_CATEGORY">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NAME" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="IS_ACT" Type="varchar" MaxLength="1" />
+          <Property Name="IS_DEL" Type="varchar" MaxLength="1" />
+          <Property Name="CREATED_AT" Type="datetime" />
+          <Property Name="UPDATED_AT" Type="datetime" />
+        </EntityType>
+        <EntityType Name="STORE_PRODUCTS">
+          <Key>
+            <PropertyRef Name="PRODUCT_ID" />
+          </Key>
+          <Property Name="PRODUCT_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NAME" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CATEGORY_ID" Type="int" />
+          <Property Name="BRAND" Type="varchar" MaxLength="50" />
+          <Property Name="TOTAL_UNIT" Type="int" />
+          <Property Name="TOTAL_COST" Type="int" />
+          <Property Name="COST_PER_UNIT" Type="int" />
+          <Property Name="SELL_PRICE_PER_UNIT" Type="int" />
+          <Property Name="PURCHASED_ON" Type="datetime" />
+          <Property Name="PURCHASED_THROUGH" Type="varchar" MaxLength="50" />
+          <Property Name="BAR_CODE" Type="varchar" MaxLength="50" />
+          <Property Name="PAID_BY" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="UNIT_LEFT" Type="int" />
+          <Property Name="IS_ACT" Type="varchar" MaxLength="1" />
+          <Property Name="IS_DEL" Type="varchar" MaxLength="1" />
+          <Property Name="CREATED_AT" Type="datetime" />
+          <Property Name="UPDATED_AT" Type="datetime" />
+        </EntityType>
+        <EntityType Name="STORE_PURCHAGE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PRODUCT_ID" Type="int" Nullable="false" />
+          <Property Name="UNIT_SOLD" Type="int" />
+          <Property Name="SOLD_PRICE" Type="int" />
+          <Property Name="SOLD_BY" Type="varchar" MaxLength="50" />
+          <Property Name="SOLD_ON" Type="datetime" />
+          <Property Name="STUDENT_NAME" Type="varchar" MaxLength="50" />
+          <Property Name="STUDENT_CONTACT_NO" Type="varchar" MaxLength="50" />
+          <Property Name="MONEY_RECEIVED_BY" Type="varchar" MaxLength="50" />
+          <Property Name="IS_DEPOSITED" Type="varchar" MaxLength="1" />
+          <Property Name="IS_ACT" Type="varchar" MaxLength="1" />
+          <Property Name="IS_DEL" Type="varchar" MaxLength="1" />
+          <Property Name="CREATED_AT" Type="datetime" />
+          <Property Name="UPDATED_AT" Type="datetime" />
+        </EntityType>
         <EntityType Name="STUDENT">
           <Key>
             <PropertyRef Name="ID" />
@@ -2094,6 +2146,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="STCAT_STPROD_ASSE_NI">
+          <End Role="STORE_CATEGORY" Type="Self.STORE_CATEGORY" Multiplicity="0..1" />
+          <End Role="STORE_PRODUCTS" Type="Self.STORE_PRODUCTS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="STORE_CATEGORY">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="STORE_PRODUCTS">
+              <PropertyRef Name="CATEGORY_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="STDNT_STUD_ARCH_NI">
           <End Role="STUDENT_CATGEORY" Type="Self.STUDENT_CATGEORY" Multiplicity="0..1" />
           <End Role="ARCHIVED_STUDENT" Type="Self.ARCHIVED_STUDENT" Multiplicity="*" />
@@ -2307,6 +2371,18 @@
             </Principal>
             <Dependent Role="SUBJECT_LEAVE">
               <PropertyRef Name="STDNT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="STPROD_STPUR_ASSE_NI">
+          <End Role="STORE_PRODUCTS" Type="Self.STORE_PRODUCTS" Multiplicity="1" />
+          <End Role="STORE_PURCHAGE" Type="Self.STORE_PURCHAGE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="STORE_PRODUCTS">
+              <PropertyRef Name="PRODUCT_ID" />
+            </Principal>
+            <Dependent Role="STORE_PURCHAGE">
+              <PropertyRef Name="PRODUCT_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2532,6 +2608,9 @@
           <EntitySet Name="SMS_LOG" EntityType="Self.SMS_LOG" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SMS_MESSAGE" EntityType="Self.SMS_MESSAGE" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SMS_SETTING" EntityType="Self.SMS_SETTING" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="STORE_CATEGORY" EntityType="Self.STORE_CATEGORY" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="STORE_PRODUCTS" EntityType="Self.STORE_PRODUCTS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="STORE_PURCHAGE" EntityType="Self.STORE_PURCHAGE" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="STUDENT" EntityType="Self.STUDENT" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="STUDENT_ADDITIONAL_DETAIL" EntityType="Self.STUDENT_ADDITIONAL_DETAIL" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="STUDENT_ADDITIONAL_FIELD" EntityType="Self.STUDENT_ADDITIONAL_FIELD" Schema="dbo" store:Type="Tables" />
@@ -2886,6 +2965,10 @@
             <End Role="STUDENT" EntitySet="STUDENT" />
             <End Role="ASSESSMENT_SCORE" EntitySet="ASSESSMENT_SCORE" />
           </AssociationSet>
+          <AssociationSet Name="STCAT_STPROD_ASSE_NI" Association="Self.STCAT_STPROD_ASSE_NI">
+            <End Role="STORE_CATEGORY" EntitySet="STORE_CATEGORY" />
+            <End Role="STORE_PRODUCTS" EntitySet="STORE_PRODUCTS" />
+          </AssociationSet>
           <AssociationSet Name="STDNT_STUD_ARCH_NI" Association="Self.STDNT_STUD_ARCH_NI">
             <End Role="STUDENT_CATGEORY" EntitySet="STUDENT_CATGEORY" />
             <End Role="ARCHIVED_STUDENT" EntitySet="ARCHIVED_STUDENT" />
@@ -2957,6 +3040,10 @@
           <AssociationSet Name="STDNT_STUD_SUBJ_NI" Association="Self.STDNT_STUD_SUBJ_NI">
             <End Role="STUDENT" EntitySet="STUDENT" />
             <End Role="SUBJECT_LEAVE" EntitySet="SUBJECT_LEAVE" />
+          </AssociationSet>
+          <AssociationSet Name="STPROD_STPUR_ASSE_NI" Association="Self.STPROD_STPUR_ASSE_NI">
+            <End Role="STORE_PRODUCTS" EntitySet="STORE_PRODUCTS" />
+            <End Role="STORE_PURCHAGE" EntitySet="STORE_PURCHAGE" />
           </AssociationSet>
           <AssociationSet Name="SUBJ__SUBJ_EMPL_NI" Association="Self.SUBJ__SUBJ_EMPL_NI">
             <End Role="SUBJECT" EntitySet="SUBJECT" />
@@ -5757,6 +5844,17 @@
             <End Role="USER" EntitySet="USERS" />
             <End Role="STUDENT" EntitySet="STUDENTs" />
           </AssociationSet>
+          <EntitySet Name="STORE_CATEGORY" EntityType="SFSAcademyModel.STORE_CATEGORY" />
+          <EntitySet Name="STORE_PRODUCTS" EntityType="SFSAcademyModel.STORE_PRODUCTS" />
+          <EntitySet Name="STORE_PURCHAGE" EntityType="SFSAcademyModel.STORE_PURCHAGE" />
+          <AssociationSet Name="STCAT_STPROD_ASSE_NI" Association="SFSAcademyModel.STCAT_STPROD_ASSE_NI">
+            <End Role="STORE_CATEGORY" EntitySet="STORE_CATEGORY" />
+            <End Role="STORE_PRODUCTS" EntitySet="STORE_PRODUCTS" />
+          </AssociationSet>
+          <AssociationSet Name="STPROD_STPUR_ASSE_NI" Association="SFSAcademyModel.STPROD_STPUR_ASSE_NI">
+            <End Role="STORE_PRODUCTS" EntitySet="STORE_PRODUCTS" />
+            <End Role="STORE_PURCHAGE" EntitySet="STORE_PURCHAGE" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="FEE_COLLECTION_PARTICULAR">
           <Key>
@@ -6250,6 +6348,86 @@
             </Principal>
             <Dependent Role="STUDENT">
               <PropertyRef Name="USRID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="STORE_CATEGORY">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NAME" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IS_ACT" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="IS_DEL" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="CREATED_AT" Type="DateTime" Precision="3" />
+          <Property Name="UPDATED_AT" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="STORE_PRODUCTS" Relationship="SFSAcademyModel.STCAT_STPROD_ASSE_NI" FromRole="STORE_CATEGORY" ToRole="STORE_PRODUCTS" />
+        </EntityType>
+        <EntityType Name="STORE_PRODUCTS">
+          <Key>
+            <PropertyRef Name="PRODUCT_ID" />
+          </Key>
+          <Property Name="PRODUCT_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NAME" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CATEGORY_ID" Type="Int32" />
+          <Property Name="BRAND" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TOTAL_UNIT" Type="Int32" />
+          <Property Name="TOTAL_COST" Type="Int32" />
+          <Property Name="COST_PER_UNIT" Type="Int32" />
+          <Property Name="SELL_PRICE_PER_UNIT" Type="Int32" />
+          <Property Name="PURCHASED_ON" Type="DateTime" Precision="3" />
+          <Property Name="PURCHASED_THROUGH" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="BAR_CODE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PAID_BY" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="UNIT_LEFT" Type="Int32" />
+          <Property Name="IS_ACT" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="IS_DEL" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="CREATED_AT" Type="DateTime" Precision="3" />
+          <Property Name="UPDATED_AT" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="STORE_CATEGORY" Relationship="SFSAcademyModel.STCAT_STPROD_ASSE_NI" FromRole="STORE_PRODUCTS" ToRole="STORE_CATEGORY" />
+          <NavigationProperty Name="STORE_PURCHAGE" Relationship="SFSAcademyModel.STPROD_STPUR_ASSE_NI" FromRole="STORE_PRODUCTS" ToRole="STORE_PURCHAGE" />
+        </EntityType>
+        <EntityType Name="STORE_PURCHAGE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PRODUCT_ID" Type="Int32" Nullable="false" />
+          <Property Name="UNIT_SOLD" Type="Int32" />
+          <Property Name="SOLD_PRICE" Type="Int32" />
+          <Property Name="SOLD_BY" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SOLD_ON" Type="DateTime" Precision="3" />
+          <Property Name="STUDENT_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="STUDENT_CONTACT_NO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MONEY_RECEIVED_BY" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IS_DEPOSITED" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="IS_ACT" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="IS_DEL" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="CREATED_AT" Type="DateTime" Precision="3" />
+          <Property Name="UPDATED_AT" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="STORE_PRODUCTS" Relationship="SFSAcademyModel.STPROD_STPUR_ASSE_NI" FromRole="STORE_PURCHAGE" ToRole="STORE_PRODUCTS" />
+        </EntityType>
+        <Association Name="STCAT_STPROD_ASSE_NI">
+          <End Type="SFSAcademyModel.STORE_CATEGORY" Role="STORE_CATEGORY" Multiplicity="0..1" />
+          <End Type="SFSAcademyModel.STORE_PRODUCTS" Role="STORE_PRODUCTS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="STORE_CATEGORY">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="STORE_PRODUCTS">
+              <PropertyRef Name="CATEGORY_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="STPROD_STPUR_ASSE_NI">
+          <End Type="SFSAcademyModel.STORE_PRODUCTS" Role="STORE_PRODUCTS" Multiplicity="1" />
+          <End Type="SFSAcademyModel.STORE_PURCHAGE" Role="STORE_PURCHAGE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="STORE_PRODUCTS">
+              <PropertyRef Name="PRODUCT_ID" />
+            </Principal>
+            <Dependent Role="STORE_PURCHAGE">
+              <PropertyRef Name="PRODUCT_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -7403,6 +7581,61 @@
                 <ScalarProperty Name="ADMSN_DATE" ColumnName="ADMSN_DATE" />
                 <ScalarProperty Name="CLS_ROLL_NO" ColumnName="CLS_ROLL_NO" />
                 <ScalarProperty Name="ADMSN_NO" ColumnName="ADMSN_NO" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="STORE_CATEGORY">
+            <EntityTypeMapping TypeName="SFSAcademyModel.STORE_CATEGORY">
+              <MappingFragment StoreEntitySet="STORE_CATEGORY">
+                <ScalarProperty Name="UPDATED_AT" ColumnName="UPDATED_AT" />
+                <ScalarProperty Name="CREATED_AT" ColumnName="CREATED_AT" />
+                <ScalarProperty Name="IS_DEL" ColumnName="IS_DEL" />
+                <ScalarProperty Name="IS_ACT" ColumnName="IS_ACT" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="STORE_PRODUCTS">
+            <EntityTypeMapping TypeName="SFSAcademyModel.STORE_PRODUCTS">
+              <MappingFragment StoreEntitySet="STORE_PRODUCTS">
+                <ScalarProperty Name="UPDATED_AT" ColumnName="UPDATED_AT" />
+                <ScalarProperty Name="CREATED_AT" ColumnName="CREATED_AT" />
+                <ScalarProperty Name="IS_DEL" ColumnName="IS_DEL" />
+                <ScalarProperty Name="IS_ACT" ColumnName="IS_ACT" />
+                <ScalarProperty Name="UNIT_LEFT" ColumnName="UNIT_LEFT" />
+                <ScalarProperty Name="PAID_BY" ColumnName="PAID_BY" />
+                <ScalarProperty Name="BAR_CODE" ColumnName="BAR_CODE" />
+                <ScalarProperty Name="PURCHASED_THROUGH" ColumnName="PURCHASED_THROUGH" />
+                <ScalarProperty Name="PURCHASED_ON" ColumnName="PURCHASED_ON" />
+                <ScalarProperty Name="SELL_PRICE_PER_UNIT" ColumnName="SELL_PRICE_PER_UNIT" />
+                <ScalarProperty Name="COST_PER_UNIT" ColumnName="COST_PER_UNIT" />
+                <ScalarProperty Name="TOTAL_COST" ColumnName="TOTAL_COST" />
+                <ScalarProperty Name="TOTAL_UNIT" ColumnName="TOTAL_UNIT" />
+                <ScalarProperty Name="BRAND" ColumnName="BRAND" />
+                <ScalarProperty Name="CATEGORY_ID" ColumnName="CATEGORY_ID" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="PRODUCT_ID" ColumnName="PRODUCT_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="STORE_PURCHAGE">
+            <EntityTypeMapping TypeName="SFSAcademyModel.STORE_PURCHAGE">
+              <MappingFragment StoreEntitySet="STORE_PURCHAGE">
+                <ScalarProperty Name="UPDATED_AT" ColumnName="UPDATED_AT" />
+                <ScalarProperty Name="CREATED_AT" ColumnName="CREATED_AT" />
+                <ScalarProperty Name="IS_DEL" ColumnName="IS_DEL" />
+                <ScalarProperty Name="IS_ACT" ColumnName="IS_ACT" />
+                <ScalarProperty Name="IS_DEPOSITED" ColumnName="IS_DEPOSITED" />
+                <ScalarProperty Name="MONEY_RECEIVED_BY" ColumnName="MONEY_RECEIVED_BY" />
+                <ScalarProperty Name="STUDENT_CONTACT_NO" ColumnName="STUDENT_CONTACT_NO" />
+                <ScalarProperty Name="STUDENT_NAME" ColumnName="STUDENT_NAME" />
+                <ScalarProperty Name="SOLD_ON" ColumnName="SOLD_ON" />
+                <ScalarProperty Name="SOLD_BY" ColumnName="SOLD_BY" />
+                <ScalarProperty Name="SOLD_PRICE" ColumnName="SOLD_PRICE" />
+                <ScalarProperty Name="UNIT_SOLD" ColumnName="UNIT_SOLD" />
+                <ScalarProperty Name="PRODUCT_ID" ColumnName="PRODUCT_ID" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>

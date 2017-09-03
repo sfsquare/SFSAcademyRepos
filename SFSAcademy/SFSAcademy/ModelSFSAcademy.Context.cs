@@ -104,5 +104,8 @@ namespace SFSAcademy
         public virtual DbSet<FINANCE_FEE_COLLECTION> FINANCE_FEE_COLLECTION { get; set; }
         public virtual DbSet<IMAGE_DOCUMENTS> IMAGE_DOCUMENTS { get; set; }
         public virtual DbSet<STUDENT> STUDENTs { get; set; }
+        public virtual DbSet<STORE_CATEGORY> STORE_CATEGORY { get; set; }
+        public virtual DbSet<STORE_PRODUCTS> STORE_PRODUCTS { get; set; }
+        public virtual DbSet<STORE_PURCHAGE> STORE_PURCHAGE { get; set; }
     }
 }

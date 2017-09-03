@@ -60,6 +60,7 @@
             </div>
             <div id="autofill-area">
                 @Html.HiddenFor(model => model.ID)
+                @Html.HiddenFor(model => model.PHTO_DATA)
                 <div class="student_admission_date">
                     @Html.LabelFor(model => model.ADMSN_NO, "Admission Number", htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="text-input-bg-admission">

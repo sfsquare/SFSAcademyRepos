@@ -75,7 +75,10 @@
 #reminders_button:hover {background:#fff url(../../images/dashboard_buttons/button_reminders.png) -175px 0 no-repeat;}
 
 #reminders_button_unread {background:#fff url(../../images/dashboard_buttons/button_reminders_unread.png) 0 0 no-repeat;}
-#reminders_button:hover_unread {background:#fff url(../../images/dashboard_buttons/button_reminders_unread.png) -175px 0 no-repeat;}
+#reminders_button:hover {background:#fff url(../../images/dashboard_buttons/button_reminders_unread.png) -175px 0 no-repeat;}
+
+#store_button {background:#fff url(../../images/dashboard_buttons/button_store.png) 0 0 no-repeat;}
+#store_button:hover {background:#fff url(../../images/dashboard_buttons/button_store.png) -175px 0 no-repeat;}
 
 .reminder1{
     position: relative;

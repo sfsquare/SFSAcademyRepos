@@ -1,0 +1,144 @@
+﻿@model SFSAcademy.STORE_PRODUCTS
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>STORE_PRODUCTS</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NAME)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NAME)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BRAND)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BRAND)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TOTAL_UNIT)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TOTAL_UNIT)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TOTAL_COST)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TOTAL_COST)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.COST_PER_UNIT)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.COST_PER_UNIT)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SELL_PRICE_PER_UNIT)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SELL_PRICE_PER_UNIT)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PURCHASED_ON)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PURCHASED_ON)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PURCHASED_THROUGH)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PURCHASED_THROUGH)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PAID_BY)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PAID_BY)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UNIT_LEFT)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UNIT_LEFT)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IS_ACT)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IS_ACT)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IS_DEL)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IS_DEL)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CREATED_AT)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CREATED_AT)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UPDATED_AT)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UPDATED_AT)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.STORE_CATEGORY.NAME)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.STORE_CATEGORY.NAME)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

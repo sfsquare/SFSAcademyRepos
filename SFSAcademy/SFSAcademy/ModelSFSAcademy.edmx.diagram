@@ -200,6 +200,11 @@
         <AssociationConnector Association="SFSAcademyModel.STDNT_STUD_STUD_NI5" />
         <AssociationConnector Association="SFSAcademyModel.STDNT_STUD_SUBJ_NI" />
         <AssociationConnector Association="SFSAcademyModel.USRID_USER_STUD_NI" />
+        <EntityTypeShape EntityType="SFSAcademyModel.STORE_CATEGORY" Width="1.5" PointX="3.375" PointY="12.125" />
+        <EntityTypeShape EntityType="SFSAcademyModel.STORE_PRODUCTS" Width="1.5" PointX="5.875" PointY="11" />
+        <EntityTypeShape EntityType="SFSAcademyModel.STORE_PURCHAGE" Width="1.5" PointX="8.125" PointY="11.375" />
+        <AssociationConnector Association="SFSAcademyModel.STCAT_STPROD_ASSE_NI" />
+        <AssociationConnector Association="SFSAcademyModel.STPROD_STPUR_ASSE_NI" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

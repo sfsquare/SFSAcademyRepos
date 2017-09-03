@@ -47,6 +47,12 @@
                 <a href="@Url.Action("Index", "Finance")" class="option_buttons" id="finance_button" title="Finance"></a><div class='button-label'><p>Finance</p></div>
             </div>
         }
+        if (Html.CurrentUser_UserType().Equals("Admin") || Html.CurrentUser_UserType().Equals("Finance"))
+        {
+            <div class="button-box">
+                <a href="@Url.Action("Index", "Store")" class="option_buttons" id="store_button" title="Store"></a><div class='button-label'><p>Store</p></div>
+            </div>
+        }
 
     }
     else if (Html.CurrentUser_UserType().Equals("Student") || Html.CurrentUser_UserType().Equals("Parent"))
@@ -208,6 +214,12 @@
             @if (Html.Permitted_To("Index", "Finance"))
             {
                 <a href="@Url.Action("Index", "Finance")" class="option_buttons" id="finance_button" title="Finance"></a><div class='button-label'><p>Finance</p></div>
+            }
+        </div>
+        <div class="button-box">
+            @if (Html.Permitted_To("Index", "Store"))
+            {
+                <a href="@Url.Action("Index", "Store")" class="option_buttons" id="store_button" title="Store"></a><div class='button-label'><p>Store</p></div>
             }
         </div>
 
