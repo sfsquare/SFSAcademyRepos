@@ -205,6 +205,8 @@
         <EntityTypeShape EntityType="SFSAcademyModel.STORE_PURCHAGE" Width="1.5" PointX="8.125" PointY="11.375" />
         <AssociationConnector Association="SFSAcademyModel.STCAT_STPROD_ASSE_NI" />
         <AssociationConnector Association="SFSAcademyModel.STPROD_STPUR_ASSE_NI" />
+        <EntityTypeShape EntityType="SFSAcademyModel.STORE_PURCHAGE_CART" Width="1.5" PointX="8.125" PointY="16.5" />
+        <AssociationConnector Association="SFSAcademyModel.STPROD_STPURCART_ASSE_NI" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -1,0 +1,12 @@
+﻿
+@{
+    ViewBag.Title = "Home";
+    Layout = "../Shared/_Layout/FrontPage.cshtml";
+}
+
+<h2> 
+    Home
+    @ViewContext.RouteData.Values["action"]
+    @ViewContext.RouteData.Values["controller"]
+    @ViewContext.RouteData.Values["id"]
+</h2>   

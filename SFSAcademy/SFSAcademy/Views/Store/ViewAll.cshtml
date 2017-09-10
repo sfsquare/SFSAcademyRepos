@@ -15,8 +15,10 @@
 <div><img src="~/Content/images/_global/header_underline_.jpg" width="100%"></div>
 <div id="inner-tab-menu">
     <ul>
-        <li>@Html.ActionLink("Add New", "Create")</li>
+        <li>@Html.ActionLink("Show Cart", "ViewCart")</li>
+        <li>@Html.ActionLink("Add New Product", "Create")</li>
     </ul>
+    <p class="flash-msg"> Number of Items in the Cart = @ViewBag.CartItems </p>
 </div>
 <div id="page-yield">
     <div id="search_box_bg">
@@ -29,7 +31,7 @@
                 @using (Html.BeginForm("ViewAll", "Store", FormMethod.Get))
                 {
                     <p>
-                        @Html.DropDownList("searchString", new SelectList(Model, "ID", "NAME"), "Select Category");
+                        @Html.DropDownList("searchString", new SelectList(Model, "ID", "NAME"), "Select Category")
 
                         <input type="submit" value="Submit" id="submit-button" />
                     </p>

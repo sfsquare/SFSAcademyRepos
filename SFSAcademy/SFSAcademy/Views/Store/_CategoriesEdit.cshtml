@@ -15,7 +15,6 @@
     @Html.AntiForgeryToken()
 
     <div id="page-yield">
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.ID)
         <div id="edit_user_form">
             <div class="label-field-pair">

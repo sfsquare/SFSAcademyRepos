@@ -62,7 +62,7 @@ namespace SFSAcademy.Controllers
                     break;
             }
 
-            int pageSize = 3;
+            int pageSize = 100;
             int pageNumber = (page ?? 1);
             return View(StudentS.ToPagedList(pageNumber, pageSize));
             //return View(db.USERS.ToList());

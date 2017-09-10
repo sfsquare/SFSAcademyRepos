@@ -107,5 +107,6 @@ namespace SFSAcademy
         public virtual DbSet<STORE_CATEGORY> STORE_CATEGORY { get; set; }
         public virtual DbSet<STORE_PRODUCTS> STORE_PRODUCTS { get; set; }
         public virtual DbSet<STORE_PURCHAGE> STORE_PURCHAGE { get; set; }
+        public virtual DbSet<STORE_PURCHAGE_CART> STORE_PURCHAGE_CART { get; set; }
     }
 }

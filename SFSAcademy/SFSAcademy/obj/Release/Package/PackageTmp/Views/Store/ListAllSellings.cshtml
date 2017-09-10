@@ -1,0 +1,73 @@
+﻿@model PagedList.IPagedList<SFSAcademy.Models.Purchase>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+@{    Layout = null;}
+
+
+<div class="students-table">
+    <table id="listing" align="center" width="100%" cellpadding="1" cellspacing="1">
+        <tr class="tr-head">
+            <th>
+                Sl. No.
+            </th>
+            <th>
+                Name
+            </th>
+            <th>
+                Category
+            </th>
+            <th>
+                Sold By
+            </th>
+            <th>
+                Is Deposited
+            </th>
+            <th>
+                Student Name
+            </th>
+            <th>
+                Sold ON
+            </th>
+            <th></th>
+        </tr>
+        <tr class="tr-blank"></tr>
+        @{int i = 1; }
+        @foreach (var item in Model)
+            {
+                string selectedRow = "tr-even";
+                if (i % 2 == 0)
+                {
+                    selectedRow = "tr-odd";
+                }
+                <tr class="@selectedRow">
+                    <td class="col-1">@i</td>
+                    <td class="col-2">
+                        @Html.DisplayFor(modelItem => item.ProductData.NAME)
+                    </td>
+                    <td class="col-3">
+                        @Html.DisplayFor(modelItem => item.CategoryData.NAME)
+                    </td>
+                    <td class="col-4">
+                        @Html.DisplayFor(modelItem => item.PurchaseData.SOLD_BY)
+                    </td>
+                    <td class="col-5" nowrap>
+                        @Html.DisplayFor(modelItem => item.PurchaseData.IS_DEPOSITED)
+                    </td>
+                    <td class="col-6" nowrap>
+                        @Html.DisplayFor(modelItem => item.PurchaseData.STUDENT_NAME)
+                    </td>
+                    <td class="col-7" nowrap>
+                        @Html.DisplayFor(modelItem => item.PurchaseData.SOLD_ON)
+                    </td>
+                    <td class="col-8" nowrap>
+                        @Html.ActionLink("Edit ", "EditSelling", new { id = item.PurchaseData.ID }) 
+
+                    </td>
+                </tr>
+            i = i + 1;
+        }
+    </table>
+    <br />
+    @Html.PagedListPager(Model, page => Url.Action("ListAllSellings",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+</div>

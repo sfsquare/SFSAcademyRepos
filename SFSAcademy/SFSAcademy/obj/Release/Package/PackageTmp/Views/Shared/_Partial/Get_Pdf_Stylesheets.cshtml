@@ -1,0 +1,31 @@
+﻿@{
+    string CSSDirection = "~/Content/stylesheets/";
+    bool CSSAll = true;
+    string ApplicationPhysicalPath = HostingEnvironment.ApplicationPhysicalPath;
+    DirectoryInfo Directory = new DirectoryInfo(ApplicationPhysicalPath + "Content/stylesheets/" + @ViewContext.RouteData.Values["controller"]);
+    if (Directory.Exists)
+    {
+        FileInfo[] files = Directory.GetFiles();
+        files = files.OrderBy(f => f.Name).ToArray();
+        IEnumerable<FileInfo> filesList = files.OrderBy(f => f.Name).ToArray();
+        bool ExitLoop = false;
+        for (var itemNumber = 0; itemNumber <= filesList.Count() - 1; itemNumber++)
+        {
+            if (ExitLoop) { break; }
+            if (String.Equals(filesList.ElementAt(itemNumber).ToString().Substring(0, filesList.ElementAt(itemNumber).ToString().IndexOf('.')), @ViewContext.RouteData.Values["action"]))
+            {
+                DynamicHeader.AddStyleSheet(CSSDirection + @ViewContext.RouteData.Values["controller"] + "/" + filesList.ElementAt(itemNumber) + ".css");
+                ExitLoop = true;
+                break;
+            }
+
+        }
+    }
+
+}
+
+@if (CSSAll)
+{
+    DynamicHeader.AddStyleSheet(CSSDirection + "_layouts/forgotpw.css");
+    DynamicHeader.AddStyleSheet(CSSDirection + "_layouts/style.css");
+}

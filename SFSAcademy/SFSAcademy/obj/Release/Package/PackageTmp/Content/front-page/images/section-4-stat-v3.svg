@@ -1,0 +1,59 @@
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 210.6 303.5" style="enable-background:new 0 0 210.6 303.5;" xml:space="preserve">
+
+<style type="text/css">
+	.st0{fill:none;stroke:#568B3E;stroke-width:2.25;stroke-miterlimit:10;}
+	.st1{fill:none;stroke:#568B3E;stroke-width:2.25;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+	.st2{fill:none;stroke:#8EC73F;stroke-width:2.25;stroke-miterlimit:10;}
+	.st3{fill:none;stroke:#8EC73F;stroke-width:2.25;stroke-linecap:round;stroke-miterlimit:10;}
+	.st4{fill:#568B3E;stroke:#568B3E;stroke-width:2.25;stroke-miterlimit:10;}
+	.st5{fill:#8EC73F;stroke:#8EC73F;stroke-width:2.25;stroke-linecap:round;stroke-miterlimit:10;}
+</style>
+
+<defs>
+	
+	<style>
+	
+	.st0, .st1, .st2, .st3, .st4, .st5  {
+		stroke-dasharray: 400;
+		stroke-offset: 0;
+		-webkit-animation: dash 1.75s linear forwards;
+		-o-animation: dash 1.75s linear forwards;
+		-moz-animation: dash 1.75s linear forwards;
+		animation: dash 1.75s linear forwards;
+		-webkit-animation-iteration-count: infinite; /* Safari 4.0 - 8.0 */
+		animation-iteration-count: infinite;
+		-webkit-animation-direction: alternate; /* Safari 4.0 - 8.0 */
+    	animation-direction: alternate;
+	}
+	
+	@-webkit-keyframes dash {
+		from {
+			stroke-dashoffset: 400;
+		}
+		to {
+			stroke-dashoffset: 0;
+		}
+	}
+	
+	</style>
+	
+</defs>
+
+<path class="st0" d="M83.6,260.7c0,20.3-16.5,36.8-36.8,36.8S10.1,281,10.1,260.7"/>
+<line class="st1" x1="134.1" y1="22.2" x2="142.8" y2="13.6"/>
+<path class="st2" d="M46.9,158.1c18.2,0,32.9,14.7,32.9,32.9S65,223.9,46.9,223.9"/>
+<path class="st0" d="M46.9,223.9C28.7,223.9,14,209.2,14,191s14.7-32.9,32.9-32.9"/>
+<circle class="st2" cx="46.9" cy="260.7" r="36.8"/>
+<line class="st0" x1="200.5" y1="158.5" x2="200.5" y2="297.4"/>
+<line class="st3" x1="200.5" y1="158.5" x2="164.4" y2="184.9"/>
+<circle class="st4" cx="125.1" cy="205.3" r="1.5"/>
+<circle class="st5" cx="125.1" cy="250.5" r="1.5"/>
+<path class="st2" d="M120.6,40.3c-4.1-2.8-8.9-4.5-14-4.5c-15.5,0-28,14.9-28,33.3c0,18.4,12.6,33.3,28,33.3c5.9,0,9.3-3.4,14-3.4"
+	/>
+<path class="st1" d="M120.6,99c4.7,0,6.3,3.4,14,3.4c15.5,0,28-14.9,28-33.3c0-18.4-12.5-33.3-28-33.3c-5.1,0-9.9,1.6-14,4.5"/>
+<path class="st2" d="M134.6,43.2c12,0,21.7,11.6,21.7,25.8"/>
+<path class="st2" d="M134.1,12.2c-4.4,4.4-6.5,10.3-6.1,16.1c5.8,0.3,11.7-1.7,16.1-6.1c4.4-4.4,6.5-10.3,6.1-16.1
+	C144.5,5.8,138.6,7.8,134.1,12.2z"/>
+<line class="st1" x1="120.6" y1="40.2" x2="120.6" y2="14.1"/>
+</svg>

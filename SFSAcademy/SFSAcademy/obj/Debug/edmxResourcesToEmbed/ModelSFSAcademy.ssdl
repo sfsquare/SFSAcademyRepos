@@ -926,6 +926,25 @@
     <Property Name="CREATED_AT" Type="datetime" />
     <Property Name="UPDATED_AT" Type="datetime" />
   </EntityType>
+  <EntityType Name="STORE_PURCHAGE_CART">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PRODUCT_ID" Type="int" Nullable="false" />
+    <Property Name="UNIT_SOLD" Type="int" />
+    <Property Name="SOLD_PRICE" Type="int" />
+    <Property Name="SOLD_BY" Type="varchar" MaxLength="50" />
+    <Property Name="SOLD_ON" Type="datetime" />
+    <Property Name="STUDENT_NAME" Type="varchar" MaxLength="50" />
+    <Property Name="STUDENT_CONTACT_NO" Type="varchar" MaxLength="50" />
+    <Property Name="MONEY_RECEIVED_BY" Type="varchar" MaxLength="50" />
+    <Property Name="IS_DEPOSITED" Type="varchar" MaxLength="1" />
+    <Property Name="IS_ACT" Type="varchar" MaxLength="1" />
+    <Property Name="IS_DEL" Type="varchar" MaxLength="1" />
+    <Property Name="CREATED_AT" Type="datetime" />
+    <Property Name="UPDATED_AT" Type="datetime" />
+  </EntityType>
   <EntityType Name="STUDENT">
     <Key>
       <PropertyRef Name="ID" />
@@ -2381,6 +2400,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="STPROD_STPURCART_ASSE_NI">
+    <End Role="STORE_PRODUCTS" Type="Self.STORE_PRODUCTS" Multiplicity="1" />
+    <End Role="STORE_PURCHAGE_CART" Type="Self.STORE_PURCHAGE_CART" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="STORE_PRODUCTS">
+        <PropertyRef Name="PRODUCT_ID" />
+      </Principal>
+      <Dependent Role="STORE_PURCHAGE_CART">
+        <PropertyRef Name="PRODUCT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="SUBJ__SUBJ_EMPL_NI">
     <End Role="SUBJECT" Type="Self.SUBJECT" Multiplicity="0..1" />
     <End Role="EMPLOYEES_SUBJECT" Type="Self.EMPLOYEES_SUBJECT" Multiplicity="*" />
@@ -2606,6 +2637,7 @@
     <EntitySet Name="STORE_CATEGORY" EntityType="Self.STORE_CATEGORY" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="STORE_PRODUCTS" EntityType="Self.STORE_PRODUCTS" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="STORE_PURCHAGE" EntityType="Self.STORE_PURCHAGE" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="STORE_PURCHAGE_CART" EntityType="Self.STORE_PURCHAGE_CART" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="STUDENT" EntityType="Self.STUDENT" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="STUDENT_ADDITIONAL_DETAIL" EntityType="Self.STUDENT_ADDITIONAL_DETAIL" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="STUDENT_ADDITIONAL_FIELD" EntityType="Self.STUDENT_ADDITIONAL_FIELD" Schema="dbo" store:Type="Tables" />
@@ -3039,6 +3071,10 @@
     <AssociationSet Name="STPROD_STPUR_ASSE_NI" Association="Self.STPROD_STPUR_ASSE_NI">
       <End Role="STORE_PRODUCTS" EntitySet="STORE_PRODUCTS" />
       <End Role="STORE_PURCHAGE" EntitySet="STORE_PURCHAGE" />
+    </AssociationSet>
+    <AssociationSet Name="STPROD_STPURCART_ASSE_NI" Association="Self.STPROD_STPURCART_ASSE_NI">
+      <End Role="STORE_PRODUCTS" EntitySet="STORE_PRODUCTS" />
+      <End Role="STORE_PURCHAGE_CART" EntitySet="STORE_PURCHAGE_CART" />
     </AssociationSet>
     <AssociationSet Name="SUBJ__SUBJ_EMPL_NI" Association="Self.SUBJ__SUBJ_EMPL_NI">
       <End Role="SUBJECT" EntitySet="SUBJECT" />

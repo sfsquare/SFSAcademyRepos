@@ -1,0 +1,57 @@
+﻿@model PagedList.IPagedList<SFSAcademy.Models.FeeCategory>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+@{    Layout = null;}
+
+<div class="students-table">
+    <table id="listing" align="center" width="100%" cellpadding="1" cellspacing="1">
+        <tr class="tr-head">
+            <th>
+                Sl. No.
+            </th>
+            <th>
+                @Html.ActionLink("Fees Name", "Master_Fees", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })
+            </th>
+            <th>
+                Batch
+            </th>
+            <th>
+                @Html.ActionLink("Created Date", "Master_Fees", new { sortOrder = ViewBag.DateSortParm, currentFilter = ViewBag.CurrentFilter })
+            </th>
+            <th>
+                Select
+            </th>
+        </tr>
+        <tr class="tr-blank"></tr>
+        @{int i = 1; }
+        @foreach (var item in Model)
+            {
+                string selectedRow = "tr-even";
+                if (i % 2 == 0)
+                {
+                    selectedRow = "tr-odd";
+                }
+                <tr class="@selectedRow">
+                    <td class="col-1">@i</td>
+                    <td class="col-4">
+                        @Html.DisplayFor(modelItem => item.FinanceFeeCategoryData.NAME)
+                    </td>
+                    <td class="col-7">
+                        @Html.DisplayFor(modelItem => item.BatchData.NAME)
+
+                    </td>
+                    <td class="col-5" nowrap>
+                        @Html.DisplayFor(modelItem => item.FinanceFeeCategoryData.CREATED_AT)
+                    </td>
+                    <td class="col-6" nowrap>
+                        @Html.ActionLink("Delete", "Master_Category_Delete", new { id = item.FinanceFeeCategoryData.ID }) |
+                        @Html.ActionLink("Edit", "Master_Category_Edit", new { id = item.FinanceFeeCategoryData.ID })
+                    </td>
+                </tr>
+            i = i + 1;
+        }
+    </table>
+    <br />
+    @Html.PagedListPager(Model, page => Url.Action("Master_Fees",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+</div>

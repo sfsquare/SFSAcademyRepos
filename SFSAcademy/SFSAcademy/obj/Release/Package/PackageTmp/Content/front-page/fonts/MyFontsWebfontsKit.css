@@ -1,0 +1,9 @@
+
+/* @import must be at top of file, otherwise CSS will not work */
+@import url("//hello.myfonts.net/count/2b6d73");
+
+  
+@font-face {font-family: 'UniversLT-Condensed';src: url('webfonts/2B6D73_0_0.eot');src: url('webfonts/2B6D73_0_0.eot?#iefix') format('embedded-opentype'),url('webfonts/2B6D73_0_0.woff') format('woff'),url('webfonts/2B6D73_0_0.ttf') format('truetype');}
+ 
+  
+@font-face {font-family: 'UniversLT-CondensedBold';src: url('webfonts/2B6D73_1_0.eot');src: url('webfonts/2B6D73_1_0.eot?#iefix') format('embedded-opentype'),url('webfonts/2B6D73_1_0.woff') format('woff'),url('webfonts/2B6D73_1_0.ttf') format('truetype');}
