@@ -1,0 +1,203 @@
+﻿<ul id="main-menu">
+    <li class="a"><a href="@Url.Action("Dashboard", "USERs", new { id = this.Session["UserId"] })">Dashboard</a></li>
+    @if (Html.Permitted_To("Index", "Student"))
+    {
+        <li class="a"><a href="@Url.Action("Index", "Student")">Students</a></li>
+    }
+    @if (Html.CurrentUser_UserType().Equals("Admin"))
+    {
+        <li class="a">
+            <a href="@Url.Action("Index", "Student_Attendance")">Attendance ▼</a>
+            <ul class="level-1">
+                <li><a href="@Url.Action("Index", "Attendances")">Attendance Register </a></li>
+                <li><a href="@Url.Action("Index", "Attendance_Reports")">Attendance Report</a></li>
+            </ul>
+        </li>
+    }
+    else if (Html.CurrentUser_UserType().Equals("Admin") && Html.CurrentUser_SubjectBatch() != null && Html.Configuration_Value("StudentAttendanceType").Equals("Daily"))
+    {
+        <li class="a">
+            <a href="@Url.Action("Index", "Student_Attendance", new { id = this.Session["UserId"] })">Attendance ▼</a>
+            <ul class="level-1">
+                <li><a href="@Url.Action("Index", "Attendances", new { id = this.Session["UserId"] })">Attendance Register</a></li>
+                <li><a href="@Url.Action("Index", "Attendance_Reports", new { id = this.Session["UserId"] })">Attendance Report</a></li>
+            </ul>
+        </li>
+    }
+    else if (Html.Permitted_To("Index", "Student_Attendance"))
+    {
+        <li class="a">
+            <a href="@Url.Action("Index", "Student_Attendance", new { id = this.Session["UserId"] })">Attendance ▼</a>
+            <ul class="level-1">
+                @if (Html.Permitted_To("Index", "Attendances"))
+                {
+                    <li><a href="@Url.Action("Index", "Attendances", new { id = this.Session["UserId"] })">Attendance Register</a></li>
+                }
+                <li><a href="@Url.Action("Index", "Attendance_Reports", new { id = this.Session["UserId"] })">Attendance Report</a></li>
+            </ul>
+        </li>
+    }
+
+    @if (Html.Permitted_To("Index", "Configuration"))
+    {
+        <li class="a">
+            <a href="@Url.Action("Index", "Configuration")">Settings ▼</a>
+            <ul class="level-1">
+                @if (Html.Permitted_To("Index", "Courses"))
+                {
+                    <li><a href="@Url.Action("Index", "Courses")">Manage Course/Batch</a></li>
+                }
+                @if (Html.Permitted_To("Settings", "Configuration"))
+                {
+                    <li><a href="@Url.Action("Categories", "Student")">Manage Student Category</a></li>
+                }
+                @if (Html.Permitted_To("Index", "Subjects"))
+                {
+                    <li><a href="@Url.Action("Index", "Subjects")">Manage Subject</a></li>
+                }
+                @if (Html.Permitted_To("Settings", "Configuration"))
+                {
+                    <li><a href="@Url.Action("Settings", "Configuration")">General Settings</a></li>
+                }
+                @if (Html.Permitted_To("Settings", "Configuration"))
+                {
+                    <li><a href="@Url.Action("Add_Additional_Details", "Student")">Add Admission Additional Detail</a></li>
+                }
+                @if (Html.Permitted_To("Index", "SMS"))
+                {
+                    <li><a href="@Url.Action("Index", "SMS")">SMS Module</a></li>
+                }
+            </ul>
+        </li>
+    }
+    @if (Html.Permitted_To("Index", "Timetable"))
+    {
+        <li class="a">
+            <a href="@Url.Action("Index", "Timetable")">Timetable <span class='down-arrow'>▼</span></a>
+            <ul class="level-1">
+                @if (Html.Permitted_To("New_Timetable", "Timetable"))
+                {
+                    <li><a href="@Url.Action("New_Timetable", "Timetable")">Create Timetable</a></li>
+                }
+                @if (Html.Permitted_To("Edit_Master", "Timetable"))
+                {
+                    <li><a href="@Url.Action("Edit_Master", "Timetable")">Edit Timetable</a></li>
+                }
+                @if (Html.Permitted_To("Index", "Class_Timings"))
+                {
+                    <li><a href="@Url.Action("Index", "Class_Timings")">Set Class Timings</a></li>
+                }
+                @if (Html.Permitted_To("Index", "Weekdays"))
+                {
+                    <li><a href="@Url.Action("Index", "Weekdays")">Set Weekdays</a></li>
+                }
+                @if (Html.Permitted_To("View", "Timetable"))
+                {
+                    <li><a href="@Url.Action("View", "Timetable")">View Timetable</a></li>
+                }
+                @if (Html.Permitted_To("View", "Timetable"))
+                {
+                    <li><a href="@Url.Action("Teachers_Timetable", "Timetable")">Teacher Timetable</a></li>
+                }
+                <li><a href="@Url.Action("Timetable", "Timetable")">Institutional Timetable</a></li>
+                @if (Html.Permitted_To("Edit", "Timetable"))
+                {
+                    <li><a href="@Url.Action("Index", "Weekday")">Create Weekdays</a></li>
+                }
+                @if (Html.Permitted_To("Work_Allotment", "Timetable"))
+                {
+                    <li><a href="@Url.Action("Work_Allotment", "Timetable")">Work Allotment</a></li>
+                }
+            </ul>
+        </li>
+
+    }
+    <li class="a">
+        <a href="#">More ▼</a>
+        <ul class="level-1" id="more-parent">
+            <li><a href="@Url.Action("Index", "Calendar")">Calendar</a></li>
+            @if (Html.Permitted_To("Index", "Exam"))
+            {
+                <li>
+                    <a href="@Url.Action("Index", "Exam")">Examination <span class='right-arrow'></span></a>
+                    <ul class="level-2" id="exam-parent">
+                        @if (Html.Permitted_To("Settings", "Exam"))
+                        {
+                            <li><a href="@Url.Action("Settings", "Exam")">Settings</a></li>
+                        }
+                        @if (Html.Permitted_To("Create_Exam", "Exam"))
+                        {
+                            <li><a href="@Url.Action("Create_Exam", "Exam")">Exam Management</a></li>
+                        }
+                        @if (Html.Permitted_To("Generate_Reports", "Exam"))
+                        {
+                            <li><a href="@Url.Action("Generate_Reports", "Exam")">Generate Reports</a></li>
+                        }
+                        <li><a href="@Url.Action("Report_Center", "Exam")">Report Center</a></li>
+                    </ul>
+                </li>
+            }
+            <li><a href="@Url.Action("Index", "News")">News</a></li>
+            @if (Html.Permitted_To("Index", "Event"))
+            {
+                <li><a href="@Url.Action("Index", "Event")">Event Creations</a></li>
+            }
+            @if (Html.Permitted_To("HR", "Employee"))
+            {
+                <li>
+                    <a href="@Url.Action("HR", "Employee")">Human Resource <span class='right-arrow'></span></a>
+                    <ul class="level-2">
+                        @if (Html.Permitted_To("Settings", "Employee"))
+                        {
+                            <li><a href="@Url.Action("Settings", "Employee")">Setting</a></li>
+                        }
+                        @if (Html.Permitted_To("Employee_Management", "Employee"))
+                        {
+                            <li><a href="@Url.Action("Employee_Management", "Employee")">Employee Management</a></li>
+                        }
+                        @if (Html.Permitted_To("Employee_Attendance", "Employee"))
+                        {
+                            <li><a href="@Url.Action("Employee_Attendance", "Employee")">Employee Leave Management</a></li>
+                        }
+                        @if (Html.Permitted_To("Payslip", "Employee"))
+                        {
+                            <li><a href="@Url.Action("Payslip", "Employee")">Create Payslip</a></li>
+                        }
+                        @if (Html.Permitted_To("Search", "Employee"))
+                        {
+                            <li><a href="@Url.Action("Search", "Employee")">Employee Search</a></li>
+                        }
+                        @if (Html.Permitted_To("Department_Payslip", "Employee"))
+                        {
+                            <li><a href="@Url.Action("Department_Payslip", "Employee")">Employee Payslip</a></li>
+                        }
+                        @if (Html.Permitted_To("Payslip_Approve", "Employee"))
+                        {
+                            <li><a href="@Url.Action("Department_Payslip", "Employee")">One Click Aprove Payslip</a></li>
+                        }
+                    </ul>
+                </li>
+            }
+            @if (Html.Permitted_To("Index", "Finance"))
+            {
+                <li>
+                    <a href="@Url.Action("Index", "Finance")">Finance <span class='right-arrow'></span></a>
+                    <ul class="level-2" id="finance_menu">
+                        <li><a href="@Url.Action("Fees_Index", "Finance")">Fees</a></li>
+                        <li><a href="@Url.Action("Categories", "Finance")">Category</a></li>
+                        <li><a href="@Url.Action("Transactions", "Finance")">Transactions</a></li>
+                        <li><a href="@Url.Action("Donation", "Finance")">Donations</a></li>
+                        <li><a href="@Url.Action("Automatic_Transactions", "Finance")">Automatic Transactions</a></li>
+                        <li><a href="@Url.Action("Payslip_Index", "Finance")">Payslip</a></li>
+                        <li><a href="@Url.Action("Asset_Liability", "Finance")">Asset Liability Management</a></li>
+                    </ul>
+                </li>
+            }
+            @if (Html.CurrentUser_UserType().Equals("Admin"))
+            {
+                <li><a href="@Url.Action("Index", "USERs")">User</a></li>
+            }
+        </ul>
+    </li>
+
+</ul>

@@ -1,0 +1,87 @@
+﻿@model IEnumerable<SFSAcademy.BATCH>
+
+@{
+    ViewBag.Title = "Master Fees";
+}
+
+
+<div id="content-header">
+    <img src="~/Content/images/show_finance.png" alt="Finance Logo">
+    <h1>Master Category</h1>
+    <h3>Finance Management</h3>
+    <div id="app-back-button">
+        <a href='javascript:history.back()' onclick="return confirm('are you sure?')"><img src="~/Content/images/buttons/back.png"></a>
+    </div>
+</div>
+<div><img src="~/Content/images/_global/header_underline_.jpg" width="100%"></div>
+
+<div id="page-yield">
+    <div id="flash_box"></div>
+    @if (Html.ValidationSummary() != null)
+    {
+        <p class="flash-msg"> @Html.ValidationSummary() </p>
+    }
+    <div class="bread_crumb">
+        @Html.ActionLink("Finance", "Index") &raquo;
+        @Html.ActionLink("Fees", "Fees_Index") &raquo;
+        @Html.ActionLink("Create Fees", "Master_Fees") &raquo;
+        Master Fees
+    </div>
+    <div id="message"></div>
+    <div class="box">
+        <div class="fee-link">
+            <div class="link-box">
+                <div class="link-heading">
+                    @Ajax.ActionLink("Create Category", "_Master_Category_Create_Form", new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "result", InsertionMode = InsertionMode.Replace, OnSuccess = "openPopup" })<br />
+                    <div id="result" style="display:none;"></div>
+                </div>
+                <div class="link-descr"> Create Master Category</div>
+            </div>
+            <div class="link-box">
+                <div class="link-heading">
+                    @Html.ActionLink("Create Particulars", "Fees_Particulars_New")
+                </div>
+                <div class="link-descr">Create Particulars</div>
+            </div>
+            <div class="link-box">
+                <div class="link-heading">
+                    @Html.ActionLink("Create Discount", "Fee_Discounts")
+                </div>
+                <div class="link-descr">Create Fee Discounts</div>
+            </div>
+        </div>
+
+        <div id="search_box_bg">
+            <form name="search-form" id="search-form" action="" style="display:inline;">
+                @using (Html.BeginForm("Master_Fees", "Finance", FormMethod.Get))
+                {
+                    <p>
+                        @Html.DropDownList("searchString", null, htmlAttributes: new { @class = "form-control" })
+                        <input type="submit" value="Submit" id="submit-button" />
+                    </p>
+                }
+
+                <div class="extender"></div>
+            </form>
+        </div>
+        <div id="fee_collection_dates"></div>
+        <div id="categories">
+            @{Html.RenderAction("_Master_Category_List", "Finance", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter });}
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(document).ready(function() {
+    $("#result").dialog({
+        autoOpen: false,
+        title: 'Title',
+        width: 400,
+        height: 'auto',
+        modal: true
+    });
+});
+function openPopup() {
+    $("#result").dialog("open");
+}
+</script>

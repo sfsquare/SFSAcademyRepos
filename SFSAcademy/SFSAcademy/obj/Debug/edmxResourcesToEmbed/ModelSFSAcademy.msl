@@ -1204,5 +1204,25 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="STORE_PURCHAGE_CART">
+      <EntityTypeMapping TypeName="SFSAcademyModel.STORE_PURCHAGE_CART">
+        <MappingFragment StoreEntitySet="STORE_PURCHAGE_CART">
+          <ScalarProperty Name="UPDATED_AT" ColumnName="UPDATED_AT" />
+          <ScalarProperty Name="CREATED_AT" ColumnName="CREATED_AT" />
+          <ScalarProperty Name="IS_DEL" ColumnName="IS_DEL" />
+          <ScalarProperty Name="IS_ACT" ColumnName="IS_ACT" />
+          <ScalarProperty Name="IS_DEPOSITED" ColumnName="IS_DEPOSITED" />
+          <ScalarProperty Name="MONEY_RECEIVED_BY" ColumnName="MONEY_RECEIVED_BY" />
+          <ScalarProperty Name="STUDENT_CONTACT_NO" ColumnName="STUDENT_CONTACT_NO" />
+          <ScalarProperty Name="STUDENT_NAME" ColumnName="STUDENT_NAME" />
+          <ScalarProperty Name="SOLD_ON" ColumnName="SOLD_ON" />
+          <ScalarProperty Name="SOLD_BY" ColumnName="SOLD_BY" />
+          <ScalarProperty Name="SOLD_PRICE" ColumnName="SOLD_PRICE" />
+          <ScalarProperty Name="UNIT_SOLD" ColumnName="UNIT_SOLD" />
+          <ScalarProperty Name="PRODUCT_ID" ColumnName="PRODUCT_ID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

@@ -1,0 +1,22 @@
+﻿<!DOCTYPE html>
+
+<html lang="en-US" prefix="og: http://ogp.me/ns#">
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <meta charset="UTF-8">
+
+    <link rel="icon" href="~/Content/front-page/images/cropped-favicon-1-1-32x32-S.png" sizes="32x32" />
+    <link rel="icon" href="~/Content/front-page/images/cr-favicon-1-1-192x192SF.png" sizes="192x192" />
+    <link rel="apple-touch-icon-precomposed" href="~/Content/front-page/images/cr-favicon-1-1-180x180SF.png" />
+    <meta name="msapplication-TileImage" content="/Content/front-page/images/cr-favicon-1-1-270x270SF.png" />
+    @Html.DynamicHeader()
+    @Html.Partial("_Partial/Get_Stylesheets")
+    @Html.Partial("_Partial/Get_Javascript")
+</head>
+<body>
+
+    @RenderBody()
+
+</body>
+</html>

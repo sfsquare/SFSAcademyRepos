@@ -446,7 +446,7 @@ namespace SFSAcademy.Controllers
                     break;
             }
 
-            int pageSize = 3;
+            int pageSize = 100;
             int pageNumber = (page ?? 1);
             return View(Fee_discountSData.ToPagedList(pageNumber, pageSize));
             //return View(db.USERS.ToList());
@@ -466,9 +466,24 @@ namespace SFSAcademy.Controllers
 
             ViewData["TYPE"] = DiscountTypesList;
 
-            List<SelectListItem> options2 = new SelectList(db.FINANCE_FEE_CATGEORY.OrderBy(x => x.NAME).Distinct(), "ID", "NAME").ToList();
-            // add the 'ALL' option
+            var queryFinCat = (from ffc in db.FINANCE_FEE_CATGEORY
+                         join b in db.BATCHes on ffc.BTCH_ID equals b.ID
+                         select new { ID = ffc.ID, CatNAME = ffc.NAME, BatchName = b.NAME, BatchStartDate = b.START_DATE, BatchEndDate = b.END_DATE })
+                        .OrderBy(x => x.CatNAME).Distinct();
+            List<SelectListItem> options2 = new List<SelectListItem>();
+            foreach (var item in queryFinCat)
+            {
+                string BatchFullName = string.Concat(item.CatNAME, "-", item.BatchName, "-", Convert.ToDateTime(item.BatchStartDate).ToString("yyyy"), "-", Convert.ToDateTime(item.BatchEndDate).ToString("yyyy"));
+                var result = new SelectListItem();
+                result.Text = BatchFullName;
+                result.Value = item.ID.ToString();
+                options2.Add(result);
+            }
             options2.Insert(0, new SelectListItem() { Value = "-1", Text = "ALL" });
+
+            //List<SelectListItem> options2 = new SelectList(db.FINANCE_FEE_CATGEORY.OrderBy(x => x.NAME).Distinct(), "ID", "NAME").ToList();
+            // add the 'ALL' option
+            //options2.Insert(0, new SelectListItem() { Value = "-1", Text = "ALL" });
             ViewBag.FIN_FEE_CAT_ID = options2;
 
             var query = from c in db.BATCHes
@@ -1204,5 +1219,97 @@ namespace SFSAcademy.Controllers
             }
             base.Dispose(disposing);
         }
+
+        // GET: Student/Details/5
+        public ActionResult Categories()
+        {
+            return View();
+        }
+
+        // GET: Student/Details/5
+        [ChildActionOnly]
+        public ActionResult _CategoriesList()
+        {
+            var fINANCEcATEGORY = db.FINANCE_TRANSACTION_CATEGORY.Where(d => d.DEL == "N").ToList();
+            return View(fINANCEcATEGORY);
+        }
+
+        // GET: Student/Delete/5
+        public ActionResult _CategoriesDelete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            FINANCE_TRANSACTION_CATEGORY fINANCEcATEGORY = db.FINANCE_TRANSACTION_CATEGORY.Find(id);
+            if (fINANCEcATEGORY == null)
+            {
+                return HttpNotFound();
+            }
+            return View(fINANCEcATEGORY);
+        }
+
+        // POST: Student/Delete/5
+        [HttpPost, ActionName("_CategoriesDelete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult _CategoriesDeleteConfirmed(int id)
+        {
+            FINANCE_TRANSACTION_CATEGORY fINANCEcATEGORY = db.FINANCE_TRANSACTION_CATEGORY.Find(id);
+            fINANCEcATEGORY.DEL = "Y";
+            db.Entry(fINANCEcATEGORY).State = EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("Categories");
+        }
+
+        // GET: Student/Edit/5
+        public ActionResult _CategoriesEdit(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            FINANCE_TRANSACTION_CATEGORY fINANCEcATEGORY = db.FINANCE_TRANSACTION_CATEGORY.Find(id);
+            if (fINANCEcATEGORY == null)
+            {
+                return HttpNotFound();
+            }
+            return View(fINANCEcATEGORY);
+        }
+
+        // POST: Student/Edit/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult _CategoriesEdit([Bind(Include = "ID,NAME,DESCR,IS_INCM,DEL")] FINANCE_TRANSACTION_CATEGORY fINANCEcATEGORY)
+        {
+            if (ModelState.IsValid)
+            {
+                fINANCEcATEGORY.DEL = "N";
+                db.Entry(fINANCEcATEGORY).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Categories");
+            }
+            return View(fINANCEcATEGORY);
+        }
+
+        // POST: Student/Create
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CategoriesCreate([Bind(Include = "ID,NAME,DESCR,IS_INCM,DEL")] FINANCE_TRANSACTION_CATEGORY fINANCEcATEGORY)
+        {
+            if (ModelState.IsValid)
+            {
+                fINANCEcATEGORY.DEL = "N";
+                db.FINANCE_TRANSACTION_CATEGORY.Add(fINANCEcATEGORY);
+                db.SaveChanges();
+                return RedirectToAction("Categories");
+            }
+
+            return View(fINANCEcATEGORY);
+        }
+
     }
 }

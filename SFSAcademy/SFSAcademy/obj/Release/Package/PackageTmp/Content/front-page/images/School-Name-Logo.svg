@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 12.0.0, SVG Export Plug-In  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" [
+	<!ENTITY ns_flows "http://ns.adobe.com/Flows/1.0/">
+	<!ENTITY ns_svg "http://www.w3.org/2000/svg">
+	<!ENTITY ns_xlink "http://www.w3.org/1999/xlink">
+]>
+<svg  version="1.1" xmlns="&ns_svg;" xmlns:xlink="&ns_xlink;" xmlns:a="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/"
+	 width="318" height="40" viewBox="125.028 -0.451 318 40" enable-background="new 125.028 -0.451 318 40" xml:space="preserve">
+<style type="text/css">
+<![CDATA[
+@font-face{font-family:'BaskOldFace';src:url("data:;base64,\
+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\
+nRmBnYGYgZN6mHeSdI4IDviIFPpTFQAA")}
+]]>
+</style>
+<defs>
+</defs>
+<rect y="5.382" fill="none" width="568.056" height="108.333"/>
+<text transform="matrix(1 0 0 1 125.8423 30.0059)" fill="#FFFFFF" font-family="'BaskOldFace'" font-size="36">S. F. Square Academy</text>
+</svg>

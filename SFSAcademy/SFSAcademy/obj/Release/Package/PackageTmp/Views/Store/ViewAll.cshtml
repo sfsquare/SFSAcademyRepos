@@ -1,0 +1,50 @@
+﻿@model IEnumerable<SFSAcademy.STORE_CATEGORY>
+
+@{
+    ViewBag.Title = "ViewAll";
+}
+
+<div id="content-header">
+    <img src="~/Content/images/show_store.png" alt="Show Store Logo">
+    <h1>Store</h1>
+    <h3>View Product Details</h3>
+    <div id="app-back-button">
+        <a href='javascript:history.back()' onclick="return confirm('are you sure?')"><img src="~/Content/images/buttons/back.png"></a>
+    </div>
+</div>
+<div><img src="~/Content/images/_global/header_underline_.jpg" width="100%"></div>
+<div id="inner-tab-menu">
+    <ul>
+        <li>@Html.ActionLink("Add New", "Create")</li>
+    </ul>
+</div>
+<div id="page-yield">
+    <div id="search_box_bg">
+        @if (Html.ValidationSummary() != null)
+        {
+            <p class="flash-msg"> @Html.ValidationSummary() </p>
+        }
+        <div id="searchbox">
+            <form name="search-form" id="search-form" action="" style="display:inline">
+                @using (Html.BeginForm("ViewAll", "Store", FormMethod.Get))
+                {
+                    <p>
+                        @Html.DropDownList("searchString", new SelectList(Model, "ID", "NAME"), "Select Category");
+
+                        <input type="submit" value="Submit" id="submit-button" />
+                    </p>
+                }
+
+                <div class="extender"></div>
+            </form>
+        </div>
+    </div>
+
+    <div class="students-table">
+        <div id="text-input-bg">
+            @{Html.RenderAction("ListAllProducts", "Store", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter });}
+
+        </div>
+    </div>
+    <div id="products"></div>
+</div>

@@ -1,0 +1,116 @@
+﻿@model IEnumerable<SFSAcademy.STORE_PRODUCTS>
+
+@{
+    ViewBag.Title = "ViewAllSelling";
+}
+
+
+<div id="content-header">
+    <img src="~/Content/images/show_store.png" alt="Show Store Logo">
+    <h1>Store</h1>
+    <h3>View All Selling</h3>
+    <div id="app-back-button">
+        <a href='javascript:history.back()' onclick="return confirm('are you sure?')"><img src="~/Content/images/buttons/back.png"></a>
+    </div>
+</div>
+<div><img src="~/Content/images/_global/header_underline_.jpg" width="100%"></div>
+
+<div id="page-yield">
+    <div id="search_box_bg">
+        <div id="searchbox">
+            <form name="search-form" id="search-form" action="" style="display:inline">
+                @using (Html.BeginForm("ViewAllSelling", "Store", FormMethod.Get))
+                {
+
+                    <p>
+                        <table>
+                            <tr>
+                                <td>
+                                    <div class="label-field-pair">
+                                        <label for="FIRST_NAME">Product Name:</label>
+                                        <div class="text-input-bg">
+                                            @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="label-field-pair">
+                                        <label for="ADMSN_NO">Student Name:</label>
+                                        <div class="text-input-bg">
+                                            @Html.TextBox("StudentName", ViewBag.CurrentFilter2 as string)
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="label-field-pair">
+                                        <label for="ADMSN_NO">Students Contact Numbers:</label>
+                                        <div class="text-input-bg">
+                                            @Html.TextBox("ContactNumber", ViewBag.CurrentFilter3 as string)
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="label-field-pair">
+                                        <label for="NAME">Money Received By:</label>
+                                        <div class="text-input-bg">
+                                            @Html.TextBox("ReceivedBy", ViewBag.CurrentFilter4 as string)
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="label-field-pair">
+                                        <label for="NAME">Is Money Deposited?:</label>
+                                        <div class="text-input-bg">
+                                            @Html.TextBox("MoneyDeposited", ViewBag.CurrentFilter5 as string)
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="label-field-pair">
+                                        <label for="DOB">Sold From Date:</label>
+                                        <div class="text-input-bg">
+                                            @Html.TextBox("SoldFromDate", ViewBag.CurrentFilter9 as string)
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="label-field-pair">
+                                        <label for="DOB">Sold To Date:</label>
+                                        <div class="text-input-bg">
+                                            @Html.TextBox("SoldToDate", ViewBag.CurrentFilter10 as string)
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+
+                        <div id="pdf-view-button">
+                            <ul>
+                                <li><input type="submit" value="Search" class="submit-button" /></li>
+                            </ul>
+                            <ul>
+                                <li><a href="@Url.Action("PurchasePdf", "Store")" alt="View PDF Report" target="_blank" class="submit-button">View PDF Report</a></li>
+                            </ul>
+                        </div>
+                    </p>
+                }
+
+                <div class="extender"></div>
+            </form>
+        </div>
+    </div>
+
+    <div class="students-table">
+        <div id="text-input-bg">
+            @{Html.RenderAction("ListAllSellings", "Store", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter });}
+
+        </div>
+    </div>
+    <div id="products"></div>
+</div>

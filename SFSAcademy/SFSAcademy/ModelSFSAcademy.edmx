@@ -931,6 +931,25 @@
           <Property Name="CREATED_AT" Type="datetime" />
           <Property Name="UPDATED_AT" Type="datetime" />
         </EntityType>
+        <EntityType Name="STORE_PURCHAGE_CART">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PRODUCT_ID" Type="int" Nullable="false" />
+          <Property Name="UNIT_SOLD" Type="int" />
+          <Property Name="SOLD_PRICE" Type="int" />
+          <Property Name="SOLD_BY" Type="varchar" MaxLength="50" />
+          <Property Name="SOLD_ON" Type="datetime" />
+          <Property Name="STUDENT_NAME" Type="varchar" MaxLength="50" />
+          <Property Name="STUDENT_CONTACT_NO" Type="varchar" MaxLength="50" />
+          <Property Name="MONEY_RECEIVED_BY" Type="varchar" MaxLength="50" />
+          <Property Name="IS_DEPOSITED" Type="varchar" MaxLength="1" />
+          <Property Name="IS_ACT" Type="varchar" MaxLength="1" />
+          <Property Name="IS_DEL" Type="varchar" MaxLength="1" />
+          <Property Name="CREATED_AT" Type="datetime" />
+          <Property Name="UPDATED_AT" Type="datetime" />
+        </EntityType>
         <EntityType Name="STUDENT">
           <Key>
             <PropertyRef Name="ID" />
@@ -2386,6 +2405,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="STPROD_STPURCART_ASSE_NI">
+          <End Role="STORE_PRODUCTS" Type="Self.STORE_PRODUCTS" Multiplicity="1" />
+          <End Role="STORE_PURCHAGE_CART" Type="Self.STORE_PURCHAGE_CART" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="STORE_PRODUCTS">
+              <PropertyRef Name="PRODUCT_ID" />
+            </Principal>
+            <Dependent Role="STORE_PURCHAGE_CART">
+              <PropertyRef Name="PRODUCT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="SUBJ__SUBJ_EMPL_NI">
           <End Role="SUBJECT" Type="Self.SUBJECT" Multiplicity="0..1" />
           <End Role="EMPLOYEES_SUBJECT" Type="Self.EMPLOYEES_SUBJECT" Multiplicity="*" />
@@ -2611,6 +2642,7 @@
           <EntitySet Name="STORE_CATEGORY" EntityType="Self.STORE_CATEGORY" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="STORE_PRODUCTS" EntityType="Self.STORE_PRODUCTS" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="STORE_PURCHAGE" EntityType="Self.STORE_PURCHAGE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="STORE_PURCHAGE_CART" EntityType="Self.STORE_PURCHAGE_CART" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="STUDENT" EntityType="Self.STUDENT" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="STUDENT_ADDITIONAL_DETAIL" EntityType="Self.STUDENT_ADDITIONAL_DETAIL" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="STUDENT_ADDITIONAL_FIELD" EntityType="Self.STUDENT_ADDITIONAL_FIELD" Schema="dbo" store:Type="Tables" />
@@ -3044,6 +3076,10 @@
           <AssociationSet Name="STPROD_STPUR_ASSE_NI" Association="Self.STPROD_STPUR_ASSE_NI">
             <End Role="STORE_PRODUCTS" EntitySet="STORE_PRODUCTS" />
             <End Role="STORE_PURCHAGE" EntitySet="STORE_PURCHAGE" />
+          </AssociationSet>
+          <AssociationSet Name="STPROD_STPURCART_ASSE_NI" Association="Self.STPROD_STPURCART_ASSE_NI">
+            <End Role="STORE_PRODUCTS" EntitySet="STORE_PRODUCTS" />
+            <End Role="STORE_PURCHAGE_CART" EntitySet="STORE_PURCHAGE_CART" />
           </AssociationSet>
           <AssociationSet Name="SUBJ__SUBJ_EMPL_NI" Association="Self.SUBJ__SUBJ_EMPL_NI">
             <End Role="SUBJECT" EntitySet="SUBJECT" />
@@ -5855,6 +5891,11 @@
             <End Role="STORE_PRODUCTS" EntitySet="STORE_PRODUCTS" />
             <End Role="STORE_PURCHAGE" EntitySet="STORE_PURCHAGE" />
           </AssociationSet>
+          <EntitySet Name="STORE_PURCHAGE_CART" EntityType="SFSAcademyModel.STORE_PURCHAGE_CART" />
+          <AssociationSet Name="STPROD_STPURCART_ASSE_NI" Association="SFSAcademyModel.STPROD_STPURCART_ASSE_NI">
+            <End Role="STORE_PRODUCTS" EntitySet="STORE_PRODUCTS" />
+            <End Role="STORE_PURCHAGE_CART" EntitySet="STORE_PURCHAGE_CART" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="FEE_COLLECTION_PARTICULAR">
           <Key>
@@ -6386,6 +6427,7 @@
           <Property Name="UPDATED_AT" Type="DateTime" Precision="3" />
           <NavigationProperty Name="STORE_CATEGORY" Relationship="SFSAcademyModel.STCAT_STPROD_ASSE_NI" FromRole="STORE_PRODUCTS" ToRole="STORE_CATEGORY" />
           <NavigationProperty Name="STORE_PURCHAGE" Relationship="SFSAcademyModel.STPROD_STPUR_ASSE_NI" FromRole="STORE_PRODUCTS" ToRole="STORE_PURCHAGE" />
+          <NavigationProperty Name="STORE_PURCHAGE_CART" Relationship="SFSAcademyModel.STPROD_STPURCART_ASSE_NI" FromRole="STORE_PRODUCTS" ToRole="STORE_PURCHAGE_CART" />
         </EntityType>
         <EntityType Name="STORE_PURCHAGE">
           <Key>
@@ -6427,6 +6469,38 @@
               <PropertyRef Name="PRODUCT_ID" />
             </Principal>
             <Dependent Role="STORE_PURCHAGE">
+              <PropertyRef Name="PRODUCT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="STORE_PURCHAGE_CART">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PRODUCT_ID" Type="Int32" Nullable="false" />
+          <Property Name="UNIT_SOLD" Type="Int32" />
+          <Property Name="SOLD_PRICE" Type="Int32" />
+          <Property Name="SOLD_BY" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SOLD_ON" Type="DateTime" Precision="3" />
+          <Property Name="STUDENT_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="STUDENT_CONTACT_NO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MONEY_RECEIVED_BY" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IS_DEPOSITED" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="IS_ACT" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="IS_DEL" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="CREATED_AT" Type="DateTime" Precision="3" />
+          <Property Name="UPDATED_AT" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="STORE_PRODUCTS" Relationship="SFSAcademyModel.STPROD_STPURCART_ASSE_NI" FromRole="STORE_PURCHAGE_CART" ToRole="STORE_PRODUCTS" />
+        </EntityType>
+        <Association Name="STPROD_STPURCART_ASSE_NI">
+          <End Type="SFSAcademyModel.STORE_PRODUCTS" Role="STORE_PRODUCTS" Multiplicity="1" />
+          <End Type="SFSAcademyModel.STORE_PURCHAGE_CART" Role="STORE_PURCHAGE_CART" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="STORE_PRODUCTS">
+              <PropertyRef Name="PRODUCT_ID" />
+            </Principal>
+            <Dependent Role="STORE_PURCHAGE_CART">
               <PropertyRef Name="PRODUCT_ID" />
             </Dependent>
           </ReferentialConstraint>
@@ -7623,6 +7697,26 @@
           <EntitySetMapping Name="STORE_PURCHAGE">
             <EntityTypeMapping TypeName="SFSAcademyModel.STORE_PURCHAGE">
               <MappingFragment StoreEntitySet="STORE_PURCHAGE">
+                <ScalarProperty Name="UPDATED_AT" ColumnName="UPDATED_AT" />
+                <ScalarProperty Name="CREATED_AT" ColumnName="CREATED_AT" />
+                <ScalarProperty Name="IS_DEL" ColumnName="IS_DEL" />
+                <ScalarProperty Name="IS_ACT" ColumnName="IS_ACT" />
+                <ScalarProperty Name="IS_DEPOSITED" ColumnName="IS_DEPOSITED" />
+                <ScalarProperty Name="MONEY_RECEIVED_BY" ColumnName="MONEY_RECEIVED_BY" />
+                <ScalarProperty Name="STUDENT_CONTACT_NO" ColumnName="STUDENT_CONTACT_NO" />
+                <ScalarProperty Name="STUDENT_NAME" ColumnName="STUDENT_NAME" />
+                <ScalarProperty Name="SOLD_ON" ColumnName="SOLD_ON" />
+                <ScalarProperty Name="SOLD_BY" ColumnName="SOLD_BY" />
+                <ScalarProperty Name="SOLD_PRICE" ColumnName="SOLD_PRICE" />
+                <ScalarProperty Name="UNIT_SOLD" ColumnName="UNIT_SOLD" />
+                <ScalarProperty Name="PRODUCT_ID" ColumnName="PRODUCT_ID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="STORE_PURCHAGE_CART">
+            <EntityTypeMapping TypeName="SFSAcademyModel.STORE_PURCHAGE_CART">
+              <MappingFragment StoreEntitySet="STORE_PURCHAGE_CART">
                 <ScalarProperty Name="UPDATED_AT" ColumnName="UPDATED_AT" />
                 <ScalarProperty Name="CREATED_AT" ColumnName="CREATED_AT" />
                 <ScalarProperty Name="IS_DEL" ColumnName="IS_DEL" />

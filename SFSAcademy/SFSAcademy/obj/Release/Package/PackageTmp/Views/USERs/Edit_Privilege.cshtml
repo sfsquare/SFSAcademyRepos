@@ -1,0 +1,127 @@
+﻿@using SFSAcademy.Models
+@model IList<SelectUserAccess>
+
+@{
+    ViewBag.Title = "Edit_Privilege";
+}
+
+<script type="text/javascript">
+  function privilege_tag_check_all_or_none(privilege_tag_id, th_is){
+    field_value = th_is.checked
+    $$('.privilege_check_'+privilege_tag_id).each(function(check){
+      check.checked = field_value;
+      if(check.checked == false){
+          $(check).up('tr').removeClassName('active')
+      }
+      else{
+          $(check).up('tr').addClassName('active')
+      }
+
+    })
+  }
+
+  function privilege_check(privilege_tag_id, th_is){
+    if(th_is.checked == false){
+      $$('.check_all_'+privilege_tag_id).first().checked = false
+      $(th_is).up('tr').removeClassName('active')
+    }
+    else
+    {
+      $(th_is).up('tr').addClassName('active')
+      var flag =0;
+      $$('.privilege_check_'+privilege_tag_id).each(function(check){
+        if(check.checked == false){
+          flag=1;
+        }
+      });
+      if(flag==0)
+      {
+        $$('.check_all_'+privilege_tag_id).first().checked = true
+      }
+
+    }
+  }
+</script>
+
+<div id="content-header">
+    <img src="~/Content/images/user_profile/user_profile_logo.jpg" alt="Profile Logo">
+    <h1>User Privilege</h1>
+    <h3>Edit User Privilege</h3>
+    <div id="app-back-button">
+        <a href='javascript:history.back()' onclick="return confirm('are you sure?')"><img src="~/Content/images/buttons/back.png"></a>
+    </div>
+</div>
+<div><img src="~/Content/images/_global/header_underline_.jpg" width="100%"></div>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div id="page-yield">
+        @if (Html.ValidationSummary() != null)
+        {
+            <p class="flash-msg"> @Html.ValidationSummary() </p>
+        }
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="privileges">
+            <div class="privilege_heading" id="application-list">
+                <div class="label_field_pair"><label>Set Privilege For User</label></div>
+                <div class="user_submit_button1">
+                    <input name="commit" type="submit"  value="►Save" class="user_submit_button" />
+                </div>
+            </div>
+            <div class="all_privileges_list">
+                <table width="100%" align="center" cellspacing="1" cellpadding="1" class="table_design">
+                <tr>
+                    @{ var item0 = Model.FirstOrDefault();}
+                    @{int RowNum = item0.AccessList.ID; }
+                    @{string ListItem = item0.AccessList.LIST_ITEM; }
+                    @for (var j = 0; j < Model.Count; j++)
+                    {
+                        if (RowNum == Model[j].AccessList.ID)
+                        {
+                            <td style="word-wrap:break-word">
+                                <table id="listing" align="center" width="300px" class="privilege_table" cellpadding="1" cellspacing="1">
+                                    <tr class="tr-head">
+                                        <td class="col-1">@Html.CheckBoxFor(x => x[j].Selected, new { @class = "check_all_" + @Model[j].AccessList.ID, @onChange = "privilege_tag_check_all_or_none(" + @Model[j].AccessList.ID +", this)", @id = "privilege_check_" + @Model[j].AccessList.ID })</td>                        
+                                        <td class="col-2" width="50px">@Html.DisplayFor(x => x[j].AccessList.LIST_ITEM)</td>
+                                        <td class="col-3" width="1px">@Html.HiddenFor(x => x[j].AccessList.LIST_ITEM)</td> 
+                                        <td class="col-4" width="1px">@Html.HiddenFor(x => x[j].AccessList.USRS_ID) </td>                                      
+                                    </tr>
+                                    <tr class="tr-blank"></tr>
+                                    @{int k = 1; }
+                                    @for (var i = 0; i < Model.Count; i++)
+                                    {
+                                        string selectedRow = "tr-even";
+                                        if (k % 2 == 0)
+                                        {
+                                            selectedRow = "tr-odd";
+                                        }
+                                        if (ListItem == Model[i].AccessList.LIST_ITEM)
+                                        {
+                                            <tr class="@selectedRow">
+                                                <td class="row">@Html.CheckBoxFor(x => x[i].Selected, new { @class = "privilege_check_" + @Model[i].AccessList.ID, @onChange = "privilege_check(" + @Model[i].AccessList.ID + ", this)", @id = "privilege_check_" + @Model[i].AccessList.ID })</td>                                                
+                                                <td class="text-bg" width="50px">@Html.DisplayFor(x => x[i].AccessList.LVL_1_MENU)</td>
+                                                <td class="text-bg" width="1px">@Html.HiddenFor(x => x[i].AccessList.LVL_1_MENU) </td>
+                                                <td class="text-bg" width="1px">@Html.HiddenFor(x => x[i].AccessList.USRS_ID) </td>
+                                            </tr>
+                                        }
+                                        if (ListItem != Model[i].AccessList.LIST_ITEM && RowNum < Model[i].AccessList.ID)
+                                        {
+                                            ListItem = Model[i].AccessList.LIST_ITEM;
+                                            RowNum = Model[i].AccessList.ID;
+                                            break;
+                                        }
+                                        k = k + 1;
+                                    }
+
+                                </table>
+                            </td>
+                           }
+
+                         }
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+}

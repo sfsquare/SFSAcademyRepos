@@ -1,0 +1,58 @@
+﻿@model SFSAcademy.Models.User
+
+@{
+    ViewBag.Title = "Login";
+    Layout = "../Shared/_Layout/Login.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    <div id="wrapper">
+        <div id="top_logo">
+            <img src="~/Content/images/login/SF_Square_Logo-Small.svg" alt="A S. F. Square Title">
+        </div>
+        <div id="login_strip"></div>
+        <div id="login_area_bg">
+
+            <div id="login_area">
+                <label for="username">@Html.LabelFor(u => u.UserName)</label>
+                <div id="username_textbox_bg">
+                    @Html.TextBoxFor(u => u.UserName)
+                    @Html.ValidationMessageFor(u => u.UserName)
+                </div>
+                <label for="password">@Html.LabelFor(u => u.Password)</label>
+                <div id="password_textbox_bg">
+                    @Html.PasswordFor(u => u.Password)
+                    @Html.ValidationMessageFor(u => u.Password)
+                </div>
+                <div id="notice-box">
+                   <div id="notice">@Html.ValidationSummary()</div>
+                </div>
+                <div id="submit_area">
+                    <input type="submit" value="Log In" />
+                </div>
+                <label for="forgot_password" class="forgot_password_link">
+                    @Html.ActionLink("Forgot Passowrd?", "Forgot_Password")
+                </label>
+                <div class="editor-label">
+                    @Html.CheckBoxFor(u => u.RememberMe)
+                    @Html.LabelFor(u => u.RememberMe)
+                </div>
+
+            </div>
+        </div>
+        <div id="help_forgot_pw">
+        </div>
+        <div class="clearfooter"></div>
+    </div>
+    <div id="footer">
+        <div id="footer_logo">
+            <div id="powered_by">
+                <a href="http://sfsquare.net" alt="visit S. F. Square" target="_blank">Powered by S. F. Square</a>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        document.getElementById("u.UserId").focus();
+    </script>
+}

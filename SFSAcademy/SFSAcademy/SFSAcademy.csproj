@@ -2165,6 +2165,7 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
+    <None Include="Properties\PublishProfiles\SFSAcademy.pubxml" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.1.1.js" />
     <Content Include="Scripts\jquery-3.1.1.min.js" />
@@ -2322,6 +2323,13 @@
     <Content Include="Views\Store\ListAllSellings.cshtml" />
     <Content Include="Views\Store\ViewAllSelling.cshtml" />
     <Content Include="Views\Store\EditSelling.cshtml" />
+    <Content Include="Views\Store\ViewCart.cshtml" />
+    <Content Include="Views\Store\ListPurchagedProducts.cshtml" />
+    <Content Include="Views\Finance\Categories.cshtml" />
+    <Content Include="Views\Finance\_category_create_form.cshtml" />
+    <Content Include="Views\Finance\_CategoriesList.cshtml" />
+    <Content Include="Views\Finance\_CategoriesDelete.cshtml" />
+    <Content Include="Views\Finance\_CategoriesEdit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -2572,6 +2580,9 @@
       <DependentUpon>ModelSFSAcademy.tt</DependentUpon>
     </Compile>
     <Compile Include="STORE_PURCHAGE.cs">
+      <DependentUpon>ModelSFSAcademy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="STORE_PURCHAGE_CART.cs">
       <DependentUpon>ModelSFSAcademy.tt</DependentUpon>
     </Compile>
     <Compile Include="STUDENT.cs">
