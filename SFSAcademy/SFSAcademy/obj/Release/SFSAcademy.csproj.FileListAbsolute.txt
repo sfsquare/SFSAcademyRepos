@@ -82,3 +82,4 @@ C:\Users\sudhi\Documents\Visual Studio 2015\Projects\GitHub\SFSAcademyRepos\SFSA
 C:\Users\sudhi\Documents\Visual Studio 2015\Projects\GitHub\SFSAcademyRepos\SFSAcademyRepos\SFSAcademy\SFSAcademy\bin\System.Web.WebPages.Razor.xml
 C:\Users\sudhi\Documents\Visual Studio 2015\Projects\GitHub\SFSAcademyRepos\SFSAcademyRepos\SFSAcademy\SFSAcademy\obj\Release\SFSAcademy.dll
 C:\Users\sudhi\Documents\Visual Studio 2015\Projects\GitHub\SFSAcademyRepos\SFSAcademyRepos\SFSAcademy\SFSAcademy\obj\Release\SFSAcademy.pdb
+C:\Users\sudhi\Documents\Visual Studio 2015\Projects\GitHub\SFSAcademyRepos\SFSAcademyRepos\SFSAcademy\SFSAcademy\obj\Release\SFSAcademy.csprojResolveAssemblyReference.cache
