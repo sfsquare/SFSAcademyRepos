@@ -6,7 +6,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
-    <_PublishTargetUrl>C:\Users\sudhi\Documents\Visual Studio 2015\Projects\GitHub\SFSAcademyRepos\Published\09-03-2017</_PublishTargetUrl>
+    <_PublishTargetUrl>C:\Users\sudhi\Documents\Visual Studio 2015\Projects\GitHub\SFSAcademyRepos\Published\09-10-2017</_PublishTargetUrl>
   </PropertyGroup>
   <ItemGroup>
     <File Include="ApplicationInsights.config">
@@ -145,7 +145,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/27/2017 21:28:54</publishTime>
     </File>
     <File Include="bin/SFSAcademy.dll">
-      <publishTime>09/03/2017 19:11:35</publishTime>
+      <publishTime>09/10/2017 11:28:11</publishTime>
     </File>
     <File Include="bin/System.Net.Http.Formatting.dll">
       <publishTime>08/27/2017 21:28:54</publishTime>
@@ -6181,7 +6181,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/27/2017 21:29:02</publishTime>
     </File>
     <File Include="ModelSFSAcademy.edmx.diagram">
-      <publishTime>09/03/2017 17:38:43</publishTime>
+      <publishTime>09/09/2017 15:47:39</publishTime>
     </File>
     <File Include="packages.config">
       <publishTime>08/27/2017 21:29:02</publishTime>
@@ -6279,6 +6279,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Views/Courses/ManageCourse.cshtml">
       <publishTime>08/27/2017 21:29:02</publishTime>
     </File>
+    <File Include="Views/Finance/Categories.cshtml">
+      <publishTime>09/09/2017 23:32:08</publishTime>
+    </File>
     <File Include="Views/Finance/Create.cshtml">
       <publishTime>08/27/2017 21:29:02</publishTime>
     </File>
@@ -6325,10 +6328,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/27/2017 21:29:03</publishTime>
     </File>
     <File Include="Views/Finance/Fee_Discounts.cshtml">
-      <publishTime>08/27/2017 21:29:03</publishTime>
+      <publishTime>09/09/2017 23:40:47</publishTime>
     </File>
     <File Include="Views/Finance/Fee_Discount_New.cshtml">
-      <publishTime>08/27/2017 21:29:03</publishTime>
+      <publishTime>09/10/2017 01:05:05</publishTime>
     </File>
     <File Include="Views/Finance/Index.cshtml">
       <publishTime>08/27/2017 21:29:03</publishTime>
@@ -6341,6 +6344,18 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     </File>
     <File Include="Views/Finance/Master_Fees.cshtml">
       <publishTime>08/27/2017 21:29:03</publishTime>
+    </File>
+    <File Include="Views/Finance/_CategoriesDelete.cshtml">
+      <publishTime>09/09/2017 23:26:43</publishTime>
+    </File>
+    <File Include="Views/Finance/_CategoriesEdit.cshtml">
+      <publishTime>09/09/2017 23:28:30</publishTime>
+    </File>
+    <File Include="Views/Finance/_CategoriesList.cshtml">
+      <publishTime>09/09/2017 23:35:05</publishTime>
+    </File>
+    <File Include="Views/Finance/_category_create_form.cshtml">
+      <publishTime>09/09/2017 22:56:23</publishTime>
     </File>
     <File Include="Views/Finance/_Fees_Particulars_Create.cshtml">
       <publishTime>08/27/2017 21:29:02</publishTime>
@@ -6421,25 +6436,31 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/03/2017 17:38:43</publishTime>
     </File>
     <File Include="Views/Store/ListAllProducts.cshtml">
-      <publishTime>09/03/2017 17:38:43</publishTime>
+      <publishTime>09/09/2017 14:32:49</publishTime>
     </File>
     <File Include="Views/Store/ListAllSellings.cshtml">
       <publishTime>09/03/2017 17:38:43</publishTime>
     </File>
+    <File Include="Views/Store/ListPurchagedProducts.cshtml">
+      <publishTime>09/09/2017 17:33:02</publishTime>
+    </File>
     <File Include="Views/Store/Purchase.cshtml">
-      <publishTime>09/03/2017 17:38:43</publishTime>
+      <publishTime>09/09/2017 15:49:15</publishTime>
     </File>
     <File Include="Views/Store/ViewAll.cshtml">
-      <publishTime>09/03/2017 17:38:43</publishTime>
+      <publishTime>09/09/2017 17:36:51</publishTime>
     </File>
     <File Include="Views/Store/ViewAllSelling.cshtml">
       <publishTime>09/03/2017 17:38:43</publishTime>
+    </File>
+    <File Include="Views/Store/ViewCart.cshtml">
+      <publishTime>09/09/2017 18:50:30</publishTime>
     </File>
     <File Include="Views/Store/_CategoriesDelete.cshtml">
       <publishTime>09/03/2017 17:38:43</publishTime>
     </File>
     <File Include="Views/Store/_CategoriesEdit.cshtml">
-      <publishTime>09/03/2017 17:38:43</publishTime>
+      <publishTime>09/09/2017 23:27:19</publishTime>
     </File>
     <File Include="Views/Store/_CategoriesList.cshtml">
       <publishTime>09/03/2017 17:38:43</publishTime>
@@ -6448,10 +6469,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/03/2017 17:38:43</publishTime>
     </File>
     <File Include="Views/Student/Admission1.cshtml">
-      <publishTime>08/27/2017 21:29:03</publishTime>
+      <publishTime>09/09/2017 17:34:22</publishTime>
     </File>
     <File Include="Views/Student/Admission2.cshtml">
-      <publishTime>09/03/2017 17:38:43</publishTime>
+      <publishTime>09/09/2017 17:34:38</publishTime>
     </File>
     <File Include="Views/Student/Admission3.cshtml">
       <publishTime>08/27/2017 21:29:03</publishTime>
@@ -6481,7 +6502,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/03/2017 17:38:43</publishTime>
     </File>
     <File Include="Views/Student/ViewAll.cshtml">
-      <publishTime>08/27/2017 21:29:03</publishTime>
+      <publishTime>09/09/2017 17:37:30</publishTime>
     </File>
     <File Include="Views/Student/_CategoriesDelete.cshtml">
       <publishTime>08/27/2017 21:29:03</publishTime>
@@ -6529,7 +6550,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/27/2017 21:29:02</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>09/03/2017 19:11:38</publishTime>
+      <publishTime>09/10/2017 12:28:55</publishTime>
     </File>
   </ItemGroup>
 </Project>

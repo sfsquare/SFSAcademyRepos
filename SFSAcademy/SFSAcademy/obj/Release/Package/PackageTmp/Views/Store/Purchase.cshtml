@@ -1,4 +1,4 @@
-﻿@model SFSAcademy.STORE_PURCHAGE
+﻿@model SFSAcademy.STORE_PURCHAGE_CART
 
 @{
     ViewBag.Title = "Purchase";
@@ -46,6 +46,7 @@
             <div id="necessary-field-notification">
                 Mark
                 <span class="necessary-field">*</span> Denotes Necessary Field
+                <p class="flash-msg"> Number of Items in the Cart = @ViewBag.CartItems </p>
             </div>
             <span class="span-sub-heading">Unit Details</span>
             <hr class="sub-heading">
@@ -134,7 +135,7 @@
                 </div>
 
                 <div class="label-field-pair">
-                    @Html.LabelFor(model => model.IS_ACT, "Is the Transation Final?", htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.LabelFor(model => model.IS_ACT, "Is transaction on Credit?", htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="text-input-bg">
                         @Html.EditorFor(model => model.IS_ACT, new { htmlAttributes = new { @class = "form-control" } })
                         @Html.ValidationMessageFor(model => model.IS_ACT, "", new { @class = "text-danger" })
@@ -148,9 +149,13 @@
             </div>
         </div>
 
-        <div class="buttons">
-            <input type="submit" value="► Save " class="submit_button" />
-            @Html.ActionLink("Back to List", "ViewAll")
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="► Add to Cart" class="submit_button" />
+                <a href="@Url.Action("ViewAll", "Store")" alt="Back to Product List" target="_blank" class="submit-button">Back to Product List</a>
+                <a href="@Url.Action("ViewCart", "Store")" alt="Show Cart" target="_blank" class="submit-button">Show Cart</a>
+
+            </div>
         </div>
 
     }

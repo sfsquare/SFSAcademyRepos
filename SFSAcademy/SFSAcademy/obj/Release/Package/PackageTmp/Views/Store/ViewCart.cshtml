@@ -1,13 +1,13 @@
 ﻿@model IEnumerable<SFSAcademy.STORE_CATEGORY>
 
 @{
-    ViewBag.Title = "ViewAll";
+    ViewBag.Title = "ViewCart";
 }
 
 <div id="content-header">
     <img src="~/Content/images/show_store.png" alt="Show Store Logo">
     <h1>Store</h1>
-    <h3>View Product Details</h3>
+    <h3>View Cart</h3>
     <div id="app-back-button">
         <a href='javascript:history.back()' onclick="return confirm('are you sure?')"><img src="~/Content/images/buttons/back.png"></a>
     </div>
@@ -15,17 +15,13 @@
 <div><img src="~/Content/images/_global/header_underline_.jpg" width="100%"></div>
 <div id="inner-tab-menu">
     <ul>
-        <li>@Html.ActionLink("Show Cart", "ViewCart")</li>
-        <li>@Html.ActionLink("Add New Product", "Create")</li>
+        <li>@Html.ActionLink("Cancel Transaction", "CancelTransaction")</li>
+        <li>@Html.ActionLink("Clean Cart", "CleanCart")</li>
     </ul>
-    <p class="flash-msg"> Number of Items in the Cart = @ViewBag.CartItems </p>
+    <p class="flash-msg"> Number of Items in the Cart = @ViewBag.CartItems  ;         Total Cost to Pay = @ViewBag.TotalPrice </p>
 </div>
 <div id="page-yield">
     <div id="search_box_bg">
-        @if (Html.ValidationSummary() != null)
-        {
-            <p class="flash-msg"> @Html.ValidationSummary() </p>
-        }
         <div id="searchbox">
             <form name="search-form" id="search-form" action="" style="display:inline">
                 @using (Html.BeginForm("ViewAll", "Store", FormMethod.Get))
@@ -44,8 +40,13 @@
 
     <div class="students-table">
         <div id="text-input-bg">
-            @{Html.RenderAction("ListAllProducts", "Store", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter });}
+            @{Html.RenderAction("ListPurchagedProducts", "Store", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter });}
 
+        </div>
+        <div id="pdf-view-button">
+            <ul>
+                <li><a href="@Url.Action("PrintReceipt", "Store")" alt="Print Receipt" target="_blank" class="submit-button">Finish Transaction and Print Receipt</a></li>
+            </ul>
         </div>
     </div>
     <div id="products"></div>

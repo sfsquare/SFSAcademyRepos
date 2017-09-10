@@ -1,0 +1,51 @@
+﻿@model IEnumerable<SFSAcademy.FINANCE_TRANSACTION_CATEGORY>
+
+@{
+    Layout = null;
+}
+<div id="page-yield">
+    <div class="students-table">
+        <table id="listing" align="center" width="100%" cellpadding="1" cellspacing="1">
+            <tr>
+                <th>
+                    Category Name
+                </th>
+                <th>
+                    Description
+                </th>
+                <th>
+                    Is this Under Income?
+                </th>
+                <th></th>
+            </tr>
+            @{int i = 1; }
+            @foreach (var item in Model)
+            {
+                string selectedRow = "tr-even";
+                if (i % 2 == 0)
+                {
+                    selectedRow = "tr-odd";
+                }
+                <tr class="@selectedRow">
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NAME)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DESCR)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IS_INCM)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "_CategoriesEdit", new { id = item.ID }) |
+                        @Html.ActionLink("Delete", "_CategoriesDelete", new { id = item.ID })
+                    </td>
+                </tr>
+                i = i + 1;
+            }
+        </table>
+        <br />
+    </div>
+    <div id="user_information"> </div>
+    <div class="extender"> </div>
+</div>
