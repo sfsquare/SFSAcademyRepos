@@ -9,15 +9,21 @@ namespace SFSAcademy.Models
     {
         public FINANCE_FEE_CATGEORY FinanceFeeCategoryData { get; set; }
         public BATCH BatchData { get; set; }
-        public FINANCE_FEE_PARTICULAR FinanceFeeParticularData { get; set; }
-        public STUDENT_CATGEORY StudentCategoryData { get; set; }
-        public STUDENT StudentData { get; set; }
+        public COURSE CourseData { get; set; }
+    }
+
+    public class FeeMasterCategory
+    {
+        public FINANCE_FEE_CATGEORY FinanceFeeCategoryData { get; set; }
+        public BATCH BatchData { get; set; }
+        public COURSE CourseData { get; set; }
     }
 
     public class SelectFeeCategory
     {
         public FINANCE_FEE_CATGEORY FinanceFeeCategoryData { get; set; }
         public BATCH BatchData { get; set; }
+        public COURSE CourseData { get; set; }
         public bool Selected { get; set; }
     }
 
@@ -35,6 +41,7 @@ namespace SFSAcademy.Models
         public STUDENT_CATGEORY StudentCategoryData { get; set; }
         public STUDENT StudentData { get; set; }
         public BATCH BatchData { get; set; }
+        public COURSE CourseData { get; set; }
     }
 
     public class FeeCollectionDiscount
@@ -59,6 +66,7 @@ namespace SFSAcademy.Models
         public FINANCE_FEE_COLLECTION FinanceFeeCollectionData { get; set; }
         public FINANCE_FEE_CATGEORY FinanceFeeCategoryData { get; set; }
         public BATCH BatchData { get; set; }
+        public COURSE CourseData { get; set; }
     }
 
     public class FeeSubmission
@@ -75,4 +83,28 @@ namespace SFSAcademy.Models
         public FEE_COLLECTION_DISCOUNT FeeCollectionDiscountData { get; set; }
     }
 
+    public class FeeTransaction
+    {
+        public STUDENT StudentData { get; set; }
+        public FINANCE_TRANSACTION FinanceTransactionData { get; set; }
+        public FINANCE_FEE FinanceFeeData { get; set; }
+    }
+    public class StundentFee
+    {
+        public STUDENT StudentData { get; set; }
+        public FINANCE_FEE FinanceFeeData { get; set; }
+    }
+
+    public enum Gender
+    {
+        Male,
+        Female
+    }
+    public enum PaymentMode
+    {
+        Cash,
+        Check,
+        BankDeposite,
+        Others
+    }
 }

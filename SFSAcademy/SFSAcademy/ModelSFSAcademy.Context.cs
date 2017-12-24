@@ -66,11 +66,8 @@ namespace SFSAcademy
         public virtual DbSet<FEE_COLLECTION_DISCOUNT> FEE_COLLECTION_DISCOUNT { get; set; }
         public virtual DbSet<FEE_DISCOUNT> FEE_DISCOUNT { get; set; }
         public virtual DbSet<FINANCE_DONATION> FINANCE_DONATION { get; set; }
-        public virtual DbSet<FINANCE_FEE> FINANCE_FEE { get; set; }
-        public virtual DbSet<FINANCE_FEE_CATGEORY> FINANCE_FEE_CATGEORY { get; set; }
         public virtual DbSet<FINANCE_FEE_PARTICULAR> FINANCE_FEE_PARTICULAR { get; set; }
         public virtual DbSet<FINANCE_FEE_STRUCTURE_ELEMENT> FINANCE_FEE_STRUCTURE_ELEMENT { get; set; }
-        public virtual DbSet<FINANCE_TRANSACTION> FINANCE_TRANSACTION { get; set; }
         public virtual DbSet<FINANCE_TRANSACTION_CATEGORY> FINANCE_TRANSACTION_CATEGORY { get; set; }
         public virtual DbSet<FINANCE_TRANSACTION_TRIGGERS> FINANCE_TRANSACTION_TRIGGERS { get; set; }
         public virtual DbSet<GRADING_LEVEL> GRADING_LEVEL { get; set; }
@@ -108,5 +105,9 @@ namespace SFSAcademy
         public virtual DbSet<STORE_PRODUCTS> STORE_PRODUCTS { get; set; }
         public virtual DbSet<STORE_PURCHAGE> STORE_PURCHAGE { get; set; }
         public virtual DbSet<STORE_PURCHAGE_CART> STORE_PURCHAGE_CART { get; set; }
+        public virtual DbSet<FINANCE_FEE_CATGEORY> FINANCE_FEE_CATGEORY { get; set; }
+        public virtual DbSet<FINANCE_FEE> FINANCE_FEE { get; set; }
+        public virtual DbSet<FEE_FINE> FEE_FINE { get; set; }
+        public virtual DbSet<FINANCE_TRANSACTION> FINANCE_TRANSACTION { get; set; }
     }
 }

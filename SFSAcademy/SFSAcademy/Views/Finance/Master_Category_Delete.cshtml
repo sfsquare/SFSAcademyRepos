@@ -20,7 +20,12 @@
 </div>
 <h3>Are you sure you want to delete this?</h3>
 <div id="page-yield">
-    <div id="message"></div>
+    <div id="flash_box">
+        @if (ViewBag.ErrorMessage != null)
+            {
+            <p class="flash-msg"> @ViewBag.ErrorMessage </p>
+        }
+    </div>
     <div id="edit_user_form">
         <div class="label-field-pair">
             @Html.LabelFor(model => model.NAME, "Fee Category Name", htmlAttributes: new { @class = "control-label col-md-2" })

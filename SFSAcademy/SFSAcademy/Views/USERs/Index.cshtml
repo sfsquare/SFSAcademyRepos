@@ -80,7 +80,10 @@
                         @Html.DisplayFor(modelItem => item.USRNAME)
                     </td>
                     <td class="col-5" nowrap>
-                        @Html.DisplayFor(modelItem => item.CREATED_AT)
+                        @if (!item.CREATED_AT.Equals(null))
+                        {
+                            @item.CREATED_AT.Value.ToShortDateString()
+                        }
                     </td>
                     <td class="col-6" nowrap>
                         @Html.ActionLink("Edit ", "Edit", new { id = item.ID })|@Html.ActionLink(" Details ", "Details", new { id = item.ID })|@Html.ActionLink(" Delete", "Delete", new { id = item.ID })

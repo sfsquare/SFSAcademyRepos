@@ -1,0 +1,34 @@
+﻿@using SFSAcademy.Models
+@model IList<SelectFeeCategory>
+
+
+<div class="batch_select_box">
+    <div class="label-field-pair">
+        <label>
+            Select Fee Category / Batch
+        </label>
+    </div>
+    <div class="fee_category_scroll">
+        <div class="sel-list">
+            <a href="javascript:void(0);" onclick="$$('input.category_select').each(function (checkbox) { checkbox.checked = true; });">All</a>
+            <a href="javascript:void(0);" onclick="$$('input.category_select').each(function (checkbox) { checkbox.checked = false; });">None</a>
+        </div>
+
+        <div class="each_batch">
+            @for (var j = 0; j < Model.Count(); j++)
+            {
+                <div class="each_category2">
+                    @Html.CheckBoxFor(x => x[j].Selected, new { @class = "category_select", @id = "category_select" }) <label>@Model[j].FinanceFeeCategoryData.NAME- @Model[j].CourseData.CODE - @Model[j].BatchData.NAME </label>
+                </div>
+                                <div class="each_category">
+                                    @Html.HiddenFor(x => x[j].FinanceFeeCategoryData.ID)
+                                </div>
+                                <div class="each_category">
+                                    @Html.HiddenFor(x => x[j].BatchData.ID)
+                                </div>
+            }
+        </div>
+    </div>
+</div>
+
+

@@ -21,7 +21,7 @@ namespace SFSAcademy
         public string SOLD_BY { get; set; }
         public Nullable<System.DateTime> SOLD_ON { get; set; }
         public string STUDENT_NAME { get; set; }
-        public string STUDENT_CONTACT_NO { get; set; }
+        public Nullable<long> STUDENT_CONTACT_NO { get; set; }
         public string MONEY_RECEIVED_BY { get; set; }
         public string IS_DEPOSITED { get; set; }
         public string IS_ACT { get; set; }

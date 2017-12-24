@@ -54,14 +54,13 @@
                         @Html.DisplayFor(modelItem => item.PurchaseCartData.SOLD_PRICE)
                     </td>
                     <td class="col-6" nowrap>
-                        @Html.DisplayFor(modelItem => item.PurchaseCartData.SOLD_ON)
+                        @item.PurchaseCartData.SOLD_ON.Value.ToShortDateString()
                     </td>
                     <td class="col-7" nowrap>
                         @Html.DisplayFor(modelItem => item.PurchaseCartData.STUDENT_CONTACT_NO)
                     </td>
                     <td class="col-8" nowrap>
-                        @Html.ActionLink("Edit ", "Edit", new { id = item.ProductData.PRODUCT_ID }) |
-                        @Html.ActionLink("Delete ", "Delete", new { id = item.ProductData.PRODUCT_ID })
+                        @Html.ActionLink("Edit ", "EditSelling", new { id = item.ProductData.PRODUCT_ID }) 
 
                     </td>
                 </tr>

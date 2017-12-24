@@ -75,16 +75,18 @@
                         @Html.DisplayFor(modelItem => item.FinanceFeeCollectionData.NAME)
                     </td>
                     <td class="col-4">
+                        @Html.DisplayFor(modelItem => item.CourseData.CODE)
+                        <label>-</label>
                         @Html.DisplayFor(modelItem => item.BatchData.NAME)
                     </td>
                     <td class="col-4">
-                        @Html.DisplayFor(modelItem => item.FinanceFeeCollectionData.DUE_DATE)
+                        @item.FinanceFeeCollectionData.DUE_DATE.Value.ToShortDateString()
                     </td>
                     <td class="col-5" nowrap>
-                        @Html.DisplayFor(modelItem => item.FinanceFeeCollectionData.START_DATE)
+                        @item.FinanceFeeCollectionData.START_DATE.Value.ToShortDateString()
                     </td>
                     <td class="col-6" nowrap>
-                        @Html.DisplayFor(modelItem => item.FinanceFeeCollectionData.END_DATE)
+                        @item.FinanceFeeCollectionData.END_DATE.Value.ToShortDateString()
                     </td>
                     <td class="col-7" nowrap>
                         @Html.ActionLink("Edit ", "Fee_Collection_Edit", new { id = item.FinanceFeeCollectionData.ID })|@Html.ActionLink(" Delete", "Fee_Collection_Delete", new { id = item.FinanceFeeCollectionData.ID })
