@@ -15,30 +15,28 @@
       $(".Admission2_form").hide();
       $(".Admission3_form").hide();
       $(".Admission4_form").hide();
-      $("#Guardian_button").click(function () {
-          var value = $("#TYPE").val();
-          if (value == "Batch") {
-              $(".Admission1_form").show();
-              $(".Admission2_form").hide();
-              $(".Admission3_form").hide();
-              $("#parents").hide();
-              $(".Admission4_form").show();
-          }
-          else if (value == "Student Category") {
-              $(".Admission1_form").show();
-              $(".Admission2_form").show();
-              $(".Admission3_form").hide();
-              $("#parents").hide();
-              $(".Admission4_form").show();
-          }
-          else if (value == "Student") {
-              $(".Admission1_form").show();
-              $(".Admission3_form").show();
-              $(".Admission2_form").hide();
-              $("#parents").hide();
-              $(".Admission4_form").show();
-          }
+      $("input[Value='Batch']").click(function () {
+          var test = $(this).val();
+          $(".Admission1_form").show();
+          $(".Admission2_form").hide();
+          $(".Admission3_form").hide();
+          $(".Admission4_form").show();
       });
+      $("input[Value='Student Category']").click(function () {
+          var test = $(this).val();
+          $(".Admission1_form").show();
+          $(".Admission2_form").show();
+          $(".Admission3_form").hide();
+          $(".Admission4_form").show();
+      });
+      $("input[Value='Student']").click(function () {
+          var test = $(this).val();
+          $(".Admission1_form").show();
+          $(".Admission3_form").show();
+          $(".Admission2_form").hide();
+          $(".Admission4_form").show();
+      });
+
     });
 
 </script>
@@ -61,46 +59,42 @@
 
 <div id="page-yield">
     <div id="parents">
-        <div id="flash_box">  </div>
         <div class="bread_crumb">
             @Html.ActionLink("Finance", "Index") &raquo;
             @Html.ActionLink("Fees", "Fees_Index") &raquo;
             @Html.ActionLink("Create Fees", "Master_Fees") &raquo;
             Fee Discounts
         </div>
+        <div id="flash_box">
+            @if (ViewBag.ErrorMessage != null)
+            {
+                <p class="flash-msg"> @ViewBag.ErrorMessage </p>
+            }
+        </div>
         <div id="form-errors"></div>
-        <div class="label-field-pair">
-            @Html.LabelFor(model => model.TYPE, "Select A Discount Type :", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="text-input-bg">
-                @Html.DropDownList("TYPE", ViewData["TYPE"] as SelectList, htmlAttributes: new { @class = "TYPE", @onChange = "SelectAddType(this.value)", id = "TYPE" })
-                @Html.ValidationMessageFor(model => model.TYPE, "", new { @class = "text-danger" })
-                @Html.HiddenFor(model => model.TYPE)
-            </div>
-        </div>
-        <div>
-            <input type="button" id="Guardian_button" class="submit_button3" value="Add Further Details" />
-        </div>
-        <script type="text/javascript">
-                Event.observe(window, 'load', function () { $('Admission1_form').hide(); });
-        </script>
     </div>
 
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
+        <div class="button-pair">
+            <div class="button-label"><label>Select A Discount Type :</label></div>
+            <div class="button-box">
+                @Html.RadioButton("radioName", "Batch", false, new { id = "id1" }) Batch <br />
+                @Html.RadioButton("radioName", "Student Category", false, new { id = "id2" }) Student Category<br />
+                @Html.RadioButton("radioName", "Student", false, new { id = "id3" }) Student<br />
+            </div>
+        </div>
+
+        <script type="text/javascript">
+                Event.observe(window, 'load', function () { $('Admission1_form').hide(); });
+        </script>
 
         <div class="Admission1_form">
             <hr class="label-underline">
             <span class="span-sub-heading">Enter Details of Selected Discount Type</span>
             <div class="label-field-pair">
-                @Html.LabelFor(model => model.TYPE, "Select A Discount Type :", htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="text-input-bg">
-                    @Html.DropDownList("TYPE", ViewData["TYPE"] as SelectList, htmlAttributes: new { @class = "TYPE", @onChange = "SelectAddType(this.value)", id = "TYPE" })
-                    @Html.ValidationMessageFor(model => model.TYPE, "", new { @class = "text-danger" })
-                </div>
-            </div>
-            <div class="label-field-pair">
-                @Html.LabelFor(model => model.NAME, "Name", htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.NAME, "Name :", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="text-input-bg">
                     @Html.EditorFor(model => model.NAME, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.NAME, "", new { @class = "text-danger" })
@@ -108,33 +102,28 @@
             </div>
 
             <div class="label-field-pair">
-                @Html.LabelFor(model => model.FIN_FEE_CAT_ID, "Fee Master Category :", htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.Label("FIN_FEE_CAT_ID", "Select Fee Category :", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="text-input-bg">
                     @Html.DropDownList("FIN_FEE_CAT_ID", null, htmlAttributes: new { @class = "_select_change" })
                     @Html.ValidationMessageFor(model => model.FIN_FEE_CAT_ID, "", new { @class = "text-danger" })
                 </div>
             </div>
-            <div class="label-field-pair">
-                @Html.Label("BATCH_ID", "Select Batch :", htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="text-input-bg">
-                    @Html.DropDownList("BATCH_ID", null, htmlAttributes: new { @class = "_select_change" })
-                </div>
-            </div>
             <div id="batchs"></div>
             <div class="label-field-pair">
-                @Html.LabelFor(model => model.DISC, "Discount", htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.DISC, "Discount :", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="text-input-bg">
                     @Html.EditorFor(model => model.DISC, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.DISC, "", new { @class = "text-danger" })
                 </div>
             </div>
             <div class="label-field-pair">
-                @Html.LabelFor(model => model.IS_AMT, "Is Amount", htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="text-input-bg">
-                    @Html.EditorFor(model => model.IS_AMT, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.IS_AMT, "", new { @class = "text-danger" })
+                <label>Mode :</label>
+                <div class="button-box">
+                    @Html.RadioButton("radioName2", "Amount", true, new { id = "id1" }) Amount <br />
+                    @Html.RadioButton("radioName2", "Percentage", false, new { id = "id2" }) Percentage<br />
                 </div>
             </div>
+            <br>
         </div>
 
         <div class="Admission2_form">
@@ -148,13 +137,6 @@
         </div>
 
         <div class="Admission3_form">
-            <div class="label-field-pair">
-                @Html.Label("CRS_NAME", "Select A Course :", htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="text-input-bg">
-                    @Html.DropDownList("CRS_NAME", null, htmlAttributes: new { @class = "_select_change" })
-                </div>
-            </div>
-            <div id="batch-box"></div>
             <div id="fee-category-box"></div>
             <div class="label-field-pair">
                 @Html.Label("ADMSN_NO", "Admission Number", htmlAttributes: new { @class = "control-label col-md-2" })

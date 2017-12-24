@@ -59,8 +59,12 @@
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="itextsharp, Version=5.5.10.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
-      <HintPath>..\packages\iTextSharp.5.5.10\lib\itextsharp.dll</HintPath>
+    <Reference Include="itextsharp, Version=5.5.12.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\iTextSharp.5.5.12\lib\itextsharp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="itextsharp.xmlworker, Version=5.5.12.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\itextsharp.xmlworker.5.5.12\lib\itextsharp.xmlworker.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.AI.Agent.Intercept, Version=2.0.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -536,6 +540,8 @@
     <Content Include="Content\javascripts\fckeditor\_whatsnew.html" />
     <Content Include="Content\javascripts\fckeditor\_whatsnew_history.html" />
     <Content Include="Content\javascripts\jquery\jquery-1.3.2.min.js" />
+    <Content Include="Content\javascripts\jquery\jquery-1.9.1.js" />
+    <Content Include="Content\javascripts\jquery\jquery-ui.js" />
     <Content Include="Content\javascripts\jquery\jquery-ui.min.js" />
     <Content Include="Content\javascripts\jquery\jquery.hotkeys.js" />
     <Content Include="Content\javascripts\jquery\jquery.min.js" />
@@ -2167,6 +2173,7 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <None Include="Properties\PublishProfiles\SFSAcademy.pubxml" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
+    <Content Include="Scripts\jquery-1.9.1.js" />
     <Content Include="Scripts\jquery-3.1.1.js" />
     <Content Include="Scripts\jquery-3.1.1.min.js" />
     <Content Include="Scripts\jquery-3.1.1.slim.js" />
@@ -2281,7 +2288,7 @@
     <Content Include="Views\Finance\Index.cshtml" />
     <Content Include="Views\Finance\Fees_Index.cshtml" />
     <Content Include="Views\Finance\Master_Fees.cshtml" />
-    <Content Include="Views\Finance\_Master_Category_List.cshtml" />
+    <Content Include="Views\Finance\_Fee_Category_List.cshtml" />
     <Content Include="Views\Finance\_Master_Category_Create_Form.cshtml" />
     <Content Include="Views\Finance\Fees_Particulars_New.cshtml" />
     <Content Include="Views\Finance\_Fees_Particulars_Create.cshtml" />
@@ -2330,6 +2337,14 @@
     <Content Include="Views\Finance\_CategoriesList.cshtml" />
     <Content Include="Views\Finance\_CategoriesDelete.cshtml" />
     <Content Include="Views\Finance\_CategoriesEdit.cshtml" />
+    <Content Include="Views\Finance\_Master_Fee_List.cshtml" />
+    <Content Include="Views\BATCH\_Update_Batch.cshtml" />
+    <Content Include="Views\Finance\Fee_Category_View.cshtml" />
+    <Content Include="Views\Finance\Master_Category_Create.cshtml" />
+    <Content Include="Views\Finance\_Select_Batch.cshtml" />
+    <Content Include="Views\Finance\_fees_collection_dates.cshtml" />
+    <Content Include="Views\Finance\_fine_submission.cshtml" />
+    <Content Include="Views\Finance\student_fee_receipt_pdf.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -2471,6 +2486,9 @@
     <Compile Include="FEE_DISCOUNT.cs">
       <DependentUpon>ModelSFSAcademy.tt</DependentUpon>
     </Compile>
+    <Compile Include="FEE_FINE.cs">
+      <DependentUpon>ModelSFSAcademy.tt</DependentUpon>
+    </Compile>
     <Compile Include="FINANCE_DONATION.cs">
       <DependentUpon>ModelSFSAcademy.tt</DependentUpon>
     </Compile>
@@ -2507,10 +2525,10 @@
     <Compile Include="GUARDIAN.cs">
       <DependentUpon>ModelSFSAcademy.tt</DependentUpon>
     </Compile>
-    <Compile Include="HtmlHelpers\ApplicationHelper.cs" />
-    <Compile Include="HtmlHelpers\AssetsHelper.cs" />
-    <Compile Include="HtmlHelpers\PdfTabularReport.cs" />
-    <Compile Include="HtmlHelpers\ReportConfiguration.cs" />
+    <Compile Include="Infrastructure\HtmlHelpers\ApplicationHelper.cs" />
+    <Compile Include="Infrastructure\HtmlHelpers\AssetsHelper.cs" />
+    <Compile Include="Infrastructure\HtmlHelpers\PdfTabularReport.cs" />
+    <Compile Include="Infrastructure\HtmlHelpers\ReportConfiguration.cs" />
     <Compile Include="IMAGE_DOCUMENTS.cs">
       <DependentUpon>ModelSFSAcademy.tt</DependentUpon>
     </Compile>
@@ -2536,6 +2554,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ModelSFSAcademy.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\Courses.cs" />
     <Compile Include="Models\Products.cs" />
     <Compile Include="Models\PictureUpload.cs" />
     <Compile Include="Models\Finance.cs" />

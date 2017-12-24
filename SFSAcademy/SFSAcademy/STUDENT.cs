@@ -25,16 +25,17 @@ namespace SFSAcademy
             this.FEE_COLLECTION_DISCOUNT = new HashSet<FEE_COLLECTION_DISCOUNT>();
             this.FEE_COLLECTION_PARTICULAR = new HashSet<FEE_COLLECTION_PARTICULAR>();
             this.FEE_DISCOUNT = new HashSet<FEE_DISCOUNT>();
-            this.FINANCE_FEE = new HashSet<FINANCE_FEE>();
             this.FINANCE_FEE_PARTICULAR = new HashSet<FINANCE_FEE_PARTICULAR>();
             this.FINANCE_FEE_STRUCTURE_ELEMENT = new HashSet<FINANCE_FEE_STRUCTURE_ELEMENT>();
-            this.FINANCE_TRANSACTION = new HashSet<FINANCE_TRANSACTION>();
             this.GUARDIANs = new HashSet<GUARDIAN>();
             this.STUDENT_ADDITIONAL_DETAIL = new HashSet<STUDENT_ADDITIONAL_DETAIL>();
             this.STUDENT_PREVIOUS_DATA = new HashSet<STUDENT_PREVIOUS_DATA>();
             this.STUDENT_PREVIOUS_SUBJECT_MARK = new HashSet<STUDENT_PREVIOUS_SUBJECT_MARK>();
             this.STUDENT_SUBJECT = new HashSet<STUDENT_SUBJECT>();
             this.SUBJECT_LEAVE = new HashSet<SUBJECT_LEAVE>();
+            this.FINANCE_FEE = new HashSet<FINANCE_FEE>();
+            this.FEE_FINE = new HashSet<FEE_FINE>();
+            this.FINANCE_TRANSACTION = new HashSet<FINANCE_TRANSACTION>();
         }
     
         public int ID { get; set; }
@@ -94,13 +95,9 @@ namespace SFSAcademy
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<FEE_DISCOUNT> FEE_DISCOUNT { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<FINANCE_FEE> FINANCE_FEE { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<FINANCE_FEE_PARTICULAR> FINANCE_FEE_PARTICULAR { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<FINANCE_FEE_STRUCTURE_ELEMENT> FINANCE_FEE_STRUCTURE_ELEMENT { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<FINANCE_TRANSACTION> FINANCE_TRANSACTION { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<GUARDIAN> GUARDIANs { get; set; }
         public virtual STUDENT_CATGEORY STUDENT_CATGEORY { get; set; }
@@ -115,5 +112,11 @@ namespace SFSAcademy
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SUBJECT_LEAVE> SUBJECT_LEAVE { get; set; }
         public virtual USER USER { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<FINANCE_FEE> FINANCE_FEE { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<FEE_FINE> FEE_FINE { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<FINANCE_TRANSACTION> FINANCE_TRANSACTION { get; set; }
     }
 }

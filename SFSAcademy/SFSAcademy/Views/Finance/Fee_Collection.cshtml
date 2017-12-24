@@ -15,10 +15,18 @@
 <div><img src="~/Content/images/_global/header_underline_.jpg" width="100%"></div>
 
 <div id="page-yield">
-    @if (Html.ValidationSummary() != null)
-    {
-        <p class="flash-msg"> @Html.ValidationSummary() </p>
-    }
+    <div class="bread_crumb">
+        @Html.ActionLink("Finance", "Index") &raquo;
+        @Html.ActionLink("Fees", "Fees_Index") &raquo;
+        @Html.ActionLink("Create Fees", "Master_Fees") &raquo;
+        Fee Collection
+    </div>
+    <div id="flash_box">
+        @if (ViewBag.ErrorMessage != null)
+            {
+            <p class="flash-msg"> @ViewBag.ErrorMessage </p>
+        }
+    </div>
     <div class="box">
         <div id="message"></div>
         <div class="link-box">

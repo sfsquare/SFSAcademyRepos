@@ -87,7 +87,10 @@
                         @Html.DisplayFor(modelItem => item.BatcheData.NAME)
                     </td>
                     <td class="col-5" nowrap>
-                        @Html.DisplayFor(modelItem => item.StudentData.ADMSN_DATE)
+                        @if (!item.StudentData.ADMSN_DATE.Equals(null))
+                        {
+                            @item.StudentData.ADMSN_DATE.Value.ToShortDateString()
+                        }
                     </td>
                     <td class="col-5" nowrap>
                         @Html.DisplayFor(modelItem => item.StudentData.ADMSN_NO)

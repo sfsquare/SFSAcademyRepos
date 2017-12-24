@@ -14,10 +14,19 @@ namespace SFSAcademy
     
     public partial class FINANCE_TRANSACTION_CATEGORY
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public FINANCE_TRANSACTION_CATEGORY()
+        {
+            this.FINANCE_TRANSACTION = new HashSet<FINANCE_TRANSACTION>();
+        }
+    
         public int ID { get; set; }
         public string NAME { get; set; }
         public string DESCR { get; set; }
         public string IS_INCM { get; set; }
         public string DEL { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<FINANCE_TRANSACTION> FINANCE_TRANSACTION { get; set; }
     }
 }

@@ -1,9 +1,34 @@
-﻿@using SFSAcademy.Models
-@model IList<FeeSubmission>
+﻿@model SFSAcademy.FINANCE_FEE_COLLECTION
 
 @{
     ViewBag.Title = "Fees_Particulars_New";
 }
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+<link rel="stylesheet" href="/resources/demos/style.css" />
+<script type="text/javascript" language="javascript">
+    /* This is change event for your dropdownlist */
+    $(document.forms[0]).ready(function () {
+        $('#BatchDropDown').change(function () {
+
+        /* Get the selected value of dropdownlist */
+        var selectedID = $(this).val();
+
+        /* Request the partial view with .get request. */
+        $.get('/Finance/_fees_collection_dates/' + selectedID, function (data) {
+
+            /* data is the pure html returned from action method, load it to your page */
+            $('#fees_collection_dates').html(data);
+            /* little fade in effect */
+            $('#fees_collection_dates').fadeIn('fast');
+        });
+
+    });
+   });
+</script>
 
 <div id="content-header">
     <img src="~/Content/images/show_finance.png" alt="Finance Logo">
@@ -14,57 +39,34 @@
     </div>
 </div>
 <div><img src="~/Content/images/_global/header_underline_.jpg" width="100%"></div>
-
-<div id="page-yield">
-    <div id="flash_box">
-        <p class="flash-msg"> @ViewBag.FeeCatError</p>
-    </div>
-    @if (Html.ValidationSummary() != null)
+<div class="bread_crumb">
+    @Html.ActionLink("Finance", "Index") &raquo;
+    @Html.ActionLink("Fees", "Fees_Index") &raquo;
+    Fee Submission
+</div>
+<div id="flash_box">
+    @if (ViewBag.FeeCollectionMessage != null)
     {
-        <p class="flash-msg"> @Html.ValidationSummary() </p>
+        <p class="flash-msg"> @ViewBag.FeeCollectionMessage </p>
     }
-
-    <div id="grading-levels-form">
-
+</div>
+<div id="page-yield">
+    <div id="batchs1">
         @using (Html.BeginForm())
         {
             @Html.AntiForgeryToken()
-            <div id="form-errors">@Html.ValidationSummary()</div>
-            <div id="form-errors"></div>
-
-            <div id="left-side-inputs">
-                @{Html.RenderAction("_Student_Fees_Submission", "Finance");}
-            </div>
-
-            <div id="batchs">
-                <div class="batch_select_box">
-                    <div class="label-field-pair">
-                        <label>
-                            Select Batch
-                        </label>
-                    </div>
-                    <div class="fee_category_scroll">
-
-                        <div class="each_batch">
-                            @for (var j = 0; j < Model.Count(); j++)
-                            {
-                                <div class="each_category">
-                                    <label>@Model[j].FinanceFeeCategoryData.NAME - @Model[j].BatchData.NAME - @(Model[j].BatchData.START_DATE.HasValue ? Model[j].BatchData.START_DATE.Value.ToString("yyyy") : "") - @(Model[j].BatchData.END_DATE.HasValue ? Model[j].BatchData.END_DATE.Value.ToString("yyyy") : "")</label>
-                                </div>
-                                <div class="each_category">
-                                    @Html.HiddenFor(x => x[j].FinanceFeeCategoryData.ID)
-                                </div>
-                                <div class="each_category">
-                                    @Html.HiddenFor(x => x[j].BatchData.ID)
-                                </div>
-                            }
-                        </div>
-                    </div>
+            <div class="label-field-pair">
+                <div class="label-container">@Html.Label("BTCH_ID", "Select A Batch :", htmlAttributes: new { @class = "control-label col-md-2" })</div>
+                <div class="text-input-bg">
+                    @Html.DropDownList("BTCH_ID", null, htmlAttributes: new { @class = "form-control", @id = "BatchDropDown" })
+                    @Html.ValidationMessage("BTCH_ID", "", new { @class = "text-danger" })
                 </div>
             </div>
-
-            <input type="submit" value="Create" class="submit_button" formaction='@Url.Action("_Student_Fees_Submission", "Finance")' />
-           }
+                            <!-- Place where you will insert your partial -->
+            <div id="fees_collection_dates" style="display:none;"> </div>
+        }
+        <div id="student"> </div>
+        <div id="modal-box" style="display:none;"></div>
     </div>
+    <div class="extender"></div>
 </div>
-

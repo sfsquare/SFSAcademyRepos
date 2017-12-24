@@ -411,7 +411,7 @@ namespace SFSAcademy.Controllers
             }
             if (!String.IsNullOrEmpty(ContactNumber))
             {
-                PurchaseS = PurchaseS.Where(s => s.PurchaseData.STUDENT_CONTACT_NO.Contains(ContactNumber));
+                PurchaseS = PurchaseS.Where(s => s.PurchaseData.STUDENT_CONTACT_NO.Equals(ContactNumber));
             }
             if (!String.IsNullOrEmpty(ReceivedBy))
             {
@@ -511,7 +511,7 @@ namespace SFSAcademy.Controllers
             }
             if (!String.IsNullOrEmpty(ContactNumber))
             {
-                PurchaseS = PurchaseS.Where(s => s.PurchaseData.STUDENT_CONTACT_NO.Contains(ContactNumber));
+                PurchaseS = PurchaseS.Where(s => s.PurchaseData.STUDENT_CONTACT_NO.Equals(ContactNumber));
             }
             if (!String.IsNullOrEmpty(ReceivedBy))
             {

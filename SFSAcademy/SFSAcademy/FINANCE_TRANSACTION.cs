@@ -18,8 +18,6 @@ namespace SFSAcademy
         public FINANCE_TRANSACTION()
         {
             this.FINANCE_DONATION = new HashSet<FINANCE_DONATION>();
-            this.FINANCE_FEE1 = new HashSet<FINANCE_FEE>();
-            this.FINANCE_TRANSACTION1 = new HashSet<FINANCE_TRANSACTION>();
         }
     
         public int ID { get; set; }
@@ -45,12 +43,7 @@ namespace SFSAcademy
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<FINANCE_DONATION> FINANCE_DONATION { get; set; }
         public virtual FINANCE_FEE FINANCE_FEE { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<FINANCE_FEE> FINANCE_FEE1 { get; set; }
-        public virtual FINANCE_FEE_CATGEORY FINANCE_FEE_CATGEORY { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<FINANCE_TRANSACTION> FINANCE_TRANSACTION1 { get; set; }
-        public virtual FINANCE_TRANSACTION FINANCE_TRANSACTION2 { get; set; }
+        public virtual FINANCE_TRANSACTION_CATEGORY FINANCE_TRANSACTION_CATEGORY { get; set; }
         public virtual STUDENT STUDENT { get; set; }
     }
 }
