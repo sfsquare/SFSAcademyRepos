@@ -57,7 +57,10 @@
                         @Html.DisplayFor(modelItem => item.PurchaseData.STUDENT_NAME)
                     </td>
                     <td class="col-7" nowrap>
-                        @Html.DisplayFor(modelItem => item.PurchaseData.SOLD_ON)
+                        @if (!item.PurchaseData.SOLD_ON.Equals(null))
+                        {
+                            @item.PurchaseData.SOLD_ON.Value.ToShortDateString()
+                        }
                     </td>
                     <td class="col-8" nowrap>
                         @Html.ActionLink("Edit ", "EditSelling", new { id = item.PurchaseData.ID }) 

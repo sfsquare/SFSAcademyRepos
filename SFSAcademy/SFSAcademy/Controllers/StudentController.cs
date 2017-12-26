@@ -38,8 +38,9 @@ namespace SFSAcademy.Controllers
 
             var StudentS = (from st in db.STUDENTs
                             join b in db.BATCHes on st.BTCH_ID equals b.ID
+                            join cs in db.COURSEs on b.CRS_ID equals cs.ID
                             orderby st.LAST_NAME, b.NAME
-                            select new Models.Student { StudentData = st, BatcheData = b }).Distinct();
+                            select new Models.Student { StudentData = st, BatcheData = b, CourseData = cs }).Distinct();
 
             if (!String.IsNullOrEmpty(searchString))
             {
@@ -99,8 +100,9 @@ namespace SFSAcademy.Controllers
 
             var StudentS = (from st in db.STUDENTs
                            join b in db.BATCHes on st.BTCH_ID equals b.ID
+                           join cs in db.COURSEs on b.CRS_ID equals cs.ID
                            orderby st.LAST_NAME, b.NAME
-                           select new Models.Student { StudentData = st, BatcheData = b }).Distinct();
+                           select new Models.Student { StudentData = st, BatcheData = b, CourseData = cs }).Distinct();
 
             if (!String.IsNullOrEmpty(searchString))
             {

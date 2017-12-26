@@ -18,9 +18,19 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-
     <div id="page-yield">
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="bread_crumb">
+            @Html.ActionLink("Finance", "Index") &raquo;
+            @Html.ActionLink("Fees", "Fees_Index") &raquo;
+            @Html.ActionLink("Fee Collection", "Fee_Collection") &raquo;
+            Edit Fee Collection
+        </div>
+        <div id="flash_box">
+            @if (ViewBag.ErrorMessage != null)
+            {
+                <p class="flash-msg"> @ViewBag.ErrorMessage </p>
+            }
+        </div>
         @Html.HiddenFor(model => model.ID)
         <div class="label-field-pair">
             @Html.LabelFor(model => model.NAME, "Fee Collection Name", htmlAttributes: new { @class = "control-label col-md-2" })

@@ -1,9 +1,34 @@
 ﻿@model SFSAcademy.COURSE
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Course_New";
 }
-
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+<link rel="stylesheet" href="/resources/demos/style.css" />
+<script>
+    $(function () {
+        $("#datepicker").datepicker({
+            showOn: "button",
+            buttonImage: "/Content/images/calendar_date_select/calendar.gif",
+            buttonImageOnly: true
+        });
+        $("#datepicker2").datepicker({
+            showOn: "button",
+            buttonImage: "/Content/images/calendar_date_select/calendar.gif",
+            buttonImageOnly: true
+        });
+    });
+</script>
+<script type="text/javascript">
+    $('.open-datetimepicker').click(function (event) {
+        event.preventDefault();
+        $('#datetimepicker').click();
+    });
+</script>
 <div id="content-header">
     <img src="~/Content/images/examination/show_exam.png" alt="Settings Logo">
     <h1>Courses</h1>
@@ -22,37 +47,36 @@
         New
     </div>
 
-    @if (Html.ValidationSummary() != null)
+    @if (ViewBag.Message != null)
     {
-        <p class="flash-msg"> @Html.ValidationSummary() </p>
+        <p class="flash-msg"> @ViewBag.Message </p>
     }
 
-    <div class="box">
+    <div id="grading-levels-form">
         <div class="bread_crumb">
             <a href="@Url.Action("ManageCourse", "Courses")">Course</a> &raquo;
             New
         </div>
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @using (Html.BeginForm())
         {
             @Html.AntiForgeryToken()
 
             <div class="label-field-pair">
-                <div class="label-container1">@Html.LabelFor(model => model.CRS_NAME, "Course Name", htmlAttributes: new { @class = "control-label col-md-2" })</div>
+                <div class="label-container">@Html.LabelFor(model => model.CRS_NAME, "Course Name", htmlAttributes: new { @class = "control-label col-md-2" })</div>
                 <div class="input-container">
                     @Html.EditorFor(model => model.CRS_NAME, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.CRS_NAME, "", new { @class = "text-danger" })
                 </div>
             </div>
             <div class="label-field-pair">
-                <div class="label-container1">@Html.LabelFor(model => model.SECTN_NAME, "Section Name", htmlAttributes: new { @class = "control-label col-md-2" })</div>
+                <div class="label-container">@Html.LabelFor(model => model.SECTN_NAME, "Section Name", htmlAttributes: new { @class = "control-label col-md-2" })</div>
                 <div class="input-container">
                     @Html.EditorFor(model => model.SECTN_NAME, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.SECTN_NAME, "", new { @class = "text-danger" })
                 </div>
             </div>
             <div class="label-field-pair">
-                <div class="label-container1">@Html.LabelFor(model => model.CODE, "Code", htmlAttributes: new { @class = "control-label col-md-2" })</div>
+                <div class="label-container">@Html.LabelFor(model => model.CODE, "Code", htmlAttributes: new { @class = "control-label col-md-2" })</div>
                 <div class="input-container">
                     @Html.EditorFor(model => model.CODE, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.CODE, "", new { @class = "text-danger" })
@@ -62,32 +86,30 @@
                 <div class="label-field-pair">
                     <div class="label-container">@Html.LabelFor(model => model.GRADING_TYPE, "Grading system type", htmlAttributes: new { @class = "control-label col-md-2" })</div>
                     <div class="text-input-bg">
-                        @Html.EditorFor(model => model.GRADING_TYPE, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.DropDownList("GRADING_TYPE", ViewData["GRADING_TYPE"] as SelectList, htmlAttributes: new { @class = "GRADING_TYPE", @onChange = "SelectAddType(this.value)", id = "GRADING_TYPE" })
                         @Html.ValidationMessageFor(model => model.GRADING_TYPE, "", new { @class = "text-danger" })
+                        @Html.HiddenFor(model => model.GRADING_TYPE)
                     </div>
                 </div>
             </div>
             <h4>Initial Batch Details</h4>
             <div class="label-field-pair">
-                <div class="label-container1">@Html.LabelFor(model => model.IS_DEL, "Name", htmlAttributes: new { @class = "control-label col-md-2" })</div>
+                <div class="label-container">@Html.Label("BATCH_NAME", "Name", htmlAttributes: new { @class = "control-label col-md-2" })</div>
                 <div class="input-container">
-                    @Html.EditorFor(model => model.IS_DEL, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.IS_DEL, "", new { @class = "text-danger" })
+                    @Html.Editor("BATCH_NAME", new { htmlAttributes = new { @class = "form-control" } })
                 </div>
             </div>
 
             <div class="label-field-pair">
-                <div class="label-container1">@Html.LabelFor(model => model.CREATED_AT, "Start Date", htmlAttributes: new { @class = "control-label col-md-2" })</div>
+                <div class="label-container">@Html.Label("ReturnDate", "Start Date", htmlAttributes: new { @class = "control-label col-md-2" })</div>
                 <div class="input-container">
-                    @Html.EditorFor(model => model.CREATED_AT, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.CREATED_AT, "", new { @class = "text-danger" })
+                    @Html.Editor("ReturnDate", new { htmlAttributes = new { @class = "form-control", @id = "datepicker", @Value = ViewBag.ReturnDate, @readonly = "readonly" } })
                 </div>
             </div>
             <div class="label-field-pair">
-                <div class="label-container1">@Html.LabelFor(model => model.UPDATED_AT, "End Date", htmlAttributes: new { @class = "control-label col-md-2" })</div>
+                <div class="label-container">@Html.Label("ReturnDate2", "End Date", htmlAttributes: new { @class = "control-label col-md-2" })</div>
                 <div class="input-container">
-                    @Html.EditorFor(model => model.UPDATED_AT, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.UPDATED_AT, "", new { @class = "text-danger" })
+                    @Html.Editor("ReturnDate2", new { htmlAttributes = new { @class = "form-control", @id = "datepicker2", @Value = ViewBag.ReturnDate2, @readonly = "readonly" } })
                 </div>
             </div>
             <div id="submit_area">
@@ -109,4 +131,24 @@
     }
     return true;
   }
-</script>
+@section scripts{
+
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script src="~/Scripts/dropzone.js"></script>
+
+    <script type="text/javascript">
+
+$(document).ready(function () {
+    $("#preview").fadeOut(15);
+    $("#refreshButton").click(function () {
+        var imageToLoad = $("#imageId").val();
+        if (imageToLoad.length > 0) {
+            $("#preview").attr("src", "/Document/Show/" + imageToLoad);
+            $("#preview").fadeIn();
+        }
+    });
+});
+
+    </script>
+}

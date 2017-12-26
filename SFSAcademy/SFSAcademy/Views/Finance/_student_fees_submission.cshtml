@@ -48,11 +48,43 @@
             $('#modal-box').fadeIn('fast');
         });
 
-    });
+        });
+
+        $('#submit-button2').click(function () {
+
+            var selectedID = $('#date').val();
+            var SelectedStd = $('#prev_studentID').val();
+            var SelectedBatch = $('#batch_id').val();
+            /* Request the partial view with .get request. */
+            $.get('/Finance/_Student_Fees_Submission?id=' + selectedID + "&batch_id=" + SelectedBatch + "&student_id=" + SelectedStd, function (data) {
+
+                /* data is the pure html returned from action method, load it to your page */
+                $('#modal-box').html(data);
+                /* little fade in effect */
+                $('#modal-box').fadeIn('fast');
+            });
+
+        });
+
+        $('#submit-button3').click(function () {
+
+            var selectedID = $('#date').val();
+            var SelectedStd = $('#next_studentID').val();
+            var SelectedBatch = $('#batch_id').val();
+            /* Request the partial view with .get request. */
+            $.get('/Finance/_Student_Fees_Submission?id=' + selectedID + "&batch_id=" + SelectedBatch + "&student_id=" + SelectedStd, function (data) {
+
+                /* data is the pure html returned from action method, load it to your page */
+                $('#modal-box').html(data);
+                /* little fade in effect */
+                $('#modal-box').fadeIn('fast');
+            });
+
+        });
    });
 </script>
 <div class="name"></div>
-@if (financefee != null)
+@if (financefee != null && financefee.Count() != 0)
 {
     if (financefee.FirstOrDefault().TRAN_ID != null)
     {
@@ -83,29 +115,31 @@ else
 {
     <div class="name">Fee Collection Name</div><div class="val themed_text"><span>:</span>@date.NAME</div>
 }
-@foreach (var item0 in financefee)
+@if (financefee != null && financefee.Count() != 0)
 {
-    if (item0.IS_PD != "Y")
+    if(financefee.FirstOrDefault().IS_PD !="Y")
     {
-        Html.RenderPartial("_fine_submission");     
+        Html.RenderPartial("_fine_submission");
     }
-    break;
 }
+else
+{ Html.RenderPartial("_fine_submission"); }
+
 <div id="register">
     <div class="header">
         <div class="prev">
-            @if (prev_student != null)
+            @if (prev_student != null && Session["student_serach"] == null)
             {
-            @Html.ActionLink("◄", "_Student_Fees_Submission", new { id = date.ID, batch_id = batch.FirstOrDefault().BatchData.ID, student_id = prev_student.ID })
+            <input type="submit" value="◄" id="submit-button2" class="submit-button2" />
             }      
         </div>
         <div class="month">
             @student.FIRST_NAME  @student.MID_NAME  @student.LAST_NAME
         </div>
         <div class="next">
-            @if (next_student != null)
+            @if (next_student != null && Session["student_serach"] == null)
             {
-                @Html.ActionLink("►", "_Student_Fees_Submission", new { id = date.ID, batch_id = batch.FirstOrDefault().BatchData.ID, student_id = next_student.ID })
+                <input type="submit" value="►" id="submit-button3" class="submit-button2" />
             }          
         </div>
         <div class="extender"></div>
@@ -259,7 +293,7 @@ else
             </tr>
             foreach (var item in batch_fine)
             {
-                string fine_text = item.IS_AMT == "Y" ? string.Concat(item.NAME, " On ", item.FINE_DATE.Value.ToShortDateString()) : string.Concat(item.NAME, " On ",item.FINE_DATE.Value.ToShortDateString(), " : " , item.FINE, "%");
+                string fine_text = item.IS_AMT == "Y" ? string.Concat(item.NAME, " On ", item.FINE_DATE.Value.ToShortDateString()) : string.Concat(item.NAME, " On ", item.FINE_DATE.Value.ToShortDateString(), " : ", item.FINE, "%");
                 decimal fine = item.IS_AMT == "Y" ? (decimal)item.FINE : ViewBag.total_payable * (decimal)item.FINE / 100;
                 string selectedRow = "tr-even";
                 if (i % 2 == 0)
@@ -384,14 +418,14 @@ else
             <td colspan="3">
                 <div class="pay_fees">
                     @if (total_fees != 0)
-                {
+                    {
                         <div class="label-field-pair">
                             <div class="label-container">@Html.Label("PAYMENT_MODE", "Payment Mode", htmlAttributes: new { @class = "control-label col-md-2" })</div>
 
                             <div class="text-input-bg">
                                 @Html.DropDownList("PAYMENT_MODE", new SelectList(Enum.GetValues(typeof(PaymentMode))),
-                    "Select Mode of Payment",
-                    new { @class = "form-control", @id = "PAYMENT_MODE" })
+"Select Mode of Payment",
+new { @class = "form-control", @id = "PAYMENT_MODE" })
 
                             </div>
                             @Html.Hidden("total_fees", total_fees, htmlAttributes: new { @id = "total_fees" })
@@ -430,6 +464,8 @@ else
     </table>
 }
 <input type="hidden" value="@student.ID" id="studentID" name="studentID" />
+<input type="hidden" value="@ViewBag.prev_student_id" id="prev_studentID" name="prev_studentID" />
+<input type="hidden" value="@ViewBag.next_student_id" id="next_studentID" name="next_studentID" />
 <input type="hidden" value="@batch.FirstOrDefault().BatchData.ID" id="batch_id" name="batch_id" />
 <input type="hidden" value="@date.ID" id="date" name="date" />
 <input type="hidden" value='@ViewBag.fine' name="fine" id="fine" />

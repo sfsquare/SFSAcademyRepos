@@ -128,7 +128,6 @@
     <Property Name="EMP_ID" Type="Int32" />
     <NavigationProperty Name="ASSESSMENT_SCORE" Relationship="Self.R_76" FromRole="BATCH" ToRole="ASSESSMENT_SCORE" />
     <NavigationProperty Name="ATTENDENCEs" Relationship="Self.R_134" FromRole="BATCH" ToRole="ATTENDENCE" />
-    <NavigationProperty Name="FINANCE_FEE_CATGEORY" Relationship="Self.R_104" FromRole="BATCH" ToRole="FINANCE_FEE_CATGEORY" />
     <NavigationProperty Name="FINANCE_FEE_STRUCTURE_ELEMENT" Relationship="Self.R_117" FromRole="BATCH" ToRole="FINANCE_FEE_STRUCTURE_ELEMENT" />
     <NavigationProperty Name="COURSE" Relationship="Self.R_12" FromRole="BATCH" ToRole="COURSE" />
     <NavigationProperty Name="SUBJECTs" Relationship="Self.R_14" FromRole="BATCH" ToRole="SUBJECT" />
@@ -141,6 +140,7 @@
     <NavigationProperty Name="TIMETABLE_ENTRY" Relationship="Self.R_97" FromRole="BATCH" ToRole="TIMETABLE_ENTRY" />
     <NavigationProperty Name="WEEKDAYs" Relationship="Self.R_98" FromRole="BATCH" ToRole="WEEKDAY" />
     <NavigationProperty Name="FINANCE_FEE_COLLECTION" Relationship="SFSAcademyModel.BTCH__BATC_FINA_NI2" FromRole="BATCH" ToRole="FINANCE_FEE_COLLECTION" />
+    <NavigationProperty Name="FINANCE_FEE_CATGEORY" Relationship="SFSAcademyModel.BTCH__BATC_FINA_NI" FromRole="BATCH" ToRole="FINANCE_FEE_CATGEORY" />
   </EntityType>
   <EntityType Name="CCE_EXAM_CATEGORY">
     <Key>
@@ -633,8 +633,8 @@
     <Property Name="IS_AMT" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
     <Property Name="CREATED_AT" Type="DateTime" Precision="3" />
     <Property Name="UPDATED_AT" Type="DateTime" Precision="3" />
-    <NavigationProperty Name="FINANCE_FEE_CATGEORY" Relationship="Self.R_131" FromRole="FEE_COLLECTION_DISCOUNT" ToRole="FINANCE_FEE_CATGEORY" />
     <NavigationProperty Name="STUDENT" Relationship="SFSAcademyModel.RCVR__STUD_FEE__NI" FromRole="FEE_COLLECTION_DISCOUNT" ToRole="STUDENT" />
+    <NavigationProperty Name="FINANCE_FEE_CATGEORY" Relationship="SFSAcademyModel.FIN_F_FINA_FEE__NI" FromRole="FEE_COLLECTION_DISCOUNT" ToRole="FINANCE_FEE_CATGEORY" />
   </EntityType>
   <EntityType Name="FEE_DISCOUNT">
     <Key>
@@ -647,8 +647,8 @@
     <Property Name="FIN_FEE_CAT_ID" Type="Int32" />
     <Property Name="DISC" Type="Decimal" Precision="10" Scale="2" />
     <Property Name="IS_AMT" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="FINANCE_FEE_CATGEORY" Relationship="Self.R_126" FromRole="FEE_DISCOUNT" ToRole="FINANCE_FEE_CATGEORY" />
     <NavigationProperty Name="STUDENT" Relationship="SFSAcademyModel.RCVR__STUD_FEE__NI2" FromRole="FEE_DISCOUNT" ToRole="STUDENT" />
+    <NavigationProperty Name="FINANCE_FEE_CATGEORY" Relationship="SFSAcademyModel.FIN_F_FINA_FEE__NI3" FromRole="FEE_DISCOUNT" ToRole="FINANCE_FEE_CATGEORY" />
   </EntityType>
   <EntityType Name="FINANCE_DONATION">
     <Key>
@@ -662,41 +662,7 @@
     <Property Name="CREATED_AT" Type="DateTime" Precision="3" />
     <Property Name="UPDATED_AT" Type="DateTime" Precision="3" />
     <Property Name="TRAN_DATE" Type="DateTime" Precision="3" />
-    <NavigationProperty Name="FINANCE_TRANSACTION" Relationship="Self.R_123" FromRole="FINANCE_DONATION" ToRole="FINANCE_TRANSACTION" />
-  </EntityType>
-  <EntityType Name="FINANCE_FEE">
-    <Key>
-      <PropertyRef Name="ID" />
-    </Key>
-    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="FEE_CLCT_ID" Type="Int32" />
-    <Property Name="TRAN_ID" Type="Int32" />
-    <Property Name="STDNT_ID" Type="Int32" />
-    <Property Name="IS_PD" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="FINANCE_TRANSACTION" Relationship="Self.R_110" FromRole="FINANCE_FEE" ToRole="FINANCE_TRANSACTION" />
-    <NavigationProperty Name="FINANCE_TRANSACTION1" Relationship="Self.R_112" FromRole="FINANCE_FEE" ToRole="FINANCE_TRANSACTION" />
-    <NavigationProperty Name="FINANCE_FEE_COLLECTION" Relationship="SFSAcademyModel.FEE_C_FINA_FINA_NI" FromRole="FINANCE_FEE" ToRole="FINANCE_FEE_COLLECTION" />
-    <NavigationProperty Name="STUDENT" Relationship="SFSAcademyModel.STDNT_STUD_FINA_NI" FromRole="FINANCE_FEE" ToRole="STUDENT" />
-  </EntityType>
-  <EntityType Name="FINANCE_FEE_CATGEORY">
-    <Key>
-      <PropertyRef Name="ID" />
-    </Key>
-    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="DESCR" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="BTCH_ID" Type="Int32" />
-    <Property Name="IS_DEL" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
-    <Property Name="IS_MSTR" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
-    <Property Name="CREATED_AT" Type="DateTime" Precision="3" />
-    <Property Name="UPDATED_AT" Type="DateTime" Precision="3" />
-    <NavigationProperty Name="BATCH" Relationship="Self.R_104" FromRole="FINANCE_FEE_CATGEORY" ToRole="BATCH" />
-    <NavigationProperty Name="FEE_COLLECTION_DISCOUNT" Relationship="Self.R_131" FromRole="FINANCE_FEE_CATGEORY" ToRole="FEE_COLLECTION_DISCOUNT" />
-    <NavigationProperty Name="FEE_DISCOUNT" Relationship="Self.R_126" FromRole="FINANCE_FEE_CATGEORY" ToRole="FEE_DISCOUNT" />
-    <NavigationProperty Name="FINANCE_TRANSACTION" Relationship="Self.R_108" FromRole="FINANCE_FEE_CATGEORY" ToRole="FINANCE_TRANSACTION" />
-    <NavigationProperty Name="FINANCE_FEE_PARTICULAR" Relationship="Self.R_114" FromRole="FINANCE_FEE_CATGEORY" ToRole="FINANCE_FEE_PARTICULAR" />
-    <NavigationProperty Name="FINANCE_TRANSACTION_TRIGGERS" Relationship="Self.R_122" FromRole="FINANCE_FEE_CATGEORY" ToRole="FINANCE_TRANSACTION_TRIGGERS" />
-    <NavigationProperty Name="FINANCE_FEE_COLLECTION" Relationship="SFSAcademyModel.FEE_C_FINA_FINA_NI3" FromRole="FINANCE_FEE_CATGEORY" ToRole="FINANCE_FEE_COLLECTION" />
+    <NavigationProperty Name="FINANCE_TRANSACTION" Relationship="SFSAcademyModel.TRAN__FINA_FINA_NI" FromRole="FINANCE_DONATION" ToRole="FINANCE_TRANSACTION" />
   </EntityType>
   <EntityType Name="FINANCE_FEE_PARTICULAR">
     <Key>
@@ -713,9 +679,9 @@
     <Property Name="IS_DEL" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
     <Property Name="CREATED_AT" Type="DateTime" Precision="3" />
     <Property Name="UPDATED_AT" Type="DateTime" Precision="3" />
-    <NavigationProperty Name="FINANCE_FEE_CATGEORY" Relationship="Self.R_114" FromRole="FINANCE_FEE_PARTICULAR" ToRole="FINANCE_FEE_CATGEORY" />
     <NavigationProperty Name="STUDENT_CATGEORY" Relationship="Self.R_115" FromRole="FINANCE_FEE_PARTICULAR" ToRole="STUDENT_CATGEORY" />
     <NavigationProperty Name="STUDENT" Relationship="SFSAcademyModel.STDNT_STUD_FINA_NI4" FromRole="FINANCE_FEE_PARTICULAR" ToRole="STUDENT" />
+    <NavigationProperty Name="FINANCE_FEE_CATGEORY" Relationship="SFSAcademyModel.FIN_F_FINA_FINA_NI" FromRole="FINANCE_FEE_PARTICULAR" ToRole="FINANCE_FEE_CATGEORY" />
   </EntityType>
   <EntityType Name="FINANCE_FEE_STRUCTURE_ELEMENT">
     <Key>
@@ -736,37 +702,6 @@
     <NavigationProperty Name="FINANCE_FEE_COLLECTION" Relationship="SFSAcademyModel.FEE_C_FINA_FINA_NI4" FromRole="FINANCE_FEE_STRUCTURE_ELEMENT" ToRole="FINANCE_FEE_COLLECTION" />
     <NavigationProperty Name="STUDENT" Relationship="SFSAcademyModel.STDNT_STUD_FINA_NI6" FromRole="FINANCE_FEE_STRUCTURE_ELEMENT" ToRole="STUDENT" />
   </EntityType>
-  <EntityType Name="FINANCE_TRANSACTION">
-    <Key>
-      <PropertyRef Name="ID" />
-    </Key>
-    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="MSTRTRAN_ID" Type="Int32" />
-    <Property Name="TIL" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-    <Property Name="DESCR" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="AMT" Type="Decimal" Precision="10" Scale="2" />
-    <Property Name="FINE_INCLD" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
-    <Property Name="CAT_ID" Type="Int32" />
-    <Property Name="STDNT_ID" Type="Int32" />
-    <Property Name="FIN_FE_ID" Type="Int32" />
-    <Property Name="CRETAED_AT" Type="DateTime" Precision="3" />
-    <Property Name="UPDATED_AT" Type="DateTime" Precision="3" />
-    <Property Name="TRAN_DATE" Type="DateTime" Precision="3" />
-    <Property Name="FINE_AMT" Type="Decimal" Precision="10" Scale="2" />
-    <Property Name="FIN_ID" Type="Int32" />
-    <Property Name="FIN_TYPE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-    <Property Name="PAYEE_ID" Type="Int32" />
-    <Property Name="PAYEE_TYPE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-    <Property Name="RCPT_NO" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-    <Property Name="VCHR_NO" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="FINANCE_DONATION" Relationship="Self.R_123" FromRole="FINANCE_TRANSACTION" ToRole="FINANCE_DONATION" />
-    <NavigationProperty Name="FINANCE_FEE" Relationship="Self.R_110" FromRole="FINANCE_TRANSACTION" ToRole="FINANCE_FEE" />
-    <NavigationProperty Name="FINANCE_FEE1" Relationship="Self.R_112" FromRole="FINANCE_TRANSACTION" ToRole="FINANCE_FEE" />
-    <NavigationProperty Name="FINANCE_FEE_CATGEORY" Relationship="Self.R_108" FromRole="FINANCE_TRANSACTION" ToRole="FINANCE_FEE_CATGEORY" />
-    <NavigationProperty Name="FINANCE_TRANSACTION1" Relationship="Self.R_111" FromRole="FINANCE_TRANSACTION" ToRole="FINANCE_TRANSACTION1" />
-    <NavigationProperty Name="FINANCE_TRANSACTION2" Relationship="Self.R_111" FromRole="FINANCE_TRANSACTION1" ToRole="FINANCE_TRANSACTION" />
-    <NavigationProperty Name="STUDENT" Relationship="SFSAcademyModel.STDNT_STUD_FINA_NI7" FromRole="FINANCE_TRANSACTION" ToRole="STUDENT" />
-  </EntityType>
   <EntityType Name="FINANCE_TRANSACTION_CATEGORY">
     <Key>
       <PropertyRef Name="ID" />
@@ -776,6 +711,7 @@
     <Property Name="DESCR" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="IS_INCM" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
     <Property Name="DEL" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="FINANCE_TRANSACTION" Relationship="SFSAcademyModel.CAT_I_FINA_FINA_NI" FromRole="FINANCE_TRANSACTION_CATEGORY" ToRole="FINANCE_TRANSACTION" />
   </EntityType>
   <EntityType Name="FINANCE_TRANSACTION_TRIGGERS">
     <Key>
@@ -786,7 +722,7 @@
     <Property Name="PCT" Type="Decimal" Precision="10" Scale="2" />
     <Property Name="TIL" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
     <Property Name="DESCR" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="FINANCE_FEE_CATGEORY" Relationship="Self.R_122" FromRole="FINANCE_TRANSACTION_TRIGGERS" ToRole="FINANCE_FEE_CATGEORY" />
+    <NavigationProperty Name="FINANCE_FEE_CATGEORY" Relationship="SFSAcademyModel.FIN_C_FINA_FINA_NI" FromRole="FINANCE_TRANSACTION_TRIGGERS" ToRole="FINANCE_FEE_CATGEORY" />
   </EntityType>
   <EntityType Name="GRADING_LEVEL">
     <Key>
@@ -1246,18 +1182,6 @@
         <PropertyRef Name="ID" />
       </Principal>
       <Dependent Role="ATTENDENCE">
-        <PropertyRef Name="BTCH_ID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="R_104">
-    <End Role="BATCH" Type="Self.BATCH" Multiplicity="0..1" />
-    <End Role="FINANCE_FEE_CATGEORY" Type="Self.FINANCE_FEE_CATGEORY" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="BATCH">
-        <PropertyRef Name="ID" />
-      </Principal>
-      <Dependent Role="FINANCE_FEE_CATGEORY">
         <PropertyRef Name="BTCH_ID" />
       </Dependent>
     </ReferentialConstraint>
@@ -1934,102 +1858,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="R_131">
-    <End Role="FINANCE_FEE_CATGEORY" Type="Self.FINANCE_FEE_CATGEORY" Multiplicity="0..1" />
-    <End Role="FEE_COLLECTION_DISCOUNT" Type="Self.FEE_COLLECTION_DISCOUNT" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="FINANCE_FEE_CATGEORY">
-        <PropertyRef Name="ID" />
-      </Principal>
-      <Dependent Role="FEE_COLLECTION_DISCOUNT">
-        <PropertyRef Name="FIN_FEE_CLCT_ID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="R_126">
-    <End Role="FINANCE_FEE_CATGEORY" Type="Self.FINANCE_FEE_CATGEORY" Multiplicity="0..1" />
-    <End Role="FEE_DISCOUNT" Type="Self.FEE_DISCOUNT" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="FINANCE_FEE_CATGEORY">
-        <PropertyRef Name="ID" />
-      </Principal>
-      <Dependent Role="FEE_DISCOUNT">
-        <PropertyRef Name="FIN_FEE_CAT_ID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="R_123">
-    <End Role="FINANCE_TRANSACTION" Type="Self.FINANCE_TRANSACTION" Multiplicity="0..1" />
-    <End Role="FINANCE_DONATION" Type="Self.FINANCE_DONATION" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="FINANCE_TRANSACTION">
-        <PropertyRef Name="ID" />
-      </Principal>
-      <Dependent Role="FINANCE_DONATION">
-        <PropertyRef Name="TRAN_ID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="R_110">
-    <End Role="FINANCE_FEE" Type="Self.FINANCE_FEE" Multiplicity="0..1" />
-    <End Role="FINANCE_TRANSACTION" Type="Self.FINANCE_TRANSACTION" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="FINANCE_FEE">
-        <PropertyRef Name="ID" />
-      </Principal>
-      <Dependent Role="FINANCE_TRANSACTION">
-        <PropertyRef Name="FIN_FE_ID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="R_112">
-    <End Role="FINANCE_TRANSACTION" Type="Self.FINANCE_TRANSACTION" Multiplicity="0..1" />
-    <End Role="FINANCE_FEE" Type="Self.FINANCE_FEE" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="FINANCE_TRANSACTION">
-        <PropertyRef Name="ID" />
-      </Principal>
-      <Dependent Role="FINANCE_FEE">
-        <PropertyRef Name="TRAN_ID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="R_108">
-    <End Role="FINANCE_FEE_CATGEORY" Type="Self.FINANCE_FEE_CATGEORY" Multiplicity="0..1" />
-    <End Role="FINANCE_TRANSACTION" Type="Self.FINANCE_TRANSACTION" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="FINANCE_FEE_CATGEORY">
-        <PropertyRef Name="ID" />
-      </Principal>
-      <Dependent Role="FINANCE_TRANSACTION">
-        <PropertyRef Name="CAT_ID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="R_114">
-    <End Role="FINANCE_FEE_CATGEORY" Type="Self.FINANCE_FEE_CATGEORY" Multiplicity="0..1" />
-    <End Role="FINANCE_FEE_PARTICULAR" Type="Self.FINANCE_FEE_PARTICULAR" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="FINANCE_FEE_CATGEORY">
-        <PropertyRef Name="ID" />
-      </Principal>
-      <Dependent Role="FINANCE_FEE_PARTICULAR">
-        <PropertyRef Name="FIN_FEE_CAT_ID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="R_122">
-    <End Role="FINANCE_FEE_CATGEORY" Type="Self.FINANCE_FEE_CATGEORY" Multiplicity="0..1" />
-    <End Role="FINANCE_TRANSACTION_TRIGGERS" Type="Self.FINANCE_TRANSACTION_TRIGGERS" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="FINANCE_FEE_CATGEORY">
-        <PropertyRef Name="ID" />
-      </Principal>
-      <Dependent Role="FINANCE_TRANSACTION_TRIGGERS">
-        <PropertyRef Name="FIN_CAT_ID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="R_115">
     <End Role="STUDENT_CATGEORY" Type="Self.STUDENT_CATGEORY" Multiplicity="0..1" />
     <End Role="FINANCE_FEE_PARTICULAR" Type="Self.FINANCE_FEE_PARTICULAR" Multiplicity="*" />
@@ -2063,18 +1891,6 @@
       </Principal>
       <Dependent Role="FINANCE_FEE_STRUCTURE_ELEMENT">
         <PropertyRef Name="PARNT_ID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="R_111">
-    <End Role="FINANCE_TRANSACTION" Type="Self.FINANCE_TRANSACTION" Multiplicity="0..1" />
-    <End Role="FINANCE_TRANSACTION1" Type="Self.FINANCE_TRANSACTION" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="FINANCE_TRANSACTION">
-        <PropertyRef Name="ID" />
-      </Principal>
-      <Dependent Role="FINANCE_TRANSACTION1">
-        <PropertyRef Name="MSTRTRAN_ID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -2240,11 +2056,8 @@
     <EntitySet Name="FEE_COLLECTION_DISCOUNT" EntityType="Self.FEE_COLLECTION_DISCOUNT" />
     <EntitySet Name="FEE_DISCOUNT" EntityType="Self.FEE_DISCOUNT" />
     <EntitySet Name="FINANCE_DONATION" EntityType="Self.FINANCE_DONATION" />
-    <EntitySet Name="FINANCE_FEE" EntityType="Self.FINANCE_FEE" />
-    <EntitySet Name="FINANCE_FEE_CATGEORY" EntityType="Self.FINANCE_FEE_CATGEORY" />
     <EntitySet Name="FINANCE_FEE_PARTICULAR" EntityType="Self.FINANCE_FEE_PARTICULAR" />
     <EntitySet Name="FINANCE_FEE_STRUCTURE_ELEMENT" EntityType="Self.FINANCE_FEE_STRUCTURE_ELEMENT" />
-    <EntitySet Name="FINANCE_TRANSACTION" EntityType="Self.FINANCE_TRANSACTION" />
     <EntitySet Name="FINANCE_TRANSACTION_CATEGORY" EntityType="Self.FINANCE_TRANSACTION_CATEGORY" />
     <EntitySet Name="FINANCE_TRANSACTION_TRIGGERS" EntityType="Self.FINANCE_TRANSACTION_TRIGGERS" />
     <EntitySet Name="GRADING_LEVEL" EntityType="Self.GRADING_LEVEL" />
@@ -2303,10 +2116,6 @@
     <AssociationSet Name="R_134" Association="Self.R_134">
       <End Role="BATCH" EntitySet="BATCHes" />
       <End Role="ATTENDENCE" EntitySet="ATTENDENCEs" />
-    </AssociationSet>
-    <AssociationSet Name="R_104" Association="Self.R_104">
-      <End Role="BATCH" EntitySet="BATCHes" />
-      <End Role="FINANCE_FEE_CATGEORY" EntitySet="FINANCE_FEE_CATGEORY" />
     </AssociationSet>
     <AssociationSet Name="R_117" Association="Self.R_117">
       <End Role="BATCH" EntitySet="BATCHes" />
@@ -2532,38 +2341,6 @@
       <End Role="FA_GROUP" EntitySet="FA_GROUP" />
       <End Role="FA_CRITERIAS" EntitySet="FA_CRITERIAS" />
     </AssociationSet>
-    <AssociationSet Name="R_131" Association="Self.R_131">
-      <End Role="FINANCE_FEE_CATGEORY" EntitySet="FINANCE_FEE_CATGEORY" />
-      <End Role="FEE_COLLECTION_DISCOUNT" EntitySet="FEE_COLLECTION_DISCOUNT" />
-    </AssociationSet>
-    <AssociationSet Name="R_126" Association="Self.R_126">
-      <End Role="FINANCE_FEE_CATGEORY" EntitySet="FINANCE_FEE_CATGEORY" />
-      <End Role="FEE_DISCOUNT" EntitySet="FEE_DISCOUNT" />
-    </AssociationSet>
-    <AssociationSet Name="R_123" Association="Self.R_123">
-      <End Role="FINANCE_TRANSACTION" EntitySet="FINANCE_TRANSACTION" />
-      <End Role="FINANCE_DONATION" EntitySet="FINANCE_DONATION" />
-    </AssociationSet>
-    <AssociationSet Name="R_110" Association="Self.R_110">
-      <End Role="FINANCE_FEE" EntitySet="FINANCE_FEE" />
-      <End Role="FINANCE_TRANSACTION" EntitySet="FINANCE_TRANSACTION" />
-    </AssociationSet>
-    <AssociationSet Name="R_112" Association="Self.R_112">
-      <End Role="FINANCE_TRANSACTION" EntitySet="FINANCE_TRANSACTION" />
-      <End Role="FINANCE_FEE" EntitySet="FINANCE_FEE" />
-    </AssociationSet>
-    <AssociationSet Name="R_108" Association="Self.R_108">
-      <End Role="FINANCE_FEE_CATGEORY" EntitySet="FINANCE_FEE_CATGEORY" />
-      <End Role="FINANCE_TRANSACTION" EntitySet="FINANCE_TRANSACTION" />
-    </AssociationSet>
-    <AssociationSet Name="R_114" Association="Self.R_114">
-      <End Role="FINANCE_FEE_CATGEORY" EntitySet="FINANCE_FEE_CATGEORY" />
-      <End Role="FINANCE_FEE_PARTICULAR" EntitySet="FINANCE_FEE_PARTICULAR" />
-    </AssociationSet>
-    <AssociationSet Name="R_122" Association="Self.R_122">
-      <End Role="FINANCE_FEE_CATGEORY" EntitySet="FINANCE_FEE_CATGEORY" />
-      <End Role="FINANCE_TRANSACTION_TRIGGERS" EntitySet="FINANCE_TRANSACTION_TRIGGERS" />
-    </AssociationSet>
     <AssociationSet Name="R_115" Association="Self.R_115">
       <End Role="STUDENT_CATGEORY" EntitySet="STUDENT_CATGEORY" />
       <End Role="FINANCE_FEE_PARTICULAR" EntitySet="FINANCE_FEE_PARTICULAR" />
@@ -2575,10 +2352,6 @@
     <AssociationSet Name="R_120" Association="Self.R_120">
       <End Role="USERS" EntitySet="USERS" />
       <End Role="FINANCE_FEE_STRUCTURE_ELEMENT" EntitySet="FINANCE_FEE_STRUCTURE_ELEMENT" />
-    </AssociationSet>
-    <AssociationSet Name="R_111" Association="Self.R_111">
-      <End Role="FINANCE_TRANSACTION" EntitySet="FINANCE_TRANSACTION" />
-      <End Role="FINANCE_TRANSACTION1" EntitySet="FINANCE_TRANSACTION" />
     </AssociationSet>
     <AssociationSet Name="R_5" Association="Self.R_5">
       <End Role="USERS" EntitySet="USERS" />
@@ -2644,14 +2417,6 @@
       <End Role="FINANCE_FEE_COLLECTION" EntitySet="FINANCE_FEE_COLLECTION" />
       <End Role="FEE_COLLECTION_PARTICULAR" EntitySet="FEE_COLLECTION_PARTICULAR" />
     </AssociationSet>
-    <AssociationSet Name="FEE_C_FINA_FINA_NI" Association="SFSAcademyModel.FEE_C_FINA_FINA_NI">
-      <End Role="FINANCE_FEE_COLLECTION" EntitySet="FINANCE_FEE_COLLECTION" />
-      <End Role="FINANCE_FEE" EntitySet="FINANCE_FEE" />
-    </AssociationSet>
-    <AssociationSet Name="FEE_C_FINA_FINA_NI3" Association="SFSAcademyModel.FEE_C_FINA_FINA_NI3">
-      <End Role="FINANCE_FEE_CATGEORY" EntitySet="FINANCE_FEE_CATGEORY" />
-      <End Role="FINANCE_FEE_COLLECTION" EntitySet="FINANCE_FEE_COLLECTION" />
-    </AssociationSet>
     <AssociationSet Name="FEE_C_FINA_FINA_NI4" Association="SFSAcademyModel.FEE_C_FINA_FINA_NI4">
       <End Role="FINANCE_FEE_COLLECTION" EntitySet="FINANCE_FEE_COLLECTION" />
       <End Role="FINANCE_FEE_STRUCTURE_ELEMENT" EntitySet="FINANCE_FEE_STRUCTURE_ELEMENT" />
@@ -2694,10 +2459,6 @@
       <End Role="STUDENT" EntitySet="STUDENTs" />
       <End Role="FEE_DISCOUNT" EntitySet="FEE_DISCOUNT" />
     </AssociationSet>
-    <AssociationSet Name="STDNT_STUD_FINA_NI" Association="SFSAcademyModel.STDNT_STUD_FINA_NI">
-      <End Role="STUDENT" EntitySet="STUDENTs" />
-      <End Role="FINANCE_FEE" EntitySet="FINANCE_FEE" />
-    </AssociationSet>
     <AssociationSet Name="STDNT_STUD_FINA_NI4" Association="SFSAcademyModel.STDNT_STUD_FINA_NI4">
       <End Role="STUDENT" EntitySet="STUDENTs" />
       <End Role="FINANCE_FEE_PARTICULAR" EntitySet="FINANCE_FEE_PARTICULAR" />
@@ -2705,10 +2466,6 @@
     <AssociationSet Name="STDNT_STUD_FINA_NI6" Association="SFSAcademyModel.STDNT_STUD_FINA_NI6">
       <End Role="STUDENT" EntitySet="STUDENTs" />
       <End Role="FINANCE_FEE_STRUCTURE_ELEMENT" EntitySet="FINANCE_FEE_STRUCTURE_ELEMENT" />
-    </AssociationSet>
-    <AssociationSet Name="STDNT_STUD_FINA_NI7" Association="SFSAcademyModel.STDNT_STUD_FINA_NI7">
-      <End Role="STUDENT" EntitySet="STUDENTs" />
-      <End Role="FINANCE_TRANSACTION" EntitySet="FINANCE_TRANSACTION" />
     </AssociationSet>
     <AssociationSet Name="WARD__STUD_GUAR_NI" Association="SFSAcademyModel.WARD__STUD_GUAR_NI">
       <End Role="STUDENT" EntitySet="STUDENTs" />
@@ -2744,11 +2501,11 @@
     </AssociationSet>
     <EntitySet Name="STORE_CATEGORY" EntityType="SFSAcademyModel.STORE_CATEGORY" />
     <EntitySet Name="STORE_PRODUCTS" EntityType="SFSAcademyModel.STORE_PRODUCTS" />
-    <EntitySet Name="STORE_PURCHAGE" EntityType="SFSAcademyModel.STORE_PURCHAGE" />
     <AssociationSet Name="STCAT_STPROD_ASSE_NI" Association="SFSAcademyModel.STCAT_STPROD_ASSE_NI">
       <End Role="STORE_CATEGORY" EntitySet="STORE_CATEGORY" />
       <End Role="STORE_PRODUCTS" EntitySet="STORE_PRODUCTS" />
     </AssociationSet>
+    <EntitySet Name="STORE_PURCHAGE" EntityType="SFSAcademyModel.STORE_PURCHAGE" />
     <AssociationSet Name="STPROD_STPUR_ASSE_NI" Association="SFSAcademyModel.STPROD_STPUR_ASSE_NI">
       <End Role="STORE_PRODUCTS" EntitySet="STORE_PRODUCTS" />
       <End Role="STORE_PURCHAGE" EntitySet="STORE_PURCHAGE" />
@@ -2757,6 +2514,66 @@
     <AssociationSet Name="STPROD_STPURCART_ASSE_NI" Association="SFSAcademyModel.STPROD_STPURCART_ASSE_NI">
       <End Role="STORE_PRODUCTS" EntitySet="STORE_PRODUCTS" />
       <End Role="STORE_PURCHAGE_CART" EntitySet="STORE_PURCHAGE_CART" />
+    </AssociationSet>
+    <EntitySet Name="FINANCE_FEE_CATGEORY" EntityType="SFSAcademyModel.FINANCE_FEE_CATGEORY" />
+    <AssociationSet Name="BTCH__BATC_FINA_NI" Association="SFSAcademyModel.BTCH__BATC_FINA_NI">
+      <End Role="BATCH" EntitySet="BATCHes" />
+      <End Role="FINANCE_FEE_CATGEORY" EntitySet="FINANCE_FEE_CATGEORY" />
+    </AssociationSet>
+    <AssociationSet Name="FIN_F_FINA_FEE__NI" Association="SFSAcademyModel.FIN_F_FINA_FEE__NI">
+      <End Role="FINANCE_FEE_CATGEORY" EntitySet="FINANCE_FEE_CATGEORY" />
+      <End Role="FEE_COLLECTION_DISCOUNT" EntitySet="FEE_COLLECTION_DISCOUNT" />
+    </AssociationSet>
+    <AssociationSet Name="FIN_F_FINA_FEE__NI3" Association="SFSAcademyModel.FIN_F_FINA_FEE__NI3">
+      <End Role="FINANCE_FEE_CATGEORY" EntitySet="FINANCE_FEE_CATGEORY" />
+      <End Role="FEE_DISCOUNT" EntitySet="FEE_DISCOUNT" />
+    </AssociationSet>
+    <AssociationSet Name="FEE_C_FINA_FINA_NI3" Association="SFSAcademyModel.FEE_C_FINA_FINA_NI3">
+      <End Role="FINANCE_FEE_CATGEORY" EntitySet="FINANCE_FEE_CATGEORY" />
+      <End Role="FINANCE_FEE_COLLECTION" EntitySet="FINANCE_FEE_COLLECTION" />
+    </AssociationSet>
+    <AssociationSet Name="FIN_C_FINA_FINA_NI" Association="SFSAcademyModel.FIN_C_FINA_FINA_NI">
+      <End Role="FINANCE_FEE_CATGEORY" EntitySet="FINANCE_FEE_CATGEORY" />
+      <End Role="FINANCE_TRANSACTION_TRIGGERS" EntitySet="FINANCE_TRANSACTION_TRIGGERS" />
+    </AssociationSet>
+    <AssociationSet Name="FIN_F_FINA_FINA_NI" Association="SFSAcademyModel.FIN_F_FINA_FINA_NI">
+      <End Role="FINANCE_FEE_CATGEORY" EntitySet="FINANCE_FEE_CATGEORY" />
+      <End Role="FINANCE_FEE_PARTICULAR" EntitySet="FINANCE_FEE_PARTICULAR" />
+    </AssociationSet>
+    <EntitySet Name="FINANCE_FEE" EntityType="SFSAcademyModel.FINANCE_FEE" />
+    <AssociationSet Name="FEE_C_FINA_FINA_NI" Association="SFSAcademyModel.FEE_C_FINA_FINA_NI">
+      <End Role="FINANCE_FEE_COLLECTION" EntitySet="FINANCE_FEE_COLLECTION" />
+      <End Role="FINANCE_FEE" EntitySet="FINANCE_FEE" />
+    </AssociationSet>
+    <AssociationSet Name="STDNT_STUD_FINA_NI" Association="SFSAcademyModel.STDNT_STUD_FINA_NI">
+      <End Role="STUDENT" EntitySet="STUDENTs" />
+      <End Role="FINANCE_FEE" EntitySet="FINANCE_FEE" />
+    </AssociationSet>
+    <EntitySet Name="FEE_FINE" EntityType="SFSAcademyModel.FEE_FINE" />
+    <AssociationSet Name="FEE_F_FINA_FEE_NI3" Association="SFSAcademyModel.FEE_F_FINA_FEE_NI3">
+      <End Role="FINANCE_FEE_CATGEORY" EntitySet="FINANCE_FEE_CATGEORY" />
+      <End Role="FEE_FINE" EntitySet="FEE_FINE" />
+    </AssociationSet>
+    <AssociationSet Name="FEE_RCVR_FEE__NI2" Association="SFSAcademyModel.FEE_RCVR_FEE__NI2">
+      <End Role="STUDENT" EntitySet="STUDENTs" />
+      <End Role="FEE_FINE" EntitySet="FEE_FINE" />
+    </AssociationSet>
+    <EntitySet Name="FINANCE_TRANSACTION" EntityType="SFSAcademyModel.FINANCE_TRANSACTION" />
+    <AssociationSet Name="TRAN__FINA_FINA_NI" Association="SFSAcademyModel.TRAN__FINA_FINA_NI">
+      <End Role="FINANCE_TRANSACTION" EntitySet="FINANCE_TRANSACTION" />
+      <End Role="FINANCE_DONATION" EntitySet="FINANCE_DONATION" />
+    </AssociationSet>
+    <AssociationSet Name="FIN_F_FINA_FINA_NI5" Association="SFSAcademyModel.FIN_F_FINA_FINA_NI5">
+      <End Role="FINANCE_FEE" EntitySet="FINANCE_FEE" />
+      <End Role="FINANCE_TRANSACTION" EntitySet="FINANCE_TRANSACTION" />
+    </AssociationSet>
+    <AssociationSet Name="CAT_I_FINA_FINA_NI" Association="SFSAcademyModel.CAT_I_FINA_FINA_NI">
+      <End Role="FINANCE_TRANSACTION_CATEGORY" EntitySet="FINANCE_TRANSACTION_CATEGORY" />
+      <End Role="FINANCE_TRANSACTION" EntitySet="FINANCE_TRANSACTION" />
+    </AssociationSet>
+    <AssociationSet Name="STDNT_STUD_FINA_NI7" Association="SFSAcademyModel.STDNT_STUD_FINA_NI7">
+      <End Role="STUDENT" EntitySet="STUDENTs" />
+      <End Role="FINANCE_TRANSACTION" EntitySet="FINANCE_TRANSACTION" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="FEE_COLLECTION_PARTICULAR">
@@ -2861,9 +2678,9 @@
     <Property Name="DUE_DATE" Type="DateTime" Precision="3" />
     <NavigationProperty Name="BATCH" Relationship="SFSAcademyModel.BTCH__BATC_FINA_NI2" FromRole="FINANCE_FEE_COLLECTION" ToRole="BATCH" />
     <NavigationProperty Name="FEE_COLLECTION_PARTICULAR" Relationship="SFSAcademyModel.FIN_F_FINA_FEE__NI2" FromRole="FINANCE_FEE_COLLECTION" ToRole="FEE_COLLECTION_PARTICULAR" />
-    <NavigationProperty Name="FINANCE_FEE" Relationship="SFSAcademyModel.FEE_C_FINA_FINA_NI" FromRole="FINANCE_FEE_COLLECTION" ToRole="FINANCE_FEE" />
-    <NavigationProperty Name="FINANCE_FEE_CATGEORY" Relationship="SFSAcademyModel.FEE_C_FINA_FINA_NI3" FromRole="FINANCE_FEE_COLLECTION" ToRole="FINANCE_FEE_CATGEORY" />
     <NavigationProperty Name="FINANCE_FEE_STRUCTURE_ELEMENT" Relationship="SFSAcademyModel.FEE_C_FINA_FINA_NI4" FromRole="FINANCE_FEE_COLLECTION" ToRole="FINANCE_FEE_STRUCTURE_ELEMENT" />
+    <NavigationProperty Name="FINANCE_FEE_CATGEORY" Relationship="SFSAcademyModel.FEE_C_FINA_FINA_NI3" FromRole="FINANCE_FEE_COLLECTION" ToRole="FINANCE_FEE_CATGEORY" />
+    <NavigationProperty Name="FINANCE_FEE" Relationship="SFSAcademyModel.FEE_C_FINA_FINA_NI" FromRole="FINANCE_FEE_COLLECTION" ToRole="FINANCE_FEE" />
   </EntityType>
   <Association Name="BTCH__BATC_FINA_NI2">
     <End Type="SFSAcademyModel.BATCH" Role="BATCH" Multiplicity="0..1" />
@@ -2886,30 +2703,6 @@
       </Principal>
       <Dependent Role="FEE_COLLECTION_PARTICULAR">
         <PropertyRef Name="FIN_FEE_CLCT_ID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FEE_C_FINA_FINA_NI">
-    <End Type="SFSAcademyModel.FINANCE_FEE_COLLECTION" Role="FINANCE_FEE_COLLECTION" Multiplicity="0..1" />
-    <End Type="SFSAcademyModel.FINANCE_FEE" Role="FINANCE_FEE" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="FINANCE_FEE_COLLECTION">
-        <PropertyRef Name="ID" />
-      </Principal>
-      <Dependent Role="FINANCE_FEE">
-        <PropertyRef Name="FEE_CLCT_ID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FEE_C_FINA_FINA_NI3">
-    <End Type="SFSAcademyModel.FINANCE_FEE_CATGEORY" Role="FINANCE_FEE_CATGEORY" Multiplicity="0..1" />
-    <End Type="SFSAcademyModel.FINANCE_FEE_COLLECTION" Role="FINANCE_FEE_COLLECTION" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="FINANCE_FEE_CATGEORY">
-        <PropertyRef Name="ID" />
-      </Principal>
-      <Dependent Role="FINANCE_FEE_COLLECTION">
-        <PropertyRef Name="FEE_CAT_ID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -2989,10 +2782,8 @@
     <NavigationProperty Name="FEE_COLLECTION_DISCOUNT" Relationship="SFSAcademyModel.RCVR__STUD_FEE__NI" FromRole="STUDENT" ToRole="FEE_COLLECTION_DISCOUNT" />
     <NavigationProperty Name="FEE_COLLECTION_PARTICULAR" Relationship="SFSAcademyModel.STDNT_STUD_FEE__NI2" FromRole="STUDENT" ToRole="FEE_COLLECTION_PARTICULAR" />
     <NavigationProperty Name="FEE_DISCOUNT" Relationship="SFSAcademyModel.RCVR__STUD_FEE__NI2" FromRole="STUDENT" ToRole="FEE_DISCOUNT" />
-    <NavigationProperty Name="FINANCE_FEE" Relationship="SFSAcademyModel.STDNT_STUD_FINA_NI" FromRole="STUDENT" ToRole="FINANCE_FEE" />
     <NavigationProperty Name="FINANCE_FEE_PARTICULAR" Relationship="SFSAcademyModel.STDNT_STUD_FINA_NI4" FromRole="STUDENT" ToRole="FINANCE_FEE_PARTICULAR" />
     <NavigationProperty Name="FINANCE_FEE_STRUCTURE_ELEMENT" Relationship="SFSAcademyModel.STDNT_STUD_FINA_NI6" FromRole="STUDENT" ToRole="FINANCE_FEE_STRUCTURE_ELEMENT" />
-    <NavigationProperty Name="FINANCE_TRANSACTION" Relationship="SFSAcademyModel.STDNT_STUD_FINA_NI7" FromRole="STUDENT" ToRole="FINANCE_TRANSACTION" />
     <NavigationProperty Name="GUARDIANs" Relationship="SFSAcademyModel.WARD__STUD_GUAR_NI" FromRole="STUDENT" ToRole="GUARDIAN" />
     <NavigationProperty Name="STUDENT_CATGEORY" Relationship="SFSAcademyModel.STDNT_STUD_STUD_NI" FromRole="STUDENT" ToRole="STUDENT_CATGEORY" />
     <NavigationProperty Name="STUDENT_ADDITIONAL_DETAIL" Relationship="SFSAcademyModel.STDNT_STUD_STUD_NI2" FromRole="STUDENT" ToRole="STUDENT_ADDITIONAL_DETAIL" />
@@ -3001,6 +2792,9 @@
     <NavigationProperty Name="STUDENT_SUBJECT" Relationship="SFSAcademyModel.STDNT_STUD_STUD_NI5" FromRole="STUDENT" ToRole="STUDENT_SUBJECT" />
     <NavigationProperty Name="SUBJECT_LEAVE" Relationship="SFSAcademyModel.STDNT_STUD_SUBJ_NI" FromRole="STUDENT" ToRole="SUBJECT_LEAVE" />
     <NavigationProperty Name="USER" Relationship="SFSAcademyModel.USRID_USER_STUD_NI" FromRole="STUDENT" ToRole="USER" />
+    <NavigationProperty Name="FINANCE_FEE" Relationship="SFSAcademyModel.STDNT_STUD_FINA_NI" FromRole="STUDENT" ToRole="FINANCE_FEE" />
+    <NavigationProperty Name="FEE_FINE" Relationship="SFSAcademyModel.FEE_RCVR_FEE__NI2" FromRole="STUDENT" ToRole="FEE_FINE" />
+    <NavigationProperty Name="FINANCE_TRANSACTION" Relationship="SFSAcademyModel.STDNT_STUD_FINA_NI7" FromRole="STUDENT" ToRole="FINANCE_TRANSACTION" />
   </EntityType>
   <Association Name="FRM_I_STUD_ARCH_NI">
     <End Type="SFSAcademyModel.STUDENT" Role="STUDENT" Multiplicity="0..1" />
@@ -3110,18 +2904,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="STDNT_STUD_FINA_NI">
-    <End Type="SFSAcademyModel.STUDENT" Role="STUDENT" Multiplicity="0..1" />
-    <End Type="SFSAcademyModel.FINANCE_FEE" Role="FINANCE_FEE" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="STUDENT">
-        <PropertyRef Name="ID" />
-      </Principal>
-      <Dependent Role="FINANCE_FEE">
-        <PropertyRef Name="STDNT_ID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="STDNT_STUD_FINA_NI4">
     <End Type="SFSAcademyModel.STUDENT" Role="STUDENT" Multiplicity="0..1" />
     <End Type="SFSAcademyModel.FINANCE_FEE_PARTICULAR" Role="FINANCE_FEE_PARTICULAR" Multiplicity="*" />
@@ -3142,18 +2924,6 @@
         <PropertyRef Name="ID" />
       </Principal>
       <Dependent Role="FINANCE_FEE_STRUCTURE_ELEMENT">
-        <PropertyRef Name="STDNT_ID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="STDNT_STUD_FINA_NI7">
-    <End Type="SFSAcademyModel.STUDENT" Role="STUDENT" Multiplicity="0..1" />
-    <End Type="SFSAcademyModel.FINANCE_TRANSACTION" Role="FINANCE_TRANSACTION" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="STUDENT">
-        <PropertyRef Name="ID" />
-      </Principal>
-      <Dependent Role="FINANCE_TRANSACTION">
         <PropertyRef Name="STDNT_ID" />
       </Dependent>
     </ReferentialConstraint>
@@ -3291,26 +3061,6 @@
     <NavigationProperty Name="STORE_PURCHAGE" Relationship="SFSAcademyModel.STPROD_STPUR_ASSE_NI" FromRole="STORE_PRODUCTS" ToRole="STORE_PURCHAGE" />
     <NavigationProperty Name="STORE_PURCHAGE_CART" Relationship="SFSAcademyModel.STPROD_STPURCART_ASSE_NI" FromRole="STORE_PRODUCTS" ToRole="STORE_PURCHAGE_CART" />
   </EntityType>
-  <EntityType Name="STORE_PURCHAGE">
-    <Key>
-      <PropertyRef Name="ID" />
-    </Key>
-    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="PRODUCT_ID" Type="Int32" Nullable="false" />
-    <Property Name="UNIT_SOLD" Type="Int32" />
-    <Property Name="SOLD_PRICE" Type="Int32" />
-    <Property Name="SOLD_BY" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="SOLD_ON" Type="DateTime" Precision="3" />
-    <Property Name="STUDENT_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="STUDENT_CONTACT_NO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="MONEY_RECEIVED_BY" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="IS_DEPOSITED" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
-    <Property Name="IS_ACT" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
-    <Property Name="IS_DEL" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
-    <Property Name="CREATED_AT" Type="DateTime" Precision="3" />
-    <Property Name="UPDATED_AT" Type="DateTime" Precision="3" />
-    <NavigationProperty Name="STORE_PRODUCTS" Relationship="SFSAcademyModel.STPROD_STPUR_ASSE_NI" FromRole="STORE_PURCHAGE" ToRole="STORE_PRODUCTS" />
-  </EntityType>
   <Association Name="STCAT_STPROD_ASSE_NI">
     <End Type="SFSAcademyModel.STORE_CATEGORY" Role="STORE_CATEGORY" Multiplicity="0..1" />
     <End Type="SFSAcademyModel.STORE_PRODUCTS" Role="STORE_PRODUCTS" Multiplicity="*" />
@@ -3323,6 +3073,26 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <EntityType Name="STORE_PURCHAGE">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PRODUCT_ID" Type="Int32" Nullable="false" />
+    <Property Name="UNIT_SOLD" Type="Int32" />
+    <Property Name="SOLD_PRICE" Type="Int32" />
+    <Property Name="SOLD_BY" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="SOLD_ON" Type="DateTime" Precision="3" />
+    <Property Name="STUDENT_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="STUDENT_CONTACT_NO" Type="Int64" />
+    <Property Name="MONEY_RECEIVED_BY" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="IS_DEPOSITED" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="IS_ACT" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="IS_DEL" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="CREATED_AT" Type="DateTime" Precision="3" />
+    <Property Name="UPDATED_AT" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="STORE_PRODUCTS" Relationship="SFSAcademyModel.STPROD_STPUR_ASSE_NI" FromRole="STORE_PURCHAGE" ToRole="STORE_PRODUCTS" />
+  </EntityType>
   <Association Name="STPROD_STPUR_ASSE_NI">
     <End Type="SFSAcademyModel.STORE_PRODUCTS" Role="STORE_PRODUCTS" Multiplicity="1" />
     <End Type="SFSAcademyModel.STORE_PURCHAGE" Role="STORE_PURCHAGE" Multiplicity="*" />
@@ -3346,7 +3116,7 @@
     <Property Name="SOLD_BY" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="SOLD_ON" Type="DateTime" Precision="3" />
     <Property Name="STUDENT_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="STUDENT_CONTACT_NO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="STUDENT_CONTACT_NO" Type="Int64" />
     <Property Name="MONEY_RECEIVED_BY" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="IS_DEPOSITED" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
     <Property Name="IS_ACT" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
@@ -3364,6 +3134,251 @@
       </Principal>
       <Dependent Role="STORE_PURCHAGE_CART">
         <PropertyRef Name="PRODUCT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="FINANCE_FEE_CATGEORY">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DESCR" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="BTCH_ID" Type="Int32" />
+    <Property Name="IS_DEL" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="IS_MSTR" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="CREATED_AT" Type="DateTime" Precision="3" />
+    <Property Name="UPDATED_AT" Type="DateTime" Precision="3" />
+    <Property Name="MSTR_CATGRY_ID" Type="Int32" />
+    <NavigationProperty Name="BATCH" Relationship="SFSAcademyModel.BTCH__BATC_FINA_NI" FromRole="FINANCE_FEE_CATGEORY" ToRole="BATCH" />
+    <NavigationProperty Name="FEE_COLLECTION_DISCOUNT" Relationship="SFSAcademyModel.FIN_F_FINA_FEE__NI" FromRole="FINANCE_FEE_CATGEORY" ToRole="FEE_COLLECTION_DISCOUNT" />
+    <NavigationProperty Name="FEE_DISCOUNT" Relationship="SFSAcademyModel.FIN_F_FINA_FEE__NI3" FromRole="FINANCE_FEE_CATGEORY" ToRole="FEE_DISCOUNT" />
+    <NavigationProperty Name="FINANCE_FEE_COLLECTION" Relationship="SFSAcademyModel.FEE_C_FINA_FINA_NI3" FromRole="FINANCE_FEE_CATGEORY" ToRole="FINANCE_FEE_COLLECTION" />
+    <NavigationProperty Name="FINANCE_TRANSACTION_TRIGGERS" Relationship="SFSAcademyModel.FIN_C_FINA_FINA_NI" FromRole="FINANCE_FEE_CATGEORY" ToRole="FINANCE_TRANSACTION_TRIGGERS" />
+    <NavigationProperty Name="FINANCE_FEE_PARTICULAR" Relationship="SFSAcademyModel.FIN_F_FINA_FINA_NI" FromRole="FINANCE_FEE_CATGEORY" ToRole="FINANCE_FEE_PARTICULAR" />
+    <NavigationProperty Name="FEE_FINE" Relationship="SFSAcademyModel.FEE_F_FINA_FEE_NI3" FromRole="FINANCE_FEE_CATGEORY" ToRole="FEE_FINE" />
+  </EntityType>
+  <Association Name="BTCH__BATC_FINA_NI">
+    <End Type="SFSAcademyModel.BATCH" Role="BATCH" Multiplicity="0..1" />
+    <End Type="SFSAcademyModel.FINANCE_FEE_CATGEORY" Role="FINANCE_FEE_CATGEORY" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BATCH">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="FINANCE_FEE_CATGEORY">
+        <PropertyRef Name="BTCH_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FIN_F_FINA_FEE__NI">
+    <End Type="SFSAcademyModel.FINANCE_FEE_CATGEORY" Role="FINANCE_FEE_CATGEORY" Multiplicity="0..1" />
+    <End Type="SFSAcademyModel.FEE_COLLECTION_DISCOUNT" Role="FEE_COLLECTION_DISCOUNT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FINANCE_FEE_CATGEORY">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="FEE_COLLECTION_DISCOUNT">
+        <PropertyRef Name="FIN_FEE_CLCT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FIN_F_FINA_FEE__NI3">
+    <End Type="SFSAcademyModel.FINANCE_FEE_CATGEORY" Role="FINANCE_FEE_CATGEORY" Multiplicity="0..1" />
+    <End Type="SFSAcademyModel.FEE_DISCOUNT" Role="FEE_DISCOUNT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FINANCE_FEE_CATGEORY">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="FEE_DISCOUNT">
+        <PropertyRef Name="FIN_FEE_CAT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FEE_C_FINA_FINA_NI3">
+    <End Type="SFSAcademyModel.FINANCE_FEE_CATGEORY" Role="FINANCE_FEE_CATGEORY" Multiplicity="0..1" />
+    <End Type="SFSAcademyModel.FINANCE_FEE_COLLECTION" Role="FINANCE_FEE_COLLECTION" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FINANCE_FEE_CATGEORY">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="FINANCE_FEE_COLLECTION">
+        <PropertyRef Name="FEE_CAT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FIN_C_FINA_FINA_NI">
+    <End Type="SFSAcademyModel.FINANCE_FEE_CATGEORY" Role="FINANCE_FEE_CATGEORY" Multiplicity="0..1" />
+    <End Type="SFSAcademyModel.FINANCE_TRANSACTION_TRIGGERS" Role="FINANCE_TRANSACTION_TRIGGERS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FINANCE_FEE_CATGEORY">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="FINANCE_TRANSACTION_TRIGGERS">
+        <PropertyRef Name="FIN_CAT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FIN_F_FINA_FINA_NI">
+    <End Type="SFSAcademyModel.FINANCE_FEE_CATGEORY" Role="FINANCE_FEE_CATGEORY" Multiplicity="0..1" />
+    <End Type="SFSAcademyModel.FINANCE_FEE_PARTICULAR" Role="FINANCE_FEE_PARTICULAR" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FINANCE_FEE_CATGEORY">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="FINANCE_FEE_PARTICULAR">
+        <PropertyRef Name="FIN_FEE_CAT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="FINANCE_FEE">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FEE_CLCT_ID" Type="Int32" />
+    <Property Name="TRAN_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="STDNT_ID" Type="Int32" />
+    <Property Name="IS_PD" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="FINANCE_FEE_COLLECTION" Relationship="SFSAcademyModel.FEE_C_FINA_FINA_NI" FromRole="FINANCE_FEE" ToRole="FINANCE_FEE_COLLECTION" />
+    <NavigationProperty Name="STUDENT" Relationship="SFSAcademyModel.STDNT_STUD_FINA_NI" FromRole="FINANCE_FEE" ToRole="STUDENT" />
+    <NavigationProperty Name="FINANCE_TRANSACTION" Relationship="SFSAcademyModel.FIN_F_FINA_FINA_NI5" FromRole="FINANCE_FEE" ToRole="FINANCE_TRANSACTION" />
+  </EntityType>
+  <Association Name="FEE_C_FINA_FINA_NI">
+    <End Type="SFSAcademyModel.FINANCE_FEE_COLLECTION" Role="FINANCE_FEE_COLLECTION" Multiplicity="0..1" />
+    <End Type="SFSAcademyModel.FINANCE_FEE" Role="FINANCE_FEE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FINANCE_FEE_COLLECTION">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="FINANCE_FEE">
+        <PropertyRef Name="FEE_CLCT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="STDNT_STUD_FINA_NI">
+    <End Type="SFSAcademyModel.STUDENT" Role="STUDENT" Multiplicity="0..1" />
+    <End Type="SFSAcademyModel.FINANCE_FEE" Role="FINANCE_FEE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="STUDENT">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="FINANCE_FEE">
+        <PropertyRef Name="STDNT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="FEE_FINE">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TYPE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="RCVR_ID" Type="Int32" />
+    <Property Name="FIN_FEE_CAT_ID" Type="Int32" />
+    <Property Name="FINE" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="IS_AMT" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="FINE_DATE" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="FINANCE_FEE_CATGEORY" Relationship="SFSAcademyModel.FEE_F_FINA_FEE_NI3" FromRole="FEE_FINE" ToRole="FINANCE_FEE_CATGEORY" />
+    <NavigationProperty Name="STUDENT" Relationship="SFSAcademyModel.FEE_RCVR_FEE__NI2" FromRole="FEE_FINE" ToRole="STUDENT" />
+  </EntityType>
+  <Association Name="FEE_F_FINA_FEE_NI3">
+    <End Type="SFSAcademyModel.FINANCE_FEE_CATGEORY" Role="FINANCE_FEE_CATGEORY" Multiplicity="0..1" />
+    <End Type="SFSAcademyModel.FEE_FINE" Role="FEE_FINE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FINANCE_FEE_CATGEORY">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="FEE_FINE">
+        <PropertyRef Name="FIN_FEE_CAT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FEE_RCVR_FEE__NI2">
+    <End Type="SFSAcademyModel.STUDENT" Role="STUDENT" Multiplicity="0..1" />
+    <End Type="SFSAcademyModel.FEE_FINE" Role="FEE_FINE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="STUDENT">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="FEE_FINE">
+        <PropertyRef Name="RCVR_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="FINANCE_TRANSACTION">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MSTRTRAN_ID" Type="Int32" />
+    <Property Name="TIL" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="DESCR" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="AMT" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="FINE_INCLD" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="CAT_ID" Type="Int32" />
+    <Property Name="STDNT_ID" Type="Int32" />
+    <Property Name="FIN_FE_ID" Type="Int32" />
+    <Property Name="CRETAED_AT" Type="DateTime" Precision="3" />
+    <Property Name="UPDATED_AT" Type="DateTime" Precision="3" />
+    <Property Name="TRAN_DATE" Type="DateTime" Precision="3" />
+    <Property Name="FINE_AMT" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="FIN_ID" Type="Int32" />
+    <Property Name="FIN_TYPE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="PAYEE_ID" Type="Int32" />
+    <Property Name="PAYEE_TYPE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="RCPT_NO" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="VCHR_NO" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="FINANCE_DONATION" Relationship="SFSAcademyModel.TRAN__FINA_FINA_NI" FromRole="FINANCE_TRANSACTION" ToRole="FINANCE_DONATION" />
+    <NavigationProperty Name="FINANCE_FEE" Relationship="SFSAcademyModel.FIN_F_FINA_FINA_NI5" FromRole="FINANCE_TRANSACTION" ToRole="FINANCE_FEE" />
+    <NavigationProperty Name="FINANCE_TRANSACTION_CATEGORY" Relationship="SFSAcademyModel.CAT_I_FINA_FINA_NI" FromRole="FINANCE_TRANSACTION" ToRole="FINANCE_TRANSACTION_CATEGORY" />
+    <NavigationProperty Name="STUDENT" Relationship="SFSAcademyModel.STDNT_STUD_FINA_NI7" FromRole="FINANCE_TRANSACTION" ToRole="STUDENT" />
+  </EntityType>
+  <Association Name="TRAN__FINA_FINA_NI">
+    <End Type="SFSAcademyModel.FINANCE_TRANSACTION" Role="FINANCE_TRANSACTION" Multiplicity="0..1" />
+    <End Type="SFSAcademyModel.FINANCE_DONATION" Role="FINANCE_DONATION" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FINANCE_TRANSACTION">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="FINANCE_DONATION">
+        <PropertyRef Name="TRAN_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FIN_F_FINA_FINA_NI5">
+    <End Type="SFSAcademyModel.FINANCE_FEE" Role="FINANCE_FEE" Multiplicity="0..1" />
+    <End Type="SFSAcademyModel.FINANCE_TRANSACTION" Role="FINANCE_TRANSACTION" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FINANCE_FEE">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="FINANCE_TRANSACTION">
+        <PropertyRef Name="FIN_FE_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CAT_I_FINA_FINA_NI">
+    <End Type="SFSAcademyModel.FINANCE_TRANSACTION_CATEGORY" Role="FINANCE_TRANSACTION_CATEGORY" Multiplicity="0..1" />
+    <End Type="SFSAcademyModel.FINANCE_TRANSACTION" Role="FINANCE_TRANSACTION" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FINANCE_TRANSACTION_CATEGORY">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="FINANCE_TRANSACTION">
+        <PropertyRef Name="CAT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="STDNT_STUD_FINA_NI7">
+    <End Type="SFSAcademyModel.STUDENT" Role="STUDENT" Multiplicity="0..1" />
+    <End Type="SFSAcademyModel.FINANCE_TRANSACTION" Role="FINANCE_TRANSACTION" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="STUDENT">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="FINANCE_TRANSACTION">
+        <PropertyRef Name="STDNT_ID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

@@ -588,31 +588,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="FINANCE_FEE">
-      <EntityTypeMapping TypeName="SFSAcademyModel.FINANCE_FEE">
-        <MappingFragment StoreEntitySet="FINANCE_FEE">
-          <ScalarProperty Name="ID" ColumnName="ID" />
-          <ScalarProperty Name="FEE_CLCT_ID" ColumnName="FEE_CLCT_ID" />
-          <ScalarProperty Name="TRAN_ID" ColumnName="TRAN_ID" />
-          <ScalarProperty Name="STDNT_ID" ColumnName="STDNT_ID" />
-          <ScalarProperty Name="IS_PD" ColumnName="IS_PD" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="FINANCE_FEE_CATGEORY">
-      <EntityTypeMapping TypeName="SFSAcademyModel.FINANCE_FEE_CATGEORY">
-        <MappingFragment StoreEntitySet="FINANCE_FEE_CATGEORY">
-          <ScalarProperty Name="ID" ColumnName="ID" />
-          <ScalarProperty Name="NAME" ColumnName="NAME" />
-          <ScalarProperty Name="DESCR" ColumnName="DESCR" />
-          <ScalarProperty Name="BTCH_ID" ColumnName="BTCH_ID" />
-          <ScalarProperty Name="IS_DEL" ColumnName="IS_DEL" />
-          <ScalarProperty Name="IS_MSTR" ColumnName="IS_MSTR" />
-          <ScalarProperty Name="CREATED_AT" ColumnName="CREATED_AT" />
-          <ScalarProperty Name="UPDATED_AT" ColumnName="UPDATED_AT" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="FINANCE_FEE_PARTICULAR">
       <EntityTypeMapping TypeName="SFSAcademyModel.FINANCE_FEE_PARTICULAR">
         <MappingFragment StoreEntitySet="FINANCE_FEE_PARTICULAR">
@@ -642,31 +617,6 @@
           <ScalarProperty Name="PARNT_ID" ColumnName="PARNT_ID" />
           <ScalarProperty Name="FEE_CLCT_ID" ColumnName="FEE_CLCT_ID" />
           <ScalarProperty Name="DEL" ColumnName="DEL" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="FINANCE_TRANSACTION">
-      <EntityTypeMapping TypeName="SFSAcademyModel.FINANCE_TRANSACTION">
-        <MappingFragment StoreEntitySet="FINANCE_TRANSACTION">
-          <ScalarProperty Name="ID" ColumnName="ID" />
-          <ScalarProperty Name="MSTRTRAN_ID" ColumnName="MSTRTRAN_ID" />
-          <ScalarProperty Name="TIL" ColumnName="TIL" />
-          <ScalarProperty Name="DESCR" ColumnName="DESCR" />
-          <ScalarProperty Name="AMT" ColumnName="AMT" />
-          <ScalarProperty Name="FINE_INCLD" ColumnName="FINE_INCLD" />
-          <ScalarProperty Name="CAT_ID" ColumnName="CAT_ID" />
-          <ScalarProperty Name="STDNT_ID" ColumnName="STDNT_ID" />
-          <ScalarProperty Name="FIN_FE_ID" ColumnName="FIN_FE_ID" />
-          <ScalarProperty Name="CRETAED_AT" ColumnName="CRETAED_AT" />
-          <ScalarProperty Name="UPDATED_AT" ColumnName="UPDATED_AT" />
-          <ScalarProperty Name="TRAN_DATE" ColumnName="TRAN_DATE" />
-          <ScalarProperty Name="FINE_AMT" ColumnName="FINE_AMT" />
-          <ScalarProperty Name="FIN_ID" ColumnName="FIN_ID" />
-          <ScalarProperty Name="FIN_TYPE" ColumnName="FIN_TYPE" />
-          <ScalarProperty Name="PAYEE_ID" ColumnName="PAYEE_ID" />
-          <ScalarProperty Name="PAYEE_TYPE" ColumnName="PAYEE_TYPE" />
-          <ScalarProperty Name="RCPT_NO" ColumnName="RCPT_NO" />
-          <ScalarProperty Name="VCHR_NO" ColumnName="VCHR_NO" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -1220,6 +1170,71 @@
           <ScalarProperty Name="SOLD_PRICE" ColumnName="SOLD_PRICE" />
           <ScalarProperty Name="UNIT_SOLD" ColumnName="UNIT_SOLD" />
           <ScalarProperty Name="PRODUCT_ID" ColumnName="PRODUCT_ID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FINANCE_FEE_CATGEORY">
+      <EntityTypeMapping TypeName="SFSAcademyModel.FINANCE_FEE_CATGEORY">
+        <MappingFragment StoreEntitySet="FINANCE_FEE_CATGEORY">
+          <ScalarProperty Name="MSTR_CATGRY_ID" ColumnName="MSTR_CATGRY_ID" />
+          <ScalarProperty Name="UPDATED_AT" ColumnName="UPDATED_AT" />
+          <ScalarProperty Name="CREATED_AT" ColumnName="CREATED_AT" />
+          <ScalarProperty Name="IS_MSTR" ColumnName="IS_MSTR" />
+          <ScalarProperty Name="IS_DEL" ColumnName="IS_DEL" />
+          <ScalarProperty Name="BTCH_ID" ColumnName="BTCH_ID" />
+          <ScalarProperty Name="DESCR" ColumnName="DESCR" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FINANCE_FEE">
+      <EntityTypeMapping TypeName="SFSAcademyModel.FINANCE_FEE">
+        <MappingFragment StoreEntitySet="FINANCE_FEE">
+          <ScalarProperty Name="IS_PD" ColumnName="IS_PD" />
+          <ScalarProperty Name="STDNT_ID" ColumnName="STDNT_ID" />
+          <ScalarProperty Name="TRAN_ID" ColumnName="TRAN_ID" />
+          <ScalarProperty Name="FEE_CLCT_ID" ColumnName="FEE_CLCT_ID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FEE_FINE">
+      <EntityTypeMapping TypeName="SFSAcademyModel.FEE_FINE">
+        <MappingFragment StoreEntitySet="FEE_FINE">
+          <ScalarProperty Name="FINE_DATE" ColumnName="FINE_DATE" />
+          <ScalarProperty Name="IS_AMT" ColumnName="IS_AMT" />
+          <ScalarProperty Name="FINE" ColumnName="FINE" />
+          <ScalarProperty Name="FIN_FEE_CAT_ID" ColumnName="FIN_FEE_CAT_ID" />
+          <ScalarProperty Name="RCVR_ID" ColumnName="RCVR_ID" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="TYPE" ColumnName="TYPE" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FINANCE_TRANSACTION">
+      <EntityTypeMapping TypeName="SFSAcademyModel.FINANCE_TRANSACTION">
+        <MappingFragment StoreEntitySet="FINANCE_TRANSACTION">
+          <ScalarProperty Name="VCHR_NO" ColumnName="VCHR_NO" />
+          <ScalarProperty Name="RCPT_NO" ColumnName="RCPT_NO" />
+          <ScalarProperty Name="PAYEE_TYPE" ColumnName="PAYEE_TYPE" />
+          <ScalarProperty Name="PAYEE_ID" ColumnName="PAYEE_ID" />
+          <ScalarProperty Name="FIN_TYPE" ColumnName="FIN_TYPE" />
+          <ScalarProperty Name="FIN_ID" ColumnName="FIN_ID" />
+          <ScalarProperty Name="FINE_AMT" ColumnName="FINE_AMT" />
+          <ScalarProperty Name="TRAN_DATE" ColumnName="TRAN_DATE" />
+          <ScalarProperty Name="UPDATED_AT" ColumnName="UPDATED_AT" />
+          <ScalarProperty Name="CRETAED_AT" ColumnName="CRETAED_AT" />
+          <ScalarProperty Name="FIN_FE_ID" ColumnName="FIN_FE_ID" />
+          <ScalarProperty Name="STDNT_ID" ColumnName="STDNT_ID" />
+          <ScalarProperty Name="CAT_ID" ColumnName="CAT_ID" />
+          <ScalarProperty Name="FINE_INCLD" ColumnName="FINE_INCLD" />
+          <ScalarProperty Name="AMT" ColumnName="AMT" />
+          <ScalarProperty Name="DESCR" ColumnName="DESCR" />
+          <ScalarProperty Name="TIL" ColumnName="TIL" />
+          <ScalarProperty Name="MSTRTRAN_ID" ColumnName="MSTRTRAN_ID" />
           <ScalarProperty Name="ID" ColumnName="ID" />
         </MappingFragment>
       </EntityTypeMapping>

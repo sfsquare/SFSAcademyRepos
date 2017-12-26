@@ -25,9 +25,9 @@
         <a href="@Url.Action("Index", "Courses")">Courses</a> &raquo;
         Manage Course
     </div>
-    @if (Html.ValidationSummary() != null)
+    @if (ViewBag.Message != null)
     {
-        <p class="flash-msg"> @Html.ValidationSummary() </p>
+        <p class="flash-msg"> @ViewBag.Message </p>
     }
     <div class="box">
         <h4 align="center">Course</h4>
