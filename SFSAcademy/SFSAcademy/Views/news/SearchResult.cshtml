@@ -1,0 +1,139 @@
+﻿@model PagedList.IPagedList<SFSAcademy.Models.News>
+@using PagedList.Mvc;
+@using Kendo.Mvc.UI;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+<link rel="stylesheet" href="@Url.Content("~/Content/kendo/kendo.common.min.css")">
+<link rel="stylesheet" href="@Url.Content("~/Content/kendo/kendo.silver.min.css")">
+<script src="@Url.Content("~/Scripts/jquery.min.js")"></script>
+<script src="@Url.Content("~/Scripts/kendo.web.min.js")"></script>
+<script src="@Url.Content("~/Scripts/kendo.aspnetmvc.min.js")"></script>
+
+<link href="../../KendoStyles/kendo.common.min.css" rel="stylesheet" type="text/css" />
+<link href="../../KendoStyles/kendo.default.min.css" rel="stylesheet" type="text/css" />
+
+<script src="../../KendoScripts/jquery.min.js" type="text/javascript"></script>
+<script src="../../KendoScripts/kendo.web.min.js" type="text/javascript"></script>
+<script src="../../KendoScripts/kendo.aspnetmvc.min.js" type="text/javascript"></script>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div id="content-header">
+    
+    
+    <img src="~/Content/images/manage_news/manage_news_logo.png" alt="News Details Logo">
+    <h1>News Details</h1>
+    <h3>View Details</h3>
+    <div id="app-back-button">
+        <a href='javascript:history.back()' onclick="return confirm('are you sure?')"><img src="~/Content/images/buttons/back.png"></a>
+    </div>
+</div>
+<div><img src="~/Content/images/_global/header_underline_.jpg" style="width:100%"></div>
+
+<div id="inner-tab-menu">
+
+
+    <ul>
+        <li>@Html.ActionLink("View All", "ViewAll")</li>
+        <li>@Html.ActionLink("Add News", "Create")</li>
+    </ul>
+</div>
+
+<div id="page-yield">
+
+    <div id="search_add_news_area">
+        @if (Html.ValidationSummary() != null)
+        {
+            <p class="flash-msg"> @Html.ValidationSummary() </p>
+        }
+
+        <div class="news_search_add">
+            <div id="news_bg">
+                <form name="s1form" id="search-form" action="" style="display:inline;">
+                    @using (Html.BeginForm("Index", "News", FormMethod.Get))
+                    {
+                        <p>
+                            @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+                            <input type="submit" value="Search" />
+                        </p>
+                    }
+
+                    <div class="extender"></div>
+
+                </form>
+            </div>
+        </div>
+
+        <div class="all_news">
+            <table id="listing" align="center" style="width:100%;" cellpadding="1" cellspacing="1">
+                <tr class="tr-head">
+
+                    <th>
+                        Sl. No.
+                    </th>
+                    <th>
+                        @Html.ActionLink("Title", "Index", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })
+
+                    </th>
+
+                    <th>
+                        Content
+                    </th>
+                    <th>
+                        Author
+                    </th>
+
+                    <th>
+                        @Html.ActionLink("Posted On", "Index", new { sortOrder = ViewBag.DateSortParm, currentFilter = ViewBag.CurrentFilter })
+                    </th>
+
+                    <th></th>
+                </tr>
+                <tr class="tr-blank"></tr>
+
+                @{int i = 1; }
+                @foreach (var item in Model)
+                {
+                    string selectedRow = "tr-even";
+                    if (i % 2 == 0)
+                    {
+                        selectedRow = "tr-odd";
+                    }
+
+                    <tr class="@selectedRow">
+                        <td class="col-1">@i</td>
+                        <td class="col-2">
+                            @Html.DisplayFor(modelItem => item.NewsData.TIL)
+                        </td>
+                        <td class="col-3">
+                            @Html.DisplayFor(modelItem => item.NewsData.CNTNT)
+                        </td>
+                        <td class="col-4">
+                            @Html.DisplayFor(modelItem => item.NewsData.EMPLOYEE.FIRST_NAME)
+                        </td>
+
+                        <td class="col-4">
+                            @Html.DisplayFor(modelItem => item.NewsData.CREATED_AT)
+                        </td>
+                        <td class="col-6" nowrap>
+                            @Html.ActionLink("Edit ", "Edit", new { id = item.NewsData.ID })|@Html.ActionLink(" Details ", "Details", new { id = item.NewsData.ID })|@Html.ActionLink(" Delete", "Delete", new { id = item.NewsData.ID })
+                        </td>
+                    </tr>
+                    i = i + 1;
+                }
+            </table>
+            
+            
+            
+            
+            <br />
+            @Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+        </div>
+        <div id="user_information"> </div>
+        <div class="extender"> </div>
+    </div>
+
+</div>

@@ -1,0 +1,121 @@
+﻿@model PagedList.IPagedList<SFSAcademy.Models.NewsDetails>
+@using SFSAcademy
+
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+@*<link href="~/Content/Site.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />*@
+@{
+    ViewBag.Title = "Index";
+}
+
+<div id="content-header">
+    <img src="~/Content/images/manage_news/manage_news_logo.png" alt="News Logo">
+    <h1>School News</h1>
+    <h3>Latest announcement</h3>
+    <div id="app-back-button">
+        <a href='javascript:history.back()' onclick="return confirm('are you sure?')"><img src="~/Content/images/buttons/back.png"></a>
+    </div>
+</div>
+<div><img src="~/Content/images/_global/header_underline_.jpg" style="width:100%"></div>
+
+<div class="inner-tab-menu">
+    <ul>
+        <li>@Html.ActionLink("view_all", "all")</li>
+        <li>@Html.ActionLink("add", "add")</li>
+    </ul>
+</div>
+
+<div id="page-yield">
+
+    <div id="search_add_news_area">
+
+        @if (ViewBag.ErrorMessage != null)
+        {
+            <p class="flash-msg"> @ViewBag.ErrorMessage </p>
+        }
+        <div class="news_search_add">
+            <div id="news_bg">
+                <form name="s1form" action="" style="display:inline;">
+                    @using (Html.BeginForm("Index", "news", FormMethod.Get))
+                    {
+                        <p>
+                            @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+                            <input type="submit" value="go" />
+                        </p>
+                    }
+                </form>
+                <div class="extender2"></div>
+            </div>
+        </div>
+        <div class="extender"></div>
+    </div>
+
+    @if (Model != null)
+    {
+        <div id="all_news">
+            <table id="listing" align="center" width:"100%" cellpadding="1" cellspacing="1">
+
+                <tr class="tr-head">
+                    <td>
+                        Sr No
+                    </td>
+                    <td>
+                        Title
+                    </td>
+                    <td>
+                        Author
+                    </td>
+                    <td>
+                        Comments
+                    </td>
+                    <td>
+                        Posted
+                    </td>
+                </tr>
+                <tr class="tr-blank"></tr>
+                @{int i = 1; }
+                @foreach (var item in Model)
+                {
+                    string selectedRow = "tr-even";
+                    if (i % 2 == 0)
+                    {
+                        selectedRow = "tr-odd";
+                    }
+                    <tr class="@selectedRow">
+                        <td class="col-1">
+                            @i
+                        </td>
+                        <td class="col-4">
+                            @Html.ActionLink(item.newsTitle, "view", new { id = item.newsId })
+                        </td>
+
+                        <td class="col-4">
+                            @Html.DisplayFor(modelItem => item.newsCreatedBy)
+                        </td>
+
+                        @if (item.newsCommentCount != 0)
+                        {
+                            <td class="col-1">
+                                @Html.DisplayFor(modelItem => item.newsCommentCount)
+                            </td>
+                        }
+                        else
+                        {
+                            <td class="col-1">
+                                Not Added
+                            </td>
+                        }
+
+                        <td class="col-3">
+                            @Html.DisplayFor(modelItem => item.newsCreatedDate)
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
+                    }
+
+
+    <div class="extender"></div>
+</div>
