@@ -134,3 +134,20 @@
 .label-field-pair.category_list label{
     width: 410px !important;
 }
+
+
+.each_batch{
+    font-size: 12px;
+    overflow:auto;
+    width:100%;
+}
+.sel-list {
+    margin-bottom: 2px;
+    width: 257px;
+}
+.fee_category_scroll {
+    height: 200px;
+    margin: 0;
+    overflow: auto;
+    width: 100%;
+}

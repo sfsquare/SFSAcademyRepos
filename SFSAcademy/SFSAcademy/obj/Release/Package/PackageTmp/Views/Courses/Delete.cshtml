@@ -4,78 +4,67 @@
     ViewBag.Title = "Delete";
 }
 
-<h2>Delete</h2>
+<div id="content-header">
+    <img src="~/Content/images/show_settings.png" alt="Settings Logo">
+    <h1>Delete Courses</h1>
+    <h3>Manage Course</h3>
+    <div id="app-back-button">
+        <a href='javascript:history.back()' onclick="return confirm('are you sure?')"><img src="~/Content/images/buttons/back.png"></a>
+    </div>
+</div>
+<div><img src="~/Content/images/_global/header_underline_.jpg" width="100%"></div>
 
 <h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>COURSE</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.CRS_NAME)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CRS_NAME)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.CODE)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CODE)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.SECTN_NAME)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.SECTN_NAME)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.IS_DEL)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.IS_DEL)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.CREATED_AT)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CREATED_AT)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.UPDATED_AT)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.UPDATED_AT)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.GRADING_TYPE)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.GRADING_TYPE)
-        </dd>
-
-    </dl>
-
+<div id="page-yield">
+    <div class="bread_crumb">
+        <a href="@Url.Action("Index", "Configuration")">Configuration</a> &raquo;
+        <a href="@Url.Action("Index", "Courses")">Courses</a> &raquo;
+        Manage Course
+    </div>
+    @if (ViewBag.Message != null)
+    {
+        <p class="flash-msg"> @ViewBag.Message </p>
+    }
+    <div id="edit_user_form">
+        <div class="label-field-pair">
+            @Html.LabelFor(model => model.CRS_NAME, "Course Name", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="text-input-bg">
+                @Html.EditorFor(model => model.CRS_NAME, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.CRS_NAME, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="label-field-pair">
+            @Html.LabelFor(model => model.CODE, "Course Code", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="text-input-bg">
+                @Html.EditorFor(model => model.CODE, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.CODE, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="label-field-pair">
+            @Html.LabelFor(model => model.SECTN_NAME, "Section Name", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="text-input-bg">
+                @Html.EditorFor(model => model.SECTN_NAME, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.SECTN_NAME, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="label-field-pair">
+            @Html.LabelFor(model => model.GRADING_TYPE, "Grading Type", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="text-input-bg">
+                @Html.EditorFor(model => model.GRADING_TYPE, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.GRADING_TYPE, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
             <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+            @Html.ActionLink("Back to List", "ManageCourse")
         </div>
     }
+
 </div>
+
+

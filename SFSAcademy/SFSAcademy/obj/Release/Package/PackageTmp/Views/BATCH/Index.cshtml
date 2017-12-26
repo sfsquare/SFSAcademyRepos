@@ -38,7 +38,10 @@
             @Html.DisplayFor(modelItem => item.NAME)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.START_DATE)
+            @if (!item.START_DATE.Equals(null))
+            {
+                @item.START_DATE.Value.ToShortDateString()
+            }
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.END_DATE)

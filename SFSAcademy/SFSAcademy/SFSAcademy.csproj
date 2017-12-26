@@ -2345,6 +2345,8 @@
     <Content Include="Views\Finance\_fees_collection_dates.cshtml" />
     <Content Include="Views\Finance\_fine_submission.cshtml" />
     <Content Include="Views\Finance\student_fee_receipt_pdf.cshtml" />
+    <Content Include="Views\Finance\Fees_Student_Search.cshtml" />
+    <Content Include="Views\Finance\_fees_student_dates.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

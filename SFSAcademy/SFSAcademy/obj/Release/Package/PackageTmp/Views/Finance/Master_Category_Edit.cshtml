@@ -27,7 +27,12 @@
             @Html.ActionLink("Create Fees", "Master_Fees") &raquo;
             Master Fees
         </div>
-        <div id="message"></div>
+        <div id="flash_box">
+            @if (ViewBag.ErrorMessage != null)
+            {
+                <p class="flash-msg"> @ViewBag.ErrorMessage </p>
+            }
+        </div>
         <div class="label-field-pair">
             @Html.LabelFor(model => model.NAME, "Fee Category Name", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="text-input-bg">

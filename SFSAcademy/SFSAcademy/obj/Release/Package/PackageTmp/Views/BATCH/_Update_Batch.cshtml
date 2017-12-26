@@ -1,0 +1,57 @@
+﻿@model PagedList.IPagedList<SFSAcademy.Models.CoursesBatch>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+@{
+    Layout = null;
+}
+<h4 align="center">Active Batches</h4>
+<div id="page-yield">
+    <div class="students-table">
+        <table id="listing" align="center" width="100%" cellpadding="1" cellspacing="1">
+            <tr>
+                <th>
+                    Batch
+                </th>
+                <th>
+                    Start Date
+                </th>
+                <th>
+                    End Date
+                </th>
+                <th>Select</th>
+            </tr>
+            @{int i = 1; }
+            @foreach (var item in Model)
+            {
+                string selectedRow = "tr-even";
+                if (i % 2 == 0)
+                {
+                    selectedRow = "tr-odd";
+                }
+                <tr class="@selectedRow">
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CourseData.CODE)
+                        -
+                        @Html.DisplayFor(modelItem => item.BatchData.NAME)
+                    </td>
+                    <td>
+                        @item.BatchData.START_DATE.Value.ToShortDateString()
+                    </td>
+                    <td>
+                        @item.BatchData.END_DATE.Value.ToShortDateString()
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.BatchData.ID }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.BatchData.ID })
+                    </td>
+                </tr>
+                i = i + 1;
+            }
+        </table>
+        <br />
+        @Html.PagedListPager(Model, page => Url.Action("_Update_Batch",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+    </div>
+    <div id="user_information"> </div>
+    <div class="extender"> </div>
+</div>

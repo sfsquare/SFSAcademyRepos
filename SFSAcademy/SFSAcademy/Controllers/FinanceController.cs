@@ -1129,6 +1129,7 @@ namespace SFSAcademy.Controllers
             // add the 'ALL' option
             options.Insert(0, new SelectListItem() { Value = null, Text = "Select a Batch" });
             ViewBag.BTCH_ID = options;
+            Session["student_serach"] = null;
 
             return View();
             
@@ -1172,7 +1173,7 @@ namespace SFSAcademy.Controllers
             FINANCE_FEE_COLLECTION date = db.FINANCE_FEE_COLLECTION.Find(id);
             ViewData["date"] = date;
             FINANCE_FEE_COLLECTION fee_collection = db.FINANCE_FEE_COLLECTION.Find(id);
-            STUDENT student = db.STUDENTs.Find(ViewBag.STUDENT_ID != null ?-1 : ViewBag.STUDENT_ID);
+            STUDENT student = db.STUDENTs.Find(student_id == null ?-1 : student_id);
             //ViewBag.BTCH_ID = new SelectList(db.BATCHes, "ID", "NAME");
             var batch_val = (from cs in db.COURSEs
                              join bt in db.BATCHes on cs.ID equals bt.CRS_ID
@@ -1189,58 +1190,60 @@ namespace SFSAcademy.Controllers
                 fee = fee.Where(x => x.Student_data.ID == student.ID);
             }
 
-            if(fee != null)
+            if(fee_collection != null)
             {
                 var StudentVal = (from st in db.STUDENTs
+                                  where st.BTCH_ID == date.BTCH_ID
                                   select new { Student_data = st }).OrderBy(x => x.Student_data.ID).Distinct();
-                if(student != null)
+                int StudentValId = StudentVal.FirstOrDefault().Student_data.ID;
+                if (student != null)
                 {
                     StudentVal = StudentVal.Where(x => x.Student_data.ID == student.ID);
-                    ViewData["student"] = db.STUDENTs.Where(x => x.ID == student.ID).Distinct();
+                    ViewData["student"] = db.STUDENTs.Where(x => x.ID == student.ID).FirstOrDefault();
                 }
                 else
                 {
-                    StudentVal = StudentVal.Where(x => x.Student_data.ID == fee.FirstOrDefault().Student_data.ID);
-                    ViewData["student"] = db.STUDENTs.Where(x => x.ID == fee.FirstOrDefault().Student_data.ID).FirstOrDefault();
+                    StudentVal = StudentVal.Where(x => x.Student_data.ID == StudentValId);
+                    ViewData["student"] = db.STUDENTs.Where(x => x.ID == StudentValId).FirstOrDefault();
                 }
                 STUDENT_CATGEORY StudentCategoryVal = db.STUDENT_CATGEORY.Find(StudentVal.FirstOrDefault().Student_data.STDNT_CAT_ID);
                 ViewBag.StudentCategory = StudentCategoryVal.NAME;
-                var prev_student_val = (from ff in db.FINANCE_FEE
-                          join st in db.STUDENTs on ff.STDNT_ID equals st.ID
-                          where ff.FEE_CLCT_ID == fee_collection.ID
-                          select st).OrderBy(x => x.ID).Distinct();
+                var prev_student_val = (from st in db.STUDENTs
+                                        where st.BTCH_ID == date.BTCH_ID
+                                        select new { Student_data = st }).OrderBy(x => x.Student_data.ID).Distinct();
                 int prev_student_id = -1;
-                if (student != null)
+                if (StudentVal != null)
                 {
-                    prev_student_val = prev_student_val.Where(x => x.ID < student.ID);
+                    prev_student_val = prev_student_val.Where(x => x.Student_data.ID < StudentVal.FirstOrDefault().Student_data.ID);
                     if (prev_student_val != null && prev_student_val.Count() != 0)
                     {
-                        prev_student_id = prev_student_val.Max(x => x.ID);
+                        prev_student_id = prev_student_val.Max(x => x.Student_data.ID);
                     }
                 }
                 STUDENT prev_student = db.STUDENTs.Find(prev_student_id);
                 ViewData["prev_student"] = prev_student;
+                ViewBag.prev_student_id = prev_student_id;
 
-                var next_student_val = (from ff in db.FINANCE_FEE
-                                       join st in db.STUDENTs on ff.STDNT_ID equals st.ID
-                                       where ff.FEE_CLCT_ID == fee_collection.ID 
-                                       select st).OrderBy(x => x.ID).Distinct();
+                var next_student_val = (from st in db.STUDENTs
+                                        where st.BTCH_ID == date.BTCH_ID
+                                        select new { Student_data = st }).OrderBy(x => x.Student_data.ID).Distinct();
                 int next_student_id = -1;
-                if (student != null)
+                if (StudentVal != null)
                 {
-                    next_student_val = next_student_val.Where(x => x.ID > student.ID);
+                    next_student_val = next_student_val.Where(x => x.Student_data.ID > StudentVal.FirstOrDefault().Student_data.ID);
                     if (next_student_val != null && next_student_val.Count() != 0)
                     {
-                        next_student_id = next_student_val.Min(x => x.ID);
+                        next_student_id = next_student_val.Min(x => x.Student_data.ID);
                     }
                 }
                 STUDENT next_student = db.STUDENTs.Find(next_student_id);
                 ViewData["next_student"] = next_student;
+                ViewBag.next_student_id = next_student_id;
 
                 var financefeeVal = (from ff in db.FINANCE_FEE
-                                       join st in db.STUDENTs on ff.STDNT_ID equals st.ID
-                                       where ff.FEE_CLCT_ID == fee_collection.ID && st.ID == StudentVal.FirstOrDefault().Student_data.ID
-                                     select ff).Distinct();
+                                       where ff.FEE_CLCT_ID == fee_collection.ID && ff.STDNT_ID == StudentVal.FirstOrDefault().Student_data.ID
+                                       select ff).ToList();
+                
                 ViewData["financefee"] = financefeeVal;
                 ViewBag.due_date = fee_collection.DUE_DATE;
 
@@ -1336,12 +1339,6 @@ namespace SFSAcademy.Controllers
             return PartialView("_Student_Fees_Submission");
         }
 
-         // GET: Fee Index
-        public ActionResult Fees_Student_Search()
-        {
-            return View();
-        }
-
 
 
         //[HttpPost]
@@ -1398,6 +1395,7 @@ namespace SFSAcademy.Controllers
                 }
                 STUDENT prev_student = db.STUDENTs.Find(prev_student_id);
                 ViewData["prev_student"] = prev_student;
+                ViewBag.prev_student_id = prev_student_id;
 
                 var next_student_val = (from ff in db.FINANCE_FEE
                                         join st in db.STUDENTs on ff.STDNT_ID equals st.ID
@@ -1414,11 +1412,11 @@ namespace SFSAcademy.Controllers
                 }
                 STUDENT next_student = db.STUDENTs.Find(next_student_id);
                 ViewData["next_student"] = next_student;
+                ViewBag.next_student_id = next_student_id;
 
                 var financefeeVal = (from ff in db.FINANCE_FEE
-                                     join st in db.STUDENTs on ff.STDNT_ID equals st.ID
-                                     where ff.FEE_CLCT_ID == fee_collection.ID && st.ID== student
-                                     select ff).Distinct();
+                                     where ff.FEE_CLCT_ID == fee_collection.ID && ff.STDNT_ID == StudentVal.FirstOrDefault().Student_data.ID
+                                     select ff).ToList();
                 ViewData["financefee"] = financefeeVal;
                 ViewBag.due_date = fee_collection.DUE_DATE;
                 var paid_fees_val = (from ff in db.FINANCE_FEE
@@ -1501,12 +1499,6 @@ namespace SFSAcademy.Controllers
                     total_fine_val += category_fine_val.FirstOrDefault().IS_AMT == "Y" ? (decimal)category_fine_val.FirstOrDefault().FINE : total_payable * (decimal)category_fine_val.FirstOrDefault().FINE / 100;
                 }
                 
-                //if (fee >= 0)
-                //{
-                //    total_fine_val += (decimal)fee;
-                //}
-                //else
-                //{ ViewBag.FeeCollectionMessage = string.Concat("Please select valid fine value"); }
                 ViewBag.fine = fee;
                 ViewBag.total_fine = total_fine_val;
             }
@@ -1571,6 +1563,7 @@ namespace SFSAcademy.Controllers
                 }
                 STUDENT prev_student = db.STUDENTs.Find(prev_student_id);
                 ViewData["prev_student"] = prev_student;
+                ViewBag.prev_student_id = prev_student_id;
 
                 var next_student_val = (from ff in db.FINANCE_FEE
                                         join st in db.STUDENTs on ff.STDNT_ID equals st.ID
@@ -1587,11 +1580,11 @@ namespace SFSAcademy.Controllers
                 }
                 STUDENT next_student = db.STUDENTs.Find(next_student_id);
                 ViewData["next_student"] = next_student;
+                ViewBag.next_student_id = next_student_id;
 
                 var financefeeVal = (from ff in db.FINANCE_FEE
-                                     join st in db.STUDENTs on ff.STDNT_ID equals st.ID
-                                     where ff.FEE_CLCT_ID == fee_collection.ID && st.ID == student
-                                     select ff).Distinct();
+                                     where ff.FEE_CLCT_ID == fee_collection.ID && ff.STDNT_ID == StudentVal.FirstOrDefault().Student_data.ID
+                                     select ff).ToList();
                 ViewData["financefee"] = financefeeVal;
                 ViewBag.due_date = fee_collection.DUE_DATE;
                 var paid_fees_val = (from ff in db.FINANCE_FEE
@@ -1688,15 +1681,20 @@ namespace SFSAcademy.Controllers
                 }
                 if(total_fine_val !=0)
                 {
-                    if (financefeeVal.FirstOrDefault().IS_PD != "Y")
+                    if(financefeeVal != null && financefeeVal.Count() != 0)
                     {
-                        total_fees += total_fine_val;
+                        if (financefeeVal.FirstOrDefault().IS_PD != "Y")
+                        {
+                            total_fees += total_fine_val;
 
+                        }
+                        else
+                        {
+                            total_fees = (decimal)fine;
+                        }
                     }
-                    else
-                    {
-                        total_fees = (decimal)fine;
-                    }
+                    else { total_fees += total_fine_val; }
+                    
                 }
 
                 decimal fees_paid = (decimal)PAYMENT_AMOUNT;
@@ -1707,7 +1705,7 @@ namespace SFSAcademy.Controllers
                     {
                         var FeeCat = db.FINANCE_TRANSACTION_CATEGORY.Where(x => x.NAME == "Fees").Distinct();
                         int TranCatId = FeeCat !=null ? Convert.ToInt32(FeeCat.FirstOrDefault().ID): -1;
-                        int FinanceFee_id = financefeeVal != null ? financefeeVal.FirstOrDefault().ID : -1;
+                        int FinanceFee_id = financefeeVal != null && financefeeVal.Count() != 0 ? financefeeVal.FirstOrDefault().ID : -1;
                         String ReceiptNo = feeVal != null ? feeVal.FirstOrDefault().FinanceFeeData.ID.ToString() : "";
                         int PayeeId = StudentVal != null ? StudentVal.FirstOrDefault().Student_data.ID : -1;
 
@@ -1803,10 +1801,10 @@ namespace SFSAcademy.Controllers
             ViewData["student"] = StudentVal;
 
             var financefeeVal = (from ff in db.FINANCE_FEE
-                                 join st in db.STUDENTs on ff.STDNT_ID equals st.ID
-                                 where ff.FEE_CLCT_ID == id2 && st.ID == id
-                                 select ff).Distinct();
+                                 where ff.FEE_CLCT_ID == fee_collection.ID && ff.STDNT_ID == id
+                                 select ff).ToList();
             ViewData["financefee"] = financefeeVal;
+
             ViewBag.due_date = fee_collection.DUE_DATE;
             var paid_fees_val = (from ff in db.FINANCE_FEE
                                  join st in db.STUDENTs on ff.STDNT_ID equals st.ID
@@ -1945,6 +1943,63 @@ namespace SFSAcademy.Controllers
                 return File(bytes, "application/pdf", "Grid.pdf");
             }
         }
+
+
+        // GET: Fee Index
+        public ActionResult Fees_Student_Search()
+        {
+
+            return View();
+
+        }
+
+        // GET: Fee Index
+        public ActionResult fees_student_dates(string id)
+        {
+            var StudentVal = (from st in db.STUDENTs
+                              where st.ADMSN_NO == id
+                              select new { Student_data = st }).OrderBy(x => x.Student_data.ID).Distinct();
+
+            if (StudentVal !=null && StudentVal.Count() != 0)
+            {
+                STUDENT student = db.STUDENTs.Find(StudentVal.FirstOrDefault().Student_data.ID);
+                ViewData["student"] = student;
+
+                var batch_val = (from cs in db.COURSEs
+                                 join bt in db.BATCHes on cs.ID equals bt.CRS_ID
+                                 where bt.ID == student.BTCH_ID
+                                 select new Models.SelectCourseBatch { CourseData = cs, BatchData = bt, Selected = false })
+                                .OrderBy(x => x.BatchData.ID).ToList();
+                ViewData["batch"] = batch_val;
+
+                var queryCollections = (from cl in db.FINANCE_FEE_COLLECTION
+                                        where cl.IS_DEL == "N" && cl.BTCH_ID == student.BTCH_ID
+                                        select new { cl.ID, cl.NAME, cl.DUE_DATE })
+             .OrderBy(x => x.NAME).Distinct().ToList();
+
+
+                List<SelectListItem> options2 = new List<SelectListItem>();
+                foreach (var item in queryCollections)
+                {
+                    string CollectionDate = string.Concat(item.NAME, "-", Convert.ToDateTime(item.DUE_DATE).ToString("dd-MMM-yy"));
+                    var result = new SelectListItem();
+                    result.Text = CollectionDate;
+                    result.Value = item.ID.ToString();
+                    options2.Add(result);
+                }
+                // add the 'ALL' option
+                options2.Insert(0, new SelectListItem() { Value = null, Text = "Select Fee Collection Date" });
+                ViewBag.COLL_ID = options2;
+                Session["student_serach"] = "Y";
+            }
+            else
+            { ViewBag.FeeCollectionMessage = "No Stundet found with this Admission Number.";
+            }
+
+            return PartialView("_fees_student_dates");
+        }
+
+
 
 
         // GET: Finance/Details/5

@@ -95,6 +95,11 @@ namespace SFSAcademy.Models
         public FINANCE_FEE FinanceFeeData { get; set; }
     }
 
+    public class FeeCollectionFee
+    {
+        public FINANCE_FEE_COLLECTION FeeCollectionData { get; set; }
+        public FINANCE_FEE FinanceFeeData { get; set; }
+    }
     public enum Gender
     {
         Male,

@@ -1,47 +1,79 @@
-﻿@model SFSAcademy.FINANCE_FEE_CATGEORY
+﻿@using SFSAcademy.Models
+@model IList<SelectCourseBatch>
+@{    Layout = null;}
 
-@{
-    ViewBag.Title = "_Master_Category_Create_Form";
-}
-<div id="content-header">
-    <h1></h1>
-    <h3>Create Master Category For Fees</h3>
-    <div id="app-back-button">
-        <a href='javascript:history.back()' onclick="return confirm('are you sure?')"><img src="~/Content/images/buttons/back.png"></a>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+<link rel="stylesheet" href="/resources/demos/style.css" />
+<script>
+    $(document).ready(function () {
+        $("#AdmForm1").hide();
+        $("input[Value='No']").click(function () {
+            var test = $(this).val();
+            $("#AdmForm1").show();
+        });
+        $("input[Value='Yes']").click(function () {
+            var test = $(this).val();
+            $("#AdmForm1").hide();
+        });
+
+    });
+    $$('input.category_select').each(function (checkbox) { checkbox.checked = true; });
+    $$('input.category_select').each(function (checkbox) { checkbox.checked = false; });
+</script>
+<div class="label-field-pair">
+    <div class="label-container"><label>Is this Master Category?</label></div>
+    <div class="radio_button">
+        <div class="opt"> @Html.RadioButton("radioName", "Yes", true, new { id = "id1"}) Yes </div>
+        <div class="opt"> @Html.RadioButton("radioName", "No", false, new { id = "id2"}) No <br /></div>
     </div>
 </div>
-<div><img src="~/Content/images/_global/header_underline_.jpg" width="100%"></div>
+<div class="label-field-pair">
 
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
-
-    <div id="grading-levels-form">
-
-        <div id="form-errors"></div>
-
-        <div class="label-field-pair">
-            <div class="label-container">@Html.LabelFor(model => model.NAME, "Name", htmlAttributes: new { @class = "control-label col-md-2" })</div>
-            <div class="input-container">
-                @Html.EditorFor(model => model.NAME, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.NAME, "", new { @class = "text-danger" })
-            </div>
+</div>
+<div id="AdmForm1">
+    <div class="label-field-pair">
+        <div class="label-container">@Html.LabelFor(x => x[0].FeeCategoryData.MSTR_CATGRY_ID, "Select Master Category", htmlAttributes: new { @class = "control-label col-md-2" })</div>
+        <div class="text-input-bg">
+            @Html.DropDownList("MSTR_CATGRY_ID", null, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x[0].FeeCategoryData.MSTR_CATGRY_ID, "", new { @class = "text-danger" })
         </div>
-        <div class="label-field-pair">
-            <div class="label-container">@Html.LabelFor(model => model.DESCR, "Description", htmlAttributes: new { @class = "control-label col-md-2" })</div>
-            <div class="input-container">
-                @Html.EditorFor(model => model.DESCR, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.DESCR, "", new { @class = "text-danger" })
-            </div>
-        </div>
-        <div class="label-field-pair">
-            <div class="label-container">@Html.LabelFor(model => model.BTCH_ID, "Batch", htmlAttributes: new { @class = "control-label col-md-2" })</div>
-            <div class="text-input-bg">
-                @Html.DropDownList("BTCH_ID", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.BTCH_ID, "", new { @class = "text-danger" })
-            </div>
-        </div>
-        <input type="submit" value="►Save" class="submit_button" />
-
     </div>
-}
+    <div id="right-side-inputs">
+        <div class="category_list">
+            <div class="label-container">
+                <label>
+                    Select a Batch:
+                    <b class="sel-list">
+                        <a href="javascript:void(0);" onclick="$$('input.category_select').each(function (checkbox) { checkbox.checked = true; });">All</a>
+                        <a href="javascript:void(0);" onclick="$$('input.category_select').each(function (checkbox) { checkbox.checked = false; });">None</a>
+                    </b>
+                </label>
+            </div>
+            <div class="categories">
+                <div class="batches" style="overflow-y: scroll; height:150px; width:200px;">
+                    @for (var j = 0; j < Model.Count(); j++)
+            {
+                        <div class="each_batch">
+                            <label> @Html.CheckBoxFor(x => x[j].Selected, new { @class = "category_select", @id = "category_select" }) @Model[j].CourseData.CODE - @Model[j].BatchData.NAME</label>
+                        </div>
+                        <div class="each_batch">
+                            @Html.HiddenFor(x => x[j].BatchData.ID)
+                        </div>
+                        <div class="each_batch">
+                            @Html.HiddenFor(x => x[j].BatchData.ID)
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>       
+ </div>
+<br />
+
+
+
+

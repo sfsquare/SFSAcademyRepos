@@ -7,7 +7,7 @@
 
 <div id="content-header">
     <img src="~/Content/images/show_finance.png" alt="Finance Logo">
-    <h1>Master Category</h1>
+    <h1>Master Fees</h1>
     <h3>Finance Management</h3>
     <div id="app-back-button">
         <a href='javascript:history.back()' onclick="return confirm('are you sure?')"><img src="~/Content/images/buttons/back.png"></a>
@@ -17,10 +17,6 @@
 
 <div id="page-yield">
     <div id="flash_box"></div>
-    @if (Html.ValidationSummary() != null)
-    {
-        <p class="flash-msg"> @Html.ValidationSummary() </p>
-    }
     <div class="bread_crumb">
         @Html.ActionLink("Finance", "Index") &raquo;
         @Html.ActionLink("Fees", "Fees_Index") &raquo;
@@ -32,7 +28,7 @@
         <div class="fee-link">
             <div class="link-box">
                 <div class="link-heading">
-                    @Ajax.ActionLink("Create Category", "_Master_Category_Create_Form", new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "result", InsertionMode = InsertionMode.Replace, OnSuccess = "openPopup" })<br />
+                    @Ajax.ActionLink("Create Category", "Master_Category_Create", new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "result", InsertionMode = InsertionMode.Replace, OnSuccess = "openPopup" })<br />
                     <div id="result" style="display:none;"></div>
                 </div>
                 <div class="link-descr"> Create Master Category</div>
@@ -45,12 +41,14 @@
             </div>
             <div class="link-box">
                 <div class="link-heading">
-                    @Html.ActionLink("Create Discount", "Fee_Discounts")
+                    @Html.ActionLink("Create Discount", "Fee_Discount_New")
                 </div>
                 <div class="link-descr">Create Fee Discounts</div>
             </div>
         </div>
-
+        <div class="label-field-pair">
+            @Html.Label("Master Category List", "Master Category List", htmlAttributes: new { @class = "control-label col-md-2" })
+        </div>
         <div id="search_box_bg">
             <form name="search-form" id="search-form" action="" style="display:inline;">
                 @using (Html.BeginForm("Master_Fees", "Finance", FormMethod.Get))
@@ -66,7 +64,7 @@
         </div>
         <div id="fee_collection_dates"></div>
         <div id="categories">
-            @{Html.RenderAction("_Master_Category_List", "Finance", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter });}
+            @{Html.RenderAction("_Master_Fee_List", "Finance", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter });}
         </div>
     </div>
 </div>

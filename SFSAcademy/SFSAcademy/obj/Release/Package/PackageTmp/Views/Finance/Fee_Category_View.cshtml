@@ -1,0 +1,58 @@
+﻿@model IEnumerable<SFSAcademy.FINANCE_FEE_CATGEORY>
+
+@{
+    ViewBag.Title = "Master_Category_View";
+}
+
+<div id="content-header">
+    <img src="~/Content/images/show_finance.png" alt="Finance Logo">
+    <h1>Finance Management</h1>
+    <h3>View Master Fee Category</h3>
+    <div id="app-back-button">
+        <a href='javascript:history.back()' onclick="return confirm('are you sure?')"><img src="~/Content/images/buttons/back.png"></a>
+    </div>
+</div>
+<div><img src="~/Content/images/_global/header_underline_.jpg" width="100%"></div>
+
+<div id="inner-tab-menu">
+    <ul>
+        <li>@Html.ActionLink("Create Fee Category", "Master_Category_Create")</li>
+    </ul>
+</div>
+<div class="bread_crumb">
+    @Html.ActionLink("Finance", "Index") &raquo;
+    @Html.ActionLink("Fees", "Fees_Index") &raquo;
+    @Html.ActionLink("Create Fees", "Master_Fees") &raquo;
+    Fees Category
+</div>
+<div id="page-yield">
+    @if (ViewBag.ErrorMessage != null)
+    {
+        <p class="flash-msg"> @ViewBag.ErrorMessage </p>
+    }
+    <div id="grading-levels-form">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div id="search_box_bg">
+                <form name="search-form" id="search-form" action="" style="display:inline;">
+                    @using (Html.BeginForm("_Fee_Category_List", "Finance", FormMethod.Get))
+                {
+                        <p>
+                            @Html.DropDownList("searchString", null, htmlAttributes: new { @class = "form-control" })
+                            <input type="submit" value="Submit" id="submit-button" />
+                        </p>
+                    }
+
+                    <div class="extender"></div>
+                </form>
+            </div>
+            <div id="fee_collection_dates"></div>
+                <div id="left-side-inputs">
+                    @{Html.RenderAction("_Fee_Category_List", "Finance", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter });}
+                </div>
+         }
+
+    </div>
+</div>
