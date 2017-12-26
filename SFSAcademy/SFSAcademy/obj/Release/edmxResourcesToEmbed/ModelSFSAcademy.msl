@@ -1,0 +1,1243 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="SFSAcademyModelStoreContainer" CdmEntityContainer="SFSAcademyEntities">
+    <EntitySetMapping Name="APPLY_LEAVE">
+      <EntityTypeMapping TypeName="SFSAcademyModel.APPLY_LEAVE">
+        <MappingFragment StoreEntitySet="APPLY_LEAVE">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="EMP_ID" ColumnName="EMP_ID" />
+          <ScalarProperty Name="EMP_LEAVE_TYPES_ID" ColumnName="EMP_LEAVE_TYPES_ID" />
+          <ScalarProperty Name="IS_HALF_DAY" ColumnName="IS_HALF_DAY" />
+          <ScalarProperty Name="START_DATE" ColumnName="START_DATE" />
+          <ScalarProperty Name="END_DATE" ColumnName="END_DATE" />
+          <ScalarProperty Name="RSN" ColumnName="RSN" />
+          <ScalarProperty Name="APPR" ColumnName="APPR" />
+          <ScalarProperty Name="VW_BY_MGR" ColumnName="VW_BY_MGR" />
+          <ScalarProperty Name="MGR_RMRK" ColumnName="MGR_RMRK" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ARCHIVED_STUDENT">
+      <EntityTypeMapping TypeName="SFSAcademyModel.ARCHIVED_STUDENT">
+        <MappingFragment StoreEntitySet="ARCHIVED_STUDENT">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="ADMSN_NO" ColumnName="ADMSN_NO" />
+          <ScalarProperty Name="CLS_ROLL_NO" ColumnName="CLS_ROLL_NO" />
+          <ScalarProperty Name="ADMSN_DATE" ColumnName="ADMSN_DATE" />
+          <ScalarProperty Name="FIRST_NAME" ColumnName="FIRST_NAME" />
+          <ScalarProperty Name="MID_NAME" ColumnName="MID_NAME" />
+          <ScalarProperty Name="LAST_NAME" ColumnName="LAST_NAME" />
+          <ScalarProperty Name="BTCH_ID" ColumnName="BTCH_ID" />
+          <ScalarProperty Name="DOB" ColumnName="DOB" />
+          <ScalarProperty Name="GNDR" ColumnName="GNDR" />
+          <ScalarProperty Name="BLOOD_GRP" ColumnName="BLOOD_GRP" />
+          <ScalarProperty Name="BIRTH_PLACE" ColumnName="BIRTH_PLACE" />
+          <ScalarProperty Name="NTLTY_ID" ColumnName="NTLTY_ID" />
+          <ScalarProperty Name="LANG" ColumnName="LANG" />
+          <ScalarProperty Name="RLGN" ColumnName="RLGN" />
+          <ScalarProperty Name="ADDR_LINE1" ColumnName="ADDR_LINE1" />
+          <ScalarProperty Name="ADDR_LINE2" ColumnName="ADDR_LINE2" />
+          <ScalarProperty Name="CITY" ColumnName="CITY" />
+          <ScalarProperty Name="STATE" ColumnName="STATE" />
+          <ScalarProperty Name="PIN_CODE" ColumnName="PIN_CODE" />
+          <ScalarProperty Name="CTRY_ID" ColumnName="CTRY_ID" />
+          <ScalarProperty Name="PH1" ColumnName="PH1" />
+          <ScalarProperty Name="PH2" ColumnName="PH2" />
+          <ScalarProperty Name="EML" ColumnName="EML" />
+          <ScalarProperty Name="PHTO_FILENAME" ColumnName="PHTO_FILENAME" />
+          <ScalarProperty Name="PHTO_CNTNT_TYPE" ColumnName="PHTO_CNTNT_TYPE" />
+          <ScalarProperty Name="PHTO_DATA" ColumnName="PHTO_DATA" />
+          <ScalarProperty Name="STAT_DESCR" ColumnName="STAT_DESCR" />
+          <ScalarProperty Name="IS_ACT" ColumnName="IS_ACT" />
+          <ScalarProperty Name="IS_DEL" ColumnName="IS_DEL" />
+          <ScalarProperty Name="IMMDT_CNTCT_ID" ColumnName="IMMDT_CNTCT_ID" />
+          <ScalarProperty Name="IS_SMS_ENABL" ColumnName="IS_SMS_ENABL" />
+          <ScalarProperty Name="CREATED_AT" ColumnName="CREATED_AT" />
+          <ScalarProperty Name="UPDATED_AT" ColumnName="UPDATED_AT" />
+          <ScalarProperty Name="PHTO_FILE_SIZE" ColumnName="PHTO_FILE_SIZE" />
+          <ScalarProperty Name="FRM_ID" ColumnName="FRM_ID" />
+          <ScalarProperty Name="STDNT_CAT_ID" ColumnName="STDNT_CAT_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ASSESSMENT_SCORE">
+      <EntityTypeMapping TypeName="SFSAcademyModel.ASSESSMENT_SCORE">
+        <MappingFragment StoreEntitySet="ASSESSMENT_SCORE">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="SSTDNT_ID" ColumnName="SSTDNT_ID" />
+          <ScalarProperty Name="GRADE_PT" ColumnName="GRADE_PT" />
+          <ScalarProperty Name="CREATED_AT" ColumnName="CREATED_AT" />
+          <ScalarProperty Name="UPDATED_AT" ColumnName="UPDATED_AT" />
+          <ScalarProperty Name="EXAM_ID" ColumnName="EXAM_ID" />
+          <ScalarProperty Name="BTCH_ID" ColumnName="BTCH_ID" />
+          <ScalarProperty Name="DE_IND_ID" ColumnName="DE_IND_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ASSETs">
+      <EntityTypeMapping TypeName="SFSAcademyModel.ASSET">
+        <MappingFragment StoreEntitySet="ASSET">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="TIL" ColumnName="TIL" />
+          <ScalarProperty Name="DESCR" ColumnName="DESCR" />
+          <ScalarProperty Name="AMT" ColumnName="AMT" />
+          <ScalarProperty Name="IS_INACT" ColumnName="IS_INACT" />
+          <ScalarProperty Name="IS_DEL" ColumnName="IS_DEL" />
+          <ScalarProperty Name="CREATED_AT" ColumnName="CREATED_AT" />
+          <ScalarProperty Name="UPDATED_AT" ColumnName="UPDATED_AT" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ATTENDENCEs">
+      <EntityTypeMapping TypeName="SFSAcademyModel.ATTENDENCE">
+        <MappingFragment StoreEntitySet="ATTENDENCE">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="STDNT_ID" ColumnName="STDNT_ID" />
+          <ScalarProperty Name="PER_TABLE_ENT_ID" ColumnName="PER_TABLE_ENT_ID" />
+          <ScalarProperty Name="FORENOON" ColumnName="FORENOON" />
+          <ScalarProperty Name="PM" ColumnName="PM" />
+          <ScalarProperty Name="RSN" ColumnName="RSN" />
+          <ScalarProperty Name="MONTH_DATE" ColumnName="MONTH_DATE" />
+          <ScalarProperty Name="BTCH_ID" ColumnName="BTCH_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BANK_FIELD">
+      <EntityTypeMapping TypeName="SFSAcademyModel.BANK_FIELD">
+        <MappingFragment StoreEntitySet="BANK_FIELD">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="STAT" ColumnName="STAT" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BATCHes">
+      <EntityTypeMapping TypeName="SFSAcademyModel.BATCH">
+        <MappingFragment StoreEntitySet="BATCH">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="CRS_ID" ColumnName="CRS_ID" />
+          <ScalarProperty Name="START_DATE" ColumnName="START_DATE" />
+          <ScalarProperty Name="END_DATE" ColumnName="END_DATE" />
+          <ScalarProperty Name="IS_DEL" ColumnName="IS_DEL" />
+          <ScalarProperty Name="EMP_ID" ColumnName="EMP_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CCE_EXAM_CATEGORY">
+      <EntityTypeMapping TypeName="SFSAcademyModel.CCE_EXAM_CATEGORY">
+        <MappingFragment StoreEntitySet="CCE_EXAM_CATEGORY">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="DESCR" ColumnName="DESCR" />
+          <ScalarProperty Name="CREATED_AT" ColumnName="CREATED_AT" />
+          <ScalarProperty Name="UPDATED_AT" ColumnName="UPDATED_AT" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CCE_GRADE">
+      <EntityTypeMapping TypeName="SFSAcademyModel.CCE_GRADE">
+        <MappingFragment StoreEntitySet="CCE_GRADE">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="GRADE_PT" ColumnName="GRADE_PT" />
+          <ScalarProperty Name="CCE_GRADE_SET_ID" ColumnName="CCE_GRADE_SET_ID" />
+          <ScalarProperty Name="CREATED_AT" ColumnName="CREATED_AT" />
+          <ScalarProperty Name="UPDATED_AT" ColumnName="UPDATED_AT" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CCE_GRADE_SET">
+      <EntityTypeMapping TypeName="SFSAcademyModel.CCE_GRADE_SET">
+        <MappingFragment StoreEntitySet="CCE_GRADE_SET">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="CREATED_AT" ColumnName="CREATED_AT" />
+          <ScalarProperty Name="UPDATED_AT" ColumnName="UPDATED_AT" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CCE_REPORTS">
+      <EntityTypeMapping TypeName="SFSAcademyModel.CCE_REPORTS">
+        <MappingFragment StoreEntitySet="CCE_REPORTS">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="OBSERVABLE_ID" ColumnName="OBSERVABLE_ID" />
+          <ScalarProperty Name="OBSERVABLE_TYPE" ColumnName="OBSERVABLE_TYPE" />
+          <ScalarProperty Name="STDNT_ID" ColumnName="STDNT_ID" />
+          <ScalarProperty Name="BTCH_ID" ColumnName="BTCH_ID" />
+          <ScalarProperty Name="GRADE_STRNG" ColumnName="GRADE_STRNG" />
+          <ScalarProperty Name="CREATED_AT" ColumnName="CREATED_AT" />
+          <ScalarProperty Name="UPDATED_AT" ColumnName="UPDATED_AT" />
+          <ScalarProperty Name="EXAM_ID" ColumnName="EXAM_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CCE_WEIGHTAGE">
+      <EntityTypeMapping TypeName="SFSAcademyModel.CCE_WEIGHTAGE">
+        <MappingFragment StoreEntitySet="CCE_WEIGHTAGE">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="WTAGE" ColumnName="WTAGE" />
+          <ScalarProperty Name="CRITA_TYPE" ColumnName="CRITA_TYPE" />
+          <ScalarProperty Name="CCE_EXAM_CAT_ID" ColumnName="CCE_EXAM_CAT_ID" />
+          <ScalarProperty Name="CREATED_AT" ColumnName="CREATED_AT" />
+          <ScalarProperty Name="UPDATED_AT" ColumnName="UPDATED_AT" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CLASS_DESIGNATION">
+      <EntityTypeMapping TypeName="SFSAcademyModel.CLASS_DESIGNATION">
+        <MappingFragment StoreEntitySet="CLASS_DESIGNATION">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="CGPA" ColumnName="CGPA" />
+          <ScalarProperty Name="CREATED_AT" ColumnName="CREATED_AT" />
+          <ScalarProperty Name="UPDATED_AT" ColumnName="UPDATED_AT" />
+          <ScalarProperty Name="MKS" ColumnName="MKS" />
+          <ScalarProperty Name="CRS_ID" ColumnName="CRS_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CLASS_TIMING">
+      <EntityTypeMapping TypeName="SFSAcademyModel.CLASS_TIMING">
+        <MappingFragment StoreEntitySet="CLASS_TIMING">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="BTCH_ID" ColumnName="BTCH_ID" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="START_TIME" ColumnName="START_TIME" />
+          <ScalarProperty Name="END_TIME" ColumnName="END_TIME" />
+          <ScalarProperty Name="IS_BRK" ColumnName="IS_BRK" />
+          <ScalarProperty Name="IS_DEL" ColumnName="IS_DEL" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CONFIGURATIONs">
+      <EntityTypeMapping TypeName="SFSAcademyModel.CONFIGURATION">
+        <MappingFragment StoreEntitySet="CONFIGURATION">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="CONFIG_KEY" ColumnName="CONFIG_KEY" />
+          <ScalarProperty Name="CONFIG_VAL" ColumnName="CONFIG_VAL" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="COUNTRies">
+      <EntityTypeMapping TypeName="SFSAcademyModel.COUNTRY">
+        <MappingFragment StoreEntitySet="COUNTRY">
+          <ScalarProperty Name="CTRY_CODE" ColumnName="CTRY_CODE" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="CTRY_NAME" ColumnName="CTRY_NAME" />
+          <ScalarProperty Name="NTLTY" ColumnName="NTLTY" />
+          <ScalarProperty Name="DESCR" ColumnName="DESCR" />
+          <ScalarProperty Name="IS_ACT" ColumnName="IS_ACT" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="COURSEs">
+      <EntityTypeMapping TypeName="SFSAcademyModel.COURSE">
+        <MappingFragment StoreEntitySet="COURSE">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="CRS_NAME" ColumnName="CRS_NAME" />
+          <ScalarProperty Name="CODE" ColumnName="CODE" />
+          <ScalarProperty Name="SECTN_NAME" ColumnName="SECTN_NAME" />
+          <ScalarProperty Name="IS_DEL" ColumnName="IS_DEL" />
+          <ScalarProperty Name="CREATED_AT" ColumnName="CREATED_AT" />
+          <ScalarProperty Name="UPDATED_AT" ColumnName="UPDATED_AT" />
+          <ScalarProperty Name="GRADING_TYPE" ColumnName="GRADING_TYPE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DESCRIPTIVE_INDICATOR">
+      <EntityTypeMapping TypeName="SFSAcademyModel.DESCRIPTIVE_INDICATOR">
+        <MappingFragment StoreEntitySet="DESCRIPTIVE_INDICATOR">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="DESCR" ColumnName="DESCR" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ELECTIVE_GROUP">
+      <EntityTypeMapping TypeName="SFSAcademyModel.ELECTIVE_GROUP">
+        <MappingFragment StoreEntitySet="ELECTIVE_GROUP">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="ELECTIVE_GRP_NAME" ColumnName="ELECTIVE_GRP_NAME" />
+          <ScalarProperty Name="ELECTIVE_GRP_DESCR" ColumnName="ELECTIVE_GRP_DESCR" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EMPLOYEEs">
+      <EntityTypeMapping TypeName="SFSAcademyModel.EMPLOYEE">
+        <MappingFragment StoreEntitySet="EMPLOYEE">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="RPTG_MGR_ID" ColumnName="RPTG_MGR_ID" />
+          <ScalarProperty Name="EMP_CAT_ID" ColumnName="EMP_CAT_ID" />
+          <ScalarProperty Name="EMP_NUM" ColumnName="EMP_NUM" />
+          <ScalarProperty Name="JOINING_DATE" ColumnName="JOINING_DATE" />
+          <ScalarProperty Name="FIRST_NAME" ColumnName="FIRST_NAME" />
+          <ScalarProperty Name="MID_NAME" ColumnName="MID_NAME" />
+          <ScalarProperty Name="LAST_NAME" ColumnName="LAST_NAME" />
+          <ScalarProperty Name="GNDR" ColumnName="GNDR" />
+          <ScalarProperty Name="JOB_TIL" ColumnName="JOB_TIL" />
+          <ScalarProperty Name="EMP_POS_ID" ColumnName="EMP_POS_ID" />
+          <ScalarProperty Name="EMP_DEPT_ID" ColumnName="EMP_DEPT_ID" />
+          <ScalarProperty Name="EMP_GRADE_ID" ColumnName="EMP_GRADE_ID" />
+          <ScalarProperty Name="QUAL" ColumnName="QUAL" />
+          <ScalarProperty Name="EXPNC_DETL" ColumnName="EXPNC_DETL" />
+          <ScalarProperty Name="EXPNC_YEAR" ColumnName="EXPNC_YEAR" />
+          <ScalarProperty Name="EXPNC_MONTH" ColumnName="EXPNC_MONTH" />
+          <ScalarProperty Name="STAT" ColumnName="STAT" />
+          <ScalarProperty Name="STAT_DESCR" ColumnName="STAT_DESCR" />
+          <ScalarProperty Name="DOB" ColumnName="DOB" />
+          <ScalarProperty Name="MARITAL_STAT" ColumnName="MARITAL_STAT" />
+          <ScalarProperty Name="CHLD_CNT" ColumnName="CHLD_CNT" />
+          <ScalarProperty Name="FTHR_NAME" ColumnName="FTHR_NAME" />
+          <ScalarProperty Name="MTHR_NAME" ColumnName="MTHR_NAME" />
+          <ScalarProperty Name="HUSBND_NAME" ColumnName="HUSBND_NAME" />
+          <ScalarProperty Name="BLOOD_GRP" ColumnName="BLOOD_GRP" />
+          <ScalarProperty Name="NTLTY_ID" ColumnName="NTLTY_ID" />
+          <ScalarProperty Name="HOME_ADDR_LINE1" ColumnName="HOME_ADDR_LINE1" />
+          <ScalarProperty Name="HOME_ADDR_LINE2" ColumnName="HOME_ADDR_LINE2" />
+          <ScalarProperty Name="HOME_CITY" ColumnName="HOME_CITY" />
+          <ScalarProperty Name="HOME_STATE" ColumnName="HOME_STATE" />
+          <ScalarProperty Name="HOME_CTRY_ID" ColumnName="HOME_CTRY_ID" />
+          <ScalarProperty Name="HOME_PIN_CODE" ColumnName="HOME_PIN_CODE" />
+          <ScalarProperty Name="OFF_ADDR_LINE1" ColumnName="OFF_ADDR_LINE1" />
+          <ScalarProperty Name="OFF_ADDR_LINE2" ColumnName="OFF_ADDR_LINE2" />
+          <ScalarProperty Name="OFF_CITY" ColumnName="OFF_CITY" />
+          <ScalarProperty Name="OFF_STATE" ColumnName="OFF_STATE" />
+          <ScalarProperty Name="OFF_CTRY_ID" ColumnName="OFF_CTRY_ID" />
+          <ScalarProperty Name="OFF_PIN_CODE" ColumnName="OFF_PIN_CODE" />
+          <ScalarProperty Name="OFF_PH1" ColumnName="OFF_PH1" />
+          <ScalarProperty Name="OFF_PH2" ColumnName="OFF_PH2" />
+          <ScalarProperty Name="MOBL_PH" ColumnName="MOBL_PH" />
+          <ScalarProperty Name="HOME_PH" ColumnName="HOME_PH" />
+          <ScalarProperty Name="EML" ColumnName="EML" />
+          <ScalarProperty Name="FAX" ColumnName="FAX" />
+          <ScalarProperty Name="PHTO_FILENAME" ColumnName="PHTO_FILENAME" />
+          <ScalarProperty Name="PHTO_CNTNT_TYPE" ColumnName="PHTO_CNTNT_TYPE" />
+          <ScalarProperty Name="PHTO_DATA" ColumnName="PHTO_DATA" />
+          <ScalarProperty Name="CREATED_AT" ColumnName="CREATED_AT" />
+          <ScalarProperty Name="UPDATED_AT" ColumnName="UPDATED_AT" />
+          <ScalarProperty Name="PHTO_FILE_SIZE" ColumnName="PHTO_FILE_SIZE" />
+          <ScalarProperty Name="USRID" ColumnName="USRID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EMPLOYEE_ADDITIONAL_DETAIL">
+      <EntityTypeMapping TypeName="SFSAcademyModel.EMPLOYEE_ADDITIONAL_DETAIL">
+        <MappingFragment StoreEntitySet="EMPLOYEE_ADDITIONAL_DETAIL">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="EMP_ID" ColumnName="EMP_ID" />
+          <ScalarProperty Name="ADDL_FLD_ID" ColumnName="ADDL_FLD_ID" />
+          <ScalarProperty Name="ADDL_INFO" ColumnName="ADDL_INFO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EMPLOYEE_ATTENDENCES">
+      <EntityTypeMapping TypeName="SFSAcademyModel.EMPLOYEE_ATTENDENCES">
+        <MappingFragment StoreEntitySet="EMPLOYEE_ATTENDENCES">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="ATNDENCE_DATE" ColumnName="ATNDENCE_DATE" />
+          <ScalarProperty Name="EMP_ID" ColumnName="EMP_ID" />
+          <ScalarProperty Name="EMP_LEAVE_TYPE_ID" ColumnName="EMP_LEAVE_TYPE_ID" />
+          <ScalarProperty Name="RSN" ColumnName="RSN" />
+          <ScalarProperty Name="IS_HALF_DAY" ColumnName="IS_HALF_DAY" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EMPLOYEE_BANK_DETAIL">
+      <EntityTypeMapping TypeName="SFSAcademyModel.EMPLOYEE_BANK_DETAIL">
+        <MappingFragment StoreEntitySet="EMPLOYEE_BANK_DETAIL">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="EMP_ID" ColumnName="EMP_ID" />
+          <ScalarProperty Name="BANK_FLD_ID" ColumnName="BANK_FLD_ID" />
+          <ScalarProperty Name="BANK_INFO" ColumnName="BANK_INFO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EMPLOYEE_CATEGORY">
+      <EntityTypeMapping TypeName="SFSAcademyModel.EMPLOYEE_CATEGORY">
+        <MappingFragment StoreEntitySet="EMPLOYEE_CATEGORY">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="PRFX" ColumnName="PRFX" />
+          <ScalarProperty Name="STAT" ColumnName="STAT" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EMPLOYEE_DEPARTMENT">
+      <EntityTypeMapping TypeName="SFSAcademyModel.EMPLOYEE_DEPARTMENT">
+        <MappingFragment StoreEntitySet="EMPLOYEE_DEPARTMENT">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="CODE" ColumnName="CODE" />
+          <ScalarProperty Name="NAMES" ColumnName="NAMES" />
+          <ScalarProperty Name="STAT" ColumnName="STAT" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EMPLOYEE_DEPARTMENT_EVENT">
+      <EntityTypeMapping TypeName="SFSAcademyModel.EMPLOYEE_DEPARTMENT_EVENT">
+        <MappingFragment StoreEntitySet="EMPLOYEE_DEPARTMENT_EVENT">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="EV_ID" ColumnName="EV_ID" />
+          <ScalarProperty Name="CREATED_AT" ColumnName="CREATED_AT" />
+          <ScalarProperty Name="UPDATED_AT" ColumnName="UPDATED_AT" />
+          <ScalarProperty Name="EMP_DEPT_ID" ColumnName="EMP_DEPT_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EMPLOYEE_GRADE">
+      <EntityTypeMapping TypeName="SFSAcademyModel.EMPLOYEE_GRADE">
+        <MappingFragment StoreEntitySet="EMPLOYEE_GRADE">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="GRADE_CODE" ColumnName="GRADE_CODE" />
+          <ScalarProperty Name="GRADE_NAME" ColumnName="GRADE_NAME" />
+          <ScalarProperty Name="DESCR" ColumnName="DESCR" />
+          <ScalarProperty Name="IS_ACT" ColumnName="IS_ACT" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EMPLOYEE_LEAVE">
+      <EntityTypeMapping TypeName="SFSAcademyModel.EMPLOYEE_LEAVE">
+        <MappingFragment StoreEntitySet="EMPLOYEE_LEAVE">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="EMP_ID" ColumnName="EMP_ID" />
+          <ScalarProperty Name="EMP_LEAVE_TYPE_ID" ColumnName="EMP_LEAVE_TYPE_ID" />
+          <ScalarProperty Name="LEAVE_CNT" ColumnName="LEAVE_CNT" />
+          <ScalarProperty Name="LEAVE_TAKE" ColumnName="LEAVE_TAKE" />
+          <ScalarProperty Name="RST_DATE" ColumnName="RST_DATE" />
+          <ScalarProperty Name="CREATED_AT" ColumnName="CREATED_AT" />
+          <ScalarProperty Name="UPDATED_AT" ColumnName="UPDATED_AT" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EMPLOYEE_LEAVE_TYPE">
+      <EntityTypeMapping TypeName="SFSAcademyModel.EMPLOYEE_LEAVE_TYPE">
+        <MappingFragment StoreEntitySet="EMPLOYEE_LEAVE_TYPE">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="CODE" ColumnName="CODE" />
+          <ScalarProperty Name="STAT" ColumnName="STAT" />
+          <ScalarProperty Name="MAX_LEAVE_CNT" ColumnName="MAX_LEAVE_CNT" />
+          <ScalarProperty Name="CARR_FRWD" ColumnName="CARR_FRWD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EMPLOYEE_POSITION">
+      <EntityTypeMapping TypeName="SFSAcademyModel.EMPLOYEE_POSITION">
+        <MappingFragment StoreEntitySet="EMPLOYEE_POSITION">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="POS_NAME" ColumnName="POS_NAME" />
+          <ScalarProperty Name="POS_DESCR" ColumnName="POS_DESCR" />
+          <ScalarProperty Name="IS_ACT" ColumnName="IS_ACT" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EMPLOYEE_SALARY_STRUCTURE">
+      <EntityTypeMapping TypeName="SFSAcademyModel.EMPLOYEE_SALARY_STRUCTURE">
+        <MappingFragment StoreEntitySet="EMPLOYEE_SALARY_STRUCTURE">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="AMT" ColumnName="AMT" />
+          <ScalarProperty Name="EMP_ID" ColumnName="EMP_ID" />
+          <ScalarProperty Name="PYRL_CAT_ID" ColumnName="PYRL_CAT_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EMPLOYEES_SUBJECT">
+      <EntityTypeMapping TypeName="SFSAcademyModel.EMPLOYEES_SUBJECT">
+        <MappingFragment StoreEntitySet="EMPLOYEES_SUBJECT">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="EMP_ID" ColumnName="EMP_ID" />
+          <ScalarProperty Name="SUBJ_ID" ColumnName="SUBJ_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EVENTs">
+      <EntityTypeMapping TypeName="SFSAcademyModel.EVENT">
+        <MappingFragment StoreEntitySet="EVENT">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="TTIL" ColumnName="TTIL" />
+          <ScalarProperty Name="DESCR" ColumnName="DESCR" />
+          <ScalarProperty Name="START_DATE" ColumnName="START_DATE" />
+          <ScalarProperty Name="END_DATE" ColumnName="END_DATE" />
+          <ScalarProperty Name="IS_COMN" ColumnName="IS_COMN" />
+          <ScalarProperty Name="IS_HOL" ColumnName="IS_HOL" />
+          <ScalarProperty Name="IS_EXAM" ColumnName="IS_EXAM" />
+          <ScalarProperty Name="CREATED_AT" ColumnName="CREATED_AT" />
+          <ScalarProperty Name="UPDATED_AT" ColumnName="UPDATED_AT" />
+          <ScalarProperty Name="IS_DUE" ColumnName="IS_DUE" />
+          <ScalarProperty Name="ORIGIN_ID" ColumnName="ORIGIN_ID" />
+          <ScalarProperty Name="ORIGIN_TYPE" ColumnName="ORIGIN_TYPE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EXAMs">
+      <EntityTypeMapping TypeName="SFSAcademyModel.EXAM">
+        <MappingFragment StoreEntitySet="EXAM">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="EXAM_GRP_ID" ColumnName="EXAM_GRP_ID" />
+          <ScalarProperty Name="SUBJ_ID" ColumnName="SUBJ_ID" />
+          <ScalarProperty Name="START_TIME" ColumnName="START_TIME" />
+          <ScalarProperty Name="END_TIME" ColumnName="END_TIME" />
+          <ScalarProperty Name="MAX_MKS" ColumnName="MAX_MKS" />
+          <ScalarProperty Name="MIN_MKS" ColumnName="MIN_MKS" />
+          <ScalarProperty Name="GRADING_LVL_ID" ColumnName="GRADING_LVL_ID" />
+          <ScalarProperty Name="WTAGE" ColumnName="WTAGE" />
+          <ScalarProperty Name="EV_ID" ColumnName="EV_ID" />
+          <ScalarProperty Name="CREATED_AT" ColumnName="CREATED_AT" />
+          <ScalarProperty Name="UPDATED_AT" ColumnName="UPDATED_AT" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EXAM_GROUP">
+      <EntityTypeMapping TypeName="SFSAcademyModel.EXAM_GROUP">
+        <MappingFragment StoreEntitySet="EXAM_GROUP">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="BTCH_ID" ColumnName="BTCH_ID" />
+          <ScalarProperty Name="EXAM_TYPE" ColumnName="EXAM_TYPE" />
+          <ScalarProperty Name="IS_PUB" ColumnName="IS_PUB" />
+          <ScalarProperty Name="RSULT_PUB" ColumnName="RSULT_PUB" />
+          <ScalarProperty Name="EXAM_DATE" ColumnName="EXAM_DATE" />
+          <ScalarProperty Name="IS_FINAL_EXAM" ColumnName="IS_FINAL_EXAM" />
+          <ScalarProperty Name="CCE_EXAM_CAT_ID" ColumnName="CCE_EXAM_CAT_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EXAM_SCORE">
+      <EntityTypeMapping TypeName="SFSAcademyModel.EXAM_SCORE">
+        <MappingFragment StoreEntitySet="EXAM_SCORE">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="STDNT_ID" ColumnName="STDNT_ID" />
+          <ScalarProperty Name="EXAM_ID" ColumnName="EXAM_ID" />
+          <ScalarProperty Name="MKS" ColumnName="MKS" />
+          <ScalarProperty Name="GRADING_LVL_ID" ColumnName="GRADING_LVL_ID" />
+          <ScalarProperty Name="RMK" ColumnName="RMK" />
+          <ScalarProperty Name="IS_FAIL" ColumnName="IS_FAIL" />
+          <ScalarProperty Name="CREATED_AT" ColumnName="CREATED_AT" />
+          <ScalarProperty Name="UPDATED_AT" ColumnName="UPDATED_AT" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FA_CRITERIAS">
+      <EntityTypeMapping TypeName="SFSAcademyModel.FA_CRITERIAS">
+        <MappingFragment StoreEntitySet="FA_CRITERIAS">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="FA_NAME" ColumnName="FA_NAME" />
+          <ScalarProperty Name="DESCR" ColumnName="DESCR" />
+          <ScalarProperty Name="FA_GRP_ID" ColumnName="FA_GRP_ID" />
+          <ScalarProperty Name="CREATED_AT" ColumnName="CREATED_AT" />
+          <ScalarProperty Name="UPDATED_AT" ColumnName="UPDATED_AT" />
+          <ScalarProperty Name="SRT_ORD" ColumnName="SRT_ORD" />
+          <ScalarProperty Name="IS_DEL" ColumnName="IS_DEL" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FA_GROUP">
+      <EntityTypeMapping TypeName="SFSAcademyModel.FA_GROUP">
+        <MappingFragment StoreEntitySet="FA_GROUP">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="DESCR" ColumnName="DESCR" />
+          <ScalarProperty Name="CCE_EXAM_CAT_ID" ColumnName="CCE_EXAM_CAT_ID" />
+          <ScalarProperty Name="CREATED_AT" ColumnName="CREATED_AT" />
+          <ScalarProperty Name="UPDATED_AT" ColumnName="UPDATED_AT" />
+          <ScalarProperty Name="CCE_GRADE_SET_ID" ColumnName="CCE_GRADE_SET_ID" />
+          <ScalarProperty Name="MAX_MKS" ColumnName="MAX_MKS" />
+          <ScalarProperty Name="IS_DEL" ColumnName="IS_DEL" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FEE_COLLECTION_DISCOUNT">
+      <EntityTypeMapping TypeName="SFSAcademyModel.FEE_COLLECTION_DISCOUNT">
+        <MappingFragment StoreEntitySet="FEE_COLLECTION_DISCOUNT">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="TYPE" ColumnName="TYPE" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="RCVR_ID" ColumnName="RCVR_ID" />
+          <ScalarProperty Name="FIN_FEE_CLCT_ID" ColumnName="FIN_FEE_CLCT_ID" />
+          <ScalarProperty Name="DISC" ColumnName="DISC" />
+          <ScalarProperty Name="IS_AMT" ColumnName="IS_AMT" />
+          <ScalarProperty Name="CREATED_AT" ColumnName="CREATED_AT" />
+          <ScalarProperty Name="UPDATED_AT" ColumnName="UPDATED_AT" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FEE_DISCOUNT">
+      <EntityTypeMapping TypeName="SFSAcademyModel.FEE_DISCOUNT">
+        <MappingFragment StoreEntitySet="FEE_DISCOUNT">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="TYPE" ColumnName="TYPE" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="RCVR_ID" ColumnName="RCVR_ID" />
+          <ScalarProperty Name="FIN_FEE_CAT_ID" ColumnName="FIN_FEE_CAT_ID" />
+          <ScalarProperty Name="DISC" ColumnName="DISC" />
+          <ScalarProperty Name="IS_AMT" ColumnName="IS_AMT" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FINANCE_DONATION">
+      <EntityTypeMapping TypeName="SFSAcademyModel.FINANCE_DONATION">
+        <MappingFragment StoreEntitySet="FINANCE_DONATION">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="DNR" ColumnName="DNR" />
+          <ScalarProperty Name="DESCR" ColumnName="DESCR" />
+          <ScalarProperty Name="AMT" ColumnName="AMT" />
+          <ScalarProperty Name="TRAN_ID" ColumnName="TRAN_ID" />
+          <ScalarProperty Name="CREATED_AT" ColumnName="CREATED_AT" />
+          <ScalarProperty Name="UPDATED_AT" ColumnName="UPDATED_AT" />
+          <ScalarProperty Name="TRAN_DATE" ColumnName="TRAN_DATE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FINANCE_FEE_PARTICULAR">
+      <EntityTypeMapping TypeName="SFSAcademyModel.FINANCE_FEE_PARTICULAR">
+        <MappingFragment StoreEntitySet="FINANCE_FEE_PARTICULAR">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="DESCR" ColumnName="DESCR" />
+          <ScalarProperty Name="AMT" ColumnName="AMT" />
+          <ScalarProperty Name="FIN_FEE_CAT_ID" ColumnName="FIN_FEE_CAT_ID" />
+          <ScalarProperty Name="STDNT_CAT_ID" ColumnName="STDNT_CAT_ID" />
+          <ScalarProperty Name="ADMSN_NO" ColumnName="ADMSN_NO" />
+          <ScalarProperty Name="STDNT_ID" ColumnName="STDNT_ID" />
+          <ScalarProperty Name="IS_DEL" ColumnName="IS_DEL" />
+          <ScalarProperty Name="CREATED_AT" ColumnName="CREATED_AT" />
+          <ScalarProperty Name="UPDATED_AT" ColumnName="UPDATED_AT" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FINANCE_FEE_STRUCTURE_ELEMENT">
+      <EntityTypeMapping TypeName="SFSAcademyModel.FINANCE_FEE_STRUCTURE_ELEMENT">
+        <MappingFragment StoreEntitySet="FINANCE_FEE_STRUCTURE_ELEMENT">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="AMT" ColumnName="AMT" />
+          <ScalarProperty Name="LBL" ColumnName="LBL" />
+          <ScalarProperty Name="BTCH_ID" ColumnName="BTCH_ID" />
+          <ScalarProperty Name="STDNT_CAT_ID" ColumnName="STDNT_CAT_ID" />
+          <ScalarProperty Name="STDNT_ID" ColumnName="STDNT_ID" />
+          <ScalarProperty Name="PARNT_ID" ColumnName="PARNT_ID" />
+          <ScalarProperty Name="FEE_CLCT_ID" ColumnName="FEE_CLCT_ID" />
+          <ScalarProperty Name="DEL" ColumnName="DEL" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FINANCE_TRANSACTION_CATEGORY">
+      <EntityTypeMapping TypeName="SFSAcademyModel.FINANCE_TRANSACTION_CATEGORY">
+        <MappingFragment StoreEntitySet="FINANCE_TRANSACTION_CATEGORY">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="DESCR" ColumnName="DESCR" />
+          <ScalarProperty Name="IS_INCM" ColumnName="IS_INCM" />
+          <ScalarProperty Name="DEL" ColumnName="DEL" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FINANCE_TRANSACTION_TRIGGERS">
+      <EntityTypeMapping TypeName="SFSAcademyModel.FINANCE_TRANSACTION_TRIGGERS">
+        <MappingFragment StoreEntitySet="FINANCE_TRANSACTION_TRIGGERS">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="FIN_CAT_ID" ColumnName="FIN_CAT_ID" />
+          <ScalarProperty Name="PCT" ColumnName="PCT" />
+          <ScalarProperty Name="TIL" ColumnName="TIL" />
+          <ScalarProperty Name="DESCR" ColumnName="DESCR" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GRADING_LEVEL">
+      <EntityTypeMapping TypeName="SFSAcademyModel.GRADING_LEVEL">
+        <MappingFragment StoreEntitySet="GRADING_LEVEL">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="BTCH_ID" ColumnName="BTCH_ID" />
+          <ScalarProperty Name="MIN_SCORE" ColumnName="MIN_SCORE" />
+          <ScalarProperty Name="ORD" ColumnName="ORD" />
+          <ScalarProperty Name="IS_DEL" ColumnName="IS_DEL" />
+          <ScalarProperty Name="CREATED_AT" ColumnName="CREATED_AT" />
+          <ScalarProperty Name="UPDATED_AT" ColumnName="UPDATED_AT" />
+          <ScalarProperty Name="CRED_PT" ColumnName="CRED_PT" />
+          <ScalarProperty Name="DESCR" ColumnName="DESCR" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GUARDIANs">
+      <EntityTypeMapping TypeName="SFSAcademyModel.GUARDIAN">
+        <MappingFragment StoreEntitySet="GUARDIAN">
+          <ScalarProperty Name="DOB" ColumnName="DOB" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="WARD_ID" ColumnName="WARD_ID" />
+          <ScalarProperty Name="FIRST_NAME" ColumnName="FIRST_NAME" />
+          <ScalarProperty Name="LAST_NAME" ColumnName="LAST_NAME" />
+          <ScalarProperty Name="REL" ColumnName="REL" />
+          <ScalarProperty Name="EML" ColumnName="EML" />
+          <ScalarProperty Name="OFF_PH1" ColumnName="OFF_PH1" />
+          <ScalarProperty Name="OFF_PH2" ColumnName="OFF_PH2" />
+          <ScalarProperty Name="MOBL_PH" ColumnName="MOBL_PH" />
+          <ScalarProperty Name="OFF_ADDR_LINE1" ColumnName="OFF_ADDR_LINE1" />
+          <ScalarProperty Name="OFF_ADDR_LINE2" ColumnName="OFF_ADDR_LINE2" />
+          <ScalarProperty Name="CITY" ColumnName="CITY" />
+          <ScalarProperty Name="STATE" ColumnName="STATE" />
+          <ScalarProperty Name="CTRY_ID" ColumnName="CTRY_ID" />
+          <ScalarProperty Name="OCCP" ColumnName="OCCP" />
+          <ScalarProperty Name="INCM" ColumnName="INCM" />
+          <ScalarProperty Name="ED" ColumnName="ED" />
+          <ScalarProperty Name="CREATED_AT" ColumnName="CREATED_AT" />
+          <ScalarProperty Name="UPDATED_AT" ColumnName="UPDATED_AT" />
+          <ScalarProperty Name="USRID" ColumnName="USRID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="INDIVIDUAL_PAYSLIP_CATGEORY">
+      <EntityTypeMapping TypeName="SFSAcademyModel.INDIVIDUAL_PAYSLIP_CATGEORY">
+        <MappingFragment StoreEntitySet="INDIVIDUAL_PAYSLIP_CATGEORY">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="EMP_ID" ColumnName="EMP_ID" />
+          <ScalarProperty Name="SAL_DATE" ColumnName="SAL_DATE" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="AMT" ColumnName="AMT" />
+          <ScalarProperty Name="IS_DED" ColumnName="IS_DED" />
+          <ScalarProperty Name="INCL_EVRY_MONTH" ColumnName="INCL_EVRY_MONTH" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LIABILITies">
+      <EntityTypeMapping TypeName="SFSAcademyModel.LIABILITY">
+        <MappingFragment StoreEntitySet="LIABILITY">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="TIL" ColumnName="TIL" />
+          <ScalarProperty Name="DESCR" ColumnName="DESCR" />
+          <ScalarProperty Name="AMT" ColumnName="AMT" />
+          <ScalarProperty Name="IS_SOLVD" ColumnName="IS_SOLVD" />
+          <ScalarProperty Name="IS_DEL" ColumnName="IS_DEL" />
+          <ScalarProperty Name="CREATED_AT" ColumnName="CREATED_AT" />
+          <ScalarProperty Name="UPDATED_AT" ColumnName="UPDATED_AT" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MONTHLY_PAYSLIP">
+      <EntityTypeMapping TypeName="SFSAcademyModel.MONTHLY_PAYSLIP">
+        <MappingFragment StoreEntitySet="MONTHLY_PAYSLIP">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="SAL_DATE" ColumnName="SAL_DATE" />
+          <ScalarProperty Name="EMP_ID" ColumnName="EMP_ID" />
+          <ScalarProperty Name="PYRL_CAT_ID" ColumnName="PYRL_CAT_ID" />
+          <ScalarProperty Name="AMT" ColumnName="AMT" />
+          <ScalarProperty Name="IS_APPR" ColumnName="IS_APPR" />
+          <ScalarProperty Name="APRV_ID" ColumnName="APRV_ID" />
+          <ScalarProperty Name="IS_RJCT" ColumnName="IS_RJCT" />
+          <ScalarProperty Name="RJCT_ID" ColumnName="RJCT_ID" />
+          <ScalarProperty Name="RSN" ColumnName="RSN" />
+          <ScalarProperty Name="RMRK" ColumnName="RMRK" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NEWS">
+      <EntityTypeMapping TypeName="SFSAcademyModel.NEWS">
+        <MappingFragment StoreEntitySet="NEWS">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="TIL" ColumnName="TIL" />
+          <ScalarProperty Name="CNTNT" ColumnName="CNTNT" />
+          <ScalarProperty Name="CREATED_AT" ColumnName="CREATED_AT" />
+          <ScalarProperty Name="UPDATED_AT" ColumnName="UPDATED_AT" />
+          <ScalarProperty Name="AUTH_ID" ColumnName="AUTH_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NEWS_COMMENTS">
+      <EntityTypeMapping TypeName="SFSAcademyModel.NEWS_COMMENTS">
+        <MappingFragment StoreEntitySet="NEWS_COMMENTS">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="CNTNT" ColumnName="CNTNT" />
+          <ScalarProperty Name="NEWS_ID" ColumnName="NEWS_ID" />
+          <ScalarProperty Name="AUTH_ID" ColumnName="AUTH_ID" />
+          <ScalarProperty Name="CREATED_AT" ColumnName="CREATED_AT" />
+          <ScalarProperty Name="UPDATED_AT" ColumnName="UPDATED_AT" />
+          <ScalarProperty Name="IS_APPR" ColumnName="IS_APPR" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OBSERVATIONs">
+      <EntityTypeMapping TypeName="SFSAcademyModel.OBSERVATION">
+        <MappingFragment StoreEntitySet="OBSERVATION">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="DESCR" ColumnName="DESCR" />
+          <ScalarProperty Name="IS_ACT" ColumnName="IS_ACT" />
+          <ScalarProperty Name="OBSV_GRP_ID" ColumnName="OBSV_GRP_ID" />
+          <ScalarProperty Name="CREATED_AT" ColumnName="CREATED_AT" />
+          <ScalarProperty Name="UPDATED_AT" ColumnName="UPDATED_AT" />
+          <ScalarProperty Name="SRT_ORD" ColumnName="SRT_ORD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OBSERVATION_GROUP">
+      <EntityTypeMapping TypeName="SFSAcademyModel.OBSERVATION_GROUP">
+        <MappingFragment StoreEntitySet="OBSERVATION_GROUP">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="HDR_NAME" ColumnName="HDR_NAME" />
+          <ScalarProperty Name="DESCR" ColumnName="DESCR" />
+          <ScalarProperty Name="CCE_GRADE_SET_ID" ColumnName="CCE_GRADE_SET_ID" />
+          <ScalarProperty Name="CREATED_AT" ColumnName="CREATED_AT" />
+          <ScalarProperty Name="UPDATED_AT" ColumnName="UPDATED_AT" />
+          <ScalarProperty Name="OBSV_KIND" ColumnName="OBSV_KIND" />
+          <ScalarProperty Name="MAX_MKS" ColumnName="MAX_MKS" />
+          <ScalarProperty Name="IS_DEL" ColumnName="IS_DEL" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PAYROLL_CATEGORY">
+      <EntityTypeMapping TypeName="SFSAcademyModel.PAYROLL_CATEGORY">
+        <MappingFragment StoreEntitySet="PAYROLL_CATEGORY">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="PCT" ColumnName="PCT" />
+          <ScalarProperty Name="PYRL_CAT_ID" ColumnName="PYRL_CAT_ID" />
+          <ScalarProperty Name="IS_DED" ColumnName="IS_DED" />
+          <ScalarProperty Name="STAT" ColumnName="STAT" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SMS_LOG">
+      <EntityTypeMapping TypeName="SFSAcademyModel.SMS_LOG">
+        <MappingFragment StoreEntitySet="SMS_LOG">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="MOBL" ColumnName="MOBL" />
+          <ScalarProperty Name="GTWY_RESP" ColumnName="GTWY_RESP" />
+          <ScalarProperty Name="CREATED_AT" ColumnName="CREATED_AT" />
+          <ScalarProperty Name="UPDATED_AT" ColumnName="UPDATED_AT" />
+          <ScalarProperty Name="SMS_MSG_ID" ColumnName="SMS_MSG_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SMS_MESSAGE">
+      <EntityTypeMapping TypeName="SFSAcademyModel.SMS_MESSAGE">
+        <MappingFragment StoreEntitySet="SMS_MESSAGE">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="BODY" ColumnName="BODY" />
+          <ScalarProperty Name="CREATED_AT" ColumnName="CREATED_AT" />
+          <ScalarProperty Name="UPDATED_AT" ColumnName="UPDATED_AT" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SMS_SETTING">
+      <EntityTypeMapping TypeName="SFSAcademyModel.SMS_SETTING">
+        <MappingFragment StoreEntitySet="SMS_SETTING">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="SETS_KEY" ColumnName="SETS_KEY" />
+          <ScalarProperty Name="IS_ENABL" ColumnName="IS_ENABL" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="STUDENT_ADDITIONAL_DETAIL">
+      <EntityTypeMapping TypeName="SFSAcademyModel.STUDENT_ADDITIONAL_DETAIL">
+        <MappingFragment StoreEntitySet="STUDENT_ADDITIONAL_DETAIL">
+          <ScalarProperty Name="STDNT_ID" ColumnName="STDNT_ID" />
+          <ScalarProperty Name="ADDL_INFO" ColumnName="ADDL_INFO" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="ADDL_FLD_ID" ColumnName="ADDL_FLD_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="STUDENT_ADDITIONAL_FIELD">
+      <EntityTypeMapping TypeName="SFSAcademyModel.STUDENT_ADDITIONAL_FIELD">
+        <MappingFragment StoreEntitySet="STUDENT_ADDITIONAL_FIELD">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="STAT" ColumnName="STAT" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="STUDENT_CATGEORY">
+      <EntityTypeMapping TypeName="SFSAcademyModel.STUDENT_CATGEORY">
+        <MappingFragment StoreEntitySet="STUDENT_CATGEORY">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="IS_DEL" ColumnName="IS_DEL" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="STUDENT_PREVIOUS_DATA">
+      <EntityTypeMapping TypeName="SFSAcademyModel.STUDENT_PREVIOUS_DATA">
+        <MappingFragment StoreEntitySet="STUDENT_PREVIOUS_DATA">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="INST" ColumnName="INST" />
+          <ScalarProperty Name="YEAR" ColumnName="YEAR" />
+          <ScalarProperty Name="CRS" ColumnName="CRS" />
+          <ScalarProperty Name="TOT_MK" ColumnName="TOT_MK" />
+          <ScalarProperty Name="STDNT_ID" ColumnName="STDNT_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="STUDENT_PREVIOUS_SUBJECT_MARK">
+      <EntityTypeMapping TypeName="SFSAcademyModel.STUDENT_PREVIOUS_SUBJECT_MARK">
+        <MappingFragment StoreEntitySet="STUDENT_PREVIOUS_SUBJECT_MARK">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="STDNT_ID" ColumnName="STDNT_ID" />
+          <ScalarProperty Name="SUBJ_ID" ColumnName="SUBJ_ID" />
+          <ScalarProperty Name="MK" ColumnName="MK" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="STUDENT_SUBJECT">
+      <EntityTypeMapping TypeName="SFSAcademyModel.STUDENT_SUBJECT">
+        <MappingFragment StoreEntitySet="STUDENT_SUBJECT">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="SUBJ_ID" ColumnName="SUBJ_ID" />
+          <ScalarProperty Name="STDNT_ID" ColumnName="STDNT_ID" />
+          <ScalarProperty Name="BTCH_ID" ColumnName="BTCH_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SUBJECTs">
+      <EntityTypeMapping TypeName="SFSAcademyModel.SUBJECT">
+        <MappingFragment StoreEntitySet="SUBJECT">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="CODE" ColumnName="CODE" />
+          <ScalarProperty Name="BTCH_ID" ColumnName="BTCH_ID" />
+          <ScalarProperty Name="NO_EXAMS" ColumnName="NO_EXAMS" />
+          <ScalarProperty Name="MAX_WKILY_CLSES" ColumnName="MAX_WKILY_CLSES" />
+          <ScalarProperty Name="ELECTIVE_GRP_ID" ColumnName="ELECTIVE_GRP_ID" />
+          <ScalarProperty Name="IS_DEL" ColumnName="IS_DEL" />
+          <ScalarProperty Name="CREATED_AT" ColumnName="CREATED_AT" />
+          <ScalarProperty Name="UPDATED_AT" ColumnName="UPDATED_AT" />
+          <ScalarProperty Name="CR_HRS" ColumnName="CR_HRS" />
+          <ScalarProperty Name="PREF_CNSC" ColumnName="PREF_CNSC" />
+          <ScalarProperty Name="AMT" ColumnName="AMT" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SUBJECT_LEAVE">
+      <EntityTypeMapping TypeName="SFSAcademyModel.SUBJECT_LEAVE">
+        <MappingFragment StoreEntitySet="SUBJECT_LEAVE">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="STDNT_ID" ColumnName="STDNT_ID" />
+          <ScalarProperty Name="MONTH_DATE" ColumnName="MONTH_DATE" />
+          <ScalarProperty Name="SUBJ_ID" ColumnName="SUBJ_ID" />
+          <ScalarProperty Name="EMP_ID" ColumnName="EMP_ID" />
+          <ScalarProperty Name="CLS_TMNG_ID" ColumnName="CLS_TMNG_ID" />
+          <ScalarProperty Name="RSN" ColumnName="RSN" />
+          <ScalarProperty Name="CREATED_AT" ColumnName="CREATED_AT" />
+          <ScalarProperty Name="UPDATED_AT" ColumnName="UPDATED_AT" />
+          <ScalarProperty Name="BTCH_ID" ColumnName="BTCH_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TIMETABLEs">
+      <EntityTypeMapping TypeName="SFSAcademyModel.TIMETABLE">
+        <MappingFragment StoreEntitySet="TIMETABLE">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="START_DATE" ColumnName="START_DATE" />
+          <ScalarProperty Name="END_DATE" ColumnName="END_DATE" />
+          <ScalarProperty Name="IS_ACT" ColumnName="IS_ACT" />
+          <ScalarProperty Name="CREATED_AT" ColumnName="CREATED_AT" />
+          <ScalarProperty Name="UPDATED_AT" ColumnName="UPDATED_AT" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TIMETABLE_ENTRY">
+      <EntityTypeMapping TypeName="SFSAcademyModel.TIMETABLE_ENTRY">
+        <MappingFragment StoreEntitySet="TIMETABLE_ENTRY">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="BTCH_ID" ColumnName="BTCH_ID" />
+          <ScalarProperty Name="WK_DAY_ID" ColumnName="WK_DAY_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="USERS">
+      <EntityTypeMapping TypeName="SFSAcademyModel.USER">
+        <MappingFragment StoreEntitySet="USERS">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="USRNAME" ColumnName="USRNAME" />
+          <ScalarProperty Name="FIRST_NAME" ColumnName="FIRST_NAME" />
+          <ScalarProperty Name="LAST_NAME" ColumnName="LAST_NAME" />
+          <ScalarProperty Name="EML" ColumnName="EML" />
+          <ScalarProperty Name="ADMIN_IND" ColumnName="ADMIN_IND" />
+          <ScalarProperty Name="STDNT_IND" ColumnName="STDNT_IND" />
+          <ScalarProperty Name="EMP_IND" ColumnName="EMP_IND" />
+          <ScalarProperty Name="HASHED_PSWRD" ColumnName="HASHED_PSWRD" />
+          <ScalarProperty Name="SALT" ColumnName="SALT" />
+          <ScalarProperty Name="RST_PSWRD_CODE" ColumnName="RST_PSWRD_CODE" />
+          <ScalarProperty Name="RST_PSWRD_CODE_UNTL" ColumnName="RST_PSWRD_CODE_UNTL" />
+          <ScalarProperty Name="CREATED_AT" ColumnName="CREATED_AT" />
+          <ScalarProperty Name="UPDATED_AT" ColumnName="UPDATED_AT" />
+          <ScalarProperty Name="PARNT_IND" ColumnName="PARNT_IND" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WEEKDAYs">
+      <EntityTypeMapping TypeName="SFSAcademyModel.WEEKDAY">
+        <MappingFragment StoreEntitySet="WEEKDAY">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="WKDAY" ColumnName="WKDAY" />
+          <ScalarProperty Name="BTCH_ID" ColumnName="BTCH_ID" />
+          <ScalarProperty Name="SRT_ORD" ColumnName="SRT_ORD" />
+          <ScalarProperty Name="DAY_OF_WK" ColumnName="DAY_OF_WK" />
+          <ScalarProperty Name="IS_DEL" ColumnName="IS_DEL" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FEE_COLLECTION_PARTICULAR">
+      <EntityTypeMapping TypeName="SFSAcademyModel.FEE_COLLECTION_PARTICULAR">
+        <MappingFragment StoreEntitySet="FEE_COLLECTION_PARTICULAR">
+          <ScalarProperty Name="UPDATED_AT" ColumnName="UPDATED_AT" />
+          <ScalarProperty Name="CREATED_AT" ColumnName="CREATED_AT" />
+          <ScalarProperty Name="IS_DEL" ColumnName="IS_DEL" />
+          <ScalarProperty Name="STDNT_ID" ColumnName="STDNT_ID" />
+          <ScalarProperty Name="ADMSN_NO" ColumnName="ADMSN_NO" />
+          <ScalarProperty Name="STDNT_CAT_ID" ColumnName="STDNT_CAT_ID" />
+          <ScalarProperty Name="FIN_FEE_CLCT_ID" ColumnName="FIN_FEE_CLCT_ID" />
+          <ScalarProperty Name="AMT" ColumnName="AMT" />
+          <ScalarProperty Name="DESCR" ColumnName="DESCR" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RANKING_LEVEL">
+      <EntityTypeMapping TypeName="SFSAcademyModel.RANKING_LEVEL">
+        <MappingFragment StoreEntitySet="RANKING_LEVEL">
+          <ScalarProperty Name="MKS_LMT_TYPE" ColumnName="MKS_LMT_TYPE" />
+          <ScalarProperty Name="SUBJ_LMT_TYPE" ColumnName="SUBJ_LMT_TYPE" />
+          <ScalarProperty Name="CRS_ID" ColumnName="CRS_ID" />
+          <ScalarProperty Name="FULL_CRS" ColumnName="FULL_CRS" />
+          <ScalarProperty Name="UPDATED_AT" ColumnName="UPDATED_AT" />
+          <ScalarProperty Name="CREATED_AT" ColumnName="CREATED_AT" />
+          <ScalarProperty Name="PRIR" ColumnName="PRIR" />
+          <ScalarProperty Name="SUBJ_CNT" ColumnName="SUBJ_CNT" />
+          <ScalarProperty Name="MKS" ColumnName="MKS" />
+          <ScalarProperty Name="GPA" ColumnName="GPA" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="USERS_ACCESS">
+      <EntityTypeMapping TypeName="SFSAcademyModel.USERS_ACCESS">
+        <MappingFragment StoreEntitySet="USERS_ACCESS">
+          <ScalarProperty Name="IS_ACCBLE" ColumnName="IS_ACCBLE" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="ACTN" ColumnName="ACTN" />
+          <ScalarProperty Name="CTL" ColumnName="CTL" />
+          <ScalarProperty Name="LVL_2_MENU" ColumnName="LVL_2_MENU" />
+          <ScalarProperty Name="LVL_1_MENU" ColumnName="LVL_1_MENU" />
+          <ScalarProperty Name="LIST_ITEM" ColumnName="LIST_ITEM" />
+          <ScalarProperty Name="USRS_ID" ColumnName="USRS_ID" />
+          <ScalarProperty Name="USR_ROLE" ColumnName="USR_ROLE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FINANCE_FEE_COLLECTION">
+      <EntityTypeMapping TypeName="SFSAcademyModel.FINANCE_FEE_COLLECTION">
+        <MappingFragment StoreEntitySet="FINANCE_FEE_COLLECTION">
+          <ScalarProperty Name="DUE_DATE" ColumnName="DUE_DATE" />
+          <ScalarProperty Name="IS_DEL" ColumnName="IS_DEL" />
+          <ScalarProperty Name="BTCH_ID" ColumnName="BTCH_ID" />
+          <ScalarProperty Name="FEE_CAT_ID" ColumnName="FEE_CAT_ID" />
+          <ScalarProperty Name="END_DATE" ColumnName="END_DATE" />
+          <ScalarProperty Name="START_DATE" ColumnName="START_DATE" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="IMAGE_DOCUMENTS">
+      <EntityTypeMapping TypeName="SFSAcademyModel.IMAGE_DOCUMENTS">
+        <MappingFragment StoreEntitySet="IMAGE_DOCUMENTS">
+          <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="FileContent" ColumnName="FileContent" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="Size" ColumnName="Size" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="DocumentId" ColumnName="DocumentId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="STUDENTs">
+      <EntityTypeMapping TypeName="SFSAcademyModel.STUDENT">
+        <MappingFragment StoreEntitySet="STUDENT">
+          <ScalarProperty Name="NTLTY_ID" ColumnName="NTLTY_ID" />
+          <ScalarProperty Name="STDNT_CAT_ID" ColumnName="STDNT_CAT_ID" />
+          <ScalarProperty Name="USRID" ColumnName="USRID" />
+          <ScalarProperty Name="PHTO_FILE_SIZE" ColumnName="PHTO_FILE_SIZE" />
+          <ScalarProperty Name="HAS_PD_FE" ColumnName="HAS_PD_FE" />
+          <ScalarProperty Name="UPDATED_AT" ColumnName="UPDATED_AT" />
+          <ScalarProperty Name="CREATED_AT" ColumnName="CREATED_AT" />
+          <ScalarProperty Name="IS_DEL" ColumnName="IS_DEL" />
+          <ScalarProperty Name="IS_ACT" ColumnName="IS_ACT" />
+          <ScalarProperty Name="STAT_DESCR" ColumnName="STAT_DESCR" />
+          <ScalarProperty Name="PHTO_DATA" ColumnName="PHTO_DATA" />
+          <ScalarProperty Name="PHTO_CNTNT_TYPE" ColumnName="PHTO_CNTNT_TYPE" />
+          <ScalarProperty Name="PHTO_FILENAME" ColumnName="PHTO_FILENAME" />
+          <ScalarProperty Name="IS_SMS_ENABL" ColumnName="IS_SMS_ENABL" />
+          <ScalarProperty Name="IMMDT_CNTCT_ID" ColumnName="IMMDT_CNTCT_ID" />
+          <ScalarProperty Name="EML" ColumnName="EML" />
+          <ScalarProperty Name="PH2" ColumnName="PH2" />
+          <ScalarProperty Name="PH1" ColumnName="PH1" />
+          <ScalarProperty Name="CTRY_ID" ColumnName="CTRY_ID" />
+          <ScalarProperty Name="PIN_CODE" ColumnName="PIN_CODE" />
+          <ScalarProperty Name="STATE" ColumnName="STATE" />
+          <ScalarProperty Name="CITY" ColumnName="CITY" />
+          <ScalarProperty Name="ADDR_LINE2" ColumnName="ADDR_LINE2" />
+          <ScalarProperty Name="ADDR_LINE1" ColumnName="ADDR_LINE1" />
+          <ScalarProperty Name="RLGN" ColumnName="RLGN" />
+          <ScalarProperty Name="LANG" ColumnName="LANG" />
+          <ScalarProperty Name="BIRTH_PLACE" ColumnName="BIRTH_PLACE" />
+          <ScalarProperty Name="BLOOD_GRP" ColumnName="BLOOD_GRP" />
+          <ScalarProperty Name="GNDR" ColumnName="GNDR" />
+          <ScalarProperty Name="DOB" ColumnName="DOB" />
+          <ScalarProperty Name="BTCH_ID" ColumnName="BTCH_ID" />
+          <ScalarProperty Name="LAST_NAME" ColumnName="LAST_NAME" />
+          <ScalarProperty Name="MID_NAME" ColumnName="MID_NAME" />
+          <ScalarProperty Name="FIRST_NAME" ColumnName="FIRST_NAME" />
+          <ScalarProperty Name="ADMSN_DATE" ColumnName="ADMSN_DATE" />
+          <ScalarProperty Name="CLS_ROLL_NO" ColumnName="CLS_ROLL_NO" />
+          <ScalarProperty Name="ADMSN_NO" ColumnName="ADMSN_NO" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="STORE_CATEGORY">
+      <EntityTypeMapping TypeName="SFSAcademyModel.STORE_CATEGORY">
+        <MappingFragment StoreEntitySet="STORE_CATEGORY">
+          <ScalarProperty Name="UPDATED_AT" ColumnName="UPDATED_AT" />
+          <ScalarProperty Name="CREATED_AT" ColumnName="CREATED_AT" />
+          <ScalarProperty Name="IS_DEL" ColumnName="IS_DEL" />
+          <ScalarProperty Name="IS_ACT" ColumnName="IS_ACT" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="STORE_PRODUCTS">
+      <EntityTypeMapping TypeName="SFSAcademyModel.STORE_PRODUCTS">
+        <MappingFragment StoreEntitySet="STORE_PRODUCTS">
+          <ScalarProperty Name="UPDATED_AT" ColumnName="UPDATED_AT" />
+          <ScalarProperty Name="CREATED_AT" ColumnName="CREATED_AT" />
+          <ScalarProperty Name="IS_DEL" ColumnName="IS_DEL" />
+          <ScalarProperty Name="IS_ACT" ColumnName="IS_ACT" />
+          <ScalarProperty Name="UNIT_LEFT" ColumnName="UNIT_LEFT" />
+          <ScalarProperty Name="PAID_BY" ColumnName="PAID_BY" />
+          <ScalarProperty Name="BAR_CODE" ColumnName="BAR_CODE" />
+          <ScalarProperty Name="PURCHASED_THROUGH" ColumnName="PURCHASED_THROUGH" />
+          <ScalarProperty Name="PURCHASED_ON" ColumnName="PURCHASED_ON" />
+          <ScalarProperty Name="SELL_PRICE_PER_UNIT" ColumnName="SELL_PRICE_PER_UNIT" />
+          <ScalarProperty Name="COST_PER_UNIT" ColumnName="COST_PER_UNIT" />
+          <ScalarProperty Name="TOTAL_COST" ColumnName="TOTAL_COST" />
+          <ScalarProperty Name="TOTAL_UNIT" ColumnName="TOTAL_UNIT" />
+          <ScalarProperty Name="BRAND" ColumnName="BRAND" />
+          <ScalarProperty Name="CATEGORY_ID" ColumnName="CATEGORY_ID" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="PRODUCT_ID" ColumnName="PRODUCT_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="STORE_PURCHAGE">
+      <EntityTypeMapping TypeName="SFSAcademyModel.STORE_PURCHAGE">
+        <MappingFragment StoreEntitySet="STORE_PURCHAGE">
+          <ScalarProperty Name="UPDATED_AT" ColumnName="UPDATED_AT" />
+          <ScalarProperty Name="CREATED_AT" ColumnName="CREATED_AT" />
+          <ScalarProperty Name="IS_DEL" ColumnName="IS_DEL" />
+          <ScalarProperty Name="IS_ACT" ColumnName="IS_ACT" />
+          <ScalarProperty Name="IS_DEPOSITED" ColumnName="IS_DEPOSITED" />
+          <ScalarProperty Name="MONEY_RECEIVED_BY" ColumnName="MONEY_RECEIVED_BY" />
+          <ScalarProperty Name="STUDENT_CONTACT_NO" ColumnName="STUDENT_CONTACT_NO" />
+          <ScalarProperty Name="STUDENT_NAME" ColumnName="STUDENT_NAME" />
+          <ScalarProperty Name="SOLD_ON" ColumnName="SOLD_ON" />
+          <ScalarProperty Name="SOLD_BY" ColumnName="SOLD_BY" />
+          <ScalarProperty Name="SOLD_PRICE" ColumnName="SOLD_PRICE" />
+          <ScalarProperty Name="UNIT_SOLD" ColumnName="UNIT_SOLD" />
+          <ScalarProperty Name="PRODUCT_ID" ColumnName="PRODUCT_ID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="STORE_PURCHAGE_CART">
+      <EntityTypeMapping TypeName="SFSAcademyModel.STORE_PURCHAGE_CART">
+        <MappingFragment StoreEntitySet="STORE_PURCHAGE_CART">
+          <ScalarProperty Name="UPDATED_AT" ColumnName="UPDATED_AT" />
+          <ScalarProperty Name="CREATED_AT" ColumnName="CREATED_AT" />
+          <ScalarProperty Name="IS_DEL" ColumnName="IS_DEL" />
+          <ScalarProperty Name="IS_ACT" ColumnName="IS_ACT" />
+          <ScalarProperty Name="IS_DEPOSITED" ColumnName="IS_DEPOSITED" />
+          <ScalarProperty Name="MONEY_RECEIVED_BY" ColumnName="MONEY_RECEIVED_BY" />
+          <ScalarProperty Name="STUDENT_CONTACT_NO" ColumnName="STUDENT_CONTACT_NO" />
+          <ScalarProperty Name="STUDENT_NAME" ColumnName="STUDENT_NAME" />
+          <ScalarProperty Name="SOLD_ON" ColumnName="SOLD_ON" />
+          <ScalarProperty Name="SOLD_BY" ColumnName="SOLD_BY" />
+          <ScalarProperty Name="SOLD_PRICE" ColumnName="SOLD_PRICE" />
+          <ScalarProperty Name="UNIT_SOLD" ColumnName="UNIT_SOLD" />
+          <ScalarProperty Name="PRODUCT_ID" ColumnName="PRODUCT_ID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FINANCE_FEE_CATGEORY">
+      <EntityTypeMapping TypeName="SFSAcademyModel.FINANCE_FEE_CATGEORY">
+        <MappingFragment StoreEntitySet="FINANCE_FEE_CATGEORY">
+          <ScalarProperty Name="MSTR_CATGRY_ID" ColumnName="MSTR_CATGRY_ID" />
+          <ScalarProperty Name="UPDATED_AT" ColumnName="UPDATED_AT" />
+          <ScalarProperty Name="CREATED_AT" ColumnName="CREATED_AT" />
+          <ScalarProperty Name="IS_MSTR" ColumnName="IS_MSTR" />
+          <ScalarProperty Name="IS_DEL" ColumnName="IS_DEL" />
+          <ScalarProperty Name="BTCH_ID" ColumnName="BTCH_ID" />
+          <ScalarProperty Name="DESCR" ColumnName="DESCR" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FINANCE_FEE">
+      <EntityTypeMapping TypeName="SFSAcademyModel.FINANCE_FEE">
+        <MappingFragment StoreEntitySet="FINANCE_FEE">
+          <ScalarProperty Name="IS_PD" ColumnName="IS_PD" />
+          <ScalarProperty Name="STDNT_ID" ColumnName="STDNT_ID" />
+          <ScalarProperty Name="TRAN_ID" ColumnName="TRAN_ID" />
+          <ScalarProperty Name="FEE_CLCT_ID" ColumnName="FEE_CLCT_ID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FEE_FINE">
+      <EntityTypeMapping TypeName="SFSAcademyModel.FEE_FINE">
+        <MappingFragment StoreEntitySet="FEE_FINE">
+          <ScalarProperty Name="FINE_DATE" ColumnName="FINE_DATE" />
+          <ScalarProperty Name="IS_AMT" ColumnName="IS_AMT" />
+          <ScalarProperty Name="FINE" ColumnName="FINE" />
+          <ScalarProperty Name="FIN_FEE_CAT_ID" ColumnName="FIN_FEE_CAT_ID" />
+          <ScalarProperty Name="RCVR_ID" ColumnName="RCVR_ID" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="TYPE" ColumnName="TYPE" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FINANCE_TRANSACTION">
+      <EntityTypeMapping TypeName="SFSAcademyModel.FINANCE_TRANSACTION">
+        <MappingFragment StoreEntitySet="FINANCE_TRANSACTION">
+          <ScalarProperty Name="VCHR_NO" ColumnName="VCHR_NO" />
+          <ScalarProperty Name="RCPT_NO" ColumnName="RCPT_NO" />
+          <ScalarProperty Name="PAYEE_TYPE" ColumnName="PAYEE_TYPE" />
+          <ScalarProperty Name="PAYEE_ID" ColumnName="PAYEE_ID" />
+          <ScalarProperty Name="FIN_TYPE" ColumnName="FIN_TYPE" />
+          <ScalarProperty Name="FIN_ID" ColumnName="FIN_ID" />
+          <ScalarProperty Name="FINE_AMT" ColumnName="FINE_AMT" />
+          <ScalarProperty Name="TRAN_DATE" ColumnName="TRAN_DATE" />
+          <ScalarProperty Name="UPDATED_AT" ColumnName="UPDATED_AT" />
+          <ScalarProperty Name="CRETAED_AT" ColumnName="CRETAED_AT" />
+          <ScalarProperty Name="FIN_FE_ID" ColumnName="FIN_FE_ID" />
+          <ScalarProperty Name="STDNT_ID" ColumnName="STDNT_ID" />
+          <ScalarProperty Name="CAT_ID" ColumnName="CAT_ID" />
+          <ScalarProperty Name="FINE_INCLD" ColumnName="FINE_INCLD" />
+          <ScalarProperty Name="AMT" ColumnName="AMT" />
+          <ScalarProperty Name="DESCR" ColumnName="DESCR" />
+          <ScalarProperty Name="TIL" ColumnName="TIL" />
+          <ScalarProperty Name="MSTRTRAN_ID" ColumnName="MSTRTRAN_ID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

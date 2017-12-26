@@ -1,0 +1,74 @@
+﻿@model PagedList.IPagedList<SFSAcademy.Models.PurchaseCart>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+@{    Layout = null;}
+
+
+<div class="students-table">
+    <table id="listing" align="center" width="100%" cellpadding="1" cellspacing="1">
+        <tr class="tr-head">
+            <th>
+                Sl. No.
+            </th>
+            <th>
+                Product Name
+            </th>
+            <th>
+                Number of Units
+            </th>
+            <th>
+                Price Per Unit
+            </th>
+            <th>
+                Total Cost
+            </th>
+            <th>
+                Sold On
+            </th>
+            <th>
+                Contact Number
+            </th>
+            <th></th>
+        </tr>
+        <tr class="tr-blank"></tr>
+        @{int i = 1; }
+        @foreach (var item in Model)
+            {
+                string selectedRow = "tr-even";
+                if (i % 2 == 0)
+                {
+                    selectedRow = "tr-odd";
+                }
+                <tr class="@selectedRow">
+                    <td class="col-1">@i</td>
+                    <td class="col-2">
+                        @Html.DisplayFor(modelItem => item.ProductData.NAME)
+                    </td>
+                    <td class="col-3">
+                        @Html.DisplayFor(modelItem => item.PurchaseCartData.UNIT_SOLD)
+                    </td>
+                    <td class="col-4">
+                        @Html.DisplayFor(modelItem => item.ProductData.SELL_PRICE_PER_UNIT)
+                    </td>
+                    <td class="col-5" nowrap>
+                        @Html.DisplayFor(modelItem => item.PurchaseCartData.SOLD_PRICE)
+                    </td>
+                    <td class="col-6" nowrap>
+                        @item.PurchaseCartData.SOLD_ON.Value.ToShortDateString()
+                    </td>
+                    <td class="col-7" nowrap>
+                        @Html.DisplayFor(modelItem => item.PurchaseCartData.STUDENT_CONTACT_NO)
+                    </td>
+                    <td class="col-8" nowrap>
+                        @Html.ActionLink("Edit ", "EditSelling", new { id = item.ProductData.PRODUCT_ID }) 
+
+                    </td>
+                </tr>
+            i = i + 1;
+        }
+    </table>
+    <br />
+    @Html.PagedListPager(Model, page => Url.Action("ListAllProducts",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+</div>
+

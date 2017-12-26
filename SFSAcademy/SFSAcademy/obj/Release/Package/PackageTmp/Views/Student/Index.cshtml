@@ -1,0 +1,115 @@
+﻿@model PagedList.IPagedList<SFSAcademy.Models.Student>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div id="content-header">
+    <img src="~/Content/images/student_details/student_details_logo.jpg" alt="Student Details Logo">
+    <h1>Student Details</h1>
+    <h3>View Details</h3>
+    <div id="app-back-button">
+        <a href='javascript:history.back()' onclick="return confirm('are you sure?')"><img src="~/Content/images/buttons/back.png"></a>
+    </div>
+</div>
+<div><img src="~/Content/images/_global/header_underline_.jpg" width="100%"></div>
+
+<div id="inner-tab-menu">
+    <ul>
+        <li>@Html.ActionLink("View All", "ViewAll")</li>
+        <li>@Html.ActionLink("Advanced", "AdvancedSearch")</li>
+    </ul>
+</div>
+<div id="page-yield">
+    <div id="search_box_bg">
+        @if (Html.ValidationSummary() != null)
+        {
+            <p class="flash-msg"> @Html.ValidationSummary() </p>
+        }
+        <div id="searchbox">
+            <form name="search-form" id="search-form" action="" style="display:inline;">
+                @using (Html.BeginForm("Index", "Student", FormMethod.Get))
+                {
+                    <p>
+                        @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+                        <input type="submit" value="Search" />
+                    </p>
+                }
+
+                <div class="extender"></div>
+            </form>
+        </div>
+    </div>
+
+    <div class="students-table">
+        <table id="listing" align="center" width="100%" cellpadding="1" cellspacing="1">
+            <tr class="tr-head">
+                <th>
+                    Sl. No.
+                </th>
+                <th>
+                    @Html.ActionLink("Last Name", "Index", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })
+                </th>
+                <th>
+                    First Name
+                </th>
+                <th>
+                    Batch
+                </th>
+                <th>
+                    @Html.ActionLink("Admission Date", "Index", new { sortOrder = ViewBag.DateSortParm, currentFilter = ViewBag.CurrentFilter })
+                </th>
+                <th>
+                    Admission Number
+                </th>
+                <th></th>
+            </tr>
+            <tr class="tr-blank"></tr>
+            @{int i = 1; }
+            @foreach (var item in Model)
+            {
+                string selectedRow = "tr-even";
+                if (i % 2 == 0)
+                {
+                    selectedRow = "tr-odd";
+                }
+                <tr class="@selectedRow">
+                    <td class="col-1">@i</td>
+                    <td class="col-2">
+                        @Html.DisplayFor(modelItem => item.StudentData.LAST_NAME)
+                    </td>
+                    <td class="col-3">
+                        @Html.DisplayFor(modelItem => item.StudentData.FIRST_NAME)
+                    </td>
+                    <td class="col-4">
+                        @Html.DisplayFor(modelItem => item.CourseData.CODE)
+                        <label>-</label>
+                        @Html.DisplayFor(modelItem => item.BatcheData.NAME)
+                    </td>
+                    <td class="col-5" nowrap>
+                        @if (!item.StudentData.ADMSN_DATE.Equals(null))
+                        {
+                            @item.StudentData.ADMSN_DATE.Value.ToShortDateString()
+                        }
+                    </td>
+                    <td class="col-5" nowrap>
+                        @Html.DisplayFor(modelItem => item.StudentData.ADMSN_NO)
+                    </td>
+                    <td class="col-6" nowrap>
+                        @Html.ActionLink("Edit ", "Edit", new { id = item.StudentData.ID })|@Html.ActionLink(" Details ", "Details", new { id = item.StudentData.ID })|@Html.ActionLink(" Delete", "Delete", new { id = item.StudentData.ID })
+                    </td>
+                </tr>
+                i = i + 1;
+            }
+        </table>
+        <br />
+        @Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+    </div>
+
+    <div id="user_information"> </div>
+    <div class="extender"> </div>
+    <div id="information"></div>
+</div>

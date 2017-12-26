@@ -16,4 +16,11 @@ namespace SFSAcademy.Models
         public STORE_PRODUCTS ProductData { get; set; }
         public STORE_CATEGORY CategoryData { get; set; }
     }
+
+    public class PurchaseCart
+    {
+        public STORE_PURCHAGE_CART PurchaseCartData { get; set; }
+        public STORE_PRODUCTS ProductData { get; set; }
+        public STORE_CATEGORY CategoryData { get; set; }
+    }
 }

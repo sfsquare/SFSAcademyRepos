@@ -1,0 +1,333 @@
+﻿@model SFSAcademy.STUDENT
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+<link rel="stylesheet" href="/resources/demos/style.css" />
+<script>
+    $(function () {
+        $("#datepicker").datepicker({
+            showOn: "button",
+            buttonImage: "/Content/images/calendar_date_select/calendar.gif",
+            buttonImageOnly: true
+        });
+        $("#datepicker2").datepicker({
+            showOn: "button",
+            buttonImage: "/Content/images/calendar_date_select/calendar.gif",
+            buttonImageOnly: true
+        });
+    });
+</script>
+<script type="text/javascript">
+    $('.open-datetimepicker').click(function (event) {
+        event.preventDefault();
+        $('#datetimepicker').click();
+    });
+</script>
+<div id="content-header">
+    <img src="~/Content/images/admission/admission_page_logo.jpg" alt="Student Details Logo">
+    <h1>Admission</h1>
+    <h3>Update Students Details</h3>
+    <div id="app-back-button">
+        <a href='javascript:history.back()' onclick="return confirm('are you sure?')"><img src="~/Content/images/buttons/back.png"></a>
+    </div>
+</div>
+<div>
+    <img src="~/Content/images/_global/header_underline_.jpg" width="100%">
+</div>
+<div id="page-yield">
+
+
+    @if (Html.ValidationSummary() != null)
+    {
+        <p class="flash-msg"> @Html.ValidationSummary() </p>
+    }
+    @using (Html.BeginForm("Edit", "Student", FormMethod.Post, new { @encType = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div id="admission1_form">
+            <div id="necessary-field-notification">
+                Mark
+                <span class="necessary-field">*</span> Denotes Necessary Field
+            </div>
+            <div id="autofill-area">
+                @Html.HiddenFor(model => model.ID)
+                @Html.HiddenFor(model => model.PHTO_DATA)
+                <div class="student_admission_date">
+                    @Html.LabelFor(model => model.ADMSN_NO, "Admission Number", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="text-input-bg-admission">
+                        @Html.EditorFor(model => model.ADMSN_NO, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.ADMSN_NO, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="student_admission_date">
+                    @Html.LabelFor(model => model.ADMSN_DATE, "Admission Date", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="text-input-bg-admission">
+                        @Html.EditorFor(model => model.ADMSN_DATE, new { htmlAttributes = new { @class = "form-control", @id = "datepicker", @readonly = "readonly" } })
+                        @Html.ValidationMessageFor(model => model.ADMSN_DATE, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <span class="span-sub-heading">Personal Details</span>
+            <hr class="sub-heading">
+
+            <div class="label-field-pair">
+                @Html.LabelFor(model => model.FIRST_NAME, "First Name", htmlAttributes: new { @class = "control-label col-md-2" })
+                <span class="necessary-field">*</span>
+                <div class="text-input-bg">
+                    @Html.EditorFor(model => model.FIRST_NAME, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.FIRST_NAME, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <hr class="label-underline">
+
+            <div class="label-field-pair">
+                @Html.LabelFor(model => model.MID_NAME, "Middle Name", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="text-input-bg">
+                    @Html.EditorFor(model => model.MID_NAME, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.MID_NAME, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <hr class="label-underline">
+
+            <div class="label-field-pair">
+                @Html.LabelFor(model => model.LAST_NAME, "Last Name", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="text-input-bg">
+                    @Html.EditorFor(model => model.LAST_NAME, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.LAST_NAME, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <hr class="label-underline">
+
+            <div id="admission1_form_vertical_block_left">
+                <div class="label-field-pair">
+                    @Html.LabelFor(model => model.BTCH_ID, "Course And Batch", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="text-input-bg">
+                        @Html.DropDownList("BTCH_ID", null, htmlAttributes: new { @class = "form-control"})
+                        @Html.ValidationMessageFor(model => model.BTCH_ID, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <hr class="label-underline">
+
+                <div class="label-field-pair">
+                    @Html.LabelFor(model => model.DOB, "Date Of Birth", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.DOB, new { htmlAttributes = new { @class = "form-control", @id = "datepicker2", @readonly = "readonly" } })
+                        @Html.ValidationMessageFor(model => model.DOB, "", new { @class = "text-danger" })
+
+                    </div>
+                </div>
+                <hr class="label-underline">
+
+                <div class="label_field_pair">
+                    <label class="label_for_student_gender" for="student_gender">Gender</label>
+                    <div class="student_gender_value">
+                        @Html.EditorFor(model => model.GNDR, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.GNDR, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <hr class="label-underline">
+
+                <div class="label-field-pair">
+                    @Html.LabelFor(model => model.BLOOD_GRP, "Blood Group", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="text-input-bg">
+                        @Html.EditorFor(model => model.BLOOD_GRP, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.BLOOD_GRP, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <hr class="label-underline">
+
+                <div class="label-field-pair">
+                    @Html.LabelFor(model => model.BIRTH_PLACE, "Birth Place", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="text-input-bg">
+                        @Html.EditorFor(model => model.BIRTH_PLACE, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.BIRTH_PLACE, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <hr class="label-underline">
+
+                <div class="label-field-pair">
+                    @Html.LabelFor(model => model.NTLTY_ID, "Nationality", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="text-input-bg">
+                        @Html.DropDownList("NTLTY_ID", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.NTLTY_ID, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <hr class="label-underline">
+
+                <div class="label-field-pair">
+                    @Html.LabelFor(model => model.LANG, "Mother Tongue", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="text-input-bg">
+                        @Html.EditorFor(model => model.LANG, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.LANG, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <hr class="label-underline">
+
+                <div class="label-field-pair">
+                    @Html.LabelFor(model => model.STDNT_CAT_ID, "Category", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="text-input-bg">
+                        @Html.DropDownList("STDNT_CAT_ID", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.STDNT_CAT_ID, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <hr class="label-underline">
+
+                <div class="label-field-pair">
+                    @Html.LabelFor(model => model.RLGN, "Religion", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="text-input-bg">
+                        @Html.EditorFor(model => model.RLGN, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.RLGN, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div id="admission1_form_vertical_block_right">
+                <span class="span-sub-heading">Contact Details</span>
+                <hr class="sub-heading">
+                <div class="label-field-pair">
+                    @Html.LabelFor(model => model.ADDR_LINE1, "Address Line 1", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="text-input-bg">
+                        @Html.EditorFor(model => model.ADDR_LINE1, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.ADDR_LINE1, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <hr class="label-underline">
+
+                <div class="label-field-pair">
+                    @Html.LabelFor(model => model.ADDR_LINE2, "Address Line 2", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="text-input-bg">
+                        @Html.EditorFor(model => model.ADDR_LINE2, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.ADDR_LINE2, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <hr class="label-underline">
+
+                <div class="label-field-pair">
+                    @Html.LabelFor(model => model.CITY, "City", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="text-input-bg">
+                        @Html.EditorFor(model => model.CITY, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.CITY, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <hr class="label-underline">
+
+                <div class="label-field-pair">
+                    @Html.LabelFor(model => model.STATE, "State", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="text-input-bg">
+                        @Html.EditorFor(model => model.STATE, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.STATE, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <hr class="label-underline">
+
+                <div class="label-field-pair">
+                    @Html.LabelFor(model => model.PIN_CODE, "Zip", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="text-input-bg">
+                        @Html.EditorFor(model => model.PIN_CODE, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.PIN_CODE, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <hr class="label-underline">
+
+                <div class="label-field-pair">
+                    @Html.LabelFor(model => model.CTRY_ID, "Country", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="text-input-bg">
+                        @Html.EditorFor(model => model.CTRY_ID, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.CTRY_ID, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <hr class="label-underline">
+
+                <div class="label-field-pair">
+                    @Html.LabelFor(model => model.PH1, "Phone", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="text-input-bg">
+                        @Html.EditorFor(model => model.PH1, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.PH1, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <hr class="label-underline">
+
+                <div class="label-field-pair">
+                    @Html.LabelFor(model => model.PH2, "Mobile", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="text-input-bg">
+                        @Html.EditorFor(model => model.PH2, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.PH2, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <hr class="label-underline">
+
+                <div class="label-field-pair">
+                    @Html.LabelFor(model => model.EML, "Email", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="text-input-bg">
+                        @Html.EditorFor(model => model.EML, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.EML, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="label-field-pair">
+                    @Html.LabelFor(model => model.USRID, "USRID", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="text-input-bg">
+                        @Html.DropDownList("USRID", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.USRID, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                @if (Html.Configuration_Value("ApplicationSmsEnabled").Equals("True"))
+                {
+                    <hr class="label-underline">
+                    <div class="label-field-pair">
+                        @Html.LabelFor(model => model.IS_SMS_ENABL, "Enable SMS Feature", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="text-input-bg">
+                            @Html.EditorFor(model => model.IS_SMS_ENABL, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.IS_SMS_ENABL, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                }
+                <br />
+                
+                <span class="span-sub-heading">Upload Photo</span>
+                <hr class="sub-heading">
+                <div class="label-field-pair">
+                    @Html.LabelFor(model => model.PHTO_FILENAME, "Upload Photo (Maximum Size 2 MB)", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="text-input-bg">
+                        <input id="PHTO_FILENAME" title="Upload Photo (Maximum Size 2 MB)" type="file" name="PHTO_FILENAME" />
+                        @Html.ValidationMessageFor(model => model.PHTO_FILENAME, "", new { @class = "text-danger" })
+                    </div>
+
+                </div>
+            </div>
+            <div class="extender">
+            </div>
+        </div>
+        <input type="submit" value="Save" class="submit_button" />
+    }
+</div>
+
+
+@section scripts{
+
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script src="~/Scripts/dropzone.js"></script>
+
+    <script type="text/javascript">
+
+$(document).ready(function () {
+    $("#preview").fadeOut(15);
+    $("#refreshButton").click(function () {
+        var imageToLoad = $("#imageId").val();
+        if (imageToLoad.length > 0) {
+            $("#preview").attr("src", "/Document/Show/" + imageToLoad);
+            $("#preview").fadeIn();
+        }
+    });
+});
+
+    </script>
+}

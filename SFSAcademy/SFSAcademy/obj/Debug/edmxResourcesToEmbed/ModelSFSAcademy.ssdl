@@ -549,6 +549,19 @@
     <Property Name="DISC" Type="decimal" Precision="10" Scale="2" />
     <Property Name="IS_AMT" Type="varchar" MaxLength="1" />
   </EntityType>
+  <EntityType Name="FEE_FINE">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TYPE" Type="varchar" MaxLength="20" />
+    <Property Name="NAME" Type="varchar" MaxLength="50" />
+    <Property Name="RCVR_ID" Type="int" />
+    <Property Name="FIN_FEE_CAT_ID" Type="int" />
+    <Property Name="FINE" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="IS_AMT" Type="varchar" MaxLength="1" />
+    <Property Name="FINE_DATE" Type="datetime" />
+  </EntityType>
   <EntityType Name="FINANCE_DONATION">
     <Key>
       <PropertyRef Name="ID" />
@@ -568,7 +581,7 @@
     </Key>
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="FEE_CLCT_ID" Type="int" />
-    <Property Name="TRAN_ID" Type="int" />
+    <Property Name="TRAN_ID" Type="varchar" MaxLength="50" />
     <Property Name="STDNT_ID" Type="int" />
     <Property Name="IS_PD" Type="varchar" MaxLength="1" />
   </EntityType>
@@ -584,6 +597,7 @@
     <Property Name="IS_MSTR" Type="varchar" MaxLength="1" />
     <Property Name="CREATED_AT" Type="datetime" />
     <Property Name="UPDATED_AT" Type="datetime" />
+    <Property Name="MSTR_CATGRY_ID" Type="int" />
   </EntityType>
   <EntityType Name="FINANCE_FEE_COLLECTION">
     <Key>
@@ -635,7 +649,7 @@
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="MSTRTRAN_ID" Type="int" />
     <Property Name="TIL" Type="varchar" MaxLength="20" />
-    <Property Name="DESCR" Type="varchar" MaxLength="50" />
+    <Property Name="DESCR" Type="varchar" MaxLength="200" />
     <Property Name="AMT" Type="decimal" Precision="10" Scale="2" />
     <Property Name="FINE_INCLD" Type="varchar" MaxLength="1" />
     <Property Name="CAT_ID" Type="int" />
@@ -918,7 +932,26 @@
     <Property Name="SOLD_BY" Type="varchar" MaxLength="50" />
     <Property Name="SOLD_ON" Type="datetime" />
     <Property Name="STUDENT_NAME" Type="varchar" MaxLength="50" />
-    <Property Name="STUDENT_CONTACT_NO" Type="varchar" MaxLength="50" />
+    <Property Name="STUDENT_CONTACT_NO" Type="bigint" />
+    <Property Name="MONEY_RECEIVED_BY" Type="varchar" MaxLength="50" />
+    <Property Name="IS_DEPOSITED" Type="varchar" MaxLength="1" />
+    <Property Name="IS_ACT" Type="varchar" MaxLength="1" />
+    <Property Name="IS_DEL" Type="varchar" MaxLength="1" />
+    <Property Name="CREATED_AT" Type="datetime" />
+    <Property Name="UPDATED_AT" Type="datetime" />
+  </EntityType>
+  <EntityType Name="STORE_PURCHAGE_CART">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PRODUCT_ID" Type="int" Nullable="false" />
+    <Property Name="UNIT_SOLD" Type="int" />
+    <Property Name="SOLD_PRICE" Type="int" />
+    <Property Name="SOLD_BY" Type="varchar" MaxLength="50" />
+    <Property Name="SOLD_ON" Type="datetime" />
+    <Property Name="STUDENT_NAME" Type="varchar" MaxLength="50" />
+    <Property Name="STUDENT_CONTACT_NO" Type="bigint" />
     <Property Name="MONEY_RECEIVED_BY" Type="varchar" MaxLength="50" />
     <Property Name="IS_DEPOSITED" Type="varchar" MaxLength="1" />
     <Property Name="IS_ACT" Type="varchar" MaxLength="1" />
@@ -1350,10 +1383,10 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="CAT_I_FINA_FINA_NI">
-    <End Role="FINANCE_FEE_CATGEORY" Type="Self.FINANCE_FEE_CATGEORY" Multiplicity="0..1" />
+    <End Role="FINANCE_TRANSACTION_CATEGORY" Type="Self.FINANCE_TRANSACTION_CATEGORY" Multiplicity="0..1" />
     <End Role="FINANCE_TRANSACTION" Type="Self.FINANCE_TRANSACTION" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="FINANCE_FEE_CATGEORY">
+      <Principal Role="FINANCE_TRANSACTION_CATEGORY">
         <PropertyRef Name="ID" />
       </Principal>
       <Dependent Role="FINANCE_TRANSACTION">
@@ -1829,6 +1862,30 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FEE_F_FINA_FEE_NI3">
+    <End Role="FINANCE_FEE_CATGEORY" Type="Self.FINANCE_FEE_CATGEORY" Multiplicity="0..1" />
+    <End Role="FEE_FINE" Type="Self.FEE_FINE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FINANCE_FEE_CATGEORY">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="FEE_FINE">
+        <PropertyRef Name="FIN_FEE_CAT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FEE_RCVR_FEE__NI2">
+    <End Role="STUDENT" Type="Self.STUDENT" Multiplicity="0..1" />
+    <End Role="FEE_FINE" Type="Self.FEE_FINE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="STUDENT">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="FEE_FINE">
+        <PropertyRef Name="RCVR_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FIN_C_FINA_FINA_NI">
     <End Role="FINANCE_FEE_CATGEORY" Type="Self.FINANCE_FEE_CATGEORY" Multiplicity="0..1" />
     <End Role="FINANCE_TRANSACTION_TRIGGERS" Type="Self.FINANCE_TRANSACTION_TRIGGERS" Multiplicity="*" />
@@ -1946,18 +2003,6 @@
       </Principal>
       <Dependent Role="EMPLOYEE">
         <PropertyRef Name="HOME_CTRY_ID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="MSTRT_FINA_FINA_NI">
-    <End Role="FINANCE_TRANSACTION" Type="Self.FINANCE_TRANSACTION" Multiplicity="0..1" />
-    <End Role="FINANCE_TRANSACTION1" Type="Self.FINANCE_TRANSACTION" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="FINANCE_TRANSACTION">
-        <PropertyRef Name="ID" />
-      </Principal>
-      <Dependent Role="FINANCE_TRANSACTION1">
-        <PropertyRef Name="MSTRTRAN_ID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -2381,6 +2426,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="STPROD_STPURCART_ASSE_NI">
+    <End Role="STORE_PRODUCTS" Type="Self.STORE_PRODUCTS" Multiplicity="1" />
+    <End Role="STORE_PURCHAGE_CART" Type="Self.STORE_PURCHAGE_CART" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="STORE_PRODUCTS">
+        <PropertyRef Name="PRODUCT_ID" />
+      </Principal>
+      <Dependent Role="STORE_PURCHAGE_CART">
+        <PropertyRef Name="PRODUCT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="SUBJ__SUBJ_EMPL_NI">
     <End Role="SUBJECT" Type="Self.SUBJECT" Multiplicity="0..1" />
     <End Role="EMPLOYEES_SUBJECT" Type="Self.EMPLOYEES_SUBJECT" Multiplicity="*" />
@@ -2449,18 +2506,6 @@
         <PropertyRef Name="ID" />
       </Principal>
       <Dependent Role="FINANCE_DONATION">
-        <PropertyRef Name="TRAN_ID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="TRAN__FINA_FINA_NI2">
-    <End Role="FINANCE_TRANSACTION" Type="Self.FINANCE_TRANSACTION" Multiplicity="0..1" />
-    <End Role="FINANCE_FEE" Type="Self.FINANCE_FEE" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="FINANCE_TRANSACTION">
-        <PropertyRef Name="ID" />
-      </Principal>
-      <Dependent Role="FINANCE_FEE">
         <PropertyRef Name="TRAN_ID" />
       </Dependent>
     </ReferentialConstraint>
@@ -2579,6 +2624,7 @@
     <EntitySet Name="FEE_COLLECTION_DISCOUNT" EntityType="Self.FEE_COLLECTION_DISCOUNT" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="FEE_COLLECTION_PARTICULAR" EntityType="Self.FEE_COLLECTION_PARTICULAR" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="FEE_DISCOUNT" EntityType="Self.FEE_DISCOUNT" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="FEE_FINE" EntityType="Self.FEE_FINE" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="FINANCE_DONATION" EntityType="Self.FINANCE_DONATION" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="FINANCE_FEE" EntityType="Self.FINANCE_FEE" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="FINANCE_FEE_CATGEORY" EntityType="Self.FINANCE_FEE_CATGEORY" Schema="dbo" store:Type="Tables" />
@@ -2606,6 +2652,7 @@
     <EntitySet Name="STORE_CATEGORY" EntityType="Self.STORE_CATEGORY" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="STORE_PRODUCTS" EntityType="Self.STORE_PRODUCTS" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="STORE_PURCHAGE" EntityType="Self.STORE_PURCHAGE" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="STORE_PURCHAGE_CART" EntityType="Self.STORE_PURCHAGE_CART" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="STUDENT" EntityType="Self.STUDENT" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="STUDENT_ADDITIONAL_DETAIL" EntityType="Self.STUDENT_ADDITIONAL_DETAIL" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="STUDENT_ADDITIONAL_FIELD" EntityType="Self.STUDENT_ADDITIONAL_FIELD" Schema="dbo" store:Type="Tables" />
@@ -2697,7 +2744,7 @@
       <End Role="WEEKDAY" EntitySet="WEEKDAY" />
     </AssociationSet>
     <AssociationSet Name="CAT_I_FINA_FINA_NI" Association="Self.CAT_I_FINA_FINA_NI">
-      <End Role="FINANCE_FEE_CATGEORY" EntitySet="FINANCE_FEE_CATGEORY" />
+      <End Role="FINANCE_TRANSACTION_CATEGORY" EntitySet="FINANCE_TRANSACTION_CATEGORY" />
       <End Role="FINANCE_TRANSACTION" EntitySet="FINANCE_TRANSACTION" />
     </AssociationSet>
     <AssociationSet Name="CCE_E_CCE__CCE__NI" Association="Self.CCE_E_CCE__CCE__NI">
@@ -2856,6 +2903,14 @@
       <End Role="FINANCE_FEE_COLLECTION" EntitySet="FINANCE_FEE_COLLECTION" />
       <End Role="FINANCE_FEE_STRUCTURE_ELEMENT" EntitySet="FINANCE_FEE_STRUCTURE_ELEMENT" />
     </AssociationSet>
+    <AssociationSet Name="FEE_F_FINA_FEE_NI3" Association="Self.FEE_F_FINA_FEE_NI3">
+      <End Role="FINANCE_FEE_CATGEORY" EntitySet="FINANCE_FEE_CATGEORY" />
+      <End Role="FEE_FINE" EntitySet="FEE_FINE" />
+    </AssociationSet>
+    <AssociationSet Name="FEE_RCVR_FEE__NI2" Association="Self.FEE_RCVR_FEE__NI2">
+      <End Role="STUDENT" EntitySet="STUDENT" />
+      <End Role="FEE_FINE" EntitySet="FEE_FINE" />
+    </AssociationSet>
     <AssociationSet Name="FIN_C_FINA_FINA_NI" Association="Self.FIN_C_FINA_FINA_NI">
       <End Role="FINANCE_FEE_CATGEORY" EntitySet="FINANCE_FEE_CATGEORY" />
       <End Role="FINANCE_TRANSACTION_TRIGGERS" EntitySet="FINANCE_TRANSACTION_TRIGGERS" />
@@ -2895,10 +2950,6 @@
     <AssociationSet Name="HOME__COUN_EMPL_NI" Association="Self.HOME__COUN_EMPL_NI">
       <End Role="COUNTRY" EntitySet="COUNTRY" />
       <End Role="EMPLOYEE" EntitySet="EMPLOYEE" />
-    </AssociationSet>
-    <AssociationSet Name="MSTRT_FINA_FINA_NI" Association="Self.MSTRT_FINA_FINA_NI">
-      <End Role="FINANCE_TRANSACTION" EntitySet="FINANCE_TRANSACTION" />
-      <End Role="FINANCE_TRANSACTION1" EntitySet="FINANCE_TRANSACTION" />
     </AssociationSet>
     <AssociationSet Name="NEWS__NEWS_NEWS_NI" Association="Self.NEWS__NEWS_NEWS_NI">
       <End Role="NEWS" EntitySet="NEWS" />
@@ -3040,6 +3091,10 @@
       <End Role="STORE_PRODUCTS" EntitySet="STORE_PRODUCTS" />
       <End Role="STORE_PURCHAGE" EntitySet="STORE_PURCHAGE" />
     </AssociationSet>
+    <AssociationSet Name="STPROD_STPURCART_ASSE_NI" Association="Self.STPROD_STPURCART_ASSE_NI">
+      <End Role="STORE_PRODUCTS" EntitySet="STORE_PRODUCTS" />
+      <End Role="STORE_PURCHAGE_CART" EntitySet="STORE_PURCHAGE_CART" />
+    </AssociationSet>
     <AssociationSet Name="SUBJ__SUBJ_EMPL_NI" Association="Self.SUBJ__SUBJ_EMPL_NI">
       <End Role="SUBJECT" EntitySet="SUBJECT" />
       <End Role="EMPLOYEES_SUBJECT" EntitySet="EMPLOYEES_SUBJECT" />
@@ -3063,10 +3118,6 @@
     <AssociationSet Name="TRAN__FINA_FINA_NI" Association="Self.TRAN__FINA_FINA_NI">
       <End Role="FINANCE_TRANSACTION" EntitySet="FINANCE_TRANSACTION" />
       <End Role="FINANCE_DONATION" EntitySet="FINANCE_DONATION" />
-    </AssociationSet>
-    <AssociationSet Name="TRAN__FINA_FINA_NI2" Association="Self.TRAN__FINA_FINA_NI2">
-      <End Role="FINANCE_TRANSACTION" EntitySet="FINANCE_TRANSACTION" />
-      <End Role="FINANCE_FEE" EntitySet="FINANCE_FEE" />
     </AssociationSet>
     <AssociationSet Name="USRID_USER_EMPL_NI" Association="Self.USRID_USER_EMPL_NI">
       <End Role="USERS" EntitySet="USERS" />

@@ -1,0 +1,67 @@
+﻿@model PagedList.IPagedList<SFSAcademy.Models.FeeMasterCategory>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+@{    Layout = null;}
+
+<div class="students-table">
+    <table id="listing" align="center" width="100%" cellpadding="1" cellspacing="1">
+        <tr class="tr-head">
+            <th>
+                Sl. No.
+            </th>
+            <th>
+                @Html.ActionLink("Fees Name", "Fee_Category_View", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })
+            </th>
+            <th>
+                Batch
+            </th>
+            <th>
+                @Html.ActionLink("Created Date", "Fee_Category_View", new { sortOrder = ViewBag.DateSortParm, currentFilter = ViewBag.CurrentFilter })
+            </th>
+            <th>
+                Select
+            </th>
+        </tr>
+        <tr class="tr-blank"></tr>
+        @{int i = 1; }
+        @{string AllBatches = "All Batches"; }
+        @foreach (var item in Model)
+            {
+                string selectedRow = "tr-even";
+                if (i % 2 == 0)
+                {
+                    selectedRow = "tr-odd";
+                }
+                <tr class="@selectedRow">
+                    <td class="col-1">@i</td>
+                    <td class="col-4">
+                        @Html.DisplayFor(modelItem => item.FinanceFeeCategoryData.NAME)
+                    </td>
+                    <td class="col-7">
+                        @if (item.FinanceFeeCategoryData.BTCH_ID.Equals(null))
+                        {
+                         @AllBatches
+                        }
+                        else
+                        {
+                        @Html.DisplayFor(modelItem => item.CourseData.CODE)
+                            <label>-</label>
+                        @Html.DisplayFor(modelItem => item.BatchData.NAME)
+                        }
+
+                    </td>
+                    <td class="col-5" nowrap>
+                        @item.FinanceFeeCategoryData.CREATED_AT.Value.ToShortDateString()
+                    </td>
+                    <td class="col-6" nowrap>
+                        @Html.ActionLink("Delete", "Master_Category_Delete", new { id = item.FinanceFeeCategoryData.ID }) |
+                        @Html.ActionLink("Edit", "Master_Category_Edit", new { id = item.FinanceFeeCategoryData.ID })
+                    </td>
+                </tr>
+            i = i + 1;
+        }
+    </table>
+    <br />
+    @Html.PagedListPager(Model, page => Url.Action("Fee_Category_View",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+</div>

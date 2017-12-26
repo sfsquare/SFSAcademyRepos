@@ -1,0 +1,69 @@
+﻿@model SFSAcademy.FEE_DISCOUNT
+
+@{
+    ViewBag.Title = "Delete_Fee_Discount";
+}
+
+<div id="content-header">
+    <img src="~/Content/images/show_finance.png" alt="Finance Logo">
+    <h1>Delete Fee Discounts</h1>
+    <h3>Finance Management</h3>
+    <div id="app-back-button">
+        <a href='javascript:history.back()' onclick="return confirm('are you sure?')"><img src="~/Content/images/buttons/back.png"></a>
+    </div>
+</div>
+<div><img src="~/Content/images/_global/header_underline_.jpg" width="100%"></div>
+
+<div id="page-yield">
+    <div class="bread_crumb">
+        @Html.ActionLink("Finance", "Index") &raquo;
+        @Html.ActionLink("Fees", "Fees_Index") &raquo;
+        @Html.ActionLink("Create Fees", "Master_Fees") &raquo;
+        Fee Discounts
+    </div>
+    <div id="flash_box">
+        @if (ViewBag.ErrorMessage != null)
+            {
+            <p class="flash-msg"> @ViewBag.ErrorMessage </p>
+        }
+    </div>
+    <div id="edit_user_form">
+        <div class="label-field-pair">
+            @Html.LabelFor(model => model.TYPE, "Discount Type", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="text-input-bg">
+                @Html.EditorFor(model => model.TYPE, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TYPE, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="label-field-pair">
+            @Html.LabelFor(model => model.NAME, "Discount Name", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="text-input-bg">
+                @Html.EditorFor(model => model.NAME, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.NAME, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="label-field-pair">
+            @Html.LabelFor(model => model.DISC, "Discount", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="text-input-bg">
+                @Html.EditorFor(model => model.DISC, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.DISC, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="label-field-pair">
+            @Html.LabelFor(model => model.IS_AMT, "Is this Amount?", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="text-input-bg">
+                @Html.EditorFor(model => model.IS_AMT, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.IS_AMT, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" />
+        </div>
+    }
+
+</div>

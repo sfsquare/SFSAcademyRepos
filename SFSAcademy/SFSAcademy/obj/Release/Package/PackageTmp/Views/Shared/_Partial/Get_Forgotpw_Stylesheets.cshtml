@@ -1,0 +1,10 @@
+﻿@{
+    string CSSDirection = "~/Content/stylesheets/";
+    bool CSSAll = true;
+}
+
+@if (CSSAll)
+{
+    DynamicHeader.AddStyleSheet(CSSDirection + "_layouts/forgotpw.css");
+    DynamicHeader.AddStyleSheet(CSSDirection + "_layouts/style.css");
+}

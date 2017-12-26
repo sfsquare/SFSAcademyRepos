@@ -1,0 +1,3147 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SFSAcademyModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="APPLY_LEAVE">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EMP_ID" Type="int" />
+    <Property Name="EMP_LEAVE_TYPES_ID" Type="int" />
+    <Property Name="IS_HALF_DAY" Type="varchar" MaxLength="1" />
+    <Property Name="START_DATE" Type="datetime" />
+    <Property Name="END_DATE" Type="datetime" />
+    <Property Name="RSN" Type="varchar" MaxLength="20" />
+    <Property Name="APPR" Type="varchar" MaxLength="1" />
+    <Property Name="VW_BY_MGR" Type="varchar" MaxLength="1" />
+    <Property Name="MGR_RMRK" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="ARCHIVED_STUDENT">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ADMSN_NO" Type="varchar" MaxLength="20" />
+    <Property Name="CLS_ROLL_NO" Type="varchar" MaxLength="20" />
+    <Property Name="ADMSN_DATE" Type="datetime" />
+    <Property Name="FIRST_NAME" Type="varchar" MaxLength="50" />
+    <Property Name="MID_NAME" Type="varchar" MaxLength="50" />
+    <Property Name="LAST_NAME" Type="varchar" MaxLength="50" />
+    <Property Name="BTCH_ID" Type="int" />
+    <Property Name="DOB" Type="datetime" />
+    <Property Name="GNDR" Type="varchar" MaxLength="20" />
+    <Property Name="BLOOD_GRP" Type="varchar" MaxLength="20" />
+    <Property Name="BIRTH_PLACE" Type="varchar" MaxLength="50" />
+    <Property Name="NTLTY_ID" Type="int" />
+    <Property Name="LANG" Type="varchar" MaxLength="20" />
+    <Property Name="RLGN" Type="varchar" MaxLength="20" />
+    <Property Name="ADDR_LINE1" Type="varchar" MaxLength="50" />
+    <Property Name="ADDR_LINE2" Type="varchar" MaxLength="50" />
+    <Property Name="CITY" Type="varchar" MaxLength="20" />
+    <Property Name="STATE" Type="varchar" MaxLength="20" />
+    <Property Name="PIN_CODE" Type="varchar" MaxLength="20" />
+    <Property Name="CTRY_ID" Type="int" />
+    <Property Name="PH1" Type="varchar" MaxLength="20" />
+    <Property Name="PH2" Type="varchar" MaxLength="20" />
+    <Property Name="EML" Type="varchar" MaxLength="20" />
+    <Property Name="PHTO_FILENAME" Type="varchar" MaxLength="50" />
+    <Property Name="PHTO_CNTNT_TYPE" Type="varchar" MaxLength="20" />
+    <Property Name="PHTO_DATA" Type="varchar" MaxLength="2000" />
+    <Property Name="STAT_DESCR" Type="varchar" MaxLength="20" />
+    <Property Name="IS_ACT" Type="varchar" MaxLength="1" />
+    <Property Name="IS_DEL" Type="varchar" MaxLength="1" />
+    <Property Name="IMMDT_CNTCT_ID" Type="int" />
+    <Property Name="IS_SMS_ENABL" Type="varchar" MaxLength="1" />
+    <Property Name="CREATED_AT" Type="datetime" />
+    <Property Name="UPDATED_AT" Type="datetime" />
+    <Property Name="PHTO_FILE_SIZE" Type="int" />
+    <Property Name="FRM_ID" Type="int" />
+    <Property Name="STDNT_CAT_ID" Type="int" />
+  </EntityType>
+  <EntityType Name="ASSESSMENT_SCORE">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SSTDNT_ID" Type="int" />
+    <Property Name="GRADE_PT" Type="int" />
+    <Property Name="CREATED_AT" Type="datetime" />
+    <Property Name="UPDATED_AT" Type="datetime" />
+    <Property Name="EXAM_ID" Type="int" />
+    <Property Name="BTCH_ID" Type="int" />
+    <Property Name="DE_IND_ID" Type="int" />
+  </EntityType>
+  <EntityType Name="ASSET">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TIL" Type="varchar" MaxLength="20" />
+    <Property Name="DESCR" Type="varchar" MaxLength="50" />
+    <Property Name="AMT" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="IS_INACT" Type="varchar" MaxLength="1" />
+    <Property Name="IS_DEL" Type="varchar" MaxLength="1" />
+    <Property Name="CREATED_AT" Type="datetime" />
+    <Property Name="UPDATED_AT" Type="datetime" />
+  </EntityType>
+  <EntityType Name="ATTENDENCE">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="STDNT_ID" Type="int" />
+    <Property Name="PER_TABLE_ENT_ID" Type="int" />
+    <Property Name="FORENOON" Type="varchar" MaxLength="1" />
+    <Property Name="PM" Type="varchar" MaxLength="1" />
+    <Property Name="RSN" Type="varchar" MaxLength="50" />
+    <Property Name="MONTH_DATE" Type="datetime" />
+    <Property Name="BTCH_ID" Type="int" />
+  </EntityType>
+  <EntityType Name="BANK_FIELD">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NAME" Type="varchar" MaxLength="50" />
+    <Property Name="STAT" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="BATCH">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NAME" Type="varchar" MaxLength="50" />
+    <Property Name="CRS_ID" Type="int" />
+    <Property Name="START_DATE" Type="datetime" />
+    <Property Name="END_DATE" Type="datetime" />
+    <Property Name="IS_DEL" Type="varchar" MaxLength="1" />
+    <Property Name="EMP_ID" Type="int" />
+  </EntityType>
+  <EntityType Name="CCE_EXAM_CATEGORY">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NAME" Type="varchar" MaxLength="50" />
+    <Property Name="DESCR" Type="varchar" MaxLength="50" />
+    <Property Name="CREATED_AT" Type="datetime" />
+    <Property Name="UPDATED_AT" Type="datetime" />
+  </EntityType>
+  <EntityType Name="CCE_GRADE">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NAME" Type="varchar" MaxLength="50" />
+    <Property Name="GRADE_PT" Type="float" />
+    <Property Name="CCE_GRADE_SET_ID" Type="int" />
+    <Property Name="CREATED_AT" Type="datetime" />
+    <Property Name="UPDATED_AT" Type="datetime" />
+  </EntityType>
+  <EntityType Name="CCE_GRADE_SET">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NAME" Type="varchar" MaxLength="50" />
+    <Property Name="CREATED_AT" Type="datetime" />
+    <Property Name="UPDATED_AT" Type="datetime" />
+  </EntityType>
+  <EntityType Name="CCE_REPORTS">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="OBSERVABLE_ID" Type="int" />
+    <Property Name="OBSERVABLE_TYPE" Type="varchar" MaxLength="20" />
+    <Property Name="STDNT_ID" Type="int" />
+    <Property Name="BTCH_ID" Type="int" />
+    <Property Name="GRADE_STRNG" Type="varchar" MaxLength="20" />
+    <Property Name="CREATED_AT" Type="datetime" />
+    <Property Name="UPDATED_AT" Type="datetime" />
+    <Property Name="EXAM_ID" Type="int" />
+  </EntityType>
+  <EntityType Name="CCE_WEIGHTAGE">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="WTAGE" Type="int" />
+    <Property Name="CRITA_TYPE" Type="varchar" MaxLength="20" />
+    <Property Name="CCE_EXAM_CAT_ID" Type="int" />
+    <Property Name="CREATED_AT" Type="datetime" />
+    <Property Name="UPDATED_AT" Type="datetime" />
+  </EntityType>
+  <EntityType Name="CLASS_DESIGNATION">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NAME" Type="varchar" MaxLength="50" />
+    <Property Name="CGPA" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="CREATED_AT" Type="datetime" />
+    <Property Name="UPDATED_AT" Type="datetime" />
+    <Property Name="MKS" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="CRS_ID" Type="int" />
+  </EntityType>
+  <EntityType Name="CLASS_TIMING">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BTCH_ID" Type="int" />
+    <Property Name="NAME" Type="varchar" MaxLength="50" />
+    <Property Name="START_TIME" Type="datetime" />
+    <Property Name="END_TIME" Type="datetime" />
+    <Property Name="IS_BRK" Type="varchar" MaxLength="1" />
+    <Property Name="IS_DEL" Type="varchar" MaxLength="1" />
+  </EntityType>
+  <EntityType Name="CONFIGURATION">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CONFIG_KEY" Type="varchar" MaxLength="50" />
+    <Property Name="CONFIG_VAL" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="COUNTRY">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CTRY_NAME" Type="varchar" MaxLength="50" />
+    <Property Name="NTLTY" Type="varchar" MaxLength="50" />
+    <Property Name="DESCR" Type="varchar" MaxLength="50" />
+    <Property Name="IS_ACT" Type="varchar" MaxLength="1" />
+    <Property Name="CTRY_CODE" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="COURSE">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CRS_NAME" Type="varchar" MaxLength="20" />
+    <Property Name="CODE" Type="varchar" MaxLength="20" />
+    <Property Name="SECTN_NAME" Type="varchar" MaxLength="20" />
+    <Property Name="IS_DEL" Type="varchar" MaxLength="1" />
+    <Property Name="CREATED_AT" Type="datetime" />
+    <Property Name="UPDATED_AT" Type="datetime" />
+    <Property Name="GRADING_TYPE" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="DESCRIPTIVE_INDICATOR">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NAME" Type="varchar" MaxLength="50" />
+    <Property Name="DESCR" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="ELECTIVE_GROUP">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ELECTIVE_GRP_NAME" Type="varchar" MaxLength="20" />
+    <Property Name="ELECTIVE_GRP_DESCR" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="EMPLOYEE">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RPTG_MGR_ID" Type="int" />
+    <Property Name="EMP_CAT_ID" Type="int" />
+    <Property Name="EMP_NUM" Type="varchar" MaxLength="20" />
+    <Property Name="JOINING_DATE" Type="datetime" />
+    <Property Name="FIRST_NAME" Type="varchar" MaxLength="50" />
+    <Property Name="MID_NAME" Type="varchar" MaxLength="20" />
+    <Property Name="LAST_NAME" Type="varchar" MaxLength="50" />
+    <Property Name="GNDR" Type="varchar" MaxLength="1" />
+    <Property Name="JOB_TIL" Type="varchar" MaxLength="20" />
+    <Property Name="EMP_POS_ID" Type="int" />
+    <Property Name="EMP_DEPT_ID" Type="int" />
+    <Property Name="EMP_GRADE_ID" Type="int" />
+    <Property Name="QUAL" Type="varchar" MaxLength="20" />
+    <Property Name="EXPNC_DETL" Type="varchar" MaxLength="50" />
+    <Property Name="EXPNC_YEAR" Type="int" />
+    <Property Name="EXPNC_MONTH" Type="int" />
+    <Property Name="STAT" Type="varchar" MaxLength="1" />
+    <Property Name="STAT_DESCR" Type="varchar" MaxLength="50" />
+    <Property Name="DOB" Type="datetime" />
+    <Property Name="MARITAL_STAT" Type="varchar" MaxLength="20" />
+    <Property Name="CHLD_CNT" Type="int" />
+    <Property Name="FTHR_NAME" Type="varchar" MaxLength="50" />
+    <Property Name="MTHR_NAME" Type="varchar" MaxLength="50" />
+    <Property Name="HUSBND_NAME" Type="varchar" MaxLength="50" />
+    <Property Name="BLOOD_GRP" Type="varchar" MaxLength="20" />
+    <Property Name="NTLTY_ID" Type="int" />
+    <Property Name="HOME_ADDR_LINE1" Type="varchar" MaxLength="50" />
+    <Property Name="HOME_ADDR_LINE2" Type="varchar" MaxLength="50" />
+    <Property Name="HOME_CITY" Type="varchar" MaxLength="20" />
+    <Property Name="HOME_STATE" Type="varchar" MaxLength="20" />
+    <Property Name="HOME_CTRY_ID" Type="int" />
+    <Property Name="HOME_PIN_CODE" Type="varchar" MaxLength="20" />
+    <Property Name="OFF_ADDR_LINE1" Type="varchar" MaxLength="50" />
+    <Property Name="OFF_ADDR_LINE2" Type="varchar" MaxLength="50" />
+    <Property Name="OFF_CITY" Type="varchar" MaxLength="20" />
+    <Property Name="OFF_STATE" Type="varchar" MaxLength="20" />
+    <Property Name="OFF_CTRY_ID" Type="int" />
+    <Property Name="OFF_PIN_CODE" Type="varchar" MaxLength="20" />
+    <Property Name="OFF_PH1" Type="varchar" MaxLength="20" />
+    <Property Name="OFF_PH2" Type="varchar" MaxLength="20" />
+    <Property Name="MOBL_PH" Type="varchar" MaxLength="20" />
+    <Property Name="HOME_PH" Type="varchar" MaxLength="20" />
+    <Property Name="EML" Type="varchar" MaxLength="20" />
+    <Property Name="FAX" Type="varchar" MaxLength="20" />
+    <Property Name="PHTO_FILENAME" Type="varchar" MaxLength="50" />
+    <Property Name="PHTO_CNTNT_TYPE" Type="varchar" MaxLength="20" />
+    <Property Name="PHTO_DATA" Type="varchar" MaxLength="2000" />
+    <Property Name="CREATED_AT" Type="datetime" />
+    <Property Name="UPDATED_AT" Type="datetime" />
+    <Property Name="PHTO_FILE_SIZE" Type="int" />
+    <Property Name="USRID" Type="int" />
+  </EntityType>
+  <EntityType Name="EMPLOYEE_ADDITIONAL_DETAIL">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EMP_ID" Type="int" />
+    <Property Name="ADDL_FLD_ID" Type="int" />
+    <Property Name="ADDL_INFO" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="EMPLOYEE_ATTENDENCES">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ATNDENCE_DATE" Type="datetime" />
+    <Property Name="EMP_ID" Type="int" />
+    <Property Name="EMP_LEAVE_TYPE_ID" Type="int" />
+    <Property Name="RSN" Type="varchar" MaxLength="20" />
+    <Property Name="IS_HALF_DAY" Type="varchar" MaxLength="1" />
+  </EntityType>
+  <EntityType Name="EMPLOYEE_BANK_DETAIL">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EMP_ID" Type="int" />
+    <Property Name="BANK_FLD_ID" Type="int" />
+    <Property Name="BANK_INFO" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="EMPLOYEE_CATEGORY">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NAME" Type="varchar" MaxLength="50" />
+    <Property Name="PRFX" Type="varchar" MaxLength="20" />
+    <Property Name="STAT" Type="varchar" MaxLength="1" />
+  </EntityType>
+  <EntityType Name="EMPLOYEE_DEPARTMENT">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CODE" Type="varchar" MaxLength="20" />
+    <Property Name="NAMES" Type="varchar" MaxLength="50" />
+    <Property Name="STAT" Type="varchar" MaxLength="1" />
+  </EntityType>
+  <EntityType Name="EMPLOYEE_DEPARTMENT_EVENT">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EV_ID" Type="int" />
+    <Property Name="CREATED_AT" Type="datetime" />
+    <Property Name="UPDATED_AT" Type="datetime" />
+    <Property Name="EMP_DEPT_ID" Type="int" />
+  </EntityType>
+  <EntityType Name="EMPLOYEE_GRADE">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="GRADE_CODE" Type="varchar" MaxLength="20" />
+    <Property Name="GRADE_NAME" Type="varchar" MaxLength="20" />
+    <Property Name="DESCR" Type="varchar" MaxLength="50" />
+    <Property Name="IS_ACT" Type="varchar" MaxLength="1" />
+  </EntityType>
+  <EntityType Name="EMPLOYEE_LEAVE">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EMP_ID" Type="int" />
+    <Property Name="EMP_LEAVE_TYPE_ID" Type="int" />
+    <Property Name="LEAVE_CNT" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="LEAVE_TAKE" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="RST_DATE" Type="datetime" />
+    <Property Name="CREATED_AT" Type="datetime" />
+    <Property Name="UPDATED_AT" Type="datetime" />
+  </EntityType>
+  <EntityType Name="EMPLOYEE_LEAVE_TYPE">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NAME" Type="varchar" MaxLength="50" />
+    <Property Name="CODE" Type="varchar" MaxLength="20" />
+    <Property Name="STAT" Type="varchar" MaxLength="1" />
+    <Property Name="MAX_LEAVE_CNT" Type="varchar" MaxLength="20" />
+    <Property Name="CARR_FRWD" Type="varchar" MaxLength="1" />
+  </EntityType>
+  <EntityType Name="EMPLOYEE_POSITION">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="POS_NAME" Type="varchar" MaxLength="20" />
+    <Property Name="POS_DESCR" Type="varchar" MaxLength="50" />
+    <Property Name="IS_ACT" Type="varchar" MaxLength="1" />
+  </EntityType>
+  <EntityType Name="EMPLOYEE_SALARY_STRUCTURE">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AMT" Type="varchar" MaxLength="20" />
+    <Property Name="EMP_ID" Type="int" />
+    <Property Name="PYRL_CAT_ID" Type="int" />
+  </EntityType>
+  <EntityType Name="EMPLOYEES_SUBJECT">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EMP_ID" Type="int" />
+    <Property Name="SUBJ_ID" Type="int" />
+  </EntityType>
+  <EntityType Name="EVENT">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TTIL" Type="varchar" MaxLength="20" />
+    <Property Name="DESCR" Type="varchar" MaxLength="50" />
+    <Property Name="START_DATE" Type="datetime" />
+    <Property Name="END_DATE" Type="datetime" />
+    <Property Name="IS_COMN" Type="varchar" MaxLength="1" />
+    <Property Name="IS_HOL" Type="varchar" MaxLength="1" />
+    <Property Name="IS_EXAM" Type="varchar" MaxLength="1" />
+    <Property Name="CREATED_AT" Type="datetime" />
+    <Property Name="UPDATED_AT" Type="datetime" />
+    <Property Name="IS_DUE" Type="varchar" MaxLength="1" />
+    <Property Name="ORIGIN_ID" Type="int" />
+    <Property Name="ORIGIN_TYPE" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="EXAM">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EXAM_GRP_ID" Type="int" />
+    <Property Name="SUBJ_ID" Type="int" />
+    <Property Name="START_TIME" Type="datetime" />
+    <Property Name="END_TIME" Type="datetime" />
+    <Property Name="MAX_MKS" Type="int" />
+    <Property Name="MIN_MKS" Type="int" />
+    <Property Name="GRADING_LVL_ID" Type="int" />
+    <Property Name="WTAGE" Type="int" />
+    <Property Name="EV_ID" Type="int" />
+    <Property Name="CREATED_AT" Type="datetime" />
+    <Property Name="UPDATED_AT" Type="datetime" />
+  </EntityType>
+  <EntityType Name="EXAM_GROUP">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NAME" Type="varchar" MaxLength="50" />
+    <Property Name="BTCH_ID" Type="int" />
+    <Property Name="EXAM_TYPE" Type="varchar" MaxLength="20" />
+    <Property Name="IS_PUB" Type="varchar" MaxLength="1" />
+    <Property Name="RSULT_PUB" Type="varchar" MaxLength="1" />
+    <Property Name="EXAM_DATE" Type="datetime" />
+    <Property Name="IS_FINAL_EXAM" Type="varchar" MaxLength="1" />
+    <Property Name="CCE_EXAM_CAT_ID" Type="int" />
+  </EntityType>
+  <EntityType Name="EXAM_SCORE">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="STDNT_ID" Type="int" />
+    <Property Name="EXAM_ID" Type="int" />
+    <Property Name="MKS" Type="int" />
+    <Property Name="GRADING_LVL_ID" Type="int" />
+    <Property Name="RMK" Type="varchar" MaxLength="50" />
+    <Property Name="IS_FAIL" Type="varchar" MaxLength="1" />
+    <Property Name="CREATED_AT" Type="datetime" />
+    <Property Name="UPDATED_AT" Type="datetime" />
+  </EntityType>
+  <EntityType Name="FA_CRITERIAS">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FA_NAME" Type="varchar" MaxLength="50" />
+    <Property Name="DESCR" Type="varchar" MaxLength="50" />
+    <Property Name="FA_GRP_ID" Type="int" />
+    <Property Name="CREATED_AT" Type="datetime" />
+    <Property Name="UPDATED_AT" Type="datetime" />
+    <Property Name="SRT_ORD" Type="int" />
+    <Property Name="IS_DEL" Type="varchar" MaxLength="1" />
+  </EntityType>
+  <EntityType Name="FA_GROUP">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NAME" Type="varchar" MaxLength="50" />
+    <Property Name="DESCR" Type="varchar" MaxLength="50" />
+    <Property Name="CCE_EXAM_CAT_ID" Type="int" />
+    <Property Name="CREATED_AT" Type="datetime" />
+    <Property Name="UPDATED_AT" Type="datetime" />
+    <Property Name="CCE_GRADE_SET_ID" Type="int" />
+    <Property Name="MAX_MKS" Type="float" />
+    <Property Name="IS_DEL" Type="varchar" MaxLength="1" />
+  </EntityType>
+  <EntityType Name="FEE_COLLECTION_DISCOUNT">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TYPE" Type="varchar" MaxLength="20" />
+    <Property Name="NAME" Type="varchar" MaxLength="50" />
+    <Property Name="RCVR_ID" Type="int" />
+    <Property Name="FIN_FEE_CLCT_ID" Type="int" />
+    <Property Name="DISC" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="IS_AMT" Type="varchar" MaxLength="1" />
+    <Property Name="CREATED_AT" Type="datetime" />
+    <Property Name="UPDATED_AT" Type="datetime" />
+  </EntityType>
+  <EntityType Name="FEE_COLLECTION_PARTICULAR">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NAME" Type="varchar" MaxLength="50" />
+    <Property Name="DESCR" Type="varchar" MaxLength="50" />
+    <Property Name="AMT" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="FIN_FEE_CLCT_ID" Type="int" />
+    <Property Name="STDNT_CAT_ID" Type="int" />
+    <Property Name="ADMSN_NO" Type="varchar" MaxLength="20" />
+    <Property Name="STDNT_ID" Type="int" />
+    <Property Name="IS_DEL" Type="varchar" MaxLength="1" />
+    <Property Name="CREATED_AT" Type="datetime" />
+    <Property Name="UPDATED_AT" Type="datetime" />
+  </EntityType>
+  <EntityType Name="FEE_DISCOUNT">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TYPE" Type="varchar" MaxLength="20" />
+    <Property Name="NAME" Type="varchar" MaxLength="50" />
+    <Property Name="RCVR_ID" Type="int" />
+    <Property Name="FIN_FEE_CAT_ID" Type="int" />
+    <Property Name="DISC" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="IS_AMT" Type="varchar" MaxLength="1" />
+  </EntityType>
+  <EntityType Name="FEE_FINE">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TYPE" Type="varchar" MaxLength="20" />
+    <Property Name="NAME" Type="varchar" MaxLength="50" />
+    <Property Name="RCVR_ID" Type="int" />
+    <Property Name="FIN_FEE_CAT_ID" Type="int" />
+    <Property Name="FINE" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="IS_AMT" Type="varchar" MaxLength="1" />
+    <Property Name="FINE_DATE" Type="datetime" />
+  </EntityType>
+  <EntityType Name="FINANCE_DONATION">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DNR" Type="varchar" MaxLength="50" />
+    <Property Name="DESCR" Type="varchar" MaxLength="50" />
+    <Property Name="AMT" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="TRAN_ID" Type="int" />
+    <Property Name="CREATED_AT" Type="datetime" />
+    <Property Name="UPDATED_AT" Type="datetime" />
+    <Property Name="TRAN_DATE" Type="datetime" />
+  </EntityType>
+  <EntityType Name="FINANCE_FEE">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FEE_CLCT_ID" Type="int" />
+    <Property Name="TRAN_ID" Type="varchar" MaxLength="50" />
+    <Property Name="STDNT_ID" Type="int" />
+    <Property Name="IS_PD" Type="varchar" MaxLength="1" />
+  </EntityType>
+  <EntityType Name="FINANCE_FEE_CATGEORY">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NAME" Type="varchar" MaxLength="50" />
+    <Property Name="DESCR" Type="varchar" MaxLength="50" />
+    <Property Name="BTCH_ID" Type="int" />
+    <Property Name="IS_DEL" Type="varchar" MaxLength="1" />
+    <Property Name="IS_MSTR" Type="varchar" MaxLength="1" />
+    <Property Name="CREATED_AT" Type="datetime" />
+    <Property Name="UPDATED_AT" Type="datetime" />
+    <Property Name="MSTR_CATGRY_ID" Type="int" />
+  </EntityType>
+  <EntityType Name="FINANCE_FEE_COLLECTION">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NAME" Type="varchar" MaxLength="50" />
+    <Property Name="START_DATE" Type="datetime" />
+    <Property Name="END_DATE" Type="datetime" />
+    <Property Name="FEE_CAT_ID" Type="int" />
+    <Property Name="BTCH_ID" Type="int" />
+    <Property Name="IS_DEL" Type="varchar" MaxLength="1" />
+    <Property Name="DUE_DATE" Type="datetime" />
+  </EntityType>
+  <EntityType Name="FINANCE_FEE_PARTICULAR">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NAME" Type="varchar" MaxLength="50" />
+    <Property Name="DESCR" Type="varchar" MaxLength="50" />
+    <Property Name="AMT" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="FIN_FEE_CAT_ID" Type="int" />
+    <Property Name="STDNT_CAT_ID" Type="int" />
+    <Property Name="ADMSN_NO" Type="varchar" MaxLength="20" />
+    <Property Name="STDNT_ID" Type="int" />
+    <Property Name="IS_DEL" Type="varchar" MaxLength="1" />
+    <Property Name="CREATED_AT" Type="datetime" />
+    <Property Name="UPDATED_AT" Type="datetime" />
+  </EntityType>
+  <EntityType Name="FINANCE_FEE_STRUCTURE_ELEMENT">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AMT" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="LBL" Type="varchar" MaxLength="20" />
+    <Property Name="BTCH_ID" Type="int" />
+    <Property Name="STDNT_CAT_ID" Type="int" />
+    <Property Name="STDNT_ID" Type="int" />
+    <Property Name="PARNT_ID" Type="int" />
+    <Property Name="FEE_CLCT_ID" Type="int" />
+    <Property Name="DEL" Type="varchar" MaxLength="1" />
+  </EntityType>
+  <EntityType Name="FINANCE_TRANSACTION">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MSTRTRAN_ID" Type="int" />
+    <Property Name="TIL" Type="varchar" MaxLength="20" />
+    <Property Name="DESCR" Type="varchar" MaxLength="200" />
+    <Property Name="AMT" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="FINE_INCLD" Type="varchar" MaxLength="1" />
+    <Property Name="CAT_ID" Type="int" />
+    <Property Name="STDNT_ID" Type="int" />
+    <Property Name="FIN_FE_ID" Type="int" />
+    <Property Name="CRETAED_AT" Type="datetime" />
+    <Property Name="UPDATED_AT" Type="datetime" />
+    <Property Name="TRAN_DATE" Type="datetime" />
+    <Property Name="FINE_AMT" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="FIN_ID" Type="int" />
+    <Property Name="FIN_TYPE" Type="varchar" MaxLength="20" />
+    <Property Name="PAYEE_ID" Type="int" />
+    <Property Name="PAYEE_TYPE" Type="varchar" MaxLength="20" />
+    <Property Name="RCPT_NO" Type="varchar" MaxLength="20" />
+    <Property Name="VCHR_NO" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="FINANCE_TRANSACTION_CATEGORY">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NAME" Type="varchar" MaxLength="50" />
+    <Property Name="DESCR" Type="varchar" MaxLength="50" />
+    <Property Name="IS_INCM" Type="varchar" MaxLength="1" />
+    <Property Name="DEL" Type="varchar" MaxLength="1" />
+  </EntityType>
+  <EntityType Name="FINANCE_TRANSACTION_TRIGGERS">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FIN_CAT_ID" Type="int" />
+    <Property Name="PCT" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="TIL" Type="varchar" MaxLength="20" />
+    <Property Name="DESCR" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="GRADING_LEVEL">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NAME" Type="varchar" MaxLength="50" />
+    <Property Name="BTCH_ID" Type="int" />
+    <Property Name="MIN_SCORE" Type="int" />
+    <Property Name="ORD" Type="int" />
+    <Property Name="IS_DEL" Type="varchar" MaxLength="1" />
+    <Property Name="CREATED_AT" Type="datetime" />
+    <Property Name="UPDATED_AT" Type="datetime" />
+    <Property Name="CRED_PT" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="DESCR" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="GUARDIAN">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="WARD_ID" Type="int" />
+    <Property Name="FIRST_NAME" Type="varchar" MaxLength="50" />
+    <Property Name="LAST_NAME" Type="varchar" MaxLength="50" />
+    <Property Name="REL" Type="varchar" MaxLength="20" />
+    <Property Name="EML" Type="varchar" MaxLength="20" />
+    <Property Name="OFF_PH1" Type="varchar" MaxLength="20" />
+    <Property Name="OFF_PH2" Type="varchar" MaxLength="20" />
+    <Property Name="MOBL_PH" Type="varchar" MaxLength="20" />
+    <Property Name="OFF_ADDR_LINE1" Type="varchar" MaxLength="50" />
+    <Property Name="OFF_ADDR_LINE2" Type="varchar" MaxLength="50" />
+    <Property Name="CITY" Type="varchar" MaxLength="20" />
+    <Property Name="STATE" Type="varchar" MaxLength="20" />
+    <Property Name="CTRY_ID" Type="int" />
+    <Property Name="DOB" Type="datetime" />
+    <Property Name="OCCP" Type="varchar" MaxLength="20" />
+    <Property Name="INCM" Type="varchar" MaxLength="20" />
+    <Property Name="ED" Type="varchar" MaxLength="20" />
+    <Property Name="CREATED_AT" Type="datetime" />
+    <Property Name="UPDATED_AT" Type="datetime" />
+    <Property Name="USRID" Type="int" />
+  </EntityType>
+  <EntityType Name="IMAGE_DOCUMENTS">
+    <Key>
+      <PropertyRef Name="DocumentId" />
+    </Key>
+    <Property Name="DocumentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Size" Type="bigint" Nullable="false" />
+    <Property Name="Type" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="FileContent" Type="varbinary(max)" Nullable="false" />
+    <Property Name="IsDeleted" Type="bit" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="ModifiedOn" Type="datetime" />
+  </EntityType>
+  <EntityType Name="INDIVIDUAL_PAYSLIP_CATGEORY">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EMP_ID" Type="int" />
+    <Property Name="SAL_DATE" Type="datetime" />
+    <Property Name="NAME" Type="varchar" MaxLength="50" />
+    <Property Name="AMT" Type="varchar" MaxLength="20" />
+    <Property Name="IS_DED" Type="varchar" MaxLength="1" />
+    <Property Name="INCL_EVRY_MONTH" Type="varchar" MaxLength="1" />
+  </EntityType>
+  <EntityType Name="LIABILITY">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TIL" Type="varchar" MaxLength="20" />
+    <Property Name="DESCR" Type="varchar" MaxLength="50" />
+    <Property Name="AMT" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="IS_SOLVD" Type="varchar" MaxLength="1" />
+    <Property Name="IS_DEL" Type="varchar" MaxLength="1" />
+    <Property Name="CREATED_AT" Type="datetime" />
+    <Property Name="UPDATED_AT" Type="datetime" />
+  </EntityType>
+  <EntityType Name="MONTHLY_PAYSLIP">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SAL_DATE" Type="datetime" />
+    <Property Name="EMP_ID" Type="int" />
+    <Property Name="PYRL_CAT_ID" Type="int" />
+    <Property Name="AMT" Type="varchar" MaxLength="20" />
+    <Property Name="IS_APPR" Type="varchar" MaxLength="1" />
+    <Property Name="APRV_ID" Type="int" />
+    <Property Name="IS_RJCT" Type="varchar" MaxLength="1" />
+    <Property Name="RJCT_ID" Type="int" />
+    <Property Name="RSN" Type="varchar" MaxLength="20" />
+    <Property Name="RMRK" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="NEWS">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TIL" Type="varchar" MaxLength="20" />
+    <Property Name="CNTNT" Type="varchar" MaxLength="2000" />
+    <Property Name="CREATED_AT" Type="datetime" />
+    <Property Name="UPDATED_AT" Type="datetime" />
+    <Property Name="AUTH_ID" Type="int" />
+  </EntityType>
+  <EntityType Name="NEWS_COMMENTS">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CNTNT" Type="varchar" MaxLength="2000" />
+    <Property Name="NEWS_ID" Type="int" />
+    <Property Name="AUTH_ID" Type="int" />
+    <Property Name="CREATED_AT" Type="datetime" />
+    <Property Name="UPDATED_AT" Type="datetime" />
+    <Property Name="IS_APPR" Type="varchar" MaxLength="1" />
+  </EntityType>
+  <EntityType Name="OBSERVATION">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NAME" Type="varchar" MaxLength="50" />
+    <Property Name="DESCR" Type="varchar" MaxLength="50" />
+    <Property Name="IS_ACT" Type="varchar" MaxLength="1" />
+    <Property Name="OBSV_GRP_ID" Type="int" />
+    <Property Name="CREATED_AT" Type="datetime" />
+    <Property Name="UPDATED_AT" Type="datetime" />
+    <Property Name="SRT_ORD" Type="int" />
+  </EntityType>
+  <EntityType Name="OBSERVATION_GROUP">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NAME" Type="varchar" MaxLength="50" />
+    <Property Name="HDR_NAME" Type="varchar" MaxLength="50" />
+    <Property Name="DESCR" Type="varchar" MaxLength="50" />
+    <Property Name="CCE_GRADE_SET_ID" Type="int" />
+    <Property Name="CREATED_AT" Type="datetime" />
+    <Property Name="UPDATED_AT" Type="datetime" />
+    <Property Name="OBSV_KIND" Type="varchar" MaxLength="20" />
+    <Property Name="MAX_MKS" Type="float" />
+    <Property Name="IS_DEL" Type="varchar" MaxLength="1" />
+  </EntityType>
+  <EntityType Name="PAYROLL_CATEGORY">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NAME" Type="varchar" MaxLength="50" />
+    <Property Name="PCT" Type="float" />
+    <Property Name="PYRL_CAT_ID" Type="int" />
+    <Property Name="IS_DED" Type="varchar" MaxLength="1" />
+    <Property Name="STAT" Type="varchar" MaxLength="1" />
+  </EntityType>
+  <EntityType Name="RANKING_LEVEL">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NAME" Type="varchar" MaxLength="50" />
+    <Property Name="GPA" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="MKS" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="SUBJ_CNT" Type="int" />
+    <Property Name="PRIR" Type="int" />
+    <Property Name="CREATED_AT" Type="datetime" />
+    <Property Name="UPDATED_AT" Type="datetime" />
+    <Property Name="FULL_CRS" Type="varchar" MaxLength="1" />
+    <Property Name="CRS_ID" Type="int" />
+    <Property Name="SUBJ_LMT_TYPE" Type="varchar" MaxLength="20" />
+    <Property Name="MKS_LMT_TYPE" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="SMS_LOG">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MOBL" Type="varchar" MaxLength="20" />
+    <Property Name="GTWY_RESP" Type="varchar" MaxLength="50" />
+    <Property Name="CREATED_AT" Type="datetime" />
+    <Property Name="UPDATED_AT" Type="datetime" />
+    <Property Name="SMS_MSG_ID" Type="int" />
+  </EntityType>
+  <EntityType Name="SMS_MESSAGE">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BODY" Type="varchar" MaxLength="2000" />
+    <Property Name="CREATED_AT" Type="datetime" />
+    <Property Name="UPDATED_AT" Type="datetime" />
+  </EntityType>
+  <EntityType Name="SMS_SETTING">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SETS_KEY" Type="varchar" MaxLength="50" />
+    <Property Name="IS_ENABL" Type="varchar" MaxLength="1" />
+  </EntityType>
+  <EntityType Name="STORE_CATEGORY">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NAME" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="IS_ACT" Type="varchar" MaxLength="1" />
+    <Property Name="IS_DEL" Type="varchar" MaxLength="1" />
+    <Property Name="CREATED_AT" Type="datetime" />
+    <Property Name="UPDATED_AT" Type="datetime" />
+  </EntityType>
+  <EntityType Name="STORE_PRODUCTS">
+    <Key>
+      <PropertyRef Name="PRODUCT_ID" />
+    </Key>
+    <Property Name="PRODUCT_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NAME" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="CATEGORY_ID" Type="int" />
+    <Property Name="BRAND" Type="varchar" MaxLength="50" />
+    <Property Name="TOTAL_UNIT" Type="int" />
+    <Property Name="TOTAL_COST" Type="int" />
+    <Property Name="COST_PER_UNIT" Type="int" />
+    <Property Name="SELL_PRICE_PER_UNIT" Type="int" />
+    <Property Name="PURCHASED_ON" Type="datetime" />
+    <Property Name="PURCHASED_THROUGH" Type="varchar" MaxLength="50" />
+    <Property Name="BAR_CODE" Type="varchar" MaxLength="50" />
+    <Property Name="PAID_BY" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="UNIT_LEFT" Type="int" />
+    <Property Name="IS_ACT" Type="varchar" MaxLength="1" />
+    <Property Name="IS_DEL" Type="varchar" MaxLength="1" />
+    <Property Name="CREATED_AT" Type="datetime" />
+    <Property Name="UPDATED_AT" Type="datetime" />
+  </EntityType>
+  <EntityType Name="STORE_PURCHAGE">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PRODUCT_ID" Type="int" Nullable="false" />
+    <Property Name="UNIT_SOLD" Type="int" />
+    <Property Name="SOLD_PRICE" Type="int" />
+    <Property Name="SOLD_BY" Type="varchar" MaxLength="50" />
+    <Property Name="SOLD_ON" Type="datetime" />
+    <Property Name="STUDENT_NAME" Type="varchar" MaxLength="50" />
+    <Property Name="STUDENT_CONTACT_NO" Type="bigint" />
+    <Property Name="MONEY_RECEIVED_BY" Type="varchar" MaxLength="50" />
+    <Property Name="IS_DEPOSITED" Type="varchar" MaxLength="1" />
+    <Property Name="IS_ACT" Type="varchar" MaxLength="1" />
+    <Property Name="IS_DEL" Type="varchar" MaxLength="1" />
+    <Property Name="CREATED_AT" Type="datetime" />
+    <Property Name="UPDATED_AT" Type="datetime" />
+  </EntityType>
+  <EntityType Name="STORE_PURCHAGE_CART">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PRODUCT_ID" Type="int" Nullable="false" />
+    <Property Name="UNIT_SOLD" Type="int" />
+    <Property Name="SOLD_PRICE" Type="int" />
+    <Property Name="SOLD_BY" Type="varchar" MaxLength="50" />
+    <Property Name="SOLD_ON" Type="datetime" />
+    <Property Name="STUDENT_NAME" Type="varchar" MaxLength="50" />
+    <Property Name="STUDENT_CONTACT_NO" Type="bigint" />
+    <Property Name="MONEY_RECEIVED_BY" Type="varchar" MaxLength="50" />
+    <Property Name="IS_DEPOSITED" Type="varchar" MaxLength="1" />
+    <Property Name="IS_ACT" Type="varchar" MaxLength="1" />
+    <Property Name="IS_DEL" Type="varchar" MaxLength="1" />
+    <Property Name="CREATED_AT" Type="datetime" />
+    <Property Name="UPDATED_AT" Type="datetime" />
+  </EntityType>
+  <EntityType Name="STUDENT">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ADMSN_NO" Type="varchar" MaxLength="20" />
+    <Property Name="CLS_ROLL_NO" Type="varchar" MaxLength="20" />
+    <Property Name="ADMSN_DATE" Type="datetime" />
+    <Property Name="FIRST_NAME" Type="varchar" MaxLength="50" />
+    <Property Name="MID_NAME" Type="varchar" MaxLength="50" />
+    <Property Name="LAST_NAME" Type="varchar" MaxLength="50" />
+    <Property Name="BTCH_ID" Type="int" />
+    <Property Name="DOB" Type="datetime" />
+    <Property Name="GNDR" Type="varchar" MaxLength="20" />
+    <Property Name="BLOOD_GRP" Type="varchar" MaxLength="20" />
+    <Property Name="BIRTH_PLACE" Type="varchar" MaxLength="50" />
+    <Property Name="LANG" Type="varchar" MaxLength="20" />
+    <Property Name="RLGN" Type="varchar" MaxLength="20" />
+    <Property Name="ADDR_LINE1" Type="varchar" MaxLength="50" />
+    <Property Name="ADDR_LINE2" Type="varchar" MaxLength="50" />
+    <Property Name="CITY" Type="varchar" MaxLength="20" />
+    <Property Name="STATE" Type="varchar" MaxLength="20" />
+    <Property Name="PIN_CODE" Type="varchar" MaxLength="20" />
+    <Property Name="CTRY_ID" Type="int" />
+    <Property Name="PH1" Type="varchar" MaxLength="20" />
+    <Property Name="PH2" Type="varchar" MaxLength="20" />
+    <Property Name="EML" Type="varchar" MaxLength="20" />
+    <Property Name="IMMDT_CNTCT_ID" Type="int" />
+    <Property Name="IS_SMS_ENABL" Type="varchar" MaxLength="1" />
+    <Property Name="PHTO_FILENAME" Type="varchar" MaxLength="20" />
+    <Property Name="PHTO_CNTNT_TYPE" Type="varchar" MaxLength="20" />
+    <Property Name="PHTO_DATA" Type="int" />
+    <Property Name="STAT_DESCR" Type="varchar" MaxLength="20" />
+    <Property Name="IS_ACT" Type="varchar" MaxLength="1" />
+    <Property Name="IS_DEL" Type="varchar" MaxLength="1" />
+    <Property Name="CREATED_AT" Type="datetime" />
+    <Property Name="UPDATED_AT" Type="datetime" />
+    <Property Name="HAS_PD_FE" Type="varchar" MaxLength="1" />
+    <Property Name="PHTO_FILE_SIZE" Type="int" />
+    <Property Name="USRID" Type="int" Nullable="false" />
+    <Property Name="STDNT_CAT_ID" Type="int" />
+    <Property Name="NTLTY_ID" Type="int" />
+  </EntityType>
+  <EntityType Name="STUDENT_ADDITIONAL_DETAIL">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="STDNT_ID" Type="int" Nullable="false" />
+    <Property Name="ADDL_INFO" Type="varchar" MaxLength="50" />
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ADDL_FLD_ID" Type="int" />
+  </EntityType>
+  <EntityType Name="STUDENT_ADDITIONAL_FIELD">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NAME" Type="varchar" MaxLength="50" />
+    <Property Name="STAT" Type="varchar" MaxLength="1" />
+  </EntityType>
+  <EntityType Name="STUDENT_CATGEORY">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NAME" Type="varchar" MaxLength="50" />
+    <Property Name="IS_DEL" Type="varchar" MaxLength="1" />
+  </EntityType>
+  <EntityType Name="STUDENT_PREVIOUS_DATA">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="INST" Type="varchar" MaxLength="20" />
+    <Property Name="YEAR" Type="varchar" MaxLength="20" />
+    <Property Name="CRS" Type="varchar" MaxLength="20" />
+    <Property Name="TOT_MK" Type="varchar" MaxLength="20" />
+    <Property Name="STDNT_ID" Type="int" />
+  </EntityType>
+  <EntityType Name="STUDENT_PREVIOUS_SUBJECT_MARK">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="STDNT_ID" Type="int" />
+    <Property Name="SUBJ_ID" Type="int" />
+    <Property Name="MK" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="STUDENT_SUBJECT">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SUBJ_ID" Type="int" />
+    <Property Name="STDNT_ID" Type="int" />
+    <Property Name="BTCH_ID" Type="int" />
+  </EntityType>
+  <EntityType Name="SUBJECT">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NAME" Type="varchar" MaxLength="50" />
+    <Property Name="CODE" Type="varchar" MaxLength="20" />
+    <Property Name="BTCH_ID" Type="int" />
+    <Property Name="NO_EXAMS" Type="varchar" MaxLength="1" />
+    <Property Name="MAX_WKILY_CLSES" Type="int" />
+    <Property Name="ELECTIVE_GRP_ID" Type="int" />
+    <Property Name="IS_DEL" Type="varchar" MaxLength="1" />
+    <Property Name="CREATED_AT" Type="datetime" />
+    <Property Name="UPDATED_AT" Type="datetime" />
+    <Property Name="CR_HRS" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="PREF_CNSC" Type="varchar" MaxLength="1" />
+    <Property Name="AMT" Type="decimal" Precision="10" Scale="2" />
+  </EntityType>
+  <EntityType Name="SUBJECT_LEAVE">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="STDNT_ID" Type="int" />
+    <Property Name="MONTH_DATE" Type="datetime" />
+    <Property Name="SUBJ_ID" Type="int" />
+    <Property Name="EMP_ID" Type="int" />
+    <Property Name="CLS_TMNG_ID" Type="int" />
+    <Property Name="RSN" Type="varchar" MaxLength="50" />
+    <Property Name="CREATED_AT" Type="datetime" />
+    <Property Name="UPDATED_AT" Type="datetime" />
+    <Property Name="BTCH_ID" Type="int" />
+  </EntityType>
+  <EntityType Name="TIMETABLE">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="START_DATE" Type="datetime" />
+    <Property Name="END_DATE" Type="datetime" />
+    <Property Name="IS_ACT" Type="varchar" MaxLength="1" />
+    <Property Name="CREATED_AT" Type="datetime" />
+    <Property Name="UPDATED_AT" Type="datetime" />
+  </EntityType>
+  <EntityType Name="TIMETABLE_ENTRY">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BTCH_ID" Type="int" />
+    <Property Name="WK_DAY_ID" Type="int" />
+  </EntityType>
+  <EntityType Name="USERS">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="USRNAME" Type="varchar" MaxLength="50" />
+    <Property Name="FIRST_NAME" Type="varchar" MaxLength="50" />
+    <Property Name="LAST_NAME" Type="varchar" MaxLength="50" />
+    <Property Name="EML" Type="varchar" MaxLength="50" />
+    <Property Name="ADMIN_IND" Type="varchar" MaxLength="1" />
+    <Property Name="STDNT_IND" Type="varchar" MaxLength="1" />
+    <Property Name="EMP_IND" Type="varchar" MaxLength="1" />
+    <Property Name="HASHED_PSWRD" Type="varchar" MaxLength="50" />
+    <Property Name="SALT" Type="varchar" MaxLength="20" />
+    <Property Name="RST_PSWRD_CODE" Type="varchar" MaxLength="20" />
+    <Property Name="RST_PSWRD_CODE_UNTL" Type="datetime" />
+    <Property Name="CREATED_AT" Type="datetime" />
+    <Property Name="UPDATED_AT" Type="datetime" />
+    <Property Name="PARNT_IND" Type="varchar" MaxLength="1" />
+  </EntityType>
+  <EntityType Name="USERS_ACCESS">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="USR_ROLE" Type="varchar" MaxLength="50" />
+    <Property Name="USRS_ID" Type="int" Nullable="false" />
+    <Property Name="LIST_ITEM" Type="varchar" MaxLength="50" />
+    <Property Name="LVL_1_MENU" Type="varchar" MaxLength="50" />
+    <Property Name="LVL_2_MENU" Type="varchar" MaxLength="50" />
+    <Property Name="CTL" Type="varchar" MaxLength="50" />
+    <Property Name="ACTN" Type="varchar" MaxLength="50" />
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IS_ACCBLE" Type="varchar" MaxLength="1" />
+  </EntityType>
+  <EntityType Name="WEEKDAY">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NAME" Type="varchar" MaxLength="50" />
+    <Property Name="WKDAY" Type="varchar" MaxLength="20" />
+    <Property Name="BTCH_ID" Type="int" />
+    <Property Name="SRT_ORD" Type="int" />
+    <Property Name="DAY_OF_WK" Type="int" />
+    <Property Name="IS_DEL" Type="varchar" MaxLength="1" />
+  </EntityType>
+  <Association Name="ADDL__STUD_EMPL_NI">
+    <End Role="STUDENT_ADDITIONAL_FIELD" Type="Self.STUDENT_ADDITIONAL_FIELD" Multiplicity="0..1" />
+    <End Role="EMPLOYEE_ADDITIONAL_DETAIL" Type="Self.EMPLOYEE_ADDITIONAL_DETAIL" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="STUDENT_ADDITIONAL_FIELD">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="EMPLOYEE_ADDITIONAL_DETAIL">
+        <PropertyRef Name="ADDL_FLD_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ADDL__STUD_STUD_NI">
+    <End Role="STUDENT_ADDITIONAL_FIELD" Type="Self.STUDENT_ADDITIONAL_FIELD" Multiplicity="0..1" />
+    <End Role="STUDENT_ADDITIONAL_DETAIL" Type="Self.STUDENT_ADDITIONAL_DETAIL" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="STUDENT_ADDITIONAL_FIELD">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="STUDENT_ADDITIONAL_DETAIL">
+        <PropertyRef Name="ADDL_FLD_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="APRV__EMPL_MONT_NI">
+    <End Role="EMPLOYEE" Type="Self.EMPLOYEE" Multiplicity="0..1" />
+    <End Role="MONTHLY_PAYSLIP" Type="Self.MONTHLY_PAYSLIP" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EMPLOYEE">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="MONTHLY_PAYSLIP">
+        <PropertyRef Name="APRV_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="AUTH__EMPL_NEWS_NI">
+    <End Role="EMPLOYEE" Type="Self.EMPLOYEE" Multiplicity="0..1" />
+    <End Role="NEWS" Type="Self.NEWS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EMPLOYEE">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="NEWS">
+        <PropertyRef Name="AUTH_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="AUTH__EMPL_NEWS_NI2">
+    <End Role="EMPLOYEE" Type="Self.EMPLOYEE" Multiplicity="0..1" />
+    <End Role="NEWS_COMMENTS" Type="Self.NEWS_COMMENTS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EMPLOYEE">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="NEWS_COMMENTS">
+        <PropertyRef Name="AUTH_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="BTCH__BATC_ASSE_NI">
+    <End Role="BATCH" Type="Self.BATCH" Multiplicity="0..1" />
+    <End Role="ASSESSMENT_SCORE" Type="Self.ASSESSMENT_SCORE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BATCH">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ASSESSMENT_SCORE">
+        <PropertyRef Name="BTCH_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="BTCH__BATC_ATTE_NI">
+    <End Role="BATCH" Type="Self.BATCH" Multiplicity="0..1" />
+    <End Role="ATTENDENCE" Type="Self.ATTENDENCE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BATCH">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ATTENDENCE">
+        <PropertyRef Name="BTCH_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="BTCH__BATC_CCE__NI">
+    <End Role="BATCH" Type="Self.BATCH" Multiplicity="0..1" />
+    <End Role="CCE_REPORTS" Type="Self.CCE_REPORTS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BATCH">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="CCE_REPORTS">
+        <PropertyRef Name="BTCH_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="BTCH__BATC_CLAS_NI">
+    <End Role="BATCH" Type="Self.BATCH" Multiplicity="0..1" />
+    <End Role="CLASS_TIMING" Type="Self.CLASS_TIMING" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BATCH">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="CLASS_TIMING">
+        <PropertyRef Name="BTCH_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="BTCH__BATC_EXAM_NI">
+    <End Role="BATCH" Type="Self.BATCH" Multiplicity="0..1" />
+    <End Role="EXAM_GROUP" Type="Self.EXAM_GROUP" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BATCH">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="EXAM_GROUP">
+        <PropertyRef Name="BTCH_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="BTCH__BATC_FINA_NI">
+    <End Role="BATCH" Type="Self.BATCH" Multiplicity="0..1" />
+    <End Role="FINANCE_FEE_CATGEORY" Type="Self.FINANCE_FEE_CATGEORY" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BATCH">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="FINANCE_FEE_CATGEORY">
+        <PropertyRef Name="BTCH_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="BTCH__BATC_FINA_NI2">
+    <End Role="BATCH" Type="Self.BATCH" Multiplicity="0..1" />
+    <End Role="FINANCE_FEE_COLLECTION" Type="Self.FINANCE_FEE_COLLECTION" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BATCH">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="FINANCE_FEE_COLLECTION">
+        <PropertyRef Name="BTCH_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="BTCH__BATC_FINA_NI3">
+    <End Role="BATCH" Type="Self.BATCH" Multiplicity="0..1" />
+    <End Role="FINANCE_FEE_STRUCTURE_ELEMENT" Type="Self.FINANCE_FEE_STRUCTURE_ELEMENT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BATCH">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="FINANCE_FEE_STRUCTURE_ELEMENT">
+        <PropertyRef Name="BTCH_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="BTCH__BATC_GRAD_NI">
+    <End Role="BATCH" Type="Self.BATCH" Multiplicity="0..1" />
+    <End Role="GRADING_LEVEL" Type="Self.GRADING_LEVEL" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BATCH">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="GRADING_LEVEL">
+        <PropertyRef Name="BTCH_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="BTCH__BATC_STUD_NI">
+    <End Role="BATCH" Type="Self.BATCH" Multiplicity="0..1" />
+    <End Role="STUDENT_SUBJECT" Type="Self.STUDENT_SUBJECT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BATCH">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="STUDENT_SUBJECT">
+        <PropertyRef Name="BTCH_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="BTCH__BATC_SUBJ_NI">
+    <End Role="BATCH" Type="Self.BATCH" Multiplicity="0..1" />
+    <End Role="SUBJECT" Type="Self.SUBJECT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BATCH">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SUBJECT">
+        <PropertyRef Name="BTCH_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="BTCH__BATC_SUBJ_NI2">
+    <End Role="BATCH" Type="Self.BATCH" Multiplicity="0..1" />
+    <End Role="SUBJECT_LEAVE" Type="Self.SUBJECT_LEAVE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BATCH">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SUBJECT_LEAVE">
+        <PropertyRef Name="BTCH_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="BTCH__BATC_TIME_NI">
+    <End Role="BATCH" Type="Self.BATCH" Multiplicity="0..1" />
+    <End Role="TIMETABLE_ENTRY" Type="Self.TIMETABLE_ENTRY" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BATCH">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="TIMETABLE_ENTRY">
+        <PropertyRef Name="BTCH_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="BTCH__BATC_WEEK_NI">
+    <End Role="BATCH" Type="Self.BATCH" Multiplicity="0..1" />
+    <End Role="WEEKDAY" Type="Self.WEEKDAY" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BATCH">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="WEEKDAY">
+        <PropertyRef Name="BTCH_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CAT_I_FINA_FINA_NI">
+    <End Role="FINANCE_TRANSACTION_CATEGORY" Type="Self.FINANCE_TRANSACTION_CATEGORY" Multiplicity="0..1" />
+    <End Role="FINANCE_TRANSACTION" Type="Self.FINANCE_TRANSACTION" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FINANCE_TRANSACTION_CATEGORY">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="FINANCE_TRANSACTION">
+        <PropertyRef Name="CAT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CCE_E_CCE__CCE__NI">
+    <End Role="CCE_EXAM_CATEGORY" Type="Self.CCE_EXAM_CATEGORY" Multiplicity="0..1" />
+    <End Role="CCE_WEIGHTAGE" Type="Self.CCE_WEIGHTAGE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CCE_EXAM_CATEGORY">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="CCE_WEIGHTAGE">
+        <PropertyRef Name="CCE_EXAM_CAT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CCE_E_CCE__EXAM_NI">
+    <End Role="CCE_EXAM_CATEGORY" Type="Self.CCE_EXAM_CATEGORY" Multiplicity="0..1" />
+    <End Role="EXAM_GROUP" Type="Self.EXAM_GROUP" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CCE_EXAM_CATEGORY">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="EXAM_GROUP">
+        <PropertyRef Name="CCE_EXAM_CAT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CCE_E_CCE__FA_G_NI">
+    <End Role="CCE_EXAM_CATEGORY" Type="Self.CCE_EXAM_CATEGORY" Multiplicity="0..1" />
+    <End Role="FA_GROUP" Type="Self.FA_GROUP" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CCE_EXAM_CATEGORY">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="FA_GROUP">
+        <PropertyRef Name="CCE_EXAM_CAT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CCE_G_CCE__CCE__NI">
+    <End Role="CCE_GRADE_SET" Type="Self.CCE_GRADE_SET" Multiplicity="0..1" />
+    <End Role="CCE_GRADE" Type="Self.CCE_GRADE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CCE_GRADE_SET">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="CCE_GRADE">
+        <PropertyRef Name="CCE_GRADE_SET_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CCE_G_CCE__FA_G_NI">
+    <End Role="CCE_GRADE_SET" Type="Self.CCE_GRADE_SET" Multiplicity="0..1" />
+    <End Role="FA_GROUP" Type="Self.FA_GROUP" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CCE_GRADE_SET">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="FA_GROUP">
+        <PropertyRef Name="CCE_GRADE_SET_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CCE_G_CCE__OBSE_NI">
+    <End Role="CCE_GRADE_SET" Type="Self.CCE_GRADE_SET" Multiplicity="0..1" />
+    <End Role="OBSERVATION_GROUP" Type="Self.OBSERVATION_GROUP" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CCE_GRADE_SET">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="OBSERVATION_GROUP">
+        <PropertyRef Name="CCE_GRADE_SET_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CLS_T_CLAS_SUBJ_NI">
+    <End Role="CLASS_TIMING" Type="Self.CLASS_TIMING" Multiplicity="0..1" />
+    <End Role="SUBJECT_LEAVE" Type="Self.SUBJECT_LEAVE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CLASS_TIMING">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SUBJECT_LEAVE">
+        <PropertyRef Name="CLS_TMNG_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CRS_I_COUR_BATC_NI">
+    <End Role="COURSE" Type="Self.COURSE" Multiplicity="0..1" />
+    <End Role="BATCH" Type="Self.BATCH" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="COURSE">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="BATCH">
+        <PropertyRef Name="CRS_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CRS_I_COUR_CLAS_NI">
+    <End Role="COURSE" Type="Self.COURSE" Multiplicity="0..1" />
+    <End Role="CLASS_DESIGNATION" Type="Self.CLASS_DESIGNATION" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="COURSE">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="CLASS_DESIGNATION">
+        <PropertyRef Name="CRS_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CRS_I_COUR_RANK_NI">
+    <End Role="COURSE" Type="Self.COURSE" Multiplicity="0..1" />
+    <End Role="RANKING_LEVEL" Type="Self.RANKING_LEVEL" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="COURSE">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="RANKING_LEVEL">
+        <PropertyRef Name="CRS_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="DE_IN_DESC_ASSE_NI">
+    <End Role="DESCRIPTIVE_INDICATOR" Type="Self.DESCRIPTIVE_INDICATOR" Multiplicity="0..1" />
+    <End Role="ASSESSMENT_SCORE" Type="Self.ASSESSMENT_SCORE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DESCRIPTIVE_INDICATOR">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ASSESSMENT_SCORE">
+        <PropertyRef Name="DE_IND_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="EMP_C_EMPL_EMPL_NI">
+    <End Role="EMPLOYEE_CATEGORY" Type="Self.EMPLOYEE_CATEGORY" Multiplicity="0..1" />
+    <End Role="EMPLOYEE" Type="Self.EMPLOYEE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EMPLOYEE_CATEGORY">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="EMPLOYEE">
+        <PropertyRef Name="EMP_CAT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="EMP_D_EMPL_EMPL_NI">
+    <End Role="EMPLOYEE_DEPARTMENT" Type="Self.EMPLOYEE_DEPARTMENT" Multiplicity="0..1" />
+    <End Role="EMPLOYEE" Type="Self.EMPLOYEE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EMPLOYEE_DEPARTMENT">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="EMPLOYEE">
+        <PropertyRef Name="EMP_DEPT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="EMP_D_EMPL_EMPL_NI2">
+    <End Role="EMPLOYEE_DEPARTMENT" Type="Self.EMPLOYEE_DEPARTMENT" Multiplicity="0..1" />
+    <End Role="EMPLOYEE_DEPARTMENT_EVENT" Type="Self.EMPLOYEE_DEPARTMENT_EVENT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EMPLOYEE_DEPARTMENT">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="EMPLOYEE_DEPARTMENT_EVENT">
+        <PropertyRef Name="EMP_DEPT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="EMP_G_EMPL_EMPL_NI">
+    <End Role="EMPLOYEE_GRADE" Type="Self.EMPLOYEE_GRADE" Multiplicity="0..1" />
+    <End Role="EMPLOYEE" Type="Self.EMPLOYEE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EMPLOYEE_GRADE">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="EMPLOYEE">
+        <PropertyRef Name="EMP_GRADE_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="EMP_I_EMPL_APPL_NI">
+    <End Role="EMPLOYEE" Type="Self.EMPLOYEE" Multiplicity="0..1" />
+    <End Role="APPLY_LEAVE" Type="Self.APPLY_LEAVE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EMPLOYEE">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="APPLY_LEAVE">
+        <PropertyRef Name="EMP_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="EMP_I_EMPL_EMPL_NI">
+    <End Role="EMPLOYEE" Type="Self.EMPLOYEE" Multiplicity="0..1" />
+    <End Role="EMPLOYEE_ADDITIONAL_DETAIL" Type="Self.EMPLOYEE_ADDITIONAL_DETAIL" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EMPLOYEE">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="EMPLOYEE_ADDITIONAL_DETAIL">
+        <PropertyRef Name="EMP_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="EMP_I_EMPL_EMPL_NI2">
+    <End Role="EMPLOYEE" Type="Self.EMPLOYEE" Multiplicity="0..1" />
+    <End Role="EMPLOYEE_ATTENDENCES" Type="Self.EMPLOYEE_ATTENDENCES" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EMPLOYEE">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="EMPLOYEE_ATTENDENCES">
+        <PropertyRef Name="EMP_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="EMP_I_EMPL_EMPL_NI3">
+    <End Role="EMPLOYEE" Type="Self.EMPLOYEE" Multiplicity="0..1" />
+    <End Role="EMPLOYEE_BANK_DETAIL" Type="Self.EMPLOYEE_BANK_DETAIL" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EMPLOYEE">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="EMPLOYEE_BANK_DETAIL">
+        <PropertyRef Name="EMP_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="EMP_I_EMPL_EMPL_NI4">
+    <End Role="EMPLOYEE" Type="Self.EMPLOYEE" Multiplicity="0..1" />
+    <End Role="EMPLOYEE_LEAVE" Type="Self.EMPLOYEE_LEAVE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EMPLOYEE">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="EMPLOYEE_LEAVE">
+        <PropertyRef Name="EMP_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="EMP_I_EMPL_EMPL_NI5">
+    <End Role="EMPLOYEE" Type="Self.EMPLOYEE" Multiplicity="0..1" />
+    <End Role="EMPLOYEE_SALARY_STRUCTURE" Type="Self.EMPLOYEE_SALARY_STRUCTURE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EMPLOYEE">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="EMPLOYEE_SALARY_STRUCTURE">
+        <PropertyRef Name="EMP_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="EMP_I_EMPL_EMPL_NI6">
+    <End Role="EMPLOYEE" Type="Self.EMPLOYEE" Multiplicity="0..1" />
+    <End Role="EMPLOYEES_SUBJECT" Type="Self.EMPLOYEES_SUBJECT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EMPLOYEE">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="EMPLOYEES_SUBJECT">
+        <PropertyRef Name="EMP_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="EMP_I_EMPL_INDI_NI">
+    <End Role="EMPLOYEE" Type="Self.EMPLOYEE" Multiplicity="0..1" />
+    <End Role="INDIVIDUAL_PAYSLIP_CATGEORY" Type="Self.INDIVIDUAL_PAYSLIP_CATGEORY" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EMPLOYEE">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="INDIVIDUAL_PAYSLIP_CATGEORY">
+        <PropertyRef Name="EMP_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="EMP_I_EMPL_MONT_NI">
+    <End Role="EMPLOYEE" Type="Self.EMPLOYEE" Multiplicity="0..1" />
+    <End Role="MONTHLY_PAYSLIP" Type="Self.MONTHLY_PAYSLIP" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EMPLOYEE">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="MONTHLY_PAYSLIP">
+        <PropertyRef Name="EMP_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="EMP_I_EMPL_SUBJ_NI">
+    <End Role="EMPLOYEE" Type="Self.EMPLOYEE" Multiplicity="0..1" />
+    <End Role="SUBJECT_LEAVE" Type="Self.SUBJECT_LEAVE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EMPLOYEE">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SUBJECT_LEAVE">
+        <PropertyRef Name="EMP_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="EMP_L_EMPL_APPL_NI">
+    <End Role="EMPLOYEE_LEAVE_TYPE" Type="Self.EMPLOYEE_LEAVE_TYPE" Multiplicity="0..1" />
+    <End Role="APPLY_LEAVE" Type="Self.APPLY_LEAVE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EMPLOYEE_LEAVE_TYPE">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="APPLY_LEAVE">
+        <PropertyRef Name="EMP_LEAVE_TYPES_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="EMP_L_EMPL_EMPL_NI">
+    <End Role="EMPLOYEE_LEAVE_TYPE" Type="Self.EMPLOYEE_LEAVE_TYPE" Multiplicity="0..1" />
+    <End Role="EMPLOYEE_ATTENDENCES" Type="Self.EMPLOYEE_ATTENDENCES" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EMPLOYEE_LEAVE_TYPE">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="EMPLOYEE_ATTENDENCES">
+        <PropertyRef Name="EMP_LEAVE_TYPE_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="EMP_L_EMPL_EMPL_NI2">
+    <End Role="EMPLOYEE_LEAVE_TYPE" Type="Self.EMPLOYEE_LEAVE_TYPE" Multiplicity="0..1" />
+    <End Role="EMPLOYEE_LEAVE" Type="Self.EMPLOYEE_LEAVE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EMPLOYEE_LEAVE_TYPE">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="EMPLOYEE_LEAVE">
+        <PropertyRef Name="EMP_LEAVE_TYPE_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="EMP_P_EMPL_EMPL_NI">
+    <End Role="EMPLOYEE_POSITION" Type="Self.EMPLOYEE_POSITION" Multiplicity="0..1" />
+    <End Role="EMPLOYEE" Type="Self.EMPLOYEE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EMPLOYEE_POSITION">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="EMPLOYEE">
+        <PropertyRef Name="EMP_POS_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="EV_ID_EVEN_EMPL_NI">
+    <End Role="EVENT" Type="Self.EVENT" Multiplicity="0..1" />
+    <End Role="EMPLOYEE_DEPARTMENT_EVENT" Type="Self.EMPLOYEE_DEPARTMENT_EVENT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EVENT">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="EMPLOYEE_DEPARTMENT_EVENT">
+        <PropertyRef Name="EV_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="EV_ID_EVEN_EXAM_NI">
+    <End Role="EVENT" Type="Self.EVENT" Multiplicity="0..1" />
+    <End Role="EXAM" Type="Self.EXAM" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EVENT">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="EXAM">
+        <PropertyRef Name="EV_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="EXAM__EXAM_ASSE_NI">
+    <End Role="EXAM" Type="Self.EXAM" Multiplicity="0..1" />
+    <End Role="ASSESSMENT_SCORE" Type="Self.ASSESSMENT_SCORE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EXAM">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ASSESSMENT_SCORE">
+        <PropertyRef Name="EXAM_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="EXAM__EXAM_CCE__NI">
+    <End Role="EXAM" Type="Self.EXAM" Multiplicity="0..1" />
+    <End Role="CCE_REPORTS" Type="Self.CCE_REPORTS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EXAM">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="CCE_REPORTS">
+        <PropertyRef Name="EXAM_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="EXAM__EXAM_EXAM_NI">
+    <End Role="EXAM_GROUP" Type="Self.EXAM_GROUP" Multiplicity="0..1" />
+    <End Role="EXAM" Type="Self.EXAM" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EXAM_GROUP">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="EXAM">
+        <PropertyRef Name="EXAM_GRP_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="EXAM__EXAM_EXAM_NI2">
+    <End Role="EXAM" Type="Self.EXAM" Multiplicity="0..1" />
+    <End Role="EXAM_SCORE" Type="Self.EXAM_SCORE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EXAM">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="EXAM_SCORE">
+        <PropertyRef Name="EXAM_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FA_GR_FA_G_FA_C_NI">
+    <End Role="FA_GROUP" Type="Self.FA_GROUP" Multiplicity="0..1" />
+    <End Role="FA_CRITERIAS" Type="Self.FA_CRITERIAS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FA_GROUP">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="FA_CRITERIAS">
+        <PropertyRef Name="FA_GRP_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FEE_C_FINA_FINA_NI">
+    <End Role="FINANCE_FEE_COLLECTION" Type="Self.FINANCE_FEE_COLLECTION" Multiplicity="0..1" />
+    <End Role="FINANCE_FEE" Type="Self.FINANCE_FEE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FINANCE_FEE_COLLECTION">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="FINANCE_FEE">
+        <PropertyRef Name="FEE_CLCT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FEE_C_FINA_FINA_NI3">
+    <End Role="FINANCE_FEE_CATGEORY" Type="Self.FINANCE_FEE_CATGEORY" Multiplicity="0..1" />
+    <End Role="FINANCE_FEE_COLLECTION" Type="Self.FINANCE_FEE_COLLECTION" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FINANCE_FEE_CATGEORY">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="FINANCE_FEE_COLLECTION">
+        <PropertyRef Name="FEE_CAT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FEE_C_FINA_FINA_NI4">
+    <End Role="FINANCE_FEE_COLLECTION" Type="Self.FINANCE_FEE_COLLECTION" Multiplicity="0..1" />
+    <End Role="FINANCE_FEE_STRUCTURE_ELEMENT" Type="Self.FINANCE_FEE_STRUCTURE_ELEMENT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FINANCE_FEE_COLLECTION">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="FINANCE_FEE_STRUCTURE_ELEMENT">
+        <PropertyRef Name="FEE_CLCT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FEE_F_FINA_FEE_NI3">
+    <End Role="FINANCE_FEE_CATGEORY" Type="Self.FINANCE_FEE_CATGEORY" Multiplicity="0..1" />
+    <End Role="FEE_FINE" Type="Self.FEE_FINE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FINANCE_FEE_CATGEORY">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="FEE_FINE">
+        <PropertyRef Name="FIN_FEE_CAT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FEE_RCVR_FEE__NI2">
+    <End Role="STUDENT" Type="Self.STUDENT" Multiplicity="0..1" />
+    <End Role="FEE_FINE" Type="Self.FEE_FINE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="STUDENT">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="FEE_FINE">
+        <PropertyRef Name="RCVR_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FIN_C_FINA_FINA_NI">
+    <End Role="FINANCE_FEE_CATGEORY" Type="Self.FINANCE_FEE_CATGEORY" Multiplicity="0..1" />
+    <End Role="FINANCE_TRANSACTION_TRIGGERS" Type="Self.FINANCE_TRANSACTION_TRIGGERS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FINANCE_FEE_CATGEORY">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="FINANCE_TRANSACTION_TRIGGERS">
+        <PropertyRef Name="FIN_CAT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FIN_F_FINA_FEE__NI">
+    <End Role="FINANCE_FEE_CATGEORY" Type="Self.FINANCE_FEE_CATGEORY" Multiplicity="0..1" />
+    <End Role="FEE_COLLECTION_DISCOUNT" Type="Self.FEE_COLLECTION_DISCOUNT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FINANCE_FEE_CATGEORY">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="FEE_COLLECTION_DISCOUNT">
+        <PropertyRef Name="FIN_FEE_CLCT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FIN_F_FINA_FEE__NI2">
+    <End Role="FINANCE_FEE_COLLECTION" Type="Self.FINANCE_FEE_COLLECTION" Multiplicity="0..1" />
+    <End Role="FEE_COLLECTION_PARTICULAR" Type="Self.FEE_COLLECTION_PARTICULAR" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FINANCE_FEE_COLLECTION">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="FEE_COLLECTION_PARTICULAR">
+        <PropertyRef Name="FIN_FEE_CLCT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FIN_F_FINA_FEE__NI3">
+    <End Role="FINANCE_FEE_CATGEORY" Type="Self.FINANCE_FEE_CATGEORY" Multiplicity="0..1" />
+    <End Role="FEE_DISCOUNT" Type="Self.FEE_DISCOUNT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FINANCE_FEE_CATGEORY">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="FEE_DISCOUNT">
+        <PropertyRef Name="FIN_FEE_CAT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FIN_F_FINA_FINA_NI">
+    <End Role="FINANCE_FEE_CATGEORY" Type="Self.FINANCE_FEE_CATGEORY" Multiplicity="0..1" />
+    <End Role="FINANCE_FEE_PARTICULAR" Type="Self.FINANCE_FEE_PARTICULAR" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FINANCE_FEE_CATGEORY">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="FINANCE_FEE_PARTICULAR">
+        <PropertyRef Name="FIN_FEE_CAT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FIN_F_FINA_FINA_NI5">
+    <End Role="FINANCE_FEE" Type="Self.FINANCE_FEE" Multiplicity="0..1" />
+    <End Role="FINANCE_TRANSACTION" Type="Self.FINANCE_TRANSACTION" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FINANCE_FEE">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="FINANCE_TRANSACTION">
+        <PropertyRef Name="FIN_FE_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FRM_I_STUD_ARCH_NI">
+    <End Role="STUDENT" Type="Self.STUDENT" Multiplicity="0..1" />
+    <End Role="ARCHIVED_STUDENT" Type="Self.ARCHIVED_STUDENT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="STUDENT">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ARCHIVED_STUDENT">
+        <PropertyRef Name="FRM_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="GRADI_GRAD_EXAM_NI">
+    <End Role="GRADING_LEVEL" Type="Self.GRADING_LEVEL" Multiplicity="0..1" />
+    <End Role="EXAM" Type="Self.EXAM" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GRADING_LEVEL">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="EXAM">
+        <PropertyRef Name="GRADING_LVL_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="GRADI_GRAD_EXAM_NI2">
+    <End Role="GRADING_LEVEL" Type="Self.GRADING_LEVEL" Multiplicity="0..1" />
+    <End Role="EXAM_SCORE" Type="Self.EXAM_SCORE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GRADING_LEVEL">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="EXAM_SCORE">
+        <PropertyRef Name="GRADING_LVL_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="HOME__COUN_EMPL_NI">
+    <End Role="COUNTRY" Type="Self.COUNTRY" Multiplicity="0..1" />
+    <End Role="EMPLOYEE" Type="Self.EMPLOYEE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="COUNTRY">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="EMPLOYEE">
+        <PropertyRef Name="HOME_CTRY_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="NEWS__NEWS_NEWS_NI">
+    <End Role="NEWS" Type="Self.NEWS" Multiplicity="0..1" />
+    <End Role="NEWS_COMMENTS" Type="Self.NEWS_COMMENTS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NEWS">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="NEWS_COMMENTS">
+        <PropertyRef Name="NEWS_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="NTLTY_COUN_ARCH_NI">
+    <End Role="COUNTRY" Type="Self.COUNTRY" Multiplicity="0..1" />
+    <End Role="ARCHIVED_STUDENT" Type="Self.ARCHIVED_STUDENT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="COUNTRY">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ARCHIVED_STUDENT">
+        <PropertyRef Name="NTLTY_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="NTLTY_COUN_EMPL_NI">
+    <End Role="COUNTRY" Type="Self.COUNTRY" Multiplicity="0..1" />
+    <End Role="EMPLOYEE" Type="Self.EMPLOYEE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="COUNTRY">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="EMPLOYEE">
+        <PropertyRef Name="NTLTY_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="NTLTY_COUN_STUD_NI">
+    <End Role="COUNTRY" Type="Self.COUNTRY" Multiplicity="0..1" />
+    <End Role="STUDENT" Type="Self.STUDENT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="COUNTRY">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="STUDENT">
+        <PropertyRef Name="NTLTY_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="OBSER_OBSE_CCE__NI">
+    <End Role="OBSERVATION" Type="Self.OBSERVATION" Multiplicity="0..1" />
+    <End Role="CCE_REPORTS" Type="Self.CCE_REPORTS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="OBSERVATION">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="CCE_REPORTS">
+        <PropertyRef Name="OBSERVABLE_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="OBSV__OBSE_OBSE_NI">
+    <End Role="OBSERVATION_GROUP" Type="Self.OBSERVATION_GROUP" Multiplicity="0..1" />
+    <End Role="OBSERVATION" Type="Self.OBSERVATION" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="OBSERVATION_GROUP">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="OBSERVATION">
+        <PropertyRef Name="OBSV_GRP_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="OFF_C_COUN_EMPL_NI">
+    <End Role="COUNTRY" Type="Self.COUNTRY" Multiplicity="0..1" />
+    <End Role="EMPLOYEE" Type="Self.EMPLOYEE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="COUNTRY">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="EMPLOYEE">
+        <PropertyRef Name="OFF_CTRY_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PARNT_USER_FINA_NI">
+    <End Role="USERS" Type="Self.USERS" Multiplicity="0..1" />
+    <End Role="FINANCE_FEE_STRUCTURE_ELEMENT" Type="Self.FINANCE_FEE_STRUCTURE_ELEMENT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USERS">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="FINANCE_FEE_STRUCTURE_ELEMENT">
+        <PropertyRef Name="PARNT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PYRL__PAYR_EMPL_NI">
+    <End Role="PAYROLL_CATEGORY" Type="Self.PAYROLL_CATEGORY" Multiplicity="0..1" />
+    <End Role="EMPLOYEE_SALARY_STRUCTURE" Type="Self.EMPLOYEE_SALARY_STRUCTURE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PAYROLL_CATEGORY">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="EMPLOYEE_SALARY_STRUCTURE">
+        <PropertyRef Name="PYRL_CAT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PYRL__PAYR_MONT_NI">
+    <End Role="PAYROLL_CATEGORY" Type="Self.PAYROLL_CATEGORY" Multiplicity="0..1" />
+    <End Role="MONTHLY_PAYSLIP" Type="Self.MONTHLY_PAYSLIP" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PAYROLL_CATEGORY">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="MONTHLY_PAYSLIP">
+        <PropertyRef Name="PYRL_CAT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="RCVR__STUD_FEE__NI">
+    <End Role="STUDENT" Type="Self.STUDENT" Multiplicity="0..1" />
+    <End Role="FEE_COLLECTION_DISCOUNT" Type="Self.FEE_COLLECTION_DISCOUNT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="STUDENT">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="FEE_COLLECTION_DISCOUNT">
+        <PropertyRef Name="RCVR_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="RCVR__STUD_FEE__NI2">
+    <End Role="STUDENT" Type="Self.STUDENT" Multiplicity="0..1" />
+    <End Role="FEE_DISCOUNT" Type="Self.FEE_DISCOUNT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="STUDENT">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="FEE_DISCOUNT">
+        <PropertyRef Name="RCVR_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="RPTG__EMPL_EMPL_NI">
+    <End Role="EMPLOYEE" Type="Self.EMPLOYEE" Multiplicity="0..1" />
+    <End Role="EMPLOYEE1" Type="Self.EMPLOYEE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EMPLOYEE">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="EMPLOYEE1">
+        <PropertyRef Name="RPTG_MGR_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="SMS_M_SMS__SMS__NI">
+    <End Role="SMS_MESSAGE" Type="Self.SMS_MESSAGE" Multiplicity="0..1" />
+    <End Role="SMS_LOG" Type="Self.SMS_LOG" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SMS_MESSAGE">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SMS_LOG">
+        <PropertyRef Name="SMS_MSG_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="SSTDN_STUD_ASSE_NI">
+    <End Role="STUDENT" Type="Self.STUDENT" Multiplicity="0..1" />
+    <End Role="ASSESSMENT_SCORE" Type="Self.ASSESSMENT_SCORE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="STUDENT">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ASSESSMENT_SCORE">
+        <PropertyRef Name="SSTDNT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="STCAT_STPROD_ASSE_NI">
+    <End Role="STORE_CATEGORY" Type="Self.STORE_CATEGORY" Multiplicity="0..1" />
+    <End Role="STORE_PRODUCTS" Type="Self.STORE_PRODUCTS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="STORE_CATEGORY">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="STORE_PRODUCTS">
+        <PropertyRef Name="CATEGORY_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="STDNT_STUD_ARCH_NI">
+    <End Role="STUDENT_CATGEORY" Type="Self.STUDENT_CATGEORY" Multiplicity="0..1" />
+    <End Role="ARCHIVED_STUDENT" Type="Self.ARCHIVED_STUDENT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="STUDENT_CATGEORY">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ARCHIVED_STUDENT">
+        <PropertyRef Name="STDNT_CAT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="STDNT_STUD_ATTE_NI">
+    <End Role="STUDENT" Type="Self.STUDENT" Multiplicity="0..1" />
+    <End Role="ATTENDENCE" Type="Self.ATTENDENCE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="STUDENT">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ATTENDENCE">
+        <PropertyRef Name="STDNT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="STDNT_STUD_CCE__NI">
+    <End Role="STUDENT" Type="Self.STUDENT" Multiplicity="0..1" />
+    <End Role="CCE_REPORTS" Type="Self.CCE_REPORTS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="STUDENT">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="CCE_REPORTS">
+        <PropertyRef Name="STDNT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="STDNT_STUD_EXAM_NI">
+    <End Role="STUDENT" Type="Self.STUDENT" Multiplicity="0..1" />
+    <End Role="EXAM_SCORE" Type="Self.EXAM_SCORE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="STUDENT">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="EXAM_SCORE">
+        <PropertyRef Name="STDNT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="STDNT_STUD_FEE__NI">
+    <End Role="STUDENT_CATGEORY" Type="Self.STUDENT_CATGEORY" Multiplicity="0..1" />
+    <End Role="FEE_COLLECTION_PARTICULAR" Type="Self.FEE_COLLECTION_PARTICULAR" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="STUDENT_CATGEORY">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="FEE_COLLECTION_PARTICULAR">
+        <PropertyRef Name="STDNT_CAT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="STDNT_STUD_FEE__NI2">
+    <End Role="STUDENT" Type="Self.STUDENT" Multiplicity="0..1" />
+    <End Role="FEE_COLLECTION_PARTICULAR" Type="Self.FEE_COLLECTION_PARTICULAR" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="STUDENT">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="FEE_COLLECTION_PARTICULAR">
+        <PropertyRef Name="STDNT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="STDNT_STUD_FINA_NI">
+    <End Role="STUDENT" Type="Self.STUDENT" Multiplicity="0..1" />
+    <End Role="FINANCE_FEE" Type="Self.FINANCE_FEE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="STUDENT">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="FINANCE_FEE">
+        <PropertyRef Name="STDNT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="STDNT_STUD_FINA_NI3">
+    <End Role="STUDENT_CATGEORY" Type="Self.STUDENT_CATGEORY" Multiplicity="0..1" />
+    <End Role="FINANCE_FEE_PARTICULAR" Type="Self.FINANCE_FEE_PARTICULAR" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="STUDENT_CATGEORY">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="FINANCE_FEE_PARTICULAR">
+        <PropertyRef Name="STDNT_CAT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="STDNT_STUD_FINA_NI4">
+    <End Role="STUDENT" Type="Self.STUDENT" Multiplicity="0..1" />
+    <End Role="FINANCE_FEE_PARTICULAR" Type="Self.FINANCE_FEE_PARTICULAR" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="STUDENT">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="FINANCE_FEE_PARTICULAR">
+        <PropertyRef Name="STDNT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="STDNT_STUD_FINA_NI5">
+    <End Role="STUDENT_CATGEORY" Type="Self.STUDENT_CATGEORY" Multiplicity="0..1" />
+    <End Role="FINANCE_FEE_STRUCTURE_ELEMENT" Type="Self.FINANCE_FEE_STRUCTURE_ELEMENT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="STUDENT_CATGEORY">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="FINANCE_FEE_STRUCTURE_ELEMENT">
+        <PropertyRef Name="STDNT_CAT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="STDNT_STUD_FINA_NI6">
+    <End Role="STUDENT" Type="Self.STUDENT" Multiplicity="0..1" />
+    <End Role="FINANCE_FEE_STRUCTURE_ELEMENT" Type="Self.FINANCE_FEE_STRUCTURE_ELEMENT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="STUDENT">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="FINANCE_FEE_STRUCTURE_ELEMENT">
+        <PropertyRef Name="STDNT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="STDNT_STUD_FINA_NI7">
+    <End Role="STUDENT" Type="Self.STUDENT" Multiplicity="0..1" />
+    <End Role="FINANCE_TRANSACTION" Type="Self.FINANCE_TRANSACTION" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="STUDENT">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="FINANCE_TRANSACTION">
+        <PropertyRef Name="STDNT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="STDNT_STUD_STUD_NI">
+    <End Role="STUDENT_CATGEORY" Type="Self.STUDENT_CATGEORY" Multiplicity="0..1" />
+    <End Role="STUDENT" Type="Self.STUDENT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="STUDENT_CATGEORY">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="STUDENT">
+        <PropertyRef Name="STDNT_CAT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="STDNT_STUD_STUD_NI2">
+    <End Role="STUDENT" Type="Self.STUDENT" Multiplicity="1" />
+    <End Role="STUDENT_ADDITIONAL_DETAIL" Type="Self.STUDENT_ADDITIONAL_DETAIL" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="STUDENT">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="STUDENT_ADDITIONAL_DETAIL">
+        <PropertyRef Name="STDNT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="STDNT_STUD_STUD_NI3">
+    <End Role="STUDENT" Type="Self.STUDENT" Multiplicity="0..1" />
+    <End Role="STUDENT_PREVIOUS_DATA" Type="Self.STUDENT_PREVIOUS_DATA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="STUDENT">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="STUDENT_PREVIOUS_DATA">
+        <PropertyRef Name="STDNT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="STDNT_STUD_STUD_NI4">
+    <End Role="STUDENT" Type="Self.STUDENT" Multiplicity="0..1" />
+    <End Role="STUDENT_PREVIOUS_SUBJECT_MARK" Type="Self.STUDENT_PREVIOUS_SUBJECT_MARK" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="STUDENT">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="STUDENT_PREVIOUS_SUBJECT_MARK">
+        <PropertyRef Name="STDNT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="STDNT_STUD_STUD_NI5">
+    <End Role="STUDENT" Type="Self.STUDENT" Multiplicity="0..1" />
+    <End Role="STUDENT_SUBJECT" Type="Self.STUDENT_SUBJECT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="STUDENT">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="STUDENT_SUBJECT">
+        <PropertyRef Name="STDNT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="STDNT_STUD_SUBJ_NI">
+    <End Role="STUDENT" Type="Self.STUDENT" Multiplicity="0..1" />
+    <End Role="SUBJECT_LEAVE" Type="Self.SUBJECT_LEAVE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="STUDENT">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SUBJECT_LEAVE">
+        <PropertyRef Name="STDNT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="STPROD_STPUR_ASSE_NI">
+    <End Role="STORE_PRODUCTS" Type="Self.STORE_PRODUCTS" Multiplicity="1" />
+    <End Role="STORE_PURCHAGE" Type="Self.STORE_PURCHAGE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="STORE_PRODUCTS">
+        <PropertyRef Name="PRODUCT_ID" />
+      </Principal>
+      <Dependent Role="STORE_PURCHAGE">
+        <PropertyRef Name="PRODUCT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="STPROD_STPURCART_ASSE_NI">
+    <End Role="STORE_PRODUCTS" Type="Self.STORE_PRODUCTS" Multiplicity="1" />
+    <End Role="STORE_PURCHAGE_CART" Type="Self.STORE_PURCHAGE_CART" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="STORE_PRODUCTS">
+        <PropertyRef Name="PRODUCT_ID" />
+      </Principal>
+      <Dependent Role="STORE_PURCHAGE_CART">
+        <PropertyRef Name="PRODUCT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="SUBJ__SUBJ_EMPL_NI">
+    <End Role="SUBJECT" Type="Self.SUBJECT" Multiplicity="0..1" />
+    <End Role="EMPLOYEES_SUBJECT" Type="Self.EMPLOYEES_SUBJECT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SUBJECT">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="EMPLOYEES_SUBJECT">
+        <PropertyRef Name="SUBJ_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="SUBJ__SUBJ_EXAM_NI">
+    <End Role="SUBJECT" Type="Self.SUBJECT" Multiplicity="0..1" />
+    <End Role="EXAM" Type="Self.EXAM" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SUBJECT">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="EXAM">
+        <PropertyRef Name="SUBJ_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="SUBJ__SUBJ_STUD_NI">
+    <End Role="SUBJECT" Type="Self.SUBJECT" Multiplicity="0..1" />
+    <End Role="STUDENT_PREVIOUS_SUBJECT_MARK" Type="Self.STUDENT_PREVIOUS_SUBJECT_MARK" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SUBJECT">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="STUDENT_PREVIOUS_SUBJECT_MARK">
+        <PropertyRef Name="SUBJ_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="SUBJ__SUBJ_STUD_NI2">
+    <End Role="SUBJECT" Type="Self.SUBJECT" Multiplicity="0..1" />
+    <End Role="STUDENT_SUBJECT" Type="Self.STUDENT_SUBJECT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SUBJECT">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="STUDENT_SUBJECT">
+        <PropertyRef Name="SUBJ_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="SUBJ__SUBJ_SUBJ_NI">
+    <End Role="SUBJECT" Type="Self.SUBJECT" Multiplicity="0..1" />
+    <End Role="SUBJECT_LEAVE" Type="Self.SUBJECT_LEAVE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SUBJECT">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SUBJECT_LEAVE">
+        <PropertyRef Name="SUBJ_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="TRAN__FINA_FINA_NI">
+    <End Role="FINANCE_TRANSACTION" Type="Self.FINANCE_TRANSACTION" Multiplicity="0..1" />
+    <End Role="FINANCE_DONATION" Type="Self.FINANCE_DONATION" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FINANCE_TRANSACTION">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="FINANCE_DONATION">
+        <PropertyRef Name="TRAN_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="USRID_USER_EMPL_NI">
+    <End Role="USERS" Type="Self.USERS" Multiplicity="0..1" />
+    <End Role="EMPLOYEE" Type="Self.EMPLOYEE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USERS">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="EMPLOYEE">
+        <PropertyRef Name="USRID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="USRID_USER_GUAR_NI">
+    <End Role="USERS" Type="Self.USERS" Multiplicity="0..1" />
+    <End Role="GUARDIAN" Type="Self.GUARDIAN" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USERS">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="GUARDIAN">
+        <PropertyRef Name="USRID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="USRID_USER_STUD_NI">
+    <End Role="USERS" Type="Self.USERS" Multiplicity="1" />
+    <End Role="STUDENT" Type="Self.STUDENT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USERS">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="STUDENT">
+        <PropertyRef Name="USRID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="USRS__USER_USER_ID">
+    <End Role="USERS" Type="Self.USERS" Multiplicity="1" />
+    <End Role="USERS_ACCESS" Type="Self.USERS_ACCESS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USERS">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="USERS_ACCESS">
+        <PropertyRef Name="USRS_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="WARD__STUD_GUAR_NI">
+    <End Role="STUDENT" Type="Self.STUDENT" Multiplicity="0..1" />
+    <End Role="GUARDIAN" Type="Self.GUARDIAN" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="STUDENT">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="GUARDIAN">
+        <PropertyRef Name="WARD_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="WK_DA_WEEK_TIME_NI">
+    <End Role="WEEKDAY" Type="Self.WEEKDAY" Multiplicity="0..1" />
+    <End Role="TIMETABLE_ENTRY" Type="Self.TIMETABLE_ENTRY" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="WEEKDAY">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="TIMETABLE_ENTRY">
+        <PropertyRef Name="WK_DAY_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="SFSAcademyModelStoreContainer">
+    <EntitySet Name="APPLY_LEAVE" EntityType="Self.APPLY_LEAVE" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ARCHIVED_STUDENT" EntityType="Self.ARCHIVED_STUDENT" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ASSESSMENT_SCORE" EntityType="Self.ASSESSMENT_SCORE" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ASSET" EntityType="Self.ASSET" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ATTENDENCE" EntityType="Self.ATTENDENCE" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BANK_FIELD" EntityType="Self.BANK_FIELD" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BATCH" EntityType="Self.BATCH" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CCE_EXAM_CATEGORY" EntityType="Self.CCE_EXAM_CATEGORY" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CCE_GRADE" EntityType="Self.CCE_GRADE" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CCE_GRADE_SET" EntityType="Self.CCE_GRADE_SET" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CCE_REPORTS" EntityType="Self.CCE_REPORTS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CCE_WEIGHTAGE" EntityType="Self.CCE_WEIGHTAGE" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CLASS_DESIGNATION" EntityType="Self.CLASS_DESIGNATION" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CLASS_TIMING" EntityType="Self.CLASS_TIMING" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CONFIGURATION" EntityType="Self.CONFIGURATION" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="COUNTRY" EntityType="Self.COUNTRY" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="COURSE" EntityType="Self.COURSE" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DESCRIPTIVE_INDICATOR" EntityType="Self.DESCRIPTIVE_INDICATOR" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ELECTIVE_GROUP" EntityType="Self.ELECTIVE_GROUP" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EMPLOYEE" EntityType="Self.EMPLOYEE" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EMPLOYEE_ADDITIONAL_DETAIL" EntityType="Self.EMPLOYEE_ADDITIONAL_DETAIL" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EMPLOYEE_ATTENDENCES" EntityType="Self.EMPLOYEE_ATTENDENCES" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EMPLOYEE_BANK_DETAIL" EntityType="Self.EMPLOYEE_BANK_DETAIL" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EMPLOYEE_CATEGORY" EntityType="Self.EMPLOYEE_CATEGORY" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EMPLOYEE_DEPARTMENT" EntityType="Self.EMPLOYEE_DEPARTMENT" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EMPLOYEE_DEPARTMENT_EVENT" EntityType="Self.EMPLOYEE_DEPARTMENT_EVENT" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EMPLOYEE_GRADE" EntityType="Self.EMPLOYEE_GRADE" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EMPLOYEE_LEAVE" EntityType="Self.EMPLOYEE_LEAVE" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EMPLOYEE_LEAVE_TYPE" EntityType="Self.EMPLOYEE_LEAVE_TYPE" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EMPLOYEE_POSITION" EntityType="Self.EMPLOYEE_POSITION" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EMPLOYEE_SALARY_STRUCTURE" EntityType="Self.EMPLOYEE_SALARY_STRUCTURE" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EMPLOYEES_SUBJECT" EntityType="Self.EMPLOYEES_SUBJECT" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EVENT" EntityType="Self.EVENT" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EXAM" EntityType="Self.EXAM" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EXAM_GROUP" EntityType="Self.EXAM_GROUP" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EXAM_SCORE" EntityType="Self.EXAM_SCORE" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="FA_CRITERIAS" EntityType="Self.FA_CRITERIAS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="FA_GROUP" EntityType="Self.FA_GROUP" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="FEE_COLLECTION_DISCOUNT" EntityType="Self.FEE_COLLECTION_DISCOUNT" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="FEE_COLLECTION_PARTICULAR" EntityType="Self.FEE_COLLECTION_PARTICULAR" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="FEE_DISCOUNT" EntityType="Self.FEE_DISCOUNT" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="FEE_FINE" EntityType="Self.FEE_FINE" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="FINANCE_DONATION" EntityType="Self.FINANCE_DONATION" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="FINANCE_FEE" EntityType="Self.FINANCE_FEE" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="FINANCE_FEE_CATGEORY" EntityType="Self.FINANCE_FEE_CATGEORY" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="FINANCE_FEE_COLLECTION" EntityType="Self.FINANCE_FEE_COLLECTION" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="FINANCE_FEE_PARTICULAR" EntityType="Self.FINANCE_FEE_PARTICULAR" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="FINANCE_FEE_STRUCTURE_ELEMENT" EntityType="Self.FINANCE_FEE_STRUCTURE_ELEMENT" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="FINANCE_TRANSACTION" EntityType="Self.FINANCE_TRANSACTION" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="FINANCE_TRANSACTION_CATEGORY" EntityType="Self.FINANCE_TRANSACTION_CATEGORY" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="FINANCE_TRANSACTION_TRIGGERS" EntityType="Self.FINANCE_TRANSACTION_TRIGGERS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GRADING_LEVEL" EntityType="Self.GRADING_LEVEL" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GUARDIAN" EntityType="Self.GUARDIAN" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="IMAGE_DOCUMENTS" EntityType="Self.IMAGE_DOCUMENTS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="INDIVIDUAL_PAYSLIP_CATGEORY" EntityType="Self.INDIVIDUAL_PAYSLIP_CATGEORY" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LIABILITY" EntityType="Self.LIABILITY" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MONTHLY_PAYSLIP" EntityType="Self.MONTHLY_PAYSLIP" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="NEWS" EntityType="Self.NEWS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="NEWS_COMMENTS" EntityType="Self.NEWS_COMMENTS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="OBSERVATION" EntityType="Self.OBSERVATION" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="OBSERVATION_GROUP" EntityType="Self.OBSERVATION_GROUP" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PAYROLL_CATEGORY" EntityType="Self.PAYROLL_CATEGORY" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RANKING_LEVEL" EntityType="Self.RANKING_LEVEL" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SMS_LOG" EntityType="Self.SMS_LOG" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SMS_MESSAGE" EntityType="Self.SMS_MESSAGE" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SMS_SETTING" EntityType="Self.SMS_SETTING" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="STORE_CATEGORY" EntityType="Self.STORE_CATEGORY" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="STORE_PRODUCTS" EntityType="Self.STORE_PRODUCTS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="STORE_PURCHAGE" EntityType="Self.STORE_PURCHAGE" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="STORE_PURCHAGE_CART" EntityType="Self.STORE_PURCHAGE_CART" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="STUDENT" EntityType="Self.STUDENT" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="STUDENT_ADDITIONAL_DETAIL" EntityType="Self.STUDENT_ADDITIONAL_DETAIL" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="STUDENT_ADDITIONAL_FIELD" EntityType="Self.STUDENT_ADDITIONAL_FIELD" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="STUDENT_CATGEORY" EntityType="Self.STUDENT_CATGEORY" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="STUDENT_PREVIOUS_DATA" EntityType="Self.STUDENT_PREVIOUS_DATA" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="STUDENT_PREVIOUS_SUBJECT_MARK" EntityType="Self.STUDENT_PREVIOUS_SUBJECT_MARK" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="STUDENT_SUBJECT" EntityType="Self.STUDENT_SUBJECT" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SUBJECT" EntityType="Self.SUBJECT" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SUBJECT_LEAVE" EntityType="Self.SUBJECT_LEAVE" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TIMETABLE" EntityType="Self.TIMETABLE" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TIMETABLE_ENTRY" EntityType="Self.TIMETABLE_ENTRY" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="USERS" EntityType="Self.USERS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="USERS_ACCESS" EntityType="Self.USERS_ACCESS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="WEEKDAY" EntityType="Self.WEEKDAY" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="ADDL__STUD_EMPL_NI" Association="Self.ADDL__STUD_EMPL_NI">
+      <End Role="STUDENT_ADDITIONAL_FIELD" EntitySet="STUDENT_ADDITIONAL_FIELD" />
+      <End Role="EMPLOYEE_ADDITIONAL_DETAIL" EntitySet="EMPLOYEE_ADDITIONAL_DETAIL" />
+    </AssociationSet>
+    <AssociationSet Name="ADDL__STUD_STUD_NI" Association="Self.ADDL__STUD_STUD_NI">
+      <End Role="STUDENT_ADDITIONAL_FIELD" EntitySet="STUDENT_ADDITIONAL_FIELD" />
+      <End Role="STUDENT_ADDITIONAL_DETAIL" EntitySet="STUDENT_ADDITIONAL_DETAIL" />
+    </AssociationSet>
+    <AssociationSet Name="APRV__EMPL_MONT_NI" Association="Self.APRV__EMPL_MONT_NI">
+      <End Role="EMPLOYEE" EntitySet="EMPLOYEE" />
+      <End Role="MONTHLY_PAYSLIP" EntitySet="MONTHLY_PAYSLIP" />
+    </AssociationSet>
+    <AssociationSet Name="AUTH__EMPL_NEWS_NI" Association="Self.AUTH__EMPL_NEWS_NI">
+      <End Role="EMPLOYEE" EntitySet="EMPLOYEE" />
+      <End Role="NEWS" EntitySet="NEWS" />
+    </AssociationSet>
+    <AssociationSet Name="AUTH__EMPL_NEWS_NI2" Association="Self.AUTH__EMPL_NEWS_NI2">
+      <End Role="EMPLOYEE" EntitySet="EMPLOYEE" />
+      <End Role="NEWS_COMMENTS" EntitySet="NEWS_COMMENTS" />
+    </AssociationSet>
+    <AssociationSet Name="BTCH__BATC_ASSE_NI" Association="Self.BTCH__BATC_ASSE_NI">
+      <End Role="BATCH" EntitySet="BATCH" />
+      <End Role="ASSESSMENT_SCORE" EntitySet="ASSESSMENT_SCORE" />
+    </AssociationSet>
+    <AssociationSet Name="BTCH__BATC_ATTE_NI" Association="Self.BTCH__BATC_ATTE_NI">
+      <End Role="BATCH" EntitySet="BATCH" />
+      <End Role="ATTENDENCE" EntitySet="ATTENDENCE" />
+    </AssociationSet>
+    <AssociationSet Name="BTCH__BATC_CCE__NI" Association="Self.BTCH__BATC_CCE__NI">
+      <End Role="BATCH" EntitySet="BATCH" />
+      <End Role="CCE_REPORTS" EntitySet="CCE_REPORTS" />
+    </AssociationSet>
+    <AssociationSet Name="BTCH__BATC_CLAS_NI" Association="Self.BTCH__BATC_CLAS_NI">
+      <End Role="BATCH" EntitySet="BATCH" />
+      <End Role="CLASS_TIMING" EntitySet="CLASS_TIMING" />
+    </AssociationSet>
+    <AssociationSet Name="BTCH__BATC_EXAM_NI" Association="Self.BTCH__BATC_EXAM_NI">
+      <End Role="BATCH" EntitySet="BATCH" />
+      <End Role="EXAM_GROUP" EntitySet="EXAM_GROUP" />
+    </AssociationSet>
+    <AssociationSet Name="BTCH__BATC_FINA_NI" Association="Self.BTCH__BATC_FINA_NI">
+      <End Role="BATCH" EntitySet="BATCH" />
+      <End Role="FINANCE_FEE_CATGEORY" EntitySet="FINANCE_FEE_CATGEORY" />
+    </AssociationSet>
+    <AssociationSet Name="BTCH__BATC_FINA_NI2" Association="Self.BTCH__BATC_FINA_NI2">
+      <End Role="BATCH" EntitySet="BATCH" />
+      <End Role="FINANCE_FEE_COLLECTION" EntitySet="FINANCE_FEE_COLLECTION" />
+    </AssociationSet>
+    <AssociationSet Name="BTCH__BATC_FINA_NI3" Association="Self.BTCH__BATC_FINA_NI3">
+      <End Role="BATCH" EntitySet="BATCH" />
+      <End Role="FINANCE_FEE_STRUCTURE_ELEMENT" EntitySet="FINANCE_FEE_STRUCTURE_ELEMENT" />
+    </AssociationSet>
+    <AssociationSet Name="BTCH__BATC_GRAD_NI" Association="Self.BTCH__BATC_GRAD_NI">
+      <End Role="BATCH" EntitySet="BATCH" />
+      <End Role="GRADING_LEVEL" EntitySet="GRADING_LEVEL" />
+    </AssociationSet>
+    <AssociationSet Name="BTCH__BATC_STUD_NI" Association="Self.BTCH__BATC_STUD_NI">
+      <End Role="BATCH" EntitySet="BATCH" />
+      <End Role="STUDENT_SUBJECT" EntitySet="STUDENT_SUBJECT" />
+    </AssociationSet>
+    <AssociationSet Name="BTCH__BATC_SUBJ_NI" Association="Self.BTCH__BATC_SUBJ_NI">
+      <End Role="BATCH" EntitySet="BATCH" />
+      <End Role="SUBJECT" EntitySet="SUBJECT" />
+    </AssociationSet>
+    <AssociationSet Name="BTCH__BATC_SUBJ_NI2" Association="Self.BTCH__BATC_SUBJ_NI2">
+      <End Role="BATCH" EntitySet="BATCH" />
+      <End Role="SUBJECT_LEAVE" EntitySet="SUBJECT_LEAVE" />
+    </AssociationSet>
+    <AssociationSet Name="BTCH__BATC_TIME_NI" Association="Self.BTCH__BATC_TIME_NI">
+      <End Role="BATCH" EntitySet="BATCH" />
+      <End Role="TIMETABLE_ENTRY" EntitySet="TIMETABLE_ENTRY" />
+    </AssociationSet>
+    <AssociationSet Name="BTCH__BATC_WEEK_NI" Association="Self.BTCH__BATC_WEEK_NI">
+      <End Role="BATCH" EntitySet="BATCH" />
+      <End Role="WEEKDAY" EntitySet="WEEKDAY" />
+    </AssociationSet>
+    <AssociationSet Name="CAT_I_FINA_FINA_NI" Association="Self.CAT_I_FINA_FINA_NI">
+      <End Role="FINANCE_TRANSACTION_CATEGORY" EntitySet="FINANCE_TRANSACTION_CATEGORY" />
+      <End Role="FINANCE_TRANSACTION" EntitySet="FINANCE_TRANSACTION" />
+    </AssociationSet>
+    <AssociationSet Name="CCE_E_CCE__CCE__NI" Association="Self.CCE_E_CCE__CCE__NI">
+      <End Role="CCE_EXAM_CATEGORY" EntitySet="CCE_EXAM_CATEGORY" />
+      <End Role="CCE_WEIGHTAGE" EntitySet="CCE_WEIGHTAGE" />
+    </AssociationSet>
+    <AssociationSet Name="CCE_E_CCE__EXAM_NI" Association="Self.CCE_E_CCE__EXAM_NI">
+      <End Role="CCE_EXAM_CATEGORY" EntitySet="CCE_EXAM_CATEGORY" />
+      <End Role="EXAM_GROUP" EntitySet="EXAM_GROUP" />
+    </AssociationSet>
+    <AssociationSet Name="CCE_E_CCE__FA_G_NI" Association="Self.CCE_E_CCE__FA_G_NI">
+      <End Role="CCE_EXAM_CATEGORY" EntitySet="CCE_EXAM_CATEGORY" />
+      <End Role="FA_GROUP" EntitySet="FA_GROUP" />
+    </AssociationSet>
+    <AssociationSet Name="CCE_G_CCE__CCE__NI" Association="Self.CCE_G_CCE__CCE__NI">
+      <End Role="CCE_GRADE_SET" EntitySet="CCE_GRADE_SET" />
+      <End Role="CCE_GRADE" EntitySet="CCE_GRADE" />
+    </AssociationSet>
+    <AssociationSet Name="CCE_G_CCE__FA_G_NI" Association="Self.CCE_G_CCE__FA_G_NI">
+      <End Role="CCE_GRADE_SET" EntitySet="CCE_GRADE_SET" />
+      <End Role="FA_GROUP" EntitySet="FA_GROUP" />
+    </AssociationSet>
+    <AssociationSet Name="CCE_G_CCE__OBSE_NI" Association="Self.CCE_G_CCE__OBSE_NI">
+      <End Role="CCE_GRADE_SET" EntitySet="CCE_GRADE_SET" />
+      <End Role="OBSERVATION_GROUP" EntitySet="OBSERVATION_GROUP" />
+    </AssociationSet>
+    <AssociationSet Name="CLS_T_CLAS_SUBJ_NI" Association="Self.CLS_T_CLAS_SUBJ_NI">
+      <End Role="CLASS_TIMING" EntitySet="CLASS_TIMING" />
+      <End Role="SUBJECT_LEAVE" EntitySet="SUBJECT_LEAVE" />
+    </AssociationSet>
+    <AssociationSet Name="CRS_I_COUR_BATC_NI" Association="Self.CRS_I_COUR_BATC_NI">
+      <End Role="COURSE" EntitySet="COURSE" />
+      <End Role="BATCH" EntitySet="BATCH" />
+    </AssociationSet>
+    <AssociationSet Name="CRS_I_COUR_CLAS_NI" Association="Self.CRS_I_COUR_CLAS_NI">
+      <End Role="COURSE" EntitySet="COURSE" />
+      <End Role="CLASS_DESIGNATION" EntitySet="CLASS_DESIGNATION" />
+    </AssociationSet>
+    <AssociationSet Name="CRS_I_COUR_RANK_NI" Association="Self.CRS_I_COUR_RANK_NI">
+      <End Role="COURSE" EntitySet="COURSE" />
+      <End Role="RANKING_LEVEL" EntitySet="RANKING_LEVEL" />
+    </AssociationSet>
+    <AssociationSet Name="DE_IN_DESC_ASSE_NI" Association="Self.DE_IN_DESC_ASSE_NI">
+      <End Role="DESCRIPTIVE_INDICATOR" EntitySet="DESCRIPTIVE_INDICATOR" />
+      <End Role="ASSESSMENT_SCORE" EntitySet="ASSESSMENT_SCORE" />
+    </AssociationSet>
+    <AssociationSet Name="EMP_C_EMPL_EMPL_NI" Association="Self.EMP_C_EMPL_EMPL_NI">
+      <End Role="EMPLOYEE_CATEGORY" EntitySet="EMPLOYEE_CATEGORY" />
+      <End Role="EMPLOYEE" EntitySet="EMPLOYEE" />
+    </AssociationSet>
+    <AssociationSet Name="EMP_D_EMPL_EMPL_NI" Association="Self.EMP_D_EMPL_EMPL_NI">
+      <End Role="EMPLOYEE_DEPARTMENT" EntitySet="EMPLOYEE_DEPARTMENT" />
+      <End Role="EMPLOYEE" EntitySet="EMPLOYEE" />
+    </AssociationSet>
+    <AssociationSet Name="EMP_D_EMPL_EMPL_NI2" Association="Self.EMP_D_EMPL_EMPL_NI2">
+      <End Role="EMPLOYEE_DEPARTMENT" EntitySet="EMPLOYEE_DEPARTMENT" />
+      <End Role="EMPLOYEE_DEPARTMENT_EVENT" EntitySet="EMPLOYEE_DEPARTMENT_EVENT" />
+    </AssociationSet>
+    <AssociationSet Name="EMP_G_EMPL_EMPL_NI" Association="Self.EMP_G_EMPL_EMPL_NI">
+      <End Role="EMPLOYEE_GRADE" EntitySet="EMPLOYEE_GRADE" />
+      <End Role="EMPLOYEE" EntitySet="EMPLOYEE" />
+    </AssociationSet>
+    <AssociationSet Name="EMP_I_EMPL_APPL_NI" Association="Self.EMP_I_EMPL_APPL_NI">
+      <End Role="EMPLOYEE" EntitySet="EMPLOYEE" />
+      <End Role="APPLY_LEAVE" EntitySet="APPLY_LEAVE" />
+    </AssociationSet>
+    <AssociationSet Name="EMP_I_EMPL_EMPL_NI" Association="Self.EMP_I_EMPL_EMPL_NI">
+      <End Role="EMPLOYEE" EntitySet="EMPLOYEE" />
+      <End Role="EMPLOYEE_ADDITIONAL_DETAIL" EntitySet="EMPLOYEE_ADDITIONAL_DETAIL" />
+    </AssociationSet>
+    <AssociationSet Name="EMP_I_EMPL_EMPL_NI2" Association="Self.EMP_I_EMPL_EMPL_NI2">
+      <End Role="EMPLOYEE" EntitySet="EMPLOYEE" />
+      <End Role="EMPLOYEE_ATTENDENCES" EntitySet="EMPLOYEE_ATTENDENCES" />
+    </AssociationSet>
+    <AssociationSet Name="EMP_I_EMPL_EMPL_NI3" Association="Self.EMP_I_EMPL_EMPL_NI3">
+      <End Role="EMPLOYEE" EntitySet="EMPLOYEE" />
+      <End Role="EMPLOYEE_BANK_DETAIL" EntitySet="EMPLOYEE_BANK_DETAIL" />
+    </AssociationSet>
+    <AssociationSet Name="EMP_I_EMPL_EMPL_NI4" Association="Self.EMP_I_EMPL_EMPL_NI4">
+      <End Role="EMPLOYEE" EntitySet="EMPLOYEE" />
+      <End Role="EMPLOYEE_LEAVE" EntitySet="EMPLOYEE_LEAVE" />
+    </AssociationSet>
+    <AssociationSet Name="EMP_I_EMPL_EMPL_NI5" Association="Self.EMP_I_EMPL_EMPL_NI5">
+      <End Role="EMPLOYEE" EntitySet="EMPLOYEE" />
+      <End Role="EMPLOYEE_SALARY_STRUCTURE" EntitySet="EMPLOYEE_SALARY_STRUCTURE" />
+    </AssociationSet>
+    <AssociationSet Name="EMP_I_EMPL_EMPL_NI6" Association="Self.EMP_I_EMPL_EMPL_NI6">
+      <End Role="EMPLOYEE" EntitySet="EMPLOYEE" />
+      <End Role="EMPLOYEES_SUBJECT" EntitySet="EMPLOYEES_SUBJECT" />
+    </AssociationSet>
+    <AssociationSet Name="EMP_I_EMPL_INDI_NI" Association="Self.EMP_I_EMPL_INDI_NI">
+      <End Role="EMPLOYEE" EntitySet="EMPLOYEE" />
+      <End Role="INDIVIDUAL_PAYSLIP_CATGEORY" EntitySet="INDIVIDUAL_PAYSLIP_CATGEORY" />
+    </AssociationSet>
+    <AssociationSet Name="EMP_I_EMPL_MONT_NI" Association="Self.EMP_I_EMPL_MONT_NI">
+      <End Role="EMPLOYEE" EntitySet="EMPLOYEE" />
+      <End Role="MONTHLY_PAYSLIP" EntitySet="MONTHLY_PAYSLIP" />
+    </AssociationSet>
+    <AssociationSet Name="EMP_I_EMPL_SUBJ_NI" Association="Self.EMP_I_EMPL_SUBJ_NI">
+      <End Role="EMPLOYEE" EntitySet="EMPLOYEE" />
+      <End Role="SUBJECT_LEAVE" EntitySet="SUBJECT_LEAVE" />
+    </AssociationSet>
+    <AssociationSet Name="EMP_L_EMPL_APPL_NI" Association="Self.EMP_L_EMPL_APPL_NI">
+      <End Role="EMPLOYEE_LEAVE_TYPE" EntitySet="EMPLOYEE_LEAVE_TYPE" />
+      <End Role="APPLY_LEAVE" EntitySet="APPLY_LEAVE" />
+    </AssociationSet>
+    <AssociationSet Name="EMP_L_EMPL_EMPL_NI" Association="Self.EMP_L_EMPL_EMPL_NI">
+      <End Role="EMPLOYEE_LEAVE_TYPE" EntitySet="EMPLOYEE_LEAVE_TYPE" />
+      <End Role="EMPLOYEE_ATTENDENCES" EntitySet="EMPLOYEE_ATTENDENCES" />
+    </AssociationSet>
+    <AssociationSet Name="EMP_L_EMPL_EMPL_NI2" Association="Self.EMP_L_EMPL_EMPL_NI2">
+      <End Role="EMPLOYEE_LEAVE_TYPE" EntitySet="EMPLOYEE_LEAVE_TYPE" />
+      <End Role="EMPLOYEE_LEAVE" EntitySet="EMPLOYEE_LEAVE" />
+    </AssociationSet>
+    <AssociationSet Name="EMP_P_EMPL_EMPL_NI" Association="Self.EMP_P_EMPL_EMPL_NI">
+      <End Role="EMPLOYEE_POSITION" EntitySet="EMPLOYEE_POSITION" />
+      <End Role="EMPLOYEE" EntitySet="EMPLOYEE" />
+    </AssociationSet>
+    <AssociationSet Name="EV_ID_EVEN_EMPL_NI" Association="Self.EV_ID_EVEN_EMPL_NI">
+      <End Role="EVENT" EntitySet="EVENT" />
+      <End Role="EMPLOYEE_DEPARTMENT_EVENT" EntitySet="EMPLOYEE_DEPARTMENT_EVENT" />
+    </AssociationSet>
+    <AssociationSet Name="EV_ID_EVEN_EXAM_NI" Association="Self.EV_ID_EVEN_EXAM_NI">
+      <End Role="EVENT" EntitySet="EVENT" />
+      <End Role="EXAM" EntitySet="EXAM" />
+    </AssociationSet>
+    <AssociationSet Name="EXAM__EXAM_ASSE_NI" Association="Self.EXAM__EXAM_ASSE_NI">
+      <End Role="EXAM" EntitySet="EXAM" />
+      <End Role="ASSESSMENT_SCORE" EntitySet="ASSESSMENT_SCORE" />
+    </AssociationSet>
+    <AssociationSet Name="EXAM__EXAM_CCE__NI" Association="Self.EXAM__EXAM_CCE__NI">
+      <End Role="EXAM" EntitySet="EXAM" />
+      <End Role="CCE_REPORTS" EntitySet="CCE_REPORTS" />
+    </AssociationSet>
+    <AssociationSet Name="EXAM__EXAM_EXAM_NI" Association="Self.EXAM__EXAM_EXAM_NI">
+      <End Role="EXAM_GROUP" EntitySet="EXAM_GROUP" />
+      <End Role="EXAM" EntitySet="EXAM" />
+    </AssociationSet>
+    <AssociationSet Name="EXAM__EXAM_EXAM_NI2" Association="Self.EXAM__EXAM_EXAM_NI2">
+      <End Role="EXAM" EntitySet="EXAM" />
+      <End Role="EXAM_SCORE" EntitySet="EXAM_SCORE" />
+    </AssociationSet>
+    <AssociationSet Name="FA_GR_FA_G_FA_C_NI" Association="Self.FA_GR_FA_G_FA_C_NI">
+      <End Role="FA_GROUP" EntitySet="FA_GROUP" />
+      <End Role="FA_CRITERIAS" EntitySet="FA_CRITERIAS" />
+    </AssociationSet>
+    <AssociationSet Name="FEE_C_FINA_FINA_NI" Association="Self.FEE_C_FINA_FINA_NI">
+      <End Role="FINANCE_FEE_COLLECTION" EntitySet="FINANCE_FEE_COLLECTION" />
+      <End Role="FINANCE_FEE" EntitySet="FINANCE_FEE" />
+    </AssociationSet>
+    <AssociationSet Name="FEE_C_FINA_FINA_NI3" Association="Self.FEE_C_FINA_FINA_NI3">
+      <End Role="FINANCE_FEE_CATGEORY" EntitySet="FINANCE_FEE_CATGEORY" />
+      <End Role="FINANCE_FEE_COLLECTION" EntitySet="FINANCE_FEE_COLLECTION" />
+    </AssociationSet>
+    <AssociationSet Name="FEE_C_FINA_FINA_NI4" Association="Self.FEE_C_FINA_FINA_NI4">
+      <End Role="FINANCE_FEE_COLLECTION" EntitySet="FINANCE_FEE_COLLECTION" />
+      <End Role="FINANCE_FEE_STRUCTURE_ELEMENT" EntitySet="FINANCE_FEE_STRUCTURE_ELEMENT" />
+    </AssociationSet>
+    <AssociationSet Name="FEE_F_FINA_FEE_NI3" Association="Self.FEE_F_FINA_FEE_NI3">
+      <End Role="FINANCE_FEE_CATGEORY" EntitySet="FINANCE_FEE_CATGEORY" />
+      <End Role="FEE_FINE" EntitySet="FEE_FINE" />
+    </AssociationSet>
+    <AssociationSet Name="FEE_RCVR_FEE__NI2" Association="Self.FEE_RCVR_FEE__NI2">
+      <End Role="STUDENT" EntitySet="STUDENT" />
+      <End Role="FEE_FINE" EntitySet="FEE_FINE" />
+    </AssociationSet>
+    <AssociationSet Name="FIN_C_FINA_FINA_NI" Association="Self.FIN_C_FINA_FINA_NI">
+      <End Role="FINANCE_FEE_CATGEORY" EntitySet="FINANCE_FEE_CATGEORY" />
+      <End Role="FINANCE_TRANSACTION_TRIGGERS" EntitySet="FINANCE_TRANSACTION_TRIGGERS" />
+    </AssociationSet>
+    <AssociationSet Name="FIN_F_FINA_FEE__NI" Association="Self.FIN_F_FINA_FEE__NI">
+      <End Role="FINANCE_FEE_CATGEORY" EntitySet="FINANCE_FEE_CATGEORY" />
+      <End Role="FEE_COLLECTION_DISCOUNT" EntitySet="FEE_COLLECTION_DISCOUNT" />
+    </AssociationSet>
+    <AssociationSet Name="FIN_F_FINA_FEE__NI2" Association="Self.FIN_F_FINA_FEE__NI2">
+      <End Role="FINANCE_FEE_COLLECTION" EntitySet="FINANCE_FEE_COLLECTION" />
+      <End Role="FEE_COLLECTION_PARTICULAR" EntitySet="FEE_COLLECTION_PARTICULAR" />
+    </AssociationSet>
+    <AssociationSet Name="FIN_F_FINA_FEE__NI3" Association="Self.FIN_F_FINA_FEE__NI3">
+      <End Role="FINANCE_FEE_CATGEORY" EntitySet="FINANCE_FEE_CATGEORY" />
+      <End Role="FEE_DISCOUNT" EntitySet="FEE_DISCOUNT" />
+    </AssociationSet>
+    <AssociationSet Name="FIN_F_FINA_FINA_NI" Association="Self.FIN_F_FINA_FINA_NI">
+      <End Role="FINANCE_FEE_CATGEORY" EntitySet="FINANCE_FEE_CATGEORY" />
+      <End Role="FINANCE_FEE_PARTICULAR" EntitySet="FINANCE_FEE_PARTICULAR" />
+    </AssociationSet>
+    <AssociationSet Name="FIN_F_FINA_FINA_NI5" Association="Self.FIN_F_FINA_FINA_NI5">
+      <End Role="FINANCE_FEE" EntitySet="FINANCE_FEE" />
+      <End Role="FINANCE_TRANSACTION" EntitySet="FINANCE_TRANSACTION" />
+    </AssociationSet>
+    <AssociationSet Name="FRM_I_STUD_ARCH_NI" Association="Self.FRM_I_STUD_ARCH_NI">
+      <End Role="STUDENT" EntitySet="STUDENT" />
+      <End Role="ARCHIVED_STUDENT" EntitySet="ARCHIVED_STUDENT" />
+    </AssociationSet>
+    <AssociationSet Name="GRADI_GRAD_EXAM_NI" Association="Self.GRADI_GRAD_EXAM_NI">
+      <End Role="GRADING_LEVEL" EntitySet="GRADING_LEVEL" />
+      <End Role="EXAM" EntitySet="EXAM" />
+    </AssociationSet>
+    <AssociationSet Name="GRADI_GRAD_EXAM_NI2" Association="Self.GRADI_GRAD_EXAM_NI2">
+      <End Role="GRADING_LEVEL" EntitySet="GRADING_LEVEL" />
+      <End Role="EXAM_SCORE" EntitySet="EXAM_SCORE" />
+    </AssociationSet>
+    <AssociationSet Name="HOME__COUN_EMPL_NI" Association="Self.HOME__COUN_EMPL_NI">
+      <End Role="COUNTRY" EntitySet="COUNTRY" />
+      <End Role="EMPLOYEE" EntitySet="EMPLOYEE" />
+    </AssociationSet>
+    <AssociationSet Name="NEWS__NEWS_NEWS_NI" Association="Self.NEWS__NEWS_NEWS_NI">
+      <End Role="NEWS" EntitySet="NEWS" />
+      <End Role="NEWS_COMMENTS" EntitySet="NEWS_COMMENTS" />
+    </AssociationSet>
+    <AssociationSet Name="NTLTY_COUN_ARCH_NI" Association="Self.NTLTY_COUN_ARCH_NI">
+      <End Role="COUNTRY" EntitySet="COUNTRY" />
+      <End Role="ARCHIVED_STUDENT" EntitySet="ARCHIVED_STUDENT" />
+    </AssociationSet>
+    <AssociationSet Name="NTLTY_COUN_EMPL_NI" Association="Self.NTLTY_COUN_EMPL_NI">
+      <End Role="COUNTRY" EntitySet="COUNTRY" />
+      <End Role="EMPLOYEE" EntitySet="EMPLOYEE" />
+    </AssociationSet>
+    <AssociationSet Name="NTLTY_COUN_STUD_NI" Association="Self.NTLTY_COUN_STUD_NI">
+      <End Role="COUNTRY" EntitySet="COUNTRY" />
+      <End Role="STUDENT" EntitySet="STUDENT" />
+    </AssociationSet>
+    <AssociationSet Name="OBSER_OBSE_CCE__NI" Association="Self.OBSER_OBSE_CCE__NI">
+      <End Role="OBSERVATION" EntitySet="OBSERVATION" />
+      <End Role="CCE_REPORTS" EntitySet="CCE_REPORTS" />
+    </AssociationSet>
+    <AssociationSet Name="OBSV__OBSE_OBSE_NI" Association="Self.OBSV__OBSE_OBSE_NI">
+      <End Role="OBSERVATION_GROUP" EntitySet="OBSERVATION_GROUP" />
+      <End Role="OBSERVATION" EntitySet="OBSERVATION" />
+    </AssociationSet>
+    <AssociationSet Name="OFF_C_COUN_EMPL_NI" Association="Self.OFF_C_COUN_EMPL_NI">
+      <End Role="COUNTRY" EntitySet="COUNTRY" />
+      <End Role="EMPLOYEE" EntitySet="EMPLOYEE" />
+    </AssociationSet>
+    <AssociationSet Name="PARNT_USER_FINA_NI" Association="Self.PARNT_USER_FINA_NI">
+      <End Role="USERS" EntitySet="USERS" />
+      <End Role="FINANCE_FEE_STRUCTURE_ELEMENT" EntitySet="FINANCE_FEE_STRUCTURE_ELEMENT" />
+    </AssociationSet>
+    <AssociationSet Name="PYRL__PAYR_EMPL_NI" Association="Self.PYRL__PAYR_EMPL_NI">
+      <End Role="PAYROLL_CATEGORY" EntitySet="PAYROLL_CATEGORY" />
+      <End Role="EMPLOYEE_SALARY_STRUCTURE" EntitySet="EMPLOYEE_SALARY_STRUCTURE" />
+    </AssociationSet>
+    <AssociationSet Name="PYRL__PAYR_MONT_NI" Association="Self.PYRL__PAYR_MONT_NI">
+      <End Role="PAYROLL_CATEGORY" EntitySet="PAYROLL_CATEGORY" />
+      <End Role="MONTHLY_PAYSLIP" EntitySet="MONTHLY_PAYSLIP" />
+    </AssociationSet>
+    <AssociationSet Name="RCVR__STUD_FEE__NI" Association="Self.RCVR__STUD_FEE__NI">
+      <End Role="STUDENT" EntitySet="STUDENT" />
+      <End Role="FEE_COLLECTION_DISCOUNT" EntitySet="FEE_COLLECTION_DISCOUNT" />
+    </AssociationSet>
+    <AssociationSet Name="RCVR__STUD_FEE__NI2" Association="Self.RCVR__STUD_FEE__NI2">
+      <End Role="STUDENT" EntitySet="STUDENT" />
+      <End Role="FEE_DISCOUNT" EntitySet="FEE_DISCOUNT" />
+    </AssociationSet>
+    <AssociationSet Name="RPTG__EMPL_EMPL_NI" Association="Self.RPTG__EMPL_EMPL_NI">
+      <End Role="EMPLOYEE" EntitySet="EMPLOYEE" />
+      <End Role="EMPLOYEE1" EntitySet="EMPLOYEE" />
+    </AssociationSet>
+    <AssociationSet Name="SMS_M_SMS__SMS__NI" Association="Self.SMS_M_SMS__SMS__NI">
+      <End Role="SMS_MESSAGE" EntitySet="SMS_MESSAGE" />
+      <End Role="SMS_LOG" EntitySet="SMS_LOG" />
+    </AssociationSet>
+    <AssociationSet Name="SSTDN_STUD_ASSE_NI" Association="Self.SSTDN_STUD_ASSE_NI">
+      <End Role="STUDENT" EntitySet="STUDENT" />
+      <End Role="ASSESSMENT_SCORE" EntitySet="ASSESSMENT_SCORE" />
+    </AssociationSet>
+    <AssociationSet Name="STCAT_STPROD_ASSE_NI" Association="Self.STCAT_STPROD_ASSE_NI">
+      <End Role="STORE_CATEGORY" EntitySet="STORE_CATEGORY" />
+      <End Role="STORE_PRODUCTS" EntitySet="STORE_PRODUCTS" />
+    </AssociationSet>
+    <AssociationSet Name="STDNT_STUD_ARCH_NI" Association="Self.STDNT_STUD_ARCH_NI">
+      <End Role="STUDENT_CATGEORY" EntitySet="STUDENT_CATGEORY" />
+      <End Role="ARCHIVED_STUDENT" EntitySet="ARCHIVED_STUDENT" />
+    </AssociationSet>
+    <AssociationSet Name="STDNT_STUD_ATTE_NI" Association="Self.STDNT_STUD_ATTE_NI">
+      <End Role="STUDENT" EntitySet="STUDENT" />
+      <End Role="ATTENDENCE" EntitySet="ATTENDENCE" />
+    </AssociationSet>
+    <AssociationSet Name="STDNT_STUD_CCE__NI" Association="Self.STDNT_STUD_CCE__NI">
+      <End Role="STUDENT" EntitySet="STUDENT" />
+      <End Role="CCE_REPORTS" EntitySet="CCE_REPORTS" />
+    </AssociationSet>
+    <AssociationSet Name="STDNT_STUD_EXAM_NI" Association="Self.STDNT_STUD_EXAM_NI">
+      <End Role="STUDENT" EntitySet="STUDENT" />
+      <End Role="EXAM_SCORE" EntitySet="EXAM_SCORE" />
+    </AssociationSet>
+    <AssociationSet Name="STDNT_STUD_FEE__NI" Association="Self.STDNT_STUD_FEE__NI">
+      <End Role="STUDENT_CATGEORY" EntitySet="STUDENT_CATGEORY" />
+      <End Role="FEE_COLLECTION_PARTICULAR" EntitySet="FEE_COLLECTION_PARTICULAR" />
+    </AssociationSet>
+    <AssociationSet Name="STDNT_STUD_FEE__NI2" Association="Self.STDNT_STUD_FEE__NI2">
+      <End Role="STUDENT" EntitySet="STUDENT" />
+      <End Role="FEE_COLLECTION_PARTICULAR" EntitySet="FEE_COLLECTION_PARTICULAR" />
+    </AssociationSet>
+    <AssociationSet Name="STDNT_STUD_FINA_NI" Association="Self.STDNT_STUD_FINA_NI">
+      <End Role="STUDENT" EntitySet="STUDENT" />
+      <End Role="FINANCE_FEE" EntitySet="FINANCE_FEE" />
+    </AssociationSet>
+    <AssociationSet Name="STDNT_STUD_FINA_NI3" Association="Self.STDNT_STUD_FINA_NI3">
+      <End Role="STUDENT_CATGEORY" EntitySet="STUDENT_CATGEORY" />
+      <End Role="FINANCE_FEE_PARTICULAR" EntitySet="FINANCE_FEE_PARTICULAR" />
+    </AssociationSet>
+    <AssociationSet Name="STDNT_STUD_FINA_NI4" Association="Self.STDNT_STUD_FINA_NI4">
+      <End Role="STUDENT" EntitySet="STUDENT" />
+      <End Role="FINANCE_FEE_PARTICULAR" EntitySet="FINANCE_FEE_PARTICULAR" />
+    </AssociationSet>
+    <AssociationSet Name="STDNT_STUD_FINA_NI5" Association="Self.STDNT_STUD_FINA_NI5">
+      <End Role="STUDENT_CATGEORY" EntitySet="STUDENT_CATGEORY" />
+      <End Role="FINANCE_FEE_STRUCTURE_ELEMENT" EntitySet="FINANCE_FEE_STRUCTURE_ELEMENT" />
+    </AssociationSet>
+    <AssociationSet Name="STDNT_STUD_FINA_NI6" Association="Self.STDNT_STUD_FINA_NI6">
+      <End Role="STUDENT" EntitySet="STUDENT" />
+      <End Role="FINANCE_FEE_STRUCTURE_ELEMENT" EntitySet="FINANCE_FEE_STRUCTURE_ELEMENT" />
+    </AssociationSet>
+    <AssociationSet Name="STDNT_STUD_FINA_NI7" Association="Self.STDNT_STUD_FINA_NI7">
+      <End Role="STUDENT" EntitySet="STUDENT" />
+      <End Role="FINANCE_TRANSACTION" EntitySet="FINANCE_TRANSACTION" />
+    </AssociationSet>
+    <AssociationSet Name="STDNT_STUD_STUD_NI" Association="Self.STDNT_STUD_STUD_NI">
+      <End Role="STUDENT_CATGEORY" EntitySet="STUDENT_CATGEORY" />
+      <End Role="STUDENT" EntitySet="STUDENT" />
+    </AssociationSet>
+    <AssociationSet Name="STDNT_STUD_STUD_NI2" Association="Self.STDNT_STUD_STUD_NI2">
+      <End Role="STUDENT" EntitySet="STUDENT" />
+      <End Role="STUDENT_ADDITIONAL_DETAIL" EntitySet="STUDENT_ADDITIONAL_DETAIL" />
+    </AssociationSet>
+    <AssociationSet Name="STDNT_STUD_STUD_NI3" Association="Self.STDNT_STUD_STUD_NI3">
+      <End Role="STUDENT" EntitySet="STUDENT" />
+      <End Role="STUDENT_PREVIOUS_DATA" EntitySet="STUDENT_PREVIOUS_DATA" />
+    </AssociationSet>
+    <AssociationSet Name="STDNT_STUD_STUD_NI4" Association="Self.STDNT_STUD_STUD_NI4">
+      <End Role="STUDENT" EntitySet="STUDENT" />
+      <End Role="STUDENT_PREVIOUS_SUBJECT_MARK" EntitySet="STUDENT_PREVIOUS_SUBJECT_MARK" />
+    </AssociationSet>
+    <AssociationSet Name="STDNT_STUD_STUD_NI5" Association="Self.STDNT_STUD_STUD_NI5">
+      <End Role="STUDENT" EntitySet="STUDENT" />
+      <End Role="STUDENT_SUBJECT" EntitySet="STUDENT_SUBJECT" />
+    </AssociationSet>
+    <AssociationSet Name="STDNT_STUD_SUBJ_NI" Association="Self.STDNT_STUD_SUBJ_NI">
+      <End Role="STUDENT" EntitySet="STUDENT" />
+      <End Role="SUBJECT_LEAVE" EntitySet="SUBJECT_LEAVE" />
+    </AssociationSet>
+    <AssociationSet Name="STPROD_STPUR_ASSE_NI" Association="Self.STPROD_STPUR_ASSE_NI">
+      <End Role="STORE_PRODUCTS" EntitySet="STORE_PRODUCTS" />
+      <End Role="STORE_PURCHAGE" EntitySet="STORE_PURCHAGE" />
+    </AssociationSet>
+    <AssociationSet Name="STPROD_STPURCART_ASSE_NI" Association="Self.STPROD_STPURCART_ASSE_NI">
+      <End Role="STORE_PRODUCTS" EntitySet="STORE_PRODUCTS" />
+      <End Role="STORE_PURCHAGE_CART" EntitySet="STORE_PURCHAGE_CART" />
+    </AssociationSet>
+    <AssociationSet Name="SUBJ__SUBJ_EMPL_NI" Association="Self.SUBJ__SUBJ_EMPL_NI">
+      <End Role="SUBJECT" EntitySet="SUBJECT" />
+      <End Role="EMPLOYEES_SUBJECT" EntitySet="EMPLOYEES_SUBJECT" />
+    </AssociationSet>
+    <AssociationSet Name="SUBJ__SUBJ_EXAM_NI" Association="Self.SUBJ__SUBJ_EXAM_NI">
+      <End Role="SUBJECT" EntitySet="SUBJECT" />
+      <End Role="EXAM" EntitySet="EXAM" />
+    </AssociationSet>
+    <AssociationSet Name="SUBJ__SUBJ_STUD_NI" Association="Self.SUBJ__SUBJ_STUD_NI">
+      <End Role="SUBJECT" EntitySet="SUBJECT" />
+      <End Role="STUDENT_PREVIOUS_SUBJECT_MARK" EntitySet="STUDENT_PREVIOUS_SUBJECT_MARK" />
+    </AssociationSet>
+    <AssociationSet Name="SUBJ__SUBJ_STUD_NI2" Association="Self.SUBJ__SUBJ_STUD_NI2">
+      <End Role="SUBJECT" EntitySet="SUBJECT" />
+      <End Role="STUDENT_SUBJECT" EntitySet="STUDENT_SUBJECT" />
+    </AssociationSet>
+    <AssociationSet Name="SUBJ__SUBJ_SUBJ_NI" Association="Self.SUBJ__SUBJ_SUBJ_NI">
+      <End Role="SUBJECT" EntitySet="SUBJECT" />
+      <End Role="SUBJECT_LEAVE" EntitySet="SUBJECT_LEAVE" />
+    </AssociationSet>
+    <AssociationSet Name="TRAN__FINA_FINA_NI" Association="Self.TRAN__FINA_FINA_NI">
+      <End Role="FINANCE_TRANSACTION" EntitySet="FINANCE_TRANSACTION" />
+      <End Role="FINANCE_DONATION" EntitySet="FINANCE_DONATION" />
+    </AssociationSet>
+    <AssociationSet Name="USRID_USER_EMPL_NI" Association="Self.USRID_USER_EMPL_NI">
+      <End Role="USERS" EntitySet="USERS" />
+      <End Role="EMPLOYEE" EntitySet="EMPLOYEE" />
+    </AssociationSet>
+    <AssociationSet Name="USRID_USER_GUAR_NI" Association="Self.USRID_USER_GUAR_NI">
+      <End Role="USERS" EntitySet="USERS" />
+      <End Role="GUARDIAN" EntitySet="GUARDIAN" />
+    </AssociationSet>
+    <AssociationSet Name="USRID_USER_STUD_NI" Association="Self.USRID_USER_STUD_NI">
+      <End Role="USERS" EntitySet="USERS" />
+      <End Role="STUDENT" EntitySet="STUDENT" />
+    </AssociationSet>
+    <AssociationSet Name="USRS__USER_USER_ID" Association="Self.USRS__USER_USER_ID">
+      <End Role="USERS" EntitySet="USERS" />
+      <End Role="USERS_ACCESS" EntitySet="USERS_ACCESS" />
+    </AssociationSet>
+    <AssociationSet Name="WARD__STUD_GUAR_NI" Association="Self.WARD__STUD_GUAR_NI">
+      <End Role="STUDENT" EntitySet="STUDENT" />
+      <End Role="GUARDIAN" EntitySet="GUARDIAN" />
+    </AssociationSet>
+    <AssociationSet Name="WK_DA_WEEK_TIME_NI" Association="Self.WK_DA_WEEK_TIME_NI">
+      <End Role="WEEKDAY" EntitySet="WEEKDAY" />
+      <End Role="TIMETABLE_ENTRY" EntitySet="TIMETABLE_ENTRY" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

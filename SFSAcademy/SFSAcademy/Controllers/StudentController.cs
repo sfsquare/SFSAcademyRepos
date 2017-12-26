@@ -38,8 +38,9 @@ namespace SFSAcademy.Controllers
 
             var StudentS = (from st in db.STUDENTs
                             join b in db.BATCHes on st.BTCH_ID equals b.ID
+                            join cs in db.COURSEs on b.CRS_ID equals cs.ID
                             orderby st.LAST_NAME, b.NAME
-                            select new Models.Student { StudentData = st, BatcheData = b }).Distinct();
+                            select new Models.Student { StudentData = st, BatcheData = b, CourseData = cs }).Distinct();
 
             if (!String.IsNullOrEmpty(searchString))
             {
@@ -62,7 +63,7 @@ namespace SFSAcademy.Controllers
                     break;
             }
 
-            int pageSize = 3;
+            int pageSize = 100;
             int pageNumber = (page ?? 1);
             return View(StudentS.ToPagedList(pageNumber, pageSize));
             //return View(db.USERS.ToList());
@@ -99,8 +100,9 @@ namespace SFSAcademy.Controllers
 
             var StudentS = (from st in db.STUDENTs
                            join b in db.BATCHes on st.BTCH_ID equals b.ID
+                           join cs in db.COURSEs on b.CRS_ID equals cs.ID
                            orderby st.LAST_NAME, b.NAME
-                           select new Models.Student { StudentData = st, BatcheData = b }).Distinct();
+                           select new Models.Student { StudentData = st, BatcheData = b, CourseData = cs }).Distinct();
 
             if (!String.IsNullOrEmpty(searchString))
             {
@@ -644,11 +646,33 @@ namespace SFSAcademy.Controllers
         // GET: Student/Admission1
         public ActionResult Admission1()
         {
-            ViewBag.ReturnDate = System.DateTime.Now;
+            DateTime PDate = Convert.ToDateTime(System.DateTime.Now);
+            ViewBag.ReturnDate = PDate.ToShortDateString();
             ViewBag.CTRY_ID = new SelectList(db.COUNTRies, "ID", "CTRY_NAME", "India");
             ViewBag.NTLTY_ID = new SelectList(db.COUNTRies.Where(o => o.NTLTY != " ").ToList(), "ID", "NTLTY","Indian");
             ViewBag.STDNT_CAT_ID = new SelectList(db.STUDENT_CATGEORY, "ID", "NAME");
-            ViewBag.BTCH_ID = new SelectList(db.BATCHes, "ID", "NAME");
+            ///Code to get the Batch along weith Course
+            var queryCourceBatch = (from cs in db.COURSEs
+                                    join bt in db.BATCHes on cs.ID equals bt.CRS_ID
+                                    where cs.IS_DEL == "N" && bt.IS_DEL == "N"
+                                    select new { CourseData = cs, BatchData = bt })
+                                    .OrderBy(x => x.BatchData.ID).ToList();
+
+
+            List<SelectListItem> options = new List<SelectListItem>();
+            foreach (var item in queryCourceBatch)
+            {
+                string BatchFullName = string.Concat(item.CourseData.CODE, "-", item.BatchData.NAME);
+                var result = new SelectListItem();
+                result.Text = BatchFullName;
+                result.Value = item.BatchData.ID.ToString();
+                options.Add(result);
+            }
+
+            options.Insert(0, new SelectListItem() { Value = "-1", Text = "Select Course and Batch" });
+            ViewBag.BTCH_ID = options;
+            //End of Code to get batch and Course
+
             var configValue = (from C in db.CONFIGURATIONs
                                 where C.CONFIG_KEY == "AdmissionNumberAutoIncrement"
                                 select new { CONFIG_VALUE = C.CONFIG_VAL }).FirstOrDefault();
@@ -692,7 +716,10 @@ namespace SFSAcademy.Controllers
                 }
                 ////End to Picture Upload Code
 
-
+                sTUDENT.IS_ACT = "Y";
+                sTUDENT.IS_DEL = "N";
+                sTUDENT.CREATED_AT = System.DateTime.Now;
+                sTUDENT.UPDATED_AT = System.DateTime.Now;
                 try
                 {
                     db.STUDENTs.Add(sTUDENT);
@@ -806,6 +833,8 @@ namespace SFSAcademy.Controllers
         {
             if (ModelState.IsValid)
             {
+                gUARDIAN.CREATED_AT = System.DateTime.Now;
+                gUARDIAN.UPDATED_AT = System.DateTime.Now;
                 db.GUARDIANs.Add(gUARDIAN);
                 db.SaveChanges();
                 return RedirectToAction("Admission2", "Student", new { Std_id = gUARDIAN.WARD_ID });
@@ -898,6 +927,10 @@ namespace SFSAcademy.Controllers
         {
             if (ModelState.IsValid)
             {
+                sTUDENT.IS_ACT = "Y";
+                sTUDENT.IS_DEL = "N";
+                sTUDENT.CREATED_AT = System.DateTime.Now;
+                sTUDENT.UPDATED_AT = System.DateTime.Now;
                 db.STUDENTs.Add(sTUDENT);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -924,6 +957,29 @@ namespace SFSAcademy.Controllers
             ViewBag.NTLTY_ID = new SelectList(db.COUNTRies, "ID", "CTRY_NAME", sTUDENT.NTLTY_ID);
             ViewBag.STDNT_CAT_ID = new SelectList(db.STUDENT_CATGEORY, "ID", "NAME", sTUDENT.STDNT_CAT_ID);
             ViewBag.USRID = new SelectList(db.USERS, "ID", "USRNAME", sTUDENT.USRID);
+
+            ///Code to get the Batch along weith Course
+            var queryCourceBatch = (from cs in db.COURSEs
+                                    join bt in db.BATCHes on cs.ID equals bt.CRS_ID
+                                    where cs.IS_DEL == "N" && bt.IS_DEL == "N"
+                                    select new { CourseData = cs, BatchData = bt })
+                                    .OrderBy(x => x.BatchData.ID).ToList();
+
+
+            List<SelectListItem> options = new List<SelectListItem>();
+            foreach (var item in queryCourceBatch)
+            {
+                string BatchFullName = string.Concat(item.CourseData.CODE, "-", item.BatchData.NAME);
+                var result = new SelectListItem();
+                result.Text = BatchFullName;
+                result.Value = item.BatchData.ID.ToString();
+                result.Selected = item.BatchData.ID == sTUDENT.BTCH_ID ? true : false;
+                options.Add(result);
+            }
+
+            options.Insert(0, new SelectListItem() { Value = "-1", Text = "Select Course and Batch" });
+            ViewBag.BTCH_ID = options;
+            //End of Code to get batch and Course
             return View(sTUDENT);
         }
 
@@ -953,7 +1009,7 @@ namespace SFSAcademy.Controllers
                 }
                 ////End to Picture Upload Code
 
-
+                sTUDENT.UPDATED_AT = System.DateTime.Now;
                 db.Entry(sTUDENT).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -994,7 +1050,10 @@ namespace SFSAcademy.Controllers
 
             } 
             STUDENT sTUDENT = db.STUDENTs.Find(id);
-            db.STUDENTs.Remove(sTUDENT);
+            sTUDENT.IS_ACT = "N";
+            sTUDENT.IS_DEL = "Y";
+            sTUDENT.UPDATED_AT = System.DateTime.Now;
+            db.Entry(sTUDENT).State = EntityState.Modified;
             db.SaveChanges();
             return RedirectToAction("Index");
         }

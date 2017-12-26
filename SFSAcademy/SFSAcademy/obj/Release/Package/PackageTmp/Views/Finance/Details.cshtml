@@ -1,0 +1,50 @@
+﻿@model SFSAcademy.FINANCE_FEE
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>FINANCE_FEE</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.IS_PD)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IS_PD)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FINANCE_FEE_COLLECTION.NAME)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FINANCE_FEE_COLLECTION.NAME)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FINANCE_TRANSACTION1.TIL)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FINANCE_TRANSACTION1.TIL)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.STUDENT.ADMSN_NO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.STUDENT.ADMSN_NO)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

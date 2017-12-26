@@ -12,8 +12,8 @@
 </script>
 <div id="content-header">
     <img src="~/Content/images/show_finance.png" alt="Finance Logo">
-    <h1>Fee Discounts</h1>
-    <h3>Finance Management</h3>
+    <h1>Finance Management</h1>
+    <h3>Fee Discounts</h3>
     <div id="app-back-button">
         <a href='javascript:history.back()' onclick="return confirm('are you sure?')"><img src="~/Content/images/buttons/back.png"></a>
     </div>
@@ -28,10 +28,6 @@
 <div id="page-yield">
     <div id="flash_box"> </div>
     <div id="flash-notice"></div>
-    @if (Html.ValidationSummary() != null)
-    {
-        <p class="flash-msg"> @Html.ValidationSummary() </p>
-    }
     <div class="bread_crumb">
         @Html.ActionLink("Finance", "Index") &raquo;
         @Html.ActionLink("Fees", "Fees_Index") &raquo;
@@ -40,16 +36,12 @@
     </div>
 
     <div id="search_box_bg">
-        @if (Html.ValidationSummary() != null)
-        {
-            <p class="flash-msg"> @Html.ValidationSummary() </p>
-        }
         <div id="searchbox">
             <form name="search-form" id="search-form" action="" style="display:inline;">
                 @using (Html.BeginForm("Fee_Discounts", "Finance", FormMethod.Get))
                 {
                     <div class="label-field-pair">
-                        @Html.Label("BTCH_ID", "Select A Batch :", htmlAttributes: new { @class = "control-label col-md-2" })
+                        @Html.Label("BTCH_ID", "Select A Course :", htmlAttributes: new { @class = "control-label col-md-2" })
                         <div class="text-input-bg">
                             @Html.DropDownList("BTCH_ID", null, htmlAttributes: new { @class = "_select_change" })
                         </div>
@@ -74,6 +66,12 @@
                 </th>
                 <th>
                     @Html.ActionLink("Discount Name", "Fee_Discounts", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })
+                </th>
+                <th>
+                    Fee Category
+                </th>
+                <th>
+                    Batch
                 </th>
                 <th>
                     Student Category
@@ -104,18 +102,26 @@
                         @Html.DisplayFor(modelItem => item.FeeDiscountData.NAME)
                     </td>
                     <td class="col-3">
-                        @Html.DisplayFor(modelItem => item.StudentCategoryData.NAME)
+                        @Html.DisplayFor(modelItem => item.FinanceFeeCategoryData.NAME)
                     </td>
                     <td class="col-4">
+                        @Html.DisplayFor(modelItem => item.CourseData.CODE)
+                        <label>-</label>
+                        @Html.DisplayFor(modelItem => item.BatchData.NAME)
+                    </td>
+                    <td class="col-5">
+                        @Html.DisplayFor(modelItem => item.StudentCategoryData.NAME)
+                    </td>
+                    <td class="col-6">
                         @Html.DisplayFor(modelItem => item.StudentData.FIRST_NAME)
                     </td>
-                    <td class="col-5" nowrap>
+                    <td class="col-7" nowrap>
                         @Html.DisplayFor(modelItem => item.StudentData.ADMSN_DATE)
                     </td>
-                    <td class="col-5" nowrap>
+                    <td class="col-8" nowrap>
                         @Html.DisplayFor(modelItem => item.FeeDiscountData.DISC)
                     </td>
-                    <td class="col-6" nowrap>
+                    <td class="col-9" nowrap>
                         @Html.ActionLink("Edit ", "Edit_Fee_Discount", new { id = item.FeeDiscountData.ID })|@Html.ActionLink(" Delete", "Delete_Fee_Discount", new { id = item.FeeDiscountData.ID })
                     </td>
                 </tr>

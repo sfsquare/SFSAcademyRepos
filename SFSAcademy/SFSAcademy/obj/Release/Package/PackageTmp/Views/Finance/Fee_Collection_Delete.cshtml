@@ -1,0 +1,91 @@
+﻿@model SFSAcademy.FINANCE_FEE_COLLECTION
+
+@{
+    ViewBag.Title = "Fee_Collection_Delete";
+}
+
+<div id="content-header">
+    <img src="~/Content/images/show_finance.png" alt="Finance Logo">
+    <h1>Fee Collection Dates</h1>
+    <h3>Delete Fee Collection Dates</h3>
+    <div id="app-back-button">
+        <a href='javascript:history.back()' onclick="return confirm('are you sure?')"><img src="~/Content/images/buttons/back.png"></a>
+    </div>
+</div>
+<div><img src="~/Content/images/_global/header_underline_.jpg" width="100%"></div>
+
+<h3>Are you sure you want to delete this?</h3>
+<div id="page-yield">
+    <div class="bread_crumb">
+        @Html.ActionLink("Finance", "Index") &raquo;
+        @Html.ActionLink("Fees", "Fees_Index") &raquo;
+        @Html.ActionLink("Fee Collection", "Fee_Collection") &raquo;
+        Edit Fee Collection
+    </div>
+    <div id="flash_box">
+        @if (ViewBag.ErrorMessage != null)
+            {
+            <p class="flash-msg"> @ViewBag.ErrorMessage </p>
+        }
+    </div>
+    <div id="edit_user_form">
+        <div class="label-field-pair">
+            @Html.LabelFor(model => model.NAME, "Fee Collection Name", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="text-input-bg">
+                @Html.EditorFor(model => model.NAME, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.NAME, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="label-field-pair">
+            @Html.LabelFor(model => model.START_DATE, "Start Date", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="text-input-bg">
+                @Html.EditorFor(model => model.START_DATE, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.START_DATE, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="label-field-pair">
+            @Html.LabelFor(model => model.END_DATE, "End Date", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="text-input-bg">
+                @Html.EditorFor(model => model.END_DATE, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.END_DATE, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="label-field-pair">
+            @Html.LabelFor(model => model.DUE_DATE, "Due Date", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="text-input-bg">
+                @Html.EditorFor(model => model.DUE_DATE, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.DUE_DATE, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="label-field-pair">
+            @Html.LabelFor(model => model.IS_DEL, "Is this Deleted?", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="text-input-bg">
+                @Html.EditorFor(model => model.IS_DEL, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.IS_DEL, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="label-field-pair">
+            @Html.LabelFor(model => model.BATCH.NAME, "Batch Name", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="text-input-bg">
+                @Html.EditorFor(model => model.BATCH.NAME, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.BATCH.NAME, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="label-field-pair">
+            @Html.LabelFor(model => model.FINANCE_FEE_CATGEORY.NAME, "Fee Category Name", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="text-input-bg">
+                @Html.EditorFor(model => model.FINANCE_FEE_CATGEORY.NAME, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.FINANCE_FEE_CATGEORY.NAME, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="submit_button" />
+        </div>
+    }
+</div>

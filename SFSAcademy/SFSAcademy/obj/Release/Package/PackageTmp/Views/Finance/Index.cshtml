@@ -1,0 +1,58 @@
+﻿@model IEnumerable<SFSAcademy.FINANCE_FEE>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div id="content-header">
+    <img src="~/Content/images/show_finance.png" alt="Finance Logo">
+    <h1>Finance</h1>
+    <h3>Manage Finance</h3>
+    <div id="app-back-button">
+        <a href='javascript:history.back()' onclick="return confirm('are you sure?')"><img src="~/Content/images/buttons/back.png"></a>
+    </div>
+</div>
+<div><img src="~/Content/images/_global/header_underline_.jpg" width="100%"></div>
+
+<div id="page-yield">
+    @if (Html.ValidationSummary() != null)
+    {
+        <p class="flash-msg"> @Html.ValidationSummary() </p>
+    }
+
+    <div class="box">
+        <div class="link-box">
+            <div class="link-heading">@Html.ActionLink("Fees", "Fees_Index")</div>
+            <div class="link-descr">Manage Fees</div>
+        </div>
+        <div class="link-box">
+            <div class="link-heading">@Html.ActionLink("Category", "Categories")</div>
+            <div class="link-descr">Manage Category</div>
+        </div>
+        <div class="link-box">
+            <div class="link-heading">@Html.ActionLink("Transactions", "Transactions")</div>
+            <div class="link-descr">Manage Expense And Income</div>
+        </div>
+        <div class="link-box">
+            <div class="link-heading">@Html.ActionLink("Donation", "Donation")</div>
+            <div class="link-descr">Creates New Donations</div>
+        </div>
+        <div class="link-box">
+            <div class="link-heading">@Html.ActionLink("Automatic Transactions", "Automatic_Transactions")</div>
+            <div class="link-descr">Add Automatic Transactions</div>
+        </div>
+        @if (!Html.Configuration_Value("HR").IsEmpty())
+        {
+            <div class="link-box">
+                <div class="link-heading">@Html.ActionLink("Payslip Text", "Payslip_Index")</div>
+                <div class="link-descr">Employee Payslips</div>
+            </div>
+        }
+
+        <div class="link-box">
+            <div class="link-heading">@Html.ActionLink("Asset Liability Management", "Asset_Liability")</div>
+            <div class="link-descr">Asset Liability Management</div>
+        </div>
+
+    </div>
+</div>

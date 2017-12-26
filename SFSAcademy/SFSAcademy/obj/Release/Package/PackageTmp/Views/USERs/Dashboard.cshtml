@@ -1,0 +1,236 @@
+﻿@model SFSAcademy.USER
+
+@{
+    ViewBag.Title = "Dashboard";
+    Layout = "../Shared/_Layout/Dashboard.cshtml";
+}
+
+@Html.Partial("_Partial/News_Bar")
+<p class="flash-msg"> Notices </p>
+
+<div id="user_options">
+    @if (Html.CurrentUser_UserType().Equals("Admin"))
+    {
+        <div class="button-box">
+            <a href="@Url.Action("Admission1", "Student")" class="option_buttons" id="admission_button" title="Admission"></a><div class='button-label'><p>Admission</p></div>
+        </div>
+        <div class="button-box">
+            <a href="@Url.Action("Index", "Student")" class="option_buttons" id="student_details_button" title="StudentDetails"></a><div class='button-label'><p>Student Details</p></div>
+        </div>
+        <div class="button-box">
+            <a href="@Url.Action("Index", "USERs")" class="option_buttons" id="manage_users_button" title="ManageUsers"></a><div class='button-label'><p>Manage Users</p></div>
+        </div>
+        <div class="button-box">
+            <a href="@Url.Action("Index", "News")" class="option_buttons" id="manage_news_button" title="ManageNews"></a><div class='button-label'><p>Manage News</p></div>
+        </div>
+        <div class="button-box">
+            <a href="@Url.Action("Index", "Exam")" class="option_buttons" id="examinations_button" title="Examinations"></a><div class='button-label'><p>Examinations</p></div>
+        </div>
+        <div class="button-box">
+            <a href="@Url.Action("Index", "Timetable")" class="option_buttons" id="timetable_button" title="Timetable"></a><div class='button-label'><p>Timetable</p></div>
+        </div>
+        <div class="button-box">
+            <a href="@Url.Action("Index", "Student_Attendance")" class="option_buttons" id="student_attendance_button" title="Attendance"></a><div class='button-label'><p>Attendance</p></div>
+        </div>
+        <div class="button-box">
+            <a href="@Url.Action("Index", "Configuration")" class="option_buttons" id="settings_button" title="Settings"></a><div class='button-label'><p>Settings</p></div>
+        </div>
+        if (Html.CurrentUser_UserType().Equals("Admin") || Html.CurrentUser_UserType().Equals("HR"))
+        {
+            <div class="button-box">
+                <a href="@Url.Action("HR", "Employee")" class="option_buttons" id="hr_button" title="HumanResources"></a><div class='button-label'><p>Human Resources</p></div>
+            </div>
+        }
+        if (Html.CurrentUser_UserType().Equals("Admin") || Html.CurrentUser_UserType().Equals("Finance"))
+        {
+            <div class="button-box">
+                <a href="@Url.Action("Index", "Finance")" class="option_buttons" id="finance_button" title="Finance"></a><div class='button-label'><p>Finance</p></div>
+            </div>
+        }
+        if (Html.CurrentUser_UserType().Equals("Admin") || Html.CurrentUser_UserType().Equals("Finance"))
+        {
+            <div class="button-box">
+                <a href="@Url.Action("Index", "Store")" class="option_buttons" id="store_button" title="Store"></a><div class='button-label'><p>Store</p></div>
+            </div>
+        }
+
+    }
+    else if (Html.CurrentUser_UserType().Equals("Student") || Html.CurrentUser_UserType().Equals("Parent"))
+    {
+        <div class="button-box">
+            <a href="@Url.Action("Profile", "Student", new { id = this.Session["UserId"] })" class="option_buttons" id="student_details_button" title="StudentDetails"></a><div class='button-label'><p>Student Details</p></div>
+        </div>
+        <div class="button-box">
+            <a href="@Url.Action("Index", "News")" class="option_buttons" id="campus_news_button" title="CampusNews"></a><div class='button-label'><p>Campus News</p></div>
+        </div>
+        <div class="button-box">
+            <a href="@Url.Action("Student_View", "Timetable", new { id = this.Session["UserId"] })" class="option_buttons" id="timetable_button" title="Timetable"></a><div class='button-label'><p>Timetable</p></div>
+        </div>
+        <div class="button-box">
+            @if (Html.Check_Reminders() != 0)
+            {
+                <div class="reminder1">
+                    <a href="@Url.Action("Index", "Reminder")" class="option_buttons" id="reminders_button" title="Reminders"></a><div class='button-label'><p>Reminders</p></div>
+                    <div class="count">@Html.Check_Reminders()</div>
+                </div>
+            }
+            else
+            {
+                <div class="reminder1">
+                    <a href="@Url.Action("Index", "Reminder")" class="option_buttons" id="reminders_button" title="Reminders"></a><div class='button-label'><p>Reminders</p></div>
+                </div>
+            }
+        </div>
+        <div class="button-box">
+            <a href="@Url.Action("Reports", "Student", new { id = this.Session["UserId"] })" class="option_buttons" id="academic_button" title="Academics"></a><div class='button-label'><p>Academics</p></div>
+        </div>
+    }
+    else
+    {
+        if (Html.CurrentUser_UserType().Equals("Admin") || Html.CurrentUser_UserType().Equals("HR"))
+        {
+            <div class="button-box">
+                <a href="@Url.Action("Profile", "Employee", new { id = this.Session["UserId"] })" class="option_buttons" id="my_profile_button" title="MyProfile"></a><div class='button-label'><p>My_Profile</p></div>
+            </div>
+        }
+        if (Html.Permitted_To("Admission1", "Student"))
+        {
+            <div class="button-box">
+                <a href="@Url.Action("Admission1", "Student", new { id = this.Session["UserId"] })" class="option_buttons" id="admission_button" title="Admission"></a><div class='button-label'><p>Admission</p></div>
+            </div>
+        }
+        if (Html.Permitted_To("Index", "Student"))
+        {
+            <div class="button-box">
+                <a href="@Url.Action("Index", "Student")" class="option_buttons" id="student_details_button" title="StudentDetails"></a><div class='button-label'><p>Student Details</p></div>
+            </div>
+        }
+        if (Html.Permitted_To("Index", "User"))
+        {
+            <div class="button-box">
+                <a href="@Url.Action("Index", "USERs")" class="option_buttons" id="manage_users_button" title="ManageUsers"></a><div class='button-label'><p>Manage Users</p></div>
+            </div>
+        }
+        if (Html.Permitted_To("Index", "News"))
+        {
+            <div class="button-box">
+                <a href="@Url.Action("Index", "News")" class="option_buttons" id="manage_news_button" title="ManageNews"></a><div class='button-label'><p>Manage News</p></div>
+            </div>
+        }
+        else
+        {
+            <div class="button-box">
+                <a href="@Url.Action("Index", "News")" class="option_buttons" id="campus_news_button" title="ManageNews"></a><div class='button-label'><p>Campus News</p></div>
+            </div>
+        }
+
+        if (Html.Permitted_To("Leave_Management", "Employee"))
+        {
+            <div class="button-box">
+                <a href="@Url.Action("Leave_Management", "Employee")" class="option_buttons" id="leaves_button" title="Leaves"></a><div class='button-label'><p>Leaves</p></div>
+            </div>
+        }
+        else if (Html.CurrentUser_UserType().Equals("Admin") || Html.CurrentUser_UserType().Equals("HR"))
+        {
+            <div class="button-box">
+                <a href="@Url.Action("Leaves", "Employee_Attendance", new { id = this.Session["UserId"] })" class="option_buttons" id="leaves_button" title="Leaves"></a><div class='button-label'><p>Leaves</p></div>
+            </div>
+        }
+
+        <div class="button-box">
+            @if (@Html.Check_Reminders() != 0)
+            {
+                <div class="reminder1">
+                    <a href="@Url.Action("Index", "Reminder")" class="option_buttons" id="reminders_button" title="Reminders"></a><div class='button-label'><p>Reminders</p></div>
+                    <div class="count">@Html.Check_Reminders()</div>
+                </div>
+            }
+            else
+            {
+                <div class="button-box">
+                    <a href="@Url.Action("Index", "Reminder")" class="option_buttons" id="reminders_button" title="Reminders"></a><div class='button-label'><p>Reminders</p></div>
+                </div>
+            }
+        </div>
+        if (Html.CurrentUser_UserType().Equals("Employee"))
+        {
+            if (Html.CurrentUser_SubjectBatch().Rows.Count != 0)
+            {
+                if (Html.Permitted_To("Index", "Student_Attendance"))
+                {
+                    <div class="button-box">
+                        <a href="@Url.Action("Index", "Student_Attendance")" class="option_buttons" id="student_attendance_button" title="Attendance"></a><div class='button-label'><p>Attendance</p></div>
+                    </div>
+                }
+                if (Html.Permitted_To("Index", "Exam"))
+                {
+                    <div class="button-box">
+                        <a href="@Url.Action("Index", "Exam")" class="option_buttons" id="examinations_button" title="Examinations"></a><div class='button-label'><p>Examinations</p></div>
+                    </div>
+                }
+            }
+            else
+            {
+                if (Html.Configuration_Value("StudentAttendanceType").Equals("Daily"))
+                {
+                    <div class="button-box">
+                        <a href="@Url.Action("Index", "Student_Attendance")" class="option_buttons" id="student_attendance_button" title="Attendance"></a><div class='button-label'><p>Attendance</p></div>
+                    </div>
+                }
+                else
+                {
+                    <div class="button-box">
+                        @if (Html.Permitted_To("Index", "Student_Attendance") || Html.Permitted_To("Index", "Attendances"))
+                        {
+                            <a href="@Url.Action("Index", "Student_Attendance")" class="option_buttons" id="student_attendance_button" title="Attendance"></a><div class='button-label'><p>Attendance</p></div>
+                        }
+                    </div>
+                }
+            }
+            <div class="button-box">
+                <a href="@Url.Action("Index", "Exam")" class="option_buttons" id="examinations_button" title="Examinations"></a><div class='button-label'><p>Examinations</p></div>
+            </div>
+        }
+
+        <div class="button-box">
+            @if (Html.Permitted_To("Index", "Timetable"))
+            {
+                <a href="@Url.Action("Index", "Timetable")" class="option_buttons" id="timetable_button" title="Timetable"></a><div class='button-label'><p>Timetable</p></div>
+            }
+        </div>
+        <div class="button-box">
+            @if (Html.Permitted_To("Index", "Configuration"))
+            {
+                <a href="@Url.Action("Index", "Configuration")" class="option_buttons" id="settings_button" title="Settings"></a><div class='button-label'><p>Settings</p></div>
+            }
+        </div>
+        <div class="button-box">
+            @if (Html.Permitted_To("HR", "Employee"))
+            {
+                <a href="@Url.Action("HR", "Employee")" class="option_buttons" id="hr_button" title="HumanResources"></a><div class='button-label'><p>Human Resources</p></div>
+            }
+        </div>
+        <div class="button-box">
+            @if (Html.Permitted_To("Index", "Finance"))
+            {
+                <a href="@Url.Action("Index", "Finance")" class="option_buttons" id="finance_button" title="Finance"></a><div class='button-label'><p>Finance</p></div>
+            }
+        </div>
+        <div class="button-box">
+            @if (Html.Permitted_To("Index", "Store"))
+            {
+                <a href="@Url.Action("Index", "Store")" class="option_buttons" id="store_button" title="Store"></a><div class='button-label'><p>Store</p></div>
+            }
+        </div>
+
+    }
+
+</div>
+<div id="option_description"> </div>
+<script type="text/javascript">
+  $$('#user_options .button-box').each(function(ele, index){
+    if(index%5 == 0){
+      ele.addClassName("left-button");
+    }
+  });
+</script>

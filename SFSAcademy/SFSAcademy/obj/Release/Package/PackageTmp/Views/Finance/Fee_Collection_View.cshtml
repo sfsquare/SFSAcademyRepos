@@ -1,0 +1,106 @@
+﻿@model PagedList.IPagedList<SFSAcademy.Models.FeeCollection>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div id="content-header">
+    <img src="~/Content/images/show_finance.png" alt="Finance Logo">
+    <h1>Fee Collection Dates</h1>
+    <h3>View Fee Collection Dates</h3>
+    <div id="app-back-button">
+        <a href='javascript:history.back()' onclick="return confirm('are you sure?')"><img src="~/Content/images/buttons/back.png"></a>
+    </div>
+</div>
+<div><img src="~/Content/images/_global/header_underline_.jpg" width="100%"></div>
+
+<div id="page-yield">
+    <div id="search_box_bg">
+        @if (Html.ValidationSummary() != null)
+        {
+            <p class="flash-msg"> @Html.ValidationSummary() </p>
+        }
+        <div id="searchbox">
+            <form name="search-form" id="search-form" action="" style="display:inline;">
+                @using (Html.BeginForm("Index", "Student", FormMethod.Get))
+                {
+                    <p>
+                        @Html.DropDownList("searchString", null, htmlAttributes: new { @class = "form-control" })
+                        <input type="submit" value="Search" />
+                    </p>
+                }
+
+                <div class="extender"></div>
+            </form>
+        </div>
+    </div>
+
+    <div class="students-table">
+        <table id="listing" align="center" width="100%" cellpadding="1" cellspacing="1">
+            <tr class="tr-head">
+                <th>
+                    Sl. No.
+                </th>
+                <th>
+                    @Html.ActionLink("Name", "Fee_Collection_View", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })
+                </th>
+                <th>
+                    Batch
+                </th>
+                <th>
+                    @Html.ActionLink("Due Date", "Fee_Collection_View", new { sortOrder = ViewBag.DateSortParm, currentFilter = ViewBag.CurrentFilter })
+                </th>
+                <th>
+                    Start Date
+                </th>
+                <th>
+                    End Date
+                </th>
+                <th></th>
+            </tr>
+            <tr class="tr-blank"></tr>
+            @{int i = 1; }
+            @foreach (var item in Model)
+            {
+                string selectedRow = "tr-even";
+                if (i % 2 == 0)
+                {
+                    selectedRow = "tr-odd";
+                }
+                <tr class="@selectedRow">
+                    <td class="col-1">@i</td>
+                    <td class="col-2">
+                        @Html.DisplayFor(modelItem => item.FinanceFeeCollectionData.NAME)
+                    </td>
+                    <td class="col-4">
+                        @Html.DisplayFor(modelItem => item.CourseData.CODE)
+                        <label>-</label>
+                        @Html.DisplayFor(modelItem => item.BatchData.NAME)
+                    </td>
+                    <td class="col-4">
+                        @item.FinanceFeeCollectionData.DUE_DATE.Value.ToShortDateString()
+                    </td>
+                    <td class="col-5" nowrap>
+                        @item.FinanceFeeCollectionData.START_DATE.Value.ToShortDateString()
+                    </td>
+                    <td class="col-6" nowrap>
+                        @item.FinanceFeeCollectionData.END_DATE.Value.ToShortDateString()
+                    </td>
+                    <td class="col-7" nowrap>
+                        @Html.ActionLink("Edit ", "Fee_Collection_Edit", new { id = item.FinanceFeeCollectionData.ID })|@Html.ActionLink(" Delete", "Fee_Collection_Delete", new { id = item.FinanceFeeCollectionData.ID })
+                    </td>
+                </tr>
+                i = i + 1;
+            }
+        </table>
+        <br />
+        @Html.PagedListPager(Model, page => Url.Action("Fee_Collection_View",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+    </div>
+
+    <div id="user_information"> </div>
+    <div class="extender"> </div>
+    <div id="information"></div>
+</div>

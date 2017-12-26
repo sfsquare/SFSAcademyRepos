@@ -11,6 +11,7 @@ using PagedList;
 using SFSAcademy.Models;
 using SFSAcademy.HtmlHelpers;
 using System.IO;
+using iTextSharp.text;
 
 namespace SFSAcademy.Controllers
 {
@@ -153,7 +154,8 @@ namespace SFSAcademy.Controllers
         // GET: Student
         public ActionResult ViewAll()
         {
-
+            ViewBag.CartItems = (from t in db.STORE_PURCHAGE_CART
+                                 select t).Count();
             return View(db.STORE_CATEGORY.ToList());
         }
 
@@ -303,6 +305,8 @@ namespace SFSAcademy.Controllers
         public ActionResult Purchase(int? id)
         {
             ViewBag.PRODUCT_ID = new SelectList(db.STORE_PRODUCTS.Where(o => o.PRODUCT_ID == id).ToList(), "PRODUCT_ID", "NAME");
+            ViewBag.CartItems = (from t in db.STORE_PURCHAGE_CART
+                                 select t).Count();
             return View();
         }
 
@@ -311,25 +315,28 @@ namespace SFSAcademy.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Purchase([Bind(Include = "ID,PRODUCT_ID,UNIT_SOLD,SOLD_PRICE,SOLD_BY,SOLD_ON,STUDENT_NAME,STUDENT_CONTACT_NO,MONEY_RECEIVED_BY,IS_DEPOSITED,IS_ACT,IS_DEL,CREATED_AT,UPDATED_AT")] STORE_PURCHAGE sTORE_PURCHAGE)
+        public ActionResult Purchase([Bind(Include = "ID,PRODUCT_ID,UNIT_SOLD,SOLD_PRICE,SOLD_BY,SOLD_ON,STUDENT_NAME,STUDENT_CONTACT_NO,MONEY_RECEIVED_BY,IS_DEPOSITED,IS_ACT,IS_DEL,CREATED_AT,UPDATED_AT")] STORE_PURCHAGE_CART sTORE_PURCHAGE_cART)
         {
             if (ModelState.IsValid)
             {
-                sTORE_PURCHAGE.IS_DEL = "N";
-                sTORE_PURCHAGE.CREATED_AT = DateTime.Now;
-                sTORE_PURCHAGE.UPDATED_AT = DateTime.Now;
-                db.STORE_PURCHAGE.Add(sTORE_PURCHAGE);
+                sTORE_PURCHAGE_cART.IS_DEL = "N";
+                sTORE_PURCHAGE_cART.CREATED_AT = DateTime.Now;
+                sTORE_PURCHAGE_cART.UPDATED_AT = DateTime.Now;
+                db.STORE_PURCHAGE_CART.Add(sTORE_PURCHAGE_cART);
                 db.SaveChanges();
-                STORE_PRODUCTS sTOREpRODUCT = db.STORE_PRODUCTS.Find(sTORE_PURCHAGE.PRODUCT_ID);
+                STORE_PRODUCTS sTOREpRODUCT = db.STORE_PRODUCTS.Find(sTORE_PURCHAGE_cART.PRODUCT_ID);
                 sTOREpRODUCT.UPDATED_AT = DateTime.Now;
-                sTOREpRODUCT.UNIT_LEFT = sTOREpRODUCT.UNIT_LEFT - sTORE_PURCHAGE.UNIT_SOLD;
+                sTOREpRODUCT.UNIT_LEFT = sTOREpRODUCT.UNIT_LEFT - sTORE_PURCHAGE_cART.UNIT_SOLD;
                 db.Entry(sTOREpRODUCT).State = EntityState.Modified;
                 db.SaveChanges();
+
+                ViewBag.CartItems = (from t in db.STORE_PURCHAGE_CART
+                                                 select t).Count();
                 return RedirectToAction("ViewAll");
             }
 
-            ViewBag.PRODUCT_ID = new SelectList(db.STORE_PRODUCTS, "PRODUCT_ID", "NAME", sTORE_PURCHAGE.PRODUCT_ID);
-            return View(sTORE_PURCHAGE);
+            ViewBag.PRODUCT_ID = new SelectList(db.STORE_PRODUCTS, "PRODUCT_ID", "NAME", sTORE_PURCHAGE_cART.PRODUCT_ID);
+            return View(sTORE_PURCHAGE_cART);
         }
 
         // GET: Student
@@ -404,7 +411,7 @@ namespace SFSAcademy.Controllers
             }
             if (!String.IsNullOrEmpty(ContactNumber))
             {
-                PurchaseS = PurchaseS.Where(s => s.PurchaseData.STUDENT_CONTACT_NO.Contains(ContactNumber));
+                PurchaseS = PurchaseS.Where(s => s.PurchaseData.STUDENT_CONTACT_NO.Equals(ContactNumber));
             }
             if (!String.IsNullOrEmpty(ReceivedBy))
             {
@@ -504,7 +511,7 @@ namespace SFSAcademy.Controllers
             }
             if (!String.IsNullOrEmpty(ContactNumber))
             {
-                PurchaseS = PurchaseS.Where(s => s.PurchaseData.STUDENT_CONTACT_NO.Contains(ContactNumber));
+                PurchaseS = PurchaseS.Where(s => s.PurchaseData.STUDENT_CONTACT_NO.Equals(ContactNumber));
             }
             if (!String.IsNullOrEmpty(ReceivedBy))
             {
@@ -634,5 +641,267 @@ namespace SFSAcademy.Controllers
             return View(sTORE_PURCHASE);
         }
 
+        // GET: Student
+        public ActionResult ViewCart()
+        {
+            ViewBag.CartItems = (from t in db.STORE_PURCHAGE_CART
+                                 select t).Count();
+            var TotalPriceSel = db.STORE_PURCHAGE_CART.GroupBy(o => o.ID)
+                .Select(g => new { membername = g.Key, total = g.Sum(p => p.SOLD_PRICE) });
+            int TCost = 0;
+            foreach (var group in TotalPriceSel)
+            {
+                TCost = TCost+ Convert.ToInt32(group.total);
+            }
+
+            ViewBag.TotalPrice = TCost.ToString();
+            return View(db.STORE_CATEGORY.ToList());
+        }
+
+
+        // GET: Store Products
+        public ActionResult ListPurchagedProducts(string sortOrder, string currentFilter, string searchString, int? page)
+        {
+
+            ViewBag.CurrentSort = sortOrder;
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
+
+            if (searchString != null && searchString != "")
+            {
+                page = 1;
+                ///As Drop down list sends Id, we will ahve to convert this to text which is different from text box
+                int searchStringId = Convert.ToInt32(searchString);
+                searchString = db.STORE_CATEGORY.Find(searchStringId).NAME.ToString();
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = searchString;
+
+            var ProductS = (from pd in db.STORE_PRODUCTS
+                            join ct in db.STORE_CATEGORY on pd.CATEGORY_ID equals ct.ID
+                            join pct in db.STORE_PURCHAGE_CART on pd.PRODUCT_ID equals pct.PRODUCT_ID
+                            orderby pd.NAME, ct.NAME
+                            select new Models.PurchaseCart { ProductData = pd, CategoryData = ct, PurchaseCartData=pct }).Distinct();
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                ProductS = ProductS.Where(s => s.CategoryData.NAME.Contains(searchString));
+            }
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    ProductS = ProductS.OrderByDescending(s => s.ProductData.NAME);
+                    break;
+                case "Date":
+                    ProductS = ProductS.OrderBy(s => s.PurchaseCartData.SOLD_ON);
+                    break;
+                case "date_desc":
+                    ProductS = ProductS.OrderByDescending(s => s.PurchaseCartData.SOLD_ON);
+                    break;
+                default:  // Name ascending 
+                    ProductS = ProductS.OrderBy(s => s.ProductData.NAME);
+                    break;
+            }
+
+            int pageSize = 100;
+            int pageNumber = (page ?? 1);
+            return View(ProductS.ToPagedList(pageNumber, pageSize));
+            //return View(db.USERS.ToList());
+        }
+
+        // GET: Student
+        [HttpGet]
+        public void PrintReceipt(string sortOrder, string currentFilter, string searchString, int? page)
+        {
+            ViewBag.CurrentSort = sortOrder;
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
+
+            if (searchString != null && searchString != "")
+            {
+                page = 1;
+                ///As Drop down list sends Id, we will ahve to convert this to text which is different from text box
+                int searchStringId = Convert.ToInt32(searchString);
+                searchString = db.STORE_CATEGORY.Find(searchStringId).NAME.ToString();
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = searchString;
+
+            var ProductS = (from pd in db.STORE_PRODUCTS
+                            join ct in db.STORE_CATEGORY on pd.CATEGORY_ID equals ct.ID
+                            join pct in db.STORE_PURCHAGE_CART on pd.PRODUCT_ID equals pct.PRODUCT_ID
+                            orderby pd.NAME, ct.NAME
+                            select new Models.PurchaseCart { ProductData = pd, CategoryData = ct, PurchaseCartData = pct }).Distinct();
+
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                ProductS = ProductS.Where(s => s.CategoryData.NAME.Contains(searchString));
+            }
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    ProductS = ProductS.OrderByDescending(s => s.ProductData.NAME);
+                    break;
+                case "Date":
+                    ProductS = ProductS.OrderBy(s => s.PurchaseCartData.SOLD_ON);
+                    break;
+                case "date_desc":
+                    ProductS = ProductS.OrderByDescending(s => s.PurchaseCartData.SOLD_ON);
+                    break;
+                default:  // Name ascending 
+                    ProductS = ProductS.OrderBy(s => s.ProductData.NAME);
+                    break;
+            }
+
+            var ContactNum = db.STORE_PURCHAGE_CART
+                            .Select(g => new { ConNum = g.STUDENT_CONTACT_NO }).FirstOrDefault();
+            string ConNum = ContactNum.ConNum.ToString();
+            var PurDate = db.STORE_PURCHAGE_CART
+                            .Select(g => new { SoldOn = g.SOLD_ON }).FirstOrDefault();
+
+            DateTime PDate = Convert.ToDateTime(PurDate.SoldOn);
+            string SoldDate = PDate.ToString("mm/dd/yyyy");
+
+            var TotalPriceSel = db.STORE_PURCHAGE_CART.GroupBy(o => o.ID)
+                .Select(g => new { membername = g.Key, total = g.Sum(p => p.SOLD_PRICE) });
+            int TCost = 0;
+            foreach (var group in TotalPriceSel)
+            {
+                TCost = TCost + Convert.ToInt32(group.total);
+            }
+
+            var TotalPrice = TCost.ToString();
+
+            var PdfStoreS = (from res in ProductS
+                             select new { PName = res.ProductData.NAME, NumUnit = res.PurchaseCartData.UNIT_SOLD, UnitPrice = res.ProductData.SELL_PRICE_PER_UNIT, TotalPrice = res.PurchaseCartData.SOLD_PRICE}).ToList();
+
+
+            var configuration = new ReportConfiguration();
+            //configuration.PageOrientation = PageSize.LETTER_LANDSCAPE.Rotate();
+            configuration.LogoPath
+                = Server.MapPath(Url.Content("~/Content/images/login/SF_Square_Logo-Small.jpg"));
+            configuration.LogImageScalePercent = 25;
+            configuration.ReportTitle
+                = "S. F. Square Store Purchage Receipt";
+            configuration.ReportSubTitle = string.Concat("Total Cost =", TotalPrice,";Date =", SoldDate, ";Concat Number =", ConNum);
+            configuration.MarginLeft = 5;
+            configuration.MarginRight = 5;
+
+        var report = new PdfTabularReport();
+            report.ReportConfiguration = configuration;
+
+            List<ReportColumn> columns = new List<ReportColumn>();
+            columns.Add(new ReportColumn { ColumnName = "Sl. No.", Width = 100 });
+            columns.Add(new ReportColumn { ColumnName = "Product Name", Width = 100 });
+            columns.Add(new ReportColumn { ColumnName = "Number of Units", Width = 100 });
+            columns.Add(new ReportColumn { ColumnName = "Price Per Unit", Width = 100 });
+            columns.Add(new ReportColumn { ColumnName = "Total Cost", Width = 100 });
+
+            var PdfStoreSI = new DataTable();
+
+            PdfStoreSI.Columns.Add("Sl. No.", typeof(int));
+            PdfStoreSI.Columns.Add("Product Name", typeof(string));
+            PdfStoreSI.Columns.Add("Number of Units", typeof(string));
+            PdfStoreSI.Columns.Add("Price Per Unit", typeof(string));
+            PdfStoreSI.Columns.Add("Total Cost", typeof(string));
+
+            int i = 1;
+            foreach (var entity in PdfStoreS.ToList())
+            {
+                var row = PdfStoreSI.NewRow();
+                row["Sl. No."] = i;
+                row["Product Name"] = entity.PName;
+                row["Number of Units"] = entity.NumUnit;
+                row["Price Per Unit"] = entity.UnitPrice;
+                row["Total Cost"] = entity.TotalPrice;
+                PdfStoreSI.Rows.Add(row);
+                i = i + 1;
+            }
+
+            var pURcART = (from res in db.STORE_PURCHAGE_CART
+                           select res).ToList();
+            foreach (var PurCarList in pURcART)
+            {
+
+                STORE_PURCHAGE StorePur = db.STORE_PURCHAGE.Find(PurCarList.ID);
+                StorePur.PRODUCT_ID = PurCarList.PRODUCT_ID;
+                StorePur.UNIT_SOLD = PurCarList.UNIT_SOLD;
+                StorePur.SOLD_PRICE = PurCarList.SOLD_PRICE;
+                StorePur.SOLD_BY = PurCarList.SOLD_BY;
+                StorePur.SOLD_ON = PurCarList.SOLD_ON;
+                StorePur.STUDENT_NAME = PurCarList.STUDENT_NAME;
+                StorePur.STUDENT_CONTACT_NO = PurCarList.STUDENT_CONTACT_NO;
+                StorePur.MONEY_RECEIVED_BY = PurCarList.MONEY_RECEIVED_BY;
+                StorePur.IS_DEPOSITED = PurCarList.IS_DEPOSITED;
+                StorePur.IS_ACT = PurCarList.IS_ACT;
+                StorePur.IS_DEL = PurCarList.IS_DEL;
+                StorePur.CREATED_AT = PurCarList.CREATED_AT;
+                StorePur.UPDATED_AT = PurCarList.UPDATED_AT;
+                db.STORE_PURCHAGE.Add(StorePur);
+                db.SaveChanges();
+
+            }
+
+            db.Database.ExecuteSqlCommand("TRUNCATE TABLE STORE_PURCHAGE_CART");
+
+            var stream = report.GetPdf(PdfStoreSI, columns);
+
+            Response.Clear();
+            Response.ContentType = "application/pdf";
+            Response.AddHeader("content-disposition",
+                "attachment;filename=ExampleReport.pdf");
+            Response.Cache.SetCacheability(HttpCacheability.NoCache);
+            Response.BinaryWrite(stream.ToArray());
+            Response.End();
+
+        }
+
+        // GET: Student
+        public ActionResult CancelTransaction()
+        {
+
+            var pURcART = (from res in db.STORE_PURCHAGE_CART
+                             select res).ToList();
+            foreach(var PurCarList in pURcART) 
+            {
+ 
+                STORE_PRODUCTS sTOREpRODUCT = db.STORE_PRODUCTS.Find(PurCarList.PRODUCT_ID);
+                sTOREpRODUCT.UPDATED_AT = DateTime.Now;
+                sTOREpRODUCT.UNIT_LEFT = sTOREpRODUCT.UNIT_LEFT + PurCarList.UNIT_SOLD;
+                db.Entry(sTOREpRODUCT).State = EntityState.Modified;
+                db.SaveChanges();
+            }
+
+            db.Database.ExecuteSqlCommand("TRUNCATE TABLE STORE_PURCHAGE_CART");
+            return RedirectToAction("ViewAll");
+        }
+
+        // GET: Student
+        public ActionResult CleanCart()
+        {
+            var pURcART = (from res in db.STORE_PURCHAGE_CART
+                           select res).ToList();
+            foreach (var PurCarList in pURcART)
+            {
+
+                STORE_PRODUCTS sTOREpRODUCT = db.STORE_PRODUCTS.Find(PurCarList.PRODUCT_ID);
+                sTOREpRODUCT.UPDATED_AT = DateTime.Now;
+                sTOREpRODUCT.UNIT_LEFT = sTOREpRODUCT.UNIT_LEFT + PurCarList.UNIT_SOLD;
+                db.Entry(sTOREpRODUCT).State = EntityState.Modified;
+                db.SaveChanges();
+            }
+
+            db.Database.ExecuteSqlCommand("TRUNCATE TABLE STORE_PURCHAGE_CART");
+            return RedirectToAction("ViewAll");
+        }
     }
 }

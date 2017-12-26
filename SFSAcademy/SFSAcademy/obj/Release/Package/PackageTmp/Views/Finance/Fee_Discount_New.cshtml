@@ -1,0 +1,158 @@
+﻿@model SFSAcademy.FEE_DISCOUNT
+
+@{
+    ViewBag.Title = "Fee_Discount_New";
+}
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+<link rel="stylesheet" href="/resources/demos/style.css" />
+<script>
+    $(document).ready(function () {
+      $(".Admission1_form").hide();
+      $(".Admission2_form").hide();
+      $(".Admission3_form").hide();
+      $(".Admission4_form").hide();
+      $("input[Value='Batch']").click(function () {
+          var test = $(this).val();
+          $(".Admission1_form").show();
+          $(".Admission2_form").hide();
+          $(".Admission3_form").hide();
+          $(".Admission4_form").show();
+      });
+      $("input[Value='Student Category']").click(function () {
+          var test = $(this).val();
+          $(".Admission1_form").show();
+          $(".Admission2_form").show();
+          $(".Admission3_form").hide();
+          $(".Admission4_form").show();
+      });
+      $("input[Value='Student']").click(function () {
+          var test = $(this).val();
+          $(".Admission1_form").show();
+          $(".Admission3_form").show();
+          $(".Admission2_form").hide();
+          $(".Admission4_form").show();
+      });
+
+    });
+
+</script>
+
+
+<div id="content-header">
+    <img src="~/Content/images/show_finance.png" alt="Finance Logo">
+    <h1>Fee Discounts</h1>
+    <h3>Finance Management</h3>
+    <div id="app-back-button">
+        <a href='javascript:history.back()' onclick="return confirm('are you sure?')"><img src="~/Content/images/buttons/back.png"></a>
+    </div>
+</div>
+<div><img src="~/Content/images/_global/header_underline_.jpg" width="100%"></div>
+<div id="inner-tab-menu">
+    <ul>
+        <li>@Html.ActionLink("View Discount", "Fee_Discounts") </li>
+    </ul>
+</div>
+
+<div id="page-yield">
+    <div id="parents">
+        <div class="bread_crumb">
+            @Html.ActionLink("Finance", "Index") &raquo;
+            @Html.ActionLink("Fees", "Fees_Index") &raquo;
+            @Html.ActionLink("Create Fees", "Master_Fees") &raquo;
+            Fee Discounts
+        </div>
+        <div id="flash_box">
+            @if (ViewBag.ErrorMessage != null)
+            {
+                <p class="flash-msg"> @ViewBag.ErrorMessage </p>
+            }
+        </div>
+        <div id="form-errors"></div>
+    </div>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <div class="button-pair">
+            <div class="button-label"><label>Select A Discount Type :</label></div>
+            <div class="button-box">
+                @Html.RadioButton("radioName", "Batch", false, new { id = "id1" }) Batch <br />
+                @Html.RadioButton("radioName", "Student Category", false, new { id = "id2" }) Student Category<br />
+                @Html.RadioButton("radioName", "Student", false, new { id = "id3" }) Student<br />
+            </div>
+        </div>
+
+        <script type="text/javascript">
+                Event.observe(window, 'load', function () { $('Admission1_form').hide(); });
+        </script>
+
+        <div class="Admission1_form">
+            <hr class="label-underline">
+            <span class="span-sub-heading">Enter Details of Selected Discount Type</span>
+            <div class="label-field-pair">
+                @Html.LabelFor(model => model.NAME, "Name :", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="text-input-bg">
+                    @Html.EditorFor(model => model.NAME, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.NAME, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="label-field-pair">
+                @Html.Label("FIN_FEE_CAT_ID", "Select Fee Category :", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="text-input-bg">
+                    @Html.DropDownList("FIN_FEE_CAT_ID", null, htmlAttributes: new { @class = "_select_change" })
+                    @Html.ValidationMessageFor(model => model.FIN_FEE_CAT_ID, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div id="batchs"></div>
+            <div class="label-field-pair">
+                @Html.LabelFor(model => model.DISC, "Discount :", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="text-input-bg">
+                    @Html.EditorFor(model => model.DISC, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.DISC, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="label-field-pair">
+                <label>Mode :</label>
+                <div class="button-box">
+                    @Html.RadioButton("radioName2", "Amount", true, new { id = "id1" }) Amount <br />
+                    @Html.RadioButton("radioName2", "Percentage", false, new { id = "id2" }) Percentage<br />
+                </div>
+            </div>
+            <br>
+        </div>
+
+        <div class="Admission2_form">
+            <div id="batchs"></div>
+            <div class="label-field-pair">
+                @Html.Label("STUDENT_CATGEORY_ID", "Select Student Category :", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="text-input-bg">
+                    @Html.DropDownList("STUDENT_CATGEORY_ID", null, htmlAttributes: new { @class = "_select_change" })
+                </div>
+            </div>
+        </div>
+
+        <div class="Admission3_form">
+            <div id="fee-category-box"></div>
+            <div class="label-field-pair">
+                @Html.Label("ADMSN_NO", "Admission Number", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="text-input-bg">
+                    @Html.Editor("ADMSN_NO", new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.RCVR_ID, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="Admission4_form">
+            <div class="extender">
+                <input type="submit" value="► Finish" class="submit_button3" name="Commit" />
+            </div>
+        </div>
+
+    }
+
+</div>

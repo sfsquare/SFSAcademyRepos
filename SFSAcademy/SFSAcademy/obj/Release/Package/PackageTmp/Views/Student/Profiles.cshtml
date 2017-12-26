@@ -1,0 +1,114 @@
+﻿@model SFSAcademy.Models.Student
+
+@{
+    ViewBag.Title = "Profiles";
+}
+
+<div id="content-header">
+    <img src="~/Content/images/student_details/student_details_logo.jpg" alt="Student Details Logo">
+    <h1>Student Information</h1>
+    <h3>Student Profile</h3>
+    <div id="app-back-button">
+        <a href='javascript:history.back()' onclick="return confirm('are you sure?')"><img src="~/Content/images/buttons/back.png"></a>
+    </div>
+</div>
+<div><img src="~/Content/images/_global/header_underline_.jpg" width="100%"></div>
+
+<div id="nav">
+    <ul>
+        @if (Html.Permitted_To("Reports", "Student"))
+        {
+            <li class="a"><a href="@Url.Action("Reports", "Student", new { id = Model.StudentData.ID })">Reports</a></li>
+        }
+        @if (Html.Permitted_To("Guardians", "Student"))
+        {
+            <li class="a"><a href="@Url.Action("Guardians", "Student", new { id = Model.StudentData.ID })">Guardian</a></li>
+        }
+
+        @if (Html.Permitted_To("Remove", "Student") || Html.Permitted_To("Admission1", "Student"))
+        {
+            <li class="a"><a href="@Url.Action("Remove", "Student", new { id =Model.StudentData.ID })">Delete</a></li>
+        }
+        <li>
+            <a href="#" class="drops" id="link_one">More &#9660;</a>
+            <ul id="box_one" class="scriptaculously" style="display:none;">
+                @if (Html.Permitted_To("Index", "Student") || Html.Permitted_To("Admission1", "Student"))
+                {
+                    <li class="a"><a href="@Url.Action("Fees", "Student", new { id = Model.StudentData.ID })">Fees</a></li>
+                }
+            </ul>
+        </li>
+    </ul>
+</div>
+
+<div id="page-yield">
+    @if (Html.ValidationSummary() != null)
+    {
+        <p class="flash-msg"> @Html.ValidationSummary() </p>
+    }
+    <div id="student_profile_heading">
+        <div id="profile_picture_display" >
+            <img src="/Student/Show/@Model.StudentData.PHTO_DATA" alt="" height=150 width=150 />
+        </div>
+        <div id="student_main_info">
+            <h3> @Model.StudentData.FIRST_NAME  @Model.StudentData.MID_NAME @Model.StudentData.LAST_NAME</h3>
+            @if (Model.CourseData != null)
+            {
+                <h4> Course : @Model.CourseData.CRS_NAME </h4>
+            }           
+            <h4> Batch : @Model.BatcheData.NAME </h4>
+            <h4> Admission Number : @Model.StudentData.ADMSN_NO </h4>
+        </div>
+        <div class="extender"> </div>
+    </div>
+    <div id="new_profile_info_top">
+        <div class="profile_top_banner">
+            <span class="profile">Details</span>
+            <div class="profile-topbanner"></div>
+        </div>
+        <table width="700">
+            <tr class="odd left"><td>Admission Date :</td><td class="right">@Model.StudentData.ADMSN_DATE</td></tr>
+            <tr class="even left"><td>Date Of Birth :</td><td class="right">@Model.StudentData.DOB</td></tr>
+            <tr class="odd left"><td>Blood Group :</td><td class="right">@Model.StudentData.BLOOD_GRP</td></tr>
+            <tr class="even left"><td>Gender :</td><td class="right">@Model.StudentData.GNDR</td></tr>
+            <tr class="odd left"><td>Nationality :</td><td class="right">@Model.CountryData.NTLTY</td></tr>
+            <tr class="even left"><td>Language :</td><td class="right">@Model.StudentData.LANG</td></tr>
+            @if (Model.CategoryData != null)
+            {
+                <tr class="odd left"><td>Category :</td><td class="right">@Model.CategoryData.NAME</td></tr>
+            }
+            <tr class="even left"><td>Religion :</td><td class="right">@Model.StudentData.RLGN</td></tr>
+            <tr class="odd left"><td>Address :</td><td class="right">@Model.StudentData.ADDR_LINE1 ,</td></tr>
+
+            <tr class="even left"><td></td><td class="right">@Model.StudentData.ADDR_LINE2 </td></tr>
+            <tr class="even left"><td>City :</td><td class="right">@Model.StudentData.CITY</td></tr>
+            <tr class="odd left"><td>State :</td><td class="right">@Model.StudentData.STATE</td></tr>
+            <tr class="even left"><td>ZIP :</td><td class="right">@Model.StudentData.PIN_CODE</td></tr>
+            <tr class="odd left"><td>Country :</td><td class="right">@Model.CountryData.CTRY_NAME</td></tr>
+            <tr class="even left"><td>Phone :</td><td class="right">@Model.StudentData.PH1</td></tr>
+            <tr class="odd left"><td>Mobile :</td><td class="right">@Model.StudentData.PH2</td></tr>
+            <tr class="even left"><td>Email :</td><td class="right">@Model.StudentData.EML</td></tr>
+            @if (Model.EmployeeData != null)
+            {
+                <tr class="odd left"><td>Group Tutor :</td><td class="right">@Model.EmployeeData.FIRST_NAME @Model.EmployeeData.LAST_NAME</td></tr>
+            }   
+            <tr class="even left"><td>Contact Details :</td><td class="right">@Html.ActionLink("Click Here", "Guardians", new { id = Model.StudentData.ID })</td></tr>
+            <tr class="even left"><td>Previous Details :</td><td class="right">@Html.ActionLink("Click Here", "ShowPreviousDetails", new { id = Model.StudentData.ID })</td></tr>
+        </table>
+        @if (Html.CurrentUser_UserType().Equals("Admin"))
+        {
+            <div class="buttons">
+                @Html.ActionLink("Edit", "Edit", new { id = Model.StudentData.ID }) |
+                @Html.ActionLink("PDF Report", "ProfilePDF", new { id = Model.StudentData.ID })
+            </div>
+        }
+        else if (Html.Permitted_To("Edit", "Student"))
+        {
+            <div class="buttons">
+                @Html.ActionLink("Edit", "Edit", new { id = Model.StudentData.ID }) |
+                @Html.ActionLink("PDF Report", "ProfilePDF", new { id = Model.StudentData.ID })
+            </div>
+        }
+
+    </div>
+</div>

@@ -19,7 +19,6 @@ namespace SFSAcademy
         {
             this.ASSESSMENT_SCORE = new HashSet<ASSESSMENT_SCORE>();
             this.ATTENDENCEs = new HashSet<ATTENDENCE>();
-            this.FINANCE_FEE_CATGEORY = new HashSet<FINANCE_FEE_CATGEORY>();
             this.FINANCE_FEE_STRUCTURE_ELEMENT = new HashSet<FINANCE_FEE_STRUCTURE_ELEMENT>();
             this.SUBJECTs = new HashSet<SUBJECT>();
             this.STUDENT_SUBJECT = new HashSet<STUDENT_SUBJECT>();
@@ -31,6 +30,7 @@ namespace SFSAcademy
             this.TIMETABLE_ENTRY = new HashSet<TIMETABLE_ENTRY>();
             this.WEEKDAYs = new HashSet<WEEKDAY>();
             this.FINANCE_FEE_COLLECTION = new HashSet<FINANCE_FEE_COLLECTION>();
+            this.FINANCE_FEE_CATGEORY = new HashSet<FINANCE_FEE_CATGEORY>();
         }
     
         public int ID { get; set; }
@@ -45,8 +45,6 @@ namespace SFSAcademy
         public virtual ICollection<ASSESSMENT_SCORE> ASSESSMENT_SCORE { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ATTENDENCE> ATTENDENCEs { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<FINANCE_FEE_CATGEORY> FINANCE_FEE_CATGEORY { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<FINANCE_FEE_STRUCTURE_ELEMENT> FINANCE_FEE_STRUCTURE_ELEMENT { get; set; }
         public virtual COURSE COURSE { get; set; }
@@ -70,5 +68,7 @@ namespace SFSAcademy
         public virtual ICollection<WEEKDAY> WEEKDAYs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<FINANCE_FEE_COLLECTION> FINANCE_FEE_COLLECTION { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<FINANCE_FEE_CATGEORY> FINANCE_FEE_CATGEORY { get; set; }
     }
 }

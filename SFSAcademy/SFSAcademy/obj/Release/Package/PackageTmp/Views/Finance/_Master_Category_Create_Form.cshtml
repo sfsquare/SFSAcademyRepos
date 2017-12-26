@@ -1,0 +1,79 @@
+﻿@using SFSAcademy.Models
+@model IList<SelectCourseBatch>
+@{    Layout = null;}
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+<link rel="stylesheet" href="/resources/demos/style.css" />
+<script>
+    $(document).ready(function () {
+        $("#AdmForm1").hide();
+        $("input[Value='No']").click(function () {
+            var test = $(this).val();
+            $("#AdmForm1").show();
+        });
+        $("input[Value='Yes']").click(function () {
+            var test = $(this).val();
+            $("#AdmForm1").hide();
+        });
+
+    });
+    $$('input.category_select').each(function (checkbox) { checkbox.checked = true; });
+    $$('input.category_select').each(function (checkbox) { checkbox.checked = false; });
+</script>
+<div class="label-field-pair">
+    <div class="label-container"><label>Is this Master Category?</label></div>
+    <div class="radio_button">
+        <div class="opt"> @Html.RadioButton("radioName", "Yes", true, new { id = "id1"}) Yes </div>
+        <div class="opt"> @Html.RadioButton("radioName", "No", false, new { id = "id2"}) No <br /></div>
+    </div>
+</div>
+<div class="label-field-pair">
+
+</div>
+<div id="AdmForm1">
+    <div class="label-field-pair">
+        <div class="label-container">@Html.LabelFor(x => x[0].FeeCategoryData.MSTR_CATGRY_ID, "Select Master Category", htmlAttributes: new { @class = "control-label col-md-2" })</div>
+        <div class="text-input-bg">
+            @Html.DropDownList("MSTR_CATGRY_ID", null, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x[0].FeeCategoryData.MSTR_CATGRY_ID, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div id="right-side-inputs">
+        <div class="category_list">
+            <div class="label-container">
+                <label>
+                    Select a Batch:
+                    <b class="sel-list">
+                        <a href="javascript:void(0);" onclick="$$('input.category_select').each(function (checkbox) { checkbox.checked = true; });">All</a>
+                        <a href="javascript:void(0);" onclick="$$('input.category_select').each(function (checkbox) { checkbox.checked = false; });">None</a>
+                    </b>
+                </label>
+            </div>
+            <div class="categories">
+                <div class="batches" style="overflow-y: scroll; height:150px; width:200px;">
+                    @for (var j = 0; j < Model.Count(); j++)
+            {
+                        <div class="each_batch">
+                            <label> @Html.CheckBoxFor(x => x[j].Selected, new { @class = "category_select", @id = "category_select" }) @Model[j].CourseData.CODE - @Model[j].BatchData.NAME</label>
+                        </div>
+                        <div class="each_batch">
+                            @Html.HiddenFor(x => x[j].BatchData.ID)
+                        </div>
+                        <div class="each_batch">
+                            @Html.HiddenFor(x => x[j].BatchData.ID)
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>       
+ </div>
+<br />
+
+
+
+

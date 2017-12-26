@@ -18,6 +18,7 @@ namespace SFSAcademy
         public STORE_PRODUCTS()
         {
             this.STORE_PURCHAGE = new HashSet<STORE_PURCHAGE>();
+            this.STORE_PURCHAGE_CART = new HashSet<STORE_PURCHAGE_CART>();
         }
     
         public int PRODUCT_ID { get; set; }
@@ -41,5 +42,7 @@ namespace SFSAcademy
         public virtual STORE_CATEGORY STORE_CATEGORY { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<STORE_PURCHAGE> STORE_PURCHAGE { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<STORE_PURCHAGE_CART> STORE_PURCHAGE_CART { get; set; }
     }
 }

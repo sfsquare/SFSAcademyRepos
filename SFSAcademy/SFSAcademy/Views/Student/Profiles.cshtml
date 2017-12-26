@@ -88,7 +88,10 @@
             <tr class="even left"><td>Phone :</td><td class="right">@Model.StudentData.PH1</td></tr>
             <tr class="odd left"><td>Mobile :</td><td class="right">@Model.StudentData.PH2</td></tr>
             <tr class="even left"><td>Email :</td><td class="right">@Model.StudentData.EML</td></tr>
-            <tr class="odd left"><td>Group Tutor :</td><td class="right">@Model.EmployeeData.FIRST_NAME @Model.EmployeeData.LAST_NAME</td></tr>
+            @if (Model.EmployeeData != null)
+            {
+                <tr class="odd left"><td>Group Tutor :</td><td class="right">@Model.EmployeeData.FIRST_NAME @Model.EmployeeData.LAST_NAME</td></tr>
+            }   
             <tr class="even left"><td>Contact Details :</td><td class="right">@Html.ActionLink("Click Here", "Guardians", new { id = Model.StudentData.ID })</td></tr>
             <tr class="even left"><td>Previous Details :</td><td class="right">@Html.ActionLink("Click Here", "ShowPreviousDetails", new { id = Model.StudentData.ID })</td></tr>
         </table>
