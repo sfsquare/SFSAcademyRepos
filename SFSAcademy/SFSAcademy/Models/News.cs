@@ -3,45 +3,9 @@ using System.Data;
 using System.Linq;
 using System.Web.UI.WebControls;
 using System.ComponentModel.DataAnnotations;
-using System.Collections.Generic;
 
 namespace SFSAcademy.Models
 {
-    //public class NewsMaster
-    //{
-    //    public NEWS NewsData { get; set; }
-    //    public NEWS_COMMENTS NewsCommentData { get; set; }
-    //    public USER userData { get; set; }
-    //}
-
-    public class NewsComments
-    {
-        public int commentId { get; set; }
-        public int? newsId { get; set; }
-        public string commentContent { get; set; }
-        public string commentAddedBy { get; set; }
-        public int? AddedByUserId { get; set; }
-        public DateTime? commentAddedDate { get; set; }
-        public DateTime? commentUpdatedDate { get; set; }
-        public string isApproved { get; set; }
-        public string EnableNewsCommentModeration { get; set; }
-    }
-
-    public class NewsDetails
-    {
-        public int newsId { get; set; }
-        public string newsTitle { get; set; }
-        public string newsContent { get; set; }
-        public DateTime? newsCreatedDate { get; set; }
-        public DateTime? newsUpdatedDate { get; set; }
-        public string newsCreatedBy { get; set; }
-        public int newsCommentCount { get; set; }
-        public List<NewsComments> commentList { get; set; }
-        public string isUserAdmin { get; set; }
-        public string isModerator { get; set; }
-        public int? CreatedByUserId { get; set; }
-        public double days { get; set; }
-    }
     public class News
     {
         private SFSAcademyEntities db = new SFSAcademyEntities();
@@ -55,6 +19,7 @@ namespace SFSAcademy.Models
 
         [Display(Name = "Author of this News")]
         public bool Author { get; set; }
+
 
         /// <summary>
         /// Checks if user with given password exists in the database

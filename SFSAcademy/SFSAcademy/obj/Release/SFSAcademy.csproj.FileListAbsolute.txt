@@ -169,3 +169,4 @@ C:\Users\sudhi\Documents\Visual Studio 2015\Projects\Github\SFSAcademy\SFSAcadem
 C:\Users\sudhi\Documents\Visual Studio 2015\Projects\Github\SFSAcademy\SFSAcademy\obj\Release\SFSAcademy.csprojResolveAssemblyReference.cache
 C:\Users\sudhi\Documents\Visual Studio 2015\Projects\Github\SFSAcademy\SFSAcademy\obj\Release\SFSAcademy.dll
 C:\Users\sudhi\Documents\Visual Studio 2015\Projects\Github\SFSAcademy\SFSAcademy\obj\Release\SFSAcademy.pdb
+C:\Users\sudhi\Documents\Visual Studio 2015\Projects\Github\SFSAcademyRepos\SFSAcademyRepos\SFSAcademy\SFSAcademy\bin\itextsharp.xmlworker.dll

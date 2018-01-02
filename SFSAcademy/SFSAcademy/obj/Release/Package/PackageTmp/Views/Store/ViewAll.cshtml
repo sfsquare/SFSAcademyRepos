@@ -16,7 +16,10 @@
 <div id="inner-tab-menu">
     <ul>
         <li>@Html.ActionLink("Show Cart", "ViewCart")</li>
-        <li>@Html.ActionLink("Add New Product", "Create")</li>
+        @if (Html.Permitted_To("Edit", "Store"))
+        {
+            <li>@Html.ActionLink("Add New Product", "Create")</li>
+        }       
     </ul>
     <p class="flash-msg"> Number of Items in the Cart = @ViewBag.CartItems </p>
 </div>

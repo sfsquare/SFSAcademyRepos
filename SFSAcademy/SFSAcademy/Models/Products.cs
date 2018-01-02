@@ -22,5 +22,8 @@ namespace SFSAcademy.Models
         public STORE_PURCHAGE_CART PurchaseCartData { get; set; }
         public STORE_PRODUCTS ProductData { get; set; }
         public STORE_CATEGORY CategoryData { get; set; }
+        public int? UNIT_SOLD { get; set; }
+        public decimal? SOLD_AMNT { get; set; }
+        public DateTime? PUR_DATE { get; set; }
     }
 }

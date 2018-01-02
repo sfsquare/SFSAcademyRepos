@@ -62,13 +62,22 @@
                             @item.ProductData.PURCHASED_ON.Value.ToShortDateString()
                         }
                     </td>
-                    <td class="col-8" nowrap>
-                        @Html.ActionLink("Edit ", "Edit", new { id = item.ProductData.PRODUCT_ID }) |
-                        @Html.ActionLink("Details  ", "Details", new { id = item.ProductData.PRODUCT_ID }) |
-                        @Html.ActionLink("Delete ", "Delete", new { id = item.ProductData.PRODUCT_ID }) |
-                        @Html.ActionLink("Sell ", "Purchase", new { id = item.ProductData.PRODUCT_ID }) 
-
-                    </td>
+                    @if (Html.Permitted_To("Edit", "Store"))
+                    {
+                        <td class="col-8" nowrap>
+                            @Html.ActionLink("Edit ", "Edit", new { id = item.ProductData.PRODUCT_ID }) |
+                            @Html.ActionLink("Details  ", "Details", new { id = item.ProductData.PRODUCT_ID }) |
+                            @Html.ActionLink("Delete ", "Delete", new { id = item.ProductData.PRODUCT_ID }) |
+                            @Html.ActionLink("Sell ", "Purchase", new { id = item.ProductData.PRODUCT_ID })
+                        </td>
+                    }
+                    else
+                    {
+                        <td class="col-8" nowrap>
+                            @Html.ActionLink("Sell ", "Purchase", new { id = item.ProductData.PRODUCT_ID })
+                        </td>
+                    }
+                    
                 </tr>
             i = i + 1;
         }
