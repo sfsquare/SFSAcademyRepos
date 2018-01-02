@@ -67,9 +67,6 @@
       <HintPath>..\packages\itextsharp.xmlworker.5.5.12\lib\itextsharp.xmlworker.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Kendo.Mvc">
-      <HintPath>C:\Users\Sony\Downloads\Kendo.Mvc.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.AI.Agent.Intercept, Version=2.0.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.2.0.7\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
       <Private>True</Private>
@@ -797,6 +794,7 @@
     <Content Include="Content\PagedList.css" />
     <Content Include="Content\stylesheets\store\create.css" />
     <Content Include="Content\stylesheets\store\edit.css" />
+    <Content Include="Content\stylesheets\store\viewcart.css" />
     <Content Include="Content\stylesheets\store\index.css" />
     <Content Include="Content\stylesheets\store\new.css" />
     <Content Include="Content\stylesheets\store\purchase.css" />
@@ -2334,7 +2332,7 @@
     <Content Include="Views\Store\ViewAllSelling.cshtml" />
     <Content Include="Views\Store\EditSelling.cshtml" />
     <Content Include="Views\Store\ViewCart.cshtml" />
-    <Content Include="Views\Store\ListPurchagedProducts.cshtml" />
+    <Content Include="Views\Store\_ListPurchagedProducts.cshtml" />
     <Content Include="Views\Finance\Categories.cshtml" />
     <Content Include="Views\Finance\_category_create_form.cshtml" />
     <Content Include="Views\Finance\_CategoriesList.cshtml" />
@@ -2350,13 +2348,6 @@
     <Content Include="Views\Finance\student_fee_receipt_pdf.cshtml" />
     <Content Include="Views\Finance\Fees_Student_Search.cshtml" />
     <Content Include="Views\Finance\_fees_student_dates.cshtml" />
-    <Content Include="Views\news\Create.cshtml" />
-    <Content Include="Views\news\Index.cshtml" />
-    <Content Include="Views\news\SearchResult.cshtml" />
-    <Content Include="Views\news\Test.cshtml" />
-    <Content Include="Views\news\view.cshtml" />
-    <Content Include="Views\news\_comment.cshtml" />
-    <Content Include="Views\news\_NewsSearchPartial.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -2417,7 +2408,6 @@
     <Compile Include="Controllers\CoursesController.cs" />
     <Compile Include="Controllers\FinanceController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\newsController.cs" />
     <Compile Include="Controllers\StoreController.cs" />
     <Compile Include="Controllers\StudentController.cs" />
     <Compile Include="Controllers\USERsController.cs" />

@@ -21,20 +21,15 @@
 <link rel="stylesheet" id="stylesheet" type="text/css" href="~/Content/stylesheets/finance/student_fee_receipt_pdf.css">
 
 <div id="page-yield">
-    <div id="content-header">
-        <h2>S. F. Square Academy</h2>
-        <h2>Registration Number: 10731 (SSA)</h2>
-        <h4>Simrahi Bazar (Ward No. 09), Raghopur, Supaul - 852111</h4>
-        <h4>Mob.:82927 84209 / 99678 03589 | Website: sfsquareacademy.org</h4>
-    </div>
     <div class="hor_line"></div>
     @if (financefee.FirstOrDefault().IS_PD == "Y")
     {
-        <h2>Fee Reciept</h2>
+        <h2>S. F. Square Academy - Fee Reciept</h2>
+
     }
     else
     {
-        <h2>Partial Payment Receipt</h2>
+        <h2>S. F. Square Academy - Partial Payment Receipt</h2>
     }
     <div class="hor_line"></div>
 
@@ -43,7 +38,7 @@
         @{ decimal total_fees = 0;}
         <div id="main_info">
             <h4> Name: @string.Concat(student.FIRST_NAME, " ", student.MID_NAME, " ", student.LAST_NAME)</h4>
-            <h4> Admission_no : @student.ADMSN_NO</h4>
+            <h4> Admission Number: @student.ADMSN_NO</h4>
         </div>
         <div id="pdf-info">
             <table id="pdf-table" width="100%" cellspacing="0">
@@ -53,10 +48,10 @@
                     <td class="col-pdf3">Receipt No</td>
                     <td class="col-pdf4"> Amount</td>
                 </tr>
-                @{int i = 1;}
+                @{int i = 1; string selectedRow = "even";}
                 @foreach (var item in fee_particulars)
                 {
-                    string selectedRow = "even";
+                    selectedRow = "even";
                     if (i % 2 == 0)
                     {
                         selectedRow = "odd";
@@ -70,12 +65,16 @@
                     total_fees += (decimal)item.AMT;
                     i = i + 1;
                 }
-                @{string nextRow = ""; string nextToNextRow = "";}
                 @if (@ViewBag.total_discount != 0)
                 {
+                    selectedRow = "even";
+                    if (i % 2 == 0)
+                    {
+                        selectedRow = "odd";
+                    }
                     <tr class="tr-blank"></tr>
-                        <tr class="tr-blank"></tr>
-                        <tr class="selectedRow" cellpadding="1" cellspacing="1">
+                    <tr class="tr-blank"></tr>
+                        <tr class="@selectedRow" cellpadding="1" cellspacing="1">
                             <td class="col-1"></td>
                             <td class="col-1" colspan="4"><span class="themed_text">Discounts</span></td>
                         </tr>
@@ -83,7 +82,7 @@
                     {
                         string discount_text = item.IS_AMT == "Y" ? item.NAME : string.Concat(item.NAME, ": ", item.DISC, "%");
                         decimal discount = item.IS_AMT == "Y" ? (decimal)item.DISC : ViewBag.total_payable * (decimal)item.DISC / 100;
-                        string selectedRow = "even";
+                        selectedRow = "even";
                         if (i % 2 == 0)
                         {
                             selectedRow = "odd";
@@ -100,7 +99,7 @@
                     {
                         string discount_text2 = item2.IS_AMT == "Y" ? item2.NAME : string.Concat(item2.NAME, ": ", item2.DISC, "%");
                         decimal discount2 = item2.IS_AMT == "Y" ? (decimal)item2.DISC : ViewBag.total_payable * (decimal)item2.DISC / 100;
-                        string selectedRow = "even";
+                        selectedRow = "even";
                         if (i % 2 == 0)
                         {
                             selectedRow = "odd";
@@ -117,7 +116,7 @@
                     {
                         string discount_text3 = item3.IS_AMT == "Y" ? item3.NAME : string.Concat(item3.NAME, ": ", item3.DISC, "%");
                         decimal discount3 = item3.IS_AMT == "Y" ? (decimal)item3.DISC : ViewBag.total_payable * (decimal)item3.DISC / 100;
-                        string selectedRow = "even";
+                        selectedRow = "even";
                         if (i % 2 == 0)
                         {
                             selectedRow = "odd";
@@ -131,42 +130,47 @@
                         </tr>
                         i = i + 1;
                     }
+                    selectedRow = "even";
                     if (i % 2 == 0)
                     {
-                        nextRow = "even";
-                        nextToNextRow = "odd";
-                    }
-                    else
-                    {
-                        nextRow = "odd";
-                        nextToNextRow = "even";
+                        selectedRow = "odd";
                     }
                     <tr class="tr-blank"></tr>
                     <tr class="tr-blank"></tr>
-                    <tr class="@nextRow">
+                    <tr class="@selectedRow">
                         <td class="col-8" colspan="3">Total Discount</td>
                         <td class="col-6">@ViewBag.total_discount</td>
                     </tr>
+                    selectedRow = "even";
+                    if (i % 2 == 0)
+                    {
+                        selectedRow = "odd";
+                    }
                     <tr class="tr-blank"></tr>
                     <tr class="tr-blank"></tr>
                     { total_fees -= total_fees * @ViewBag.total_discount_percentage / 100; }
-                    <tr class="@nextToNextRow">
+                    <tr class="@selectedRow">
                         <td class="col-8" colspan="3">Total Fees</td>
                         <td class="col-6">@total_fees</td>
                     </tr>
                 }
                 @if (@ViewBag.total_fine != 0)
                 {
+                    selectedRow = "even";
+                    if (i % 2 == 0)
+                    {
+                        selectedRow = "odd";
+                    }
                     <tr class="tr-blank"></tr>
                     <tr class="tr-blank"></tr>
-                    <tr class="selectedRow">
+                    <tr class="@selectedRow">
                         <td class="col-1" colspan="4"><span class="themed_text">Fine:</span></td>
                     </tr>
                     foreach (var item in batch_fine)
                     {
                         string fine_text = item.IS_AMT == "Y" ? string.Concat(item.NAME, " On ", item.FINE_DATE.Value.ToShortDateString()) : string.Concat(item.NAME, " On ", item.FINE_DATE.Value.ToShortDateString(), " : ", item.FINE, "%");
                         decimal fine = item.IS_AMT == "Y" ? (decimal)item.FINE : ViewBag.total_payable * (decimal)item.FINE / 100;
-                        string selectedRow = "even";
+                        selectedRow = "even";
                         if (i % 2 == 0)
                         {
                             selectedRow = "odd";
@@ -183,7 +187,7 @@
                     {
                         string fine_text2 = item.IS_AMT == "Y" ? string.Concat(item.NAME, " On ", item.FINE_DATE.Value.ToShortDateString()) : string.Concat(item.NAME, " On ", item.FINE_DATE.Value.ToShortDateString(), " : ", item.FINE, "%");
                         decimal fine2 = item.IS_AMT == "Y" ? (decimal)item.FINE : ViewBag.total_payable * (decimal)item.FINE / 100;
-                        string selectedRow = "even";
+                        selectedRow = "even";
                         if (i % 2 == 0)
                         {
                             selectedRow = "odd";
@@ -200,7 +204,7 @@
                     {
                         string fine_text3 = item.IS_AMT == "Y" ? string.Concat(item.NAME, " On ", item.FINE_DATE.Value.ToShortDateString()) : string.Concat(item.NAME, " On ", item.FINE_DATE.Value.ToShortDateString(), " : ", item.FINE, "%");
                         decimal fine3 = item.IS_AMT == "Y" ? (decimal)item.FINE : ViewBag.total_payable * (decimal)item.FINE / 100;
-                        string selectedRow = "even";
+                        selectedRow = "even";
                         if (i % 2 == 0)
                         {
                             selectedRow = "odd";
@@ -214,19 +218,14 @@
                         </tr>
                         i = i + 1;
                     }
+                    selectedRow = "even";
                     if (i % 2 == 0)
                     {
-                        nextRow = "even";
-                        nextToNextRow = "odd";
-                    }
-                    else
-                    {
-                        nextRow = "odd";
-                        nextToNextRow = "even";
+                        selectedRow = "odd";
                     }
                     <tr class="tr-blank"></tr>
-                        <tr class="tr-blank"></tr>
-                        <tr class="@nextRow" cellpadding="1" cellspacing="1">
+                    <tr class="tr-blank"></tr>
+                        <tr class="@selectedRow" cellpadding="1" cellspacing="1">
                             <td class="col-8" colspan="3">Total Fine</td>
                             <td class="col-6">@ViewBag.total_fine</td>
                         </tr>
@@ -237,26 +236,21 @@
                 }
                 <tr class="tr-blank"></tr>
                 <tr class="tr-blank"></tr>
-                @if (i % 2 == 0)
-                {
-                    nextRow = "even";
-                    nextToNextRow = "odd";
-                }
-                else
-                {
-                    nextRow = "odd";
-                    nextToNextRow = "even";
-                }
                 @if (paid_fees != null)
                 {
+                    selectedRow = "even";
+                    if (i % 2 == 0)
+                    {
+                        selectedRow = "odd";
+                    }
                     decimal paid = 0;
-                    <tr class="@nextRow">
+                    <tr class="@selectedRow">
                         <td class="col-1" colspan="4"><span class="themed_text">Payment Done: </span></td>
                     </tr>
                     foreach (var item13 in paid_fees)
                     {
+                        selectedRow = "even";
                         paid += (decimal)item13.FinanceTransactionData.AMT;
-                        string selectedRow = "even";
                         if (i % 2 == 0)
                         {
                             selectedRow = "odd";
@@ -273,49 +267,25 @@
                 }
                 <tr class="tr-blank"></tr>
                 <tr class="tr-blank"></tr>
+                @{selectedRow = "even"; }
                 @if (i % 2 == 0)
                 {
-                    nextRow = "even";
-                    nextToNextRow = "odd";
+                    selectedRow = "odd";
                 }
-                else
-                {
-                    nextRow = "odd";
-                    nextToNextRow = "even";
-                }
-                <tr class="@nextRow" cellpadding="1" cellspacing="1">
+                <tr class="@selectedRow" cellpadding="1" cellspacing="1">
                     <td class="col-8" colspan="3">Amount To Pay :</td>
                     <td class="col-pdf">@total_fees</td>
+                </tr>
+                @{selectedRow = "even"; }
+                @if (i % 2 == 0)
+                {
+                    selectedRow = "odd";
+                }
+                <tr class="@selectedRow" cellpadding="1" cellspacing="1">
+                    <td class="col-8" colspan="3"></td>
+                    <td class="col-pdf"><input type="submit" id="submit_button" value="Print" class="submit_button" onclick="window.print()" /></td>
                 </tr>
             </table>
         </div>
     </div>
 </div>
-<div class="extender">
-    @using (Html.BeginForm("ExportToPDF", "Finance", FormMethod.Post))
-            {
-            <input type="hidden" name="GridHtml" />
-            <input type="hidden" name="CSSHtml" />
-            <input type="submit" id="submit_button" value="Export" class="submit_button" />
-    }
-</div>
-
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
-<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
-<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
-<link rel="stylesheet" href="/resources/demos/style.css" />
-<script type="text/javascript" language="javascript">
-    $(document).ready(function () {
-        $.get("/Content/stylesheets/finance/student_fee_receipt_pdf.css", function (cssContent) {
-            $("input[name='CSSHtml']").val(cssContent);
-        });
-    });
-
-    $(function () {
-        $("#submit_button").click(function () {
-            $("input[name='GridHtml']").val($("#page-yield").html());
-        });
-    });
-</script>
