@@ -99,8 +99,6 @@ namespace SFSAcademy
         public virtual DbSet<RANKING_LEVEL> RANKING_LEVEL { get; set; }
         public virtual DbSet<USERS_ACCESS> USERS_ACCESS { get; set; }
         public virtual DbSet<FINANCE_FEE_COLLECTION> FINANCE_FEE_COLLECTION { get; set; }
-        public virtual DbSet<IMAGE_DOCUMENTS> IMAGE_DOCUMENTS { get; set; }
-        public virtual DbSet<STUDENT> STUDENTs { get; set; }
         public virtual DbSet<STORE_CATEGORY> STORE_CATEGORY { get; set; }
         public virtual DbSet<STORE_PRODUCTS> STORE_PRODUCTS { get; set; }
         public virtual DbSet<STORE_PURCHAGE> STORE_PURCHAGE { get; set; }
@@ -109,5 +107,7 @@ namespace SFSAcademy
         public virtual DbSet<FINANCE_FEE> FINANCE_FEE { get; set; }
         public virtual DbSet<FEE_FINE> FEE_FINE { get; set; }
         public virtual DbSet<FINANCE_TRANSACTION> FINANCE_TRANSACTION { get; set; }
+        public virtual DbSet<IMAGE_DOCUMENTS> IMAGE_DOCUMENTS { get; set; }
+        public virtual DbSet<STUDENT> STUDENTs { get; set; }
     }
 }

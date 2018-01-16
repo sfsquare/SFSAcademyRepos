@@ -307,13 +307,13 @@ namespace SFSAcademy.Controllers
         }
 
         // GET: Student
-        public ActionResult AdvancedSearch(string sortOrder, string currentFilter, string searchString, int? page, string currentFilter2, string AdmissionNumber, string currentFilter3, string Course, string currentFilter4, string CourseBatches, string currentFilter5, string Category, string currentFilter6, string StudentGender, string currentFilter7, string BloodGroup, string currentFilter8, string StudentGrade, string currentFilter9, string StudentBirthFromDate, string currentFilter10, string StudentBirthToDate)
+        public ActionResult AdvancedSearch(string sortOrder, string currentFilter, string searchString, int? page, string currentFilter2, string AdmissionNumber, string currentFilter3, string Course, int? currentFilter4, int? CourseBatches, string currentFilter5, string Category, string currentFilter6, string StudentGender, string currentFilter7, string BloodGroup, string currentFilter8, string StudentGrade, string currentFilter9, string StudentBirthFromDate, string currentFilter10, string StudentBirthToDate)
         {
             ViewBag.CurrentSort = sortOrder;
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
 
-            if (searchString != null)
+            if (!string.IsNullOrEmpty(searchString))
             {
                 page = 1;
             }
@@ -323,28 +323,28 @@ namespace SFSAcademy.Controllers
             }
 
             ViewBag.CurrentFilter = searchString;
-            if (AdmissionNumber != null){page = 1;}
+            if (!string.IsNullOrEmpty(AdmissionNumber)){page = 1;}
             else { AdmissionNumber = currentFilter2;}
             ViewBag.CurrentFilter2 = AdmissionNumber;
-            if (Course != null) { page = 1; }
+            if (!string.IsNullOrEmpty(Course)) { page = 1; }
             else { Course = currentFilter3; }
             ViewBag.CurrentFilter3 = Course;
-            if (CourseBatches != null) { page = 1; }
+            if (!CourseBatches.Equals(null)) { page = 1; }
             else { CourseBatches = currentFilter4; }
             ViewBag.CurrentFilter4 = CourseBatches;
-            if (Category != null) { page = 1; }
+            if (!string.IsNullOrEmpty(Category)) { page = 1; }
             else { Category = currentFilter5; }
             ViewBag.CurrentFilter5 = Category;
-            if (StudentGender != null) { page = 1; }
+            if (!string.IsNullOrEmpty(StudentGender)) { page = 1; }
             else { StudentGender = currentFilter6; }
             ViewBag.CurrentFilter6 = StudentGender;
-            if (BloodGroup != null) { page = 1; }
+            if (!string.IsNullOrEmpty(BloodGroup)) { page = 1; }
             else { BloodGroup = currentFilter7; }
             ViewBag.CurrentFilter7 = BloodGroup;
-            if (StudentGrade != null) { page = 1; }
+            if (!string.IsNullOrEmpty(StudentGrade)) { page = 1; }
             else { StudentGrade = currentFilter8; }
             ViewBag.CurrentFilter8 = StudentGrade;
-            if (StudentBirthFromDate != null)
+            if (!string.IsNullOrEmpty(StudentBirthFromDate))
             {
                 page = 1;
             }
@@ -352,140 +352,7 @@ namespace SFSAcademy.Controllers
             DateTime? dFrom; DateTime dtFrom;
             dFrom = DateTime.TryParse(StudentBirthFromDate, out dtFrom) ? dtFrom : (DateTime?)null;
             ViewBag.CurrentFilter9 = StudentBirthFromDate;
-            if (StudentBirthToDate != null)
-            {
-                page = 1;
-            }
-            else { StudentBirthToDate = currentFilter10; }
-            DateTime? dTo; DateTime dtTo;
-            dTo = DateTime.TryParse(StudentBirthFromDate, out dtTo) ? dtTo : (DateTime?)null;
-            ViewBag.CurrentFilter10 = StudentBirthToDate;
-
-            var StudentS = (from st in db.STUDENTs
-                            join b in db.BATCHes on st.BTCH_ID equals b.ID into gi
-                            from subb in gi.DefaultIfEmpty()
-                            join c in db.COURSEs on subb.CRS_ID equals c.ID into gj
-                            from subc in gj.DefaultIfEmpty()
-                            join ct in db.COUNTRies on st.NTLTY_ID equals ct.ID into gk
-                            from subct in gk.DefaultIfEmpty()
-                            join cat in db.STUDENT_CATGEORY on st.STDNT_CAT_ID equals cat.ID into gl
-                            from subcat in gl.DefaultIfEmpty()
-                            join emp in db.EMPLOYEEs on subb.EMP_ID equals emp.ID into gm
-                            from subemp in gm.DefaultIfEmpty()
-                            join esc in db.EXAM_SCORE on st.ID equals esc.STDNT_ID into gn
-                            from subesc in gn.DefaultIfEmpty()
-                            join grl in db.GRADING_LEVEL on subesc.GRADING_LVL_ID equals grl.ID into go
-                            from subgrl in go.DefaultIfEmpty()
-                            orderby st.LAST_NAME, subb.NAME
-                            select new Models.Student { StudentData = st, BatcheData = (subb == null ? null : subb), CourseData = (subc == null ? null : subc), CountryData = (subct == null ? null : subct), CategoryData = (subcat == null ? null : subcat), EmployeeData = (subemp == null ? null : subemp), GradeData = (subgrl == null ? null : subgrl) }).Distinct();
-
-            if (!String.IsNullOrEmpty(searchString))
-            {
-                StudentS = StudentS.Where(s => s.StudentData.LAST_NAME.Contains(searchString)
-                                       || s.StudentData.FIRST_NAME.Contains(searchString));
-            }
-            if (!String.IsNullOrEmpty(AdmissionNumber))
-            {
-                StudentS = StudentS.Where(s => s.StudentData.ADMSN_NO.Equals(AdmissionNumber));
-            }
-            if (!String.IsNullOrEmpty(Course))
-            {
-                StudentS = StudentS.Where(s => s.CourseData.CRS_NAME.Contains(Course));
-            }
-            if (!String.IsNullOrEmpty(CourseBatches))
-            {
-                StudentS = StudentS.Where(s => s.BatcheData.NAME.Contains(CourseBatches));
-            }
-            if (!String.IsNullOrEmpty(Category))
-            {
-                StudentS = StudentS.Where(s => s.CategoryData.NAME.Contains(Category));
-            }
-            if (!String.IsNullOrEmpty(StudentGender))
-            {
-                StudentS = StudentS.Where(s => s.StudentData.GNDR.Equals(StudentGender));
-            }
-            if (!String.IsNullOrEmpty(BloodGroup))
-            {
-                StudentS = StudentS.Where(s => s.StudentData.BLOOD_GRP.Equals(BloodGroup));
-            }
-            if (!String.IsNullOrEmpty(StudentGrade))
-            {
-                StudentS = StudentS.Where(s => s.GradeData.NAME.Equals(StudentGrade));
-            }
-            if (!String.IsNullOrEmpty(StudentBirthFromDate) && !String.IsNullOrEmpty(StudentBirthToDate))
-            {
-                StudentS = StudentS.Where(s => s.StudentData.ADMSN_DATE >= dFrom).Where(s => s.StudentData.ADMSN_DATE <= dTo);
-            }
-            switch (sortOrder)
-            {
-                case "name_desc":
-                    StudentS = StudentS.OrderByDescending(s => s.StudentData.LAST_NAME);
-                    break;
-                case "Date":
-                    StudentS = StudentS.OrderBy(s => s.StudentData.ADMSN_DATE);
-                    break;
-                case "date_desc":
-                    StudentS = StudentS.OrderByDescending(s => s.StudentData.ADMSN_DATE);
-                    break;
-                default:  // Name ascending 
-                    StudentS = StudentS.OrderBy(s => s.StudentData.LAST_NAME);
-                    break;
-            }
-
-            int pageSize = 100;
-            int pageNumber = (page ?? 1);
-            return View(StudentS.ToPagedList(pageNumber, pageSize));
-            //return View(db.USERS.ToList());
-        }
-
-        // GET: Student
-        [HttpGet]
-        public void AdvancedSearchPdf(string sortOrder, string currentFilter, string searchString, int? page, string currentFilter2, string AdmissionNumber, string currentFilter3, string Course, string currentFilter4, string CourseBatches, string currentFilter5, string Category, string currentFilter6, string StudentGender, string currentFilter7, string BloodGroup, string currentFilter8, string StudentGrade, string currentFilter9, string StudentBirthFromDate, string currentFilter10, string StudentBirthToDate)
-        {
-            ViewBag.CurrentSort = sortOrder;
-            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
-            ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
-
-            if (searchString != null)
-            {
-                page = 1;
-            }
-            else
-            {
-                searchString = currentFilter;
-            }
-
-            ViewBag.CurrentFilter = searchString;
-            if (AdmissionNumber != null) { page = 1; }
-            else { AdmissionNumber = currentFilter2; }
-            ViewBag.CurrentFilter2 = AdmissionNumber;
-            if (Course != null) { page = 1; }
-            else { Course = currentFilter3; }
-            ViewBag.CurrentFilter3 = Course;
-            if (CourseBatches != null) { page = 1; }
-            else { CourseBatches = currentFilter4; }
-            ViewBag.CurrentFilter4 = CourseBatches;
-            if (Category != null) { page = 1; }
-            else { Category = currentFilter5; }
-            ViewBag.CurrentFilter5 = Category;
-            if (StudentGender != null) { page = 1; }
-            else { StudentGender = currentFilter6; }
-            ViewBag.CurrentFilter6 = StudentGender;
-            if (BloodGroup != null) { page = 1; }
-            else { BloodGroup = currentFilter7; }
-            ViewBag.CurrentFilter7 = BloodGroup;
-            if (StudentGrade != null) { page = 1; }
-            else { StudentGrade = currentFilter8; }
-            ViewBag.CurrentFilter8 = StudentGrade;
-            if (StudentBirthFromDate != null)
-            {
-                page = 1;
-            }
-            else { StudentBirthFromDate = currentFilter9; }
-            DateTime? dFrom; DateTime dtFrom;
-            dFrom = DateTime.TryParse(StudentBirthFromDate, out dtFrom) ? dtFrom : (DateTime?)null;
-            ViewBag.CurrentFilter9 = StudentBirthFromDate;
-            if (StudentBirthToDate != null)
+            if (!string.IsNullOrEmpty(StudentBirthToDate))
             {
                 page = 1;
             }
@@ -525,9 +392,9 @@ namespace SFSAcademy.Controllers
             {
                 StudentS = StudentS.Where(s => s.CourseData.CRS_NAME.Contains(Course));
             }
-            if (!String.IsNullOrEmpty(CourseBatches))
+            if (!CourseBatches.Equals(null))
             {
-                StudentS = StudentS.Where(s => s.BatcheData.NAME.Contains(CourseBatches));
+                StudentS = StudentS.Where(s => s.BatcheData.ID == CourseBatches);
             }
             if (!String.IsNullOrEmpty(Category))
             {
@@ -547,7 +414,7 @@ namespace SFSAcademy.Controllers
             }
             if (!String.IsNullOrEmpty(StudentBirthFromDate) && !String.IsNullOrEmpty(StudentBirthToDate))
             {
-                StudentS = StudentS.Where(s => s.StudentData.ADMSN_DATE >= dFrom).Where(s => s.StudentData.ADMSN_DATE <= dTo);
+                StudentS = StudentS.Where(s => s.StudentData.DOB >= dFrom).Where(s => s.StudentData.DOB <= dTo);
             }
             switch (sortOrder)
             {
@@ -564,9 +431,100 @@ namespace SFSAcademy.Controllers
                     StudentS = StudentS.OrderBy(s => s.StudentData.LAST_NAME);
                     break;
             }
+            var queryCourceBatch = (from cs in db.COURSEs
+                                    join bt in db.BATCHes on cs.ID equals bt.CRS_ID
+                                    select new Models.SelectCourseBatch { CourseData = cs, BatchData = bt, Selected = false })
+                        .OrderBy(x => x.BatchData.ID).ToList();
+
+
+            List<SelectListItem> options = new List<SelectListItem>();
+            foreach (var item in queryCourceBatch)
+            {
+                string BatchFullName = string.Concat(item.CourseData.CODE, "-", item.BatchData.NAME);
+                var result = new SelectListItem();
+                result.Text = BatchFullName;
+                result.Value = item.BatchData.ID.ToString();
+                result.Selected = item.BatchData.ID == CourseBatches ? true : false;
+                options.Add(result);
+            }
+            // add the 'ALL' option
+            options.Insert(0, new SelectListItem() { Value = null, Text = "ALL" });
+            ViewBag.CourseBatches = options;
+
+            int pageSize = 100;
+            int pageNumber = (page ?? 1);
+            return View(StudentS.ToPagedList(pageNumber, pageSize));
+            //return View(db.USERS.ToList());
+        }
+
+        // GET: Student
+        [HttpGet]
+        public void AdvancedSearchPdf(string searchString, string AdmissionNumber, string Course, int? CourseBatches, string Category, string StudentGender, string BloodGroup, string StudentGrade, string StudentBirthFromDate, string StudentBirthToDate)
+        {
+            
+            DateTime? dFrom; DateTime dtFrom;
+            dFrom = DateTime.TryParse(StudentBirthFromDate, out dtFrom) ? dtFrom : (DateTime?)null;
+            DateTime? dTo; DateTime dtTo;
+            dTo = DateTime.TryParse(StudentBirthToDate, out dtTo) ? dtTo : (DateTime?)null;
+
+            var StudentS = (from st in db.STUDENTs
+                            join b in db.BATCHes on st.BTCH_ID equals b.ID into gi
+                            from subb in gi.DefaultIfEmpty()
+                            join c in db.COURSEs on subb.CRS_ID equals c.ID into gj
+                            from subc in gj.DefaultIfEmpty()
+                            join ct in db.COUNTRies on st.NTLTY_ID equals ct.ID into gk
+                            from subct in gk.DefaultIfEmpty()
+                            join cat in db.STUDENT_CATGEORY on st.STDNT_CAT_ID equals cat.ID into gl
+                            from subcat in gl.DefaultIfEmpty()
+                            join emp in db.EMPLOYEEs on subb.EMP_ID equals emp.ID into gm
+                            from subemp in gm.DefaultIfEmpty()
+                            join esc in db.EXAM_SCORE on st.ID equals esc.STDNT_ID into gn
+                            from subesc in gn.DefaultIfEmpty()
+                            join grl in db.GRADING_LEVEL on subesc.GRADING_LVL_ID equals grl.ID into go
+                            from subgrl in go.DefaultIfEmpty()
+                            orderby st.LAST_NAME, subb.NAME
+                            select new Models.Student { StudentData = st, BatcheData = (subb == null ? null : subb), CourseData = (subc == null ? null : subc), CountryData = (subct == null ? null : subct), CategoryData = (subcat == null ? null : subcat), EmployeeData = (subemp == null ? null : subemp), GradeData = (subgrl == null ? null : subgrl) }).Distinct();
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                StudentS = StudentS.Where(s => s.StudentData.LAST_NAME.Contains(searchString)
+                                       || s.StudentData.FIRST_NAME.Contains(searchString));
+            }
+            if (!String.IsNullOrEmpty(AdmissionNumber))
+            {
+                StudentS = StudentS.Where(s => s.StudentData.ADMSN_NO.Equals(AdmissionNumber));
+            }
+            if (!String.IsNullOrEmpty(Course))
+            {
+                StudentS = StudentS.Where(s => s.CourseData.CRS_NAME.Contains(Course));
+            }
+            if (!CourseBatches.Equals(null))
+            {
+                StudentS = StudentS.Where(s => s.BatcheData.ID == CourseBatches);
+            }
+            if (!String.IsNullOrEmpty(Category))
+            {
+                StudentS = StudentS.Where(s => s.CategoryData.NAME.Contains(Category));
+            }
+            if (!String.IsNullOrEmpty(StudentGender))
+            {
+                StudentS = StudentS.Where(s => s.StudentData.GNDR.Equals(StudentGender));
+            }
+            if (!String.IsNullOrEmpty(BloodGroup))
+            {
+                StudentS = StudentS.Where(s => s.StudentData.BLOOD_GRP.Equals(BloodGroup));
+            }
+            if (!String.IsNullOrEmpty(StudentGrade))
+            {
+                StudentS = StudentS.Where(s => s.GradeData.NAME.Equals(StudentGrade));
+            }
+            if (!String.IsNullOrEmpty(StudentBirthFromDate) && !String.IsNullOrEmpty(StudentBirthToDate))
+            {
+                StudentS = StudentS.Where(s => s.StudentData.DOB >= dFrom).Where(s => s.StudentData.DOB <= dTo);
+            }
 
             var PdfStudentS = (from res in StudentS
-                            select new {LName = res.StudentData.LAST_NAME, FName = res.StudentData.FIRST_NAME, Batch = res.BatcheData.NAME, AdDate = res.StudentData.ADMSN_DATE, AdNumber = res.StudentData.ADMSN_NO }).ToList();
+                            select new {LName = res.StudentData.LAST_NAME, FName = res.StudentData.FIRST_NAME, Course = res.CourseData.CODE, Batch = res.BatcheData.NAME, AdDate = res.StudentData.ADMSN_DATE, AdNumber = res.StudentData.ADMSN_NO }).ToList();
            
 
             var configuration = new ReportConfiguration();
@@ -605,7 +563,7 @@ namespace SFSAcademy.Controllers
                 row["Sl. No."] = i;
                 row["Last Name"] = entity.LName;
                 row["First Name"] = entity.FName;
-                row["Batch"] = entity.Batch;
+                row["Batch"] = string.Concat(entity.Course, "-", entity.Batch);
                 row["Admission Date"] = entity.AdDate;
                 row["Admission Number"] = entity.AdNumber;
                 PdfStudentSI.Rows.Add(row);
@@ -686,7 +644,7 @@ namespace SFSAcademy.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Admission1([Bind(Include = "ID,ADMSN_NO,CLS_ROLL_NO,ADMSN_DATE,FIRST_NAME,MID_NAME,LAST_NAME,BTCH_ID,DOB,GNDR,BLOOD_GRP,BIRTH_PLACE,LANG,RLGN,ADDR_LINE1,ADDR_LINE2,CITY,STATE,PIN_CODE,CTRY_ID,PH1,PH2,EML,IMMDT_CNTCT_ID,IS_SMS_ENABL,PHTO_FILENAME,PHTO_CNTNT_TYPE,PHTO_DATA,STAT_DESCR,IS_ACT,IS_DEL,CREATED_AT,UPDATED_AT,HAS_PD_FE,PHTO_FILE_SIZE,USRID,STDNT_CAT_ID,NTLTY_ID")] STUDENT sTUDENT)
+        public ActionResult Admission1([Bind(Include = "ID,ADMSN_NO,CLS_ROLL_NO,ADMSN_DATE,FIRST_NAME,MID_NAME,LAST_NAME,BTCH_ID,DOB,GNDR,BLOOD_GRP,BIRTH_PLACE,LANG,RLGN,ADDR_LINE1,ADDR_LINE2,CITY,STATE,PIN_CODE,CTRY_ID,PH1,PH2,EML,IMMDT_CNTCT_ID,IS_SMS_ENABL,PHTO_FILENAME,PHTO_CNTNT_TYPE,PHTO_DATA,STAT_DESCR,IS_ACT,IS_DEL,CREATED_AT,UPDATED_AT,HAS_PD_FE,PHTO_FILE_SIZE,USRID,STDNT_CAT_ID,NTLTY_ID,IMAGE_DOCUMENTS_ID")] STUDENT sTUDENT)
         {
             int UserId = Convert.ToInt32(this.Session["UserId"]);
             sTUDENT.USRID = UserId;
@@ -704,15 +662,8 @@ namespace SFSAcademy.Controllers
                     int PhotoId = 0;
                     PhotoId = HandleUpload(Request.Files[0].InputStream, name, size, type, PhotoId);
 
-                    sTUDENT.PHTO_DATA = PhotoId;
+                    sTUDENT.IMAGE_DOCUMENTS_ID = PhotoId;
                     sTUDENT.PHTO_FILENAME = null;
-                    sTUDENT.PHTO_CNTNT_TYPE = null;
-                }
-                else
-                {
-                    sTUDENT.PHTO_DATA = 1;
-                    sTUDENT.PHTO_FILENAME = null;
-                    sTUDENT.PHTO_CNTNT_TYPE = null;
                 }
                 ////End to Picture Upload Code
 
@@ -957,6 +908,7 @@ namespace SFSAcademy.Controllers
             ViewBag.NTLTY_ID = new SelectList(db.COUNTRies, "ID", "CTRY_NAME", sTUDENT.NTLTY_ID);
             ViewBag.STDNT_CAT_ID = new SelectList(db.STUDENT_CATGEORY, "ID", "NAME", sTUDENT.STDNT_CAT_ID);
             ViewBag.USRID = new SelectList(db.USERS, "ID", "USRNAME", sTUDENT.USRID);
+            ViewBag.CTRY_ID = new SelectList(db.COUNTRies, "ID", "CTRY_NAME", sTUDENT.CTRY_ID);
 
             ///Code to get the Batch along weith Course
             var queryCourceBatch = (from cs in db.COURSEs
@@ -988,7 +940,7 @@ namespace SFSAcademy.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,ADMSN_NO,CLS_ROLL_NO,ADMSN_DATE,FIRST_NAME,MID_NAME,LAST_NAME,BTCH_ID,DOB,GNDR,BLOOD_GRP,BIRTH_PLACE,LANG,RLGN,ADDR_LINE1,ADDR_LINE2,CITY,STATE,PIN_CODE,CTRY_ID,PH1,PH2,EML,IMMDT_CNTCT_ID,IS_SMS_ENABL,PHTO_FILENAME,PHTO_CNTNT_TYPE,PHTO_DATA,STAT_DESCR,IS_ACT,IS_DEL,CREATED_AT,UPDATED_AT,HAS_PD_FE,PHTO_FILE_SIZE,USRID,STDNT_CAT_ID,NTLTY_ID")] STUDENT sTUDENT)
+        public ActionResult Edit([Bind(Include = "ID,ADMSN_NO,CLS_ROLL_NO,ADMSN_DATE,FIRST_NAME,MID_NAME,LAST_NAME,BTCH_ID,DOB,GNDR,BLOOD_GRP,BIRTH_PLACE,LANG,RLGN,ADDR_LINE1,ADDR_LINE2,CITY,STATE,PIN_CODE,CTRY_ID,PH1,PH2,EML,IMMDT_CNTCT_ID,IS_SMS_ENABL,PHTO_FILENAME,PHTO_CNTNT_TYPE,PHTO_DATA,STAT_DESCR,IS_ACT,IS_DEL,CREATED_AT,UPDATED_AT,HAS_PD_FE,PHTO_FILE_SIZE,USRID,STDNT_CAT_ID,NTLTY_ID,IMAGE_DOCUMENTS_ID")] STUDENT sTUDENT)
         {
             if (ModelState.IsValid)
             {
@@ -1002,16 +954,19 @@ namespace SFSAcademy.Controllers
                     var size = Request.Files[0].ContentLength;
                     var type = Request.Files[0].ContentType;
                     FileName = name;
-                    sTUDENT.PHTO_DATA = HandleUpload(Request.Files[0].InputStream, name, size, type, Convert.ToInt32(sTUDENT.PHTO_DATA));
-
+                    sTUDENT.IMAGE_DOCUMENTS_ID = HandleUpload(Request.Files[0].InputStream, name, size, type, Convert.ToInt32(sTUDENT.IMAGE_DOCUMENTS_ID));
                     sTUDENT.PHTO_FILENAME = null;
-                    sTUDENT.PHTO_CNTNT_TYPE = null;
                 }
                 ////End to Picture Upload Code
 
                 sTUDENT.UPDATED_AT = System.DateTime.Now;
                 db.Entry(sTUDENT).State = EntityState.Modified;
-                db.SaveChanges();
+                try { db.SaveChanges(); }
+                catch (Exception ex)
+                {
+                    throw ex; // Oops, something went wrong, handle the exception
+                }
+
                 return RedirectToAction("Index");
             }
             ViewBag.NTLTY_ID = new SelectList(db.COUNTRies, "ID", "CTRY_NAME", sTUDENT.NTLTY_ID);
@@ -1193,7 +1148,8 @@ namespace SFSAcademy.Controllers
                 byte[] documentBytes = new byte[imageBufferedStream.Length];
                 imageBufferedStream.Read(documentBytes, 0, documentBytes.Length);
 
-                if (PhotoId==0)
+
+                if (PhotoId==0 || PhotoId.Equals(null))
                 {
                     IMAGE_DOCUMENTS databaseDocument = new IMAGE_DOCUMENTS
                     {

@@ -5,7 +5,32 @@
 @{
     ViewBag.Title = "Index";
 }
-
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+<link rel="stylesheet" href="/resources/demos/style.css" />
+<script>
+    $(function () {
+        $("#datepicker").datepicker({
+            showOn: "button",
+            buttonImage: "/Content/images/calendar_date_select/calendar.gif",
+            buttonImageOnly: true
+        });
+        $("#datepicker2").datepicker({
+            showOn: "button",
+            buttonImage: "/Content/images/calendar_date_select/calendar.gif",
+            buttonImageOnly: true
+        });
+    });
+</script>
+<script type="text/javascript">
+    $('.open-datetimepicker').click(function (event) {
+        event.preventDefault();
+        $('#datetimepicker').click();
+    });
+</script>
 <div id="content-header">
     <img src="~/Content/images/student_details/student_details_logo.jpg" alt="Student Details Logo">
     <h1>Student</h1>
@@ -58,12 +83,21 @@
                                     <div class="label-field-pair">
                                         <label for="NAME">Course Batches:</label>
                                         <div class="text-input-bg">
-                                            @Html.TextBox("CourseBatches", ViewBag.CurrentFilter4 as string)
+                                            @Html.DropDownList("CourseBatches", null, htmlAttributes: new { @class = "form-control" })
                                         </div>
                                     </div>
                                 </td>
                             </tr>
-                            <tr>
+                            <tr>                               
+                                <td>
+                                    <div class="label-field-pair2">
+                                        <label class="label_for_student_gender" for="student_gender">Student Gender:</label>
+                                        <div class="student_gender_value">
+                                            @Html.RadioButton("StudentGender", "M", ViewBag.CurrentFilter6 == "M"? true : false)@Html.Label("Male")
+                                            @Html.RadioButton("StudentGender", "F", ViewBag.CurrentFilter6 == "F"? true : false)@Html.Label("Female")
+                                        </div>
+                                    </div>
+                                </td>
                                 <td>
                                     <div class="label-field-pair">
                                         <label for="NAME">Category:</label>
@@ -72,19 +106,11 @@
                                         </div>
                                     </div>
                                 </td>
-                                <td>
-                                    <div class="label-field-pair">
-                                        <label for="GNDR">Student Gender:</label>
-                                        <div class="text-input-bg">
-                                            @Html.TextBox("StudentGender", ViewBag.CurrentFilter6 as string)
-                                        </div>
-                                    </div>
-                                </td>
                             </tr>
                             <tr>
                                 <td>
                                     <div class="label-field-pair">
-                                        <label for="BLOOD_GRP">Student Gender:</label>
+                                        <label for="BLOOD_GRP">Blood Group:</label>
                                         <div class="text-input-bg">
                                             @Html.TextBox("BloodGroup", ViewBag.CurrentFilter7 as string)
                                         </div>
@@ -104,7 +130,7 @@
                                     <div class="label-field-pair">
                                         <label for="DOB">Student Birth From Date:</label>
                                         <div class="text-input-bg">
-                                            @Html.TextBox("StudentBirthFromDate", ViewBag.CurrentFilter9 as string)
+                                            @Html.Editor("StudentBirthFromDate", new { htmlAttributes = new { @class = "form-control", @id = "datepicker", @Value = ViewBag.CurrentFilter9 } })
                                         </div>
                                     </div>
                                 </td>
@@ -112,7 +138,7 @@
                                     <div class="label-field-pair">
                                         <label for="DOB">Student Birth To Date:</label>
                                         <div class="text-input-bg">
-                                            @Html.TextBox("StudentBirthToDate", ViewBag.CurrentFilter10 as string)
+                                            @Html.Editor("StudentBirthToDate", new { htmlAttributes = new { @class = "form-control", @id = "datepicker2", @Value = ViewBag.CurrentFilter10 } })
                                         </div>
                                     </div>
                                 </td>
@@ -124,7 +150,7 @@
                                 <li><input type="submit" value="Search" class="submit-button" /></li>
                             </ul>
                             <ul>
-                                <li><a href="@Url.Action("AdvancedSearchPdf", "Student")" alt="View PDF Report" target="_blank" class="submit-button">View PDF Report</a></li>
+                                <li><a href="@Url.Action("AdvancedSearchPdf", "Student",new { searchString = ViewBag.CurrentFilter, AdmissionNumber = ViewBag.CurrentFilter2, Course = ViewBag.CurrentFilter3, CourseBatches = ViewBag.CurrentFilter4, Category = ViewBag.CurrentFilter5, StudentGender= ViewBag.CurrentFilter6, BloodGroup = ViewBag.CurrentFilter7, StudentGrade = ViewBag.CurrentFilter8, StudentBirthFromDate = ViewBag.CurrentFilter9, StudentBirthToDate= ViewBag.CurrentFilter10 })" alt="View PDF Report" target="_blank" class="submit-button">View PDF Report</a></li>
                             </ul>
                         </div>
                     </p>
@@ -175,10 +201,12 @@
                         @Html.DisplayFor(modelItem => item.StudentData.FIRST_NAME)
                     </td>
                     <td class="col-4">
+                        @Html.DisplayFor(modelItem => item.CourseData.CODE)
+                        <label>-</label>
                         @Html.DisplayFor(modelItem => item.BatcheData.NAME)
                     </td>
                     <td class="col-5" nowrap>
-                        @Html.DisplayFor(modelItem => item.StudentData.ADMSN_DATE)
+                        @item.StudentData.ADMSN_DATE.Value.ToShortDateString()
                     </td>
                     <td class="col-5" nowrap>
                         @Html.DisplayFor(modelItem => item.StudentData.ADMSN_NO)

@@ -2528,13 +2528,13 @@
     <Compile Include="GUARDIAN.cs">
       <DependentUpon>ModelSFSAcademy.tt</DependentUpon>
     </Compile>
+    <Compile Include="IMAGE_DOCUMENTS.cs">
+      <DependentUpon>ModelSFSAcademy.tt</DependentUpon>
+    </Compile>
     <Compile Include="Infrastructure\HtmlHelpers\ApplicationHelper.cs" />
     <Compile Include="Infrastructure\HtmlHelpers\AssetsHelper.cs" />
     <Compile Include="Infrastructure\HtmlHelpers\PdfTabularReport.cs" />
     <Compile Include="Infrastructure\HtmlHelpers\ReportConfiguration.cs" />
-    <Compile Include="IMAGE_DOCUMENTS.cs">
-      <DependentUpon>ModelSFSAcademy.tt</DependentUpon>
-    </Compile>
     <Compile Include="INDIVIDUAL_PAYSLIP_CATGEORY.cs">
       <DependentUpon>ModelSFSAcademy.tt</DependentUpon>
     </Compile>
