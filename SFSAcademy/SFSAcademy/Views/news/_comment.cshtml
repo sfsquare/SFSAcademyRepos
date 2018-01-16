@@ -1,31 +1,31 @@
 ﻿@model SFSAcademy.Models.NewsComments
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
 
 @if (Model != null)
 {
-    if (Model.EnableNewsCommentModeration == "1")
+    if (Model.EnableNewsCommentModeration == "Yes")
     {
         bool isAuthor = false;
         if (ViewBag.current_user == Model.AddedByUserId)
         {
             isAuthor = true;
         }
-
         if (isAuthor || ViewBag.isModerator || Model.isApproved == "Y")
         {
             <li id="comment-item- @Model.commentId">
                 <div class="comment-details">
                     <div class="commenter">@Model.commentAddedBy</div>
-
                     @{
                         if (isAuthor || ViewBag.isModerator)
                         {
                             <div class="delete-comment">
-                                @Html.ActionLink("delete_text", "delete_comment", new { id = Model.commentId }, new { @click = "return confirm('are you sure?')" })
+                                @Html.ActionLink("Delete Comment", "delete_comment", new { commentId = Model.commentId,newsId=Model.newsId }, new { onclick = "return confirm('are you sure?')" })
                             </div>
-
                         }
                     }
-
                     @{
                         if (Model.commentAddedBy != null)
                         {
@@ -36,32 +36,31 @@
                             <div class="comment-posted-at">User Deleted</div>
                         }
                     }
-
                     <div class="approve">
                         @{
+                            
                             if (!ViewBag.isModerator && Model.isApproved != "Y" && isAuthor)
                             {
                                 @*@Html.DisplayFor(modelItem => "waiting_to_approve")*@
-                                @Html.Label("lblwaiting", "waiting_to_approve")
-                                @Html.Display("waiting_to_approve", "waiting_to_approve")
+                                @*@Html.Label("lblwaiting", "waiting_to_approve")*@
+                                @Html.Display("waiting_to_approve", "Waiting for approve  ")
                             }
 
                             if (ViewBag.isModerator && Model.isApproved != "Y")
                             {
-                                @Html.DisplayFor(modelItem => "waiting_to_approve")
-                                @Html.ActionLink("approve", "comment_approved", new { id = Model.commentId })
+                                @*@Html.DisplayFor(modelItem => "waiting_to_approve")*@
+                                @Html.Label("lblwaiting", "Waiting for approve  ")
+                                @Html.ActionLink("approve", "comment_approved", new { commentId = Model.commentId, newsId = Model.newsId})
                             }
                         }
                     </div>
                 </div>
                 <div class="comment-content">@Model.commentContent</div>
-
             </li>
                             }
-                            else
+                            else if(isAuthor)
                             {
                                 <li id="comment-item- @Model.commentId">
-
                                     <div class="comment-details">
                                         @{
                                             if (Model.commentAddedBy != null)
@@ -73,11 +72,11 @@
                                                 <div class="commenter">User Deleted</div>
                                             }
 
-                                            if (ViewBag.isAdminUser == "Y")
+                                            if (ViewBag.isAdminUser)
                                             {
                                                 if (isAuthor || ViewBag.isModerator)
                                                 {
-                                                    @Html.ActionLink("delete_text", "delete_comment", new { id = Model.commentId }, new { @click = "return confirm('are you sure?')" })
+                                                    @Html.ActionLink("Delete Comment", "delete_comment", new { id = Model.commentId }, new { @click = "return confirm('are you sure?')" })
                                                 }
                                             }
                                             if (Model.commentAddedBy != null)
@@ -89,10 +88,39 @@
                                                 <div class="comment-posted-at">User Deleted</div>
                                             }
                                         }
-
                                     </div>
-                                    <div class="comment-content">@Model.commentContent</div>
+                                    
+                                        <div class="comment-content">@Model.commentContent</div>
                                 </li>
                                     }
                                 }
                             }
+
+
+
+
+<script type="text/javascript">
+
+    function DeleteComment() {
+        debugger;
+        alert(1);
+        //var comment = $("#txtcomments").val();
+        //var NewsId = $("#newsId").val();
+
+        //$.post('/news/add_comment?newsId=' + NewsId + "&news_Comment=" + comment, function (data) {
+        //    debugger;
+
+        //    if (data != "" || data!= null) {
+        //        $("#txtcomments").val("");
+        //        $("#comments-section").html("");
+        //        $("#comments-section").html(data);
+        //    }
+        //    else {
+        //        alert(data);
+        //    }
+        //});
+    }
+
+
+
+</script>

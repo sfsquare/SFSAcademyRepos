@@ -2,6 +2,12 @@
 @{
     ViewBag.Title = "view";
 }
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+
+
 
 <div id="content-header">
     <img src="~/Content/images/show_news/show_news_logo.png" alt="News Logo">
@@ -31,49 +37,19 @@
         @Html.DisplayFor(modelItem => Model.newsContent)
     </div>
 
-    @if (ViewBag.isModerator || Model.isUserAdmin == "Y")
+    @if (ViewBag.isModerator || ViewBag.isAdminUser)
     {
-        @Html.ActionLink(" ► Edit News", "edit", new { id = Model.newsId }, new { @class = "edit_button user_button" })
+        @Html.ActionLink(" ► Edit News", "edit", new { newsId = Model.newsId }, new { @class = "edit_button user_button" })
 
-        @Html.ActionLink(" ► Delete News", "delete", new { id = Model.newsId }, new { @class = "delete_button user_button", @click = "return confirm('are you sure?')" })
+        @*@Html.ActionLink(" ► Delete News", "delete", new { newsId = Model.newsId }, new { @class = "delete_button user_button", @click = "return confirm('are you sure?')" })*@
 
+        @Html.ActionLink(" ► Delete News", "delete", new { newsId = Model.newsId }, new { @class = "delete_button user_button", onclick = "return confirm('are you sure?')" })
         <div class="extender"></div>
     }
-   
-    <h3 id="comments-heading">Comments</h3>
 
-    @if (Model.newsCommentCount == 0)
-    {
-        <span id="comments-count">No Comments</span>
-    }
-    else
-    {
-        <span id="comments-count">@Model.newsCommentCount </span>
-    }
-
-    <ul id="comments-list">
-        @*<% @comments.each do |@cmnt| %>
-            <%= render :partial => "comment" %>
-            <% end %>*@
-
-        @foreach (var comment in Model.commentList)
-        {
-            @Html.Partial("_comment", comment)
-        }
-    </ul>
-
-    <h4 id="leave-a-comment">Leave Comment</h4>
-
-    <form name="comments-form" id="comments-form">
-        @using (Html.BeginForm("add_comment", "news", FormMethod.Post))
-        {
-            @Html.Hidden("newsId",Model.newsId)
-            <p>
-                @Html.TextArea("comments", null,5,110, new { @class = "form-control",@id="txtcomments"  })
-                <input type="submit" value="► Submit", class = "edit_button user_button" />
-                @*@Html.ActionLink(" ► Edit News", "edit", new { id = Model.newsId }, new { @class = "edit_button user_button" })*@
-            </p>
-        }
-    </form>
+    <div id="comments-section">
+        @Html.Partial("_CommentSections", Model)
+    </div>
 
 </div>
+

@@ -5,76 +5,76 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="a0263aa5fbc4476dab3dac3166b57107" Name="Diagram1" ZoomLevel="37">
-        <EntityTypeShape EntityType="SFSAcademyModel.APPLY_LEAVE" Width="3.5" PointX="11.25" PointY="53.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="SFSAcademyModel.ARCHIVED_STUDENT" Width="3.5" PointX="3" PointY="50.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="SFSAcademyModel.ASSESSMENT_SCORE" Width="3.5" PointX="17.25" PointY="48.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="SFSAcademyModel.ASSET" Width="3.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SFSAcademyModel.ATTENDENCE" Width="3.5" PointX="17.25" PointY="58.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="SFSAcademyModel.BANK_FIELD" Width="3.5" PointX="2.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SFSAcademyModel.BATCH" Width="3.5" PointX="15" PointY="38.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SFSAcademyModel.CCE_EXAM_CATEGORY" Width="3.5" PointX="7.5" PointY="31.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SFSAcademyModel.CCE_GRADE" Width="3.5" PointX="8.75" PointY="76.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SFSAcademyModel.CCE_GRADE_SET" Width="3.5" PointX="6.5" PointY="84.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SFSAcademyModel.CCE_REPORTS" Width="3.5" PointX="13.25" PointY="61.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="SFSAcademyModel.CCE_WEIGHTAGE" Width="3.5" PointX="9.75" PointY="22.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="SFSAcademyModel.CLASS_DESIGNATION" Width="3.5" PointX="15" PointY="26.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="SFSAcademyModel.CLASS_TIMING" Width="3.5" PointX="15" PointY="66.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SFSAcademyModel.CONFIGURATION" Width="3.5" PointX="4.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SFSAcademyModel.COUNTRY" Width="3.5" PointX="0.75" PointY="53.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="SFSAcademyModel.COURSE" Width="3.5" PointX="12.75" PointY="40" IsExpanded="true" />
-        <EntityTypeShape EntityType="SFSAcademyModel.DESCRIPTIVE_INDICATOR" Width="3.5" PointX="15" PointY="31" IsExpanded="true" />
-        <EntityTypeShape EntityType="SFSAcademyModel.ELECTIVE_GROUP" Width="3.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SFSAcademyModel.EMPLOYEE" Width="3.5" PointX="6" PointY="47.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="SFSAcademyModel.EMPLOYEE_ADDITIONAL_DETAIL" Width="3.5" PointX="11.25" PointY="49.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SFSAcademyModel.EMPLOYEE_ATTENDENCES" Width="3.5" PointX="11.25" PointY="57.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="SFSAcademyModel.EMPLOYEE_BANK_DETAIL" Width="3.5" PointX="8.25" PointY="61.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="SFSAcademyModel.EMPLOYEE_CATEGORY" Width="3.5" PointX="3.75" PointY="47.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="SFSAcademyModel.EMPLOYEE_DEPARTMENT" Width="3.5" PointX="3.75" PointY="44.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="SFSAcademyModel.EMPLOYEE_DEPARTMENT_EVENT" Width="3.5" PointX="12" PointY="36.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="SFSAcademyModel.EMPLOYEE_GRADE" Width="3.5" PointX="3.75" PointY="60.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="SFSAcademyModel.EMPLOYEE_LEAVE" Width="3.5" PointX="14.25" PointY="53.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="SFSAcademyModel.EMPLOYEE_LEAVE_TYPE" Width="3.5" PointX="9" PointY="67.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="SFSAcademyModel.EMPLOYEE_POSITION" Width="3.5" PointX="3.75" PointY="63.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="SFSAcademyModel.EMPLOYEE_SALARY_STRUCTURE" Width="3.5" PointX="14.25" PointY="49.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SFSAcademyModel.EMPLOYEES_SUBJECT" Width="3.5" PointX="14.25" PointY="57.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="SFSAcademyModel.EVENT" Width="3.5" PointX="9.75" PointY="26.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SFSAcademyModel.EXAM" Width="3.5" PointX="12" PointY="30.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="SFSAcademyModel.EXAM_GROUP" Width="3.5" PointX="9.75" PointY="31.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="SFSAcademyModel.EXAM_SCORE" Width="3.5" PointX="14.25" PointY="45.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="SFSAcademyModel.FA_CRITERIAS" Width="3.5" PointX="15" PointY="76" IsExpanded="true" />
-        <EntityTypeShape EntityType="SFSAcademyModel.FA_GROUP" Width="3.5" PointX="12.75" PointY="65.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SFSAcademyModel.FEE_COLLECTION_DISCOUNT" Width="3.5" PointX="20.25" PointY="53.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="SFSAcademyModel.FEE_DISCOUNT" Width="3.5" PointX="16.25" PointY="62.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="SFSAcademyModel.FINANCE_DONATION" Width="3.5" PointX="24.75" PointY="53.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="SFSAcademyModel.FINANCE_FEE_PARTICULAR" Width="3.5" PointX="20.25" PointY="58" IsExpanded="true" />
-        <EntityTypeShape EntityType="SFSAcademyModel.FINANCE_FEE_STRUCTURE_ELEMENT" Width="3.5" PointX="20.25" PointY="45" IsExpanded="true" />
-        <EntityTypeShape EntityType="SFSAcademyModel.FINANCE_TRANSACTION_CATEGORY" Width="3.5" PointX="6.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SFSAcademyModel.FINANCE_TRANSACTION_TRIGGERS" Width="3.5" PointX="18" PointY="38.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SFSAcademyModel.GRADING_LEVEL" Width="3.5" PointX="9.75" PointY="35.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="SFSAcademyModel.GUARDIAN" Width="3.5" PointX="9" PointY="88.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SFSAcademyModel.INDIVIDUAL_PAYSLIP_CATGEORY" Width="3.5" PointX="8.25" PointY="73" IsExpanded="true" />
-        <EntityTypeShape EntityType="SFSAcademyModel.LIABILITY" Width="3.5" PointX="6.75" PointY="6.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SFSAcademyModel.MONTHLY_PAYSLIP" Width="3.5" PointX="11.25" PointY="45" IsExpanded="true" />
-        <EntityTypeShape EntityType="SFSAcademyModel.NEWS" Width="3.5" PointX="8.25" PointY="80.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SFSAcademyModel.NEWS_COMMENTS" Width="3.5" PointX="10.5" PointY="63.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="SFSAcademyModel.OBSERVATION" Width="3.5" PointX="11" PointY="84.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="SFSAcademyModel.OBSERVATION_GROUP" Width="3.5" PointX="8.75" PointY="84.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="SFSAcademyModel.PAYROLL_CATEGORY" Width="3.5" PointX="9" PointY="44.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="SFSAcademyModel.SMS_LOG" Width="3.5" PointX="3" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="SFSAcademyModel.SMS_MESSAGE" Width="3.5" PointX="0.75" PointY="1.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="SFSAcademyModel.SMS_SETTING" Width="3.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SFSAcademyModel.STUDENT_ADDITIONAL_DETAIL" Width="3.5" PointX="17.25" PointY="44.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SFSAcademyModel.STUDENT_ADDITIONAL_FIELD" Width="3.5" PointX="9" PointY="40.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="SFSAcademyModel.STUDENT_CATGEORY" Width="3.5" PointX="6.75" PointY="43.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="SFSAcademyModel.STUDENT_PREVIOUS_DATA" Width="3.5" PointX="11.25" PointY="92.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="SFSAcademyModel.STUDENT_PREVIOUS_SUBJECT_MARK" Width="3.5" PointX="19.25" PointY="62.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SFSAcademyModel.STUDENT_SUBJECT" Width="3.5" PointX="22.25" PointY="62.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SFSAcademyModel.SUBJECT" Width="3.5" PointX="15" PointY="70.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="SFSAcademyModel.SUBJECT_LEAVE" Width="3.5" PointX="17.25" PointY="52.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="SFSAcademyModel.TIMETABLE" Width="3.5" PointX="2.75" PointY="7.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SFSAcademyModel.TIMETABLE_ENTRY" Width="3.5" PointX="20.5" PointY="36.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="SFSAcademyModel.USER" Width="3.5" PointX="6.75" PointY="65.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="SFSAcademyModel.WEEKDAY" Width="3.5" PointX="17.25" PointY="30.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SFSAcademyModel.APPLY_LEAVE" Width="3.5" PointX="17.25" PointY="68.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SFSAcademyModel.ARCHIVED_STUDENT" Width="3.5" PointX="10" PointY="58.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SFSAcademyModel.ASSESSMENT_SCORE" Width="3.5" PointX="24.25" PointY="51.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SFSAcademyModel.ASSET" Width="3.5" PointX="7.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SFSAcademyModel.ATTENDENCE" Width="3.5" PointX="27.25" PointY="69" IsExpanded="true" />
+        <EntityTypeShape EntityType="SFSAcademyModel.BANK_FIELD" Width="3.5" PointX="7.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SFSAcademyModel.BATCH" Width="3.5" PointX="5.75" PointY="40.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SFSAcademyModel.CCE_EXAM_CATEGORY" Width="3.5" PointX="11.5" PointY="22.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SFSAcademyModel.CCE_GRADE" Width="3.5" PointX="20.75" PointY="28.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SFSAcademyModel.CCE_GRADE_SET" Width="3.5" PointX="16.5" PointY="41.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SFSAcademyModel.CCE_REPORTS" Width="3.5" PointX="29.25" PointY="51.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SFSAcademyModel.CCE_WEIGHTAGE" Width="3.5" PointX="15.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SFSAcademyModel.CLASS_DESIGNATION" Width="3.5" PointX="5.75" PointY="29.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SFSAcademyModel.CLASS_TIMING" Width="3.5" PointX="13" PointY="37.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SFSAcademyModel.CONFIGURATION" Width="3.5" PointX="0.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SFSAcademyModel.COUNTRY" Width="3.5" PointX="0.75" PointY="60.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SFSAcademyModel.COURSE" Width="3.5" PointX="1.5" PointY="41.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SFSAcademyModel.DESCRIPTIVE_INDICATOR" Width="3.5" PointX="20" PointY="45" IsExpanded="true" />
+        <EntityTypeShape EntityType="SFSAcademyModel.ELECTIVE_GROUP" Width="3.5" PointX="11.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SFSAcademyModel.EMPLOYEE" Width="3.5" PointX="5" PointY="54.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SFSAcademyModel.EMPLOYEE_ADDITIONAL_DETAIL" Width="3.5" PointX="9.25" PointY="68.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SFSAcademyModel.EMPLOYEE_ATTENDENCES" Width="3.5" PointX="19.25" PointY="53.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SFSAcademyModel.EMPLOYEE_BANK_DETAIL" Width="3.5" PointX="9.25" PointY="86.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SFSAcademyModel.EMPLOYEE_CATEGORY" Width="3.5" PointX="0.75" PointY="65.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SFSAcademyModel.EMPLOYEE_DEPARTMENT" Width="3.5" PointX="0.75" PointY="57.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SFSAcademyModel.EMPLOYEE_DEPARTMENT_EVENT" Width="3.5" PointX="27" PointY="37.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SFSAcademyModel.EMPLOYEE_GRADE" Width="3.5" PointX="0.75" PointY="67.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SFSAcademyModel.EMPLOYEE_LEAVE" Width="3.5" PointX="17.25" PointY="65" IsExpanded="true" />
+        <EntityTypeShape EntityType="SFSAcademyModel.EMPLOYEE_LEAVE_TYPE" Width="3.5" PointX="15" PointY="45.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SFSAcademyModel.EMPLOYEE_POSITION" Width="3.5" PointX="0.75" PointY="70.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SFSAcademyModel.EMPLOYEE_SALARY_STRUCTURE" Width="3.5" PointX="17.25" PointY="61.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SFSAcademyModel.EMPLOYEES_SUBJECT" Width="3.5" PointX="14.25" PointY="53.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SFSAcademyModel.EVENT" Width="3.5" PointX="15.75" PointY="17.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SFSAcademyModel.EXAM" Width="3.5" PointX="20" PointY="21.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SFSAcademyModel.EXAM_GROUP" Width="3.5" PointX="15.75" PointY="22.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SFSAcademyModel.EXAM_SCORE" Width="3.5" PointX="22.25" PointY="69.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SFSAcademyModel.FA_CRITERIAS" Width="3.5" PointX="25" PointY="31.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SFSAcademyModel.FA_GROUP" Width="3.5" PointX="20.75" PointY="31.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SFSAcademyModel.FEE_COLLECTION_DISCOUNT" Width="3.5" PointX="27.25" PointY="56.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SFSAcademyModel.FEE_DISCOUNT" Width="3.5" PointX="18.25" PointY="74.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SFSAcademyModel.FINANCE_DONATION" Width="3.5" PointX="36.75" PointY="62.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SFSAcademyModel.FINANCE_FEE_PARTICULAR" Width="3.5" PointX="17.25" PointY="48.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SFSAcademyModel.FINANCE_FEE_STRUCTURE_ELEMENT" Width="3.5" PointX="22.25" PointY="64.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SFSAcademyModel.FINANCE_TRANSACTION_CATEGORY" Width="3.5" PointX="30.25" PointY="48.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SFSAcademyModel.FINANCE_TRANSACTION_TRIGGERS" Width="3.5" PointX="17.25" PointY="10.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SFSAcademyModel.GRADING_LEVEL" Width="3.5" PointX="15.75" PointY="26.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SFSAcademyModel.GUARDIAN" Width="3.5" PointX="30.25" PointY="61.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SFSAcademyModel.INDIVIDUAL_PAYSLIP_CATGEORY" Width="3.5" PointX="9.25" PointY="89.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SFSAcademyModel.LIABILITY" Width="3.5" PointX="4.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SFSAcademyModel.MONTHLY_PAYSLIP" Width="3.5" PointX="9.25" PointY="53.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SFSAcademyModel.NEWS" Width="3.5" PointX="9.25" PointY="93" IsExpanded="true" />
+        <EntityTypeShape EntityType="SFSAcademyModel.NEWS_COMMENTS" Width="3.5" PointX="13.5" PointY="73.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SFSAcademyModel.OBSERVATION" Width="3.5" PointX="25" PointY="41" IsExpanded="true" />
+        <EntityTypeShape EntityType="SFSAcademyModel.OBSERVATION_GROUP" Width="3.5" PointX="20.75" PointY="40.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SFSAcademyModel.PAYROLL_CATEGORY" Width="3.5" PointX="5" PointY="37.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SFSAcademyModel.SMS_LOG" Width="3.5" PointX="12" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="SFSAcademyModel.SMS_MESSAGE" Width="3.5" PointX="7.75" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SFSAcademyModel.SMS_SETTING" Width="3.5" PointX="11.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SFSAcademyModel.STUDENT_ADDITIONAL_DETAIL" Width="3.5" PointX="22.25" PointY="61.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SFSAcademyModel.STUDENT_ADDITIONAL_FIELD" Width="3.5" PointX="5" PointY="71.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SFSAcademyModel.STUDENT_CATGEORY" Width="3.5" PointX="5.75" PointY="49.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SFSAcademyModel.STUDENT_PREVIOUS_DATA" Width="3.5" PointX="17.25" PointY="120.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SFSAcademyModel.STUDENT_PREVIOUS_SUBJECT_MARK" Width="3.5" PointX="27.25" PointY="73.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SFSAcademyModel.STUDENT_SUBJECT" Width="3.5" PointX="22.25" PointY="48.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SFSAcademyModel.SUBJECT" Width="3.5" PointX="10" PointY="41.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SFSAcademyModel.SUBJECT_LEAVE" Width="3.5" PointX="17.25" PointY="56.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SFSAcademyModel.TIMETABLE" Width="3.5" PointX="8.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SFSAcademyModel.TIMETABLE_ENTRY" Width="3.5" PointX="22.25" PointY="37.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SFSAcademyModel.USER" Width="3.5" PointX="10.75" PointY="47" IsExpanded="true" />
+        <EntityTypeShape EntityType="SFSAcademyModel.WEEKDAY" Width="3.5" PointX="10" PointY="32.625" IsExpanded="true" />
         <AssociationConnector Association="SFSAcademyModel.R_95" ManuallyRouted="false" />
         <AssociationConnector Association="SFSAcademyModel.R_96" ManuallyRouted="false" />
         <AssociationConnector Association="SFSAcademyModel.R_28" ManuallyRouted="false" />
@@ -152,18 +152,18 @@
         <AssociationConnector Association="SFSAcademyModel.R_15" ManuallyRouted="false" />
         <AssociationConnector Association="SFSAcademyModel.R_21" ManuallyRouted="false" />
         <AssociationConnector Association="SFSAcademyModel.R_99" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="SFSAcademyModel.FEE_COLLECTION_PARTICULAR" Width="3.5" PointX="23.25" PointY="44.75" />
-        <EntityTypeShape EntityType="SFSAcademyModel.RANKING_LEVEL" Width="3.5" PointX="15" PointY="21.75" />
+        <EntityTypeShape EntityType="SFSAcademyModel.FEE_COLLECTION_PARTICULAR" Width="3.5" PointX="22.25" PointY="56.625" />
+        <EntityTypeShape EntityType="SFSAcademyModel.RANKING_LEVEL" Width="3.5" PointX="5.75" PointY="32.875" />
         <AssociationConnector Association="SFSAcademyModel.CRS_I_COUR_RANK_NI" />
         <AssociationConnector Association="SFSAcademyModel.STDNT_STUD_FEE__NI" />
-        <EntityTypeShape EntityType="SFSAcademyModel.USERS_ACCESS" Width="3.5" PointX="9" PointY="95.125" />
+        <EntityTypeShape EntityType="SFSAcademyModel.USERS_ACCESS" Width="3.5" PointX="15" PointY="78" />
         <AssociationConnector Association="SFSAcademyModel.USRS__USER_USER_ID" />
-        <EntityTypeShape EntityType="SFSAcademyModel.FINANCE_FEE_COLLECTION" Width="1.5" PointX="23.25" PointY="39.125" />
+        <EntityTypeShape EntityType="SFSAcademyModel.FINANCE_FEE_COLLECTION" Width="1.5" PointX="20" PointY="35.75" />
         <AssociationConnector Association="SFSAcademyModel.BTCH__BATC_FINA_NI2" />
         <AssociationConnector Association="SFSAcademyModel.FIN_F_FINA_FEE__NI2" />
         <AssociationConnector Association="SFSAcademyModel.FEE_C_FINA_FINA_NI4" />
-        <EntityTypeShape EntityType="SFSAcademyModel.IMAGE_DOCUMENTS" Width="1.5" PointX="0.75" PointY="10.75" />
-        <EntityTypeShape EntityType="SFSAcademyModel.STUDENT" Width="1.5" PointX="20" PointY="66.5" />
+        <EntityTypeShape EntityType="SFSAcademyModel.IMAGE_DOCUMENTS" Width="1.5" PointX="12.75" PointY="10.75" />
+        <EntityTypeShape EntityType="SFSAcademyModel.STUDENT" Width="1.5" PointX="15" PointY="56.125" />
         <AssociationConnector Association="SFSAcademyModel.FRM_I_STUD_ARCH_NI" />
         <AssociationConnector Association="SFSAcademyModel.SSTDN_STUD_ASSE_NI" />
         <AssociationConnector Association="SFSAcademyModel.STDNT_STUD_ATTE_NI" />
@@ -183,31 +183,33 @@
         <AssociationConnector Association="SFSAcademyModel.STDNT_STUD_STUD_NI5" />
         <AssociationConnector Association="SFSAcademyModel.STDNT_STUD_SUBJ_NI" />
         <AssociationConnector Association="SFSAcademyModel.USRID_USER_STUD_NI" />
-        <EntityTypeShape EntityType="SFSAcademyModel.STORE_CATEGORY" Width="1.5" PointX="3.375" PointY="12.125" />
-        <EntityTypeShape EntityType="SFSAcademyModel.STORE_PRODUCTS" Width="1.5" PointX="5.875" PointY="11" />
+        <EntityTypeShape EntityType="SFSAcademyModel.STORE_CATEGORY" Width="1.5" PointX="0.75" PointY="4.375" />
+        <EntityTypeShape EntityType="SFSAcademyModel.STORE_PRODUCTS" Width="1.5" PointX="3" PointY="3.125" />
         <AssociationConnector Association="SFSAcademyModel.STCAT_STPROD_ASSE_NI" />
-        <EntityTypeShape EntityType="SFSAcademyModel.STORE_PURCHAGE" Width="1.5" PointX="8.125" PointY="11.5" />
+        <EntityTypeShape EntityType="SFSAcademyModel.STORE_PURCHAGE" Width="1.5" PointX="5.25" PointY="1.25" />
         <AssociationConnector Association="SFSAcademyModel.STPROD_STPUR_ASSE_NI" />
-        <EntityTypeShape EntityType="SFSAcademyModel.STORE_PURCHAGE_CART" Width="1.5" PointX="8.125" PointY="16.5" />
+        <EntityTypeShape EntityType="SFSAcademyModel.STORE_PURCHAGE_CART" Width="1.5" PointX="5.25" PointY="5.875" />
         <AssociationConnector Association="SFSAcademyModel.STPROD_STPURCART_ASSE_NI" />
-        <EntityTypeShape EntityType="SFSAcademyModel.FINANCE_FEE_CATGEORY" Width="1.5" PointX="19.25" PointY="24.25" />
+        <EntityTypeShape EntityType="SFSAcademyModel.FINANCE_FEE_CATGEORY" Width="1.5" PointX="15" PointY="31.375" />
         <AssociationConnector Association="SFSAcademyModel.BTCH__BATC_FINA_NI" />
         <AssociationConnector Association="SFSAcademyModel.FIN_F_FINA_FEE__NI" />
         <AssociationConnector Association="SFSAcademyModel.FIN_F_FINA_FEE__NI3" />
         <AssociationConnector Association="SFSAcademyModel.FEE_C_FINA_FINA_NI3" />
         <AssociationConnector Association="SFSAcademyModel.FIN_C_FINA_FINA_NI" />
         <AssociationConnector Association="SFSAcademyModel.FIN_F_FINA_FINA_NI" />
-        <EntityTypeShape EntityType="SFSAcademyModel.FINANCE_FEE" Width="1.5" PointX="27.75" PointY="57.75" />
+        <EntityTypeShape EntityType="SFSAcademyModel.FINANCE_FEE" Width="1.5" PointX="27.25" PointY="65.125" />
         <AssociationConnector Association="SFSAcademyModel.FEE_C_FINA_FINA_NI" />
         <AssociationConnector Association="SFSAcademyModel.STDNT_STUD_FINA_NI" />
-        <EntityTypeShape EntityType="SFSAcademyModel.FEE_FINE" Width="1.5" PointX="25.25" PointY="49.125" />
+        <EntityTypeShape EntityType="SFSAcademyModel.FEE_FINE" Width="1.5" PointX="27.25" PointY="61" />
         <AssociationConnector Association="SFSAcademyModel.FEE_F_FINA_FEE_NI3" />
         <AssociationConnector Association="SFSAcademyModel.FEE_RCVR_FEE__NI2" />
-        <EntityTypeShape EntityType="SFSAcademyModel.FINANCE_TRANSACTION" Width="1.5" PointX="30" PointY="38.625" />
+        <EntityTypeShape EntityType="SFSAcademyModel.FINANCE_TRANSACTION" Width="1.5" PointX="34.5" PointY="60.75" />
         <AssociationConnector Association="SFSAcademyModel.TRAN__FINA_FINA_NI" />
         <AssociationConnector Association="SFSAcademyModel.FIN_F_FINA_FINA_NI5" />
         <AssociationConnector Association="SFSAcademyModel.CAT_I_FINA_FINA_NI" />
         <AssociationConnector Association="SFSAcademyModel.STDNT_STUD_FINA_NI7" />
+        <EntityTypeShape EntityType="SFSAcademyModel.Privilege" Width="1.5" PointX="0.75" PointY="13.75" />
+        <EntityTypeShape EntityType="SFSAcademyModel.Privileges_Users" Width="1.5" PointX="9.75" PointY="14.75" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

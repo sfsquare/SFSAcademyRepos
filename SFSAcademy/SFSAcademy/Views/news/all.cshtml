@@ -3,7 +3,7 @@
 @using PagedList.Mvc;
 <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "View All";
 }
 
 <div id="content-header">
@@ -17,8 +17,7 @@
 <div><img src="~/Content/images/_global/header_underline_.jpg" style="width:100%"></div>
 <div id="inner-tab-menu">
     <ul>
-        <li>@Html.ActionLink("View All", "Index")</li>
-        <li>@Html.ActionLink("Add New", "add")</li>
+        <li>@Html.ActionLink("Add New", "Create")</li>
     </ul>
 </div>
 

@@ -2357,6 +2357,10 @@
     <Content Include="Views\news\view.cshtml" />
     <Content Include="Views\news\_comment.cshtml" />
     <Content Include="Views\news\_NewsSearchPartial.cshtml" />
+    <Content Include="Views\news\all.cshtml" />
+    <Content Include="Views\news\add.cshtml" />
+    <Content Include="Views\news\_CommentSections.cshtml" />
+    <Content Include="Views\news\edit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -2538,6 +2542,7 @@
     <Compile Include="GUARDIAN.cs">
       <DependentUpon>ModelSFSAcademy.tt</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\ActionHelper.cs" />
     <Compile Include="Infrastructure\HtmlHelpers\ApplicationHelper.cs" />
     <Compile Include="Infrastructure\HtmlHelpers\AssetsHelper.cs" />
     <Compile Include="Infrastructure\HtmlHelpers\PdfTabularReport.cs" />
@@ -2567,7 +2572,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ModelSFSAcademy.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\CommonModel.cs" />
+    <Compile Include="Models\Configuration.cs" />
     <Compile Include="Models\Courses.cs" />
+    <Compile Include="Models\Privilege.cs" />
     <Compile Include="Models\Products.cs" />
     <Compile Include="Models\PictureUpload.cs" />
     <Compile Include="Models\Finance.cs" />
@@ -2590,6 +2598,12 @@
       <DependentUpon>ModelSFSAcademy.tt</DependentUpon>
     </Compile>
     <Compile Include="PAYROLL_CATEGORY.cs">
+      <DependentUpon>ModelSFSAcademy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Privilege.cs">
+      <DependentUpon>ModelSFSAcademy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Privileges_Users.cs">
       <DependentUpon>ModelSFSAcademy.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
