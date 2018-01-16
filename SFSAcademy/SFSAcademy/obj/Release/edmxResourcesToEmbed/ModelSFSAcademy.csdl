@@ -2575,6 +2575,8 @@
       <End Role="STUDENT" EntitySet="STUDENTs" />
       <End Role="FINANCE_TRANSACTION" EntitySet="FINANCE_TRANSACTION" />
     </AssociationSet>
+    <EntitySet Name="Privileges" EntityType="SFSAcademyModel.Privilege" />
+    <EntitySet Name="Privileges_Users" EntityType="SFSAcademyModel.Privileges_Users" />
   </EntityContainer>
   <EntityType Name="FEE_COLLECTION_PARTICULAR">
     <Key>
@@ -3382,4 +3384,27 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <EntityType Name="Privilege">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="AddedDate" Type="DateTime" Precision="3" />
+    <Property Name="AddedBy" Type="Int64" />
+    <Property Name="ModifiedBy" Type="Int64" />
+    <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="Privileges_Users">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="Int64" Nullable="false" />
+    <Property Name="PrivilegeId" Type="Int64" Nullable="false" />
+    <Property Name="AddedBy" Type="Int64" />
+    <Property Name="AddedDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedBy" Type="Int64" />
+    <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+  </EntityType>
 </Schema>
