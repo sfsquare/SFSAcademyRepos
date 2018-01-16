@@ -27,8 +27,8 @@ namespace SFSAcademy
         public string IS_PD { get; set; }
     
         public virtual FINANCE_FEE_COLLECTION FINANCE_FEE_COLLECTION { get; set; }
-        public virtual STUDENT STUDENT { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<FINANCE_TRANSACTION> FINANCE_TRANSACTION { get; set; }
+        public virtual STUDENT STUDENT { get; set; }
     }
 }

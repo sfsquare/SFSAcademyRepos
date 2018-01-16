@@ -27,7 +27,7 @@ namespace SFSAcademy
         public Nullable<System.DateTime> UPDATED_AT { get; set; }
     
         public virtual STUDENT_CATGEORY STUDENT_CATGEORY { get; set; }
-        public virtual STUDENT STUDENT { get; set; }
         public virtual FINANCE_FEE_CATGEORY FINANCE_FEE_CATGEORY { get; set; }
+        public virtual STUDENT STUDENT { get; set; }
     }
 }

@@ -737,7 +737,7 @@
             <PropertyRef Name="DocumentId" />
           </Key>
           <Property Name="DocumentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="2000" />
           <Property Name="Size" Type="bigint" Nullable="false" />
           <Property Name="Type" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="FileContent" Type="varbinary(max)" Nullable="false" />
@@ -988,9 +988,9 @@
           <Property Name="STATE" Type="varchar" MaxLength="20" />
           <Property Name="PIN_CODE" Type="varchar" MaxLength="20" />
           <Property Name="CTRY_ID" Type="int" />
-          <Property Name="PH1" Type="varchar" MaxLength="20" />
-          <Property Name="PH2" Type="varchar" MaxLength="20" />
-          <Property Name="EML" Type="varchar" MaxLength="20" />
+          <Property Name="PH1" Type="bigint" />
+          <Property Name="PH2" Type="bigint" />
+          <Property Name="EML" Type="varchar" MaxLength="100" />
           <Property Name="IMMDT_CNTCT_ID" Type="int" />
           <Property Name="IS_SMS_ENABL" Type="varchar" MaxLength="1" />
           <Property Name="PHTO_FILENAME" Type="varchar" MaxLength="20" />
@@ -1006,6 +1006,7 @@
           <Property Name="USRID" Type="int" Nullable="false" />
           <Property Name="STDNT_CAT_ID" Type="int" />
           <Property Name="NTLTY_ID" Type="int" />
+          <Property Name="IMAGE_DOCUMENTS_ID" Type="int" />
         </EntityType>
         <EntityType Name="STUDENT_ADDITIONAL_DETAIL">
           <Key>
@@ -3786,8 +3787,8 @@
           <Property Name="IS_AMT" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
           <Property Name="CREATED_AT" Type="DateTime" Precision="3" />
           <Property Name="UPDATED_AT" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="STUDENT" Relationship="SFSAcademyModel.RCVR__STUD_FEE__NI" FromRole="FEE_COLLECTION_DISCOUNT" ToRole="STUDENT" />
           <NavigationProperty Name="FINANCE_FEE_CATGEORY" Relationship="SFSAcademyModel.FIN_F_FINA_FEE__NI" FromRole="FEE_COLLECTION_DISCOUNT" ToRole="FINANCE_FEE_CATGEORY" />
+          <NavigationProperty Name="STUDENT" Relationship="SFSAcademyModel.RCVR__STUD_FEE__NI" FromRole="FEE_COLLECTION_DISCOUNT" ToRole="STUDENT" />
         </EntityType>
         <EntityType Name="FEE_DISCOUNT">
           <Key>
@@ -3800,8 +3801,8 @@
           <Property Name="FIN_FEE_CAT_ID" Type="Int32" />
           <Property Name="DISC" Type="Decimal" Precision="10" Scale="2" />
           <Property Name="IS_AMT" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="STUDENT" Relationship="SFSAcademyModel.RCVR__STUD_FEE__NI2" FromRole="FEE_DISCOUNT" ToRole="STUDENT" />
           <NavigationProperty Name="FINANCE_FEE_CATGEORY" Relationship="SFSAcademyModel.FIN_F_FINA_FEE__NI3" FromRole="FEE_DISCOUNT" ToRole="FINANCE_FEE_CATGEORY" />
+          <NavigationProperty Name="STUDENT" Relationship="SFSAcademyModel.RCVR__STUD_FEE__NI2" FromRole="FEE_DISCOUNT" ToRole="STUDENT" />
         </EntityType>
         <EntityType Name="FINANCE_DONATION">
           <Key>
@@ -3833,8 +3834,8 @@
           <Property Name="CREATED_AT" Type="DateTime" Precision="3" />
           <Property Name="UPDATED_AT" Type="DateTime" Precision="3" />
           <NavigationProperty Name="STUDENT_CATGEORY" Relationship="Self.R_115" FromRole="FINANCE_FEE_PARTICULAR" ToRole="STUDENT_CATGEORY" />
-          <NavigationProperty Name="STUDENT" Relationship="SFSAcademyModel.STDNT_STUD_FINA_NI4" FromRole="FINANCE_FEE_PARTICULAR" ToRole="STUDENT" />
           <NavigationProperty Name="FINANCE_FEE_CATGEORY" Relationship="SFSAcademyModel.FIN_F_FINA_FINA_NI" FromRole="FINANCE_FEE_PARTICULAR" ToRole="FINANCE_FEE_CATGEORY" />
+          <NavigationProperty Name="STUDENT" Relationship="SFSAcademyModel.STDNT_STUD_FINA_NI4" FromRole="FINANCE_FEE_PARTICULAR" ToRole="STUDENT" />
         </EntityType>
         <EntityType Name="FINANCE_FEE_STRUCTURE_ELEMENT">
           <Key>
@@ -5574,84 +5575,6 @@
             <End Role="FINANCE_FEE_COLLECTION" EntitySet="FINANCE_FEE_COLLECTION" />
             <End Role="FINANCE_FEE_STRUCTURE_ELEMENT" EntitySet="FINANCE_FEE_STRUCTURE_ELEMENT" />
           </AssociationSet>
-          <EntitySet Name="IMAGE_DOCUMENTS" EntityType="SFSAcademyModel.IMAGE_DOCUMENTS" />
-          <EntitySet Name="STUDENTs" EntityType="SFSAcademyModel.STUDENT" />
-          <AssociationSet Name="FRM_I_STUD_ARCH_NI" Association="SFSAcademyModel.FRM_I_STUD_ARCH_NI">
-            <End Role="STUDENT" EntitySet="STUDENTs" />
-            <End Role="ARCHIVED_STUDENT" EntitySet="ARCHIVED_STUDENT" />
-          </AssociationSet>
-          <AssociationSet Name="SSTDN_STUD_ASSE_NI" Association="SFSAcademyModel.SSTDN_STUD_ASSE_NI">
-            <End Role="STUDENT" EntitySet="STUDENTs" />
-            <End Role="ASSESSMENT_SCORE" EntitySet="ASSESSMENT_SCORE" />
-          </AssociationSet>
-          <AssociationSet Name="STDNT_STUD_ATTE_NI" Association="SFSAcademyModel.STDNT_STUD_ATTE_NI">
-            <End Role="STUDENT" EntitySet="STUDENTs" />
-            <End Role="ATTENDENCE" EntitySet="ATTENDENCEs" />
-          </AssociationSet>
-          <AssociationSet Name="STDNT_STUD_CCE__NI" Association="SFSAcademyModel.STDNT_STUD_CCE__NI">
-            <End Role="STUDENT" EntitySet="STUDENTs" />
-            <End Role="CCE_REPORTS" EntitySet="CCE_REPORTS" />
-          </AssociationSet>
-          <AssociationSet Name="NTLTY_COUN_STUD_NI" Association="SFSAcademyModel.NTLTY_COUN_STUD_NI">
-            <End Role="COUNTRY" EntitySet="COUNTRies" />
-            <End Role="STUDENT" EntitySet="STUDENTs" />
-          </AssociationSet>
-          <AssociationSet Name="STDNT_STUD_EXAM_NI" Association="SFSAcademyModel.STDNT_STUD_EXAM_NI">
-            <End Role="STUDENT" EntitySet="STUDENTs" />
-            <End Role="EXAM_SCORE" EntitySet="EXAM_SCORE" />
-          </AssociationSet>
-          <AssociationSet Name="RCVR__STUD_FEE__NI" Association="SFSAcademyModel.RCVR__STUD_FEE__NI">
-            <End Role="STUDENT" EntitySet="STUDENTs" />
-            <End Role="FEE_COLLECTION_DISCOUNT" EntitySet="FEE_COLLECTION_DISCOUNT" />
-          </AssociationSet>
-          <AssociationSet Name="STDNT_STUD_FEE__NI2" Association="SFSAcademyModel.STDNT_STUD_FEE__NI2">
-            <End Role="STUDENT" EntitySet="STUDENTs" />
-            <End Role="FEE_COLLECTION_PARTICULAR" EntitySet="FEE_COLLECTION_PARTICULAR" />
-          </AssociationSet>
-          <AssociationSet Name="RCVR__STUD_FEE__NI2" Association="SFSAcademyModel.RCVR__STUD_FEE__NI2">
-            <End Role="STUDENT" EntitySet="STUDENTs" />
-            <End Role="FEE_DISCOUNT" EntitySet="FEE_DISCOUNT" />
-          </AssociationSet>
-          <AssociationSet Name="STDNT_STUD_FINA_NI4" Association="SFSAcademyModel.STDNT_STUD_FINA_NI4">
-            <End Role="STUDENT" EntitySet="STUDENTs" />
-            <End Role="FINANCE_FEE_PARTICULAR" EntitySet="FINANCE_FEE_PARTICULAR" />
-          </AssociationSet>
-          <AssociationSet Name="STDNT_STUD_FINA_NI6" Association="SFSAcademyModel.STDNT_STUD_FINA_NI6">
-            <End Role="STUDENT" EntitySet="STUDENTs" />
-            <End Role="FINANCE_FEE_STRUCTURE_ELEMENT" EntitySet="FINANCE_FEE_STRUCTURE_ELEMENT" />
-          </AssociationSet>
-          <AssociationSet Name="WARD__STUD_GUAR_NI" Association="SFSAcademyModel.WARD__STUD_GUAR_NI">
-            <End Role="STUDENT" EntitySet="STUDENTs" />
-            <End Role="GUARDIAN" EntitySet="GUARDIANs" />
-          </AssociationSet>
-          <AssociationSet Name="STDNT_STUD_STUD_NI" Association="SFSAcademyModel.STDNT_STUD_STUD_NI">
-            <End Role="STUDENT_CATGEORY" EntitySet="STUDENT_CATGEORY" />
-            <End Role="STUDENT" EntitySet="STUDENTs" />
-          </AssociationSet>
-          <AssociationSet Name="STDNT_STUD_STUD_NI2" Association="SFSAcademyModel.STDNT_STUD_STUD_NI2">
-            <End Role="STUDENT" EntitySet="STUDENTs" />
-            <End Role="STUDENT_ADDITIONAL_DETAIL" EntitySet="STUDENT_ADDITIONAL_DETAIL" />
-          </AssociationSet>
-          <AssociationSet Name="STDNT_STUD_STUD_NI3" Association="SFSAcademyModel.STDNT_STUD_STUD_NI3">
-            <End Role="STUDENT" EntitySet="STUDENTs" />
-            <End Role="STUDENT_PREVIOUS_DATA" EntitySet="STUDENT_PREVIOUS_DATA" />
-          </AssociationSet>
-          <AssociationSet Name="STDNT_STUD_STUD_NI4" Association="SFSAcademyModel.STDNT_STUD_STUD_NI4">
-            <End Role="STUDENT" EntitySet="STUDENTs" />
-            <End Role="STUDENT_PREVIOUS_SUBJECT_MARK" EntitySet="STUDENT_PREVIOUS_SUBJECT_MARK" />
-          </AssociationSet>
-          <AssociationSet Name="STDNT_STUD_STUD_NI5" Association="SFSAcademyModel.STDNT_STUD_STUD_NI5">
-            <End Role="STUDENT" EntitySet="STUDENTs" />
-            <End Role="STUDENT_SUBJECT" EntitySet="STUDENT_SUBJECT" />
-          </AssociationSet>
-          <AssociationSet Name="STDNT_STUD_SUBJ_NI" Association="SFSAcademyModel.STDNT_STUD_SUBJ_NI">
-            <End Role="STUDENT" EntitySet="STUDENTs" />
-            <End Role="SUBJECT_LEAVE" EntitySet="SUBJECT_LEAVE" />
-          </AssociationSet>
-          <AssociationSet Name="USRID_USER_STUD_NI" Association="SFSAcademyModel.USRID_USER_STUD_NI">
-            <End Role="USER" EntitySet="USERS" />
-            <End Role="STUDENT" EntitySet="STUDENTs" />
-          </AssociationSet>
           <EntitySet Name="STORE_CATEGORY" EntityType="SFSAcademyModel.STORE_CATEGORY" />
           <EntitySet Name="STORE_PRODUCTS" EntityType="SFSAcademyModel.STORE_PRODUCTS" />
           <AssociationSet Name="STCAT_STPROD_ASSE_NI" Association="SFSAcademyModel.STCAT_STPROD_ASSE_NI">
@@ -5698,17 +5621,9 @@
             <End Role="FINANCE_FEE_COLLECTION" EntitySet="FINANCE_FEE_COLLECTION" />
             <End Role="FINANCE_FEE" EntitySet="FINANCE_FEE" />
           </AssociationSet>
-          <AssociationSet Name="STDNT_STUD_FINA_NI" Association="SFSAcademyModel.STDNT_STUD_FINA_NI">
-            <End Role="STUDENT" EntitySet="STUDENTs" />
-            <End Role="FINANCE_FEE" EntitySet="FINANCE_FEE" />
-          </AssociationSet>
           <EntitySet Name="FEE_FINE" EntityType="SFSAcademyModel.FEE_FINE" />
           <AssociationSet Name="FEE_F_FINA_FEE_NI3" Association="SFSAcademyModel.FEE_F_FINA_FEE_NI3">
             <End Role="FINANCE_FEE_CATGEORY" EntitySet="FINANCE_FEE_CATGEORY" />
-            <End Role="FEE_FINE" EntitySet="FEE_FINE" />
-          </AssociationSet>
-          <AssociationSet Name="FEE_RCVR_FEE__NI2" Association="SFSAcademyModel.FEE_RCVR_FEE__NI2">
-            <End Role="STUDENT" EntitySet="STUDENTs" />
             <End Role="FEE_FINE" EntitySet="FEE_FINE" />
           </AssociationSet>
           <EntitySet Name="FINANCE_TRANSACTION" EntityType="SFSAcademyModel.FINANCE_TRANSACTION" />
@@ -5724,9 +5639,95 @@
             <End Role="FINANCE_TRANSACTION_CATEGORY" EntitySet="FINANCE_TRANSACTION_CATEGORY" />
             <End Role="FINANCE_TRANSACTION" EntitySet="FINANCE_TRANSACTION" />
           </AssociationSet>
+          <EntitySet Name="IMAGE_DOCUMENTS" EntityType="SFSAcademyModel.IMAGE_DOCUMENTS" />
+          <EntitySet Name="STUDENTs" EntityType="SFSAcademyModel.STUDENT" />
+          <AssociationSet Name="FRM_I_STUD_ARCH_NI" Association="SFSAcademyModel.FRM_I_STUD_ARCH_NI">
+            <End Role="STUDENT" EntitySet="STUDENTs" />
+            <End Role="ARCHIVED_STUDENT" EntitySet="ARCHIVED_STUDENT" />
+          </AssociationSet>
+          <AssociationSet Name="SSTDN_STUD_ASSE_NI" Association="SFSAcademyModel.SSTDN_STUD_ASSE_NI">
+            <End Role="STUDENT" EntitySet="STUDENTs" />
+            <End Role="ASSESSMENT_SCORE" EntitySet="ASSESSMENT_SCORE" />
+          </AssociationSet>
+          <AssociationSet Name="STDNT_STUD_ATTE_NI" Association="SFSAcademyModel.STDNT_STUD_ATTE_NI">
+            <End Role="STUDENT" EntitySet="STUDENTs" />
+            <End Role="ATTENDENCE" EntitySet="ATTENDENCEs" />
+          </AssociationSet>
+          <AssociationSet Name="STDNT_STUD_CCE__NI" Association="SFSAcademyModel.STDNT_STUD_CCE__NI">
+            <End Role="STUDENT" EntitySet="STUDENTs" />
+            <End Role="CCE_REPORTS" EntitySet="CCE_REPORTS" />
+          </AssociationSet>
+          <AssociationSet Name="NTLTY_COUN_STUD_NI" Association="SFSAcademyModel.NTLTY_COUN_STUD_NI">
+            <End Role="COUNTRY" EntitySet="COUNTRies" />
+            <End Role="STUDENT" EntitySet="STUDENTs" />
+          </AssociationSet>
+          <AssociationSet Name="STDNT_STUD_EXAM_NI" Association="SFSAcademyModel.STDNT_STUD_EXAM_NI">
+            <End Role="STUDENT" EntitySet="STUDENTs" />
+            <End Role="EXAM_SCORE" EntitySet="EXAM_SCORE" />
+          </AssociationSet>
+          <AssociationSet Name="RCVR__STUD_FEE__NI" Association="SFSAcademyModel.RCVR__STUD_FEE__NI">
+            <End Role="STUDENT" EntitySet="STUDENTs" />
+            <End Role="FEE_COLLECTION_DISCOUNT" EntitySet="FEE_COLLECTION_DISCOUNT" />
+          </AssociationSet>
+          <AssociationSet Name="STDNT_STUD_FEE__NI2" Association="SFSAcademyModel.STDNT_STUD_FEE__NI2">
+            <End Role="STUDENT" EntitySet="STUDENTs" />
+            <End Role="FEE_COLLECTION_PARTICULAR" EntitySet="FEE_COLLECTION_PARTICULAR" />
+          </AssociationSet>
+          <AssociationSet Name="RCVR__STUD_FEE__NI2" Association="SFSAcademyModel.RCVR__STUD_FEE__NI2">
+            <End Role="STUDENT" EntitySet="STUDENTs" />
+            <End Role="FEE_DISCOUNT" EntitySet="FEE_DISCOUNT" />
+          </AssociationSet>
+          <AssociationSet Name="FEE_RCVR_FEE__NI2" Association="SFSAcademyModel.FEE_RCVR_FEE__NI2">
+            <End Role="STUDENT" EntitySet="STUDENTs" />
+            <End Role="FEE_FINE" EntitySet="FEE_FINE" />
+          </AssociationSet>
+          <AssociationSet Name="STDNT_STUD_FINA_NI" Association="SFSAcademyModel.STDNT_STUD_FINA_NI">
+            <End Role="STUDENT" EntitySet="STUDENTs" />
+            <End Role="FINANCE_FEE" EntitySet="FINANCE_FEE" />
+          </AssociationSet>
+          <AssociationSet Name="STDNT_STUD_FINA_NI4" Association="SFSAcademyModel.STDNT_STUD_FINA_NI4">
+            <End Role="STUDENT" EntitySet="STUDENTs" />
+            <End Role="FINANCE_FEE_PARTICULAR" EntitySet="FINANCE_FEE_PARTICULAR" />
+          </AssociationSet>
+          <AssociationSet Name="STDNT_STUD_FINA_NI6" Association="SFSAcademyModel.STDNT_STUD_FINA_NI6">
+            <End Role="STUDENT" EntitySet="STUDENTs" />
+            <End Role="FINANCE_FEE_STRUCTURE_ELEMENT" EntitySet="FINANCE_FEE_STRUCTURE_ELEMENT" />
+          </AssociationSet>
           <AssociationSet Name="STDNT_STUD_FINA_NI7" Association="SFSAcademyModel.STDNT_STUD_FINA_NI7">
             <End Role="STUDENT" EntitySet="STUDENTs" />
             <End Role="FINANCE_TRANSACTION" EntitySet="FINANCE_TRANSACTION" />
+          </AssociationSet>
+          <AssociationSet Name="WARD__STUD_GUAR_NI" Association="SFSAcademyModel.WARD__STUD_GUAR_NI">
+            <End Role="STUDENT" EntitySet="STUDENTs" />
+            <End Role="GUARDIAN" EntitySet="GUARDIANs" />
+          </AssociationSet>
+          <AssociationSet Name="STDNT_STUD_STUD_NI" Association="SFSAcademyModel.STDNT_STUD_STUD_NI">
+            <End Role="STUDENT_CATGEORY" EntitySet="STUDENT_CATGEORY" />
+            <End Role="STUDENT" EntitySet="STUDENTs" />
+          </AssociationSet>
+          <AssociationSet Name="STDNT_STUD_STUD_NI2" Association="SFSAcademyModel.STDNT_STUD_STUD_NI2">
+            <End Role="STUDENT" EntitySet="STUDENTs" />
+            <End Role="STUDENT_ADDITIONAL_DETAIL" EntitySet="STUDENT_ADDITIONAL_DETAIL" />
+          </AssociationSet>
+          <AssociationSet Name="STDNT_STUD_STUD_NI3" Association="SFSAcademyModel.STDNT_STUD_STUD_NI3">
+            <End Role="STUDENT" EntitySet="STUDENTs" />
+            <End Role="STUDENT_PREVIOUS_DATA" EntitySet="STUDENT_PREVIOUS_DATA" />
+          </AssociationSet>
+          <AssociationSet Name="STDNT_STUD_STUD_NI4" Association="SFSAcademyModel.STDNT_STUD_STUD_NI4">
+            <End Role="STUDENT" EntitySet="STUDENTs" />
+            <End Role="STUDENT_PREVIOUS_SUBJECT_MARK" EntitySet="STUDENT_PREVIOUS_SUBJECT_MARK" />
+          </AssociationSet>
+          <AssociationSet Name="STDNT_STUD_STUD_NI5" Association="SFSAcademyModel.STDNT_STUD_STUD_NI5">
+            <End Role="STUDENT" EntitySet="STUDENTs" />
+            <End Role="STUDENT_SUBJECT" EntitySet="STUDENT_SUBJECT" />
+          </AssociationSet>
+          <AssociationSet Name="STDNT_STUD_SUBJ_NI" Association="SFSAcademyModel.STDNT_STUD_SUBJ_NI">
+            <End Role="STUDENT" EntitySet="STUDENTs" />
+            <End Role="SUBJECT_LEAVE" EntitySet="SUBJECT_LEAVE" />
+          </AssociationSet>
+          <AssociationSet Name="USRID_USER_STUD_NI" Association="SFSAcademyModel.USRID_USER_STUD_NI">
+            <End Role="USER" EntitySet="USERS" />
+            <End Role="STUDENT" EntitySet="STUDENTs" />
           </AssociationSet>
           </EntityContainer>
         <EntityType Name="FEE_COLLECTION_PARTICULAR">
@@ -5868,312 +5869,6 @@
             </Principal>
             <Dependent Role="FINANCE_FEE_STRUCTURE_ELEMENT">
               <PropertyRef Name="FEE_CLCT_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="IMAGE_DOCUMENTS">
-          <Key>
-            <PropertyRef Name="DocumentId" />
-          </Key>
-          <Property Name="DocumentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Size" Type="Int64" Nullable="false" />
-          <Property Name="Type" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="FileContent" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
-          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
-          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
-        </EntityType>
-        <EntityType Name="STUDENT">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ADMSN_NO" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="CLS_ROLL_NO" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="ADMSN_DATE" Type="DateTime" Precision="3" />
-          <Property Name="FIRST_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="MID_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="LAST_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="BTCH_ID" Type="Int32" />
-          <Property Name="DOB" Type="DateTime" Precision="3" />
-          <Property Name="GNDR" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="BLOOD_GRP" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="BIRTH_PLACE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="LANG" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="RLGN" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="ADDR_LINE1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="ADDR_LINE2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="CITY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="STATE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="PIN_CODE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="CTRY_ID" Type="Int32" />
-          <Property Name="PH1" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="PH2" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="EML" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="IMMDT_CNTCT_ID" Type="Int32" />
-          <Property Name="IS_SMS_ENABL" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
-          <Property Name="PHTO_FILENAME" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="PHTO_CNTNT_TYPE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="PHTO_DATA" Type="Int32" />
-          <Property Name="STAT_DESCR" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="IS_ACT" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
-          <Property Name="IS_DEL" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
-          <Property Name="CREATED_AT" Type="DateTime" Precision="3" />
-          <Property Name="UPDATED_AT" Type="DateTime" Precision="3" />
-          <Property Name="HAS_PD_FE" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
-          <Property Name="PHTO_FILE_SIZE" Type="Int32" />
-          <Property Name="USRID" Type="Int32" Nullable="false" />
-          <Property Name="STDNT_CAT_ID" Type="Int32" />
-          <Property Name="NTLTY_ID" Type="Int32" />
-          <NavigationProperty Name="ARCHIVED_STUDENT" Relationship="SFSAcademyModel.FRM_I_STUD_ARCH_NI" FromRole="STUDENT" ToRole="ARCHIVED_STUDENT" />
-          <NavigationProperty Name="ASSESSMENT_SCORE" Relationship="SFSAcademyModel.SSTDN_STUD_ASSE_NI" FromRole="STUDENT" ToRole="ASSESSMENT_SCORE" />
-          <NavigationProperty Name="ATTENDENCEs" Relationship="SFSAcademyModel.STDNT_STUD_ATTE_NI" FromRole="STUDENT" ToRole="ATTENDENCE" />
-          <NavigationProperty Name="CCE_REPORTS" Relationship="SFSAcademyModel.STDNT_STUD_CCE__NI" FromRole="STUDENT" ToRole="CCE_REPORTS" />
-          <NavigationProperty Name="COUNTRY" Relationship="SFSAcademyModel.NTLTY_COUN_STUD_NI" FromRole="STUDENT" ToRole="COUNTRY" />
-          <NavigationProperty Name="EXAM_SCORE" Relationship="SFSAcademyModel.STDNT_STUD_EXAM_NI" FromRole="STUDENT" ToRole="EXAM_SCORE" />
-          <NavigationProperty Name="FEE_COLLECTION_DISCOUNT" Relationship="SFSAcademyModel.RCVR__STUD_FEE__NI" FromRole="STUDENT" ToRole="FEE_COLLECTION_DISCOUNT" />
-          <NavigationProperty Name="FEE_COLLECTION_PARTICULAR" Relationship="SFSAcademyModel.STDNT_STUD_FEE__NI2" FromRole="STUDENT" ToRole="FEE_COLLECTION_PARTICULAR" />
-          <NavigationProperty Name="FEE_DISCOUNT" Relationship="SFSAcademyModel.RCVR__STUD_FEE__NI2" FromRole="STUDENT" ToRole="FEE_DISCOUNT" />
-          <NavigationProperty Name="FINANCE_FEE_PARTICULAR" Relationship="SFSAcademyModel.STDNT_STUD_FINA_NI4" FromRole="STUDENT" ToRole="FINANCE_FEE_PARTICULAR" />
-          <NavigationProperty Name="FINANCE_FEE_STRUCTURE_ELEMENT" Relationship="SFSAcademyModel.STDNT_STUD_FINA_NI6" FromRole="STUDENT" ToRole="FINANCE_FEE_STRUCTURE_ELEMENT" />
-          <NavigationProperty Name="GUARDIANs" Relationship="SFSAcademyModel.WARD__STUD_GUAR_NI" FromRole="STUDENT" ToRole="GUARDIAN" />
-          <NavigationProperty Name="STUDENT_CATGEORY" Relationship="SFSAcademyModel.STDNT_STUD_STUD_NI" FromRole="STUDENT" ToRole="STUDENT_CATGEORY" />
-          <NavigationProperty Name="STUDENT_ADDITIONAL_DETAIL" Relationship="SFSAcademyModel.STDNT_STUD_STUD_NI2" FromRole="STUDENT" ToRole="STUDENT_ADDITIONAL_DETAIL" />
-          <NavigationProperty Name="STUDENT_PREVIOUS_DATA" Relationship="SFSAcademyModel.STDNT_STUD_STUD_NI3" FromRole="STUDENT" ToRole="STUDENT_PREVIOUS_DATA" />
-          <NavigationProperty Name="STUDENT_PREVIOUS_SUBJECT_MARK" Relationship="SFSAcademyModel.STDNT_STUD_STUD_NI4" FromRole="STUDENT" ToRole="STUDENT_PREVIOUS_SUBJECT_MARK" />
-          <NavigationProperty Name="STUDENT_SUBJECT" Relationship="SFSAcademyModel.STDNT_STUD_STUD_NI5" FromRole="STUDENT" ToRole="STUDENT_SUBJECT" />
-          <NavigationProperty Name="SUBJECT_LEAVE" Relationship="SFSAcademyModel.STDNT_STUD_SUBJ_NI" FromRole="STUDENT" ToRole="SUBJECT_LEAVE" />
-          <NavigationProperty Name="USER" Relationship="SFSAcademyModel.USRID_USER_STUD_NI" FromRole="STUDENT" ToRole="USER" />
-          <NavigationProperty Name="FINANCE_FEE" Relationship="SFSAcademyModel.STDNT_STUD_FINA_NI" FromRole="STUDENT" ToRole="FINANCE_FEE" />
-          <NavigationProperty Name="FEE_FINE" Relationship="SFSAcademyModel.FEE_RCVR_FEE__NI2" FromRole="STUDENT" ToRole="FEE_FINE" />
-          <NavigationProperty Name="FINANCE_TRANSACTION" Relationship="SFSAcademyModel.STDNT_STUD_FINA_NI7" FromRole="STUDENT" ToRole="FINANCE_TRANSACTION" />
-        </EntityType>
-        <Association Name="FRM_I_STUD_ARCH_NI">
-          <End Type="SFSAcademyModel.STUDENT" Role="STUDENT" Multiplicity="0..1" />
-          <End Type="SFSAcademyModel.ARCHIVED_STUDENT" Role="ARCHIVED_STUDENT" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="STUDENT">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="ARCHIVED_STUDENT">
-              <PropertyRef Name="FRM_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="SSTDN_STUD_ASSE_NI">
-          <End Type="SFSAcademyModel.STUDENT" Role="STUDENT" Multiplicity="0..1" />
-          <End Type="SFSAcademyModel.ASSESSMENT_SCORE" Role="ASSESSMENT_SCORE" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="STUDENT">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="ASSESSMENT_SCORE">
-              <PropertyRef Name="SSTDNT_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="STDNT_STUD_ATTE_NI">
-          <End Type="SFSAcademyModel.STUDENT" Role="STUDENT" Multiplicity="0..1" />
-          <End Type="SFSAcademyModel.ATTENDENCE" Role="ATTENDENCE" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="STUDENT">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="ATTENDENCE">
-              <PropertyRef Name="STDNT_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="STDNT_STUD_CCE__NI">
-          <End Type="SFSAcademyModel.STUDENT" Role="STUDENT" Multiplicity="0..1" />
-          <End Type="SFSAcademyModel.CCE_REPORTS" Role="CCE_REPORTS" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="STUDENT">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="CCE_REPORTS">
-              <PropertyRef Name="STDNT_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="NTLTY_COUN_STUD_NI">
-          <End Type="SFSAcademyModel.COUNTRY" Role="COUNTRY" Multiplicity="0..1" />
-          <End Type="SFSAcademyModel.STUDENT" Role="STUDENT" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="COUNTRY">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="STUDENT">
-              <PropertyRef Name="NTLTY_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="STDNT_STUD_EXAM_NI">
-          <End Type="SFSAcademyModel.STUDENT" Role="STUDENT" Multiplicity="0..1" />
-          <End Type="SFSAcademyModel.EXAM_SCORE" Role="EXAM_SCORE" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="STUDENT">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="EXAM_SCORE">
-              <PropertyRef Name="STDNT_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="RCVR__STUD_FEE__NI">
-          <End Type="SFSAcademyModel.STUDENT" Role="STUDENT" Multiplicity="0..1" />
-          <End Type="SFSAcademyModel.FEE_COLLECTION_DISCOUNT" Role="FEE_COLLECTION_DISCOUNT" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="STUDENT">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="FEE_COLLECTION_DISCOUNT">
-              <PropertyRef Name="RCVR_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="STDNT_STUD_FEE__NI2">
-          <End Type="SFSAcademyModel.STUDENT" Role="STUDENT" Multiplicity="0..1" />
-          <End Type="SFSAcademyModel.FEE_COLLECTION_PARTICULAR" Role="FEE_COLLECTION_PARTICULAR" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="STUDENT">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="FEE_COLLECTION_PARTICULAR">
-              <PropertyRef Name="STDNT_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="RCVR__STUD_FEE__NI2">
-          <End Type="SFSAcademyModel.STUDENT" Role="STUDENT" Multiplicity="0..1" />
-          <End Type="SFSAcademyModel.FEE_DISCOUNT" Role="FEE_DISCOUNT" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="STUDENT">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="FEE_DISCOUNT">
-              <PropertyRef Name="RCVR_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="STDNT_STUD_FINA_NI4">
-          <End Type="SFSAcademyModel.STUDENT" Role="STUDENT" Multiplicity="0..1" />
-          <End Type="SFSAcademyModel.FINANCE_FEE_PARTICULAR" Role="FINANCE_FEE_PARTICULAR" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="STUDENT">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="FINANCE_FEE_PARTICULAR">
-              <PropertyRef Name="STDNT_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="STDNT_STUD_FINA_NI6">
-          <End Type="SFSAcademyModel.STUDENT" Role="STUDENT" Multiplicity="0..1" />
-          <End Type="SFSAcademyModel.FINANCE_FEE_STRUCTURE_ELEMENT" Role="FINANCE_FEE_STRUCTURE_ELEMENT" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="STUDENT">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="FINANCE_FEE_STRUCTURE_ELEMENT">
-              <PropertyRef Name="STDNT_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="WARD__STUD_GUAR_NI">
-          <End Type="SFSAcademyModel.STUDENT" Role="STUDENT" Multiplicity="0..1" />
-          <End Type="SFSAcademyModel.GUARDIAN" Role="GUARDIAN" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="STUDENT">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="GUARDIAN">
-              <PropertyRef Name="WARD_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="STDNT_STUD_STUD_NI">
-          <End Type="SFSAcademyModel.STUDENT_CATGEORY" Role="STUDENT_CATGEORY" Multiplicity="0..1" />
-          <End Type="SFSAcademyModel.STUDENT" Role="STUDENT" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="STUDENT_CATGEORY">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="STUDENT">
-              <PropertyRef Name="STDNT_CAT_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="STDNT_STUD_STUD_NI2">
-          <End Type="SFSAcademyModel.STUDENT" Role="STUDENT" Multiplicity="1" />
-          <End Type="SFSAcademyModel.STUDENT_ADDITIONAL_DETAIL" Role="STUDENT_ADDITIONAL_DETAIL" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="STUDENT">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="STUDENT_ADDITIONAL_DETAIL">
-              <PropertyRef Name="STDNT_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="STDNT_STUD_STUD_NI3">
-          <End Type="SFSAcademyModel.STUDENT" Role="STUDENT" Multiplicity="0..1" />
-          <End Type="SFSAcademyModel.STUDENT_PREVIOUS_DATA" Role="STUDENT_PREVIOUS_DATA" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="STUDENT">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="STUDENT_PREVIOUS_DATA">
-              <PropertyRef Name="STDNT_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="STDNT_STUD_STUD_NI4">
-          <End Type="SFSAcademyModel.STUDENT" Role="STUDENT" Multiplicity="0..1" />
-          <End Type="SFSAcademyModel.STUDENT_PREVIOUS_SUBJECT_MARK" Role="STUDENT_PREVIOUS_SUBJECT_MARK" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="STUDENT">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="STUDENT_PREVIOUS_SUBJECT_MARK">
-              <PropertyRef Name="STDNT_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="STDNT_STUD_STUD_NI5">
-          <End Type="SFSAcademyModel.STUDENT" Role="STUDENT" Multiplicity="0..1" />
-          <End Type="SFSAcademyModel.STUDENT_SUBJECT" Role="STUDENT_SUBJECT" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="STUDENT">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="STUDENT_SUBJECT">
-              <PropertyRef Name="STDNT_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="STDNT_STUD_SUBJ_NI">
-          <End Type="SFSAcademyModel.STUDENT" Role="STUDENT" Multiplicity="0..1" />
-          <End Type="SFSAcademyModel.SUBJECT_LEAVE" Role="SUBJECT_LEAVE" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="STUDENT">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="SUBJECT_LEAVE">
-              <PropertyRef Name="STDNT_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="USRID_USER_STUD_NI">
-          <End Type="SFSAcademyModel.USER" Role="USER" Multiplicity="1" />
-          <End Type="SFSAcademyModel.STUDENT" Role="STUDENT" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="USER">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="STUDENT">
-              <PropertyRef Name="USRID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -6393,8 +6088,8 @@
           <Property Name="STDNT_ID" Type="Int32" />
           <Property Name="IS_PD" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="FINANCE_FEE_COLLECTION" Relationship="SFSAcademyModel.FEE_C_FINA_FINA_NI" FromRole="FINANCE_FEE" ToRole="FINANCE_FEE_COLLECTION" />
-          <NavigationProperty Name="STUDENT" Relationship="SFSAcademyModel.STDNT_STUD_FINA_NI" FromRole="FINANCE_FEE" ToRole="STUDENT" />
           <NavigationProperty Name="FINANCE_TRANSACTION" Relationship="SFSAcademyModel.FIN_F_FINA_FINA_NI5" FromRole="FINANCE_FEE" ToRole="FINANCE_TRANSACTION" />
+          <NavigationProperty Name="STUDENT" Relationship="SFSAcademyModel.STDNT_STUD_FINA_NI" FromRole="FINANCE_FEE" ToRole="STUDENT" />
         </EntityType>
         <Association Name="FEE_C_FINA_FINA_NI">
           <End Type="SFSAcademyModel.FINANCE_FEE_COLLECTION" Role="FINANCE_FEE_COLLECTION" Multiplicity="0..1" />
@@ -6405,18 +6100,6 @@
             </Principal>
             <Dependent Role="FINANCE_FEE">
               <PropertyRef Name="FEE_CLCT_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="STDNT_STUD_FINA_NI">
-          <End Type="SFSAcademyModel.STUDENT" Role="STUDENT" Multiplicity="0..1" />
-          <End Type="SFSAcademyModel.FINANCE_FEE" Role="FINANCE_FEE" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="STUDENT">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="FINANCE_FEE">
-              <PropertyRef Name="STDNT_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -6444,18 +6127,6 @@
             </Principal>
             <Dependent Role="FEE_FINE">
               <PropertyRef Name="FIN_FEE_CAT_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FEE_RCVR_FEE__NI2">
-          <End Type="SFSAcademyModel.STUDENT" Role="STUDENT" Multiplicity="0..1" />
-          <End Type="SFSAcademyModel.FEE_FINE" Role="FEE_FINE" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="STUDENT">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="FEE_FINE">
-              <PropertyRef Name="RCVR_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -6523,6 +6194,241 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="IMAGE_DOCUMENTS">
+          <Key>
+            <PropertyRef Name="DocumentId" />
+          </Key>
+          <Property Name="DocumentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <Property Name="Size" Type="Int64" Nullable="false" />
+          <Property Name="Type" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FileContent" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="STUDENT">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ADMSN_NO" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="CLS_ROLL_NO" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ADMSN_DATE" Type="DateTime" Precision="3" />
+          <Property Name="FIRST_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MID_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LAST_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="BTCH_ID" Type="Int32" />
+          <Property Name="DOB" Type="DateTime" Precision="3" />
+          <Property Name="GNDR" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="BLOOD_GRP" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="BIRTH_PLACE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LANG" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="RLGN" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ADDR_LINE1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ADDR_LINE2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CITY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="STATE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="PIN_CODE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="CTRY_ID" Type="Int32" />
+          <Property Name="PH1" Type="Int64" />
+          <Property Name="PH2" Type="Int64" />
+          <Property Name="EML" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="IMMDT_CNTCT_ID" Type="Int32" />
+          <Property Name="IS_SMS_ENABL" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="PHTO_FILENAME" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="PHTO_CNTNT_TYPE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="PHTO_DATA" Type="Int32" />
+          <Property Name="STAT_DESCR" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="IS_ACT" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="IS_DEL" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="CREATED_AT" Type="DateTime" Precision="3" />
+          <Property Name="UPDATED_AT" Type="DateTime" Precision="3" />
+          <Property Name="HAS_PD_FE" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="PHTO_FILE_SIZE" Type="Int32" />
+          <Property Name="USRID" Type="Int32" Nullable="false" />
+          <Property Name="STDNT_CAT_ID" Type="Int32" />
+          <Property Name="NTLTY_ID" Type="Int32" />
+          <Property Name="IMAGE_DOCUMENTS_ID" Type="Int32" />
+          <NavigationProperty Name="ARCHIVED_STUDENT" Relationship="SFSAcademyModel.FRM_I_STUD_ARCH_NI" FromRole="STUDENT" ToRole="ARCHIVED_STUDENT" />
+          <NavigationProperty Name="ASSESSMENT_SCORE" Relationship="SFSAcademyModel.SSTDN_STUD_ASSE_NI" FromRole="STUDENT" ToRole="ASSESSMENT_SCORE" />
+          <NavigationProperty Name="ATTENDENCEs" Relationship="SFSAcademyModel.STDNT_STUD_ATTE_NI" FromRole="STUDENT" ToRole="ATTENDENCE" />
+          <NavigationProperty Name="CCE_REPORTS" Relationship="SFSAcademyModel.STDNT_STUD_CCE__NI" FromRole="STUDENT" ToRole="CCE_REPORTS" />
+          <NavigationProperty Name="COUNTRY" Relationship="SFSAcademyModel.NTLTY_COUN_STUD_NI" FromRole="STUDENT" ToRole="COUNTRY" />
+          <NavigationProperty Name="EXAM_SCORE" Relationship="SFSAcademyModel.STDNT_STUD_EXAM_NI" FromRole="STUDENT" ToRole="EXAM_SCORE" />
+          <NavigationProperty Name="FEE_COLLECTION_DISCOUNT" Relationship="SFSAcademyModel.RCVR__STUD_FEE__NI" FromRole="STUDENT" ToRole="FEE_COLLECTION_DISCOUNT" />
+          <NavigationProperty Name="FEE_COLLECTION_PARTICULAR" Relationship="SFSAcademyModel.STDNT_STUD_FEE__NI2" FromRole="STUDENT" ToRole="FEE_COLLECTION_PARTICULAR" />
+          <NavigationProperty Name="FEE_DISCOUNT" Relationship="SFSAcademyModel.RCVR__STUD_FEE__NI2" FromRole="STUDENT" ToRole="FEE_DISCOUNT" />
+          <NavigationProperty Name="FEE_FINE" Relationship="SFSAcademyModel.FEE_RCVR_FEE__NI2" FromRole="STUDENT" ToRole="FEE_FINE" />
+          <NavigationProperty Name="FINANCE_FEE" Relationship="SFSAcademyModel.STDNT_STUD_FINA_NI" FromRole="STUDENT" ToRole="FINANCE_FEE" />
+          <NavigationProperty Name="FINANCE_FEE_PARTICULAR" Relationship="SFSAcademyModel.STDNT_STUD_FINA_NI4" FromRole="STUDENT" ToRole="FINANCE_FEE_PARTICULAR" />
+          <NavigationProperty Name="FINANCE_FEE_STRUCTURE_ELEMENT" Relationship="SFSAcademyModel.STDNT_STUD_FINA_NI6" FromRole="STUDENT" ToRole="FINANCE_FEE_STRUCTURE_ELEMENT" />
+          <NavigationProperty Name="FINANCE_TRANSACTION" Relationship="SFSAcademyModel.STDNT_STUD_FINA_NI7" FromRole="STUDENT" ToRole="FINANCE_TRANSACTION" />
+          <NavigationProperty Name="GUARDIANs" Relationship="SFSAcademyModel.WARD__STUD_GUAR_NI" FromRole="STUDENT" ToRole="GUARDIAN" />
+          <NavigationProperty Name="STUDENT_CATGEORY" Relationship="SFSAcademyModel.STDNT_STUD_STUD_NI" FromRole="STUDENT" ToRole="STUDENT_CATGEORY" />
+          <NavigationProperty Name="STUDENT_ADDITIONAL_DETAIL" Relationship="SFSAcademyModel.STDNT_STUD_STUD_NI2" FromRole="STUDENT" ToRole="STUDENT_ADDITIONAL_DETAIL" />
+          <NavigationProperty Name="STUDENT_PREVIOUS_DATA" Relationship="SFSAcademyModel.STDNT_STUD_STUD_NI3" FromRole="STUDENT" ToRole="STUDENT_PREVIOUS_DATA" />
+          <NavigationProperty Name="STUDENT_PREVIOUS_SUBJECT_MARK" Relationship="SFSAcademyModel.STDNT_STUD_STUD_NI4" FromRole="STUDENT" ToRole="STUDENT_PREVIOUS_SUBJECT_MARK" />
+          <NavigationProperty Name="STUDENT_SUBJECT" Relationship="SFSAcademyModel.STDNT_STUD_STUD_NI5" FromRole="STUDENT" ToRole="STUDENT_SUBJECT" />
+          <NavigationProperty Name="SUBJECT_LEAVE" Relationship="SFSAcademyModel.STDNT_STUD_SUBJ_NI" FromRole="STUDENT" ToRole="SUBJECT_LEAVE" />
+          <NavigationProperty Name="USER" Relationship="SFSAcademyModel.USRID_USER_STUD_NI" FromRole="STUDENT" ToRole="USER" />
+        </EntityType>
+        <Association Name="FRM_I_STUD_ARCH_NI">
+          <End Type="SFSAcademyModel.STUDENT" Role="STUDENT" Multiplicity="0..1" />
+          <End Type="SFSAcademyModel.ARCHIVED_STUDENT" Role="ARCHIVED_STUDENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="STUDENT">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ARCHIVED_STUDENT">
+              <PropertyRef Name="FRM_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SSTDN_STUD_ASSE_NI">
+          <End Type="SFSAcademyModel.STUDENT" Role="STUDENT" Multiplicity="0..1" />
+          <End Type="SFSAcademyModel.ASSESSMENT_SCORE" Role="ASSESSMENT_SCORE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="STUDENT">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ASSESSMENT_SCORE">
+              <PropertyRef Name="SSTDNT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="STDNT_STUD_ATTE_NI">
+          <End Type="SFSAcademyModel.STUDENT" Role="STUDENT" Multiplicity="0..1" />
+          <End Type="SFSAcademyModel.ATTENDENCE" Role="ATTENDENCE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="STUDENT">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ATTENDENCE">
+              <PropertyRef Name="STDNT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="STDNT_STUD_CCE__NI">
+          <End Type="SFSAcademyModel.STUDENT" Role="STUDENT" Multiplicity="0..1" />
+          <End Type="SFSAcademyModel.CCE_REPORTS" Role="CCE_REPORTS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="STUDENT">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CCE_REPORTS">
+              <PropertyRef Name="STDNT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="NTLTY_COUN_STUD_NI">
+          <End Type="SFSAcademyModel.COUNTRY" Role="COUNTRY" Multiplicity="0..1" />
+          <End Type="SFSAcademyModel.STUDENT" Role="STUDENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="COUNTRY">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="STUDENT">
+              <PropertyRef Name="NTLTY_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="STDNT_STUD_EXAM_NI">
+          <End Type="SFSAcademyModel.STUDENT" Role="STUDENT" Multiplicity="0..1" />
+          <End Type="SFSAcademyModel.EXAM_SCORE" Role="EXAM_SCORE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="STUDENT">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="EXAM_SCORE">
+              <PropertyRef Name="STDNT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RCVR__STUD_FEE__NI">
+          <End Type="SFSAcademyModel.STUDENT" Role="STUDENT" Multiplicity="0..1" />
+          <End Type="SFSAcademyModel.FEE_COLLECTION_DISCOUNT" Role="FEE_COLLECTION_DISCOUNT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="STUDENT">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="FEE_COLLECTION_DISCOUNT">
+              <PropertyRef Name="RCVR_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="STDNT_STUD_FEE__NI2">
+          <End Type="SFSAcademyModel.STUDENT" Role="STUDENT" Multiplicity="0..1" />
+          <End Type="SFSAcademyModel.FEE_COLLECTION_PARTICULAR" Role="FEE_COLLECTION_PARTICULAR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="STUDENT">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="FEE_COLLECTION_PARTICULAR">
+              <PropertyRef Name="STDNT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RCVR__STUD_FEE__NI2">
+          <End Type="SFSAcademyModel.STUDENT" Role="STUDENT" Multiplicity="0..1" />
+          <End Type="SFSAcademyModel.FEE_DISCOUNT" Role="FEE_DISCOUNT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="STUDENT">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="FEE_DISCOUNT">
+              <PropertyRef Name="RCVR_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FEE_RCVR_FEE__NI2">
+          <End Type="SFSAcademyModel.STUDENT" Role="STUDENT" Multiplicity="0..1" />
+          <End Type="SFSAcademyModel.FEE_FINE" Role="FEE_FINE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="STUDENT">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="FEE_FINE">
+              <PropertyRef Name="RCVR_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="STDNT_STUD_FINA_NI">
+          <End Type="SFSAcademyModel.STUDENT" Role="STUDENT" Multiplicity="0..1" />
+          <End Type="SFSAcademyModel.FINANCE_FEE" Role="FINANCE_FEE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="STUDENT">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="FINANCE_FEE">
+              <PropertyRef Name="STDNT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="STDNT_STUD_FINA_NI4">
+          <End Type="SFSAcademyModel.STUDENT" Role="STUDENT" Multiplicity="0..1" />
+          <End Type="SFSAcademyModel.FINANCE_FEE_PARTICULAR" Role="FINANCE_FEE_PARTICULAR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="STUDENT">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="FINANCE_FEE_PARTICULAR">
+              <PropertyRef Name="STDNT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="STDNT_STUD_FINA_NI6">
+          <End Type="SFSAcademyModel.STUDENT" Role="STUDENT" Multiplicity="0..1" />
+          <End Type="SFSAcademyModel.FINANCE_FEE_STRUCTURE_ELEMENT" Role="FINANCE_FEE_STRUCTURE_ELEMENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="STUDENT">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="FINANCE_FEE_STRUCTURE_ELEMENT">
+              <PropertyRef Name="STDNT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="STDNT_STUD_FINA_NI7">
           <End Type="SFSAcademyModel.STUDENT" Role="STUDENT" Multiplicity="0..1" />
           <End Type="SFSAcademyModel.FINANCE_TRANSACTION" Role="FINANCE_TRANSACTION" Multiplicity="*" />
@@ -6532,6 +6438,102 @@
             </Principal>
             <Dependent Role="FINANCE_TRANSACTION">
               <PropertyRef Name="STDNT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="WARD__STUD_GUAR_NI">
+          <End Type="SFSAcademyModel.STUDENT" Role="STUDENT" Multiplicity="0..1" />
+          <End Type="SFSAcademyModel.GUARDIAN" Role="GUARDIAN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="STUDENT">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="GUARDIAN">
+              <PropertyRef Name="WARD_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="STDNT_STUD_STUD_NI">
+          <End Type="SFSAcademyModel.STUDENT_CATGEORY" Role="STUDENT_CATGEORY" Multiplicity="0..1" />
+          <End Type="SFSAcademyModel.STUDENT" Role="STUDENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="STUDENT_CATGEORY">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="STUDENT">
+              <PropertyRef Name="STDNT_CAT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="STDNT_STUD_STUD_NI2">
+          <End Type="SFSAcademyModel.STUDENT" Role="STUDENT" Multiplicity="1" />
+          <End Type="SFSAcademyModel.STUDENT_ADDITIONAL_DETAIL" Role="STUDENT_ADDITIONAL_DETAIL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="STUDENT">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="STUDENT_ADDITIONAL_DETAIL">
+              <PropertyRef Name="STDNT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="STDNT_STUD_STUD_NI3">
+          <End Type="SFSAcademyModel.STUDENT" Role="STUDENT" Multiplicity="0..1" />
+          <End Type="SFSAcademyModel.STUDENT_PREVIOUS_DATA" Role="STUDENT_PREVIOUS_DATA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="STUDENT">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="STUDENT_PREVIOUS_DATA">
+              <PropertyRef Name="STDNT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="STDNT_STUD_STUD_NI4">
+          <End Type="SFSAcademyModel.STUDENT" Role="STUDENT" Multiplicity="0..1" />
+          <End Type="SFSAcademyModel.STUDENT_PREVIOUS_SUBJECT_MARK" Role="STUDENT_PREVIOUS_SUBJECT_MARK" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="STUDENT">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="STUDENT_PREVIOUS_SUBJECT_MARK">
+              <PropertyRef Name="STDNT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="STDNT_STUD_STUD_NI5">
+          <End Type="SFSAcademyModel.STUDENT" Role="STUDENT" Multiplicity="0..1" />
+          <End Type="SFSAcademyModel.STUDENT_SUBJECT" Role="STUDENT_SUBJECT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="STUDENT">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="STUDENT_SUBJECT">
+              <PropertyRef Name="STDNT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="STDNT_STUD_SUBJ_NI">
+          <End Type="SFSAcademyModel.STUDENT" Role="STUDENT" Multiplicity="0..1" />
+          <End Type="SFSAcademyModel.SUBJECT_LEAVE" Role="SUBJECT_LEAVE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="STUDENT">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SUBJECT_LEAVE">
+              <PropertyRef Name="STDNT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="USRID_USER_STUD_NI">
+          <End Type="SFSAcademyModel.USER" Role="USER" Multiplicity="1" />
+          <End Type="SFSAcademyModel.STUDENT" Role="STUDENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USER">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="STUDENT">
+              <PropertyRef Name="USRID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -7581,64 +7583,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="IMAGE_DOCUMENTS">
-            <EntityTypeMapping TypeName="SFSAcademyModel.IMAGE_DOCUMENTS">
-              <MappingFragment StoreEntitySet="IMAGE_DOCUMENTS">
-                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
-                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
-                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
-                <ScalarProperty Name="FileContent" ColumnName="FileContent" />
-                <ScalarProperty Name="Type" ColumnName="Type" />
-                <ScalarProperty Name="Size" ColumnName="Size" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="DocumentId" ColumnName="DocumentId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="STUDENTs">
-            <EntityTypeMapping TypeName="SFSAcademyModel.STUDENT">
-              <MappingFragment StoreEntitySet="STUDENT">
-                <ScalarProperty Name="NTLTY_ID" ColumnName="NTLTY_ID" />
-                <ScalarProperty Name="STDNT_CAT_ID" ColumnName="STDNT_CAT_ID" />
-                <ScalarProperty Name="USRID" ColumnName="USRID" />
-                <ScalarProperty Name="PHTO_FILE_SIZE" ColumnName="PHTO_FILE_SIZE" />
-                <ScalarProperty Name="HAS_PD_FE" ColumnName="HAS_PD_FE" />
-                <ScalarProperty Name="UPDATED_AT" ColumnName="UPDATED_AT" />
-                <ScalarProperty Name="CREATED_AT" ColumnName="CREATED_AT" />
-                <ScalarProperty Name="IS_DEL" ColumnName="IS_DEL" />
-                <ScalarProperty Name="IS_ACT" ColumnName="IS_ACT" />
-                <ScalarProperty Name="STAT_DESCR" ColumnName="STAT_DESCR" />
-                <ScalarProperty Name="PHTO_DATA" ColumnName="PHTO_DATA" />
-                <ScalarProperty Name="PHTO_CNTNT_TYPE" ColumnName="PHTO_CNTNT_TYPE" />
-                <ScalarProperty Name="PHTO_FILENAME" ColumnName="PHTO_FILENAME" />
-                <ScalarProperty Name="IS_SMS_ENABL" ColumnName="IS_SMS_ENABL" />
-                <ScalarProperty Name="IMMDT_CNTCT_ID" ColumnName="IMMDT_CNTCT_ID" />
-                <ScalarProperty Name="EML" ColumnName="EML" />
-                <ScalarProperty Name="PH2" ColumnName="PH2" />
-                <ScalarProperty Name="PH1" ColumnName="PH1" />
-                <ScalarProperty Name="CTRY_ID" ColumnName="CTRY_ID" />
-                <ScalarProperty Name="PIN_CODE" ColumnName="PIN_CODE" />
-                <ScalarProperty Name="STATE" ColumnName="STATE" />
-                <ScalarProperty Name="CITY" ColumnName="CITY" />
-                <ScalarProperty Name="ADDR_LINE2" ColumnName="ADDR_LINE2" />
-                <ScalarProperty Name="ADDR_LINE1" ColumnName="ADDR_LINE1" />
-                <ScalarProperty Name="RLGN" ColumnName="RLGN" />
-                <ScalarProperty Name="LANG" ColumnName="LANG" />
-                <ScalarProperty Name="BIRTH_PLACE" ColumnName="BIRTH_PLACE" />
-                <ScalarProperty Name="BLOOD_GRP" ColumnName="BLOOD_GRP" />
-                <ScalarProperty Name="GNDR" ColumnName="GNDR" />
-                <ScalarProperty Name="DOB" ColumnName="DOB" />
-                <ScalarProperty Name="BTCH_ID" ColumnName="BTCH_ID" />
-                <ScalarProperty Name="LAST_NAME" ColumnName="LAST_NAME" />
-                <ScalarProperty Name="MID_NAME" ColumnName="MID_NAME" />
-                <ScalarProperty Name="FIRST_NAME" ColumnName="FIRST_NAME" />
-                <ScalarProperty Name="ADMSN_DATE" ColumnName="ADMSN_DATE" />
-                <ScalarProperty Name="CLS_ROLL_NO" ColumnName="CLS_ROLL_NO" />
-                <ScalarProperty Name="ADMSN_NO" ColumnName="ADMSN_NO" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="STORE_CATEGORY">
             <EntityTypeMapping TypeName="SFSAcademyModel.STORE_CATEGORY">
               <MappingFragment StoreEntitySet="STORE_CATEGORY">
@@ -7775,6 +7719,65 @@
                 <ScalarProperty Name="DESCR" ColumnName="DESCR" />
                 <ScalarProperty Name="TIL" ColumnName="TIL" />
                 <ScalarProperty Name="MSTRTRAN_ID" ColumnName="MSTRTRAN_ID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="IMAGE_DOCUMENTS">
+            <EntityTypeMapping TypeName="SFSAcademyModel.IMAGE_DOCUMENTS">
+              <MappingFragment StoreEntitySet="IMAGE_DOCUMENTS">
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="FileContent" ColumnName="FileContent" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Size" ColumnName="Size" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="DocumentId" ColumnName="DocumentId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="STUDENTs">
+            <EntityTypeMapping TypeName="SFSAcademyModel.STUDENT">
+              <MappingFragment StoreEntitySet="STUDENT">
+                <ScalarProperty Name="IMAGE_DOCUMENTS_ID" ColumnName="IMAGE_DOCUMENTS_ID" />
+                <ScalarProperty Name="NTLTY_ID" ColumnName="NTLTY_ID" />
+                <ScalarProperty Name="STDNT_CAT_ID" ColumnName="STDNT_CAT_ID" />
+                <ScalarProperty Name="USRID" ColumnName="USRID" />
+                <ScalarProperty Name="PHTO_FILE_SIZE" ColumnName="PHTO_FILE_SIZE" />
+                <ScalarProperty Name="HAS_PD_FE" ColumnName="HAS_PD_FE" />
+                <ScalarProperty Name="UPDATED_AT" ColumnName="UPDATED_AT" />
+                <ScalarProperty Name="CREATED_AT" ColumnName="CREATED_AT" />
+                <ScalarProperty Name="IS_DEL" ColumnName="IS_DEL" />
+                <ScalarProperty Name="IS_ACT" ColumnName="IS_ACT" />
+                <ScalarProperty Name="STAT_DESCR" ColumnName="STAT_DESCR" />
+                <ScalarProperty Name="PHTO_DATA" ColumnName="PHTO_DATA" />
+                <ScalarProperty Name="PHTO_CNTNT_TYPE" ColumnName="PHTO_CNTNT_TYPE" />
+                <ScalarProperty Name="PHTO_FILENAME" ColumnName="PHTO_FILENAME" />
+                <ScalarProperty Name="IS_SMS_ENABL" ColumnName="IS_SMS_ENABL" />
+                <ScalarProperty Name="IMMDT_CNTCT_ID" ColumnName="IMMDT_CNTCT_ID" />
+                <ScalarProperty Name="EML" ColumnName="EML" />
+                <ScalarProperty Name="PH2" ColumnName="PH2" />
+                <ScalarProperty Name="PH1" ColumnName="PH1" />
+                <ScalarProperty Name="CTRY_ID" ColumnName="CTRY_ID" />
+                <ScalarProperty Name="PIN_CODE" ColumnName="PIN_CODE" />
+                <ScalarProperty Name="STATE" ColumnName="STATE" />
+                <ScalarProperty Name="CITY" ColumnName="CITY" />
+                <ScalarProperty Name="ADDR_LINE2" ColumnName="ADDR_LINE2" />
+                <ScalarProperty Name="ADDR_LINE1" ColumnName="ADDR_LINE1" />
+                <ScalarProperty Name="RLGN" ColumnName="RLGN" />
+                <ScalarProperty Name="LANG" ColumnName="LANG" />
+                <ScalarProperty Name="BIRTH_PLACE" ColumnName="BIRTH_PLACE" />
+                <ScalarProperty Name="BLOOD_GRP" ColumnName="BLOOD_GRP" />
+                <ScalarProperty Name="GNDR" ColumnName="GNDR" />
+                <ScalarProperty Name="DOB" ColumnName="DOB" />
+                <ScalarProperty Name="BTCH_ID" ColumnName="BTCH_ID" />
+                <ScalarProperty Name="LAST_NAME" ColumnName="LAST_NAME" />
+                <ScalarProperty Name="MID_NAME" ColumnName="MID_NAME" />
+                <ScalarProperty Name="FIRST_NAME" ColumnName="FIRST_NAME" />
+                <ScalarProperty Name="ADMSN_DATE" ColumnName="ADMSN_DATE" />
+                <ScalarProperty Name="CLS_ROLL_NO" ColumnName="CLS_ROLL_NO" />
+                <ScalarProperty Name="ADMSN_NO" ColumnName="ADMSN_NO" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
