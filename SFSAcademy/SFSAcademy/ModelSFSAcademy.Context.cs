@@ -109,7 +109,5 @@ namespace SFSAcademy
         public virtual DbSet<FINANCE_FEE> FINANCE_FEE { get; set; }
         public virtual DbSet<FEE_FINE> FEE_FINE { get; set; }
         public virtual DbSet<FINANCE_TRANSACTION> FINANCE_TRANSACTION { get; set; }
-        public virtual DbSet<Privilege> Privileges { get; set; }
-        public virtual DbSet<Privileges_Users> Privileges_Users { get; set; }
     }
 }
