@@ -843,29 +843,6 @@
     <Property Name="IS_DED" Type="varchar" MaxLength="1" />
     <Property Name="STAT" Type="varchar" MaxLength="1" />
   </EntityType>
-  <EntityType Name="Privileges">
-    <Key>
-      <PropertyRef Name="ID" />
-    </Key>
-    <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Name" Type="varchar" MaxLength="200" Nullable="false" />
-    <Property Name="AddedDate" Type="datetime" />
-    <Property Name="AddedBy" Type="bigint" />
-    <Property Name="ModifiedBy" Type="bigint" />
-    <Property Name="ModifiedDate" Type="datetime" />
-  </EntityType>
-  <EntityType Name="Privileges_Users">
-    <Key>
-      <PropertyRef Name="ID" />
-    </Key>
-    <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="UserId" Type="bigint" Nullable="false" />
-    <Property Name="PrivilegeId" Type="bigint" Nullable="false" />
-    <Property Name="AddedBy" Type="bigint" />
-    <Property Name="AddedDate" Type="datetime" />
-    <Property Name="ModifiedBy" Type="bigint" />
-    <Property Name="ModifiedDate" Type="datetime" />
-  </EntityType>
   <EntityType Name="RANKING_LEVEL">
     <Key>
       <PropertyRef Name="ID" />
@@ -2668,8 +2645,6 @@
     <EntitySet Name="OBSERVATION" EntityType="Self.OBSERVATION" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="OBSERVATION_GROUP" EntityType="Self.OBSERVATION_GROUP" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="PAYROLL_CATEGORY" EntityType="Self.PAYROLL_CATEGORY" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Privileges" EntityType="Self.Privileges" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Privileges_Users" EntityType="Self.Privileges_Users" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="RANKING_LEVEL" EntityType="Self.RANKING_LEVEL" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SMS_LOG" EntityType="Self.SMS_LOG" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SMS_MESSAGE" EntityType="Self.SMS_MESSAGE" Schema="dbo" store:Type="Tables" />

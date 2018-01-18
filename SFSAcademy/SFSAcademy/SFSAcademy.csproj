@@ -67,9 +67,6 @@
       <HintPath>..\packages\itextsharp.xmlworker.5.5.12\lib\itextsharp.xmlworker.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Kendo.Mvc">
-      <HintPath>C:\Users\Sony\Downloads\Kendo.Mvc.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.AI.Agent.Intercept, Version=2.0.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.2.0.7\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
       <Private>True</Private>
@@ -2350,17 +2347,6 @@
     <Content Include="Views\Finance\student_fee_receipt_pdf.cshtml" />
     <Content Include="Views\Finance\Fees_Student_Search.cshtml" />
     <Content Include="Views\Finance\_fees_student_dates.cshtml" />
-    <Content Include="Views\news\Create.cshtml" />
-    <Content Include="Views\news\Index.cshtml" />
-    <Content Include="Views\news\SearchResult.cshtml" />
-    <Content Include="Views\news\Test.cshtml" />
-    <Content Include="Views\news\view.cshtml" />
-    <Content Include="Views\news\_comment.cshtml" />
-    <Content Include="Views\news\_NewsSearchPartial.cshtml" />
-    <Content Include="Views\news\all.cshtml" />
-    <Content Include="Views\news\add.cshtml" />
-    <Content Include="Views\news\_CommentSections.cshtml" />
-    <Content Include="Views\news\edit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -2421,7 +2407,6 @@
     <Compile Include="Controllers\CoursesController.cs" />
     <Compile Include="Controllers\FinanceController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\newsController.cs" />
     <Compile Include="Controllers\StoreController.cs" />
     <Compile Include="Controllers\StudentController.cs" />
     <Compile Include="Controllers\USERsController.cs" />
@@ -2542,7 +2527,6 @@
     <Compile Include="GUARDIAN.cs">
       <DependentUpon>ModelSFSAcademy.tt</DependentUpon>
     </Compile>
-    <Compile Include="Helpers\ActionHelper.cs" />
     <Compile Include="Infrastructure\HtmlHelpers\ApplicationHelper.cs" />
     <Compile Include="Infrastructure\HtmlHelpers\AssetsHelper.cs" />
     <Compile Include="Infrastructure\HtmlHelpers\PdfTabularReport.cs" />
@@ -2572,10 +2556,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ModelSFSAcademy.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\CommonModel.cs" />
-    <Compile Include="Models\Configuration.cs" />
     <Compile Include="Models\Courses.cs" />
-    <Compile Include="Models\Privilege.cs" />
     <Compile Include="Models\Products.cs" />
     <Compile Include="Models\PictureUpload.cs" />
     <Compile Include="Models\Finance.cs" />
@@ -2598,12 +2579,6 @@
       <DependentUpon>ModelSFSAcademy.tt</DependentUpon>
     </Compile>
     <Compile Include="PAYROLL_CATEGORY.cs">
-      <DependentUpon>ModelSFSAcademy.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Privilege.cs">
-      <DependentUpon>ModelSFSAcademy.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Privileges_Users.cs">
       <DependentUpon>ModelSFSAcademy.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
