@@ -762,5 +762,3 @@ C:\Users\sudhi\Documents\Visual Studio 2015\Projects\Github\SFSAcademy\SFSAcadem
 C:\Users\sudhi\Documents\Visual Studio 2015\Projects\Github\SFSAcademy\SFSAcademy\obj\Debug\SFSAcademy.pdb
 C:\Users\sudhi\Documents\Visual Studio 2015\Projects\Github\SFSAcademy\SFSAcademy\obj\Debug\SFSAcademy.csprojResolveAssemblyReference.cache
 C:\Users\sudhi\Documents\Visual Studio 2015\Projects\Github\SFSAcademy\SFSAcademy\bin\itextsharp.xmlworker.dll
-C:\Users\sudhi\Documents\Visual Studio 2015\Projects\Github\SFSAcademyRepos\SFSAcademyRepos\SFSAcademy\SFSAcademy\bin\itextsharp.xmlworker.dll
-C:\Users\sudhi\Desktop\GitHub\Solutions\SFSAcademyRepos\SFSAcademy\SFSAcademy\bin\itextsharp.xmlworker.dll
