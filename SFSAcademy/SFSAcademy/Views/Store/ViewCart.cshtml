@@ -1,9 +1,9 @@
-﻿@model IEnumerable<SFSAcademy.STORE_CATEGORY>
+﻿@model IEnumerable<SFSAcademy.Models.PurchaseCart>
+@using SFSAcademy.Models
 
 @{
     ViewBag.Title = "ViewCart";
 }
-
 <div id="content-header">
     <img src="~/Content/images/show_store.png" alt="Show Store Logo">
     <h1>Store</h1>
@@ -13,41 +13,7 @@
     </div>
 </div>
 <div><img src="~/Content/images/_global/header_underline_.jpg" width="100%"></div>
-<div id="inner-tab-menu">
-    <ul>
-        <li>@Html.ActionLink("Cancel Transaction", "CancelTransaction")</li>
-        <li>@Html.ActionLink("Clean Cart", "CleanCart")</li>
-    </ul>
-    <p class="flash-msg"> Number of Items in the Cart = @ViewBag.CartItems  ;         Total Cost to Pay = @ViewBag.TotalPrice </p>
-</div>
-<div id="page-yield">
-    <div id="search_box_bg">
-        <div id="searchbox">
-            <form name="search-form" id="search-form" action="" style="display:inline">
-                @using (Html.BeginForm("ViewAll", "Store", FormMethod.Get))
-                {
-                    <p>
-                        @Html.DropDownList("searchString", new SelectList(Model, "ID", "NAME"), "Select Category")
 
-                        <input type="submit" value="Submit" id="submit-button" />
-                    </p>
-                }
-
-                <div class="extender"></div>
-            </form>
-        </div>
-    </div>
-
-    <div class="students-table">
-        <div id="text-input-bg">
-            @{Html.RenderAction("ListPurchagedProducts", "Store", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter });}
-
-        </div>
-        <div id="pdf-view-button">
-            <ul>
-                <li><a href="@Url.Action("PrintReceipt", "Store")" alt="Print Receipt" target="_blank" class="submit-button">Finish Transaction and Print Receipt</a></li>
-            </ul>
-        </div>
-    </div>
-    <div id="products"></div>
+<div id="modal-box">
+    @Html.Partial("_ListPurchagedProducts")
 </div>

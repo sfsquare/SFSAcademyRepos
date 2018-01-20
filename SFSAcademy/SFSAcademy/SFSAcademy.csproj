@@ -794,6 +794,7 @@
     <Content Include="Content\PagedList.css" />
     <Content Include="Content\stylesheets\store\create.css" />
     <Content Include="Content\stylesheets\store\edit.css" />
+    <Content Include="Content\stylesheets\store\viewcart.css" />
     <Content Include="Content\stylesheets\store\index.css" />
     <Content Include="Content\stylesheets\store\new.css" />
     <Content Include="Content\stylesheets\store\purchase.css" />
@@ -2331,7 +2332,7 @@
     <Content Include="Views\Store\ViewAllSelling.cshtml" />
     <Content Include="Views\Store\EditSelling.cshtml" />
     <Content Include="Views\Store\ViewCart.cshtml" />
-    <Content Include="Views\Store\ListPurchagedProducts.cshtml" />
+    <Content Include="Views\Store\_ListPurchagedProducts.cshtml" />
     <Content Include="Views\Finance\Categories.cshtml" />
     <Content Include="Views\Finance\_category_create_form.cshtml" />
     <Content Include="Views\Finance\_CategoriesList.cshtml" />
@@ -2527,13 +2528,13 @@
     <Compile Include="GUARDIAN.cs">
       <DependentUpon>ModelSFSAcademy.tt</DependentUpon>
     </Compile>
+    <Compile Include="IMAGE_DOCUMENTS.cs">
+      <DependentUpon>ModelSFSAcademy.tt</DependentUpon>
+    </Compile>
     <Compile Include="Infrastructure\HtmlHelpers\ApplicationHelper.cs" />
     <Compile Include="Infrastructure\HtmlHelpers\AssetsHelper.cs" />
     <Compile Include="Infrastructure\HtmlHelpers\PdfTabularReport.cs" />
     <Compile Include="Infrastructure\HtmlHelpers\ReportConfiguration.cs" />
-    <Compile Include="IMAGE_DOCUMENTS.cs">
-      <DependentUpon>ModelSFSAcademy.tt</DependentUpon>
-    </Compile>
     <Compile Include="INDIVIDUAL_PAYSLIP_CATGEORY.cs">
       <DependentUpon>ModelSFSAcademy.tt</DependentUpon>
     </Compile>

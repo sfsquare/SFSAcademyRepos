@@ -13,7 +13,11 @@
     </div>
 </div>
 <div><img src="~/Content/images/_global/header_underline_.jpg" width="100%"></div>
-
+<div class="bread_crumb">
+    @Html.ActionLink("Student Details", "Index") &raquo;
+    @Html.ActionLink("View All", "ViewAll") &raquo;
+    Profile
+</div>
 <div id="nav">
     <ul>
         @if (Html.Permitted_To("Reports", "Student"))
@@ -48,7 +52,7 @@
     }
     <div id="student_profile_heading">
         <div id="profile_picture_display" >
-            <img src="/Student/Show/@Model.StudentData.PHTO_DATA" alt="" height=150 width=150 />
+            <img src="/Student/Show/@Model.StudentData.IMAGE_DOCUMENTS_ID" alt="" height=150 width=150 />
         </div>
         <div id="student_main_info">
             <h3> @Model.StudentData.FIRST_NAME  @Model.StudentData.MID_NAME @Model.StudentData.LAST_NAME</h3>

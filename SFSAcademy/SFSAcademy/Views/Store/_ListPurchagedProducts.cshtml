@@ -1,0 +1,182 @@
+﻿@model IEnumerable<SFSAcademy.Models.PurchaseCart>
+@using SFSAcademy.Models
+
+@{    Layout = null;}
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+<link rel="stylesheet" href="/resources/demos/style.css" />
+<script>
+    /* This is change event for your dropdownlist */
+    $(document).ready(function () {
+        $('#submit-button1').click(function () {
+            /* Get the selected value of dropdownlist */
+            var SelectedMode = $("#PAYMENT_MODE option:selected").text();
+            var SelectedStd = $('#STUDENT_NAME').val();
+            var SelectedAmt = $('#PAYMENT_AMOUNT').val();
+            var SelectedPhone = $('#PHONE_NUMBER').val();
+            var SelectedDate = $('#datepicker').val();
+            /* Request the partial view with .get request. */
+            $.get('/Store/Payment?PAYMENT_MODE=' + SelectedMode + "&STUDENT_NAME=" + SelectedStd + "&PHONE_NUMBER=" + SelectedPhone + "&PAYMENT_AMOUNT=" + SelectedAmt + "&PURCHAGE_DATE=" + SelectedDate, function (data) {
+
+                /* data is the pure html returned from action method, load it to your page */
+                $('#modal-box').html(data);
+                /* little fade in effect */
+                $('#modal-box').fadeIn('fast');
+            });
+        });
+    });
+
+    $(function () {
+        $("#datepicker").datepicker({
+            showOn: "button",
+            buttonImage: "/Content/images/calendar_date_select/calendar.gif",
+            buttonImageOnly: true
+        });
+    });
+
+    function PrintDoc() {
+        var toPrint = document.getElementById('modal-box');
+        var popupWin = window.open('', '_blank', 'width=350,height=150,location=no,left=200px');
+        popupWin.document.open();
+        popupWin.document.write('<html><title>::Preview::</title><link rel="stylesheet" type="text/css" href="/Content/stylesheets/store/viewcart.css" /></head><body onload="window.print()">')
+        popupWin.document.write(toPrint.innerHTML);
+        popupWin.document.write('</html>');
+        popupWin.document.close();
+        popupWin.close();
+    }
+</script>
+@if (ViewBag.PaidPrice == null)
+{
+    <div id="inner-tab-menu">
+        <ul>
+            <li>@Html.ActionLink("Cancel Transaction", "CancelTransaction")</li>
+            <li>@Html.ActionLink("Clean Cart", "CleanCart")</li>
+        </ul>
+    </div>
+}
+<div class="name">Number of Items in the Cart</div><div class="val themed_text"><span>:</span>@ViewBag.CartItems</div>
+<div class="name">Total Amount Paid</div><div class="val themed_text"><span>:</span>@ViewBag.PaidPrice</div>
+@if (ViewBag.PaidPrice != null)
+{
+    <div class="name">Payment Mode</div><div class="val themed_text"><span>:</span>@ViewBag.PAYMENT_MODE</div>
+    <div class="name">Student Name</div><div class="val themed_text"><span>:</span>@ViewBag.STUDENT_NAME</div>
+    <div class="name">Phone Number</div><div class="val themed_text"><span>:</span>@ViewBag.PHONE_NUMBER</div>
+    <div class="name">Purchage Date</div><div class="val themed_text"><span>:</span>@ViewBag.PURCHAGE_DATE</div>
+}
+<div id="register">
+    <div class="header">
+        <div class="month">
+            Cart Items
+        </div>
+        <div class="extender"></div>
+    </div>
+</div>
+@{string nextRow = "";}
+@if (ViewBag.CartItems != null)
+{
+    <table id="listing" align="center" cellpadding="1" cellspacing="1">
+        <tr class="tr-head">
+            <td>SL. No.</td>
+            <td>Product Name</td>
+            <td>Units</td>
+            <td>Price/Unit</td>
+            <td>Total</td>
+            <td></td>
+        </tr>
+        <tr class="tr-blank"></tr>
+        @{int i = 1; }
+        @foreach (var item in Model)
+        {
+            string selectedRow = "tr-even";
+            if (i % 2 == 0)
+            {
+                selectedRow = "tr-odd";
+            }
+            <tr class="@selectedRow">
+                <td class="col-1">@i</td>
+                <td class="col-2">
+                    @Html.DisplayFor(modelItem => item.ProductData.NAME)
+                </td>
+                <td class="col-3">
+                    @Html.DisplayFor(modelItem => item.UNIT_SOLD)
+                </td>
+                <td class="col-4">
+                    @Html.DisplayFor(modelItem => item.ProductData.SELL_PRICE_PER_UNIT)
+                </td>
+                <td class="col-5" nowrap>
+                    @Html.DisplayFor(modelItem => item.SOLD_AMNT)
+                </td>
+
+                @if (ViewBag.PaidPrice == null)
+                {
+                    <td class="col-8" nowrap>
+                        <input type="submit" value="Edit" id="submit-button2" class="submit_button2" />
+                    </td>
+                }
+                else
+                {
+                    <td></td>
+                }
+            </tr>
+            i = i + 1;
+        }
+
+        <tr class="tr-blank"></tr>
+        <tr class="tr-blank"></tr>
+        @if (i % 2 == 0)
+        {
+            nextRow = "tr-even";
+        }
+        else
+        {
+            nextRow = "tr-odd";
+        }
+        @if (ViewBag.PaidPrice == null)
+        {
+            <tr class="@nextRow" cellpadding="1" cellspacing="1">
+                <td class="col-2" colspan="2"></td>
+                <td class="col-8" colspan="2">Amount To Pay :</td>
+                <td class="col-6">@ViewBag.TotalPrice</td>
+            </tr>
+        }       
+        <tr class="tr-blank"></tr>
+        <tr>
+            <td colspan="3">
+                <div class="pay_fees">
+                    @if (ViewBag.PaidPrice == null)
+                    {
+                        <div class="label-field-pair">
+                            <div class="label-container">@Html.Label("PAYMENT_MODE", "Payment Mode", htmlAttributes: new { @class = "control-label col-md-2" })</div>
+                            <div class="text-input-bg">@Html.DropDownList("PAYMENT_MODE", new SelectList(Enum.GetValues(typeof(PaymentMode))), "Select Mode:", new { @class = "form-control", @id = "PAYMENT_MODE" })</div>
+                        </div>
+                            <div class="label-field-pair">
+                                <div class="label-container">@Html.Label("STUDENT_NAME", "Stundet Name", htmlAttributes: new { @class = "control-label col-md-2" })</div>
+                                <div class="text-input-bg"><input type="text" name="STUDENT_NAME" id="STUDENT_NAME" value="@ViewBag.STUDENT_NAME"/></div>
+                            </div>
+                            <div class="label-field-pair">
+                                <div class="label-container">@Html.Label("PHONE_NUMBER", "Phone Number", htmlAttributes: new { @class = "control-label col-md-2" })</div>
+                                <div class="text-input-bg"><input type="text" name="PHONE_NUMBER" id="PHONE_NUMBER" value="@ViewBag.PHONE_NUMBER" /></div>
+                            </div>
+                            <div class="label-field-pair">
+                                <div class="label-container">@Html.Label("PURCHAGE_DATE", "Purchage Date", htmlAttributes: new { @class = "control-label col-md-2" })</div>
+                                <div class="caledar_date_select">@Html.Editor("PURCHAGE_DATE", new { htmlAttributes = new { @class = "form-control", @id = "datepicker", @Value = ViewBag.PURCHAGE_DATE, @readonly = "readonly" } })</div>
+                            </div>
+                            <div class="pay_fees_buttons">
+                                <input type="submit" value="Pay Amount" id="submit-button1" class="submit_button" />
+                                <input type="submit" value="Print Receipt" id="submit-button" class="submit_button" onclick="window.print()" />
+                            </div>
+                    }
+                    else
+                    {
+                        <h4>Amount Paid</h4>
+                        <input type="submit" value="Print Receipt" id="submit-button" class="submit_button" onclick="window.print()" />
+                    }
+                </div>
+            </td>
+        </tr>
+    </table>
+            }
+<input type="hidden" value="@ViewBag.TotalPrice" id="PAYMENT_AMOUNT" name="studentID" />
