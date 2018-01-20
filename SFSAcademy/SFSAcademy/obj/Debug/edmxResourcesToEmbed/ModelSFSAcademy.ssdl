@@ -732,7 +732,7 @@
       <PropertyRef Name="DocumentId" />
     </Key>
     <Property Name="DocumentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="2000" />
     <Property Name="Size" Type="bigint" Nullable="false" />
     <Property Name="Type" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="FileContent" Type="varbinary(max)" Nullable="false" />
@@ -983,9 +983,9 @@
     <Property Name="STATE" Type="varchar" MaxLength="20" />
     <Property Name="PIN_CODE" Type="varchar" MaxLength="20" />
     <Property Name="CTRY_ID" Type="int" />
-    <Property Name="PH1" Type="varchar" MaxLength="20" />
-    <Property Name="PH2" Type="varchar" MaxLength="20" />
-    <Property Name="EML" Type="varchar" MaxLength="20" />
+    <Property Name="PH1" Type="bigint" />
+    <Property Name="PH2" Type="bigint" />
+    <Property Name="EML" Type="varchar" MaxLength="100" />
     <Property Name="IMMDT_CNTCT_ID" Type="int" />
     <Property Name="IS_SMS_ENABL" Type="varchar" MaxLength="1" />
     <Property Name="PHTO_FILENAME" Type="varchar" MaxLength="20" />
@@ -1001,6 +1001,7 @@
     <Property Name="USRID" Type="int" Nullable="false" />
     <Property Name="STDNT_CAT_ID" Type="int" />
     <Property Name="NTLTY_ID" Type="int" />
+    <Property Name="IMAGE_DOCUMENTS_ID" Type="int" />
   </EntityType>
   <EntityType Name="STUDENT_ADDITIONAL_DETAIL">
     <Key>

@@ -794,6 +794,7 @@
     <Content Include="Content\PagedList.css" />
     <Content Include="Content\stylesheets\store\create.css" />
     <Content Include="Content\stylesheets\store\edit.css" />
+    <Content Include="Content\stylesheets\store\viewcart.css" />
     <Content Include="Content\stylesheets\store\index.css" />
     <Content Include="Content\stylesheets\store\new.css" />
     <Content Include="Content\stylesheets\store\purchase.css" />
@@ -2159,6 +2160,7 @@
     <Content Include="Content\javascripts\fckeditor\fckeditor.afp" />
     <Content Include="Content\javascripts\fckeditor\fckeditor.lasso" />
     <Content Include="Content\javascripts\fckeditor\fckutils.cfm" />
+    <Content Include="RefrenceAssemblies\Kendo.Mvc.dll" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\dropzone.js" />
@@ -2331,7 +2333,7 @@
     <Content Include="Views\Store\ViewAllSelling.cshtml" />
     <Content Include="Views\Store\EditSelling.cshtml" />
     <Content Include="Views\Store\ViewCart.cshtml" />
-    <Content Include="Views\Store\ListPurchagedProducts.cshtml" />
+    <Content Include="Views\Store\_ListPurchagedProducts.cshtml" />
     <Content Include="Views\Finance\Categories.cshtml" />
     <Content Include="Views\Finance\_category_create_form.cshtml" />
     <Content Include="Views\Finance\_CategoriesList.cshtml" />
@@ -2347,6 +2349,17 @@
     <Content Include="Views\Finance\student_fee_receipt_pdf.cshtml" />
     <Content Include="Views\Finance\Fees_Student_Search.cshtml" />
     <Content Include="Views\Finance\_fees_student_dates.cshtml" />
+    <Content Include="Views\news\Create.cshtml" />
+    <Content Include="Views\news\Index.cshtml" />
+    <Content Include="Views\news\SearchResult.cshtml" />
+    <Content Include="Views\news\Test.cshtml" />
+    <Content Include="Views\news\view.cshtml" />
+    <Content Include="Views\news\_comment.cshtml" />
+    <Content Include="Views\news\_NewsSearchPartial.cshtml" />
+    <Content Include="Views\news\add.cshtml" />
+    <Content Include="Views\news\all.cshtml" />
+    <Content Include="Views\news\edit.cshtml" />
+    <Content Include="Views\news\_CommentSections.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -2407,6 +2420,7 @@
     <Compile Include="Controllers\CoursesController.cs" />
     <Compile Include="Controllers\FinanceController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\newsController.cs" />
     <Compile Include="Controllers\StoreController.cs" />
     <Compile Include="Controllers\StudentController.cs" />
     <Compile Include="Controllers\USERsController.cs" />
@@ -2414,6 +2428,9 @@
       <DependentUpon>ModelSFSAcademy.tt</DependentUpon>
     </Compile>
     <Compile Include="COURSE.cs">
+      <DependentUpon>ModelSFSAcademy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="C__MigrationHistory.cs">
       <DependentUpon>ModelSFSAcademy.tt</DependentUpon>
     </Compile>
     <Compile Include="DESCRIPTIVE_INDICATOR.cs">
@@ -2518,6 +2535,9 @@
     <Compile Include="FINANCE_TRANSACTION_TRIGGERS.cs">
       <DependentUpon>ModelSFSAcademy.tt</DependentUpon>
     </Compile>
+    <Compile Include="Gallery_Master.cs">
+      <DependentUpon>ModelSFSAcademy.tt</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -2527,13 +2547,14 @@
     <Compile Include="GUARDIAN.cs">
       <DependentUpon>ModelSFSAcademy.tt</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\ActionHelper.cs" />
+    <Compile Include="IMAGE_DOCUMENTS.cs">
+      <DependentUpon>ModelSFSAcademy.tt</DependentUpon>
+    </Compile>
     <Compile Include="Infrastructure\HtmlHelpers\ApplicationHelper.cs" />
     <Compile Include="Infrastructure\HtmlHelpers\AssetsHelper.cs" />
     <Compile Include="Infrastructure\HtmlHelpers\PdfTabularReport.cs" />
     <Compile Include="Infrastructure\HtmlHelpers\ReportConfiguration.cs" />
-    <Compile Include="IMAGE_DOCUMENTS.cs">
-      <DependentUpon>ModelSFSAcademy.tt</DependentUpon>
-    </Compile>
     <Compile Include="INDIVIDUAL_PAYSLIP_CATGEORY.cs">
       <DependentUpon>ModelSFSAcademy.tt</DependentUpon>
     </Compile>
@@ -2556,7 +2577,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ModelSFSAcademy.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\CommonModel.cs" />
+    <Compile Include="Models\Configuration.cs" />
     <Compile Include="Models\Courses.cs" />
+    <Compile Include="Models\Privilege.cs" />
     <Compile Include="Models\Products.cs" />
     <Compile Include="Models\PictureUpload.cs" />
     <Compile Include="Models\Finance.cs" />
@@ -2579,6 +2603,18 @@
       <DependentUpon>ModelSFSAcademy.tt</DependentUpon>
     </Compile>
     <Compile Include="PAYROLL_CATEGORY.cs">
+      <DependentUpon>ModelSFSAcademy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Photo.cs">
+      <DependentUpon>ModelSFSAcademy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PHOTO_MASTER.cs">
+      <DependentUpon>ModelSFSAcademy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Privilege.cs">
+      <DependentUpon>ModelSFSAcademy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Privileges_Users.cs">
       <DependentUpon>ModelSFSAcademy.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
