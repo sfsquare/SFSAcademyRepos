@@ -35,7 +35,7 @@
                 @using (Html.BeginForm("Index", "Student", FormMethod.Get))
                 {
                     <p>
-                        @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+                        @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, new { title = "Enter First Name, Last Name or Admission Number for search." })
                         <input type="submit" value="Search" />
                     </p>
                 }
@@ -59,6 +59,9 @@
                 </th>
                 <th>
                     Batch
+                </th>
+                <th>
+                    Roll Number
                 </th>
                 <th>
                     @Html.ActionLink("Admission Date", "Index", new { sortOrder = ViewBag.DateSortParm, currentFilter = ViewBag.CurrentFilter })
@@ -90,13 +93,16 @@
                         <label>-</label>
                         @Html.DisplayFor(modelItem => item.BatcheData.NAME)
                     </td>
+                    <td class="col-6" nowrap>
+                        @Html.DisplayFor(modelItem => item.StudentData.CLS_ROLL_NO)
+                    </td>
                     <td class="col-5" nowrap>
                         @if (!item.StudentData.ADMSN_DATE.Equals(null))
                         {
                             @item.StudentData.ADMSN_DATE.Value.ToShortDateString()
                         }
                     </td>
-                    <td class="col-5" nowrap>
+                    <td class="col-6" nowrap>
                         @Html.DisplayFor(modelItem => item.StudentData.ADMSN_NO)
                     </td>
                     <td class="col-6" nowrap>

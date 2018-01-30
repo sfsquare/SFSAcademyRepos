@@ -1,26 +1,28 @@
 ﻿@model PagedList.IPagedList<SFSAcademy.Models.Student>
 @using PagedList.Mvc;
+@using SFSAcademy.Models
 <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
 @{
     ViewBag.Title = "Index";
 }
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
-<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
-<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
-<link rel="stylesheet" href="/resources/demos/style.css" />
+<script type="text/javascript" src="@Url.Content("~/Content/javascripts/jquery/jquery.min.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/Content/javascripts/jquery/jquery-ui.min.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/Content/javascripts/jquery/jquery-1.9.1.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/Content/javascripts/jquery/jquery-ui.js")"></script>
+<link rel="stylesheet" href="~/Content/stylesheets/_styles/jquery-ui.css" />
 <script>
     $(function () {
         $("#datepicker").datepicker({
             showOn: "button",
             buttonImage: "/Content/images/calendar_date_select/calendar.gif",
+            dateFormat: 'dd-mm-yy',
             buttonImageOnly: true
         });
         $("#datepicker2").datepicker({
             showOn: "button",
             buttonImage: "/Content/images/calendar_date_select/calendar.gif",
+            dateFormat: 'dd-mm-yy',
             buttonImageOnly: true
         });
     });
@@ -40,6 +42,16 @@
     </div>
 </div>
 <div><img src="~/Content/images/_global/header_underline_.jpg" width="100%"></div>
+<div class="bread_crumb">
+    @Html.ActionLink("Stundet Details", "Index") &raquo;
+    Advance Search
+</div>
+<div id="flash_box">
+    @if (ViewBag.ErrorMessage != null)
+    {
+        <p class="flash-msg"> @ViewBag.ErrorMessage </p>
+    }
+</div>
 <div id="page-yield">
     <div id="search_box_bg">
         @if (Html.ValidationSummary() != null)
@@ -73,36 +85,17 @@
                             <tr>
                                 <td>
                                     <div class="label-field-pair">
-                                        <label for="ADMSN_NO">Course:</label>
+                                        <label for="HAS_PD_FE">Fees Paid Status:</label>
                                         <div class="text-input-bg">
-                                            @Html.TextBox("Course", ViewBag.CurrentFilter3 as string)
+                                            @Html.DropDownList("HadPdFees", new SelectList(Enum.GetValues(typeof(HadPdFees))), "Select Fees Paid Status", new { @class = "form-control", @id = "MissingDetl" })
                                         </div>
-                                    </div>   
+                                    </div>
                                 </td>
                                 <td>
                                     <div class="label-field-pair">
-                                        <label for="NAME">Course Batches:</label>
+                                        <label for="BTCH_ID">Course Batches:</label>
                                         <div class="text-input-bg">
                                             @Html.DropDownList("CourseBatches", null, htmlAttributes: new { @class = "form-control" })
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>                               
-                                <td>
-                                    <div class="label-field-pair2">
-                                        <label class="label_for_student_gender" for="student_gender">Student Gender:</label>
-                                        <div class="student_gender_value">
-                                            @Html.RadioButton("StudentGender", "M", ViewBag.CurrentFilter6 == "M"? true : false)@Html.Label("Male")
-                                            @Html.RadioButton("StudentGender", "F", ViewBag.CurrentFilter6 == "F"? true : false)@Html.Label("Female")
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="label-field-pair">
-                                        <label for="NAME">Category:</label>
-                                        <div class="text-input-bg">
-                                            @Html.TextBox("Category", ViewBag.CurrentFilter5 as string)
                                         </div>
                                     </div>
                                 </td>
@@ -112,7 +105,15 @@
                                     <div class="label-field-pair">
                                         <label for="BLOOD_GRP">Blood Group:</label>
                                         <div class="text-input-bg">
-                                            @Html.TextBox("BloodGroup", ViewBag.CurrentFilter7 as string)
+                                            @Html.DropDownList("BloodGroup", new List<SelectListItem>
+                                            { new SelectListItem{Text="A+", Value="A+"},
+                                                new SelectListItem{Text="A-", Value="A-"},
+                                                new SelectListItem { Text = "B+", Value = "B+" },
+                                                new SelectListItem { Text = "B-", Value = "B-" },
+                                                new SelectListItem{Text="O+", Value="O+"},
+                                                new SelectListItem{Text="O-", Value="O-"},
+                                                new SelectListItem{Text="AB+", Value="AB+"},
+                                                new SelectListItem{Text="AB-", Value="AB-"}}, "Select Blood Group")
                                         </div>
                                     </div>
                                 </td>
@@ -143,6 +144,45 @@
                                     </div>
                                 </td>
                             </tr>
+                            <tr>
+                                <td>
+                                    <div class="label-field-pair">
+                                        <label for="NAME">Category:</label>
+                                        <div class="text-input-bg">
+                                            @Html.TextBox("Category", ViewBag.CurrentFilter5 as string)
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="label-field-pair">
+                                        <label for="NAME">Missing Details:</label>
+                                        <div class="text-input-bg">
+                                            @Html.DropDownList("MissingDetl", new SelectList(Enum.GetValues(typeof(MissingDetl))),"Select Missing Details",new { @class = "form-control", @id = "MissingDetl" })
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="label-field-pair2">
+                                        <label class="label_for_student_gender" for="student_gender">Student Gender:</label>
+                                        <div class="student_gender_value">
+                                            @Html.RadioButton("StudentGender", "M", ViewBag.CurrentFilter6 == "M" ? true : false)@Html.Label("Male")
+                                            @Html.RadioButton("StudentGender", "F", ViewBag.CurrentFilter6 == "F" ? true : false)@Html.Label("Female")
+                                            @Html.RadioButton("StudentGender", "All", ViewBag.CurrentFilter6 == "All" ? true : false)@Html.Label("All")
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="label-field-pair2">
+                                        <label class="label_for_student_gender" for="student_gender">Students Satus:</label>
+                                        <div class="student_gender_value">
+                                            @Html.RadioButton("ActiveStudent", "Y", ViewBag.CurrentFilter11 == "Y" ? true : false)@Html.Label("Active Students")
+                                            @Html.RadioButton("ActiveStudent", "N", ViewBag.CurrentFilter11 == "N" ? true : false)@Html.Label("Students Left School")
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
                         </table>                       
                         
                         <div id="pdf-view-button" >
@@ -150,7 +190,7 @@
                                 <li><input type="submit" value="Search" class="submit-button" /></li>
                             </ul>
                             <ul>
-                                <li><a href="@Url.Action("AdvancedSearchPdf", "Student",new { searchString = ViewBag.CurrentFilter, AdmissionNumber = ViewBag.CurrentFilter2, Course = ViewBag.CurrentFilter3, CourseBatches = ViewBag.CurrentFilter4, Category = ViewBag.CurrentFilter5, StudentGender= ViewBag.CurrentFilter6, BloodGroup = ViewBag.CurrentFilter7, StudentGrade = ViewBag.CurrentFilter8, StudentBirthFromDate = ViewBag.CurrentFilter9, StudentBirthToDate= ViewBag.CurrentFilter10 })" alt="View PDF Report" target="_blank" class="submit-button">View PDF Report</a></li>
+                                <li><a href="@Url.Action("AdvancedSearchPdf", "Student",new { searchString = ViewBag.CurrentFilter, AdmissionNumber = ViewBag.CurrentFilter2, HadPdFees = ViewBag.CurrentFilter3, CourseBatches = ViewBag.CurrentFilter4, Category = ViewBag.CurrentFilter5, StudentGender= ViewBag.CurrentFilter6, BloodGroup = ViewBag.CurrentFilter7, StudentGrade = ViewBag.CurrentFilter8, StudentBirthFromDate = ViewBag.CurrentFilter9, StudentBirthToDate= ViewBag.CurrentFilter10 , ActiveStudent = ViewBag.CurrentFilter11 , MissingDetl = ViewBag.CurrentFilter12 })" alt="View PDF Report" target="_blank" class="submit-button">View PDF Report</a></li>
                             </ul>
                         </div>
                     </p>
@@ -174,6 +214,9 @@
                 </th>
                 <th>
                     Batch
+                </th>
+                <th>
+                    Roll Number
                 </th>
                 <th>
                     @Html.ActionLink("Admission Date", "AdvancedSearch", new { sortOrder = ViewBag.DateSortParm, currentFilter = ViewBag.CurrentFilter })
@@ -204,6 +247,9 @@
                         @Html.DisplayFor(modelItem => item.CourseData.CODE)
                         <label>-</label>
                         @Html.DisplayFor(modelItem => item.BatcheData.NAME)
+                    </td>
+                    <td class="col-5" nowrap>
+                        @Html.DisplayFor(modelItem => item.StudentData.CLS_ROLL_NO)
                     </td>
                     <td class="col-5" nowrap>
                         @item.StudentData.ADMSN_DATE.Value.ToShortDateString()
