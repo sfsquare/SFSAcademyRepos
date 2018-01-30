@@ -24,7 +24,8 @@
                 @using (Html.BeginForm("ViewAll", "Student", FormMethod.Get))
                 {
                     <p>
-                        @Html.DropDownList("searchString", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.DropDownList("searchString", new SelectList(Model,"ID", "NAME"), "Select Batch")
+
                         <input type="submit" value="Submit" id="submit-button" />
                     </p>
                 }

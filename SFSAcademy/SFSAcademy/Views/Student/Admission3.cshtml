@@ -14,10 +14,7 @@
     </div>
 </div>
 <div><img src="~/Content/images/_global/header_underline_.jpg" width="100%"></div>
-@if (ViewBag.ErrorMessage != null)
-{
-    <p class="flash-msg"> @ViewBag.ErrorMessage </p>
-}
+
 <div id="page-yield">
     @using (Html.BeginForm())
     {
@@ -81,13 +78,8 @@
                 k = k + 1;
             }
             </table>
-            <br />
-            <div class="submit-button">
-                @if (ViewBag.ErrorMessage == null)
-                {
-                    <input type="submit" value="► Finish" id="finish-button" />
-                }
-                
+            <div id="submit-button">
+                <input type="submit" value="► Finish" id="finish-button" />
             </div>
         }
 </div>
