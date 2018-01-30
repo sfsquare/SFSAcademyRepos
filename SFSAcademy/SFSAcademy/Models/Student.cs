@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 
 namespace SFSAcademy.Models
 {
@@ -13,7 +12,6 @@ namespace SFSAcademy.Models
         public EMPLOYEE EmployeeData { get; set; }
         public GRADING_LEVEL GradeData { get; set; }
         public IMAGE_DOCUMENTS ImageData { get; set; }
-        public GUARDIAN GuardianData { get; set; }
     }
 
     public class StudentsBatch
@@ -26,39 +24,5 @@ namespace SFSAcademy.Models
     {
         public GUARDIAN GuardianList { get; set; }
         public bool Selected { get; set; }
-    }
-
-    public enum MissingDetl
-    {
-        DateOfBirth,
-        PhoneNumber,
-        ParentDetails,
-        StundetsPicture
-    }
-
-    public enum HadPdFees
-    {
-        Y,
-        N
-    }
-    public enum BloodGroup
-    {
-        [Display(Name = "O+")]
-        OPositive,
-        [Display(Name = "A+")]
-        APositive,
-        [Display(Name = "B+")]
-        BPositive,
-        [Display(Name = "AB+")]
-        ABPositive,
-        [Display(Name = "AB-")]
-        ABNegative,
-        [Display(Name = "A-")]
-        ANegative,
-        [Display(Name = "B-")]
-        BNegative,
-        [Display(Name = "O-")]
-        ONegative
-
     }
 }

@@ -27,6 +27,7 @@ namespace SFSAcademy
         public Nullable<System.DateTime> UPDATED_AT { get; set; }
         public Nullable<int> AUTH_ID { get; set; }
     
+        public virtual EMPLOYEE EMPLOYEE { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<NEWS_COMMENTS> NEWS_COMMENTS { get; set; }
     }

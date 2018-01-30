@@ -75,6 +75,8 @@ namespace SFSAcademy
         public virtual DbSet<INDIVIDUAL_PAYSLIP_CATGEORY> INDIVIDUAL_PAYSLIP_CATGEORY { get; set; }
         public virtual DbSet<LIABILITY> LIABILITies { get; set; }
         public virtual DbSet<MONTHLY_PAYSLIP> MONTHLY_PAYSLIP { get; set; }
+        public virtual DbSet<NEWS> NEWS { get; set; }
+        public virtual DbSet<NEWS_COMMENTS> NEWS_COMMENTS { get; set; }
         public virtual DbSet<OBSERVATION> OBSERVATIONs { get; set; }
         public virtual DbSet<OBSERVATION_GROUP> OBSERVATION_GROUP { get; set; }
         public virtual DbSet<PAYROLL_CATEGORY> PAYROLL_CATEGORY { get; set; }
@@ -107,11 +109,11 @@ namespace SFSAcademy
         public virtual DbSet<FINANCE_TRANSACTION> FINANCE_TRANSACTION { get; set; }
         public virtual DbSet<IMAGE_DOCUMENTS> IMAGE_DOCUMENTS { get; set; }
         public virtual DbSet<STUDENT> STUDENTs { get; set; }
-        public virtual DbSet<Gallery_Master> Gallery_Master { get; set; }
-        public virtual DbSet<NEWS> NEWS { get; set; }
-        public virtual DbSet<NEWS_COMMENTS> NEWS_COMMENTS { get; set; }
+        public virtual DbSet<C__MigrationHistory> C__MigrationHistory { get; set; }
+        public virtual DbSet<Photo> Photos { get; set; }
         public virtual DbSet<Privilege> Privileges { get; set; }
         public virtual DbSet<Privileges_Users> Privileges_Users { get; set; }
+        public virtual DbSet<Gallery_Master> Gallery_Master { get; set; }
         public virtual DbSet<PHOTO_MASTER> PHOTO_MASTER { get; set; }
     }
 }
