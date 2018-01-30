@@ -22,7 +22,6 @@ namespace SFSAcademy
         public Nullable<System.DateTime> UPDATED_AT { get; set; }
         public string IS_APPR { get; set; }
     
-        public virtual EMPLOYEE EMPLOYEE { get; set; }
         public virtual NEWS NEWS { get; set; }
     }
 }
