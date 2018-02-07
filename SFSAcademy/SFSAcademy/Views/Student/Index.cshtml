@@ -36,7 +36,7 @@
                 {
                     <p>
                         @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, new { title = "Enter First Name, Last Name or Admission Number for search." })
-                        <input type="submit" value="Search" />
+                        <input type="submit" value="Search" id="submit-button" />
                     </p>
                 }
 
@@ -45,7 +45,7 @@
         </div>
     </div>
     <br />
-    <div class="students-table">
+    <div class="students-table" id="StdList">
         <table id="listing" align="center" width="100%" cellpadding="1" cellspacing="1">
             <tr class="tr-head">
                 <th>
@@ -70,6 +70,10 @@
                     Admission Number
                 </th>
                 <th></th>
+                @if (Html.CurrentUser_UserType().Equals("Admin"))
+                {
+                    <th></th>
+                }
             </tr>
             <tr class="tr-blank"></tr>
             @{int i = 1; }
@@ -105,9 +109,13 @@
                     <td class="col-6" nowrap>
                         @Html.DisplayFor(modelItem => item.StudentData.ADMSN_NO)
                     </td>
-                    <td class="col-6" nowrap>
-                        @Html.ActionLink("Edit ", "Edit", new { id = item.StudentData.ID })|@Html.ActionLink(" Details ", "Details", new { id = item.StudentData.ID })|@Html.ActionLink(" Delete", "Delete", new { id = item.StudentData.ID })
-                    </td>
+                    @if (Html.CurrentUser_UserType().Equals("Admin"))
+                    {
+                        <td class="col-6" nowrap>
+                            @Html.ActionLink("Edit ", "Edit", new { id = item.StudentData.ID }, new { style = "text-decoration:underline" })|@Html.ActionLink(" Details ", "Details", new { id = item.StudentData.ID }, new { style = "text-decoration:underline" })|@Html.ActionLink(" Delete", "Delete", new { id = item.StudentData.ID }, new { style = "text-decoration:underline" })
+                        </td>
+                    }
+
                 </tr>
                 i = i + 1;
             }

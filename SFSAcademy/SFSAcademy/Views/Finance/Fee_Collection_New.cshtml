@@ -69,7 +69,7 @@
                 <div class="label-field-pair">
                     <div class="label-container">@Html.Label("MASTER_CATGEORY_ID_LABLE", "Select Master Category", htmlAttributes: new { @class = "control-label col-md-2" })</div>
                     <div class="text-input-bg">
-                        @Html.DropDownList("MASTER_CATGEORY_ID", null, htmlAttributes: new { @class = "form-control", @id= "myDropDown" })
+                        @Html.DropDownList("MASTER_CATGEORY_ID", null, htmlAttributes: new { @class = "form-control", @id = "myDropDown" })
                         @Html.ValidationMessage("MASTER_CATGEORY_ID", "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -78,8 +78,6 @@
                 <div id="partialPlaceHolder" style="display:none;"> </div>
             </div>
             <input type="submit" value="Create" class="submit_button" formaction='@Url.Action("_Fee_Collection_Create", "Finance")' />
-         }
+                    }
     </div>
 </div>
-
-

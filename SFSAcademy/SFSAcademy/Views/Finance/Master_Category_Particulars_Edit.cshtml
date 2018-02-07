@@ -1,0 +1,118 @@
+﻿@model SFSAcademy.FINANCE_FEE_PARTICULAR
+
+@{
+    ViewBag.Title = "Master_Category_Particulars_Edit";
+}
+
+<script>
+
+    $(document).ready(function () {
+        $("#AdmForm1").hide();
+        $("#StdForm2").hide();
+        $("input[Value='Admission No.']").click(function () {
+            var test = $(this).val();
+            $("#StdForm2").hide();
+            $("#AdmForm1").show();
+        });
+        $("input[Value='All']").click(function () {
+            var test = $(this).val();
+            $("#AdmForm1").hide();
+            $("#StdForm2").hide();
+        });
+        $("input[Value='Student Category']").click(function () {
+            var test = $(this).val();
+            $("#AdmForm1").hide();
+            $("#StdForm2").show();
+        });
+
+  });
+</script>
+
+<div id="content-header">
+    <img src="~/Content/images/show_finance.png" alt="Finance Logo">
+    <h1>Finance Management</h1>
+    <h3>Edit Fee Particular</h3>
+    <div id="app-back-button">
+        <a href='javascript:history.back()' onclick="return confirm('are you sure?')"><img src="~/Content/images/buttons/back.png"></a>
+    </div>
+</div>
+<div><img src="~/Content/images/_global/header_underline_.jpg" width="100%"></div>
+
+<div class="bread_crumb">
+    @Html.ActionLink("Finance", "Index") &raquo;
+    @Html.ActionLink("Fees", "Fees_Index") &raquo;
+    @Html.ActionLink("Fee List", "Fee_Category_View") &raquo;
+    Fees Particular Edit
+</div>
+<div id="flash_box">
+    @if (ViewBag.FeePartEditMessage != null)
+    {
+        <p class="flash-msg"> @ViewBag.FeePartEditMessage </p>
+    }
+</div>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="label-field-pair">
+    <div class="label-container"> @Html.LabelFor(model => model.NAME, "Name", htmlAttributes: new { @class = "control-label col-md-2" })</div>
+    <div class="input-container">
+        @Html.EditorFor(model => model.NAME, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.NAME, "", new { @class = "text-danger" })
+    </div>
+</div>
+<div class="label-field-pair">
+    <div class="label-container">@Html.LabelFor(model => model.DESCR, "Description", htmlAttributes: new { @class = "control-label col-md-2" })</div>
+    <div class="input-container">
+        @Html.EditorFor(model => model.DESCR, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.DESCR, "", new { @class = "text-danger" })
+    </div>
+</div>
+<div class="label-field-pair">
+    <div class="label-container">@Html.LabelFor(model => model.FIN_FEE_CAT_ID, "Fee Category", htmlAttributes: new { @class = "control-label col-md-2" })</div>
+    <div class="text-input-bg">
+        @Html.DropDownList("FIN_FEE_CAT_ID", null, htmlAttributes: new { @class = "form-control", @disabled = "disabled" })
+        @Html.ValidationMessageFor(model => model.FIN_FEE_CAT_ID, "", new { @class = "text-danger" })
+    </div>
+</div>
+<div class="label-field-pair2">
+    <div class="label-container2"><label>Create using</label></div>
+    <div class="input-container2">
+        @Html.RadioButton("radioName", "All", ViewBag.radioName == "All" ? true : false, new { id = "id1", @onclick = "radiobuttontest('All');" }) All <br />
+        @Html.RadioButton("radioName", "Admission No.", ViewBag.radioName == "Admission No." ? true : false, new { id = "id2", @onclick = "radiobuttontest('Admission No');" }) Admission No.<br />
+        @Html.RadioButton("radioName", "Student Category", ViewBag.radioName == "Student Category" ? true : false, new { name = "radioName", id = "id3", @onclick = "radiobuttontest('Student Category');" }) Student Category<br />
+        @Html.Hidden("FeePartOption")
+    </div>
+</div>
+<div id="AdmForm1">
+    <div class="label-field-pair">
+        <div class="label-container">@Html.LabelFor(model => model.ADMSN_NO, "Admission Number (Comma Seprated)", htmlAttributes: new { @class = "control-label col-md-2" })</div>
+        <div class="input-container">
+            @Html.EditorFor(model => model.ADMSN_NO, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+            @Html.ValidationMessageFor(model => model.ADMSN_NO, "", new { @class = "text-danger" })
+        </div>
+    </div>
+</div>
+<div id="StdForm2">
+    <div class="label-field-pair">
+        <div class="label-container">@Html.LabelFor(model => model.STDNT_CAT_ID, "Student Category", htmlAttributes: new { @class = "control-label col-md-2" })</div>
+        <div class="text-input-bg">
+            @Html.DropDownList("STDNT_CAT_ID", null, htmlAttributes: new { @class = "form-control", @disabled = "disabled" })
+            @Html.ValidationMessageFor(model => model.STDNT_CAT_ID, "", new { @class = "text-danger" })
+        </div>
+    </div>
+</div>
+<div id="student"></div>
+<div class="label-field-pair">
+    <div class="label-container">@Html.LabelFor(model => model.AMT, "Amount", htmlAttributes: new { @class = "control-label col-md-2" })</div>
+    <div class="input-container">
+        @Html.EditorFor(model => model.AMT, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.AMT, "", new { @class = "text-danger" })
+    </div>
+</div>
+<div class="form-group">
+    <div class="col-md-offset-2 col-md-10">
+        <input type="submit" value="Edit" class="btn btn-default" />
+    </div>
+</div>
+}

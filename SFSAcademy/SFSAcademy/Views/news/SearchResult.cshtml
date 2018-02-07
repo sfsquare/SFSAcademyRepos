@@ -21,8 +21,8 @@
 }
 
 <div id="content-header">
-    
-    
+
+
     <img src="~/Content/images/manage_news/manage_news_logo.png" alt="News Details Logo">
     <h1>News Details</h1>
     <h3>View Details</h3>
@@ -118,16 +118,16 @@
                             @Html.DisplayFor(modelItem => item.NewsData.CREATED_AT)
                         </td>
                         <td class="col-6" nowrap>
-                            @Html.ActionLink("Edit ", "Edit", new { id = item.NewsData.ID })|@Html.ActionLink(" Details ", "Details", new { id = item.NewsData.ID })|@Html.ActionLink(" Delete", "Delete", new { id = item.NewsData.ID })
+                            @Html.ActionLink("Edit ", "Edit", new { id = item.NewsData.ID }, new { style = "text-decoration:underline" })|@Html.ActionLink(" Details ", "Details", new { id = item.NewsData.ID }, new { style = "text-decoration:underline" })|@Html.ActionLink(" Delete", "Delete", new { id = item.NewsData.ID }, new { style = "text-decoration:underline" })
                         </td>
                     </tr>
                     i = i + 1;
                 }
             </table>
-            
-            
-            
-            
+
+
+
+
             <br />
             @Html.PagedListPager(Model, page => Url.Action("Index",
     new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))

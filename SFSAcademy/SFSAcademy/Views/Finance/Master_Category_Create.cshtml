@@ -25,13 +25,13 @@
     @Html.ActionLink("Create Fees", "Master_Fees") &raquo;
     Fees Category
 </div>
-<div id="page-yield">
-
-    @if (Session["FeeCatErrorMessage"] != null )
-    {
-        
-
+<div id="flash_box">
+    @if (Session["FeeCatErrorMessage"] != null)
+            {
+        <p class="flash-msg"> @Session["FeeCatErrorMessage"] </p>
     }
+</div>
+<div id="page-yield">
     <div id="grading-levels-form">
         @using (Html.BeginForm())
         {
@@ -41,7 +41,8 @@
             <div class="label-field-pair">
                 <div class="label-container">@Html.LabelFor(model => model.NAME, "Name", htmlAttributes: new { @class = "control-label col-md-2" })</div>
                 <div class="input-container">
-                    @Html.Editor("NAME", new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.Editor("NAME", new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                    <span class="necessary-field" style="font-size:small">* Required Field</span>
                     @Html.ValidationMessageFor(model => model.NAME, "", new { @class = "text-danger" })
                 </div>
             </div>

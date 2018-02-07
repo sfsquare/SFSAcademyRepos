@@ -41,8 +41,8 @@
                         @item.BatchData.END_DATE.Value.ToShortDateString()
                     </td>
                     <td>
-                        @Html.ActionLink("Edit", "Edit", new { id = item.BatchData.ID }) |
-                        @Html.ActionLink("Delete", "Delete", new { id = item.BatchData.ID })
+                        @Html.ActionLink("Edit", "Edit", new { id = item.BatchData.ID }, new { style = "text-decoration:underline" }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.BatchData.ID }, new { style = "text-decoration:underline" })
                     </td>
                 </tr>
                 i = i + 1;

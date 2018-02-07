@@ -17,7 +17,7 @@
     IEnumerable<FEE_FINE> batch_fine = (IEnumerable<FEE_FINE>)ViewData["batch_fine"];
     IEnumerable<FEE_FINE> student_fine = (IEnumerable<FEE_FINE>)ViewData["student_fine"];
     IEnumerable<FEE_FINE> category_fine = (IEnumerable<FEE_FINE>)ViewData["category_fine"];
-}  
+}
 <script type="text/javascript" src="@Url.Content("~/Content/javascripts/jquery/jquery.min.js")"></script>
 <script type="text/javascript" src="@Url.Content("~/Content/javascripts/jquery/jquery-ui.min.js")"></script>
 <script type="text/javascript" src="@Url.Content("~/Content/javascripts/jquery/jquery-1.9.1.js")"></script>
@@ -116,7 +116,7 @@ else
 }
 @if (financefee != null && financefee.Count() != 0)
 {
-    if(financefee.FirstOrDefault().IS_PD !="Y")
+    if (financefee.FirstOrDefault().IS_PD != "Y")
     {
         Html.RenderPartial("_fine_submission");
     }
@@ -129,8 +129,8 @@ else
         <div class="prev">
             @if (prev_student != null && Session["student_serach"] == null)
             {
-            <input type="submit" value="◄" id="submit-button2" class="submit-button2" />
-            }      
+                <input type="submit" value="◄" id="submit-button2" class="submit-button2" />
+            }
         </div>
         <div class="month">
             @student.FIRST_NAME  @student.MID_NAME  @student.LAST_NAME
@@ -139,7 +139,7 @@ else
             @if (next_student != null && Session["student_serach"] == null)
             {
                 <input type="submit" value="►" id="submit-button3" class="submit-button2" />
-            }          
+            }
         </div>
         <div class="extender"></div>
     </div>
@@ -175,10 +175,10 @@ else
         {
             <tr class="tr-blank"></tr>
             <tr class="tr-blank"></tr>
-                <tr class="selectedRow" cellpadding="1" cellspacing="1">
-                    <td class="col-1"></td>
-                    <td class="col-1" colspan="2"><span class="themed_text">Discounts</span></td>
-                </tr>
+            <tr class="selectedRow" cellpadding="1" cellspacing="1">
+                <td class="col-1"></td>
+                <td class="col-1" colspan="2"><span class="themed_text">Discounts</span></td>
+            </tr>
             foreach (var item in batch_discounts)
             {
                 string discount_text = item.IS_AMT == "Y" ? item.NAME : string.Concat(item.NAME, ": ", item.DISC, "%");
@@ -240,16 +240,16 @@ else
             }
             <tr class="tr-blank"></tr>
             <tr class="tr-blank"></tr>
-                <tr class="@nextRow" cellpadding="1" cellspacing="1">
-                    <td class="col-8" colspan="2">Total Discount</td>
-                    <td class="col-6">@ViewBag.total_discount</td>
-                </tr>
+            <tr class="@nextRow" cellpadding="1" cellspacing="1">
+                <td class="col-8" colspan="2">Total Discount</td>
+                <td class="col-6">@ViewBag.total_discount</td>
+            </tr>
                 <tr class="tr-blank"></tr>
                 <tr class="tr-blank"></tr>
             { total_fees -= total_fees * @ViewBag.total_discount_percentage / 100; }
             <tr class="@nextToNextRow" cellpadding="1" cellspacing="1">
                 <td class="col-8" colspan="2">Total Fees</td>
-                <td class="col-6">@total_fees</td>
+                <td class="col-6">@total_fees.ToString("0.00")</td>
             </tr>
         }
         <tr class="tr-blank"></tr>
@@ -355,7 +355,7 @@ else
                 <td class="col-8" colspan="2">Total Fine</td>
                 <td class="col-6">@ViewBag.total_fine</td>
             </tr>
-                <tr class="tr-blank"></tr>
+            <tr class="tr-blank"></tr>
                 <tr class="tr-blank"></tr>
             { total_fees += @ViewBag.total_fine; }
 
@@ -411,7 +411,7 @@ else
         }
         <tr class="@nextRow" cellpadding="1" cellspacing="1">
             <td class="col-8" colspan="2">Amount To Pay :</td>
-            <td class="col-6">@total_fees</td>
+            <td class="col-6">@total_fees.ToString("0.00")</td>
         </tr>
         <tr>
             <td colspan="3">
@@ -434,11 +434,11 @@ new { @class = "form-control", @id = "PAYMENT_MODE" })
                             <div class="text-input-bg"><input type="text" name="PAYMENT_NOTE" id="PAYMENT_NOTE" /></div>
                             @Html.ValidationMessage("PAYMENT_NOTE", "", new { @class = "text-danger" })
                         </div>
-                            <div class="label-field-pair">
-                                <div class="label-container">@Html.Label("PAYMENT_AMOUNT", "Amount", htmlAttributes: new { @class = "control-label col-md-2" })</div>
-                                <div class="text-input-bg"><input type="text" name="PAYMENT_AMOUNT" id="PAYMENT_AMOUNT" value="@total_fees" /></div>
-                                @Html.ValidationMessage("PAYMENT_AMOUNT", "", new { @class = "text-danger" })
-                            </div>
+                        <div class="label-field-pair">
+                            <div class="label-container">@Html.Label("PAYMENT_AMOUNT", "Amount", htmlAttributes: new { @class = "control-label col-md-2" })</div>
+                            <div class="text-input-bg"><input type="text" name="PAYMENT_AMOUNT" id="PAYMENT_AMOUNT" value="@total_fees.ToString("0.00")" /></div>
+                            @Html.ValidationMessage("PAYMENT_AMOUNT", "", new { @class = "text-danger" })
+                        </div>
 
                             <div class="pay_fees_buttons">
                                 <input type="submit" value="► Pay Fees" id="submit-button1" class="submit_button" />
@@ -461,7 +461,7 @@ new { @class = "form-control", @id = "PAYMENT_MODE" })
             </td>
         </tr>
     </table>
-}
+            }
 <input type="hidden" value="@student.ID" id="studentID" name="studentID" />
 <input type="hidden" value="@ViewBag.prev_student_id" id="prev_studentID" name="prev_studentID" />
 <input type="hidden" value="@ViewBag.next_student_id" id="next_studentID" name="next_studentID" />

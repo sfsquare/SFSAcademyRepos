@@ -57,38 +57,6 @@
             </div>
         </div>
 
-        <div class="label-field-pair">
-            @Html.LabelFor(model => model.IS_DEL, "Is This Deleted", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="text-input-bg">
-                @Html.EditorFor(model => model.IS_DEL, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.IS_DEL, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="label-field-pair">
-            @Html.LabelFor(model => model.IS_MSTR, "Is This Master Category", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="text-input-bg">
-                @Html.EditorFor(model => model.IS_MSTR, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.IS_MSTR, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="label-field-pair">
-            @Html.LabelFor(model => model.CREATED_AT, "Create Date", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="text-input-bg">
-                @Html.EditorFor(model => model.CREATED_AT, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.CREATED_AT, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="label-field-pair">
-            @Html.LabelFor(model => model.UPDATED_AT, "Update Date", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="text-input-bg">
-                @Html.EditorFor(model => model.UPDATED_AT, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.UPDATED_AT, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Save" class="submit_button" />

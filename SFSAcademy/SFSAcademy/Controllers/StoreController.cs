@@ -98,7 +98,19 @@ namespace SFSAcademy.Controllers
         {
             if (ModelState.IsValid)
             {
-                sTORE_PRODUCTS.IS_DEL = "N";
+                STORE_PRODUCTS sTORE_PRODUCTS_UPD = db.STORE_PRODUCTS.Find(sTORE_PRODUCTS.PRODUCT_ID);
+                sTORE_PRODUCTS_UPD.NAME = sTORE_PRODUCTS.NAME;
+                sTORE_PRODUCTS_UPD.CATEGORY_ID = sTORE_PRODUCTS.CATEGORY_ID;
+                sTORE_PRODUCTS_UPD.BRAND = sTORE_PRODUCTS.BRAND;
+                sTORE_PRODUCTS_UPD.TOTAL_UNIT = sTORE_PRODUCTS.TOTAL_UNIT;
+                sTORE_PRODUCTS_UPD.TOTAL_COST = sTORE_PRODUCTS.TOTAL_COST;
+                sTORE_PRODUCTS_UPD.COST_PER_UNIT = sTORE_PRODUCTS.COST_PER_UNIT;
+                sTORE_PRODUCTS_UPD.SELL_PRICE_PER_UNIT = sTORE_PRODUCTS.SELL_PRICE_PER_UNIT;
+                sTORE_PRODUCTS_UPD.PURCHASED_ON = sTORE_PRODUCTS.PURCHASED_ON;
+                sTORE_PRODUCTS_UPD.PURCHASED_THROUGH = sTORE_PRODUCTS.PURCHASED_THROUGH;
+                sTORE_PRODUCTS_UPD.PAID_BY = sTORE_PRODUCTS.PAID_BY;
+                sTORE_PRODUCTS_UPD.UNIT_LEFT = sTORE_PRODUCTS.UNIT_LEFT;
+                sTORE_PRODUCTS_UPD.IS_ACT = sTORE_PRODUCTS.IS_ACT;
                 sTORE_PRODUCTS.UPDATED_AT = DateTime.Now;
                 db.Entry(sTORE_PRODUCTS).State = EntityState.Modified;
                 db.SaveChanges();
@@ -277,7 +289,10 @@ namespace SFSAcademy.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(sTOREcATEGORY).State = EntityState.Modified;
+                STORE_CATEGORY sTOREcATEGORY_UPD = db.STORE_CATEGORY.Find(sTOREcATEGORY.ID);
+                sTOREcATEGORY_UPD.NAME = sTOREcATEGORY.NAME;
+                sTOREcATEGORY_UPD.IS_DEL = sTOREcATEGORY.IS_DEL;
+                db.Entry(sTOREcATEGORY_UPD).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Categories");
             }
@@ -642,9 +657,19 @@ namespace SFSAcademy.Controllers
         {
             if (ModelState.IsValid)
             {
-                sTORE_PURCHASE.IS_DEL = "N";
-                sTORE_PURCHASE.UPDATED_AT = DateTime.Now;
-                db.Entry(sTORE_PURCHASE).State = EntityState.Modified;
+                STORE_PURCHAGE sTORE_PURCHASE_UPD = db.STORE_PURCHAGE.Find(sTORE_PURCHASE.ID);
+                sTORE_PURCHASE_UPD.PRODUCT_ID = sTORE_PURCHASE.PRODUCT_ID;
+                sTORE_PURCHASE_UPD.UNIT_SOLD = sTORE_PURCHASE.UNIT_SOLD;
+                sTORE_PURCHASE_UPD.SOLD_PRICE = sTORE_PURCHASE.SOLD_PRICE;
+                sTORE_PURCHASE_UPD.SOLD_BY = sTORE_PURCHASE.SOLD_BY;
+                sTORE_PURCHASE_UPD.SOLD_ON = sTORE_PURCHASE.SOLD_ON;
+                sTORE_PURCHASE_UPD.STUDENT_NAME = sTORE_PURCHASE.STUDENT_NAME;
+                sTORE_PURCHASE_UPD.STUDENT_CONTACT_NO = sTORE_PURCHASE.STUDENT_CONTACT_NO;
+                sTORE_PURCHASE_UPD.MONEY_RECEIVED_BY = sTORE_PURCHASE.MONEY_RECEIVED_BY;
+                sTORE_PURCHASE_UPD.IS_DEPOSITED = sTORE_PURCHASE.IS_DEPOSITED;
+                sTORE_PURCHASE_UPD.IS_ACT = sTORE_PURCHASE.IS_ACT;
+                sTORE_PURCHASE_UPD.UPDATED_AT = DateTime.Now;
+                db.Entry(sTORE_PURCHASE_UPD).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("ViewAllSelling");
             }

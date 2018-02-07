@@ -70,7 +70,10 @@
                 <th>
                     End Date
                 </th>
-                <th></th>
+                @if (Html.CurrentUser_UserType().Equals("Admin"))
+                {
+                    <th></th>
+                }
             </tr>
             <tr class="tr-blank"></tr>
             @{int i = 1; }
@@ -100,9 +103,12 @@
                     <td class="col-6" nowrap>
                         @item.FinanceFeeCollectionData.END_DATE.Value.ToShortDateString()
                     </td>
-                    <td class="col-7" nowrap>
-                        @Html.ActionLink("Edit ", "Fee_Collection_Edit", new { id = item.FinanceFeeCollectionData.ID })|@Html.ActionLink(" Delete", "Fee_Collection_Delete", new { id = item.FinanceFeeCollectionData.ID })
-                    </td>
+                    @if (Html.CurrentUser_UserType().Equals("Admin"))
+                {
+                        <td class="col-7" nowrap>
+                            @Html.ActionLink("Edit ", "Fee_Collection_Edit", new { id = item.FinanceFeeCollectionData.ID })|@Html.ActionLink(" Delete", "Fee_Collection_Delete", new { id = item.FinanceFeeCollectionData.ID })
+                        </td>
+                    }
                 </tr>
                 i = i + 1;
             }

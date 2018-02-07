@@ -111,7 +111,7 @@ namespace SFSAcademy.Controllers
             {
                 searchString = currentFilter;
             }
-            if(!string.IsNullOrEmpty(searchString) && !searchString.Equals("-1"))
+            if (!string.IsNullOrEmpty(searchString) && !searchString.Equals("-1"))
             {
                 ///As Drop down list sends Id, we will ahve to convert this to text which is different from text box
                 searchStringId = Convert.ToInt32(searchString);
@@ -119,11 +119,11 @@ namespace SFSAcademy.Controllers
             ViewBag.CurrentFilter = searchString;
 
             var StudentS = (from st in db.STUDENTs
-                           join b in db.BATCHes on st.BTCH_ID equals b.ID
-                           join cs in db.COURSEs on b.CRS_ID equals cs.ID
+                            join b in db.BATCHes on st.BTCH_ID equals b.ID
+                            join cs in db.COURSEs on b.CRS_ID equals cs.ID
                             where st.IS_DEL == "N" && st.IS_ACT == "Y"
                             orderby st.LAST_NAME, b.NAME
-                           select new Models.Student { StudentData = st, BatcheData = b, CourseData = cs }).Distinct();
+                            select new Models.Student { StudentData = st, BatcheData = b, CourseData = cs }).Distinct();
 
             if (!String.IsNullOrEmpty(searchString) && !searchString.Equals("-1"))
             {
@@ -160,21 +160,21 @@ namespace SFSAcademy.Controllers
             }
 
             var StudentS = (from st in db.STUDENTs
-                           join b in db.BATCHes on st.BTCH_ID equals b.ID into gi
+                            join b in db.BATCHes on st.BTCH_ID equals b.ID into gi
                             from subb in gi.DefaultIfEmpty()
                             join c in db.COURSEs on subb.CRS_ID equals c.ID into gj
                             from subc in gj.DefaultIfEmpty()
-                           join ct in db.COUNTRies on st.NTLTY_ID equals ct.ID into gk
+                            join ct in db.COUNTRies on st.NTLTY_ID equals ct.ID into gk
                             from subct in gk.DefaultIfEmpty()
-                           join cat in db.STUDENT_CATGEORY on st.STDNT_CAT_ID equals cat.ID into gl
+                            join cat in db.STUDENT_CATGEORY on st.STDNT_CAT_ID equals cat.ID into gl
                             from subcat in gl.DefaultIfEmpty()
                             join emp in db.EMPLOYEEs on subb.EMP_ID equals emp.ID into gm
                             from subemp in gm.DefaultIfEmpty()
                             join img in db.IMAGE_DOCUMENTS on st.PHTO_DATA equals img.DocumentId into gn
                             from subimg in gn.DefaultIfEmpty()
                             where st.ID == id
-                           orderby st.LAST_NAME, subb.NAME
-                           select new Models.Student { StudentData = st, BatcheData = (subb == null ? null : subb), CourseData = (subc == null ? null : subc), CountryData = (subct == null ? null : subct), CategoryData = (subcat == null ? null : subcat), EmployeeData = (subemp == null ? null : subemp), ImageData = (subimg == null ? null : subimg) }).Distinct();
+                            orderby st.LAST_NAME, subb.NAME
+                            select new Models.Student { StudentData = st, BatcheData = (subb == null ? null : subb), CourseData = (subc == null ? null : subc), CountryData = (subct == null ? null : subct), CategoryData = (subcat == null ? null : subcat), EmployeeData = (subemp == null ? null : subemp), ImageData = (subimg == null ? null : subimg) }).Distinct();
 
             if (StudentS == null)
             {
@@ -188,7 +188,7 @@ namespace SFSAcademy.Controllers
 
         // GET: Student
         [HttpGet]
-        public void ProfilePDF(int? id)
+        public ActionResult ProfilePDF(int? id)
         {
 
             var StudentS = (from st in db.STUDENTs
@@ -208,8 +208,9 @@ namespace SFSAcademy.Controllers
                             orderby st.LAST_NAME, subb.NAME
                             select new Models.Student { StudentData = st, BatcheData = (subb == null ? null : subb), CourseData = (subc == null ? null : subc), CountryData = (subct == null ? null : subct), CategoryData = (subcat == null ? null : subcat), EmployeeData = (subemp == null ? null : subemp), ImageData = (subimg == null ? null : subimg) }).Distinct();
 
+            return View(StudentS.FirstOrDefault());
 
-            var PdfStudentS = (from res in StudentS
+            /*var PdfStudentS = (from res in StudentS
                                select new { Photo= res.StudentData.PHTO_DATA,Name = string.Concat(res.StudentData.FIRST_NAME, " ", res.StudentData.MID_NAME, " ",res.StudentData.LAST_NAME), Cours = res.CourseData.CRS_NAME, Batch = res.BatcheData.NAME,AdDate = res.StudentData.ADMSN_DATE, AdNumber = res.StudentData.ADMSN_NO,DOB= res.StudentData.DOB, Bldg = res.StudentData.BLOOD_GRP, Gen= res.StudentData.GNDR,nation=res.CountryData.CTRY_NAME, lan=res.StudentData.LANG, cat = res.CategoryData.NAME,rel=res.StudentData.RLGN, Add= string.Concat(res.StudentData.ADDR_LINE1, " ", res.StudentData.ADDR_LINE2, " ", res.StudentData.CITY, " ", res.StudentData.STATE, " ", res.StudentData.PIN_CODE),ph = res.StudentData.PH1, mob = res.StudentData.PH2, grpt = string.Concat(res.EmployeeData.FIRST_NAME, " ", res.EmployeeData.LAST_NAME)}).ToList();
 
             var configuration = new ReportConfiguration();
@@ -323,7 +324,7 @@ namespace SFSAcademy.Controllers
                 "attachment;filename=ExampleReport.pdf");
             Response.Cache.SetCacheability(HttpCacheability.NoCache);
             Response.BinaryWrite(stream.ToArray());
-            Response.End();
+            Response.End();*/
 
         }
 
@@ -332,6 +333,10 @@ namespace SFSAcademy.Controllers
         {
             ViewBag.CurrentSort = sortOrder;
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewBag.NameSortParm2 = sortOrder == "FName" ? "name_desc_2" : "FName";
+            ViewBag.NameSortParm3 = sortOrder == "RNum" ? "name_desc_3" : "RNum";
+            ViewBag.NameSortParm4 = sortOrder == "AdNum" ? "name_desc_4" : "AdNum";
+            ViewBag.NameSortParm5 = sortOrder == "DOB" ? "name_desc_5" : "DOB";
             ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
 
             if (!string.IsNullOrEmpty(searchString))
@@ -344,8 +349,8 @@ namespace SFSAcademy.Controllers
             }
 
             ViewBag.CurrentFilter = searchString;
-            if (!string.IsNullOrEmpty(AdmissionNumber)){page = 1;}
-            else { AdmissionNumber = currentFilter2;}
+            if (!string.IsNullOrEmpty(AdmissionNumber)) { page = 1; }
+            else { AdmissionNumber = currentFilter2; }
             ViewBag.CurrentFilter2 = AdmissionNumber;
             if (!string.IsNullOrEmpty(HadPdFees)) { page = 1; }
             else { HadPdFees = currentFilter3; }
@@ -356,7 +361,8 @@ namespace SFSAcademy.Controllers
             if (!string.IsNullOrEmpty(Category)) { page = 1; }
             else { Category = currentFilter5; }
             ViewBag.CurrentFilter5 = Category;
-            if (string.IsNullOrEmpty(StudentGender)) { StudentGender = "All"; page = 1; };
+            if (!string.IsNullOrEmpty(StudentGender)) { page = 1; }
+            else { StudentGender = currentFilter6; }
             ViewBag.CurrentFilter6 = StudentGender;
             if (!string.IsNullOrEmpty(BloodGroup)) { page = 1; }
             else { BloodGroup = currentFilter7; }
@@ -455,7 +461,7 @@ namespace SFSAcademy.Controllers
                         StudentS = StudentS.Where(s => s.StudentData.DOB.Equals(null));
                         break;
                     case "PhoneNumber":
-                        StudentS = StudentS.Where(s => s.StudentData.PH1.Equals(null) &&  s.StudentData.PH2.Equals(null));
+                        StudentS = StudentS.Where(s => s.StudentData.PH1.Equals(null) && s.StudentData.PH2.Equals(null));
                         break;
                     case "ParentDetails":
                         StudentS = StudentS.Where(s => s.GuardianData.ID.Equals(null));
@@ -475,6 +481,30 @@ namespace SFSAcademy.Controllers
                     break;
                 case "date_desc":
                     StudentS = StudentS.OrderByDescending(s => s.StudentData.ADMSN_DATE);
+                    break;
+                case "FName":
+                    StudentS = StudentS.OrderBy(s => s.StudentData.FIRST_NAME);
+                    break;
+                case "name_desc_2":
+                    StudentS = StudentS.OrderByDescending(s => s.StudentData.FIRST_NAME);
+                    break;
+                case "RNum":
+                    StudentS = StudentS.OrderBy(s => s.StudentData.CLS_ROLL_NO);
+                    break;
+                case "name_desc_3":
+                    StudentS = StudentS.OrderByDescending(s => s.StudentData.CLS_ROLL_NO);
+                    break;
+                case "AdNum":
+                    StudentS = StudentS.OrderBy(s => s.StudentData.ADMSN_NO);
+                    break;
+                case "name_desc_4":
+                    StudentS = StudentS.OrderByDescending(s => s.StudentData.ADMSN_NO);
+                    break;
+                case "DOB":
+                    StudentS = StudentS.OrderBy(s => s.StudentData.DOB);
+                    break;
+                case "name_desc_5":
+                    StudentS = StudentS.OrderByDescending(s => s.StudentData.DOB);
                     break;
                 default:  // Name ascending 
                     StudentS = StudentS.OrderBy(s => s.StudentData.LAST_NAME);
@@ -515,9 +545,9 @@ namespace SFSAcademy.Controllers
 
         // GET: Student
         [HttpGet]
-        public void AdvancedSearchPdf(string searchString, string AdmissionNumber, string HadPdFees, int? CourseBatches, string Category, string StudentGender, string BloodGroup, string StudentGrade, string StudentBirthFromDate, string StudentBirthToDate, string ActiveStudent, string MissingDetl)
+        public ActionResult AdvancedSearchPdf(string searchString, string AdmissionNumber, string HadPdFees, int? CourseBatches, string Category, string StudentGender, string BloodGroup, string StudentGrade, string StudentBirthFromDate, string StudentBirthToDate, string ActiveStudent, string MissingDetl)
         {
-            
+
             DateTime? dFrom; DateTime dtFrom;
             dFrom = DateTime.TryParse(StudentBirthFromDate, out dtFrom) ? dtFrom : (DateTime?)null;
             DateTime? dTo; DateTime dtTo;
@@ -602,7 +632,9 @@ namespace SFSAcademy.Controllers
                         break;
                 }
             }
-            var PdfStudentS = (from res in StudentS
+
+            return View(StudentS);
+            /*var PdfStudentS = (from res in StudentS
                             select new {LName = res.StudentData.LAST_NAME, FName = res.StudentData.FIRST_NAME, Course = res.CourseData.CODE, Batch = res.BatcheData.NAME, AdDate = res.StudentData.ADMSN_DATE, AdNumber = res.StudentData.ADMSN_NO }).ToList();
            
 
@@ -658,11 +690,34 @@ namespace SFSAcademy.Controllers
                 "attachment;filename=ExampleReport.pdf");
             Response.Cache.SetCacheability(HttpCacheability.NoCache);
             Response.BinaryWrite(stream.ToArray());
-            Response.End();
+            Response.End();*/
 
         }
 
+        // GET: Student/Edit/5
+        public ActionResult ActivateStudent(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            STUDENT sTUDENT = db.STUDENTs.Find(id);
+            if (sTUDENT == null)
+            {
+                return HttpNotFound();
+            }
+            sTUDENT.IS_ACT = "Y";
+            sTUDENT.IS_DEL = "N";
+            sTUDENT.UPDATED_AT = System.DateTime.Now;
+            db.Entry(sTUDENT).State = EntityState.Modified;
+            try { db.SaveChanges(); }
+            catch (Exception ex)
+            {
+                throw ex; // Oops, something went wrong, handle the exception
+            }
 
+            return RedirectToAction("Index");
+        }
 
         // GET: Student/Details/5
         public ActionResult Details(int? id)
@@ -686,7 +741,7 @@ namespace SFSAcademy.Controllers
             DateTime PDate = Convert.ToDateTime(System.DateTime.Now);
             ViewBag.ReturnDate = PDate.ToShortDateString();
             ViewBag.CTRY_ID = new SelectList(db.COUNTRies, "ID", "CTRY_NAME", "99");
-            ViewBag.NTLTY_ID = new SelectList(db.COUNTRies.Where(o => o.NTLTY != " ").ToList(), "ID", "NTLTY","99");
+            ViewBag.NTLTY_ID = new SelectList(db.COUNTRies.Where(o => o.NTLTY != " ").ToList(), "ID", "NTLTY", "99");
             ViewBag.STDNT_CAT_ID = new SelectList(db.STUDENT_CATGEORY, "ID", "NAME");
             ///Code to get the Batch along weith Course
             var queryCourceBatch = (from cs in db.COURSEs
@@ -711,8 +766,8 @@ namespace SFSAcademy.Controllers
             //End of Code to get batch and Course
 
             var configValue = (from C in db.CONFIGURATIONs
-                                where C.CONFIG_KEY == "AdmissionNumberAutoIncrement"
-                                select new { CONFIG_VALUE = C.CONFIG_VAL }).FirstOrDefault();
+                               where C.CONFIG_KEY == "AdmissionNumberAutoIncrement"
+                               select new { CONFIG_VALUE = C.CONFIG_VAL }).FirstOrDefault();
             int NewAdmissionNumberNum = Convert.ToInt32(configValue.CONFIG_VALUE.ToString()) + 1;
             ViewBag.NewAdmissionNumber = NewAdmissionNumberNum.ToString();
             return View();
@@ -771,7 +826,7 @@ namespace SFSAcademy.Controllers
                 }
 
                 string FullName = string.Concat(sTUDENT.FIRST_NAME, sTUDENT.LAST_NAME);
-                var StdUser = new USER() { USRNAME= FullName, FIRST_NAME= sTUDENT.FIRST_NAME, LAST_NAME= sTUDENT.LAST_NAME, EML= sTUDENT.EML, ADMIN_IND="N", STDNT_IND="Y", EMP_IND="N", HASHED_PSWRD=string.Concat(sTUDENT.ADMSN_NO, 123), SALT="N", RST_PSWRD_CODE=null, RST_PSWRD_CODE_UNTL=null, CREATED_AT=System.DateTime.Now, UPDATED_AT=System.DateTime.Now, PARNT_IND="N" };
+                var StdUser = new USER() { USRNAME = FullName, FIRST_NAME = sTUDENT.FIRST_NAME, LAST_NAME = sTUDENT.LAST_NAME, EML = sTUDENT.EML, ADMIN_IND = "N", STDNT_IND = "Y", EMP_IND = "N", HASHED_PSWRD = string.Concat(sTUDENT.ADMSN_NO, 123), SALT = "N", RST_PSWRD_CODE = null, RST_PSWRD_CODE_UNTL = null, CREATED_AT = System.DateTime.Now, UPDATED_AT = System.DateTime.Now, PARNT_IND = "N" };
                 db.USERS.Add(StdUser);
                 db.SaveChanges();
                 foreach (var entity in db.USERS_ACCESS.Select(s => new { s.USRS_ID, s.LIST_ITEM, s.LVL_1_MENU, s.LVL_2_MENU, s.CTL, s.ACTN, s.IS_ACCBLE }).Distinct().Where(a => a.USRS_ID.Equals(4)).ToList())
@@ -792,7 +847,7 @@ namespace SFSAcademy.Controllers
                 }
                 // some code 
                 TempData["alertMessage"] = string.Concat("Student Admission Done. Website User ID :", FullName, "     Password :", string.Concat(sTUDENT.ADMSN_NO, 123));
-                return RedirectToAction("Admission2", "Student", new { Std_id = sTUDENT.ID }); 
+                return RedirectToAction("Admission2", "Student", new { Std_id = sTUDENT.ID });
             }
             ViewBag.ReturnDate = System.DateTime.Now;
             ViewBag.CTRY_ID = new SelectList(db.COUNTRies, "ID", "CTRY_NAME");
@@ -810,7 +865,7 @@ namespace SFSAcademy.Controllers
             STUDENT sTUDENT = db.STUDENTs.Find(Std_id);
             ViewBag.StudentFullName = String.Format("{0} {1}", sTUDENT.FIRST_NAME.ToString(), sTUDENT.LAST_NAME.ToString());
             ViewBag.NewAdmissionNumber = sTUDENT.ADMSN_NO.ToString();
-            if(!String.IsNullOrEmpty(sTUDENT.ADDR_LINE1))
+            if (!String.IsNullOrEmpty(sTUDENT.ADDR_LINE1))
             {
                 ViewBag.AddressLine1 = sTUDENT.ADDR_LINE1.ToString();
             }
@@ -833,7 +888,7 @@ namespace SFSAcademy.Controllers
             ViewBag.StudentId = Std_id;
             //COUNTRY cOUNTRY = db.COUNTRies.Find(sTUDENT.CTRY_ID);
             ViewBag.CountryName = sTUDENT.CTRY_ID;
-            ViewBag.CTRY_ID = new SelectList(db.COUNTRies, "ID", "CTRY_NAME","99");
+            ViewBag.CTRY_ID = new SelectList(db.COUNTRies, "ID", "CTRY_NAME", "99");
             DataTable dtGuardian = new DataTable();
             dtGuardian.Columns.Add("FIRST_NAME", typeof(string));
             dtGuardian.Columns.Add("LAST_NAME", typeof(string));
@@ -841,7 +896,7 @@ namespace SFSAcademy.Controllers
             dtGuardian.Columns.Add("MOB", typeof(string));
             var GuardianVal = (from C in db.GUARDIANs
                                where C.WARD_ID == Std_id
-                               select new { f_name = C.FIRST_NAME, l_name = C.LAST_NAME, rel=C.REL, mob = C.MOBL_PH }).ToList();
+                               select new { f_name = C.FIRST_NAME, l_name = C.LAST_NAME, rel = C.REL, mob = C.MOBL_PH }).ToList();
 
             foreach (var entity in GuardianVal.ToList())
             {
@@ -914,7 +969,7 @@ namespace SFSAcademy.Controllers
             var GuardianVal = (from C in db.GUARDIANs
                                where C.WARD_ID == Std_id
                                select new Models.SelectGuardian { GuardianList = C }).ToList();
-            if(GuardianVal.Count().Equals(0))
+            if (GuardianVal.Count().Equals(0))
             {
                 ViewBag.ErrorMessage = "Any guardian must be added to proceed forward.";
             }
@@ -935,7 +990,7 @@ namespace SFSAcademy.Controllers
                 if (item.Selected)
                 {
                     STUDENT sTUDENT = db.STUDENTs.Find(item.GuardianList.WARD_ID);
-                    sTUDENT.IMMDT_CNTCT_ID=item.GuardianList.ID;
+                    sTUDENT.IMMDT_CNTCT_ID = item.GuardianList.ID;
                     db.SaveChanges();
                     break;
                 }
@@ -1098,6 +1153,23 @@ namespace SFSAcademy.Controllers
             {
                 return HttpNotFound();
             }
+            var queryCourceBatch = (from cs in db.COURSEs
+                                    join bt in db.BATCHes on cs.ID equals bt.CRS_ID
+                                    select new Models.SelectCourseBatch { CourseData = cs, BatchData = bt, Selected = false })
+                                    .OrderBy(x => x.BatchData.ID).ToList();
+            List<SelectListItem> options = new List<SelectListItem>();
+            foreach (var item in queryCourceBatch)
+            {
+                string BatchFullName = string.Concat(item.CourseData.CODE, "-", item.BatchData.NAME);
+                var result = new SelectListItem();
+                result.Text = BatchFullName;
+                result.Value = item.BatchData.ID.ToString();
+                result.Selected = item.BatchData.ID == sTUDENT.BTCH_ID ? true : false;
+                options.Add(result);
+            }
+            // add the 'ALL' option
+            options.Insert(0, new SelectListItem() { Value = "-1", Text = "ALL" });
+            ViewBag.BTCH_ID = options;
             return View(sTUDENT);
         }
 
@@ -1114,7 +1186,7 @@ namespace SFSAcademy.Controllers
                 db.GUARDIANs.Remove(entity);
                 db.SaveChanges();
 
-            } 
+            }
             STUDENT sTUDENT = db.STUDENTs.Find(id);
             sTUDENT.IS_ACT = "N";
             sTUDENT.IS_DEL = "Y";
@@ -1260,7 +1332,7 @@ namespace SFSAcademy.Controllers
                 imageBufferedStream.Read(documentBytes, 0, documentBytes.Length);
 
 
-                if (PhotoId==0 || PhotoId.Equals(null))
+                if (PhotoId == 0 || PhotoId.Equals(null))
                 {
                     IMAGE_DOCUMENTS databaseDocument = new IMAGE_DOCUMENTS
                     {
@@ -1272,7 +1344,7 @@ namespace SFSAcademy.Controllers
                         Type = type
                     };
 
-                    db.IMAGE_DOCUMENTS.Add(databaseDocument);   
+                    db.IMAGE_DOCUMENTS.Add(databaseDocument);
                     handled = (db.SaveChanges() > 0);
                     PhotoId = databaseDocument.DocumentId;
                 }
@@ -1288,7 +1360,7 @@ namespace SFSAcademy.Controllers
                     db.Entry(ImagetoUpdate).State = EntityState.Modified;
                     handled = (db.SaveChanges() > 0);
                 }
-                
+
             }
             catch (Exception ex)
             {

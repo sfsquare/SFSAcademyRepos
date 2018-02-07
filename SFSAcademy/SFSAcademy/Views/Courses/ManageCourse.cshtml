@@ -49,8 +49,8 @@
                         <span>   </span>
                     </td>
                     <td>
-                        @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-                        @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                        @Html.ActionLink("Edit", "Edit", new { id = item.ID }, new { style = "text-decoration:underline" }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.ID }, new { style = "text-decoration:underline" })
                     </td>
                 </tr>
                 i = i + 1;

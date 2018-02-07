@@ -5,7 +5,6 @@
 <script type="text/javascript" src="@Url.Content("~/Content/javascripts/jquery/jquery-1.9.1.js")"></script>
 <script type="text/javascript" src="@Url.Content("~/Content/javascripts/jquery/jquery-ui.js")"></script>
 <link rel="stylesheet" href="~/Content/stylesheets/_styles/jquery-ui.css" />
-
 <div id="comment-ui">
     <h3 id="comments-heading">Comments</h3>
 
@@ -51,7 +50,7 @@
         debugger;
         var NewsId = $("#newsId").val();
         var comment = $("#txtcomments").val();
-        
+
 
         $.post('/news/add_comment?newsId=' + NewsId + "&news_Comment=" + comment, function (data) {
             debugger;

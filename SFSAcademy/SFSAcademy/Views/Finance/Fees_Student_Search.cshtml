@@ -3,7 +3,6 @@
 @{
     ViewBag.Title = "Fees_Student_Search";
 }
-
 <script type="text/javascript" src="@Url.Content("~/Content/javascripts/jquery/jquery.min.js")"></script>
 <script type="text/javascript" src="@Url.Content("~/Content/javascripts/jquery/jquery-ui.min.js")"></script>
 <script type="text/javascript" src="@Url.Content("~/Content/javascripts/jquery/jquery-1.9.1.js")"></script>
@@ -42,7 +41,8 @@
 <div class="bread_crumb">
     @Html.ActionLink("Finance", "Index") &raquo;
     @Html.ActionLink("Fees", "Fees_Index") &raquo;
-    Fee Submission
+    @Html.ActionLink("Fees Submission", "Fees_Submission_Index") &raquo;
+    Fee Submission Student
 </div>
 <div id="flash_box">
     @if (ViewBag.FeeCollectionMessage != null)

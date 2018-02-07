@@ -10,16 +10,19 @@
                 Sl. No.
             </th>
             <th>
-                Last Name               
+                Last Name
             </th>
             <th>
-                First Name             
+                First Name
             </th>
             <th>
                 Batch
             </th>
             <th>
-                Admission Date            
+                Roll Number
+            </th>
+            <th>
+                Admission Date
             </th>
             <th>
                 Admission Number
@@ -48,6 +51,9 @@
                         <label>-</label>
                         @Html.DisplayFor(modelItem => item.BatcheData.NAME)
                     </td>
+                    <td class="col-3">
+                        @Html.DisplayFor(modelItem => item.StudentData.CLS_ROLL_NO)
+                    </td>
                     <td class="col-5" nowrap>
                         @if (!item.StudentData.ADMSN_DATE.Equals(null))
                         {
@@ -58,7 +64,7 @@
                         @Html.DisplayFor(modelItem => item.StudentData.ADMSN_NO)
                     </td>
                     <td class="col-6" nowrap>
-                        @Html.ActionLink("Profile ", "Profiles", new { id = item.StudentData.ID })
+                        @Html.ActionLink("Profile ", "Profiles", new { id = item.StudentData.ID }, new { style = "text-decoration:underline" })
                     </td>
                 </tr>
             i = i + 1;

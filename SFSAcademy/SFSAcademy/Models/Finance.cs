@@ -33,6 +33,14 @@ namespace SFSAcademy.Models
         public string Name { set; get; }
     }
 
+    public class FeeParticular
+    {
+        public FINANCE_FEE_PARTICULAR FeeParticularData { get; set; }
+        public FINANCE_FEE_CATGEORY FeeCategoryData { get; set; }
+        public STUDENT_CATGEORY StudentCategoryData { get; set; }
+        public STUDENT StudentData { get; set; }
+    }
+
     public class FeeDiscount
     {
         public FEE_DISCOUNT FeeDiscountData { get; set; }
