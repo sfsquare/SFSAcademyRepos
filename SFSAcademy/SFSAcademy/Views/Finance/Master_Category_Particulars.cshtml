@@ -1,0 +1,123 @@
+﻿@model PagedList.IPagedList<SFSAcademy.Models.FeeParticular>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+<div id="content-header">
+    <img src="~/Content/images/show_finance.png" alt="Finance Logo">
+    <h1>Finance Management</h1>
+    <h3>View Fee Particular</h3>
+    <div id="app-back-button">
+        <a href='javascript:history.back()' onclick="return confirm('are you sure?')"><img src="~/Content/images/buttons/back.png"></a>
+    </div>
+</div>
+<div><img src="~/Content/images/_global/header_underline_.jpg" width="100%"></div>
+
+<div class="bread_crumb">
+    @Html.ActionLink("Finance", "Index") &raquo;
+    @Html.ActionLink("Fees", "Fees_Index") &raquo;
+    @Html.ActionLink("Fee List", "Fee_Category_View") &raquo;
+    Fees Particular
+</div>
+<div id="flash_box">
+    @if (Session["FeePartDelMessage"] != null)
+    {
+        <p class="flash-msg"> @Session["FeePartDelMessage"] </p>
+    }
+</div>
+<div class="students-table">
+@if (Model.Count() == 0)
+{
+    <table id="listing" align="center" style="width:100%" cellpadding="1" cellspacing="1">
+        <tr class="tr-head">
+            <td>No Particulars to Display!</td>
+        </tr>
+    </table>
+}
+else
+{ 
+    <table id="listing" align="center" width="100%" cellpadding="1" cellspacing="1">
+        <tr class="tr-head">
+            <th>
+                Sl. No.
+            </th>
+            <th>
+                Category
+            </th>
+            <th>
+                Student Category
+            </th>
+            <th>
+                Admission Number
+            </th>
+            <th>
+                Amount
+            </th>
+            <th>
+                Created Date
+            </th>
+            @if (Html.CurrentUser_UserType().Equals("Admin"))
+            {
+                <th>
+                    Select
+                </th>
+            }          
+        </tr>
+        <tr class="tr-blank"></tr>
+        @{int i = 1; }
+        @{string StdCategory = "-"; string StdName = "NA";}
+        @foreach (var item in Model)
+            {
+                string selectedRow = "tr-even";
+                if (i % 2 == 0)
+                {
+                    selectedRow = "tr-odd";
+                }
+                <tr class="@selectedRow">
+                    <td class="col-1">@i</td>
+                    <td class="col-4">
+                        @Html.DisplayFor(modelItem => item.FeeParticularData.NAME)
+                    </td>
+                    <td class="col-7">
+                        @if (item.FeeParticularData.STDNT_CAT_ID.Equals(null))
+                        {
+                            @StdCategory
+                        }
+                        else
+                        {
+                            @Html.DisplayFor(modelItem => item.StudentCategoryData.NAME)
+                        }
+
+                    </td>
+                    <td class="col-7">
+                        @if (item.FeeParticularData.STDNT_ID.Equals(null))
+                        {
+                            @StdName
+                        }
+                        else
+                        {
+                            @Html.DisplayFor(modelItem => item.StudentData.ADMSN_NO)
+                        }
+
+                    </td>
+                    <td class="col-4">
+                        @Html.DisplayFor(modelItem => item.FeeParticularData.AMT)
+                    </td>
+                    <td class="col-5" nowrap>
+                        @item.FeeParticularData.CREATED_AT.Value.ToShortDateString()
+                    </td>
+                    @if (Html.CurrentUser_UserType().Equals("Admin"))
+                    {
+                        <td class="col-6" nowrap>
+                            @Html.ActionLink("Delete", "Master_Category_Particulars_Delete", new { id = item.FeeParticularData.ID, FeeCatId = ViewBag.FeeCatId }, new { style = "text-decoration:underline" }) |
+                            @Html.ActionLink("Edit", "Master_Category_Particulars_Edit", new { id = item.FeeParticularData.ID, FeeCatId = ViewBag.FeeCatId }, new { style = "text-decoration:underline" })
+                        </td>
+                    }                   
+                </tr>
+            i = i + 1;
+        }
+    </table>
+    <br />
+    @Html.PagedListPager(Model, page => Url.Action("Master_Category_Particulars",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+            }
+</div>

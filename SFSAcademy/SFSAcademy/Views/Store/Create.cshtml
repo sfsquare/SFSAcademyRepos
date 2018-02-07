@@ -35,6 +35,11 @@
 <div>
     <img src="~/Content/images/_global/header_underline_.jpg" width="100%">
 </div>
+<div class="bread_crumb">
+    @Html.ActionLink("Store", "Index") &raquo;
+    @Html.ActionLink("View All Products", "ViewAll") &raquo;
+    Add New Product
+</div>
 <div id="page-yield">
 
     @if (Html.ValidationSummary() != null)
@@ -55,15 +60,16 @@
 
             <div class="label-field-pair">
                 @Html.LabelFor(model => model.NAME, "Product Name", htmlAttributes: new { @class = "control-label col-md-2" })
-                <span class="necessary-field">*</span>
+                <span class="necessary-field" style="font-size:small">* Required Field</span>
                 <div class="text-input-bg">
-                    @Html.EditorFor(model => model.NAME, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.EditorFor(model => model.NAME, new { htmlAttributes = new { @class = "form-control", required = "required" } })
                     @Html.ValidationMessageFor(model => model.NAME, "", new { @class = "text-danger" })
                 </div>
             </div>
 
             <div class="label-field-pair">
                 @Html.LabelFor(model => model.CATEGORY_ID, "Product Category", htmlAttributes: new { @class = "control-label col-md-2" })
+                <span class="necessary-field" style="font-size:small">* Required Field</span>
                 <div class="text-input-bg">
                     @Html.DropDownList("CATEGORY_ID", null, htmlAttributes: new { @class = "form-control" })
                     @Html.ValidationMessageFor(model => model.CATEGORY_ID, "", new { @class = "text-danger" })
@@ -81,8 +87,9 @@
             <div id="admission1_form_vertical_block_left">
                 <div class="label-field-pair">
                     @Html.LabelFor(model => model.TOTAL_UNIT, "Total Number of Units Purchased", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <span class="necessary-field" style="font-size:small">* Required Field</span>
                     <div class="text-input-bg">
-                        @Html.EditorFor(model => model.TOTAL_UNIT, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.EditorFor(model => model.TOTAL_UNIT, new { htmlAttributes = new { @class = "form-control" }, required = "required" })
                         @Html.ValidationMessageFor(model => model.TOTAL_UNIT, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -90,7 +97,7 @@
                 <div class="label-field-pair">
                     @Html.LabelFor(model => model.TOTAL_COST, "Total Cost", htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        @Html.EditorFor(model => model.TOTAL_COST, new { htmlAttributes = new { @class = "form-control"} })
+                        @Html.EditorFor(model => model.TOTAL_COST, new { htmlAttributes = new { @class = "form-control" } })
                         @Html.ValidationMessageFor(model => model.TOTAL_COST, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -98,7 +105,7 @@
                 <div class="label-field-pair">
                     @Html.LabelFor(model => model.COST_PER_UNIT, "Cost Per Unit", htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        @Html.EditorFor(model => model.COST_PER_UNIT, new { htmlAttributes = new { @class = "form-control"} })
+                        @Html.EditorFor(model => model.COST_PER_UNIT, new { htmlAttributes = new { @class = "form-control" } })
                         @Html.ValidationMessageFor(model => model.COST_PER_UNIT, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -170,17 +177,17 @@
                 </div>
                 <hr class="label-underline">
                 <br />
-            
+
             </div>
             <div class="extender">
             </div>
         </div>
-        
+
         <div class="buttons">
             <input type="submit" value="► Save " class="submit_button" />
-           @Html.ActionLink("Back to List", "ViewAll")
+            @Html.ActionLink("Back to List", "ViewAll")
         </div>
-        
+
     }
 </div>
 

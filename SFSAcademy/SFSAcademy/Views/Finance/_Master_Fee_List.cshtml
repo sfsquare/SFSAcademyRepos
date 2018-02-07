@@ -18,9 +18,13 @@
             <th>
                 @Html.ActionLink("Created Date", "Master_Fees", new { sortOrder = ViewBag.DateSortParm, currentFilter = ViewBag.CurrentFilter })
             </th>
-            <th>
-                Select
-            </th>
+            @if (Html.CurrentUser_UserType().Equals("Admin"))
+            {
+                <th>
+                    Select
+                </th>
+            }
+
         </tr>
         <tr class="tr-blank"></tr>
         @{int i = 1; }
@@ -53,10 +57,14 @@
                     <td class="col-5" nowrap>
                         @item.FinanceFeeCategoryData.CREATED_AT.Value.ToShortDateString()
                     </td>
-                    <td class="col-6" nowrap>
-                        @Html.ActionLink("Delete", "Master_Category_Delete", new { id = item.FinanceFeeCategoryData.ID }) |
-                        @Html.ActionLink("Edit", "Master_Category_Edit", new { id = item.FinanceFeeCategoryData.ID })
-                    </td>
+                    @if (Html.CurrentUser_UserType().Equals("Admin"))
+                    {
+                        <td class="col-6" nowrap>
+                            @Html.ActionLink("Delete", "Master_Category_Delete", new { id = item.FinanceFeeCategoryData.ID }, new { style = "text-decoration:underline" }) |
+                            @Html.ActionLink("Edit", "Master_Category_Edit", new { id = item.FinanceFeeCategoryData.ID }, new { style = "text-decoration:underline" })
+                        </td>
+                    }
+
                 </tr>
             i = i + 1;
         }

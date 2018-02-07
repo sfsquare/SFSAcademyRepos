@@ -1,7 +1,6 @@
 ﻿@using SFSAcademy.Models
 @model IList<SelectCourseBatch>
 @{    Layout = null;}
-
 <script type="text/javascript" src="@Url.Content("~/Content/javascripts/jquery/jquery.min.js")"></script>
 <script type="text/javascript" src="@Url.Content("~/Content/javascripts/jquery/jquery-ui.min.js")"></script>
 <script type="text/javascript" src="@Url.Content("~/Content/javascripts/jquery/jquery-1.9.1.js")"></script>
@@ -26,8 +25,8 @@
 <div class="label-field-pair">
     <div class="label-container"><label>Is this Master Category?</label></div>
     <div class="radio_button">
-        <div class="opt"> @Html.RadioButton("radioName", "Yes", true, new { id = "id1"}) Yes </div>
-        <div class="opt"> @Html.RadioButton("radioName", "No", false, new { id = "id2"}) No <br /></div>
+        <div class="opt"> @Html.RadioButton("radioName", "Yes", true, new { id = "id1" }) Yes </div>
+        <div class="opt"> @Html.RadioButton("radioName", "No", false, new { id = "id2" }) No <br /></div>
     </div>
 </div>
 <div class="label-field-pair">
@@ -69,9 +68,10 @@
                 </div>
             </div>
         </div>
-    </div>       
- </div>
+    </div>
+</div>
 <br />
+
 
 
 

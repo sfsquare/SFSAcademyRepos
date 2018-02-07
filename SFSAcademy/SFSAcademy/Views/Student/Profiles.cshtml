@@ -28,8 +28,7 @@
         {
             <li class="a"><a href="@Url.Action("Guardians", "Student", new { id = Model.StudentData.ID })">Guardian</a></li>
         }
-
-        @if (Html.Permitted_To("Remove", "Student") || Html.Permitted_To("Admission1", "Student"))
+        @if (Html.CurrentUser_UserType().Equals("Admin"))
         {
             <li class="a"><a href="@Url.Action("Remove", "Student", new { id =Model.StudentData.ID })">Delete</a></li>
         }
@@ -51,7 +50,7 @@
         <p class="flash-msg"> @Html.ValidationSummary() </p>
     }
     <div id="student_profile_heading">
-        <div id="profile_picture_display" >
+        <div id="profile_picture_display">
             <img src="/Student/Show/@Model.StudentData.IMAGE_DOCUMENTS_ID" alt="" height=150 width=150 />
         </div>
         <div id="student_main_info">
@@ -59,7 +58,7 @@
             @if (Model.CourseData != null)
             {
                 <h4> Course : @Model.CourseData.CRS_NAME </h4>
-            }           
+            }
             <h4> Batch : @Model.BatcheData.NAME </h4>
             <h4> Admission Number : @Model.StudentData.ADMSN_NO </h4>
         </div>
@@ -95,7 +94,7 @@
             @if (Model.EmployeeData != null)
             {
                 <tr class="odd left"><td>Group Tutor :</td><td class="right">@Model.EmployeeData.FIRST_NAME @Model.EmployeeData.LAST_NAME</td></tr>
-            }   
+            }
             <tr class="even left"><td>Contact Details :</td><td class="right">@Html.ActionLink("Click Here", "Guardians", new { id = Model.StudentData.ID })</td></tr>
             <tr class="even left"><td>Previous Details :</td><td class="right">@Html.ActionLink("Click Here", "ShowPreviousDetails", new { id = Model.StudentData.ID })</td></tr>
         </table>

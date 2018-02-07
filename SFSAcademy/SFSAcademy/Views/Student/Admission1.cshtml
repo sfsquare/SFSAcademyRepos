@@ -44,7 +44,7 @@
     }
 
 
-    @using (Html.BeginForm("Admission1", "Student", FormMethod.Post, new { @encType = "multipart/form-data"}))
+    @using (Html.BeginForm("Admission1", "Student", FormMethod.Post, new { @encType = "multipart/form-data" }))
     {
         @Html.AntiForgeryToken()
 
@@ -65,7 +65,7 @@
                 <div class="student_admission_date">
                     @Html.LabelFor(model => model.ADMSN_DATE, "Admission Date", htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="text-input-bg-admission">
-                        @Html.EditorFor(model => model.ADMSN_DATE, new { htmlAttributes = new { @class = "m-wrap  datepicker", @id = "datepicker", @Value = ViewBag.ReturnDate} })
+                        @Html.EditorFor(model => model.ADMSN_DATE, new { htmlAttributes = new { @class = "m-wrap  datepicker", @id = "datepicker", @Value = ViewBag.ReturnDate } })
                         @Html.ValidationMessageFor(model => model.ADMSN_DATE, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -75,10 +75,10 @@
 
             <div class="label-field-pair">
                 @Html.LabelFor(model => model.FIRST_NAME, "First Name", htmlAttributes: new { @class = "control-label col-md-2" })
-                <span class="necessary-field">*</span>
+                <span class="necessary-field" style="font-size:small">* Required Field</span>
                 <div class="text-input-bg">
-                    @Html.EditorFor(model => model.FIRST_NAME, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.FIRST_NAME, "", new { @class = "text-danger" })
+                    @Html.EditorFor(model => model.FIRST_NAME, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                    @Html.ValidationMessageFor(model => model.FIRST_NAME, "First Name is Required.", new { @class = "text-danger" })
                 </div>
             </div>
             <hr class="label-underline">
@@ -94,9 +94,10 @@
 
             <div class="label-field-pair">
                 @Html.LabelFor(model => model.LAST_NAME, "Last Name", htmlAttributes: new { @class = "control-label col-md-2" })
+                <span class="necessary-field" style="font-size:small">* Required Field</span>
                 <div class="text-input-bg">
-                    @Html.EditorFor(model => model.LAST_NAME, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.LAST_NAME, "", new { @class = "text-danger" })
+                    @Html.EditorFor(model => model.LAST_NAME, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                    @Html.ValidationMessageFor(model => model.LAST_NAME, "Last Name is Required", new { @class = "text-danger" })
                 </div>
             </div>
             <hr class="label-underline">
@@ -104,9 +105,10 @@
             <div id="admission1_form_vertical_block_left">
                 <div class="label-field-pair">
                     @Html.LabelFor(model => model.BTCH_ID, "Course And Batch", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <span class="necessary-field" style="font-size:small">* Required Field</span>
                     <div class="text-input-bg">
-                        @Html.DropDownList("BTCH_ID", null, htmlAttributes: new { @class = "form-control" })
-                        @Html.ValidationMessageFor(model => model.BTCH_ID, "", new { @class = "text-danger" })
+                        @Html.DropDownList("BTCH_ID", null, htmlAttributes: new { @class = "form-control"})
+                        @Html.ValidationMessageFor(model => model.BTCH_ID, "Batch Selection is Required", new { @class = "text-danger" })
                     </div>
                 </div>
                 <hr class="label-underline">
@@ -114,8 +116,9 @@
                 <div class="label-field-pair">
                     @Html.LabelFor(model => model.DOB, "Date Of Birth", htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        @Html.EditorFor(model => model.DOB, new { htmlAttributes = new { @class = "form-control", @id = "datepicker2", @Value = ViewBag.ReturnDate } })
-                        @Html.ValidationMessageFor(model => model.DOB, "", new { @class = "text-danger" })
+                        @Html.EditorFor(model => model.DOB, new { htmlAttributes = new { @class = "form-control", @id = "datepicker2", required = "required" } })
+                        <span class="necessary-field" style="font-size:small">* Required Field</span>
+                        @Html.ValidationMessageFor(model => model.DOB, "Date of Birth is Required", new { @class = "text-danger" })
                     </div>
                 </div>
                 <hr class="label-underline">
@@ -176,8 +179,8 @@
                 <div class="label-field-pair">
                     @Html.LabelFor(model => model.STDNT_CAT_ID, "Category", htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="text-input-bg">
-                        @Html.DropDownList("STDNT_CAT_ID", null, htmlAttributes: new { @class = "form-control" })
-                        @Html.ValidationMessageFor(model => model.STDNT_CAT_ID, "", new { @class = "text-danger" })
+                        @Html.DropDownList("STDNT_CAT_ID", null, htmlAttributes: new { @class = "form-control"})
+                        @Html.ValidationMessageFor(model => model.STDNT_CAT_ID, "Category Selection is Required", new { @class = "text-danger" })
                     </div>
                 </div>
                 <hr class="label-underline">
@@ -318,9 +321,9 @@
 
     @Scripts.Render("~/bundles/jqueryval")
 
-<script src="~/Scripts/dropzone.js"></script>
+    <script src="~/Scripts/dropzone.js"></script>
 
-<script type="text/javascript">
+    <script type="text/javascript">
 
 $(document).ready(function () {
     $("#preview").fadeOut(15);
@@ -333,5 +336,5 @@ $(document).ready(function () {
     });
 });
 
-</script>
+    </script>
 }

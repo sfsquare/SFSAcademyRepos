@@ -23,7 +23,7 @@
                         if (isAuthor || ViewBag.isModerator)
                         {
                             <div class="delete-comment">
-                                @Html.ActionLink("Delete Comment", "delete_comment", new { commentId = Model.commentId,newsId=Model.newsId }, new { onclick = "return confirm('are you sure?')" })
+                                @Html.ActionLink("Delete Comment", "delete_comment", new { commentId = Model.commentId, newsId = Model.newsId }, new { onclick = "return confirm('are you sure?')" })
                             </div>
                         }
                     }
@@ -39,7 +39,7 @@
                     }
                     <div class="approve">
                         @{
-                            
+
                             if (!ViewBag.isModerator && Model.isApproved != "Y" && isAuthor)
                             {
                                 @*@Html.DisplayFor(modelItem => "waiting_to_approve")*@
@@ -51,7 +51,7 @@
                             {
                                 @*@Html.DisplayFor(modelItem => "waiting_to_approve")*@
                                 @Html.Label("lblwaiting", "Waiting for approve  ")
-                                @Html.ActionLink("approve", "comment_approved", new { commentId = Model.commentId, newsId = Model.newsId})
+                                @Html.ActionLink("approve", "comment_approved", new { commentId = Model.commentId, newsId = Model.newsId })
                             }
                         }
                     </div>
@@ -59,7 +59,7 @@
                 <div class="comment-content">@Model.commentContent</div>
             </li>
                             }
-                            else if(isAuthor)
+                            else if (isAuthor)
                             {
                                 <li id="comment-item- @Model.commentId">
                                     <div class="comment-details">
@@ -90,12 +90,12 @@
                                             }
                                         }
                                     </div>
-                                    
-                                        <div class="comment-content">@Model.commentContent</div>
+
+                                    <div class="comment-content">@Model.commentContent</div>
                                 </li>
-                                    }
-                                }
-                            }
+                                                    }
+                                                }
+                                            }
 
 
 

@@ -10,17 +10,20 @@
                 Sl. No.
             </th>
             <th>
-                @Html.ActionLink("Fees Name", "Fee_Category_View", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })
+                Fees Name
             </th>
             <th>
                 Batch
             </th>
             <th>
-                @Html.ActionLink("Created Date", "Fee_Category_View", new { sortOrder = ViewBag.DateSortParm, currentFilter = ViewBag.CurrentFilter })
+                Created Date
             </th>
-            <th>
-                Select
-            </th>
+            @if (Html.CurrentUser_UserType().Equals("Admin"))
+            {
+                <th>
+                    Select
+                </th>
+            }
         </tr>
         <tr class="tr-blank"></tr>
         @{int i = 1; }
@@ -35,28 +38,31 @@
                 <tr class="@selectedRow">
                     <td class="col-1">@i</td>
                     <td class="col-4">
-                        @Html.DisplayFor(modelItem => item.FinanceFeeCategoryData.NAME)
+                        @Html.ActionLink(item.FinanceFeeCategoryData.NAME, "master_category_particulars", new { id = item.FinanceFeeCategoryData.ID }, new { style = "text-decoration:underline" })
                     </td>
                     <td class="col-7">
                         @if (item.FinanceFeeCategoryData.BTCH_ID.Equals(null))
                         {
-                         @AllBatches
+                            @AllBatches
                         }
                         else
                         {
-                        @Html.DisplayFor(modelItem => item.CourseData.CODE)
+                            @Html.DisplayFor(modelItem => item.CourseData.CODE)
                             <label>-</label>
-                        @Html.DisplayFor(modelItem => item.BatchData.NAME)
+                            @Html.DisplayFor(modelItem => item.BatchData.NAME)
                         }
 
                     </td>
                     <td class="col-5" nowrap>
                         @item.FinanceFeeCategoryData.CREATED_AT.Value.ToShortDateString()
                     </td>
-                    <td class="col-6" nowrap>
-                        @Html.ActionLink("Delete", "Master_Category_Delete", new { id = item.FinanceFeeCategoryData.ID }) |
-                        @Html.ActionLink("Edit", "Master_Category_Edit", new { id = item.FinanceFeeCategoryData.ID })
-                    </td>
+                    @if (Html.CurrentUser_UserType().Equals("Admin"))
+                    {
+                        <td class="col-6" nowrap>
+                            @Html.ActionLink("Delete", "Master_Category_Delete", new { id = item.FinanceFeeCategoryData.ID }, new { style = "text-decoration:underline" }) |
+                            @Html.ActionLink("Edit", "Master_Category_Edit", new { id = item.FinanceFeeCategoryData.ID }, new { style = "text-decoration:underline" })
+                        </td>
+                    }
                 </tr>
             i = i + 1;
         }
