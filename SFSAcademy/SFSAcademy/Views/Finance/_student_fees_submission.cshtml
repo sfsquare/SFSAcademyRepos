@@ -442,7 +442,10 @@ new { @class = "form-control", @id = "PAYMENT_MODE" })
 
                             <div class="pay_fees_buttons">
                                 <input type="submit" value="► Pay Fees" id="submit-button1" class="submit_button" />
-                                @Html.ActionLink("Print Receipt", "student_fee_receipt_pdf", new { id = student.ID, id2 = date.ID })
+                                @if (financefee != null && financefee.Count() != 0)
+                                {
+                                    @Html.ActionLink("Print Receipt", "student_fee_receipt_pdf", new { id = student.ID, id2 = date.ID })
+                                }
                             </div>
                     }
                     else

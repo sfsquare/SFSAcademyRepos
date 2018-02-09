@@ -37,6 +37,7 @@
                     <p>
                         @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, new { title = "Enter First Name, Last Name or Admission Number for search." })
                         <input type="submit" value="Search" id="submit-button" />
+                        <span class="necessary-field" style="font-size:small">*Enter First Name or Last Name or Admission Number to search.</span>
                     </p>
                 }
 

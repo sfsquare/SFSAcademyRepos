@@ -31,7 +31,14 @@
         </div>
         <table width="700">
             <tr class="odd left"><td>Admission Date :</td><td class="right">@Model.StudentData.ADMSN_DATE.Value.ToShortDateString()</td></tr>
-            <tr class="even left"><td>Date Of Birth :</td><td class="right">@Model.StudentData.DOB.Value.ToShortDateString()</td></tr>
+            @if (Model.StudentData.DOB != null)
+            {
+                <tr class="even left"><td>Date Of Birth :</td><td class="right">@Model.StudentData.DOB.Value.ToShortDateString()</td></tr>
+            }
+            else
+            {
+                <tr class="even left"><td>Date Of Birth :</td><td class="right">@Model.StudentData.DOB</td></tr>
+            }
             <tr class="odd left"><td>Blood Group :</td><td class="right">@Model.StudentData.BLOOD_GRP</td></tr>
             <tr class="even left"><td>Gender :</td><td class="right">@Model.StudentData.GNDR</td></tr>
             <tr class="odd left"><td>Nationality :</td><td class="right">@Model.CountryData.NTLTY</td></tr>

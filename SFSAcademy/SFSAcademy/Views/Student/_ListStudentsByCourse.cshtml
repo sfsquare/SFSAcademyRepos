@@ -71,6 +71,6 @@
         }
     </table>
     <br />
-    @Html.PagedListPager(Model, page => Url.Action("_ListStudentsByCourse",
+    @Html.PagedListPager(Model, page => Url.Action("ViewAll",
     new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
 </div>

@@ -90,7 +90,7 @@ namespace SFSAcademy.Controllers
                 options.Add(result);
             }
             // add the 'ALL' option
-            options.Insert(0, new SelectListItem() { Value = "-1", Text = "All" });
+            options.Insert(0, new SelectListItem() { Value = "-1", Text = "Select Batch" });
             ViewBag.searchString = options;
             return View(db.BATCHes.ToList());
         }
