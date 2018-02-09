@@ -117,6 +117,8 @@ namespace SFSAcademy.Controllers
         {
             if (ModelState.IsValid)
             {
+                bATCH.IS_DEL = "N";
+                bATCH.EMP_ID = Convert.ToInt32(this.Session["UserId"]);
                 db.BATCHes.Add(bATCH);
                 db.SaveChanges();
                 return RedirectToAction("ManageBatches");

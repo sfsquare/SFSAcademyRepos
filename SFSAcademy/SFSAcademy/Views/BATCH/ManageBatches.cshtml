@@ -16,6 +16,7 @@
 <div><img src="~/Content/images/_global/header_underline_.jpg" width="100%"></div>
 <div id="inner-tab-menu">
     <ul>
+        <li>@Html.ActionLink("New Batch", "Create")</li>
         @if (Html.Permitted_To("Index", "Grading_Levels"))
         {
             <li><a href="@Url.Action("Index", "Grading_Levels")">Grading system</a></li>
@@ -30,10 +31,6 @@
         <a href="@Url.Action("Index", "Courses")">Courses</a> &raquo;
         Manage Batch
     </div>
-    @if (Html.ValidationSummary() != null)
-    {
-        <p class="flash-msg"> @Html.ValidationSummary() </p>
-    }
     <div class="box">
         <div id="search_box_bg">
             <form name="search-form" id="search-form" action="" style="display:inline;">

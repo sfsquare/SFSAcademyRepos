@@ -151,7 +151,7 @@
                     { total_fees -= total_fees * @ViewBag.total_discount_percentage / 100; }
                     <tr class="@selectedRow">
                         <td class="col-8" colspan="3">Total Fees</td>
-                        <td class="col-6">@total_fees</td>
+                        <td class="col-6">@total_fees.ToString("0.00")</td>
                     </tr>
                 }
                 @if (@ViewBag.total_fine != 0)
@@ -274,7 +274,7 @@
                 }
                 <tr class="@selectedRow" cellpadding="1" cellspacing="1">
                     <td class="col-8" colspan="3">Amount To Pay :</td>
-                    <td class="col-pdf">@total_fees</td>
+                    <td class="col-pdf">@total_fees.ToString("0.00")</td>
                 </tr>
                 @{selectedRow = "even"; }
                 @if (i % 2 == 0)

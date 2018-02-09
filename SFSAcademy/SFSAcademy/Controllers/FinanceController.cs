@@ -2034,7 +2034,7 @@ namespace SFSAcademy.Controllers
             ViewData["fee_category"] = fee_category;
 
             var fee_particulars_val = (from ff in db.FINANCE_FEE_PARTICULAR
-                                       where ff.FIN_FEE_CAT_ID == date_val.FEE_CAT_ID
+                                       where ff.FIN_FEE_CAT_ID == date_val.FEE_CAT_ID && (ff.STDNT_ID == StudentVal.ID || ff.STDNT_ID == null) && (ff.STDNT_CAT_ID == StudentVal.STDNT_CAT_ID || ff.STDNT_CAT_ID == null)
                                        select ff).ToList();
             ViewData["fee_particulars"] = fee_particulars_val;
 
