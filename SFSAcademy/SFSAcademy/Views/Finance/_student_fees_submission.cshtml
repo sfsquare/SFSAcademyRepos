@@ -82,6 +82,12 @@
         });
    });
 </script>
+<div id="flash_box">
+    @if (ViewBag.FeeCollectionMessage != null)
+            {
+        <p class="flash-msg"> @ViewBag.FeeCollectionMessage </p>
+    }
+</div>
 <div class="name"></div>
 @if (financefee != null && financefee.Count() != 0)
 {

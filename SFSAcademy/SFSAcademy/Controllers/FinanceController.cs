@@ -1644,7 +1644,7 @@ namespace SFSAcademy.Controllers
                 FINANCE_FEE_CATGEORY fee_category = db.FINANCE_FEE_CATGEORY.Find(fee_collection.FEE_CAT_ID);
                 ViewData["fee_category"] = fee_category;
                 var fee_particulars_val = (from ff in db.FINANCE_FEE_PARTICULAR
-                                           where ff.FIN_FEE_CAT_ID == date_val.FEE_CAT_ID
+                                           where ff.FIN_FEE_CAT_ID == date_val.FEE_CAT_ID && (ff.STDNT_ID == StudentVal.FirstOrDefault().Student_data.ID || ff.STDNT_ID == null) && (ff.STDNT_CAT_ID == StudentVal.FirstOrDefault().Student_data.STDNT_CAT_ID || ff.STDNT_CAT_ID == null)
                                            select ff).ToList();
                 ViewData["fee_particulars"] = fee_particulars_val;
 
@@ -1812,7 +1812,7 @@ namespace SFSAcademy.Controllers
                 FINANCE_FEE_CATGEORY fee_category = db.FINANCE_FEE_CATGEORY.Find(fee_collection.FEE_CAT_ID);
                 ViewData["fee_category"] = fee_category;
                 var fee_particulars_val = (from ff in db.FINANCE_FEE_PARTICULAR
-                                           where ff.FIN_FEE_CAT_ID == date_val.FEE_CAT_ID
+                                           where ff.FIN_FEE_CAT_ID == date_val.FEE_CAT_ID && (ff.STDNT_ID == StudentVal.FirstOrDefault().Student_data.ID || ff.STDNT_ID == null) && (ff.STDNT_CAT_ID == StudentVal.FirstOrDefault().Student_data.STDNT_CAT_ID || ff.STDNT_CAT_ID == null)
                                            select ff).ToList();
                 ViewData["fee_particulars"] = fee_particulars_val;
 
@@ -1913,96 +1913,105 @@ namespace SFSAcademy.Controllers
                 }
 
                 decimal fees_paid = (decimal)PAYMENT_AMOUNT;
-
-                if (fees_paid >= 0)
+                var FeeCat = db.FINANCE_TRANSACTION_CATEGORY.Where(x => x.NAME == "Fees").Distinct();
+                if(FeeCat != null && FeeCat.Count()>0)
                 {
-                    if (fees_paid <= total_fees)
+                    if (fees_paid >= 0)
                     {
-                        var FeeCat = db.FINANCE_TRANSACTION_CATEGORY.Where(x => x.NAME == "Fees").Distinct();
-                        int TranCatId = FeeCat != null ? Convert.ToInt32(FeeCat.FirstOrDefault().ID) : -1;
-                        int FinanceFee_id = financefeeVal != null && financefeeVal.Count() != 0 ? financefeeVal.FirstOrDefault().ID : -1;
-                        String ReceiptNo = feeVal != null ? feeVal.FirstOrDefault().FinanceFeeData.ID.ToString() : "";
-                        int PayeeId = StudentVal != null ? StudentVal.FirstOrDefault().Student_data.ID : -1;
+                        if (fees_paid <= total_fees)
+                        {
+                            //var FeeCat = db.FINANCE_TRANSACTION_CATEGORY.Where(x => x.NAME == "Fees").Distinct();
+                            int TranCatId = FeeCat != null ? Convert.ToInt32(FeeCat.FirstOrDefault().ID) : -1;
+                            int FinanceFee_id = financefeeVal != null && financefeeVal.Count() != 0 ? financefeeVal.FirstOrDefault().ID : -1;
+                            String ReceiptNo = feeVal != null ? feeVal.FirstOrDefault().FinanceFeeData.ID.ToString() : "";
+                            int PayeeId = StudentVal != null ? StudentVal.FirstOrDefault().Student_data.ID : -1;
 
-                        var transaction = new FINANCE_TRANSACTION()
-                        {
-                            TIL = total_fees > fees_paid ? string.Concat("RN.Partial:", ReceiptNo) : string.Concat("RN:", ReceiptNo),
-                            CAT_ID = TranCatId,
-                            DESCR = total_fees > fees_paid ? string.Concat("Part Payment: ", PAYMENT_MODE, " : ", PAYMENT_NOTE, ":", ReceiptNo) : string.Concat("Full Payment: ", PAYMENT_MODE, " : ", PAYMENT_NOTE, ":", ReceiptNo),
-                            PAYEE_ID = PayeeId,
-                            PAYEE_TYPE = "Student",
-                            AMT = (decimal)fees_paid,
-                            FINE_AMT = total_fine_val,
-                            FINE_INCLD = total_fine_val != 0 ? "Y" : "N",
-                            FIN_FE_ID = FinanceFee_id,
-                            MSTRTRAN_ID = -1,
-                            RCPT_NO = ReceiptNo,
-                            TRAN_DATE = System.DateTime.Now,
-                            CRETAED_AT = System.DateTime.Now,
-                            UPDATED_AT = System.DateTime.Now
-                        };
-                        db.FINANCE_TRANSACTION.Add(transaction);
-                        db.SaveChanges();
-                        if (ViewData["paid_fees"] == null)
-                        {
-                            transaction.MSTRTRAN_ID = transaction.ID;
-                        }
-                        db.Entry(transaction).State = EntityState.Modified;
-                        db.SaveChanges();
+                            var transaction = new FINANCE_TRANSACTION()
+                            {
+                                TIL = total_fees > fees_paid ? string.Concat("RN.Partial:", ReceiptNo) : string.Concat("RN:", ReceiptNo),
+                                CAT_ID = TranCatId,
+                                DESCR = total_fees > fees_paid ? string.Concat("Part Payment: ", PAYMENT_MODE, " : ", PAYMENT_NOTE, ":", ReceiptNo) : string.Concat("Full Payment: ", PAYMENT_MODE, " : ", PAYMENT_NOTE, ":", ReceiptNo),
+                                PAYEE_ID = PayeeId,
+                                PAYEE_TYPE = "Student",
+                                AMT = (decimal)fees_paid,
+                                FINE_AMT = total_fine_val,
+                                FINE_INCLD = total_fine_val != 0 ? "Y" : "N",
+                                FIN_FE_ID = FinanceFee_id,
+                                MSTRTRAN_ID = -1,
+                                RCPT_NO = ReceiptNo,
+                                TRAN_DATE = System.DateTime.Now,
+                                CRETAED_AT = System.DateTime.Now,
+                                UPDATED_AT = System.DateTime.Now
+                            };
+                            db.FINANCE_TRANSACTION.Add(transaction);
+                            db.SaveChanges();
+                            if (ViewData["paid_fees"] == null)
+                            {
+                                transaction.MSTRTRAN_ID = transaction.ID;
+                            }
+                            db.Entry(transaction).State = EntityState.Modified;
+                            db.SaveChanges();
 
-                        string tid = null;
-                        if (financefeeVal != null)
-                        {
-                            tid = string.Concat(financefeeVal.FirstOrDefault().TRAN_ID, ",", transaction.ID.ToString());
+                            string tid = null;
+                            if (financefeeVal.FirstOrDefault().TRAN_ID != null)
+                            {
+                                tid = string.Concat(financefeeVal.FirstOrDefault().TRAN_ID, ",", transaction.ID.ToString());
+                            }
+                            else
+                            {
+                                tid = transaction.ID.ToString();
+                            }
+                            FINANCE_FEE ffUpdate = db.FINANCE_FEE.Find(financefeeVal.FirstOrDefault().ID);
+                            ffUpdate.TRAN_ID = tid;
+                            ffUpdate.IS_PD = fees_paid == total_fees ? "Y" : "N";
+                            db.Entry(ffUpdate).State = EntityState.Modified;
+                            db.SaveChanges();
+                            if (fine > 0)
+                            {
+                                var FineRecord = new FEE_FINE()
+                                {
+                                    TYPE = "Student",
+                                    NAME = "Ad-hoc fine",
+                                    RCVR_ID = PayeeId,
+                                    FIN_FEE_CAT_ID = fee_category.ID,
+                                    FINE = (decimal)fine,
+                                    IS_AMT = "Y",
+                                    FINE_DATE = System.DateTime.Now
+                                };
+                                db.FEE_FINE.Add(FineRecord);
+                                db.SaveChanges();
+                            }
+
+                            var paid_fees_val2 = (from ff in db.FINANCE_FEE
+                                                  join st in db.STUDENTs on ff.STDNT_ID equals st.ID
+                                                  join ft in db.FINANCE_TRANSACTION on ff.ID equals ft.FIN_FE_ID
+                                                  where ff.FEE_CLCT_ID == fee_collection.ID && st.ID == student
+                                                  select new Models.FeeTransaction { FinanceTransactionData = ft, StudentData = st, FinanceFeeData = ff }).OrderBy(x => x.FinanceTransactionData.CRETAED_AT).Distinct();
+                            ViewData["paid_fees"] = paid_fees_val2;
+                            var student_fine_val2 = (from ff in db.FEE_FINE
+                                                     where ff.FIN_FEE_CAT_ID == date_val.FEE_CAT_ID && ff.TYPE == "Student" && ff.RCVR_ID == StudentVal.FirstOrDefault().Student_data.ID
+                                                     select ff);
+                            ViewData["student_fine"] = student_fine_val2;
+
                         }
                         else
                         {
-                            tid = transaction.ID.ToString();
+                            ViewData["paid_fees"] = paid_fees_val;
+                            ViewBag.FeeCollectionMessage = string.Concat("You are paying more then the Fees. Please correct amount.");
                         }
-                        FINANCE_FEE ffUpdate = db.FINANCE_FEE.Find(financefeeVal.FirstOrDefault().ID);
-                        ffUpdate.TRAN_ID = tid;
-                        ffUpdate.IS_PD = fees_paid == total_fees ? "Y" : "N";
-                        db.Entry(ffUpdate).State = EntityState.Modified;
-                        db.SaveChanges();
-                        if (fine > 0)
-                        {
-                            var FineRecord = new FEE_FINE()
-                            {
-                                TYPE = "Student",
-                                NAME = "Ad-hoc fine",
-                                RCVR_ID = PayeeId,
-                                FIN_FEE_CAT_ID = fee_category.ID,
-                                FINE = (decimal)fine,
-                                IS_AMT = "Y",
-                                FINE_DATE = System.DateTime.Now
-                            };
-                            db.FEE_FINE.Add(FineRecord);
-                            db.SaveChanges();
-                        }
-
-                        var paid_fees_val2 = (from ff in db.FINANCE_FEE
-                                              join st in db.STUDENTs on ff.STDNT_ID equals st.ID
-                                              join ft in db.FINANCE_TRANSACTION on ff.ID equals ft.FIN_FE_ID
-                                              where ff.FEE_CLCT_ID == fee_collection.ID && st.ID == student
-                                              select new Models.FeeTransaction { FinanceTransactionData = ft, StudentData = st, FinanceFeeData = ff }).OrderBy(x => x.FinanceTransactionData.CRETAED_AT).Distinct();
-                        ViewData["paid_fees"] = paid_fees_val2;
-                        var student_fine_val2 = (from ff in db.FEE_FINE
-                                                 where ff.FIN_FEE_CAT_ID == date_val.FEE_CAT_ID && ff.TYPE == "Student" && ff.RCVR_ID == StudentVal.FirstOrDefault().Student_data.ID
-                                                 select ff);
-                        ViewData["student_fine"] = student_fine_val2;
-
                     }
                     else
                     {
                         ViewData["paid_fees"] = paid_fees_val;
-                        ViewBag.FeeCollectionMessage = string.Concat("You are paying more then the Fees. Please correct amount.");
+                        ViewBag.FeeCollectionMessage = string.Concat("This does not seem to be a valid transaction.");
                     }
                 }
                 else
                 {
-                    ViewData["paid_fees"] = paid_fees_val;
-                    ViewBag.FeeCollectionMessage = string.Concat("This does not seem to be a valid transaction.");
+                    ViewBag.FeeCollectionMessage = string.Concat("A Finance Category of name *Fees* and type *Income* has to be made in order to proceed with Payment.");
                 }
+                
+                
             }
             return PartialView("_Student_Fees_Submission");
         }
