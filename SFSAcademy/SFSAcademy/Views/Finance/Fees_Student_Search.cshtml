@@ -11,18 +11,20 @@
 <script type="text/javascript" language="javascript">
     /* This is change event for your dropdownlist */
     $(document.forms[0]).ready(function () {
+        $(".LoaderBox1").hide();
         $('#submit-button11').click(function () {
 
         /* Get the selected value of dropdownlist */
             var selectedID = $('#STUDENT_ID1').val();
-
+            $(".LoaderBox1").show();
         /* Request the partial view with .get request. */
         $.get('/Finance/fees_student_dates/' + selectedID, function (data) {
-            debugger;
             /* data is the pure html returned from action method, load it to your page */
             $('#fees_student_dates').html(data);
             /* little fade in effect */
             $('#fees_student_dates').fadeIn('fast');
+        }).success(function (status) {
+            $(".LoaderBox1").hide();
         });
 
     });
@@ -58,7 +60,8 @@
             <div class="label-field-pair">
                 <div class="label-container">@Html.Label("STUDENT_ID1", "Enter Admission Number and press search :", htmlAttributes: new { @class = "control-label col-md-2" })</div>
                 <div class="text-input-bg">
-                    @Html.TextBox("STUDENT_ID1", null, new { @class = "form-control", @id = "STUDENT_ID1" })
+                    @Html.TextBox("STUDENT_ID1", null, new { @class = "form-control", @id = "STUDENT_ID1" }) 
+                    <div class="LoaderBox1"><img src="~/Content/images/loader.gif" id="loader" alt="Finance Logo" style="align-self:center; border:none"></div>
                     @Html.ValidationMessage("STUDENT_ID1", "", new { @class = "text-danger" })
                 </div>
             </div>
