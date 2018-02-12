@@ -28,7 +28,10 @@
             <th>
                 Sold ON
             </th>
-            <th></th>
+            @if (Html.CurrentUser_UserType().Equals("Admin"))
+            {
+                <th></th>
+            }
         </tr>
         <tr class="tr-blank"></tr>
         @{int i = 1; }
@@ -62,10 +65,13 @@
                             @item.PurchaseData.SOLD_ON.Value.ToShortDateString()
                         }
                     </td>
-                    <td class="col-8" nowrap>
-                        @Html.ActionLink("Edit ", "EditSelling", new { id = item.PurchaseData.ID }) 
+                    @if (Html.CurrentUser_UserType().Equals("Admin"))
+                    {
+                        <td class="col-8" nowrap>
+                            @Html.ActionLink("Edit ", "EditSelling", new { id = item.PurchaseData.ID }, new { style = "text-decoration:underline" })
 
-                    </td>
+                        </td>
+                    }
                 </tr>
             i = i + 1;
         }

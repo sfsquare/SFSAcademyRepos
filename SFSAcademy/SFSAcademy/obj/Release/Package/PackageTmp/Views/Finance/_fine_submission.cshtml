@@ -4,15 +4,15 @@
     FINANCE_FEE_COLLECTION date = (FINANCE_FEE_COLLECTION)ViewData["date"];
     IList<SFSAcademy.Models.SelectCourseBatch> batch = (IList<SFSAcademy.Models.SelectCourseBatch>)ViewData["batch"];
 }
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
-<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
-<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
-<link rel="stylesheet" href="/resources/demos/style.css" />
+<script type="text/javascript" src="@Url.Content("~/Content/javascripts/jquery/jquery.min.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/Content/javascripts/jquery/jquery-ui.min.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/Content/javascripts/jquery/jquery-1.9.1.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/Content/javascripts/jquery/jquery-ui.js")"></script>
+<link rel="stylesheet" href="~/Content/stylesheets/_styles/jquery-ui.css" />
 <script type="text/javascript" language="javascript">
     /* This is change event for your dropdownlist */
     $(document).ready(function () {
+        $(".LoaderBox3").hide();
         $('#submit-button').click(function () {
 
         /* Get the selected value of dropdownlist */
@@ -22,6 +22,7 @@
             var SelectedBatch = $('#batch_id').val();
             var SelectedDate = $('#date').val();
 
+            $(".LoaderBox3").show();
         /* Request the partial view with .get request. */
             $.get('/Finance/Update_Fine_Ajax?fee=' + selectedID + "&student=" + SelectedStd + "&batch_id=" + SelectedBatch + "&date=" + SelectedDate, function (data) {
 
@@ -29,7 +30,9 @@
             $('#modal-box').html(data);
             /* little fade in effect */
             $('#modal-box').fadeIn('fast');
-        });
+            }).success(function (status) {
+                $(".LoaderBox3").hide();
+            });
 
     });
    });
@@ -44,6 +47,7 @@
                     <div class="text-input-bg1"><input type="text" name="fee" id="fee" /></div>
                 </div>
                 <input type="submit" value="Add Fine" id="submit-button" class="submit_button2" />
+                <div class="LoaderBox3"><img src="~/Content/images/loader.gif" id="loader" alt="Finance Logo" style="align-self:center; border:none"></div>
             </div>
             <div class="extender"></div>
             <input type="hidden" value="@student.ID" id="studentID" name="studentID" />

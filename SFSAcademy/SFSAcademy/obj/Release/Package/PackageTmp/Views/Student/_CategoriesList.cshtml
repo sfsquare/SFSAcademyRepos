@@ -22,8 +22,8 @@
                         <span>   </span>
                     </td>
                     <td>
-                        @Html.ActionLink("Edit", "_CategoriesEdit", new { id = item.ID }) |
-                        @Html.ActionLink("Delete", "_CategoriesDelete", new { id = item.ID })
+                        @Html.ActionLink("Edit", "_CategoriesEdit", new { id = item.ID }, new { style = "text-decoration:underline" }) |
+                        @Html.ActionLink("Delete", "_CategoriesDelete", new { id = item.ID }, new { style = "text-decoration:underline" })
                     </td>
                 </tr>
                 i = i + 1;
@@ -33,4 +33,4 @@
     </div>
     <div id="user_information"> </div>
     <div class="extender"> </div>
- </div>
+</div>

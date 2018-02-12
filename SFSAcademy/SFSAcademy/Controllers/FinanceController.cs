@@ -1385,6 +1385,8 @@ namespace SFSAcademy.Controllers
         // GET: Fee Index
         public ActionResult _Student_Fees_Submission(int? id, int? batch_id, int? student_id)
         {
+            DateTime PDate = Convert.ToDateTime(System.DateTime.Now);
+            ViewBag.ReturnDate = PDate.ToShortDateString();
             FINANCE_FEE_COLLECTION date = db.FINANCE_FEE_COLLECTION.Find(id);
             ViewData["date"] = date;
             FINANCE_FEE_COLLECTION fee_collection = db.FINANCE_FEE_COLLECTION.Find(id);
@@ -1499,15 +1501,24 @@ namespace SFSAcademy.Controllers
                 ViewBag.total_payable = total_payable;
                 if (batch_discounts_val != null && batch_discounts_val.Count() != 0)
                 {
-                    total_discount_val += batch_discounts_val.FirstOrDefault().IS_AMT == "Y" ? (decimal)batch_discounts_val.FirstOrDefault().DISC : total_payable * (decimal)batch_discounts_val.FirstOrDefault().DISC / 100;
+                    foreach (var item in batch_discounts_val)
+                    {
+                        total_discount_val += item.IS_AMT == "Y" ? (decimal)item.DISC : total_payable * (decimal)item.DISC / 100;
+                    }
                 }
                 if (student_discounts_val != null && student_discounts_val.Count() != 0)
                 {
-                    total_discount_val += student_discounts_val.FirstOrDefault().IS_AMT == "Y" ? (decimal)student_discounts_val.FirstOrDefault().DISC : total_payable * (decimal)student_discounts_val.FirstOrDefault().DISC / 100;
+                    foreach (var item in student_discounts_val)
+                    {
+                        total_discount_val += item.IS_AMT == "Y" ? (decimal)item.DISC : total_payable * (decimal)item.DISC / 100;
+                    }
                 }
                 if (category_discounts_val != null && category_discounts_val.Count() != 0)
                 {
-                    total_discount_val += category_discounts_val.FirstOrDefault().IS_AMT == "Y" ? (decimal)category_discounts_val.FirstOrDefault().DISC : total_payable * (decimal)category_discounts_val.FirstOrDefault().DISC / 100;
+                    foreach (var item in category_discounts_val)
+                    {
+                        total_discount_val += item.IS_AMT == "Y" ? (decimal)item.DISC : total_payable * (decimal)item.DISC / 100;
+                    }
                 }
                 if (total_discount_val > total_payable)
                 {
@@ -1533,15 +1544,25 @@ namespace SFSAcademy.Controllers
                 decimal total_fine_val = 0;
                 if (batch_fine_val != null && batch_fine_val.Count() != 0)
                 {
-                    total_fine_val += batch_fine_val.FirstOrDefault().IS_AMT == "Y" ? (decimal)batch_fine_val.FirstOrDefault().FINE : total_payable * (decimal)batch_fine_val.FirstOrDefault().FINE / 100;
+                    foreach(var item in batch_fine_val)
+                    {
+                        total_fine_val += item.IS_AMT == "Y" ? (decimal)item.FINE : total_payable * (decimal)item.FINE / 100;
+                    }
+                    
                 }
                 if (student_fine_val != null && student_fine_val.Count() != 0)
                 {
-                    total_fine_val += student_fine_val.FirstOrDefault().IS_AMT == "Y" ? (decimal)student_fine_val.FirstOrDefault().FINE : total_payable * (decimal)student_fine_val.FirstOrDefault().FINE / 100;
+                    foreach (var item in student_fine_val)
+                    {
+                        total_fine_val += item.IS_AMT == "Y" ? (decimal)item.FINE : total_payable * (decimal)item.FINE / 100;
+                    }                   
                 }
                 if (category_fine_val != null && category_fine_val.Count() != 0)
                 {
-                    total_fine_val += category_fine_val.FirstOrDefault().IS_AMT == "Y" ? (decimal)category_fine_val.FirstOrDefault().FINE : total_payable * (decimal)category_fine_val.FirstOrDefault().FINE / 100;
+                    foreach (var item in category_fine_val)
+                    {
+                        total_fine_val += item.IS_AMT == "Y" ? (decimal)item.FINE : total_payable * (decimal)item.FINE / 100;
+                    }
                 }
                 ViewBag.fine = 0;
                 ViewBag.total_fine = total_fine_val;
@@ -1562,6 +1583,8 @@ namespace SFSAcademy.Controllers
         {
             if (ModelState.IsValid)
             {
+                DateTime PDate = Convert.ToDateTime(System.DateTime.Now);
+                ViewBag.ReturnDate = PDate.ToShortDateString();
                 var batch_val = (from cs in db.COURSEs
                                  join bt in db.BATCHes on cs.ID equals bt.CRS_ID
                                  where bt.ID == batch_id
@@ -1669,24 +1692,53 @@ namespace SFSAcademy.Controllers
                 ViewBag.total_payable = total_payable;
                 if (batch_discounts_val != null && batch_discounts_val.Count() != 0)
                 {
-                    total_discount_val += batch_discounts_val.FirstOrDefault().IS_AMT == "Y" ? (decimal)batch_discounts_val.FirstOrDefault().DISC : total_payable * (decimal)batch_discounts_val.FirstOrDefault().DISC / 100;
+                    foreach (var item in batch_discounts_val)
+                    {
+                        total_discount_val += item.IS_AMT == "Y" ? (decimal)item.DISC : total_payable * (decimal)item.DISC / 100;
+                    }
                 }
                 if (student_discounts_val != null && student_discounts_val.Count() != 0)
                 {
-                    total_discount_val += student_discounts_val.FirstOrDefault().IS_AMT == "Y" ? (decimal)student_discounts_val.FirstOrDefault().DISC : total_payable * (decimal)student_discounts_val.FirstOrDefault().DISC / 100;
+                    foreach (var item in student_discounts_val)
+                    {
+                        total_discount_val += item.IS_AMT == "Y" ? (decimal)item.DISC : total_payable * (decimal)item.DISC / 100;
+                    }
                 }
                 if (category_discounts_val != null && category_discounts_val.Count() != 0)
                 {
-                    total_discount_val += category_discounts_val.FirstOrDefault().IS_AMT == "Y" ? (decimal)category_discounts_val.FirstOrDefault().DISC : total_payable * (decimal)category_discounts_val.FirstOrDefault().DISC / 100;
+                    foreach (var item in category_discounts_val)
+                    {
+                        total_discount_val += item.IS_AMT == "Y" ? (decimal)item.DISC : total_payable * (decimal)item.DISC / 100;
+                    }
                 }
                 if (total_discount_val > total_payable)
                 {
                     total_discount_val = total_payable;
                 }
                 ViewBag.total_discount = total_discount_val;
-                ViewBag.fine = 0;
                 decimal total_discount_percentage_val = total_discount_val / total_payable * 100;
                 ViewBag.total_discount_percentage = total_discount_percentage_val;
+                ViewBag.fine = fee;
+                if (fee > 0)
+                {
+                    var FeeFine = new FEE_FINE()
+                    {
+                        TYPE = "Student",
+                        NAME = "Ad-hoc fine",
+                        RCVR_ID = StudentVal.FirstOrDefault().Student_data.ID,
+                        FIN_FEE_CAT_ID = date_val.FEE_CAT_ID,
+                        FINE = fee,
+                        IS_AMT = "Y",
+                        FINE_DATE = System.DateTime.Now
+                    };
+                    db.FEE_FINE.Add(FeeFine);
+                    try { db.SaveChanges(); ViewBag.FeeCollectionMessage = string.Concat("Fee Collection Edited Successfully"); }
+                    catch (Exception e) { ViewBag.FeeCollectionMessage = string.Concat("Please eneter valid value for Fine"); Console.WriteLine(e); }
+                }
+                else
+                {
+                    ViewBag.FeeCollectionMessage = string.Concat("Please eneter valid value for Fine");
+                }
 
                 var batch_fine_val = (from ff in db.FEE_FINE
                                       where ff.FIN_FEE_CAT_ID == date_val.FEE_CAT_ID && ff.TYPE == "Batch"
@@ -1703,33 +1755,41 @@ namespace SFSAcademy.Controllers
                 decimal total_fine_val = 0;
                 if (batch_fine_val != null && batch_fine_val.Count() != 0)
                 {
-                    total_fine_val += batch_fine_val.FirstOrDefault().IS_AMT == "Y" ? (decimal)batch_fine_val.FirstOrDefault().FINE : total_payable * (decimal)batch_fine_val.FirstOrDefault().FINE / 100;
+                    foreach (var item in batch_fine_val)
+                    {
+                        total_fine_val += item.IS_AMT == "Y" ? (decimal)item.FINE : total_payable * (decimal)item.FINE / 100;
+                    }
                 }
                 if (student_fine_val != null && student_fine_val.Count() != 0)
                 {
-                    total_fine_val += student_fine_val.FirstOrDefault().IS_AMT == "Y" ? (decimal)student_fine_val.FirstOrDefault().FINE : total_payable * (decimal)student_fine_val.FirstOrDefault().FINE / 100;
+                    foreach (var item in student_fine_val)
+                    {
+                        total_fine_val += item.IS_AMT == "Y" ? (decimal)item.FINE : total_payable * (decimal)item.FINE / 100;
+                    }
                 }
                 if (category_fine_val != null && category_fine_val.Count() != 0)
                 {
-                    total_fine_val += category_fine_val.FirstOrDefault().IS_AMT == "Y" ? (decimal)category_fine_val.FirstOrDefault().FINE : total_payable * (decimal)category_fine_val.FirstOrDefault().FINE / 100;
+                    foreach (var item in category_fine_val)
+                    {
+                        total_fine_val += item.IS_AMT == "Y" ? (decimal)item.FINE : total_payable * (decimal)item.FINE / 100;
+                    }
                 }
 
-                ViewBag.fine = fee;
+                
                 ViewBag.total_fine = total_fine_val;
-            }
-
-
-            ViewBag.FeeCollectionMessage = string.Concat("Fee Collection Edited Successfully");
+            }        
 
             return PartialView("_Student_Fees_Submission");
         }
 
 
 
-        public ActionResult update_ajax(int? student, int? batch_id, int? date, int? fine, String PAYMENT_MODE, String PAYMENT_NOTE, decimal? PAYMENT_AMOUNT)
+        public ActionResult update_ajax(int? student, int? batch_id, int? date, int? fine, String PAYMENT_MODE, String PAYMENT_NOTE, decimal? PAYMENT_AMOUNT, String PAYMENT_DATE)
         {
             if (ModelState.IsValid)
             {
+                DateTime PDate = Convert.ToDateTime(PAYMENT_DATE);
+                ViewBag.ReturnDate = PDate.ToShortDateString();
                 var batch_val = (from cs in db.COURSEs
                                  join bt in db.BATCHes on cs.ID equals bt.CRS_ID
                                  where bt.ID == batch_id
@@ -1837,15 +1897,24 @@ namespace SFSAcademy.Controllers
                 ViewBag.total_payable = total_payable;
                 if (batch_discounts_val != null && batch_discounts_val.Count() != 0)
                 {
-                    total_discount_val += batch_discounts_val.FirstOrDefault().IS_AMT == "Y" ? (decimal)batch_discounts_val.FirstOrDefault().DISC : total_payable * (decimal)batch_discounts_val.FirstOrDefault().DISC / 100;
+                    foreach (var item in batch_discounts_val)
+                    {
+                        total_discount_val += item.IS_AMT == "Y" ? (decimal)item.DISC : total_payable * (decimal)item.DISC / 100;
+                    }
                 }
                 if (student_discounts_val != null && student_discounts_val.Count() != 0)
                 {
-                    total_discount_val += student_discounts_val.FirstOrDefault().IS_AMT == "Y" ? (decimal)student_discounts_val.FirstOrDefault().DISC : total_payable * (decimal)student_discounts_val.FirstOrDefault().DISC / 100;
+                    foreach (var item in student_discounts_val)
+                    {
+                        total_discount_val += item.IS_AMT == "Y" ? (decimal)item.DISC : total_payable * (decimal)item.DISC / 100;
+                    }
                 }
                 if (category_discounts_val != null && category_discounts_val.Count() != 0)
                 {
-                    total_discount_val += category_discounts_val.FirstOrDefault().IS_AMT == "Y" ? (decimal)category_discounts_val.FirstOrDefault().DISC : total_payable * (decimal)category_discounts_val.FirstOrDefault().DISC / 100;
+                    foreach (var item in category_discounts_val)
+                    {
+                        total_discount_val += item.IS_AMT == "Y" ? (decimal)item.DISC : total_payable * (decimal)item.DISC / 100;
+                    }
                 }
                 if (total_discount_val > total_payable)
                 {
@@ -1870,15 +1939,24 @@ namespace SFSAcademy.Controllers
                 decimal total_fine_val = 0;
                 if (batch_fine_val != null && batch_fine_val.Count() != 0)
                 {
-                    total_fine_val += batch_fine_val.FirstOrDefault().IS_AMT == "Y" ? (decimal)batch_fine_val.FirstOrDefault().FINE : total_payable * (decimal)batch_fine_val.FirstOrDefault().FINE / 100;
+                    foreach (var item in batch_fine_val)
+                    {
+                        total_fine_val += item.IS_AMT == "Y" ? (decimal)item.FINE : total_payable * (decimal)item.FINE / 100;
+                    }
                 }
                 if (student_fine_val != null && student_fine_val.Count() != 0)
                 {
-                    total_fine_val += student_fine_val.FirstOrDefault().IS_AMT == "Y" ? (decimal)student_fine_val.FirstOrDefault().FINE : total_payable * (decimal)student_fine_val.FirstOrDefault().FINE / 100;
+                    foreach (var item in student_fine_val)
+                    {
+                        total_fine_val += item.IS_AMT == "Y" ? (decimal)item.FINE : total_payable * (decimal)item.FINE / 100;
+                    }
                 }
                 if (category_fine_val != null && category_fine_val.Count() != 0)
                 {
-                    total_fine_val += category_fine_val.FirstOrDefault().IS_AMT == "Y" ? (decimal)category_fine_val.FirstOrDefault().FINE : total_payable * (decimal)category_fine_val.FirstOrDefault().FINE / 100;
+                    foreach (var item in category_fine_val)
+                    {
+                        total_fine_val += item.IS_AMT == "Y" ? (decimal)item.FINE : total_payable * (decimal)item.FINE / 100;
+                    }
                 }
                 if (fine >= 0)
                 {
@@ -1939,7 +2017,7 @@ namespace SFSAcademy.Controllers
                                 FIN_FE_ID = FinanceFee_id,
                                 MSTRTRAN_ID = -1,
                                 RCPT_NO = ReceiptNo,
-                                TRAN_DATE = System.DateTime.Now,
+                                TRAN_DATE = PDate,
                                 CRETAED_AT = System.DateTime.Now,
                                 UPDATED_AT = System.DateTime.Now
                             };
@@ -2068,15 +2146,24 @@ namespace SFSAcademy.Controllers
             ViewBag.total_payable = total_payable;
             if (batch_discounts_val != null && batch_discounts_val.Count() != 0)
             {
-                total_discount_val += batch_discounts_val.FirstOrDefault().IS_AMT == "Y" ? (decimal)batch_discounts_val.FirstOrDefault().DISC : total_payable * (decimal)batch_discounts_val.FirstOrDefault().DISC / 100;
+                foreach (var item in batch_discounts_val)
+                {
+                    total_discount_val += item.IS_AMT == "Y" ? (decimal)item.DISC : total_payable * (decimal)item.DISC / 100;
+                }               
             }
             if (student_discounts_val != null && student_discounts_val.Count() != 0)
             {
-                total_discount_val += student_discounts_val.FirstOrDefault().IS_AMT == "Y" ? (decimal)student_discounts_val.FirstOrDefault().DISC : total_payable * (decimal)student_discounts_val.FirstOrDefault().DISC / 100;
+                foreach (var item in student_discounts_val)
+                {
+                    total_discount_val += item.IS_AMT == "Y" ? (decimal)item.DISC : total_payable * (decimal)item.DISC / 100;
+                }
             }
             if (category_discounts_val != null && category_discounts_val.Count() != 0)
             {
-                total_discount_val += category_discounts_val.FirstOrDefault().IS_AMT == "Y" ? (decimal)category_discounts_val.FirstOrDefault().DISC : total_payable * (decimal)category_discounts_val.FirstOrDefault().DISC / 100;
+                foreach (var item in category_discounts_val)
+                {
+                    total_discount_val += item.IS_AMT == "Y" ? (decimal)item.DISC : total_payable * (decimal)item.DISC / 100;
+                }
             }
             if (total_discount_val > total_payable)
             {
@@ -2100,15 +2187,24 @@ namespace SFSAcademy.Controllers
             decimal total_fine_val = 0;
             if (batch_fine_val != null && batch_fine_val.Count() != 0)
             {
-                total_fine_val += batch_fine_val.FirstOrDefault().IS_AMT == "Y" ? (decimal)batch_fine_val.FirstOrDefault().FINE : total_payable * (decimal)batch_fine_val.FirstOrDefault().FINE / 100;
+                foreach (var item in batch_fine_val)
+                {
+                    total_fine_val += item.IS_AMT == "Y" ? (decimal)item.FINE : total_payable * (decimal)item.FINE / 100;
+                }
             }
             if (student_fine_val != null && student_fine_val.Count() != 0)
             {
-                total_fine_val += student_fine_val.FirstOrDefault().IS_AMT == "Y" ? (decimal)student_fine_val.FirstOrDefault().FINE : total_payable * (decimal)student_fine_val.FirstOrDefault().FINE / 100;
+                foreach (var item in student_fine_val)
+                {
+                    total_fine_val += item.IS_AMT == "Y" ? (decimal)item.FINE : total_payable * (decimal)item.FINE / 100;
+                }
             }
             if (category_fine_val != null && category_fine_val.Count() != 0)
             {
-                total_fine_val += category_fine_val.FirstOrDefault().IS_AMT == "Y" ? (decimal)category_fine_val.FirstOrDefault().FINE : total_payable * (decimal)category_fine_val.FirstOrDefault().FINE / 100;
+                foreach (var item in category_fine_val)
+                {
+                    total_fine_val += item.IS_AMT == "Y" ? (decimal)item.FINE : total_payable * (decimal)item.FINE / 100;
+                }
             }
             ViewBag.total_fine = total_fine_val;
 

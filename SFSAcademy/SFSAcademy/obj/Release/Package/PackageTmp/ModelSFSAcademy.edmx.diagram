@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="a0263aa5fbc4476dab3dac3166b57107" Name="Diagram1" ZoomLevel="37">
+      <Diagram DiagramId="a0263aa5fbc4476dab3dac3166b57107" Name="Diagram1" ZoomLevel="63">
         <EntityTypeShape EntityType="SFSAcademyModel.APPLY_LEAVE" Width="3.5" PointX="11.25" PointY="53.25" IsExpanded="true" />
         <EntityTypeShape EntityType="SFSAcademyModel.ARCHIVED_STUDENT" Width="3.5" PointX="3" PointY="50.5" IsExpanded="true" />
         <EntityTypeShape EntityType="SFSAcademyModel.ASSESSMENT_SCORE" Width="3.5" PointX="17.25" PointY="48.25" IsExpanded="true" />
@@ -208,6 +208,10 @@
         <AssociationConnector Association="SFSAcademyModel.STDNT_STUD_STUD_NI5" />
         <AssociationConnector Association="SFSAcademyModel.STDNT_STUD_SUBJ_NI" />
         <AssociationConnector Association="SFSAcademyModel.USRID_USER_STUD_NI" />
+        <EntityTypeShape EntityType="SFSAcademyModel.Privilege" Width="1.5" PointX="11.375" PointY="6.75" />
+        <EntityTypeShape EntityType="SFSAcademyModel.Privileges_Users" Width="1.5" PointX="12.375" PointY="9.75" />
+        <EntityTypeShape EntityType="SFSAcademyModel.Gallery_Master" Width="1.5" PointX="12.375" PointY="0.75" />
+        <EntityTypeShape EntityType="SFSAcademyModel.PHOTO_MASTER" Width="1.5" PointX="13.375" PointY="3.75" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -13,7 +13,10 @@
     </div>
 </div>
 <div><img src="~/Content/images/_global/header_underline_.jpg" width="100%"></div>
-
+<div class="bread_crumb">
+    @Html.ActionLink("Store", "Index") &raquo;
+    Product Categories
+</div>
 <div id="page-yield">
     <div id="flash_box"></div>
     @if (Html.ValidationSummary() != null)

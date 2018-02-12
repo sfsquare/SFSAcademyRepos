@@ -13,7 +13,11 @@
     </div>
 </div>
 <div><img src="~/Content/images/_global/header_underline_.jpg" width="100%"></div>
-
+<div class="bread_crumb">
+    @Html.ActionLink("Store", "Index") &raquo;
+    @Html.ActionLink("View All Products", "ViewAll") &raquo;
+    View Cart
+</div>
 <div id="modal-box">
     @Html.Partial("_ListPurchagedProducts")
 </div>

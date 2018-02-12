@@ -86,8 +86,8 @@
                         }
                     </td>
                     <td class="col-6" nowrap>
-                        @Html.ActionLink("Edit ", "Edit", new { id = item.ID })|@Html.ActionLink(" Details ", "Details", new { id = item.ID })|@Html.ActionLink(" Delete", "Delete", new { id = item.ID })
-                    </td>                 
+                        @Html.ActionLink("Edit ", "Edit", new { id = item.ID }, new { style = "text-decoration:underline" })|@Html.ActionLink(" Details ", "Details", new { id = item.ID }, new { style = "text-decoration:underline" })|@Html.ActionLink(" Delete", "Delete", new { id = item.ID }, new { style = "text-decoration:underline" })
+                    </td>
                 </tr>
                 i = i + 1;
             }
@@ -95,10 +95,10 @@
         <br />
         @Html.PagedListPager(Model, page => Url.Action("Index",
     new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
-       </div>
+    </div>
 
-        <div id="user_information"> </div>
-        <div class="extender"> </div>
-  </div>
+    <div id="user_information"> </div>
+    <div class="extender"> </div>
+</div>
 
 
