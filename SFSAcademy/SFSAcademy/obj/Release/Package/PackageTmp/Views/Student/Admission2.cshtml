@@ -3,22 +3,23 @@
 @{
     ViewBag.Title = "Admission2";
 }
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
-<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
-<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
-<link rel="stylesheet" href="/resources/demos/style.css" />
+<script type="text/javascript" src="@Url.Content("~/Content/javascripts/jquery/jquery.min.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/Content/javascripts/jquery/jquery-ui.min.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/Content/javascripts/jquery/jquery-1.9.1.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/Content/javascripts/jquery/jquery-ui.js")"></script>
+<link rel="stylesheet" href="~/Content/stylesheets/_styles/jquery-ui.css" />
 <script>
   $(function() {
     $( "#datepicker" ).datepicker({
       showOn: "button",
       buttonImage: "/Content/images/calendar_date_select/calendar.gif",
+      dateFormat: 'dd-mm-yy',
       buttonImageOnly: true
     });
       $( "#datepicker2" ).datepicker({
       showOn: "button",
       buttonImage: "/Content/images/calendar_date_select/calendar.gif",
+      dateFormat: 'dd-mm-yy',
       buttonImageOnly: true
     });
   });
@@ -62,17 +63,17 @@
                     {
                         selectedRow = "tr-odd";
                     }
-                    
-                    <li class="@selectedRow"> @Guardian["FIRST_NAME"]  @Guardian["LAST_NAME"]  - @Guardian["REL"]</li>
+
+                    <li class="@selectedRow"> @Guardian["FIRST_NAME"]  @Guardian["LAST_NAME"]  - @Guardian["REL"] - @Guardian["MOB"]</li>
                     i = i + 1;
                 }
             </ul>
-          }
+                    }
         <div id="add-more-parent">
             <input type="button" id="Guardian_button" class="user_button" value="Add Guardian" />
         </div>
         <div id="skip">
-             <a href="@Url.Action("Admission3", "Student", new { Std_id = ViewBag.StudentId })" ; class="user_button">Finish</a>           
+            <a href="@Url.Action("Admission3", "Student", new { Std_id = ViewBag.StudentId })" ; class="user_button">Finish</a>
         </div>
         <script type="text/javascript">
           Event.observe(window, 'load', function() { $('Admission1_form').hide(); });
@@ -95,26 +96,29 @@
                 <span class="span-sub-heading">Parent - Personal Details</span>
                 <hr class="sub-heading">
                 <div class="label-field-pair">
-                    @Html.LabelFor(model => model.FIRST_NAME, "First Name", htmlAttributes: new { @class = "control-label col-md-2" }) <span class="necessary-field">*</span>
+                    @Html.LabelFor(model => model.FIRST_NAME, "First Name", htmlAttributes: new { @class = "control-label col-md-2" }) 
+                    <span class="necessary-field" style="font-size:small">* Required Field</span>
                     <div class="text-input-bg">
-                        @Html.EditorFor(model => model.FIRST_NAME, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.EditorFor(model => model.FIRST_NAME, new { htmlAttributes = new { @class = "form-control", required = "required" } })
                         @Html.ValidationMessageFor(model => model.FIRST_NAME, "", new { @class = "text-danger" })
                     </div>
                 </div>
                 <hr class="label-underline">
                 <div class="label-field-pair">
                     @Html.LabelFor(model => model.LAST_NAME, "Last Name", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <span class="necessary-field" style="font-size:small">* Required Field</span>
                     <div class="text-input-bg">
-                        @Html.EditorFor(model => model.LAST_NAME, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.EditorFor(model => model.LAST_NAME, new { htmlAttributes = new { @class = "form-control", required = "required" } })
                         @Html.ValidationMessageFor(model => model.LAST_NAME, "", new { @class = "text-danger" })
                     </div>
                 </div>
                 <hr class="label-underline">
 
                 <div class="label-field-pair">
-                    @Html.LabelFor(model => model.REL, "Relationship", htmlAttributes: new { @class = "control-label col-md-2" }) <span class="necessary-field">*</span>
+                    @Html.LabelFor(model => model.REL, "Relationship", htmlAttributes: new { @class = "control-label col-md-2" }) 
+                    <span class="necessary-field" style="font-size:small">* Required Field</span>
                     <div class="text-input-bg">
-                        @Html.EditorFor(model => model.REL, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.EditorFor(model => model.REL, new { htmlAttributes = new { @class = "form-control", required = "required" } })
                         @Html.ValidationMessageFor(model => model.REL, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -249,7 +253,7 @@
                     else
                     {
                         <div class="text-input-bg">
-                            @Html.DropDownList("CTRY_ID", null, htmlAttributes: new { @class = "form-control", @Value = "India" })
+                            @Html.DropDownList("CTRY_ID", null, htmlAttributes: new { @class = "form-control" })
                             @Html.ValidationMessageFor(model => model.CTRY_ID, "", new { @class = "text-danger" })
                         </div>
                     }
@@ -276,8 +280,9 @@
 
                 <div class="label-field-pair">
                     @Html.LabelFor(model => model.MOBL_PH, "Mobile", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <span class="necessary-field" style="font-size:small">* Required Field</span>
                     <div class="text-input-bg">
-                        @Html.EditorFor(model => model.MOBL_PH, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.EditorFor(model => model.MOBL_PH, new { htmlAttributes = new { @class = "form-control", required = "required" } })
                         @Html.ValidationMessageFor(model => model.MOBL_PH, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -285,7 +290,7 @@
 
             </div>
             <div class="extender">
-                <input type="submit" value="► Finish" class="submit_button3" name="Commit" />
+                <input type="submit" value="► Save" class="submit_button3" name="Commit" />
             </div>
             <div id="skip">
                 <a href="@Url.Action("Admission3", "Student", new { Std_id = ViewBag.StudentId })" ; class="user_button">Click Here To Skip</a>
@@ -294,9 +299,9 @@
     }
 
 </div>
-@if(null != TempData["alertMessage"])
-   {
-<script type="text/javascript">
+@if (null != TempData["alertMessage"])
+{
+    <script type="text/javascript">
        alert('@TempData["alertMessage"]');
-</script>
-   }
+    </script>
+}

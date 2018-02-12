@@ -18,6 +18,8 @@ namespace SFSAcademy
         public EMPLOYEE()
         {
             this.APPLY_LEAVE = new HashSet<APPLY_LEAVE>();
+            this.NEWS = new HashSet<NEWS>();
+            this.NEWS_COMMENTS = new HashSet<NEWS_COMMENTS>();
             this.EMPLOYEE1 = new HashSet<EMPLOYEE>();
             this.SUBJECT_LEAVE = new HashSet<SUBJECT_LEAVE>();
             this.EMPLOYEE_ADDITIONAL_DETAIL = new HashSet<EMPLOYEE_ADDITIONAL_DETAIL>();
@@ -89,6 +91,10 @@ namespace SFSAcademy
         public virtual COUNTRY COUNTRY { get; set; }
         public virtual COUNTRY COUNTRY1 { get; set; }
         public virtual COUNTRY COUNTRY2 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<NEWS> NEWS { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<NEWS_COMMENTS> NEWS_COMMENTS { get; set; }
         public virtual EMPLOYEE_CATEGORY EMPLOYEE_CATEGORY { get; set; }
         public virtual EMPLOYEE_POSITION EMPLOYEE_POSITION { get; set; }
         public virtual EMPLOYEE_DEPARTMENT EMPLOYEE_DEPARTMENT { get; set; }

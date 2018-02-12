@@ -16,10 +16,6 @@
 
 <div id="page-yield">
     <div id="flash_box"></div>
-    @if (Html.ValidationSummary() != null)
-    {
-        <p class="flash-msg"> @Html.ValidationSummary() </p>
-    }
     <div id="student-category-form">
         @Html.Partial("~/Views/Finance/_category_create_form.cshtml", new SFSAcademy.FINANCE_TRANSACTION_CATEGORY())
     </div>

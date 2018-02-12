@@ -26,6 +26,7 @@
 <script type="text/javascript" language="javascript">
     /* This is change event for your dropdownlist */
     $(document).ready(function () {
+        $(".LoaderBox4").hide();
         $('#submit-button1').click(function () {
 
         /* Get the selected value of dropdownlist */
@@ -37,15 +38,18 @@
             var SelectedMode = $("#PAYMENT_MODE option:selected").text();
             var SelectedNote = $('#PAYMENT_NOTE').val();
             var SelectedPayAmt = $('#PAYMENT_AMOUNT').val();
-
+            var SelectedPayDt = $('#datepicker').val();
+            $(".LoaderBox4").show();
         /* Request the partial view with .get request. */
-            $.get('/Finance/update_ajax?fine=' + selectedID + "&student=" + SelectedStd + "&batch_id=" + SelectedBatch + "&date=" + SelectedDate + "&PAYMENT_MODE=" + SelectedMode + "&PAYMENT_NOTE=" + SelectedNote + "&PAYMENT_AMOUNT=" + SelectedPayAmt, function (data) {
+            $.get('/Finance/update_ajax?fine=' + selectedID + "&student=" + SelectedStd + "&batch_id=" + SelectedBatch + "&date=" + SelectedDate + "&PAYMENT_MODE=" + SelectedMode + "&PAYMENT_NOTE=" + SelectedNote + "&PAYMENT_AMOUNT=" + SelectedPayAmt + "&PAYMENT_DATE=" + SelectedPayDt, function (data) {
 
             /* data is the pure html returned from action method, load it to your page */
             $('#modal-box').html(data);
             /* little fade in effect */
             $('#modal-box').fadeIn('fast');
-        });
+            }).success(function (status) {
+                $(".LoaderBox3").hide();
+            });
 
         });
 
@@ -80,7 +84,19 @@
             });
 
         });
-   });
+    });
+
+</script>
+<script>
+    $(function () {
+        $("#datepicker").datepicker({
+            showOn: "button",
+            buttonImage: "/Content/images/calendar_date_select/calendar.gif",
+            dateFormat: 'dd-mm-yy',
+            buttonImageOnly: true
+        });
+    });
+
 </script>
 <div id="flash_box">
     @if (ViewBag.FeeCollectionMessage != null)
@@ -179,11 +195,18 @@ else
         }
         @if (@ViewBag.total_discount != 0)
         {
+            string NextRow = "tr-even";
+            if (i % 2 == 0)
+            {
+                NextRow = "tr-odd";
+                i = i + 1;
+            }
             <tr class="tr-blank"></tr>
             <tr class="tr-blank"></tr>
-            <tr class="selectedRow" cellpadding="1" cellspacing="1">
+            <tr class="@NextRow" cellpadding="1" cellspacing="1">
                 <td class="col-1"></td>
-                <td class="col-1" colspan="2"><span class="themed_text">Discounts</span></td>
+                <td class="col-1" colspan="2"><span class="themed_text">Discounts: </span></td>
+
             </tr>
             foreach (var item in batch_discounts)
             {
@@ -270,31 +293,14 @@ else
             nextRow = "tr-odd";
             nextToNextRow = "tr-even";
         }
-        @if (ViewBag.fine != 0)
-        {
-            <tr class="@nextRow">
-                <td class="col-1">@i</td>
-                <td class="col-2"><span class="themed_text">Fine On: @System.DateTime.Now.ToShortDateString()</span></td>
-                <td class="col-6">@ViewBag.fine</td>
-            </tr>
-            foreach (var item11 in financefee)
-            {
-                if (item11.IS_PD != "Y")
-                {
-                    total_fees += (decimal)ViewBag.fine;
-                    i += 1;
-                    break;
-                }
-            }
-        }
 
         @if (@ViewBag.total_fine != 0)
         {
             <tr class="tr-blank"></tr>
-            <tr class="tr-blank"></tr>
-            <tr class="selectedRow" cellpadding="1" cellspacing="1">
+            <tr class="@nextRow" cellpadding="1" cellspacing="1">
                 <td class="col-1"></td>
-                <td class="col-1" colspan="2"><span class="themed_text">Fine</span></td>
+                <td class="col-1" colspan="2"><span class="themed_text">Fine: </span></td>
+
             </tr>
             foreach (var item in batch_fine)
             {
@@ -366,7 +372,6 @@ else
             { total_fees += @ViewBag.total_fine; }
 
         }
-        <tr class="tr-blank"></tr>
         <tr class="tr-blank"></tr>
         @if (i % 2 == 0)
         {
@@ -445,7 +450,13 @@ new { @class = "form-control", @id = "PAYMENT_MODE" })
                             <div class="text-input-bg"><input type="text" name="PAYMENT_AMOUNT" id="PAYMENT_AMOUNT" value="@total_fees.ToString("0.00")" /></div>
                             @Html.ValidationMessage("PAYMENT_AMOUNT", "", new { @class = "text-danger" })
                         </div>
-
+                        <div class="label-field-pair">
+                            <div class="label-container">@Html.Label("PAYMENT_DATE", "Payment Date", htmlAttributes: new { @class = "control-label col-md-2" })</div>
+                            <div class="text-input-bg-admission">
+                                @Html.Editor("PAYMENT_DATE", new { htmlAttributes = new { @class = "m-wrap  datepicker", @id = "datepicker", @Value = ViewBag.ReturnDate } })
+                                @Html.ValidationMessage("PAYMENT_DATE", "", new { @class = "text-danger" })
+                            </div>
+                        </div>
                             <div class="pay_fees_buttons">
                                 <input type="submit" value="► Pay Fees" id="submit-button1" class="submit_button" />
                                 @if (financefee != null && financefee.Count() != 0)
@@ -470,6 +481,7 @@ new { @class = "form-control", @id = "PAYMENT_MODE" })
             </td>
         </tr>
     </table>
+    <div class="LoaderBox4"><img src="~/Content/images/loader.gif" id="loader" alt="Finance Logo" style="align-self:center; border:none"></div>
             }
 <input type="hidden" value="@student.ID" id="studentID" name="studentID" />
 <input type="hidden" value="@ViewBag.prev_student_id" id="prev_studentID" name="prev_studentID" />

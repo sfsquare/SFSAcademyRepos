@@ -85,7 +85,10 @@
                 <th>
                     Discount
                 </th>
-                <th></th>
+                @if (Html.CurrentUser_UserType().Equals("Admin"))
+                {
+                    <th></th>
+                }
             </tr>
             <tr class="tr-blank"></tr>
             @{int i = 1; }
@@ -115,15 +118,28 @@
                     <td class="col-6">
                         @Html.DisplayFor(modelItem => item.StudentData.FIRST_NAME)
                     </td>
-                    <td class="col-7" nowrap>
-                        @Html.DisplayFor(modelItem => item.StudentData.ADMSN_DATE)
-                    </td>
+                    @if (item.StudentData != null)
+                    {
+                        <td class="col-7" nowrap>
+                            @item.StudentData.ADMSN_DATE.Value.ToShortDateString()
+                        </td>
+                    }
+                    else
+                    {
+                        <td class="col-6">
+                            @Html.DisplayFor(modelItem => item.StudentData.ADMSN_DATE)
+                        </td>
+                    }
                     <td class="col-8" nowrap>
                         @Html.DisplayFor(modelItem => item.FeeDiscountData.DISC)
                     </td>
-                    <td class="col-9" nowrap>
-                        @Html.ActionLink("Edit ", "Edit_Fee_Discount", new { id = item.FeeDiscountData.ID })|@Html.ActionLink(" Delete", "Delete_Fee_Discount", new { id = item.FeeDiscountData.ID })
-                    </td>
+                    @if (Html.CurrentUser_UserType().Equals("Admin"))
+                    {
+                        <td class="col-9" nowrap>
+                            @Html.ActionLink("Edit ", "Edit_Fee_Discount", new { id = item.FeeDiscountData.ID }, new { style = "text-decoration:underline" })|@Html.ActionLink(" Delete", "Delete_Fee_Discount", new { id = item.FeeDiscountData.ID }, new { style = "text-decoration:underline" })
+                        </td>
+                    }
+
                 </tr>
                 i = i + 1;
             }

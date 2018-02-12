@@ -2430,9 +2430,6 @@
     <Compile Include="COURSE.cs">
       <DependentUpon>ModelSFSAcademy.tt</DependentUpon>
     </Compile>
-    <Compile Include="C__MigrationHistory.cs">
-      <DependentUpon>ModelSFSAcademy.tt</DependentUpon>
-    </Compile>
     <Compile Include="DESCRIPTIVE_INDICATOR.cs">
       <DependentUpon>ModelSFSAcademy.tt</DependentUpon>
     </Compile>
@@ -2603,9 +2600,6 @@
       <DependentUpon>ModelSFSAcademy.tt</DependentUpon>
     </Compile>
     <Compile Include="PAYROLL_CATEGORY.cs">
-      <DependentUpon>ModelSFSAcademy.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Photo.cs">
       <DependentUpon>ModelSFSAcademy.tt</DependentUpon>
     </Compile>
     <Compile Include="PHOTO_MASTER.cs">

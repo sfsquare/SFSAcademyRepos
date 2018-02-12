@@ -22,10 +22,13 @@
                         <span>   </span>
                         <span>   </span>
                     </td>
-                    <td>
-                        @Html.ActionLink("Edit", "_CategoriesEdit", new { id = item.ID }) |
-                        @Html.ActionLink("Delete", "_CategoriesDelete", new { id = item.ID })
-                    </td>
+                    @if (Html.CurrentUser_UserType().Equals("Admin"))
+                {
+                        <td>
+                            @Html.ActionLink("Edit", "_CategoriesEdit", new { id = item.ID }, new { style = "text-decoration:underline" }) |
+                            @Html.ActionLink("Delete", "_CategoriesDelete", new { id = item.ID }, new { style = "text-decoration:underline" })
+                        </td>
+                    }
                 </tr>
                 i = i + 1;
             }

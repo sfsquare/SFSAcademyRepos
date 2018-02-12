@@ -17,16 +17,16 @@
     IEnumerable<FEE_FINE> batch_fine = (IEnumerable<FEE_FINE>)ViewData["batch_fine"];
     IEnumerable<FEE_FINE> student_fine = (IEnumerable<FEE_FINE>)ViewData["student_fine"];
     IEnumerable<FEE_FINE> category_fine = (IEnumerable<FEE_FINE>)ViewData["category_fine"];
-}  
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
-<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
-<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
-<link rel="stylesheet" href="/resources/demos/style.css" />
+}
+<script type="text/javascript" src="@Url.Content("~/Content/javascripts/jquery/jquery.min.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/Content/javascripts/jquery/jquery-ui.min.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/Content/javascripts/jquery/jquery-1.9.1.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/Content/javascripts/jquery/jquery-ui.js")"></script>
+<link rel="stylesheet" href="~/Content/stylesheets/_styles/jquery-ui.css" />
 <script type="text/javascript" language="javascript">
     /* This is change event for your dropdownlist */
     $(document).ready(function () {
+        $(".LoaderBox4").hide();
         $('#submit-button1').click(function () {
 
         /* Get the selected value of dropdownlist */
@@ -38,15 +38,18 @@
             var SelectedMode = $("#PAYMENT_MODE option:selected").text();
             var SelectedNote = $('#PAYMENT_NOTE').val();
             var SelectedPayAmt = $('#PAYMENT_AMOUNT').val();
-
+            var SelectedPayDt = $('#datepicker').val();
+            $(".LoaderBox4").show();
         /* Request the partial view with .get request. */
-            $.get('/Finance/update_ajax?fine=' + selectedID + "&student=" + SelectedStd + "&batch_id=" + SelectedBatch + "&date=" + SelectedDate + "&PAYMENT_MODE=" + SelectedMode + "&PAYMENT_NOTE=" + SelectedNote + "&PAYMENT_AMOUNT=" + SelectedPayAmt, function (data) {
+            $.get('/Finance/update_ajax?fine=' + selectedID + "&student=" + SelectedStd + "&batch_id=" + SelectedBatch + "&date=" + SelectedDate + "&PAYMENT_MODE=" + SelectedMode + "&PAYMENT_NOTE=" + SelectedNote + "&PAYMENT_AMOUNT=" + SelectedPayAmt + "&PAYMENT_DATE=" + SelectedPayDt, function (data) {
 
             /* data is the pure html returned from action method, load it to your page */
             $('#modal-box').html(data);
             /* little fade in effect */
             $('#modal-box').fadeIn('fast');
-        });
+            }).success(function (status) {
+                $(".LoaderBox3").hide();
+            });
 
         });
 
@@ -81,8 +84,26 @@
             });
 
         });
-   });
+    });
+
 </script>
+<script>
+    $(function () {
+        $("#datepicker").datepicker({
+            showOn: "button",
+            buttonImage: "/Content/images/calendar_date_select/calendar.gif",
+            dateFormat: 'dd-mm-yy',
+            buttonImageOnly: true
+        });
+    });
+
+</script>
+<div id="flash_box">
+    @if (ViewBag.FeeCollectionMessage != null)
+            {
+        <p class="flash-msg"> @ViewBag.FeeCollectionMessage </p>
+    }
+</div>
 <div class="name"></div>
 @if (financefee != null && financefee.Count() != 0)
 {
@@ -117,7 +138,7 @@ else
 }
 @if (financefee != null && financefee.Count() != 0)
 {
-    if(financefee.FirstOrDefault().IS_PD !="Y")
+    if (financefee.FirstOrDefault().IS_PD != "Y")
     {
         Html.RenderPartial("_fine_submission");
     }
@@ -130,8 +151,8 @@ else
         <div class="prev">
             @if (prev_student != null && Session["student_serach"] == null)
             {
-            <input type="submit" value="◄" id="submit-button2" class="submit-button2" />
-            }      
+                <input type="submit" value="◄" id="submit-button2" class="submit-button2" />
+            }
         </div>
         <div class="month">
             @student.FIRST_NAME  @student.MID_NAME  @student.LAST_NAME
@@ -140,7 +161,7 @@ else
             @if (next_student != null && Session["student_serach"] == null)
             {
                 <input type="submit" value="►" id="submit-button3" class="submit-button2" />
-            }          
+            }
         </div>
         <div class="extender"></div>
     </div>
@@ -174,12 +195,19 @@ else
         }
         @if (@ViewBag.total_discount != 0)
         {
+            string NextRow = "tr-even";
+            if (i % 2 == 0)
+            {
+                NextRow = "tr-odd";
+                i = i + 1;
+            }
             <tr class="tr-blank"></tr>
             <tr class="tr-blank"></tr>
-                <tr class="selectedRow" cellpadding="1" cellspacing="1">
-                    <td class="col-1"></td>
-                    <td class="col-1" colspan="2"><span class="themed_text">Discounts</span></td>
-                </tr>
+            <tr class="@NextRow" cellpadding="1" cellspacing="1">
+                <td class="col-1"></td>
+                <td class="col-1" colspan="2"><span class="themed_text">Discounts: </span></td>
+
+            </tr>
             foreach (var item in batch_discounts)
             {
                 string discount_text = item.IS_AMT == "Y" ? item.NAME : string.Concat(item.NAME, ": ", item.DISC, "%");
@@ -241,16 +269,16 @@ else
             }
             <tr class="tr-blank"></tr>
             <tr class="tr-blank"></tr>
-                <tr class="@nextRow" cellpadding="1" cellspacing="1">
-                    <td class="col-8" colspan="2">Total Discount</td>
-                    <td class="col-6">@ViewBag.total_discount</td>
-                </tr>
+            <tr class="@nextRow" cellpadding="1" cellspacing="1">
+                <td class="col-8" colspan="2">Total Discount</td>
+                <td class="col-6">@ViewBag.total_discount</td>
+            </tr>
                 <tr class="tr-blank"></tr>
                 <tr class="tr-blank"></tr>
             { total_fees -= total_fees * @ViewBag.total_discount_percentage / 100; }
             <tr class="@nextToNextRow" cellpadding="1" cellspacing="1">
                 <td class="col-8" colspan="2">Total Fees</td>
-                <td class="col-6">@total_fees</td>
+                <td class="col-6">@total_fees.ToString("0.00")</td>
             </tr>
         }
         <tr class="tr-blank"></tr>
@@ -265,31 +293,14 @@ else
             nextRow = "tr-odd";
             nextToNextRow = "tr-even";
         }
-        @if (ViewBag.fine != 0)
-        {
-            <tr class="@nextRow">
-                <td class="col-1">@i</td>
-                <td class="col-2"><span class="themed_text">Fine On: @System.DateTime.Now.ToShortDateString()</span></td>
-                <td class="col-6">@ViewBag.fine</td>
-            </tr>
-            foreach (var item11 in financefee)
-            {
-                if (item11.IS_PD != "Y")
-                {
-                    total_fees += (decimal)ViewBag.fine;
-                    i += 1;
-                    break;
-                }
-            }
-        }
 
         @if (@ViewBag.total_fine != 0)
         {
             <tr class="tr-blank"></tr>
-            <tr class="tr-blank"></tr>
-            <tr class="selectedRow" cellpadding="1" cellspacing="1">
+            <tr class="@nextRow" cellpadding="1" cellspacing="1">
                 <td class="col-1"></td>
-                <td class="col-1" colspan="2"><span class="themed_text">Fine</span></td>
+                <td class="col-1" colspan="2"><span class="themed_text">Fine: </span></td>
+
             </tr>
             foreach (var item in batch_fine)
             {
@@ -356,12 +367,11 @@ else
                 <td class="col-8" colspan="2">Total Fine</td>
                 <td class="col-6">@ViewBag.total_fine</td>
             </tr>
-                <tr class="tr-blank"></tr>
+            <tr class="tr-blank"></tr>
                 <tr class="tr-blank"></tr>
             { total_fees += @ViewBag.total_fine; }
 
         }
-        <tr class="tr-blank"></tr>
         <tr class="tr-blank"></tr>
         @if (i % 2 == 0)
         {
@@ -412,7 +422,7 @@ else
         }
         <tr class="@nextRow" cellpadding="1" cellspacing="1">
             <td class="col-8" colspan="2">Amount To Pay :</td>
-            <td class="col-6">@total_fees</td>
+            <td class="col-6">@total_fees.ToString("0.00")</td>
         </tr>
         <tr>
             <td colspan="3">
@@ -435,20 +445,29 @@ new { @class = "form-control", @id = "PAYMENT_MODE" })
                             <div class="text-input-bg"><input type="text" name="PAYMENT_NOTE" id="PAYMENT_NOTE" /></div>
                             @Html.ValidationMessage("PAYMENT_NOTE", "", new { @class = "text-danger" })
                         </div>
-                            <div class="label-field-pair">
-                                <div class="label-container">@Html.Label("PAYMENT_AMOUNT", "Amount", htmlAttributes: new { @class = "control-label col-md-2" })</div>
-                                <div class="text-input-bg"><input type="text" name="PAYMENT_AMOUNT" id="PAYMENT_AMOUNT" value="@total_fees" /></div>
-                                @Html.ValidationMessage("PAYMENT_AMOUNT", "", new { @class = "text-danger" })
+                        <div class="label-field-pair">
+                            <div class="label-container">@Html.Label("PAYMENT_AMOUNT", "Amount", htmlAttributes: new { @class = "control-label col-md-2" })</div>
+                            <div class="text-input-bg"><input type="text" name="PAYMENT_AMOUNT" id="PAYMENT_AMOUNT" value="@total_fees.ToString("0.00")" /></div>
+                            @Html.ValidationMessage("PAYMENT_AMOUNT", "", new { @class = "text-danger" })
+                        </div>
+                        <div class="label-field-pair">
+                            <div class="label-container">@Html.Label("PAYMENT_DATE", "Payment Date", htmlAttributes: new { @class = "control-label col-md-2" })</div>
+                            <div class="text-input-bg-admission">
+                                @Html.Editor("PAYMENT_DATE", new { htmlAttributes = new { @class = "m-wrap  datepicker", @id = "datepicker", @Value = ViewBag.ReturnDate } })
+                                @Html.ValidationMessage("PAYMENT_DATE", "", new { @class = "text-danger" })
                             </div>
-
+                        </div>
                             <div class="pay_fees_buttons">
                                 <input type="submit" value="► Pay Fees" id="submit-button1" class="submit_button" />
-                                @Html.ActionLink("Print Receipt", "student_fee_receipt_pdf", new { id = student.ID, id2 = date.ID })
+                                @if (financefee != null && financefee.Count() != 0)
+                                {
+                                    @Html.ActionLink("Print Receipt", "student_fee_receipt_pdf", new { id = student.ID, id2 = date.ID })
+                                }
                             </div>
                     }
                     else
                     {
-                        <h4>Feesm Paid</h4>
+                        <h4>Fees Paid</h4>
                     }
                 </div>
             </td>
@@ -462,7 +481,8 @@ new { @class = "form-control", @id = "PAYMENT_MODE" })
             </td>
         </tr>
     </table>
-}
+    <div class="LoaderBox4"><img src="~/Content/images/loader.gif" id="loader" alt="Finance Logo" style="align-self:center; border:none"></div>
+            }
 <input type="hidden" value="@student.ID" id="studentID" name="studentID" />
 <input type="hidden" value="@ViewBag.prev_student_id" id="prev_studentID" name="prev_studentID" />
 <input type="hidden" value="@ViewBag.next_student_id" id="next_studentID" name="next_studentID" />
