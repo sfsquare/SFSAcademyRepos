@@ -238,15 +238,16 @@ namespace SFSAcademy.Controllers
             if (searchString != null && !searchString.Equals("-1"))
             {
                 page = 1;
-                ///As Drop down list sends Id, we will ahve to convert this to text which is different from text box
-                searchStringId = Convert.ToInt32(searchString);
-                //searchString = db.BATCHes.Find(searchStringId).NAME.ToString();
             }
             else
             {
                 searchString = currentFilter;
             }
-
+            if (!string.IsNullOrEmpty(searchString) && !searchString.Equals("-1"))
+            {
+                ///As Drop down list sends Id, we will ahve to convert this to text which is different from text box
+                searchStringId = Convert.ToInt32(searchString);
+            }
             ViewBag.CurrentFilter = searchString;
 
             var FeeCategoryS = (from ffc in db.FINANCE_FEE_CATGEORY
@@ -387,10 +388,27 @@ namespace SFSAcademy.Controllers
             {
                 return HttpNotFound();
             }
-            List<SelectListItem> options = new SelectList(db.BATCHes.OrderBy(x => x.ID), "ID", "NAME", fINANCE_FEE_CATEGORY.BTCH_ID).ToList();
+
+            var queryCourceBatch = (from cs in db.COURSEs
+                                    join bt in db.BATCHes on cs.ID equals bt.CRS_ID
+                                    select new Models.SelectCourseBatch { CourseData = cs, BatchData = bt, Selected = false })
+                                    .OrderBy(x => x.BatchData.ID).ToList();
+
+
+            List<SelectListItem> options = new List<SelectListItem>();
+            foreach (var item in queryCourceBatch)
+            {
+                string BatchFullName = string.Concat(item.CourseData.CODE, "-", item.BatchData.NAME);
+                var result = new SelectListItem();
+                result.Text = BatchFullName;
+                result.Value = item.BatchData.ID.ToString();
+                result.Selected = item.BatchData.ID == fINANCE_FEE_CATEGORY.BTCH_ID ? true : false;
+                options.Add(result);
+            }
             // add the 'ALL' option
             options.Insert(0, new SelectListItem() { Value = "-1", Text = "ALL" });
             ViewBag.BTCH_ID = options;
+
             return View(fINANCE_FEE_CATEGORY);
         }
 
@@ -422,7 +440,21 @@ namespace SFSAcademy.Controllers
                 }
                 ViewBag.ErrorMessage = string.Concat("Master Category Updated Successfully");
             }
-            List<SelectListItem> options = new SelectList(db.BATCHes.OrderBy(x => x.ID), "ID", "NAME", fINANCE_FEE_CATEGORY.BTCH_ID).ToList();
+
+            var queryCourceBatch = (from cs in db.COURSEs
+                                    join bt in db.BATCHes on cs.ID equals bt.CRS_ID
+                                    select new Models.SelectCourseBatch { CourseData = cs, BatchData = bt, Selected = false })
+                                    .OrderBy(x => x.BatchData.ID).ToList();
+            List<SelectListItem> options = new List<SelectListItem>();
+            foreach (var item in queryCourceBatch)
+            {
+                string BatchFullName = string.Concat(item.CourseData.CODE, "-", item.BatchData.NAME);
+                var result = new SelectListItem();
+                result.Text = BatchFullName;
+                result.Value = item.BatchData.ID.ToString();
+                result.Selected = item.BatchData.ID == fINANCE_FEE_CATEGORY.BTCH_ID ? true : false;
+                options.Add(result);
+            }
             // add the 'ALL' option
             options.Insert(0, new SelectListItem() { Value = "-1", Text = "ALL" });
             ViewBag.BTCH_ID = options;
@@ -1124,16 +1156,22 @@ namespace SFSAcademy.Controllers
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
 
+            int searchStringId = 0;
 
-            if (searchString != null)
+            if (searchString != null && !searchString.Equals("-1"))
             {
-                if (!searchString.Equals("ALL"))
-                {
-                    page = 1;
-                }
-                else { searchString = currentFilter; }
+                page = 1;
             }
-            else { searchString = currentFilter; }
+            else
+            {
+                searchString = currentFilter;
+            }
+            if (!string.IsNullOrEmpty(searchString) && !searchString.Equals("-1"))
+            {
+                ///As Drop down list sends Id, we will ahve to convert this to text which is different from text box
+                searchStringId = Convert.ToInt32(searchString);
+            }
+
             ViewBag.CurrentFilter = searchString;
 
             var FeeCollectionS = (from fc in db.FINANCE_FEE_COLLECTION
@@ -1144,13 +1182,11 @@ namespace SFSAcademy.Controllers
                                   select new Models.FeeCollection { FinanceFeeCollectionData = fc, BatchData = b, CourseData = cs }).Distinct();
 
 
-            if (!String.IsNullOrEmpty(searchString))
+            if (!String.IsNullOrEmpty(searchString) && !searchString.Equals("-1"))
             {
-                if (!searchString.Equals("ALL"))
-                {
-                    FeeCollectionS = FeeCollectionS.Where(s => s.BatchData.NAME.Contains(searchString));
-                }
+                FeeCollectionS = FeeCollectionS.Where(s => s.BatchData.ID.Equals(searchStringId));
             }
+
             switch (sortOrder)
             {
                 case "name_desc":
@@ -1167,7 +1203,7 @@ namespace SFSAcademy.Controllers
                     break;
             }
 
-            int pageSize = 25;
+            int pageSize = 20;
             int pageNumber = (page ?? 1);
             return View(FeeCollectionS.ToPagedList(pageNumber, pageSize));
             //return View(db.USERS.ToList());
@@ -1748,7 +1784,7 @@ namespace SFSAcademy.Controllers
 
 
 
-     public ActionResult update_ajax(int? student, int? batch_id, int? date, int? fine, String PAYMENT_MODE, String PAYMENT_NOTE, decimal? PAYMENT_AMOUNT, String PAYMENT_DATE)
+        public ActionResult update_ajax(int? student, int? batch_id, int? date, int? fine, String PAYMENT_MODE, String PAYMENT_NOTE, decimal? PAYMENT_AMOUNT, String PAYMENT_DATE)
         {
             if (ModelState.IsValid)
             {
