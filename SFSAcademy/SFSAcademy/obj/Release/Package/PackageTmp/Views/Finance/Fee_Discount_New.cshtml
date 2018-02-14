@@ -3,12 +3,11 @@
 @{
     ViewBag.Title = "Fee_Discount_New";
 }
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
-<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
-<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
-<link rel="stylesheet" href="/resources/demos/style.css" />
+<script type="text/javascript" src="@Url.Content("~/Content/javascripts/jquery/jquery.min.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/Content/javascripts/jquery/jquery-ui.min.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/Content/javascripts/jquery/jquery-1.9.1.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/Content/javascripts/jquery/jquery-ui.js")"></script>
+<link rel="stylesheet" href="~/Content/stylesheets/_styles/jquery-ui.css" />
 <script>
     $(document).ready(function () {
       $(".Admission1_form").hide();
@@ -95,8 +94,9 @@
             <span class="span-sub-heading">Enter Details of Selected Discount Type</span>
             <div class="label-field-pair">
                 @Html.LabelFor(model => model.NAME, "Name :", htmlAttributes: new { @class = "control-label col-md-2" })
+                <span class="necessary-field" style="font-size:small">* Required Field</span>
                 <div class="text-input-bg">
-                    @Html.EditorFor(model => model.NAME, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.EditorFor(model => model.NAME, new { htmlAttributes = new { @class = "form-control", required = "required" } })
                     @Html.ValidationMessageFor(model => model.NAME, "", new { @class = "text-danger" })
                 </div>
             </div>

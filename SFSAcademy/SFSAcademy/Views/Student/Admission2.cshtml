@@ -62,17 +62,17 @@
                     {
                         selectedRow = "tr-odd";
                     }
-                    
-                    <li class="@selectedRow"> @Guardian["FIRST_NAME"]  @Guardian["LAST_NAME"]  - @Guardian["REL"]</li>
+
+                    <li class="@selectedRow"> @Guardian["FIRST_NAME"]  @Guardian["LAST_NAME"]  - @Guardian["REL"] - @Guardian["MOB"]</li>
                     i = i + 1;
                 }
             </ul>
-          }
+                    }
         <div id="add-more-parent">
             <input type="button" id="Guardian_button" class="user_button" value="Add Guardian" />
         </div>
         <div id="skip">
-             <a href="@Url.Action("Admission3", "Student", new { Std_id = ViewBag.StudentId })" ; class="user_button">Finish</a>           
+            <a href="@Url.Action("Admission3", "Student", new { Std_id = ViewBag.StudentId })" ; class="user_button">Finish</a>
         </div>
         <script type="text/javascript">
           Event.observe(window, 'load', function() { $('Admission1_form').hide(); });
@@ -95,26 +95,29 @@
                 <span class="span-sub-heading">Parent - Personal Details</span>
                 <hr class="sub-heading">
                 <div class="label-field-pair">
-                    @Html.LabelFor(model => model.FIRST_NAME, "First Name", htmlAttributes: new { @class = "control-label col-md-2" }) <span class="necessary-field">*</span>
+                    @Html.LabelFor(model => model.FIRST_NAME, "First Name", htmlAttributes: new { @class = "control-label col-md-2" }) 
+                    <span class="necessary-field" style="font-size:small">* Required Field</span>
                     <div class="text-input-bg">
-                        @Html.EditorFor(model => model.FIRST_NAME, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.EditorFor(model => model.FIRST_NAME, new { htmlAttributes = new { @class = "form-control", required = "required" } })
                         @Html.ValidationMessageFor(model => model.FIRST_NAME, "", new { @class = "text-danger" })
                     </div>
                 </div>
                 <hr class="label-underline">
                 <div class="label-field-pair">
                     @Html.LabelFor(model => model.LAST_NAME, "Last Name", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <span class="necessary-field" style="font-size:small">* Required Field</span>
                     <div class="text-input-bg">
-                        @Html.EditorFor(model => model.LAST_NAME, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.EditorFor(model => model.LAST_NAME, new { htmlAttributes = new { @class = "form-control", required = "required" } })
                         @Html.ValidationMessageFor(model => model.LAST_NAME, "", new { @class = "text-danger" })
                     </div>
                 </div>
                 <hr class="label-underline">
 
                 <div class="label-field-pair">
-                    @Html.LabelFor(model => model.REL, "Relationship", htmlAttributes: new { @class = "control-label col-md-2" }) <span class="necessary-field">*</span>
+                    @Html.LabelFor(model => model.REL, "Relationship", htmlAttributes: new { @class = "control-label col-md-2" }) 
+                    <span class="necessary-field" style="font-size:small">* Required Field</span>
                     <div class="text-input-bg">
-                        @Html.EditorFor(model => model.REL, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.EditorFor(model => model.REL, new { htmlAttributes = new { @class = "form-control", required = "required" } })
                         @Html.ValidationMessageFor(model => model.REL, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -249,7 +252,7 @@
                     else
                     {
                         <div class="text-input-bg">
-                            @Html.DropDownList("CTRY_ID", null, htmlAttributes: new { @class = "form-control", @Value = "India" })
+                            @Html.DropDownList("CTRY_ID", null, htmlAttributes: new { @class = "form-control" })
                             @Html.ValidationMessageFor(model => model.CTRY_ID, "", new { @class = "text-danger" })
                         </div>
                     }
@@ -276,8 +279,9 @@
 
                 <div class="label-field-pair">
                     @Html.LabelFor(model => model.MOBL_PH, "Mobile", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <span class="necessary-field" style="font-size:small">* Required Field</span>
                     <div class="text-input-bg">
-                        @Html.EditorFor(model => model.MOBL_PH, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.EditorFor(model => model.MOBL_PH, new { htmlAttributes = new { @class = "form-control", required = "required" } })
                         @Html.ValidationMessageFor(model => model.MOBL_PH, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -294,9 +298,9 @@
     }
 
 </div>
-@if(null != TempData["alertMessage"])
-   {
-<script type="text/javascript">
+@if (null != TempData["alertMessage"])
+{
+    <script type="text/javascript">
        alert('@TempData["alertMessage"]');
-</script>
-   }
+    </script>
+}

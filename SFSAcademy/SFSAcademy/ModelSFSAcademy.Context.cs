@@ -109,8 +109,6 @@ namespace SFSAcademy
         public virtual DbSet<FINANCE_TRANSACTION> FINANCE_TRANSACTION { get; set; }
         public virtual DbSet<IMAGE_DOCUMENTS> IMAGE_DOCUMENTS { get; set; }
         public virtual DbSet<STUDENT> STUDENTs { get; set; }
-        public virtual DbSet<C__MigrationHistory> C__MigrationHistory { get; set; }
-        public virtual DbSet<Photo> Photos { get; set; }
         public virtual DbSet<Privilege> Privileges { get; set; }
         public virtual DbSet<Privileges_Users> Privileges_Users { get; set; }
         public virtual DbSet<Gallery_Master> Gallery_Master { get; set; }

@@ -16,6 +16,7 @@
     DynamicHeader.AddStyleSheet(CSSDirection + "autosuggest-menu.css");
 }
 
+
 @if (LocationHelper.IsCurrentControllerAndAction("USERs", "Dashboard", ViewContext))
 {
     DynamicHeader.AddStyleSheet(CSSDirection + "_layouts/dashboard.css");
@@ -29,6 +30,8 @@ else if (LocationHelper.IsCurrentControllerAndAction("USERs", "Login", ViewConte
 else
 {
     DynamicHeader.AddStyleSheet(CSSDirection + "application.css");
+    DynamicHeader.AddStyleSheet(CSSDirection + "redbox.css");
+    DynamicHeader.AddStyleSheet(CSSDirection + "error_page.css");
 }
 
 @{

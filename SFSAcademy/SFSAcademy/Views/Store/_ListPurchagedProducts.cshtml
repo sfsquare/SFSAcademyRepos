@@ -141,7 +141,7 @@
                 <td class="col-8" colspan="2">Amount To Pay :</td>
                 <td class="col-6">@ViewBag.TotalPrice</td>
             </tr>
-        }       
+        }
         <tr class="tr-blank"></tr>
         <tr>
             <td colspan="3">
@@ -152,13 +152,15 @@
                             <div class="label-container">@Html.Label("PAYMENT_MODE", "Payment Mode", htmlAttributes: new { @class = "control-label col-md-2" })</div>
                             <div class="text-input-bg">@Html.DropDownList("PAYMENT_MODE", new SelectList(Enum.GetValues(typeof(PaymentMode))), "Select Mode:", new { @class = "form-control", @id = "PAYMENT_MODE" })</div>
                         </div>
-                            <div class="label-field-pair">
-                                <div class="label-container">@Html.Label("STUDENT_NAME", "Stundet Name", htmlAttributes: new { @class = "control-label col-md-2" })</div>
-                                <div class="text-input-bg"><input type="text" name="STUDENT_NAME" id="STUDENT_NAME" value="@ViewBag.STUDENT_NAME"/></div>
-                            </div>
+                        <div class="label-field-pair">
+                            <div class="label-container">@Html.Label("STUDENT_NAME", "Stundet Name", htmlAttributes: new { @class = "control-label col-md-2" })</div>
+                            <span class="necessary-field" style="font-size:small">* Required Field</span>
+                            <div class="text-input-bg"><input type="text" name="STUDENT_NAME" id="STUDENT_NAME" value="@ViewBag.STUDENT_NAME" required = "required" /></div>
+                        </div>
                             <div class="label-field-pair">
                                 <div class="label-container">@Html.Label("PHONE_NUMBER", "Phone Number", htmlAttributes: new { @class = "control-label col-md-2" })</div>
-                                <div class="text-input-bg"><input type="text" name="PHONE_NUMBER" id="PHONE_NUMBER" value="@ViewBag.PHONE_NUMBER" /></div>
+                                <span class="necessary-field" style="font-size:small">* Required Field</span>
+                                <div class="text-input-bg"><input type="text" name="PHONE_NUMBER" id="PHONE_NUMBER" value="@ViewBag.PHONE_NUMBER" required = "required"  /></div>
                             </div>
                             <div class="label-field-pair">
                                 <div class="label-container">@Html.Label("PURCHAGE_DATE", "Purchage Date", htmlAttributes: new { @class = "control-label col-md-2" })</div>

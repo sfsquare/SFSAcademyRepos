@@ -65,10 +65,10 @@
                     @if (Html.Permitted_To("Edit", "Store"))
                     {
                         <td class="col-8" nowrap>
-                            @Html.ActionLink("Edit ", "Edit", new { id = item.ProductData.PRODUCT_ID }) |
-                            @Html.ActionLink("Details  ", "Details", new { id = item.ProductData.PRODUCT_ID }) |
-                            @Html.ActionLink("Delete ", "Delete", new { id = item.ProductData.PRODUCT_ID }) |
-                            @Html.ActionLink("Sell ", "Purchase", new { id = item.ProductData.PRODUCT_ID })
+                            @Html.ActionLink("Edit ", "Edit", new { id = item.ProductData.PRODUCT_ID }, new { style = "text-decoration:underline" }) |
+                            @Html.ActionLink("Details  ", "Details", new { id = item.ProductData.PRODUCT_ID }, new { style = "text-decoration:underline" }) |
+                            @Html.ActionLink("Delete ", "Delete", new { id = item.ProductData.PRODUCT_ID }, new { style = "text-decoration:underline" }) |
+                            @Html.ActionLink("Sell ", "Purchase", new { id = item.ProductData.PRODUCT_ID }, new { style = "text-decoration:underline" })
                         </td>
                     }
                     else
@@ -77,7 +77,7 @@
                             @Html.ActionLink("Sell ", "Purchase", new { id = item.ProductData.PRODUCT_ID })
                         </td>
                     }
-                    
+
                 </tr>
             i = i + 1;
         }

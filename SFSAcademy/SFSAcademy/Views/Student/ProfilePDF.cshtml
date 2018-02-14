@@ -1,0 +1,66 @@
+﻿@model SFSAcademy.Models.Student
+@using SFSAcademy.Models
+@{
+    Layout = null;
+}
+<link rel="stylesheet" id="stylesheet" type="text/css" href="~/Content/stylesheets/student/profile_pdf.css">
+
+<div id="page-yield">
+    <div class="hor_line"></div>
+    <h2>S. F. Square Academy - Students Profile</h2>
+    <div class="hor_line"></div>
+    <div id="student_profile_heading">
+        <div id="profile_picture_display">
+            <img src="/Student/Show/@Model.StudentData.IMAGE_DOCUMENTS_ID" alt="" height=150 width=150 />
+        </div>
+        <div id="student_main_info">
+            <h3> @Model.StudentData.FIRST_NAME  @Model.StudentData.MID_NAME @Model.StudentData.LAST_NAME</h3>
+            @if (Model.CourseData != null)
+            {
+                <h4> Batch : @Model.CourseData.CRS_NAME - @Model.BatcheData.NAME</h4>
+            }
+            <h4> Section : @Model.BatcheData.NAME </h4>
+            <h4> Admission Number : @Model.StudentData.ADMSN_NO </h4>
+        </div>
+        <div class="extender"> </div>
+    </div>
+    <div id="new_profile_info_top">
+        <div class="profile_top_banner">
+            <span class="profile">Details</span>
+            <div class="profile-topbanner"></div>
+        </div>
+        <table width="700">
+            <tr class="odd left"><td>Admission Date :</td><td class="right">@Model.StudentData.ADMSN_DATE.Value.ToShortDateString()</td></tr>
+            @if (Model.StudentData.DOB != null)
+            {
+                <tr class="even left"><td>Date Of Birth :</td><td class="right">@Model.StudentData.DOB.Value.ToShortDateString()</td></tr>
+            }
+            else
+            {
+                <tr class="even left"><td>Date Of Birth :</td><td class="right">@Model.StudentData.DOB</td></tr>
+            }
+            <tr class="odd left"><td>Blood Group :</td><td class="right">@Model.StudentData.BLOOD_GRP</td></tr>
+            <tr class="even left"><td>Gender :</td><td class="right">@Model.StudentData.GNDR</td></tr>
+            <tr class="odd left"><td>Nationality :</td><td class="right">@Model.CountryData.NTLTY</td></tr>
+            <tr class="even left"><td>Language :</td><td class="right">@Model.StudentData.LANG</td></tr>
+            @if (Model.CategoryData != null)
+            {
+                <tr class="odd left"><td>Category :</td><td class="right">@Model.CategoryData.NAME</td></tr>
+            }
+            <tr class="even left"><td>Religion :</td><td class="right">@Model.StudentData.RLGN</td></tr>
+            <tr class="odd left"><td>Address :</td><td class="right">@Model.StudentData.ADDR_LINE1 , @Model.StudentData.ADDR_LINE2</td></tr>
+            <tr class="even left"><td>City/State/ZIP Code :</td><td class="right">@Model.StudentData.CITY, @Model.StudentData.STATE - @Model.StudentData.PIN_CODE</td></tr>
+            <tr class="odd left"><td>Country :</td><td class="right">@Model.CountryData.CTRY_NAME</td></tr>
+            <tr class="even left"><td>Phone :</td><td class="right">@Model.StudentData.PH1 / @Model.StudentData.PH2</td></tr>
+            <tr class="odd left"><td>Email :</td><td class="right">@Model.StudentData.EML</td></tr>
+            @if (Model.EmployeeData != null)
+            {
+                <tr class="odd left"><td>Group Tutor :</td><td class="right">@Model.EmployeeData.FIRST_NAME @Model.EmployeeData.LAST_NAME</td></tr>
+            }
+        </table>
+        <div class="buttons">
+            <input type="submit" id="submit_button" value="Print" class="submit_button" onclick="window.print()" />
+        </div>
+
+    </div>
+</div>

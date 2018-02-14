@@ -1052,3 +1052,11 @@ textarea{
 .themed_bg {
     background-color: #B00;
 }
+.necessary-field {
+    color : #f00;
+    font-size : 1.1em;
+}
+#necessary-field-notification {
+    font-weight : bold;
+    padding : 10px 0 30px 0;
+}

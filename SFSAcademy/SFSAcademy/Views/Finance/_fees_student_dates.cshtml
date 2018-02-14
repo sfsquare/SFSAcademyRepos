@@ -3,29 +3,32 @@
     STUDENT student = (STUDENT)ViewData["student"];
     IList<SFSAcademy.Models.SelectCourseBatch> batch = (IList<SFSAcademy.Models.SelectCourseBatch>)ViewData["batch"];
 }
- 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
-<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
-<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
-<link rel="stylesheet" href="/resources/demos/style.css" />
+
+<script type="text/javascript" src="@Url.Content("~/Content/javascripts/jquery/jquery.min.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/Content/javascripts/jquery/jquery-ui.min.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/Content/javascripts/jquery/jquery-1.9.1.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/Content/javascripts/jquery/jquery-ui.js")"></script>
+<link rel="stylesheet" href="~/Content/stylesheets/_styles/jquery-ui.css" />
 <script type="text/javascript" language="javascript">
     /* This is change event for your dropdownlist */
     $(document).ready(function () {
+        $(".LoaderBox2").hide();
         $('#CollDropDown').change(function () {
 
         /* Get the selected value of dropdownlist */
             var selectedID = $(this).val();
             var SelectedStd = $('#studentID12').val();
             var SelectedBatch = $('#batch_id12').val();
-        /* Request the partial view with .get request. */
+            /* Request the partial view with .get request. */
+            $(".LoaderBox2").show();
         $.get('/Finance/_student_fees_submission?id=' + selectedID + "&student_id=" + SelectedStd + "&batch_id=" + SelectedBatch, function (data) {
 
             /* data is the pure html returned from action method, load it to your page */
             $('#modal-box').html(data);
             /* little fade in effect */
             $('#modal-box').fadeIn('fast');
+        }).success(function (status) {
+            $(".LoaderBox2").hide();
         });
 
     });
@@ -35,6 +38,7 @@
     <div class="label-container">@Html.Label("COLL_ID", "Select Fee Collection Date :", htmlAttributes: new { @class = "control-label col-md-2" })</div>
     <div class="text-input-bg">
         @Html.DropDownList("COLL_ID", null, htmlAttributes: new { @class = "form-control", @id = "CollDropDown" })
+        <div class="LoaderBox2"><img src="~/Content/images/loader.gif" id="loader" alt="Finance Logo" style="align-self:center; border:none"></div>
         @Html.ValidationMessage("COLL_ID", "", new { @class = "text-danger" })
     </div>
 </div>

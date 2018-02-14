@@ -6,7 +6,12 @@
 }
 
 @Html.Partial("_Partial/News_Bar")
-<p class="flash-msg"> Notices </p>
+<div id="flash_box">
+    @if (ViewBag.Notices != null)
+            {
+        <p class="flash-msg"> @ViewBag.Notices </p>
+    }
+</div>
 
 <div id="user_options">
     @if (Html.CurrentUser_UserType().Equals("Admin"))
@@ -45,6 +50,36 @@
         {
             <div class="button-box">
                 <a href="@Url.Action("Index", "Finance")" class="option_buttons" id="finance_button" title="Finance"></a><div class='button-label'><p>Finance</p></div>
+            </div>
+        }
+        <div class="button-box">
+            @if (Html.Check_Reminders() != 0)
+            {
+                <div class="reminder1">
+                    <a href="@Url.Action("Index", "Reminder")" class="option_buttons" id="reminders_button" title="Reminders"></a><div class='button-label'><p>Reminders</p></div>
+                    <div class="count">@Html.Check_Reminders()</div>
+                </div>
+            }
+            else
+            {
+                <div class="reminder1">
+                    <a href="@Url.Action("Index", "Reminder")" class="option_buttons" id="reminders_button" title="Reminders"></a><div class='button-label'><p>Reminders</p></div>
+                </div>
+            }
+        </div>
+        <div class="button-box">
+            <a href="@Url.Action("Reports", "Student", new { id = this.Session["UserId"] })" class="option_buttons" id="academic_button" title="Academics"></a><div class='button-label'><p>Academics</p></div>
+        </div>
+        if (Html.Permitted_To("Leave_Management", "Employee"))
+        {
+            <div class="button-box">
+                <a href="@Url.Action("Leave_Management", "Employee")" class="option_buttons" id="leaves_button" title="Leaves"></a><div class='button-label'><p>Leaves</p></div>
+            </div>
+        }
+        else if (Html.CurrentUser_UserType().Equals("Admin") || Html.CurrentUser_UserType().Equals("HR"))
+        {
+            <div class="button-box">
+                <a href="@Url.Action("Leaves", "Employee_Attendance", new { id = this.Session["UserId"] })" class="option_buttons" id="leaves_button" title="Leaves"></a><div class='button-label'><p>Leaves</p></div>
             </div>
         }
         if (Html.CurrentUser_UserType().Equals("Admin") || Html.CurrentUser_UserType().Equals("Finance"))

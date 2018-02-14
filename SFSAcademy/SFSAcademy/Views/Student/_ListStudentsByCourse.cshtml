@@ -19,6 +19,9 @@
                 Batch
             </th>
             <th>
+                Roll Number
+            </th>
+            <th>
                 Admission Date
             </th>
             <th>
@@ -48,6 +51,9 @@
                         <label>-</label>
                         @Html.DisplayFor(modelItem => item.BatcheData.NAME)
                     </td>
+                    <td class="col-3">
+                        @Html.DisplayFor(modelItem => item.StudentData.CLS_ROLL_NO)
+                    </td>
                     <td class="col-5" nowrap>
                         @if (!item.StudentData.ADMSN_DATE.Equals(null))
                         {
@@ -58,13 +64,13 @@
                         @Html.DisplayFor(modelItem => item.StudentData.ADMSN_NO)
                     </td>
                     <td class="col-6" nowrap>
-                        @Html.ActionLink("Profile ", "Profiles", new { id = item.StudentData.ID })
+                        @Html.ActionLink("Profile ", "Profiles", new { id = item.StudentData.ID }, new { style = "text-decoration:underline" })
                     </td>
                 </tr>
             i = i + 1;
         }
     </table>
     <br />
-    @Html.PagedListPager(Model, page => Url.Action("_ListStudentsByCourse",
+    @Html.PagedListPager(Model, page => Url.Action("ViewAll",
     new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
 </div>

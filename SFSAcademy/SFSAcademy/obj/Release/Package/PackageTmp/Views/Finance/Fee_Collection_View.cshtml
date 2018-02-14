@@ -17,6 +17,18 @@
 <div><img src="~/Content/images/_global/header_underline_.jpg" width="100%"></div>
 
 <div id="page-yield">
+    <div class="bread_crumb">
+        @Html.ActionLink("Finance", "Index") &raquo;
+        @Html.ActionLink("Fees", "Fees_Index") &raquo;
+        @Html.ActionLink("Fee Collection", "Fee_Collection") &raquo;
+        View Fee Collection
+    </div>
+    <div id="flash_box">
+        @if (ViewBag.ErrorMessage != null)
+            {
+            <p class="flash-msg"> @ViewBag.ErrorMessage </p>
+        }
+    </div>
     <div id="search_box_bg">
         @if (Html.ValidationSummary() != null)
         {
@@ -24,7 +36,7 @@
         }
         <div id="searchbox">
             <form name="search-form" id="search-form" action="" style="display:inline;">
-                @using (Html.BeginForm("Index", "Student", FormMethod.Get))
+                @using (Html.BeginForm("Fee_Collection_View", "Finance", FormMethod.Get))
                 {
                     <p>
                         @Html.DropDownList("searchString", null, htmlAttributes: new { @class = "form-control" })
@@ -58,7 +70,10 @@
                 <th>
                     End Date
                 </th>
-                <th></th>
+                @if (Html.CurrentUser_UserType().Equals("Admin"))
+                {
+                    <th></th>
+                }
             </tr>
             <tr class="tr-blank"></tr>
             @{int i = 1; }
@@ -88,9 +103,12 @@
                     <td class="col-6" nowrap>
                         @item.FinanceFeeCollectionData.END_DATE.Value.ToShortDateString()
                     </td>
-                    <td class="col-7" nowrap>
-                        @Html.ActionLink("Edit ", "Fee_Collection_Edit", new { id = item.FinanceFeeCollectionData.ID })|@Html.ActionLink(" Delete", "Fee_Collection_Delete", new { id = item.FinanceFeeCollectionData.ID })
-                    </td>
+                    @if (Html.CurrentUser_UserType().Equals("Admin"))
+                {
+                        <td class="col-7" nowrap>
+                            @Html.ActionLink("Edit ", "Fee_Collection_Edit", new { id = item.FinanceFeeCollectionData.ID })|@Html.ActionLink(" Delete", "Fee_Collection_Delete", new { id = item.FinanceFeeCollectionData.ID })
+                        </td>
+                    }
                 </tr>
                 i = i + 1;
             }

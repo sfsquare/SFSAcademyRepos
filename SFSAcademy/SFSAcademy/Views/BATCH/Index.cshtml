@@ -32,35 +32,36 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.NAME)
-        </td>
-        <td>
-            @if (!item.START_DATE.Equals(null))
-            {
-                @item.START_DATE.Value.ToShortDateString()
-            }
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.END_DATE)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.IS_DEL)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EMP_ID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.COURSE.CRS_NAME)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NAME)
+            </td>
+            <td>
+                @if (!item.START_DATE.Equals(null))
+                {
+                    @item.START_DATE.Value.ToShortDateString()
+                }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.END_DATE)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IS_DEL)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EMP_ID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.COURSE.CRS_NAME)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ID }, new { style = "text-decoration:underline" }) |
+                @Html.ActionLink("Details", "Details", new { id = item.ID }, new { style = "text-decoration:underline" }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ID }, new { style = "text-decoration:underline" })
+            </td>
+        </tr>
+    }
 
 </table>

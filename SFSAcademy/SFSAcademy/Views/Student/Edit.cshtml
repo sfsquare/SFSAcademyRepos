@@ -81,10 +81,11 @@
 
             <div class="label-field-pair">
                 @Html.LabelFor(model => model.FIRST_NAME, "First Name", htmlAttributes: new { @class = "control-label col-md-2" })
+                <span class="necessary-field" style="font-size:small">* Required Field</span>
                 <span class="necessary-field">*</span>
                 <div class="text-input-bg">
                     @Html.EditorFor(model => model.FIRST_NAME, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.FIRST_NAME, "", new { @class = "text-danger" })
+                    @Html.ValidationMessageFor(model => model.FIRST_NAME, "First Name is Required.", new { @class = "text-danger" })
                 </div>
             </div>
             <hr class="label-underline">
@@ -100,9 +101,10 @@
 
             <div class="label-field-pair">
                 @Html.LabelFor(model => model.LAST_NAME, "Last Name", htmlAttributes: new { @class = "control-label col-md-2" })
+                <span class="necessary-field" style="font-size:small">* Required Field</span>
                 <div class="text-input-bg">
                     @Html.EditorFor(model => model.LAST_NAME, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.LAST_NAME, "", new { @class = "text-danger" })
+                    @Html.ValidationMessageFor(model => model.LAST_NAME, "Last Name is Required.", new { @class = "text-danger" })
                 </div>
             </div>
             <hr class="label-underline">
@@ -110,9 +112,10 @@
             <div id="admission1_form_vertical_block_left">
                 <div class="label-field-pair">
                     @Html.LabelFor(model => model.BTCH_ID, "Course And Batch", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <span class="necessary-field" style="font-size:small">* Required Field</span>
                     <div class="text-input-bg">
-                        @Html.DropDownList("BTCH_ID", null, htmlAttributes: new { @class = "form-control"})
-                        @Html.ValidationMessageFor(model => model.BTCH_ID, "", new { @class = "text-danger" })
+                        @Html.DropDownList("BTCH_ID", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.BTCH_ID, "Batch Selection is Required.", new { @class = "text-danger" })
                     </div>
                 </div>
                 <hr class="label-underline">
@@ -120,8 +123,9 @@
                 <div class="label-field-pair">
                     @Html.LabelFor(model => model.DOB, "Date Of Birth", htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        @Html.EditorFor(model => model.DOB, new { htmlAttributes = new { @class = "form-control", @id = "datepicker2", @readonly = "readonly" } })
-                        @Html.ValidationMessageFor(model => model.DOB, "", new { @class = "text-danger" })
+                        @Html.EditorFor(model => model.DOB, new { htmlAttributes = new { @class = "form-control", @id = "datepicker2", required = "required" } })
+                        <span class="necessary-field" style="font-size:small">* Required Field</span>
+                        @Html.ValidationMessageFor(model => model.DOB, "Date of Birth is Required.", new { @class = "text-danger" })
 
                     </div>
                 </div>
@@ -290,7 +294,7 @@
                     </div>
                 }
                 <br />
-                
+
                 <span class="span-sub-heading">Upload Photo</span>
                 <hr class="sub-heading">
                 <div class="label-field-pair">

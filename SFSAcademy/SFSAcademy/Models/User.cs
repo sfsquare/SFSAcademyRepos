@@ -69,24 +69,7 @@ namespace SFSAcademy.Models
             }
 
             var v = db.USERS.Where(a => a.USRNAME.Equals(_username) && a.HASHED_PSWRD.Equals(_password)).FirstOrDefault();
-            UserDetails user = new UserDetails();
-            user.Id = v.ID;
-            user.USRNAME = v.USRNAME;
-            user.FIRST_NAME = v.FIRST_NAME;
-            user.LAST_NAME = v.LAST_NAME;
-            user.EML = v.EML;
-            user.ADMIN_IND = v.ADMIN_IND;
-            user.STDNT_IND = v.STDNT_IND;
-            user.EMP_IND = v.EMP_IND;
-            user.HASHED_PSWRD = v.HASHED_PSWRD;
-            user.SALT = v.SALT;
-            user.RST_PSWRD_CODE = v.RST_PSWRD_CODE;
-            user.RST_PSWRD_CODE_UNTL = Convert.ToDateTime(v.RST_PSWRD_CODE_UNTL);
-            user.CREATED_AT = Convert.ToDateTime(v.CREATED_AT);
-            user.UPDATED_AT = Convert.ToDateTime(v.UPDATED_AT);
-            user.PARNT_IND = v.PARNT_IND;
 
-            user.privilage = GetUserPrivilage(Convert.ToInt32(v.ID));
 
             if (v != null)
             {
@@ -100,8 +83,25 @@ namespace SFSAcademy.Models
                 //{
                 //    userrights.Add(new USERS_ACCESS)
                 //}
+                UserDetails user = new UserDetails();
+                user.Id = v.ID;
+                user.USRNAME = v.USRNAME;
+                user.FIRST_NAME = v.FIRST_NAME;
+                user.LAST_NAME = v.LAST_NAME;
+                user.EML = v.EML;
+                user.ADMIN_IND = v.ADMIN_IND;
+                user.STDNT_IND = v.STDNT_IND;
+                user.EMP_IND = v.EMP_IND;
+                user.HASHED_PSWRD = v.HASHED_PSWRD;
+                user.SALT = v.SALT;
+                user.RST_PSWRD_CODE = v.RST_PSWRD_CODE;
+                user.RST_PSWRD_CODE_UNTL = Convert.ToDateTime(v.RST_PSWRD_CODE_UNTL);
+                user.CREATED_AT = Convert.ToDateTime(v.CREATED_AT);
+                user.UPDATED_AT = Convert.ToDateTime(v.UPDATED_AT);
+                user.PARNT_IND = v.PARNT_IND;
 
                 user.privilage = GetUserPrivilage(Convert.ToInt32(v.ID));
+                //user.privilage = GetUserPrivilage(Convert.ToInt32(v.ID));
                 System.Web.HttpContext.Current.Session["CurrentUser"] = user;
                 //userrights.user = v;
                 return true;

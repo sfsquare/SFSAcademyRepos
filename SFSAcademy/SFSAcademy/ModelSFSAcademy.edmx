@@ -5,16 +5,6 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="SFSAcademyModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="__MigrationHistory">
-          <Key>
-            <PropertyRef Name="MigrationId" />
-            <PropertyRef Name="ContextKey" />
-          </Key>
-          <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
-          <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
-          <Property Name="Model" Type="varbinary(max)" Nullable="false" />
-          <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
-        </EntityType>
         <EntityType Name="APPLY_LEAVE">
           <Key>
             <PropertyRef Name="ID" />
@@ -884,16 +874,6 @@ warning 6002: The table/view 'SFSAcademy_QA.dbo.PHOTO_MASTER' does not have a pr
           <Property Name="ImagePath" Type="varchar" MaxLength="500" />
           <Property Name="CreatedOn" Type="datetime" />
           <Property Name="PhotoName" Type="varchar" MaxLength="50" />
-        </EntityType>
-        <EntityType Name="Photos">
-          <Key>
-            <PropertyRef Name="PhotoId" />
-          </Key>
-          <Property Name="PhotoId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Decription" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="ImagePath" Type="nvarchar(max)" />
-          <Property Name="ThumbPath" Type="nvarchar(max)" />
-          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="Privileges">
           <Key>
@@ -2635,7 +2615,6 @@ warning 6002: The table/view 'SFSAcademy_QA.dbo.PHOTO_MASTER' does not have a pr
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="SFSAcademyModelStoreContainer">
-          <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="APPLY_LEAVE" EntityType="Self.APPLY_LEAVE" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ARCHIVED_STUDENT" EntityType="Self.ARCHIVED_STUDENT" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ASSESSMENT_SCORE" EntityType="Self.ASSESSMENT_SCORE" Schema="dbo" store:Type="Tables" />
@@ -2698,7 +2677,6 @@ warning 6002: The table/view 'SFSAcademy_QA.dbo.PHOTO_MASTER' does not have a pr
           <EntitySet Name="OBSERVATION" EntityType="Self.OBSERVATION" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OBSERVATION_GROUP" EntityType="Self.OBSERVATION_GROUP" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PAYROLL_CATEGORY" EntityType="Self.PAYROLL_CATEGORY" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Photos" EntityType="Self.Photos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Privileges" EntityType="Self.Privileges" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Privileges_Users" EntityType="Self.Privileges_Users" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RANKING_LEVEL" EntityType="Self.RANKING_LEVEL" Schema="dbo" store:Type="Tables" />
@@ -5790,8 +5768,6 @@ warning 6002: The table/view 'SFSAcademy_QA.dbo.PHOTO_MASTER' does not have a pr
             <End Role="USER" EntitySet="USERS" />
             <End Role="STUDENT" EntitySet="STUDENTs" />
           </AssociationSet>
-          <EntitySet Name="C__MigrationHistory" EntityType="SFSAcademyModel.C__MigrationHistory" />
-          <EntitySet Name="Photos" EntityType="SFSAcademyModel.Photo" />
           <EntitySet Name="Privileges" EntityType="SFSAcademyModel.Privilege" />
           <EntitySet Name="Privileges_Users" EntityType="SFSAcademyModel.Privileges_Users" />
           <EntitySet Name="Gallery_Master" EntityType="SFSAcademyModel.Gallery_Master" />
@@ -6604,26 +6580,6 @@ warning 6002: The table/view 'SFSAcademy_QA.dbo.PHOTO_MASTER' does not have a pr
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="C__MigrationHistory">
-          <Key>
-            <PropertyRef Name="MigrationId" />
-            <PropertyRef Name="ContextKey" />
-          </Key>
-          <Property Name="MigrationId" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="ContextKey" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
-          <Property Name="Model" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
-          <Property Name="ProductVersion" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="Photo">
-          <Key>
-            <PropertyRef Name="PhotoId" />
-          </Key>
-          <Property Name="PhotoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Decription" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="ImagePath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="ThumbPath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
-        </EntityType>
         <EntityType Name="Privilege">
           <Key>
             <PropertyRef Name="ID" />
@@ -7912,27 +7868,6 @@ warning 6002: The table/view 'SFSAcademy_QA.dbo.PHOTO_MASTER' does not have a pr
                 <ScalarProperty Name="CLS_ROLL_NO" ColumnName="CLS_ROLL_NO" />
                 <ScalarProperty Name="ADMSN_NO" ColumnName="ADMSN_NO" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="C__MigrationHistory">
-            <EntityTypeMapping TypeName="SFSAcademyModel.C__MigrationHistory">
-              <MappingFragment StoreEntitySet="__MigrationHistory">
-                <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
-                <ScalarProperty Name="Model" ColumnName="Model" />
-                <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
-                <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Photos">
-            <EntityTypeMapping TypeName="SFSAcademyModel.Photo">
-              <MappingFragment StoreEntitySet="Photos">
-                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
-                <ScalarProperty Name="ThumbPath" ColumnName="ThumbPath" />
-                <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
-                <ScalarProperty Name="Decription" ColumnName="Decription" />
-                <ScalarProperty Name="PhotoId" ColumnName="PhotoId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

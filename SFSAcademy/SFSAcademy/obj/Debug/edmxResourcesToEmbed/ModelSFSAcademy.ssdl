@@ -686,6 +686,18 @@
     <Property Name="TIL" Type="varchar" MaxLength="20" />
     <Property Name="DESCR" Type="varchar" MaxLength="50" />
   </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'SFSAcademy_QA.dbo.Gallery_Master' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="Gallery_Master">
+    <Key>
+      <PropertyRef Name="Id" />
+      <PropertyRef Name="Gallery_Name" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Gallery_Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Gallery_Description" Type="nvarchar" MaxLength="500" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
   <EntityType Name="GRADING_LEVEL">
     <Key>
       <PropertyRef Name="ID" />
@@ -842,6 +854,44 @@
     <Property Name="PYRL_CAT_ID" Type="int" />
     <Property Name="IS_DED" Type="varchar" MaxLength="1" />
     <Property Name="STAT" Type="varchar" MaxLength="1" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'SFSAcademy_QA.dbo.PHOTO_MASTER' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="PHOTO_MASTER">
+    <Key>
+      <PropertyRef Name="PhotoId" />
+      <PropertyRef Name="GalleryId" />
+    </Key>
+    <Property Name="PhotoId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="GalleryId" Type="bigint" Nullable="false" />
+    <Property Name="Decription" Type="varchar" MaxLength="500" />
+    <Property Name="ThumbPath" Type="varchar" MaxLength="500" />
+    <Property Name="ImagePath" Type="varchar" MaxLength="500" />
+    <Property Name="CreatedOn" Type="datetime" />
+    <Property Name="PhotoName" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Privileges">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="AddedDate" Type="datetime" />
+    <Property Name="AddedBy" Type="bigint" />
+    <Property Name="ModifiedBy" Type="bigint" />
+    <Property Name="ModifiedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Privileges_Users">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="bigint" Nullable="false" />
+    <Property Name="PrivilegeId" Type="bigint" Nullable="false" />
+    <Property Name="AddedBy" Type="bigint" />
+    <Property Name="AddedDate" Type="datetime" />
+    <Property Name="ModifiedBy" Type="bigint" />
+    <Property Name="ModifiedDate" Type="datetime" />
   </EntityType>
   <EntityType Name="RANKING_LEVEL">
     <Key>
@@ -1188,30 +1238,6 @@
       </Principal>
       <Dependent Role="MONTHLY_PAYSLIP">
         <PropertyRef Name="APRV_ID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="AUTH__EMPL_NEWS_NI">
-    <End Role="EMPLOYEE" Type="Self.EMPLOYEE" Multiplicity="0..1" />
-    <End Role="NEWS" Type="Self.NEWS" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="EMPLOYEE">
-        <PropertyRef Name="ID" />
-      </Principal>
-      <Dependent Role="NEWS">
-        <PropertyRef Name="AUTH_ID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="AUTH__EMPL_NEWS_NI2">
-    <End Role="EMPLOYEE" Type="Self.EMPLOYEE" Multiplicity="0..1" />
-    <End Role="NEWS_COMMENTS" Type="Self.NEWS_COMMENTS" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="EMPLOYEE">
-        <PropertyRef Name="ID" />
-      </Principal>
-      <Dependent Role="NEWS_COMMENTS">
-        <PropertyRef Name="AUTH_ID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -2646,6 +2672,8 @@
     <EntitySet Name="OBSERVATION" EntityType="Self.OBSERVATION" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="OBSERVATION_GROUP" EntityType="Self.OBSERVATION_GROUP" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="PAYROLL_CATEGORY" EntityType="Self.PAYROLL_CATEGORY" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Privileges" EntityType="Self.Privileges" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Privileges_Users" EntityType="Self.Privileges_Users" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="RANKING_LEVEL" EntityType="Self.RANKING_LEVEL" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SMS_LOG" EntityType="Self.SMS_LOG" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SMS_MESSAGE" EntityType="Self.SMS_MESSAGE" Schema="dbo" store:Type="Tables" />
@@ -2668,6 +2696,25 @@
     <EntitySet Name="USERS" EntityType="Self.USERS" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="USERS_ACCESS" EntityType="Self.USERS_ACCESS" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="WEEKDAY" EntityType="Self.WEEKDAY" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Gallery_Master" EntityType="Self.Gallery_Master" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Gallery_Master].[Id] AS [Id], 
+    [Gallery_Master].[Gallery_Name] AS [Gallery_Name], 
+    [Gallery_Master].[Gallery_Description] AS [Gallery_Description], 
+    [Gallery_Master].[CreatedDate] AS [CreatedDate]
+    FROM [dbo].[Gallery_Master] AS [Gallery_Master]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="PHOTO_MASTER" EntityType="Self.PHOTO_MASTER" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [PHOTO_MASTER].[PhotoId] AS [PhotoId], 
+    [PHOTO_MASTER].[GalleryId] AS [GalleryId], 
+    [PHOTO_MASTER].[Decription] AS [Decription], 
+    [PHOTO_MASTER].[ThumbPath] AS [ThumbPath], 
+    [PHOTO_MASTER].[ImagePath] AS [ImagePath], 
+    [PHOTO_MASTER].[CreatedOn] AS [CreatedOn], 
+    [PHOTO_MASTER].[PhotoName] AS [PhotoName]
+    FROM [dbo].[PHOTO_MASTER] AS [PHOTO_MASTER]</DefiningQuery>
+    </EntitySet>
     <AssociationSet Name="ADDL__STUD_EMPL_NI" Association="Self.ADDL__STUD_EMPL_NI">
       <End Role="STUDENT_ADDITIONAL_FIELD" EntitySet="STUDENT_ADDITIONAL_FIELD" />
       <End Role="EMPLOYEE_ADDITIONAL_DETAIL" EntitySet="EMPLOYEE_ADDITIONAL_DETAIL" />
@@ -2679,14 +2726,6 @@
     <AssociationSet Name="APRV__EMPL_MONT_NI" Association="Self.APRV__EMPL_MONT_NI">
       <End Role="EMPLOYEE" EntitySet="EMPLOYEE" />
       <End Role="MONTHLY_PAYSLIP" EntitySet="MONTHLY_PAYSLIP" />
-    </AssociationSet>
-    <AssociationSet Name="AUTH__EMPL_NEWS_NI" Association="Self.AUTH__EMPL_NEWS_NI">
-      <End Role="EMPLOYEE" EntitySet="EMPLOYEE" />
-      <End Role="NEWS" EntitySet="NEWS" />
-    </AssociationSet>
-    <AssociationSet Name="AUTH__EMPL_NEWS_NI2" Association="Self.AUTH__EMPL_NEWS_NI2">
-      <End Role="EMPLOYEE" EntitySet="EMPLOYEE" />
-      <End Role="NEWS_COMMENTS" EntitySet="NEWS_COMMENTS" />
     </AssociationSet>
     <AssociationSet Name="BTCH__BATC_ASSE_NI" Association="Self.BTCH__BATC_ASSE_NI">
       <End Role="BATCH" EntitySet="BATCH" />

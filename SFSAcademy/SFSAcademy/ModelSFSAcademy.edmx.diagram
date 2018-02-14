@@ -208,8 +208,6 @@
         <AssociationConnector Association="SFSAcademyModel.STDNT_STUD_STUD_NI5" />
         <AssociationConnector Association="SFSAcademyModel.STDNT_STUD_SUBJ_NI" />
         <AssociationConnector Association="SFSAcademyModel.USRID_USER_STUD_NI" />
-        <EntityTypeShape EntityType="SFSAcademyModel.C__MigrationHistory" Width="1.5" PointX="10.375" PointY="10.75" />
-        <EntityTypeShape EntityType="SFSAcademyModel.Photo" Width="1.5" PointX="11.375" PointY="3.75" />
         <EntityTypeShape EntityType="SFSAcademyModel.Privilege" Width="1.5" PointX="11.375" PointY="6.75" />
         <EntityTypeShape EntityType="SFSAcademyModel.Privileges_Users" Width="1.5" PointX="12.375" PointY="9.75" />
         <EntityTypeShape EntityType="SFSAcademyModel.Gallery_Master" Width="1.5" PointX="12.375" PointY="0.75" />
