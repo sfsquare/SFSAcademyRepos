@@ -62,6 +62,9 @@
                     Batch
                 </th>
                 <th>
+                    Roll Number
+                </th>
+                <th>
                     @Html.ActionLink("Admission Date", "Index", new { sortOrder = ViewBag.DateSortParm, currentFilter = ViewBag.CurrentFilter })
                 </th>
                 <th>
@@ -95,13 +98,16 @@
                         <label>-</label>
                         @Html.DisplayFor(modelItem => item.BatcheData.NAME)
                     </td>
+                    <td class="col-6" nowrap>
+                        @Html.DisplayFor(modelItem => item.StudentData.CLS_ROLL_NO)
+                    </td>
                     <td class="col-5" nowrap>
                         @if (!item.StudentData.ADMSN_DATE.Equals(null))
                         {
                             @item.StudentData.ADMSN_DATE.Value.ToShortDateString()
                         }
                     </td>
-                    <td class="col-5" nowrap>
+                    <td class="col-6" nowrap>
                         @Html.DisplayFor(modelItem => item.StudentData.ADMSN_NO)
                     </td>
                     @if (Html.CurrentUser_UserType().Equals("Admin"))
