@@ -4,23 +4,23 @@
     ViewBag.Title = "Edit";
 }
 
-<script type="text/javascript" src="@Url.Content("~/Content/javascripts/jquery/jquery.min.js")"></script>
-<script type="text/javascript" src="@Url.Content("~/Content/javascripts/jquery/jquery-ui.min.js")"></script>
-<script type="text/javascript" src="@Url.Content("~/Content/javascripts/jquery/jquery-1.9.1.js")"></script>
-<script type="text/javascript" src="@Url.Content("~/Content/javascripts/jquery/jquery-ui.js")"></script>
-<link rel="stylesheet" href="~/Content/stylesheets/_styles/jquery-ui.css" />
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+<link rel="stylesheet" href="/resources/demos/style.css" />
 <script>
     $(function () {
         $("#datepicker").datepicker({
             showOn: "button",
             buttonImage: "/Content/images/calendar_date_select/calendar.gif",
-            dateFormat: 'dd-mm-yy',
             buttonImageOnly: true
         });
         $("#datepicker2").datepicker({
             showOn: "button",
             buttonImage: "/Content/images/calendar_date_select/calendar.gif",
-            dateFormat: 'dd-mm-yy',
             buttonImageOnly: true
         });
     });
@@ -42,12 +42,13 @@
 <div>
     <img src="~/Content/images/_global/header_underline_.jpg" width="100%">
 </div>
-@if (ViewBag.ErrorMessage != null)
-{
-    <p class="flash-msg"> @ViewBag.ErrorMessage </p>
-}
 <div id="page-yield">
 
+
+    @if (Html.ValidationSummary() != null)
+    {
+        <p class="flash-msg"> @Html.ValidationSummary() </p>
+    }
     @using (Html.BeginForm("Edit", "Student", FormMethod.Post, new { @encType = "multipart/form-data" }))
     {
         @Html.AntiForgeryToken()
@@ -63,7 +64,7 @@
                 <div class="student_admission_date">
                     @Html.LabelFor(model => model.ADMSN_NO, "Admission Number", htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="text-input-bg-admission">
-                        @Html.EditorFor(model => model.ADMSN_NO, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                        @Html.EditorFor(model => model.ADMSN_NO, new { htmlAttributes = new { @class = "form-control" } })
                         @Html.ValidationMessageFor(model => model.ADMSN_NO, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -142,15 +143,7 @@
                 <div class="label-field-pair">
                     @Html.LabelFor(model => model.BLOOD_GRP, "Blood Group", htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="text-input-bg">
-                        @Html.DropDownListFor(model => model.BLOOD_GRP, new List<SelectListItem>
-                        { new SelectListItem{Text="A+", Value="A+"},
-                          new SelectListItem{Text="A-", Value="A-"},
-                          new SelectListItem { Text = "B+", Value = "B+" },
-                          new SelectListItem { Text = "B-", Value = "B-" },
-                          new SelectListItem{Text="O+", Value="O+"},
-                          new SelectListItem{Text="O-", Value="O-"},
-                          new SelectListItem{Text="AB+", Value="AB+"},
-                          new SelectListItem{Text="AB-", Value="AB-"}}, "Select Blood Group")
+                        @Html.EditorFor(model => model.BLOOD_GRP, new { htmlAttributes = new { @class = "form-control" } })
                         @Html.ValidationMessageFor(model => model.BLOOD_GRP, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -283,13 +276,6 @@
                     </div>
                 </div>
                 <div class="label-field-pair">
-                    @Html.LabelFor(model => model.CLS_ROLL_NO, "Roll Number", htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="text-input-bg">
-                        @Html.EditorFor(model => model.CLS_ROLL_NO, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.CLS_ROLL_NO, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-                <div class="label-field-pair">
                     @Html.LabelFor(model => model.USRID, "USRID", htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="text-input-bg">
                         @Html.DropDownList("USRID", null, htmlAttributes: new { @class = "form-control" })
@@ -321,13 +307,9 @@
                 </div>
             </div>
             <div class="extender">
-                <input type="submit" value="Save" class="submit_button" />
-            </div>
-            <div id="skip">
-                <a href="@Url.Action("Admission2", "Student", new { Std_id = Model.ID})" ; class="user_button">Edit Guardian</a>
             </div>
         </div>
-
+        <input type="submit" value="Save" class="submit_button" />
     }
 </div>
 
