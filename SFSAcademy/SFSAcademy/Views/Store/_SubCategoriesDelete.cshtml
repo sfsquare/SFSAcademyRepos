@@ -1,0 +1,50 @@
+﻿@model SFSAcademy.STORE_SUB_CATEGORY
+
+<div id="content-header">
+    <img src="~/Content/images/show_store.png" alt="Store Logo">
+    <h1>Store</h1>
+    <h3>Delete Sub Categories</h3>
+    <div id="app-back-button">
+        <a href='javascript:history.back()' onclick="return confirm('are you sure?')"><img src="~/Content/images/buttons/back.png"></a>
+    </div>
+</div>
+<div><img src="~/Content/images/_global/header_underline_.jpg" width="100%"></div>
+<div class="bread_crumb">
+    @Html.ActionLink("Store", "Index") &raquo;
+    @Html.ActionLink("Store Category", "Categories") &raquo;
+    Store Sub Categories Delete
+</div>
+<div id="flash_box">
+    @if (ViewBag.SubCatDeteleMessage != null)
+            {
+        <p class="flash-msg"> @ViewBag.SubCatDeteleMessage </p>
+    }
+</div>
+<div id="page-yield">
+    <div id="edit_user_form">
+        <div class="label-field-pair">
+            @Html.LabelFor(model => model.NAME, "Sub Category Name", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="text-input-bg">
+                @Html.EditorFor(model => model.NAME, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.NAME, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="label-field-pair">
+            @Html.LabelFor(model => model.IS_ACT, "Is This Active?", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="text-input-bg">
+                @Html.EditorFor(model => model.IS_ACT, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.IS_ACT, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" />
+        </div>
+    }
+
+</div>
+

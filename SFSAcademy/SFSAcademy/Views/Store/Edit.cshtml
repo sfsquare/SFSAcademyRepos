@@ -31,12 +31,19 @@
 <div>
     <img src="~/Content/images/_global/header_underline_.jpg" width="100%">
 </div>
+<div id="flash_box">
+    @if (ViewBag.StoreEditMessage != null)
+            {
+        <p class="flash-msg"> @ViewBag.StoreEditMessage </p>
+    }
+</div>
+<div class="bread_crumb">
+    @Html.ActionLink("Store", "Index") &raquo;
+    @Html.ActionLink("Product List", "ViewAll") &raquo;
+    Edit Product Details
+</div>
 <div id="page-yield">
 
-    @if (Html.ValidationSummary() != null)
-    {
-        <p class="flash-msg"> @Html.ValidationSummary(true, "", new { @class = "text-danger" }) </p>
-    }
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
@@ -71,6 +78,15 @@
             </div>
 
             <div class="label-field-pair">
+                @Html.LabelFor(model => model.SUB_CATEGORY_ID, "Product Sub Category", htmlAttributes: new { @class = "control-label col-md-2" })
+                <span class="necessary-field" style="font-size:small">* Required Field</span>
+                <div class="text-input-bg">
+                    @Html.DropDownList("SUB_CATEGORY_ID", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.SUB_CATEGORY_ID, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="label-field-pair">
                 @Html.LabelFor(model => model.BRAND, "Product Brand / Manufacturer", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="text-input-bg">
                     @Html.EditorFor(model => model.BRAND, new { htmlAttributes = new { @class = "form-control" } })
@@ -87,20 +103,18 @@
                         @Html.ValidationMessageFor(model => model.TOTAL_UNIT, "", new { @class = "text-danger" })
                     </div>
                 </div>
-
-                <div class="label-field-pair">
-                    @Html.LabelFor(model => model.TOTAL_COST, "Total Cost", htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.TOTAL_COST, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.TOTAL_COST, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
                 <div class="label-field-pair">
                     @Html.LabelFor(model => model.COST_PER_UNIT, "Cost Per Unit", htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
                         @Html.EditorFor(model => model.COST_PER_UNIT, new { htmlAttributes = new { @class = "form-control" } })
                         @Html.ValidationMessageFor(model => model.COST_PER_UNIT, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="label-field-pair">
+                    @Html.LabelFor(model => model.TOTAL_COST, "Total Cost", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.TOTAL_COST, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.TOTAL_COST, "", new { @class = "text-danger" })
                     </div>
                 </div>
 
@@ -165,7 +179,9 @@
                 <div class="label-field-pair">
                     @Html.LabelFor(model => model.IS_ACT, "Currently Being Sold", htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="text-input-bg">
-                        @Html.EditorFor(model => model.IS_ACT, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.DropDownListFor(model => model.IS_ACT, new List<SelectListItem>
+                        { new SelectListItem{Text="Yes", Value="Y"},
+                          new SelectListItem{Text="No", Value="N"}}, "Select If Currently Being Sold")
                         @Html.ValidationMessageFor(model => model.IS_ACT, "", new { @class = "text-danger" })
                     </div>
                 </div>

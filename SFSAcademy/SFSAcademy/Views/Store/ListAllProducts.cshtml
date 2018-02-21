@@ -17,6 +17,9 @@
                 Category
             </th>
             <th>
+                Sub Category
+            </th>
+            <th>
                 Brand
             </th>
             <th>
@@ -47,6 +50,9 @@
                     <td class="col-3">
                         @Html.DisplayFor(modelItem => item.CategoryData.NAME)
                     </td>
+                    <td class="col-3">
+                        @Html.DisplayFor(modelItem => item.SubCategoryData.NAME)
+                    </td>
                     <td class="col-4">
                         @Html.DisplayFor(modelItem => item.ProductData.BRAND)
                     </td>
@@ -68,13 +74,19 @@
                             @Html.ActionLink("Edit ", "Edit", new { id = item.ProductData.PRODUCT_ID }, new { style = "text-decoration:underline" }) |
                             @Html.ActionLink("Details  ", "Details", new { id = item.ProductData.PRODUCT_ID }, new { style = "text-decoration:underline" }) |
                             @Html.ActionLink("Delete ", "Delete", new { id = item.ProductData.PRODUCT_ID }, new { style = "text-decoration:underline" }) |
-                            @Html.ActionLink("Sell ", "Purchase", new { id = item.ProductData.PRODUCT_ID }, new { style = "text-decoration:underline" })
+                            @if (item.ProductData.UNIT_LEFT > 0)
+                            {
+                                @Html.ActionLink("Sell ", "Purchase", new { id = item.ProductData.PRODUCT_ID }, new { style = "text-decoration:underline" })
+                            }
                         </td>
                     }
                     else
                     {
                         <td class="col-8" nowrap>
-                            @Html.ActionLink("Sell ", "Purchase", new { id = item.ProductData.PRODUCT_ID })
+                            @if (item.ProductData.UNIT_LEFT > 0)
+                            {
+                                @Html.ActionLink("Sell ", "Purchase", new { id = item.ProductData.PRODUCT_ID }, new { style = "text-decoration:underline" })
+                            }
                         </td>
                     }
 

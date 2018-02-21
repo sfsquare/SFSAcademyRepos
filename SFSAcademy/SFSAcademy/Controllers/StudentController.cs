@@ -151,6 +151,220 @@ namespace SFSAcademy.Controllers
             //return View(db.USERS.ToList());
         }
 
+        // GET: Student
+        public ActionResult BatchTransfer(string searchString, string currentFilter, string AdmissionNumber, string BatchId)
+        {
+            var queryCourceBatch = (from cs in db.COURSEs
+                                    join bt in db.BATCHes on cs.ID equals bt.CRS_ID
+                                    select new Models.RadioCourseBatch { CourseData = cs, BatchData = bt})
+                        .OrderBy(x => x.BatchData.ID).ToList();
+
+
+            List<SelectListItem> options = new List<SelectListItem>();
+            foreach (var item in queryCourceBatch)
+            {
+                string BatchFullName = string.Concat(item.CourseData.CODE, "-", item.BatchData.NAME);
+                var result = new SelectListItem();
+                result.Text = BatchFullName;
+                result.Value = item.BatchData.ID.ToString();
+                options.Add(result);
+            }
+            // add the 'ALL' option
+            options.Insert(0, new SelectListItem() { Value = "-1", Text = "Select Batch" });
+            ViewBag.searchString = options;
+
+            if ((!string.IsNullOrEmpty(searchString) && searchString != "-1") || (!string.IsNullOrEmpty(AdmissionNumber)) || (!string.IsNullOrEmpty(currentFilter)))
+            {
+                ViewBag.IsPostBack = 1;
+            }
+            if ((!string.IsNullOrEmpty(BatchId)))
+            {
+                if (!String.IsNullOrEmpty(searchString) && !searchString.Equals("-1"))
+                {
+                    int searchStringVal = Convert.ToInt32(searchString);
+
+                    var sTUDENTfROM = db.STUDENTs.Where(x => x.BTCH_ID == searchStringVal && x.IS_DEL == "N" && x.IS_ACT == "Y").ToList();
+
+                    foreach(var item in sTUDENTfROM)
+                    {
+                        STUDENT sTUDENTfROMuPD = db.STUDENTs.Find(item.ID);
+
+                        int BatchIdVal = Convert.ToInt32(BatchId);
+
+                        var sTUDENTtOiNS = new STUDENT()
+                        {
+                            ADMSN_NO = sTUDENTfROMuPD.ADMSN_NO,
+                            CLS_ROLL_NO = sTUDENTfROMuPD.CLS_ROLL_NO,
+                            ADMSN_DATE = sTUDENTfROMuPD.ADMSN_DATE,
+                            FIRST_NAME = sTUDENTfROMuPD.FIRST_NAME,
+                            MID_NAME = sTUDENTfROMuPD.MID_NAME,
+                            LAST_NAME = sTUDENTfROMuPD.LAST_NAME,
+                            BTCH_ID = BatchIdVal,
+                            DOB = sTUDENTfROMuPD.DOB,
+                            GNDR = sTUDENTfROMuPD.GNDR,
+                            BLOOD_GRP = sTUDENTfROMuPD.BLOOD_GRP,
+                            BIRTH_PLACE = sTUDENTfROMuPD.BIRTH_PLACE,
+                            LANG = sTUDENTfROMuPD.LANG,
+                            RLGN = sTUDENTfROMuPD.RLGN,
+                            ADDR_LINE1 = sTUDENTfROMuPD.ADDR_LINE1,
+                            ADDR_LINE2 = sTUDENTfROMuPD.ADDR_LINE2,
+                            CITY = sTUDENTfROMuPD.CITY,
+                            STATE = sTUDENTfROMuPD.STATE,
+                            PIN_CODE = sTUDENTfROMuPD.PIN_CODE,
+                            CTRY_ID = sTUDENTfROMuPD.CTRY_ID,
+                            PH1 = sTUDENTfROMuPD.PH1,
+                            PH2 = sTUDENTfROMuPD.PH2,
+                            EML = sTUDENTfROMuPD.EML,
+                            IMMDT_CNTCT_ID = sTUDENTfROMuPD.IMMDT_CNTCT_ID,
+                            IS_SMS_ENABL = sTUDENTfROMuPD.IS_SMS_ENABL,
+                            PHTO_FILENAME = sTUDENTfROMuPD.PHTO_FILENAME,
+                            PHTO_CNTNT_TYPE = sTUDENTfROMuPD.PHTO_CNTNT_TYPE,
+                            PHTO_DATA = sTUDENTfROMuPD.PHTO_DATA,
+                            STAT_DESCR = sTUDENTfROMuPD.STAT_DESCR,
+                            IS_ACT = "Y",
+                            IS_DEL = "N",
+                            CREATED_AT = DateTime.Now,
+                            UPDATED_AT = DateTime.Now,
+                            HAS_PD_FE = sTUDENTfROMuPD.HAS_PD_FE,
+                            PHTO_FILE_SIZE = sTUDENTfROMuPD.PHTO_FILE_SIZE,
+                            USRID = sTUDENTfROMuPD.USRID,
+                            STDNT_CAT_ID = sTUDENTfROMuPD.STDNT_CAT_ID,
+                            NTLTY_ID = sTUDENTfROMuPD.NTLTY_ID,
+                            IMAGE_DOCUMENTS_ID = sTUDENTfROMuPD.IMAGE_DOCUMENTS_ID
+                        };
+                        db.STUDENTs.Add(sTUDENTtOiNS);
+                   
+                        sTUDENTfROMuPD.IS_ACT = "N";
+                        sTUDENTfROMuPD.UPDATED_AT = System.DateTime.Now;
+                        db.Entry(sTUDENTfROMuPD).State = EntityState.Modified;
+                        //try { db.SaveChanges(); ViewBag.OldRecordMessage = "Old Recrod Saved."; }
+                        //catch (Exception e) { Console.WriteLine(e); ViewBag.OldRecordMessage = e.InnerException.InnerException.Message; }
+                    }
+                    try { db.SaveChanges(); ViewBag.BatchTransferMessage = "Batch transfered for said batch."; }
+                    catch (Exception e) { Console.WriteLine(e); ViewBag.BatchTransferMessage = e.InnerException.InnerException.Message; }
+                }
+                else if ((!string.IsNullOrEmpty(AdmissionNumber)))
+                {
+                    var sTUDENTfROM = db.STUDENTs.Where(x => x.ADMSN_NO == AdmissionNumber && x.IS_DEL == "N" && x.IS_ACT == "Y").ToList().FirstOrDefault();
+
+                    STUDENT sTUDENTfROMuPD = db.STUDENTs.Find(sTUDENTfROM.ID);
+                    sTUDENTfROMuPD.IS_ACT = "N";
+                    sTUDENTfROMuPD.UPDATED_AT = System.DateTime.Now;
+                    db.Entry(sTUDENTfROMuPD).State = EntityState.Modified;
+                    try { db.SaveChanges(); ViewBag.OldRecordMessage = "Old Recrod Saved."; }
+                    catch (Exception e) { Console.WriteLine(e); ViewBag.OldRecordMessage = e.InnerException.InnerException.Message; }
+
+                    int BatchIdVal = Convert.ToInt32(BatchId);
+
+                    var sTUDENTtOiNS = new STUDENT()
+                    {
+                        ADMSN_NO = sTUDENTfROMuPD.ADMSN_NO,
+                        CLS_ROLL_NO = sTUDENTfROMuPD.CLS_ROLL_NO,
+                        ADMSN_DATE = sTUDENTfROMuPD.ADMSN_DATE,
+                        FIRST_NAME = sTUDENTfROMuPD.FIRST_NAME,
+                        MID_NAME = sTUDENTfROMuPD.MID_NAME,
+                        LAST_NAME = sTUDENTfROMuPD.LAST_NAME,
+                        BTCH_ID = BatchIdVal,
+                        DOB = sTUDENTfROMuPD.DOB,
+                        GNDR = sTUDENTfROMuPD.GNDR,
+                        BLOOD_GRP = sTUDENTfROMuPD.BLOOD_GRP,
+                        BIRTH_PLACE = sTUDENTfROMuPD.BIRTH_PLACE,
+                        LANG = sTUDENTfROMuPD.LANG,
+                        RLGN = sTUDENTfROMuPD.RLGN,
+                        ADDR_LINE1 = sTUDENTfROMuPD.ADDR_LINE1,
+                        ADDR_LINE2 = sTUDENTfROMuPD.ADDR_LINE2,
+                        CITY = sTUDENTfROMuPD.CITY,
+                        STATE = sTUDENTfROMuPD.STATE,
+                        PIN_CODE = sTUDENTfROMuPD.PIN_CODE,
+                        CTRY_ID = sTUDENTfROMuPD.CTRY_ID,
+                        PH1 = sTUDENTfROMuPD.PH1,
+                        PH2 = sTUDENTfROMuPD.PH2,
+                        EML = sTUDENTfROMuPD.EML,
+                        IMMDT_CNTCT_ID = sTUDENTfROMuPD.IMMDT_CNTCT_ID,
+                        IS_SMS_ENABL = sTUDENTfROMuPD.IS_SMS_ENABL,
+                        PHTO_FILENAME = sTUDENTfROMuPD.PHTO_FILENAME,
+                        PHTO_CNTNT_TYPE = sTUDENTfROMuPD.PHTO_CNTNT_TYPE,
+                        PHTO_DATA = sTUDENTfROMuPD.PHTO_DATA,
+                        STAT_DESCR = sTUDENTfROMuPD.STAT_DESCR,
+                        IS_ACT = "Y",
+                        IS_DEL = "N",
+                        CREATED_AT = System.DateTime.Now,
+                        UPDATED_AT = System.DateTime.Now,
+                        HAS_PD_FE = sTUDENTfROMuPD.HAS_PD_FE,
+                        PHTO_FILE_SIZE = sTUDENTfROMuPD.PHTO_FILE_SIZE,
+                        USRID = sTUDENTfROMuPD.USRID,
+                        STDNT_CAT_ID = sTUDENTfROMuPD.STDNT_CAT_ID,
+                        NTLTY_ID = sTUDENTfROMuPD.NTLTY_ID,
+                        IMAGE_DOCUMENTS_ID = sTUDENTfROMuPD.IMAGE_DOCUMENTS_ID
+                    };
+                    db.STUDENTs.Add(sTUDENTtOiNS);
+                    try { db.SaveChanges(); ViewBag.BatchTransferMessage = "Batch transfered for said student."; }
+                    catch (Exception e) { Console.WriteLine(e); ViewBag.BatchTransferMessage = e.InnerException.InnerException.Message; }
+                }
+            }
+
+            return View(queryCourceBatch.ToList());
+        }
+
+        // GET: Student
+        public ActionResult _ListStudentsForTransfer(string sortOrder, string currentFilter, string searchString, int? page, string currentFilter2, string AdmissionNumber)
+        {
+            ViewBag.CurrentSort = sortOrder;
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
+            int searchStringId = 0;
+            if (!string.IsNullOrEmpty(searchString) && !searchString.Equals("-1"))
+            {
+                page = 1;
+                //searchString = db.BATCHes.Find(searchStringId).NAME.ToString();
+                searchStringId = Convert.ToInt32(searchString);
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+            ViewBag.CurrentFilter = searchString;
+            if (!string.IsNullOrEmpty(AdmissionNumber)) { page = 1; }
+            else { AdmissionNumber = currentFilter2; }
+            ViewBag.CurrentFilter2 = AdmissionNumber;
+
+            var StudentS = (from st in db.STUDENTs
+                            join b in db.BATCHes on st.BTCH_ID equals b.ID
+                            join cs in db.COURSEs on b.CRS_ID equals cs.ID
+                            where st.IS_DEL == "N" && st.IS_ACT == "Y"
+                            orderby st.LAST_NAME, b.NAME
+                            select new Models.Student { StudentData = st, BatcheData = b, CourseData = cs }).Distinct();
+
+            if (!String.IsNullOrEmpty(searchString) && !searchString.Equals("-1"))
+            {
+                StudentS = StudentS.Where(s => s.BatcheData.ID.Equals(searchStringId));
+            }
+            if (!String.IsNullOrEmpty(AdmissionNumber))
+            {
+                StudentS = StudentS.Where(s => s.StudentData.ADMSN_NO.Equals(AdmissionNumber));
+            }
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    StudentS = StudentS.OrderByDescending(s => s.StudentData.LAST_NAME);
+                    break;
+                case "Date":
+                    StudentS = StudentS.OrderBy(s => s.StudentData.ADMSN_DATE);
+                    break;
+                case "date_desc":
+                    StudentS = StudentS.OrderByDescending(s => s.StudentData.ADMSN_DATE);
+                    break;
+                default:  // Name ascending 
+                    StudentS = StudentS.OrderBy(s => s.StudentData.LAST_NAME);
+                    break;
+            }
+
+            int pageSize = 100;
+            int pageNumber = (page ?? 1);
+            return View(StudentS.ToPagedList(pageNumber, pageSize));
+            //return View(db.USERS.ToList());
+        }
+
         // GET: Student/Details/5
         public ActionResult Profiles(int? id)
         {

@@ -11,7 +11,7 @@
 <div id="content-header">
     <img src="~/Content/images/show_store.png" alt="Show Store Logo">
     <h1>Store</h1>
-    <h3>View All Selling</h3>
+    <h3>Backup Selling</h3>
     <div id="app-back-button">
         <a href='javascript:history.back()' onclick="return confirm('are you sure?')"><img src="~/Content/images/buttons/back.png"></a>
     </div>
@@ -22,9 +22,16 @@
         <li>@Html.ActionLink("Show Cart", "ViewCart")</li>
     </ul>
 </div>
+<div id="flash_box">
+    @if (Session["StoreBackUpMessage"] != null)
+            {
+        <p class="flash-msg"> @Session["StoreBackUpMessage"] </p>
+    }
+</div>
+
 <div class="bread_crumb">
     @Html.ActionLink("Store", "Index") &raquo;
-    View All Selling
+    Backup Transaction
 </div>
 <div id="page-yield">
     <div id="search_box_bg">
@@ -106,7 +113,7 @@
                                 <li><input type="submit" value="Search" class="submit-button" /></li>
                             </ul>
                             <ul>
-                                <li><a href="@Url.Action("PurchasePdf", "Store",new { searchString = ViewBag.CurrentFilter, currentFilter2 = ViewBag.CurrentFilter2, currentFilter3 = ViewBag.CurrentFilter3, currentFilter4 = ViewBag.CurrentFilter4, currentFilter5 = ViewBag.CurrentFilter5, currentFilter9 = ViewBag.CurrentFilter9, currentFilter10 = ViewBag.CurrentFilter10 })" alt="View PDF Report" target="_blank" class="submit-button">View PDF Report</a></li>
+                                <li><a href="@Url.Action("BackupSelectedTransactions", "Store",new { searchString = ViewBag.CurrentFilter, currentFilter = ViewBag.CurrentFilter, currentFilter2 = ViewBag.CurrentFilter2, currentFilter3 = ViewBag.CurrentFilter3, currentFilter4 = ViewBag.CurrentFilter4, currentFilter5 = ViewBag.CurrentFilter5, currentFilter9 = ViewBag.CurrentFilter9, currentFilter10 = ViewBag.CurrentFilter10 })" alt="Backup Selected Transactions" class="submit-button">Backup Selected Transactions</a></li>
                             </ul>
                         </div>
                     </p>
@@ -202,7 +209,7 @@
             }
         </table>
         <br />
-        @Html.PagedListPager(Model, page => Url.Action("ViewAllSelling",
+        @Html.PagedListPager(Model, page => Url.Action("BackupTransaction",
     new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter, currentFilter2 = ViewBag.CurrentFilter2, currentFilter3 = ViewBag.CurrentFilter3, currentFilter4 = ViewBag.CurrentFilter4, currentFilter5 = ViewBag.CurrentFilter5, currentFilter9 = ViewBag.CurrentFilter9, currentFilter10 = ViewBag.CurrentFilter10 }))
     </div>
     <div id="products"></div>

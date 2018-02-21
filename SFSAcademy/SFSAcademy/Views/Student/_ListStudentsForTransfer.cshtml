@@ -1,0 +1,72 @@
+﻿@model PagedList.IPagedList<SFSAcademy.Models.Student>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+@{    Layout = null;}
+
+<div class="students-table">
+    <table id="listing" align="center" width="100%" cellpadding="1" cellspacing="1">
+        <tr class="tr-head">
+            <th>
+                Sl. No.
+            </th>
+            <th>
+                Last Name
+            </th>
+            <th>
+                First Name
+            </th>
+            <th>
+                Batch
+            </th>
+            <th>
+                Roll Number
+            </th>
+            <th>
+                Admission Date
+            </th>
+            <th>
+                Admission Number
+            </th>
+        </tr>
+        <tr class="tr-blank"></tr>
+        @{int i = 1; }
+        @foreach (var item in Model)
+            {
+                string selectedRow = "tr-even";
+                if (i % 2 == 0)
+                {
+                    selectedRow = "tr-odd";
+                }
+                <tr class="@selectedRow">
+                    <td class="col-1">@i</td>
+                    <td class="col-2">
+                        @Html.DisplayFor(modelItem => item.StudentData.LAST_NAME)
+                    </td>
+                    <td class="col-3">
+                        @Html.DisplayFor(modelItem => item.StudentData.FIRST_NAME)
+                    </td>
+                    <td class="col-4">
+                        @Html.DisplayFor(modelItem => item.CourseData.CODE)
+                        <label>-</label>
+                        @Html.DisplayFor(modelItem => item.BatcheData.NAME)
+                    </td>
+                    <td class="col-3">
+                        @Html.DisplayFor(modelItem => item.StudentData.CLS_ROLL_NO)
+                    </td>
+                    <td class="col-5" nowrap>
+                        @if (!item.StudentData.ADMSN_DATE.Equals(null))
+                        {
+                            @item.StudentData.ADMSN_DATE.Value.ToShortDateString()
+                        }
+                    </td>
+                    <td class="col-5" nowrap>
+                        @Html.DisplayFor(modelItem => item.StudentData.ADMSN_NO)
+                    </td>
+                </tr>
+            i = i + 1;
+        }
+    </table>
+    <br />
+    @Html.PagedListPager(Model, page => Url.Action("BatchTransfer",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+</div>

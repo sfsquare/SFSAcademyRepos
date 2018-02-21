@@ -13,10 +13,6 @@
 <div><img src="~/Content/images/_global/header_underline_.jpg" width="100%"></div>
 
 <div id="page-yield">
-    @if (Html.ValidationSummary() != null)
-    {
-        <p class="flash-msg"> @Html.ValidationSummary() </p>
-    }
     <div class="box">
         <div class="link-box">
             <div class="link-heading">@Html.ActionLink("Manage Product Category", "Categories")</div>
@@ -31,6 +27,11 @@
         <div class="link-box">
             <div class="link-heading">@Html.ActionLink("Selling Reports", "ViewAllSelling")</div>
             <div class="link-descr">Manage All Sellings Through Store</div>
+        </div>
+
+        <div class="link-box">
+            <div class="link-heading">@Html.ActionLink("Backup Transaction", "BackupTransaction")</div>
+            <div class="link-descr">Backup Transaction which is reviewed and closed in Cash Book</div>
         </div>
         <div class="extender"></div>
     </div>

@@ -9,6 +9,13 @@ namespace SFSAcademy.Models
     {
         public STORE_PRODUCTS ProductData { get; set; }
         public STORE_CATEGORY CategoryData { get; set; }
+        public STORE_SUB_CATEGORY SubCategoryData { get; set; }
+    }
+
+    public class SubCategory
+    {
+        public STORE_SUB_CATEGORY SubCategoryData { get; set; }
+        public STORE_CATEGORY CategoryData { get; set; }
     }
     public class Purchase
     {
@@ -25,5 +32,8 @@ namespace SFSAcademy.Models
         public int? UNIT_SOLD { get; set; }
         public decimal? SOLD_AMNT { get; set; }
         public DateTime? PUR_DATE { get; set; }
+        public string SOLD_BY { get; set; }
+        public DateTime? CREATED_AT { get; set; }
+        public DateTime? UPDATED_AT { get; set; }
     }
 }
