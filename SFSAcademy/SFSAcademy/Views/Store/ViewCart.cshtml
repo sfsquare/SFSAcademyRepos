@@ -4,7 +4,13 @@
 @{
     ViewBag.Title = "ViewCart";
 }
-<div id="content-header">
+<style type="text/css" media="print">
+
+    #header, #nav, .noprint {
+        display: none;
+    }
+</style>
+<div id="content-header" class="noprint">
     <img src="~/Content/images/show_store.png" alt="Show Store Logo">
     <h1>Store</h1>
     <h3>View Cart</h3>
@@ -12,12 +18,12 @@
         <a href='javascript:history.back()' onclick="return confirm('are you sure?')"><img src="~/Content/images/buttons/back.png"></a>
     </div>
 </div>
-<div><img src="~/Content/images/_global/header_underline_.jpg" width="100%"></div>
+<div class="noprint"><img src="~/Content/images/_global/header_underline_.jpg" width="100%"></div>
 <div class="bread_crumb">
-    @Html.ActionLink("Store", "Index") &raquo;
-    @Html.ActionLink("View All Products", "ViewAll") &raquo;
-    View Cart
+    @Html.ActionLink("S. F. Square Store", "Index") &raquo;
+    @Html.ActionLink("Products", "ViewAll") &raquo;
+    Cart Items
 </div>
-<div id="modal-box">
+<div id="modal-box" >
     @Html.Partial("_ListPurchagedProducts")
 </div>

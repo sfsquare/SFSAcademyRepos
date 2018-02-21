@@ -1,0 +1,95 @@
+﻿@model IEnumerable<SFSAcademy.Models.RadioCourseBatch>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div id="content-header">
+    <img src="~/Content/images/student_details/student_details_logo.jpg" alt="Student Details Logo">
+    <h1>Student Details</h1>
+    <h3>View Details</h3>
+    <div id="app-back-button">
+        <a href='javascript:history.back()' onclick="return confirm('are you sure?')"><img src="~/Content/images/buttons/back.png"></a>
+    </div>
+</div>
+<div><img src="~/Content/images/_global/header_underline_.jpg" width="100%"></div>
+<div class="bread_crumb">
+    @Html.ActionLink("Student Details", "Index") &raquo;
+    @Html.ActionLink("View All Stundets", "ViewAll") &raquo;
+    Batch Transfer
+</div>
+<div id="page-yield">
+    <div id="search_box_bg">
+        <div id="searchbox">
+            <form name="search-form" id="search-form" action="" style="display:inline;">
+                @using (Html.BeginForm("ViewAll", "Student", FormMethod.Get))
+                {
+                    <p>
+                        <table>
+                            <tr>
+                                <td>
+                                    <div class="label-field-pair">
+                                        <label for="FIRST_NAME">Batch:</label>
+                                        <div class="text-input-bg">
+                                            @Html.DropDownList("searchString", null, htmlAttributes: new { @class = "form-control" })
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="label-field-pair">
+                                        <label for="ADMSN_NO">Admission Number:</label>
+                                        <div class="text-input-bg">
+                                            @Html.TextBox("AdmissionNumber", ViewBag.CurrentFilter2 as string)
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                        @if (ViewBag.IsPostBack == 1)
+                        {
+                            <div class="label-field-pair2">
+                                <label for="FIRST_NAME">Transfer To Batch:</label>
+                                <div class="text-input-bg2">
+                                    @foreach (var item in Model)
+                                    {
+                                        <label>@Html.RadioButtonFor(m => m.FirstOrDefault().BatchId, item.BatchData.ID) @item.CourseData.CODE - @item.BatchData.NAME</label>
+                                    }
+                                </div>
+                            </div>
+                            <div id="pdf-view-button">
+                                <ul>
+                                    <li><input type="submit" value="Search / Tranfer Batch" class="submit-button" /></li>
+                                </ul>
+                            </div>
+                        }
+                        else
+                        {
+                            <div id="pdf-view-button">
+                                <ul>
+                                    <li><input type="submit" value="Search" class="submit-button" /></li>
+                                </ul>
+                            </div>
+                        }
+                    </p>
+                }
+
+                <div class="extender"></div>
+            </form>
+        </div>
+    </div>
+    @if (ViewBag.IsPostBack == 1)
+    {
+        <div class="students-table">
+            <div id="text-input-bg">
+                @{Html.RenderAction("_ListStudentsForTransfer", "Student", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter });}
+
+            </div>
+        </div>
+    }
+
+    <div id="students"></div>
+</div>
+
+
+
+

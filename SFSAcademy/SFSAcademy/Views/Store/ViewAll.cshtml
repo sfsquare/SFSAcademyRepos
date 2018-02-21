@@ -3,7 +3,6 @@
 @{
     ViewBag.Title = "ViewAll";
 }
-
 <div id="content-header">
     <img src="~/Content/images/show_store.png" alt="Show Store Logo">
     <h1>Store</h1>
@@ -23,25 +22,41 @@
         @if (Html.Permitted_To("Edit", "Store"))
         {
             <li>@Html.ActionLink("Add New Product", "Create")</li>
-        }       
+        }
     </ul>
-    <p class="flash-msg"> Number of Items in the Cart = @ViewBag.CartItems </p>
+</div>
+<div id="flash_box">
+    @if (ViewBag.CartItems != null && ViewBag.CartItems != 0)
+            {
+        <p class="flash-msg"> Number of Items in the Cart = @ViewBag.CartItems </p>
+    }
 </div>
 <div id="page-yield">
     <div id="search_box_bg">
-        @if (Html.ValidationSummary() != null)
-        {
-            <p class="flash-msg"> @Html.ValidationSummary() </p>
-        }
         <div id="searchbox">
             <form name="search-form" id="search-form" action="" style="display:inline">
                 @using (Html.BeginForm("ViewAll", "Store", FormMethod.Get))
                 {
-                    <p>
-                        @Html.DropDownList("searchString", new SelectList(Model, "ID", "NAME"), "Select Category")
-
-                        <input type="submit" value="Submit" id="submit-button" />
-                    </p>
+                    if (ViewBag.IsPostBack == 1)
+                    {                      
+                        <div class="second_filter">
+                            <p>
+                                @Html.DropDownList("searchString", null, htmlAttributes: new { @class = "form-control", @disabled = "disabled" })
+                                @Html.DropDownList("searchString2", null, htmlAttributes: new { @class = "form-control" })
+                                <input type="submit" value="Submit" id="submit-button2" />
+                                @Html.Hidden("searchString", "searchString")
+                            </p>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="firt_filter">
+                            <p>
+                                @Html.DropDownList("searchString", null, htmlAttributes: new { @class = "form-control" })
+                                <input type="submit" value="Submit" id="submit-button1" />
+                            </p>
+                        </div>
+                    }
                 }
 
                 <div class="extender"></div>

@@ -7,7 +7,7 @@
 <div id="content-header">
     <img src="~/Content/images/show_store.png" alt="Store Logo">
     <h1>Store</h1>
-    <h3>Categories</h3>
+    <h3>Sub Categories</h3>
     <div id="app-back-button">
         <a href='javascript:history.back()' onclick="return confirm('are you sure?')"><img src="~/Content/images/buttons/back.png"></a>
     </div>
@@ -15,21 +15,16 @@
 <div><img src="~/Content/images/_global/header_underline_.jpg" width="100%"></div>
 <div class="bread_crumb">
     @Html.ActionLink("Store", "Index") &raquo;
-    Product Categories
-</div>
-<div id="flash_box">
-    @if (ViewBag.CatCreateMessage != null)
-            {
-        <p class="flash-msg"> @ViewBag.CatCreateMessage </p>
-    }
+    @Html.ActionLink("Store Category", "Categories") &raquo;
+    Store Sub Categories
 </div>
 <div id="page-yield">
     <div id="student-category-form">
-        @Html.Partial("~/Views/Store/_product_category_create_form.cshtml", new SFSAcademy.STORE_CATEGORY())
+        @Html.Partial("~/Views/Store/_product_sub_category_create_form.cshtml", new SFSAcademy.STORE_SUB_CATEGORY())
     </div>
     <br /><br />
     <div id="student-category-list">
-        @{Html.RenderAction("_CategoriesList", "Store");}
+        @{Html.RenderAction("_SubCategoriesList", "Store");}
 
     </div>
 </div>

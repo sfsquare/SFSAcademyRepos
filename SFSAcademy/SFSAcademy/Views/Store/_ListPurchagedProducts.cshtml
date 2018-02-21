@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<SFSAcademy.Models.PurchaseCart>
 @using SFSAcademy.Models
-
 @{    Layout = null;}
+
 <script type="text/javascript" src="@Url.Content("~/Content/javascripts/jquery/jquery.min.js")"></script>
 <script type="text/javascript" src="@Url.Content("~/Content/javascripts/jquery/jquery-ui.min.js")"></script>
 <script type="text/javascript" src="@Url.Content("~/Content/javascripts/jquery/jquery-1.9.1.js")"></script>
@@ -50,13 +50,19 @@
 </script>
 @if (ViewBag.PaidPrice == null)
 {
-    <div id="inner-tab-menu">
+    <div id="inner-tab-menu" class="noprint">
         <ul>
             <li>@Html.ActionLink("Cancel Transaction", "CancelTransaction")</li>
             <li>@Html.ActionLink("Clean Cart", "CleanCart")</li>
         </ul>
     </div>
 }
+<div id="flash_box" class="noprint">
+    @if (ViewBag.PaymentMessage != null)
+            {
+        <p class="flash-msg"> @ViewBag.PaymentMessage </p>
+    }
+</div>
 <div class="name">Number of Items in the Cart</div><div class="val themed_text"><span>:</span>@ViewBag.CartItems</div>
 <div class="name">Total Amount Paid</div><div class="val themed_text"><span>:</span>@ViewBag.PaidPrice</div>
 @if (ViewBag.PaidPrice != null)
@@ -69,7 +75,7 @@
 <div id="register">
     <div class="header">
         <div class="month">
-            Cart Items
+            Items
         </div>
         <div class="extender"></div>
     </div>
@@ -168,13 +174,12 @@
                             </div>
                             <div class="pay_fees_buttons">
                                 <input type="submit" value="Pay Amount" id="submit-button1" class="submit_button" />
-                                <input type="submit" value="Print Receipt" id="submit-button" class="submit_button" onclick="window.print()" />
                             </div>
                     }
                     else
                     {
                         <h4>Amount Paid</h4>
-                        <input type="submit" value="Print Receipt" id="submit-button" class="submit_button" onclick="window.print()" />
+                        <div class="noprint"><input type="submit" value="Print Receipt" id="submit-button" class="submit_button" onclick="window.print()" /></div>
                     }
                 </div>
             </td>

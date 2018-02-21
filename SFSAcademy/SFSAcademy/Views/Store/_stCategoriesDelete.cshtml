@@ -1,0 +1,55 @@
+﻿@model SFSAcademy.STORE_CATEGORY
+
+<div id="content-header">
+    <img src="~/Content/images/show_store.png" alt="Store Logo">
+    <h1>Store</h1>
+    <h3>Delete Categories</h3>
+    <div id="app-back-button">
+        <a href='javascript:history.back()' onclick="return confirm('are you sure?')"><img src="~/Content/images/buttons/back.png"></a>
+    </div>
+</div>
+<div><img src="~/Content/images/_global/header_underline_.jpg" width="100%"></div>
+<div class="bread_crumb">
+    @Html.ActionLink("Store", "Index") &raquo;
+    @Html.ActionLink("Store Category", "Categories") &raquo;
+    Store Categories Delete
+</div>
+<div id="flash_box">
+    @if (ViewBag.CatDeleteMessage != null)
+            {
+        <p class="flash-msg"> @ViewBag.CatDeleteMessage </p>
+    }
+</div>
+<div id="page-yield">
+    <div id="edit_user_form">
+        <div id="autofill-area">
+            @Html.HiddenFor(model => model.CREATED_AT)
+            @Html.HiddenFor(model => model.UPDATED_AT)
+            @Html.HiddenFor(model => model.IS_ACT)
+        </div>
+        <div class="label-field-pair">
+            @Html.LabelFor(model => model.NAME, "Category Name", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="text-input-bg">
+                @Html.EditorFor(model => model.NAME, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.NAME, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="label-field-pair">
+            @Html.LabelFor(model => model.IS_ACT, "Is Active", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="text-input-bg">
+                @Html.EditorFor(model => model.IS_ACT, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.IS_ACT, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> 
+        </div>
+    }
+
+</div>
+

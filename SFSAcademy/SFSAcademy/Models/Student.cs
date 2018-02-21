@@ -22,6 +22,12 @@ namespace SFSAcademy.Models
         public string SearchString { get; set; }
     }
 
+    public class RadioCourseBatch
+    {
+        public BATCH BatchData { get; set; }
+        public COURSE CourseData { get; set; }
+        public string BatchId { get; set; }
+    }
     public class SelectGuardian
     {
         public GUARDIAN GuardianList { get; set; }

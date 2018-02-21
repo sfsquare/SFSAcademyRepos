@@ -1,4 +1,5 @@
-﻿@model IEnumerable<SFSAcademy.STORE_CATEGORY>
+﻿@model IEnumerable<SFSAcademy.Models.SubCategory>
+@using SFSAcademy.Models;
 
 @{
     Layout = null;
@@ -16,7 +17,10 @@
                 }
                 <tr class="@selectedRow">
                     <td>
-                        @Html.ActionLink(item.NAME, "SubCategories", new { Category_Id = item.ID }, new { style = "text-decoration:underline" })
+                        @Html.DisplayFor(modelItem => item.SubCategoryData.NAME)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CategoryData.NAME)
                     </td>
                     <td>
                         <span>   </span>
@@ -25,8 +29,8 @@
                     @if (Html.CurrentUser_UserType().Equals("Admin"))
                 {
                         <td>
-                            @Html.ActionLink("Edit", "_CategoriesEdit", new { id = item.ID }, new { style = "text-decoration:underline" }) |
-                            @Html.ActionLink("Delete", "_stCategoriesDelete", new { id = item.ID }, new { style = "text-decoration:underline" })
+                            @Html.ActionLink("Edit", "_SubCategoriesEdit", new { id = item.SubCategoryData.ID }, new { style = "text-decoration:underline" }) |
+                            @Html.ActionLink("Delete", "_SubCategoriesDelete", new { id = item.SubCategoryData.ID }, new { style = "text-decoration:underline" })
                         </td>
                     }
                 </tr>

@@ -1,9 +1,9 @@
-﻿@model SFSAcademy.STORE_CATEGORY
+﻿@model SFSAcademy.STORE_SUB_CATEGORY
 
 <div id="content-header">
     <img src="~/Content/images/show_store.png" alt="Store Logo">
     <h1>Store</h1>
-    <h3>Edit Categories</h3>
+    <h3>Edit Sub Categories</h3>
     <div id="app-back-button">
         <a href='javascript:history.back()' onclick="return confirm('are you sure?')"><img src="~/Content/images/buttons/back.png"></a>
     </div>
@@ -12,12 +12,12 @@
 <div class="bread_crumb">
     @Html.ActionLink("Store", "Index") &raquo;
     @Html.ActionLink("Store Category", "Categories") &raquo;
-    Store Categories Edit
+    Store Sub Categories Edit
 </div>
 <div id="flash_box">
-    @if (ViewBag.CatEditMessage != null)
+    @if (ViewBag.SubCatEditMessage != null)
             {
-        <p class="flash-msg"> @ViewBag.CatEditMessage </p>
+        <p class="flash-msg"> @ViewBag.SubCatEditMessage </p>
     }
 </div>
 @using (Html.BeginForm())
@@ -28,15 +28,14 @@
         @Html.HiddenFor(model => model.ID)
         <div id="edit_user_form">
             <div class="label-field-pair">
-                @Html.LabelFor(model => model.NAME, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.NAME, "Sub Category Name", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="text-input-bg">
                     @Html.EditorFor(model => model.NAME, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.NAME, "", new { @class = "text-danger" })
                 </div>
             </div>
-
             <div class="label-field-pair">
-                @Html.LabelFor(model => model.IS_ACT, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.IS_ACT, "Is this Active", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="label-field-pair">
                     @Html.DropDownListFor(model => model.IS_ACT, new List<SelectListItem>
                         { new SelectListItem{Text="Yes", Value="Y"},

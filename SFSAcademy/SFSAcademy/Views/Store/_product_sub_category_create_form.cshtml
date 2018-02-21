@@ -1,25 +1,34 @@
-﻿@model SFSAcademy.STORE_CATEGORY
+﻿@model SFSAcademy.STORE_SUB_CATEGORY
 
 
-@using (Html.BeginForm("CategoriesCreate", "Store", FormMethod.Post))
+@using (Html.BeginForm("SubCategoriesCreate", "Store", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
 
     <div class="box">
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="label-field-pair">
-            @Html.LabelFor(model => model.NAME, "Enter New Category:", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.NAME, "Sub Category Name:", htmlAttributes: new { @class = "control-label col-md-2" })
             <span class="necessary-field" style="font-size:small">* Required Field</span>
             <div class="text-input-bg">
                 @Html.EditorFor(model => model.NAME, new { htmlAttributes = new { @class = "form-control", required = "required" } })
                 @Html.ValidationMessageFor(model => model.NAME, "", new { @class = "text-danger" })
             </div>
         </div>
+        <div class="label-field-pair">
+            @Html.LabelFor(model => model.STORE_CATEGORY_ID, "Store Category:", htmlAttributes: new { @class = "control-label col-md-2" })
+            <span class="necessary-field" style="font-size:small">* Required Field</span>
+            <div class="text-input-bg">
+                @Html.DropDownList("CATEGORY_ID", null, htmlAttributes: new { @class = "form-control", @disabled = "disabled"})
+                @Html.ValidationMessageFor(model => model.STORE_CATEGORY_ID, "", new { @class = "text-danger" })
+                @Html.Hidden("CATEGORY_ID", "CATEGORY_ID")
+            </div>
+        </div>
 
         <div class="label-field-pair">
             @Html.LabelFor(model => model.IS_ACT, "Is this Active ?", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="text-input-bg">
-                @Html.DropDownListFor(model => model.IS_ACT, new List<SelectListItem>
+               @Html.DropDownListFor(model => model.IS_ACT, new List<SelectListItem>
                         { new SelectListItem{Text="Yes", Value="Y"},
                           new SelectListItem{Text="No", Value="N"}}, "Select If Active")
                 @Html.ValidationMessageFor(model => model.IS_ACT, "", new { @class = "text-danger" })

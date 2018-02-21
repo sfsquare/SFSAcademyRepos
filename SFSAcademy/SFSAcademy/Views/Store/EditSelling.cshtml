@@ -31,12 +31,19 @@
 <div>
     <img src="~/Content/images/_global/header_underline_.jpg" width="100%">
 </div>
+<div class="bread_crumb">
+    @Html.ActionLink("Store", "Index") &raquo;
+    @Html.ActionLink("View All Sellings", "ViewAllSelling") &raquo;
+    Edit Selling
+</div>
+<div id="flash_box">
+    @if (ViewBag.sellingEditMessage != null)
+            {
+        <p class="flash-msg"> @ViewBag.sellingEditMessage </p>
+    }
+</div>
 <div id="page-yield">
 
-    @if (Html.ValidationSummary() != null)
-    {
-        <p class="flash-msg"> @Html.ValidationSummary(true, "", new { @class = "text-danger" }) </p>
-    }
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
@@ -55,7 +62,7 @@
             <div class="label-field-pair">
                 @Html.LabelFor(model => model.PRODUCT_ID, "Product", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="text-input-bg">
-                    @Html.DropDownList("PRODUCT_ID", null, htmlAttributes: new { @class = "form-control", @Value = ViewBag.PRODUCT_ID, @readonly = "readonly" })
+                    @Html.DropDownList("PRODUCT_ID", null, htmlAttributes: new { @class = "form-control", @Value = ViewBag.PRODUCT_ID })
                     @Html.ValidationMessageFor(model => model.PRODUCT_ID, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -88,7 +95,7 @@
                 <div class="label-field-pair">
                     @Html.LabelFor(model => model.SOLD_ON, "Sold On", htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        @Html.EditorFor(model => model.SOLD_ON, new { htmlAttributes = new { @class = "form-control", @id = "datepicker", @Value = ViewBag.SOLD_ON, @readonly = "readonly" } })
+                        @Html.EditorFor(model => model.SOLD_ON, new { htmlAttributes = new { @class = "form-control", @id = "datepicker"} })
                         @Html.ValidationMessageFor(model => model.SOLD_ON, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -125,7 +132,9 @@
                 <div class="label-field-pair">
                     @Html.LabelFor(model => model.IS_DEPOSITED, "Is the Money Deposited in Bank?", htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="text-input-bg">
-                        @Html.EditorFor(model => model.IS_DEPOSITED, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.DropDownListFor(model => model.IS_DEPOSITED, new List<SelectListItem>
+                        { new SelectListItem{Text="Yes", Value="Y"},
+                          new SelectListItem{Text="No", Value="N"}}, "Select If Deposited")
                         @Html.ValidationMessageFor(model => model.IS_DEPOSITED, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -133,7 +142,9 @@
                 <div class="label-field-pair">
                     @Html.LabelFor(model => model.IS_ACT, "Is the Selling Final?", htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="text-input-bg">
-                        @Html.EditorFor(model => model.IS_ACT, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.DropDownListFor(model => model.IS_ACT, new List<SelectListItem>
+                        { new SelectListItem{Text="Yes", Value="Y"},
+                          new SelectListItem{Text="No", Value="N"}}, "Select If it is final")
                         @Html.ValidationMessageFor(model => model.IS_ACT, "", new { @class = "text-danger" })
                     </div>
                 </div>
