@@ -1,0 +1,74 @@
+﻿@model SFSAcademy.STORE_PURCHAGE_ORDER
+
+<script type="text/javascript" src="@Url.Content("~/Content/javascripts/jquery/jquery.min.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/Content/javascripts/jquery/jquery-ui.min.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/Content/javascripts/jquery/jquery-1.9.1.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/Content/javascripts/jquery/jquery-ui.js")"></script>
+<link rel="stylesheet" href="~/Content/stylesheets/_styles/jquery-ui.css" />
+<script>
+    function submitform() {
+        $('form').submit();
+    }
+</script>
+
+@using (Html.BeginForm("PurchageOrderCreate", "Store", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="box">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="label-field-pair">
+            @Html.LabelFor(model => model.PRODUCT_ID, "Product ID", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="text-input-bg">
+                @if (ViewBag.IsPostBack2 == 1)
+                {
+                    <div class="label-field-pair">
+                        @Html.DropDownList("SUBCATEGORY_ID", null, htmlAttributes: new { @class = "form-control", @disabled = "disabled" })
+                        <div class="text-input-bg">
+                            @Html.DropDownList("PRODUCT_ID", null, htmlAttributes: new { @class = "form-control" })
+                        </div>
+                    </div>
+                    @Html.Hidden("CATEGORY_ID", "CATEGORY_ID")
+                    @Html.Hidden("SUBCATEGORY_ID", "SUBCATEGORY_ID")
+                }
+                else if (ViewBag.IsPostBack == 1)
+                {
+                    <div class="label-field-pair">
+                        @Html.DropDownList("CATEGORY_ID", null, htmlAttributes: new { @class = "form-control", @disabled = "disabled" })
+                        <div class="text-input-bg">
+                            @Html.DropDownList("SUBCATEGORY_ID", null, htmlAttributes: new { @class = "form-control", @onchange = "submitform();" })
+                        </div>
+                    </div>                  
+                    @Html.Hidden("CATEGORY_ID", "CATEGORY_ID")
+
+                }
+                else
+                {
+                @Html.DropDownList("CATEGORY_ID", null, htmlAttributes: new { @class = "form-control", @onchange = "submitform();" })
+                }
+                @Html.ValidationMessageFor(model => model.PRODUCT_ID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="label-field-pair">
+            @Html.LabelFor(model => model.VENDOR_ID, "Vendor", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="text-input-bg">
+                @Html.DropDownList("VENDOR_ID", null, htmlAttributes: new { @class = "form-control", @Value = ViewBag.VENDOR_ID })
+                @Html.ValidationMessageFor(model => model.VENDOR_ID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="label-field-pair">
+            @Html.LabelFor(model => model.ORDER_QUANTITY, "Order Quantity", htmlAttributes: new { @class = "control-label col-md-2" })
+            <span class="necessary-field" style="font-size:small">* Required Field</span>
+            <div class="text-input-bg">
+                @Html.EditorFor(model => model.ORDER_QUANTITY, new { htmlAttributes = new { @class = "form-control", required = "required", @Value = ViewBag.ORDER_QUANTITY } })
+                @Html.ValidationMessageFor(model => model.ORDER_QUANTITY, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="► Save" class="submit_button" />
+            </div>
+        </div>
+    </div>
+}

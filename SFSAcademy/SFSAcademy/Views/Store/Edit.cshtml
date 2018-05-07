@@ -95,36 +95,7 @@
             </div>
 
             <div id="admission1_form_vertical_block_left">
-                <div class="label-field-pair">
-                    @Html.LabelFor(model => model.TOTAL_UNIT, "Total Number of Units Purchased", htmlAttributes: new { @class = "control-label col-md-2" })
-                    <span class="necessary-field" style="font-size:small">* Required Field</span>
-                    <div class="text-input-bg">
-                        @Html.EditorFor(model => model.TOTAL_UNIT, new { htmlAttributes = new { @class = "form-control", required = "required" } })
-                        @Html.ValidationMessageFor(model => model.TOTAL_UNIT, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-                <div class="label-field-pair">
-                    @Html.LabelFor(model => model.COST_PER_UNIT, "Cost Per Unit", htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.COST_PER_UNIT, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.COST_PER_UNIT, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-                <div class="label-field-pair">
-                    @Html.LabelFor(model => model.TOTAL_COST, "Total Cost", htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.TOTAL_COST, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.TOTAL_COST, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="label-field-pair">
-                    @Html.LabelFor(model => model.SELL_PRICE_PER_UNIT, "Selling Price Per Unit", htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.SELL_PRICE_PER_UNIT, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.SELL_PRICE_PER_UNIT, "", new { @class = "text-danger" })
-                    </div>
-                </div>
+                
                 <hr class="label-underline">
 
             </div>
@@ -132,10 +103,39 @@
             <div id="admission1_form_vertical_block_right">
                 <span class="span-sub-heading">Product Purchase and Payment Details</span>
                 <hr class="sub-heading">
+                <div class="label-field-pair">
+                    @Html.LabelFor(model => model.TOTAL_UNIT, "Units Purchased", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="text-input-bg">
+                        @Html.EditorFor(model => model.TOTAL_UNIT, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                        @Html.ValidationMessageFor(model => model.TOTAL_UNIT, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="label-field-pair">
+                    @Html.LabelFor(model => model.COST_PER_UNIT, "Cost Per Unit", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="text-input-bg">
+                        @Html.EditorFor(model => model.COST_PER_UNIT, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.COST_PER_UNIT, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="label-field-pair">
+                    @Html.LabelFor(model => model.TOTAL_COST, "Total Cost", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="text-input-bg">
+                        @Html.EditorFor(model => model.TOTAL_COST, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.TOTAL_COST, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="label-field-pair">
+                    @Html.LabelFor(model => model.SELL_PRICE_PER_UNIT, "Selling Price Per Unit", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="text-input-bg">
+                        @Html.EditorFor(model => model.SELL_PRICE_PER_UNIT, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.SELL_PRICE_PER_UNIT, "", new { @class = "text-danger" })
+                    </div>
+                </div>
 
                 <div class="label-field-pair">
                     @Html.LabelFor(model => model.PURCHASED_ON, "Date of Purchase", htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
+                    <div class="text-input-bg">
                         @Html.EditorFor(model => model.PURCHASED_ON, new { htmlAttributes = new { @class = "form-control", @id = "datepicker", @Value = ViewBag.PURCHASED_ON, @readonly = "readonly" } })
                         @Html.ValidationMessageFor(model => model.PURCHASED_ON, "", new { @class = "text-danger" })
                     </div>

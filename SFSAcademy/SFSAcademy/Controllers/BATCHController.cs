@@ -105,6 +105,7 @@ namespace SFSAcademy.Controllers
         public ActionResult Create()
         {
             ViewBag.CRS_ID = new SelectList(db.COURSEs, "ID", "CRS_NAME");
+            ViewBag.EMP_ID = new SelectList(db.EMPLOYEEs, "ID", "EMP_NUM");
             return View();
         }
 

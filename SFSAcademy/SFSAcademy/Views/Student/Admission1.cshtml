@@ -37,6 +37,13 @@
 <div>
     <img src="~/Content/images/_global/header_underline_.jpg" width="100%">
 </div>
+<div id="flash_box">
+    @if (ViewBag.ErrorMessage != null)
+            {
+        <p class="flash-msg"> @ViewBag.ErrorMessage </p>
+    }
+</div>
+
 <div id="page-yield">
     @if (!Html.Configuration_Value("AdmissionNumberAutoIncrement").Equals('0'))
     {

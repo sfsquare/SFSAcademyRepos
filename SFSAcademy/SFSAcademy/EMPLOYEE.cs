@@ -31,6 +31,7 @@ namespace SFSAcademy
             this.INDIVIDUAL_PAYSLIP_CATGEORY = new HashSet<INDIVIDUAL_PAYSLIP_CATGEORY>();
             this.MONTHLY_PAYSLIP = new HashSet<MONTHLY_PAYSLIP>();
             this.MONTHLY_PAYSLIP1 = new HashSet<MONTHLY_PAYSLIP>();
+            this.STORE_PURCHAGE_ORDER = new HashSet<STORE_PURCHAGE_ORDER>();
         }
     
         public int ID { get; set; }
@@ -123,5 +124,7 @@ namespace SFSAcademy
         public virtual ICollection<MONTHLY_PAYSLIP> MONTHLY_PAYSLIP { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MONTHLY_PAYSLIP> MONTHLY_PAYSLIP1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<STORE_PURCHAGE_ORDER> STORE_PURCHAGE_ORDER { get; set; }
     }
 }

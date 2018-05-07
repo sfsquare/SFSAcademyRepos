@@ -28,6 +28,15 @@ namespace SFSAcademy.Models
         public COURSE CourseData { get; set; }
         public string BatchId { get; set; }
     }
+
+    public class StudentsGuardians
+    {
+        public GUARDIAN GuardianData { get; set; }
+        public STUDENT StudentData { get; set; }
+        public BATCH BatchData { get; set; }
+        public COURSE CourseData { get; set; }
+        public EMPLOYEE EmployeeData { get; set; }
+    }
     public class SelectGuardian
     {
         public GUARDIAN GuardianList { get; set; }

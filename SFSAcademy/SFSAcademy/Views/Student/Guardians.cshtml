@@ -1,0 +1,130 @@
+﻿@model IEnumerable<SFSAcademy.Models.StudentsGuardians>
+
+@{
+    ViewBag.Title = "Guardians";
+}
+
+<div id="content-header">
+    <img src="~/Content/images/student_details/student_details_logo.jpg" alt="Student Details Logo">
+    <h1>Parent Information</h1>
+    <h3>Parents Profile</h3>
+    <div id="app-back-button">
+        <a href='javascript:history.back()' onclick="return confirm('are you sure?')"><img src="~/Content/images/buttons/back.png"></a>
+    </div>
+</div>
+<div><img src="~/Content/images/_global/header_underline_.jpg" width="100%"></div>
+
+<div id="inner-tab-menu">
+    <ul>
+        <li class="a"><a href="@Url.Action("Profiles", "Student", new { id = ViewBag.WARD_ID })">Student Profile</a></li>
+        @if (Html.Permitted_To("Add_Guardian", "Student") || Html.CurrentUser_UserType().Equals("Admin"))
+        {
+            <li class="a"><a href="@Url.Action("Add_Guardian", "Student", new { std_id = ViewBag.WARD_ID })">Add Guardian</a></li>
+            <li class="a"><a href="@Url.Action("Add_Existing_Guardian", "Student", new { Std_id = ViewBag.WARD_ID })">Add Existing Parent</a></li>
+        }
+    </ul>
+</div>
+<div class="bread_crumb">
+    @Html.ActionLink("Student Details", "Index") &raquo;
+    @Html.ActionLink("View All", "ViewAll") &raquo;
+    Guardians
+</div>
+<div id="page-yield">
+    @if (ViewBag.GuardianMessage != null)
+            {
+        <p class="flash-msg"> @ViewBag.GuardianMessage </p>
+    }
+    else
+    {
+        <div id="student_profile_heading">
+            <div id="student_main_info">
+                <span class="name"> @Model.FirstOrDefault().StudentData.FIRST_NAME  @Model.FirstOrDefault().StudentData.MID_NAME @Model.FirstOrDefault().StudentData.LAST_NAME  </span>
+                <span class="course">Course and Batch: @Model.FirstOrDefault().CourseData.CODE - @Model.FirstOrDefault().BatchData.NAME </span>
+                <span class="adm">Admission Number: @Model.FirstOrDefault().StudentData.ADMSN_NO </span>
+            </div>
+            <div class="extender"> </div>
+        </div>
+        <div id="guardians-links">
+            <ul>
+                <span>Parents / Guardian:</span>
+                @foreach (var item in Model)
+                {
+                    <li><a href="@Url.Action("Edit_Guardian", "Student", new {id= item.GuardianData.ID})" title="Guardians">@item.GuardianData.FIRST_NAME @item.GuardianData.LAST_NAME - </a> (@item.GuardianData.REL)</li>
+                }
+            </ul>
+        </div>
+
+        <div id="parent-list">
+            @foreach (var item in Model)
+            {
+                <a name="guardian-details-id-@item.GuardianData.ID"> </a>
+                <div id="new_profile_info_top">
+                    <div class="profile_top_banner">
+                        <span class="profile">Details</span>
+                        <div class="profile-topbanner"></div>
+                    </div>
+                    <div class="profile_info_label">Name</div>
+                    <div class="profile_info_text">
+                        @item.GuardianData.FIRST_NAME @item.GuardianData.LAST_NAME
+                    </div>
+                    <div class="profile_info_label2">Relation</div>
+                    <div class="profile_info_text2">@item.GuardianData.REL</div>
+                    <div class="profile_info_label">Date of Birth</div>
+                    @if (item.GuardianData.DOB != null)
+                    {
+                        <div class="profile_info_text"> @item.GuardianData.DOB.Value.ToShortDateString() </div>
+                    }
+                    else
+                    {
+                        <div class="profile_info_text"> Not Available </div>
+                    }
+                    <div class="new_profile_info_area1">
+                        <div class="profile_info_label2">Email</div>
+                        <div class="profile_info_text2"> @item.GuardianData.EML </div>
+                        <div class="profile_info_label">Office Phone1</div>
+                        <div class="profile_info_text"> @item.GuardianData.OFF_PH1 </div>
+                    </div>
+                    <div class="new_profile_info_area1">
+                        <div class="profile_info_label2">Office Phone2</div>
+                        <div class="profile_info_text2"> @item.GuardianData.OFF_PH2 </div>
+                        <div class="profile_info_label">Mobile Phone No</div>
+                        <div class="profile_info_text"> @item.GuardianData.MOBL_PH </div>
+                    </div>
+                    <div class="new_profile_info_area1">
+                        <div class="profile_info_label2">Address</div>
+                        <div class="profile_info_text2"> @item.GuardianData.OFF_ADDR_LINE1 @item.GuardianData.OFF_ADDR_LINE2 </div>
+                        <div class="profile_info_label"> </div>
+                        <div class="profile_info_text"> @item.GuardianData.CITY @item.GuardianData.STATE </div>
+                    </div>
+                    <div class="new_profile_info_area1">
+                        <div class="profile_info_label2">Income</div>
+                        <div class="profile_info_text2"> @item.GuardianData.INCM </div>
+                        <div class="profile_info_label">Occupation</div>
+                        <div class="profile_info_text"> @item.GuardianData.OCCP </div>
+                    </div>
+                    <div class="extender"></div>
+                </div>
+                <div class="button-pair">
+                    @if (Html.Permitted_To("Edit_Guardian", "Student") || Html.CurrentUser_UserType().Equals("Admin"))
+                    {
+                        <div class="parent-edit-button">
+                            <a href="@Url.Action("Edit_Guardian", "Student", new { id = Model.FirstOrDefault().GuardianData.ID })" class="user_button" style="text-decoration:underline">Edit Guardian</a>
+                        </div>
+                    }
+                    @if (Html.Permitted_To("Delete_Guardian", "Student") || Html.CurrentUser_UserType().Equals("Admin"))
+                    {
+                        <div class="parent-edit-button">
+                            <a href="@Url.Action("Delete_Guardian", "Student", new { id = Model.FirstOrDefault().GuardianData.ID, std_id = Model.FirstOrDefault().StudentData.ID })" class="user_button" style="text-decoration:underline" onclick="return confirm('Are you sure?')">Delete Guardian</a>
+                        </div>
+                    }
+                </div>
+                <div class="extender"></div>
+            }
+
+
+        </div>
+    }
+    
+</div>
+
+

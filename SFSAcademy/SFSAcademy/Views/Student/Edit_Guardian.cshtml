@@ -1,0 +1,236 @@
+﻿@model SFSAcademy.GUARDIAN
+
+@{
+    ViewBag.Title = "Edit_Guardian";
+}
+<script type="text/javascript" src="@Url.Content("~/Content/javascripts/jquery/jquery.min.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/Content/javascripts/jquery/jquery-ui.min.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/Content/javascripts/jquery/jquery-1.9.1.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/Content/javascripts/jquery/jquery-ui.js")"></script>
+<link rel="stylesheet" href="~/Content/stylesheets/_styles/jquery-ui.css" />
+<script>
+    $(function () {
+        $("#datepicker").datepicker({
+            showOn: "button",
+            buttonImage: "/Content/images/calendar_date_select/calendar.gif",
+            dateFormat: 'dd-mm-yy',
+            buttonImageOnly: true
+        });
+    });
+
+</script>
+<div id="content-header">
+    <img src="~/Content/images/student_details/student_details_logo.jpg" alt="Student Details Logo">
+    <h1>Parent Information</h1>
+    <h3>Edit Parent / Guardian Detail</h3>
+    <div id="app-back-button">
+        <a href='javascript:history.back()' onclick="return confirm('are you sure?')"><img src="~/Content/images/buttons/back.png"></a>
+    </div>
+</div>
+<div><img src="~/Content/images/_global/header_underline_.jpg" width="100%"></div>
+
+<div class="bread_crumb">
+    @Html.ActionLink("Student Details", "Index") &raquo;
+    @Html.ActionLink("View All", "ViewAll") &raquo;
+    Edit Guardians
+</div>
+
+<div id="page-yield">
+    <div id="flash_box">
+        @if (ViewBag.GuardianEditMessage != null)
+            {
+            <p class="flash-msg"> @ViewBag.GuardianEditMessage </p>
+        }
+    </div>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <div id="admission1_form">
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.ID)
+            @Html.Hidden("ADMSN_NO")
+
+            <div class="label-field-pair">
+                @Html.Label("ADMSN_NO", "Student Admission No", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="text_display">@ViewBag.ADMSN_NO</div>
+            </div>
+            <br />
+            <span class="span-sub-heading">Parent Personal Details</span>
+            <hr class="sub-heading">
+
+            <div class="label-field-pair">
+                @Html.LabelFor(model => model.FIRST_NAME,"First Name", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="text-input-bg">
+                    @Html.EditorFor(model => model.FIRST_NAME, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.FIRST_NAME, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="label-field-pair">
+                @Html.LabelFor(model => model.LAST_NAME,"Last Name", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="text-input-bg">
+                    @Html.EditorFor(model => model.LAST_NAME, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.LAST_NAME, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="label-field-pair">
+                @Html.LabelFor(model => model.REL,"Relation", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="text-input-bg">
+                    @Html.EditorFor(model => model.REL, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.REL, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="label-field-pair">
+                @Html.LabelFor(model => model.DOB, "Date of Birth", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="text-input-bg">
+                    @Html.EditorFor(model => model.DOB, new { htmlAttributes = new { @class = "form-control", @id = "datepicker", @Value = ViewBag.DOB } })
+                    @Html.ValidationMessageFor(model => model.DOB, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="label-field-pair">
+                @Html.LabelFor(model => model.ED, "Education", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="text-input-bg">
+                    @Html.EditorFor(model => model.ED, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.ED, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="label-field-pair">
+                @Html.LabelFor(model => model.OCCP, "Occupation", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="text-input-bg">
+                    @Html.EditorFor(model => model.OCCP, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.OCCP, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="label-field-pair">
+                @Html.LabelFor(model => model.INCM, "Income", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="text-input-bg">
+                    @Html.EditorFor(model => model.INCM, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.INCM, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="label-field-pair">
+                @Html.LabelFor(model => model.EML, "Email", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="text-input-bg">
+                    @Html.EditorFor(model => model.EML, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.EML, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <br />
+            <span class="span-sub-heading">Parent Contact Details</span>
+            <hr class="sub-heading">
+            <div class="label-field-pair">
+                @Html.LabelFor(model => model.OFF_ADDR_LINE1, "Office Address Line1", htmlAttributes: new { @class = "control-label col-md-2" })
+                @if (ViewBag.AddressLine1 != " ")
+                {
+                    <div class="text-input-bg">
+                        @Html.EditorFor(model => model.OFF_ADDR_LINE1, new { htmlAttributes = new { @class = "form-control", @Value = ViewBag.AddressLine1 } })
+                        @Html.ValidationMessageFor(model => model.OFF_ADDR_LINE1, "", new { @class = "text-danger" })
+                    </div>
+                }
+                else
+                {
+                    <div class="text-input-bg">
+                        @Html.EditorFor(model => model.OFF_ADDR_LINE1, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.OFF_ADDR_LINE1, "", new { @class = "text-danger" })
+                    </div>
+                }
+            </div>
+            <div class="label-field-pair">
+                @Html.LabelFor(model => model.OFF_ADDR_LINE2, "Office Address Line2", htmlAttributes: new { @class = "control-label col-md-2" })
+                @if (ViewBag.AddressLine2 != " ")
+                {
+                    <div class="text-input-bg">
+                        @Html.EditorFor(model => model.OFF_ADDR_LINE2, new { htmlAttributes = new { @class = "form-control", @Value = ViewBag.AddressLine2 } })
+                        @Html.ValidationMessageFor(model => model.OFF_ADDR_LINE2, "", new { @class = "text-danger" })
+                    </div>
+                }
+                else
+                {
+                    <div class="text-input-bg">
+                        @Html.EditorFor(model => model.OFF_ADDR_LINE2, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.OFF_ADDR_LINE2, "", new { @class = "text-danger" })
+                    </div>
+                }
+            </div>
+            <div class="label-field-pair">
+                @Html.LabelFor(model => model.CITY, "City", htmlAttributes: new { @class = "control-label col-md-2" })
+                @if (ViewBag.StudentCity != " ")
+                {
+                    <div class="text-input-bg">
+                        @Html.EditorFor(model => model.CITY, new { htmlAttributes = new { @class = "form-control", @Value = ViewBag.StudentCity } })
+                        @Html.ValidationMessageFor(model => model.CITY, "", new { @class = "text-danger" })
+                    </div>
+                }
+                else
+                {
+                    <div class="text-input-bg">
+                        @Html.EditorFor(model => model.CITY, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.CITY, "", new { @class = "text-danger" })
+                    </div>
+                }
+            </div>
+            <div class="label-field-pair">
+                @Html.LabelFor(model => model.STATE, "State", htmlAttributes: new { @class = "control-label col-md-2" })
+                @if (ViewBag.StudentState != " ")
+                {
+                    <div class="text-input-bg">
+                        @Html.EditorFor(model => model.STATE, new { htmlAttributes = new { @class = "form-control", @Value = ViewBag.StudentState } })
+                        @Html.ValidationMessageFor(model => model.STATE, "", new { @class = "text-danger" })
+                    </div>
+                }
+                else
+                {
+                    <div class="text-input-bg">
+                        @Html.EditorFor(model => model.STATE, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.STATE, "", new { @class = "text-danger" })
+                    </div>
+                }
+            </div>
+            <div class="label-field-pair">
+                @Html.LabelFor(model => model.CTRY_ID, "Country", htmlAttributes: new { @class = "control-label col-md-2" })
+                @if (ViewBag.StudentState != " ")
+                {
+                    <div class="text-input-bg">
+                        @Html.DropDownList("CTRY_ID", null, htmlAttributes: new { @class = "form-control", @Value = ViewBag.CountryName })
+                        @Html.ValidationMessageFor(model => model.CTRY_ID, "", new { @class = "text-danger" })
+                    </div>
+                }
+                else
+                {
+                    <div class="text-input-bg">
+                        @Html.DropDownList("CTRY_ID", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.CTRY_ID, "", new { @class = "text-danger" })
+                    </div>
+                }
+            </div>
+            <div class="label-field-pair">
+                @Html.LabelFor(model => model.OFF_PH1, "Office Phone1", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="text-input-bg">
+                    @Html.EditorFor(model => model.OFF_PH1, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.OFF_PH1, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="label-field-pair">
+                @Html.LabelFor(model => model.OFF_PH2, "Office Phone2", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="text-input-bg">
+                    @Html.EditorFor(model => model.OFF_PH2, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.OFF_PH2, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="label-field-pair">
+                @Html.LabelFor(model => model.MOBL_PH, "Parent Mobile Number", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="text-input-bg">
+                    @Html.EditorFor(model => model.MOBL_PH, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.MOBL_PH, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+        </div>
+        <div class="extender">
+        </div>
+        <input type="submit" value="► Update" class="submit_button3" />
+    }
+    
+
+</div>
