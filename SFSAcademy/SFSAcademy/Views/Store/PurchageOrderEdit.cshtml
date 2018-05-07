@@ -1,0 +1,182 @@
+﻿@model SFSAcademy.STORE_PURCHAGE_ORDER
+
+@{
+    ViewBag.Title = "PurchageOrderEdit";
+}
+<script type="text/javascript" src="@Url.Content("~/Content/javascripts/jquery/jquery.min.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/Content/javascripts/jquery/jquery-ui.min.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/Content/javascripts/jquery/jquery-1.9.1.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/Content/javascripts/jquery/jquery-ui.js")"></script>
+<link rel="stylesheet" href="~/Content/stylesheets/_styles/jquery-ui.css" />
+<script>
+    $(function () {
+        $("#datepicker").datepicker({
+            showOn: "button",
+            buttonImage: "/Content/images/calendar_date_select/calendar.gif",
+            dateFormat: 'dd-mm-yy',
+            buttonImageOnly: true
+        });
+        $("#datepicker2").datepicker({
+            showOn: "button",
+            buttonImage: "/Content/images/calendar_date_select/calendar.gif",
+            dateFormat: 'dd-mm-yy',
+            buttonImageOnly: true
+        });
+    });
+</script>
+
+<div id="content-header">
+    <img src="~/Content/images/show_store.png" alt="Store Logo">
+    <h1>Store</h1>
+    <h3>Edit Purchage Order</h3>
+    <div id="app-back-button">
+        <a href='javascript:history.back()' onclick="return confirm('are you sure?')"><img src="~/Content/images/buttons/back.png"></a>
+    </div>
+</div>
+<div><img src="~/Content/images/_global/header_underline_.jpg" width="100%"></div>
+<div class="bread_crumb">
+    @Html.ActionLink("Store", "Index") &raquo;
+    @Html.ActionLink("Purchage Orders", "PurchageOrder") &raquo;
+    Edit Purchage Order
+</div>
+<div id="flash_box">
+    @if (ViewBag.POEditMessage != null)
+            {
+        <p class="flash-msg"> @ViewBag.POEditMessage </p>
+    }
+</div>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div id="page-yield">
+        @Html.HiddenFor(model => model.ID)
+        <div id="edit_user_form">
+            <div class="label-field-pair">
+                @Html.LabelFor(model => model.PO_NUMBER,"Purchage Order Number", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="text-input-bg">
+                    @Html.EditorFor(model => model.PO_NUMBER, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                    @Html.ValidationMessageFor(model => model.PO_NUMBER, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="label-field-pair">
+                @Html.Label("PRODUCT_ID", "Product ID",htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="text-input-bg">
+                    @Html.Editor("PRODUCT_ID", new { htmlAttributes = new { @class = "form -control", @Value = ViewBag.PRODUCT_ID, @disabled = "disabled" } })
+                </div>
+            </div>
+            <div class="label-field-pair">
+                @Html.LabelFor(model => model.REVISION_NUMBER, "Revision Number", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="text-input-bg">
+                    @Html.EditorFor(model => model.REVISION_NUMBER, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.REVISION_NUMBER, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="label-field-pair">
+                @Html.LabelFor(model => model.STATUS_ID, "Status", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="text-input-bg">
+                    @Html.DropDownList("STATUS_ID", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.STATUS_ID, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="label-field-pair">
+                @Html.LabelFor(model => model.EMPLOYEE_ID, "Employee who raised PO", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="text-input-bg">
+                    @Html.DropDownList("EMPLOYEE_ID", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.EMPLOYEE_ID, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="label-field-pair">
+                @Html.LabelFor(model => model.VENDOR_ID, "Vendor", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="text-input-bg">
+                    @Html.DropDownList("VENDOR_ID", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.VENDOR_ID, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="label-field-pair">
+                @Html.LabelFor(model => model.SHIP_METHOD_ID, "Shipment Method", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="text-input-bg">
+                    @Html.DropDownListFor(model => model.SHIP_METHOD_ID, new List<SelectListItem>
+                        { new SelectListItem{Text="Transport", Value="1"},
+                          new SelectListItem{Text="Courier", Value="2"},
+                          new SelectListItem { Text = "Indian POST", Value = "3" },
+                          new SelectListItem { Text = "Hand to Hand", Value = "4" },
+                          new SelectListItem{Text="Exchange", Value="5"},
+                          new SelectListItem{Text="Vendor Delivery", Value="6"},
+                          new SelectListItem{Text="Online Portal Delivery", Value="7"},
+                          new SelectListItem{Text="Direct from Farm", Value="8"}}, "Select ship Method")
+                    @Html.ValidationMessageFor(model => model.SHIP_METHOD_ID, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="label-field-pair">
+                @Html.LabelFor(model => model.ORDER_DATE, "Order Date", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="text-input-bg">
+                    @Html.EditorFor(model => model.ORDER_DATE, new { htmlAttributes = new { @class = "form-control", @id = "datepicker", @readonly = "readonly" } })
+                    @Html.ValidationMessageFor(model => model.ORDER_DATE, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="label-field-pair">
+                @Html.LabelFor(model => model.ORDER_QUANTITY, "Order Quantity", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="text-input-bg">
+                    @Html.EditorFor(model => model.ORDER_QUANTITY, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.ORDER_QUANTITY, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="label-field-pair">
+                @Html.LabelFor(model => model.SHIP_DATE, "Ship Date", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="text-input-bg">
+                    @Html.EditorFor(model => model.SHIP_DATE, new { htmlAttributes = new { @class = "form-control", @id = "datepicker2", @readonly = "readonly" } })
+                    <span class="necessary-field" style="font-size:x-small">* Required if status is "Complete"</span>
+                    @Html.ValidationMessageFor(model => model.SHIP_DATE, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="label-field-pair">
+                @Html.LabelFor(model => model.TOTAL_DUE,"Cost to Vendor", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="text-input-bg">
+                    @Html.EditorFor(model => model.TOTAL_DUE, new { htmlAttributes = new { @class = "form-control" } })
+                    <span class="necessary-field" style="font-size:x-small">* Required if status is "Complete"</span>
+                    @Html.ValidationMessageFor(model => model.TOTAL_DUE, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="label-field-pair">
+                @Html.LabelFor(model => model.TAX_AMT,"Tax Amount", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="text-input-bg">
+                    @Html.EditorFor(model => model.TAX_AMT, new { htmlAttributes = new { @class = "form-control" } })
+                    <span class="necessary-field" style="font-size:x-small">* Required if status is "Complete"</span>
+                    @Html.ValidationMessageFor(model => model.TAX_AMT, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="label-field-pair">
+                @Html.LabelFor(model => model.FREIGHT,"Frieght Cost", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="text-input-bg">
+                    @Html.EditorFor(model => model.FREIGHT, new { htmlAttributes = new { @class = "form-control" } })
+                    <span class="necessary-field" style="font-size:x-small">* Required if status is "Complete"</span>
+                    @Html.ValidationMessageFor(model => model.FREIGHT, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="label-field-pair">
+                @Html.LabelFor(model => model.SUB_TOTAL,"Sub Total Cost", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="text-input-bg">
+                    @Html.EditorFor(model => model.SUB_TOTAL, new { htmlAttributes = new { @class = "form-control"} })
+                    <span class="necessary-field" style="font-size:x-small">* Required if status is "Complete"</span>
+                    @Html.ValidationMessageFor(model => model.SUB_TOTAL, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Save" class="btn btn-default" />
+                </div>
+            </div>
+
+        </div>
+    </div>
+}

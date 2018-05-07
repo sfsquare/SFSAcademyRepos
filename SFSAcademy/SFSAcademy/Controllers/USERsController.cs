@@ -257,11 +257,30 @@ namespace SFSAcademy.Controllers
                 }
                 else
                 {
-                    ModelState.AddModelError("", "Login data is incorrect!");
+                    ViewBag.ErrorMessage = "Login data is incorrect!";
                 }
             }
             return View(user);
         }
+
+        public ActionResult Forgot_Password()
+        {
+            //var Config = new Models.Configuration();
+            //ViewBag.network_state = Config.find_by_config_key("NetworkState");
+            ViewBag.network_state = "Active";
+            return View();
+
+        }
+        [HttpPost]
+        public ActionResult Forgot_Password(USER user)
+        {
+            if (ModelState.IsValid)
+            {
+                ViewBag.ErrorMessage = "Thank you. Your request is saved. Please contact Admin on 9967803589 in the mean time.";
+            }
+            return View(user);
+        }
+
         public ActionResult Logout()
         {
             FormsAuthentication.SignOut();

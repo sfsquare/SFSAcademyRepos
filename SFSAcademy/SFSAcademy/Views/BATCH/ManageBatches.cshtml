@@ -21,16 +21,16 @@
         {
             <li><a href="@Url.Action("Index", "Grading_Levels")">Grading system</a></li>
         }
-        <li>@Html.ActionLink("Batch Transfer", "Batch_Transfers")</li>
+        <li><a href="@Url.Action("BatchTransfer", "Student")">Batch Transfer</a></li>
         <li>@Html.ActionLink("Revert Batch Transfer", "Revert_Batch_Transfers")</li>
     </ul>
 </div>
+<div class="bread_crumb">
+    <a href="@Url.Action("Index", "Configuration")">Configuration</a> &raquo;
+    <a href="@Url.Action("Index", "Courses")">Courses</a> &raquo;
+    Manage Batch
+</div>
 <div id="page-yield">
-    <div class="bread_crumb">
-        <a href="@Url.Action("Index", "Configuration")">Configuration</a> &raquo;
-        <a href="@Url.Action("Index", "Courses")">Courses</a> &raquo;
-        Manage Batch
-    </div>
     <div class="box">
         <div id="search_box_bg">
             <form name="search-form" id="search-form" action="" style="display:inline;">

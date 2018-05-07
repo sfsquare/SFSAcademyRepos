@@ -1,0 +1,28 @@
+﻿@model IEnumerable<SFSAcademy.Models.Products>
+@using SFSAcademy.Models
+
+@{
+    ViewBag.Title = "ViewCart";
+}
+<style type="text/css" media="print">
+    #header, #nav, .noprint {
+        display: none;
+    }
+</style>
+<div id="content-header" class="noprint">
+    <img src="~/Content/images/show_store.png" alt="Show Store Logo">
+    <h1>Store</h1>
+    <h3>Shortage Product</h3>
+    <div id="app-back-button">
+        <a href='javascript:history.back()' onclick="return confirm('are you sure?')"><img src="~/Content/images/buttons/back.png"></a>
+    </div>
+</div>
+<div class="noprint"><img src="~/Content/images/_global/header_underline_.jpg" width="100%"></div>
+<div class="bread_crumb">
+    @Html.ActionLink("S. F. Square Store", "Index") &raquo;
+    @Html.ActionLink("Products", "ViewAll") &raquo;
+    Shortage Products
+</div>
+<div id="modal-box">
+    @Html.Partial("_ListShortageProducts")
+</div>

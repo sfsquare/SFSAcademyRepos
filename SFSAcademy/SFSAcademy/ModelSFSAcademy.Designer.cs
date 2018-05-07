@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'C:\Users\sudhi\Documents\Visual Studio 2015\Projects\Git Hub\SFS-Store-Issue-Fix\SFSAcademyRepos\SFSAcademy\SFSAcademy\ModelSFSAcademy.edmx'. 
+﻿// T4 code generation is enabled for model 'C:\GitHub\SFSAcademy-Purchage_Order\SFSAcademyRepos\SFSAcademy\SFSAcademy\ModelSFSAcademy.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

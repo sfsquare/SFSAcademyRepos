@@ -1,0 +1,117 @@
+﻿@model IEnumerable<SFSAcademy.Models.StudentsGuardians>
+
+@{
+    ViewBag.Title = "Add_Existing_Guardian";
+}
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#StdList").hide();
+        function Contains(text_one, text_two) {
+            if (text_one.indexOf(text_two) != -1)
+                return true;
+        }
+        $("#Search").keyup(function () {
+            var searchText = $("#Search").val().toLowerCase();
+            $(".Search").each(function () {
+                if (!Contains($(this).text().toLowerCase(), searchText)) {
+                    $("#StdList").show();
+                    $(this).hide();
+                }
+                else {
+                    $("#StdList").show();
+                    $(this).show();
+                }
+            });
+            if ($("#Search").val() == '') {
+                $("#StdList").hide();
+            }
+        });
+    });
+
+</script>
+<div id="content-header">
+    <img src="~/Content/images/student_details/student_details_logo.jpg" alt="Student Details Logo">
+    <h1>Admission</h1>
+    <h3>Add Existing Guardian</h3>
+    <div id="app-back-button">
+        <a href='javascript:history.back()' onclick="return confirm('are you sure?')"><img src="~/Content/images/buttons/back.png"></a>
+    </div>
+</div>
+<div><img src="~/Content/images/_global/header_underline_.jpg" width="100%"></div>
+
+<div class="bread_crumb">
+    @Html.ActionLink("Student Details", "Index") &raquo;
+    @Html.ActionLink("View All", "ViewAll") &raquo;
+    Guardians
+</div>
+<p class="flash-msg">*Enter First Name or Last Name of the Parent, or Admission Number of student to search Guardian.</p>
+<div class="container">
+    <div class="form-group">
+        <div id="flash_box">
+            @if (ViewBag.ErrorMessage != null)
+            {
+                <p class="flash-msg"> @ViewBag.ErrorMessage </p>
+            }
+        </div>
+        <div class="input-group">
+            <img src="~/Content/images/search_icon.png">
+            <input type="text" id="Search" placeholder="Search" class="form-control" />
+        </div>
+    </div>
+    <br />
+    <div class="students-table" id="StdList">
+        <table id="listing" align="center" width="100%" cellpadding="1" cellspacing="1" class="table table-striped">
+            <tr class="tr-head">
+                <th>
+                    Parent ID
+                </th>
+                <th>
+                    Parent First Name
+                </th>
+                <th>
+                    Parent Last Name
+                </th>
+                <th>
+                    Student Name
+                </th>
+                <th>
+                    Student Ad. No.
+                </th>
+            </tr>
+            <tr class="tr-blank"></tr>
+            @{int i = 1; }
+            @foreach (var item in Model)
+            {
+                string selectedRow = "tr-even";
+                if (i % 2 == 0)
+                {
+                    selectedRow = "tr-odd";
+                }
+                <tr class="Search @selectedRow">
+                    <td class="col-1">
+                        @Html.ActionLink(item.GuardianData.ID.ToString(), "Add_Existing_Guardian2", new { Std_id = @ViewBag.WARD_ID, Parent_id =item.GuardianData.ID }, new { style = "text-decoration:underline" })
+                    </td>
+                    <td class="col-2">
+                        @Html.DisplayFor(modelItem => item.GuardianData.FIRST_NAME)
+                    </td>
+                    <td class="col-2">
+                        @Html.DisplayFor(modelItem => item.GuardianData.LAST_NAME)
+                    </td>
+                    <td class="col-3" nowrap>
+                        @Html.DisplayFor(modelItem => item.StudentData.FIRST_NAME)
+                        <label> </label>
+                        @Html.DisplayFor(modelItem => item.StudentData.LAST_NAME)
+                    </td>
+                    <td class="col-4" nowrap>
+                        @Html.DisplayFor(modelItem => item.StudentData.ADMSN_NO)
+                    </td>
+
+                </tr>
+                i = i + 1;
+            }
+        </table>
+        <br />
+    </div>
+</div>

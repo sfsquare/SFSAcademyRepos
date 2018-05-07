@@ -164,35 +164,29 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <div class="label-field-pair2">
-                                        <label class="label_for_student_gender" for="student_gender">Student Gender:</label>
+                                    <div class="label_field_pair">
+                                        <label class="label_for_student" for="student_gender">Student Gender:</label>
                                         <div class="student_gender_value">
-                                            @Html.RadioButton("StudentGender", "M", ViewBag.CurrentFilter6 == "M" ? true : false)@Html.Label("Male")
-                                            @Html.RadioButton("StudentGender", "F", ViewBag.CurrentFilter6 == "F" ? true : false)@Html.Label("Female")
-                                            @Html.RadioButton("StudentGender", "All", ViewBag.CurrentFilter6 == "All" || ViewBag.CurrentFilter6 == null ? true : false)@Html.Label("All")
+                                            @Html.RadioButton("StudentGender", "M", ViewBag.CurrentFilter6 == "M" ? true : false)@Html.Label("Male", new {@class="label_for_gender" })
+                                            @Html.RadioButton("StudentGender", "F", ViewBag.CurrentFilter6 == "F" ? true : false)@Html.Label("Female", new { @class = "label_for_gender" })
+                                            @Html.RadioButton("StudentGender", "All", ViewBag.CurrentFilter6 == "All" || ViewBag.CurrentFilter6 == null ? true : false)@Html.Label("All", new { @class = "label_for_gender" })
                                         </div>
                                     </div>
                                 </td>
                                 <td>
-                                    <div class="label-field-pair2">
-                                        <label class="label_for_student_gender" for="student_gender">Students Satus:</label>
+                                    <div class="label_field_pair">
+                                        <label class="label_for_student" for="student_gender">Students Satus:</label>
                                         <div class="student_gender_value">
-                                            @Html.RadioButton("ActiveStudent", "Y", ViewBag.CurrentFilter11 == "Y" ? true : false)@Html.Label("Active Students")
-                                            @Html.RadioButton("ActiveStudent", "N", ViewBag.CurrentFilter11 == "N" ? true : false)@Html.Label("Students Left School")
+                                            @Html.RadioButton("ActiveStudent", "Y", ViewBag.CurrentFilter11 == "Y" ? true : false)@Html.Label("Active Students", new { @class = "label_for_gender" })
+                                            @Html.RadioButton("ActiveStudent", "N", ViewBag.CurrentFilter11 == "N" ? true : false)@Html.Label("Students Left School", new { @class = "label_for_gender" })
                                         </div>
                                     </div>
                                 </td>
                             </tr>
                         </table>
-
-                        <div id="pdf-view-button">
-                            <ul>
-                                <li><input type="submit" value="Search" class="submit-button" /></li>
-                            </ul>
-                            <ul>
-                                <li><a href="@Url.Action("AdvancedSearchPdf", "Student",new { searchString = ViewBag.CurrentFilter, AdmissionNumber = ViewBag.CurrentFilter2, HadPdFees = ViewBag.CurrentFilter3, CourseBatches = ViewBag.CurrentFilter4, Category = ViewBag.CurrentFilter5, StudentGender= ViewBag.CurrentFilter6, BloodGroup = ViewBag.CurrentFilter7, StudentGrade = ViewBag.CurrentFilter8, StudentBirthFromDate = ViewBag.CurrentFilter9, StudentBirthToDate= ViewBag.CurrentFilter10 , ActiveStudent = ViewBag.CurrentFilter11 , MissingDetl = ViewBag.CurrentFilter12 })" alt="View PDF Report" target="_blank" class="submit-button">View PDF Report</a></li>
-                            </ul>
-                        </div>
+                        <input type="submit" value="Search" class="submit" />
+                        <a href="@Url.Action("AdvancedSearchPdf", "Student",new { searchString = ViewBag.CurrentFilter, AdmissionNumber = ViewBag.CurrentFilter2, HadPdFees = ViewBag.CurrentFilter3, CourseBatches = ViewBag.CurrentFilter4, Category = ViewBag.CurrentFilter5, StudentGender= ViewBag.CurrentFilter6, BloodGroup = ViewBag.CurrentFilter7, StudentGrade = ViewBag.CurrentFilter8, StudentBirthFromDate = ViewBag.CurrentFilter9, StudentBirthToDate= ViewBag.CurrentFilter10 , ActiveStudent = ViewBag.CurrentFilter11 , MissingDetl = ViewBag.CurrentFilter12 })" alt="View PDF Report" target="_blank" class="submit">View PDF Report</a>
+                       
                     </p>
                 }
                 <div class="extender"></div>

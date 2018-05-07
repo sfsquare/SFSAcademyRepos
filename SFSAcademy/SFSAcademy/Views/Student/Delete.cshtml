@@ -13,6 +13,11 @@
 <div>
     <img src="~/Content/images/_global/header_underline_.jpg" width="100%">
 </div>
+<div class="bread_crumb">
+    @Html.ActionLink("Student Details", "Index") &raquo;
+    @Html.ActionLink("View All", "ViewAll") &raquo;
+    Delete
+</div>
 @if (ViewBag.ErrorMessage != null)
 {
     <p class="flash-msg"> @ViewBag.ErrorMessage </p>

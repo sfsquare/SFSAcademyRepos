@@ -3,14 +3,14 @@
 }
 
 <div id="content-header">
-    <img src="~/Content/images/show_store.png" alt="Settings Logo">
+    <img src="~/Content/images/show_store.png" alt="Settings Logo" />
     <h1>Store</h1>
     <h3>Home</h3>
     <div id="app-back-button">
-        <a href='javascript:history.back()' onclick="return confirm('are you sure?')"><img src="~/Content/images/buttons/back.png"></a>
+        <a href='javascript:history.back()' onclick="return confirm('are you sure?')"><img src="~/Content/images/buttons/back.png" /></a>
     </div>
 </div>
-<div><img src="~/Content/images/_global/header_underline_.jpg" width="100%"></div>
+<div><img src="~/Content/images/_global/header_underline_.jpg" width="100%" /></div>
 
 <div id="page-yield">
     <div class="box">
@@ -33,11 +33,20 @@
             <div class="link-heading">@Html.ActionLink("Backup Transaction", "BackupTransaction")</div>
             <div class="link-descr">Backup Transaction which is reviewed and closed in Cash Book</div>
         </div>
+
+        <div class="link-box">
+            <div class="link-heading">@Html.ActionLink("Purchage Orders", "PurchageOrder")</div>
+            <div class="link-descr">Create and View Purchage Orders for Products</div>
+        </div>
+        <div class="link-box">
+            <div class="link-heading">@Html.ActionLink("Shortage Products**", "ShortageProducts")@Html.Check_ShortageProducts()</div>
+            <div class="link-descr">Number of Products for which item count is 2 or less</div>
+        </div>
         <div class="extender"></div>
     </div>
 </div>
 @section Styles {
     <link href="@Url.Content("~/Content/stylesheets/application.css")" rel="stylesheet" type="text/css" />
-<link href="@Url.Content("~/Content/stylesheets/_layouts/style.css")" rel="stylesheet" type="text/css" />
-<link href="@Url.Content("~/Content/stylesheets/popup.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/stylesheets/_layouts/style.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/stylesheets/popup.css")" rel="stylesheet" type="text/css" />
 }

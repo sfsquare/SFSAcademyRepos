@@ -1,0 +1,103 @@
+﻿@using SFSAcademy.Models
+@model IList<SelectGuardian>
+
+@{
+    ViewBag.Title = "Admission3";
+}
+
+<div id="content-header">
+    <img src="~/Content/images/admission/admission_page_logo.jpg" alt="Student Details Logo">
+    <h1>Admission</h1>
+    <h3>Emergency Contact - Step3</h3>
+    <div id="app-back-button">
+        <a href='javascript:history.back()' onclick="return confirm('are you sure?')"><img src="~/Content/images/buttons/back.png"></a>
+    </div>
+</div>
+<div><img src="~/Content/images/_global/header_underline_.jpg" width="100%"></div>
+<div class="bread_crumb">
+    @Html.ActionLink("Student Details", "Index") &raquo;
+    @Html.ActionLink("View All", "ViewAll") &raquo;
+    Add Guardians
+</div>
+@if (ViewBag.ErrorMessage != null)
+{
+    <p class="flash-msg"> @ViewBag.ErrorMessage </p>
+}
+else
+{
+    <p class="flash-msg">Select one of the Guardians as Emergency Contact Person</p>
+    <div id="page-yield">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            <table id="listing" align="center" width="100%" cellpadding="1" cellspacing="1">
+                <tr class="tr-head">
+                    <th>
+                        Sl. No.
+                    </th>
+                    <th>
+                        Last Name
+                    </th>
+                    <th>
+                        First Name
+                    </th>
+                    <th>
+                        Relationship
+                    </th>
+                    <th>
+                        Mobile Phone
+                    </th>
+                    <th>
+                        Email
+                    </th>
+                    <th></th>
+                    <th></th>
+                </tr>
+                <tr class="tr-blank"></tr>
+                @{int k = 1; }
+                @for (var i = 0; i < Model.Count; i++)
+                {
+                    string selectedRow = "tr-even";
+                    if (k % 2 == 0)
+                    {
+                        selectedRow = "tr-odd";
+                    }
+                    <tr class="@selectedRow">
+                        <td class="col-1">@k</td>
+                        <td class="col-2">
+                            @Html.DisplayFor(x => x[i].GuardianList.LAST_NAME)
+                        </td>
+                        <td class="col-3">
+                            @Html.DisplayFor(x => x[i].GuardianList.FIRST_NAME)
+                        </td>
+                        <td class="col-4">
+                            @Html.DisplayFor(x => x[i].GuardianList.REL)
+                        </td>
+                        <td class="col-5" nowrap>
+                            @Html.DisplayFor(x => x[i].GuardianList.MOBL_PH)
+                        </td>
+                        <td class="col-5" nowrap>
+                            @Html.DisplayFor(x => x[i].GuardianList.EML)
+                        </td>
+                        <td class="col-6" nowrap>
+                            @Html.CheckBoxFor(x => x[i].Selected)
+                        </td>
+                        <td class="col-6" nowrap>
+                            @Html.HiddenFor(x => x[i].GuardianList.WARD_ID)
+                        </td>
+                    </tr>
+                    k = k + 1;
+                }
+            </table>
+            <br />
+            <div class="submit-button">
+                @if (ViewBag.ErrorMessage == null)
+                {
+                    <input type="submit" value="► Finish" id="finish-button" />
+                }
+
+            </div>
+                    }
+    </div>
+
+ }

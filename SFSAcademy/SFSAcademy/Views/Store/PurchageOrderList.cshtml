@@ -1,0 +1,98 @@
+﻿@model IEnumerable<SFSAcademy.Models.PurchageOrder>
+
+@{
+    Layout = null;
+}
+<div id="page-yield">
+    <div class="students-table">
+        <table id="listing" align="center" width="100%" cellpadding="1" cellspacing="1">
+            <tr class="tr-head">
+                <th>
+                    Sl. No.
+                </th>
+                <th>
+                    PO Number
+                </th>
+                <th>
+                    Revision Number
+                </th>
+                <th>
+                    Product Category
+                </th>
+                <th>
+                    Sub Category
+                </th>
+                <th>
+                    Product Name
+                </th>
+                <th>
+                    Order Quantity
+                </th>
+                <th>
+                    Status
+                </th>
+                <th>
+                    Created By
+                </th>
+                <th>
+                    Last Updated
+                </th>
+                <th></th>
+            </tr>
+            <tr class="tr-blank"></tr>
+            @{int i = 1; }
+            @foreach (var item in Model)
+            {
+                string selectedRow = "tr-even";
+                if (i % 2 == 0)
+                {
+                    selectedRow = "tr-odd";
+                }
+                <tr class="@selectedRow">
+                    <td class="col-1">@i</td>
+                    <td class="col-2">
+                        @Html.DisplayFor(modelItem => item.PurchaseOrderData.PO_NUMBER)
+                    </td>
+                    <td class="col-3">
+                        @Html.DisplayFor(modelItem => item.PurchaseOrderData.REVISION_NUMBER)
+                    </td>
+                    <td class="col-3">
+                        @Html.DisplayFor(modelItem => item.CategoryData.NAME)
+                    </td>
+                    <td class="col-4">
+                        @Html.DisplayFor(modelItem => item.SubCategoryData.NAME)
+                    </td>
+                    <td class="col-5" nowrap>
+                        @Html.DisplayFor(modelItem => item.ProductData.NAME)
+                    </td>
+                    <td class="col-5" nowrap>
+                        @Html.DisplayFor(modelItem => item.PurchaseOrderData.ORDER_QUANTITY)
+                    </td>
+                    <td class="col-6" nowrap>
+                        @Html.DisplayFor(modelItem => item.PurchageStatusData.NAME)
+                    </td>
+                    <td class="col-4">
+                        @Html.DisplayFor(modelItem => item.EmployeeData.FIRST_NAME)
+                    </td>
+                    <td class="col-5" nowrap>
+                        @if (!item.PurchaseOrderData.UPDATED_AT.Equals(null))
+                        {
+                            @item.PurchaseOrderData.UPDATED_AT.Value.ToShortDateString()
+                        }
+                    </td>
+                    @if (Html.Permitted_To("PurchageOrderEdit", "Store"))
+                    {
+                        <td class="col-8" nowrap>
+                            @Html.ActionLink("Edit ", "PurchageOrderEdit", new { id = item.PurchaseOrderData.ID }, new { style = "text-decoration:underline" }) |
+                            @Html.ActionLink("Delete ", "PurchageOrderDelete", new { id = item.PurchaseOrderData.ID }, new { style = "text-decoration:underline" })
+                        </td>
+                    }
+                </tr>
+                i = i + 1;
+            }
+        </table>
+        <br />
+    </div>
+    <div id="user_information"> </div>
+    <div class="extender"> </div>
+</div>

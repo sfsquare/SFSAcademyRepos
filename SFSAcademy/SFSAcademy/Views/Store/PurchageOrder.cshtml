@@ -1,0 +1,35 @@
+﻿@model IEnumerable<SFSAcademy.STORE_PURCHAGE_ORDER>
+
+@{
+    ViewBag.Title = "Purchage Order";
+}
+
+<div id="content-header">
+    <img src="~/Content/images/show_store.png" alt="Store Logo">
+    <h1>Store</h1>
+    <h3>Purchage Order</h3>
+    <div id="app-back-button">
+        <a href='javascript:history.back()' onclick="return confirm('are you sure?')"><img src="~/Content/images/buttons/back.png"></a>
+    </div>
+</div>
+<div><img src="~/Content/images/_global/header_underline_.jpg" width="100%"></div>
+<div class="bread_crumb">
+    @Html.ActionLink("Store", "Index") &raquo;
+    Purchage Order
+</div>
+<div id="flash_box">
+    @if (ViewBag.POCreateMessage != null)
+            {
+        <p class="flash-msg"> @ViewBag.POCreateMessage </p>
+    }
+</div>
+<div id="page-yield">
+    <div id="student-category-form">
+        @Html.Partial("~/Views/Store/_purchage_order_create_form.cshtml", new SFSAcademy.STORE_PURCHAGE_ORDER())
+    </div>
+    <br /><br />
+    <div id="student-category-list">
+        @{Html.RenderAction("PurchageOrderList", "Store");}
+
+    </div>
+</div>

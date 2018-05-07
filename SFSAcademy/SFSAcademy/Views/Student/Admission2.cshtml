@@ -75,6 +75,9 @@
         <div id="skip">
             <a href="@Url.Action("Admission3", "Student", new { Std_id = ViewBag.StudentId })" ; class="user_button">Finish</a>
         </div>
+        <div id="skip">
+            <a href="@Url.Action("Add_Existing_Guardian", "Student", new { Std_id = ViewBag.StudentId })" ; class="user_button">Add Existing Parent</a>
+        </div>
         <script type="text/javascript">
           Event.observe(window, 'load', function() { $('Admission1_form').hide(); });
         </script>

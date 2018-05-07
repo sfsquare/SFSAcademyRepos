@@ -8,9 +8,9 @@ using System;
 using SFSAcademy.Models;
 using SFSAcademy.HtmlHelpers;
 using System.Collections.Generic;
-using System.Web;
 using System.Data;
 using System.IO;
+using System.Data.Entity.Validation;
 
 namespace SFSAcademy.Controllers
 {
@@ -424,122 +424,6 @@ namespace SFSAcademy.Controllers
 
             return View(StudentS.FirstOrDefault());
 
-            /*var PdfStudentS = (from res in StudentS
-                               select new { Photo= res.StudentData.PHTO_DATA,Name = string.Concat(res.StudentData.FIRST_NAME, " ", res.StudentData.MID_NAME, " ",res.StudentData.LAST_NAME), Cours = res.CourseData.CRS_NAME, Batch = res.BatcheData.NAME,AdDate = res.StudentData.ADMSN_DATE, AdNumber = res.StudentData.ADMSN_NO,DOB= res.StudentData.DOB, Bldg = res.StudentData.BLOOD_GRP, Gen= res.StudentData.GNDR,nation=res.CountryData.CTRY_NAME, lan=res.StudentData.LANG, cat = res.CategoryData.NAME,rel=res.StudentData.RLGN, Add= string.Concat(res.StudentData.ADDR_LINE1, " ", res.StudentData.ADDR_LINE2, " ", res.StudentData.CITY, " ", res.StudentData.STATE, " ", res.StudentData.PIN_CODE),ph = res.StudentData.PH1, mob = res.StudentData.PH2, grpt = string.Concat(res.EmployeeData.FIRST_NAME, " ", res.EmployeeData.LAST_NAME)}).ToList();
-
-            var configuration = new ReportConfiguration();
-            //configuration.PageOrientation = PageSize.LETTER_LANDSCAPE.Rotate();
-            configuration.LogoPath
-                = Server.MapPath(Url.Content("~/Content/images/login/SF_Square_Logo-Small.jpg"));
-            configuration.LogImageScalePercent = 50;
-            configuration.ReportTitle
-                = "S. F. Square Academy Student Profile";
-            configuration.ReportSubTitle = "Result of Stundet's Profile in School Database";
-
-            var report = new PdfTabularReport();
-            report.ReportConfiguration = configuration;
-
-            List<ReportColumn> columns = new List<ReportColumn>();
-            columns.Add(new ReportColumn { ColumnName = "Item", Width = 300 });
-            columns.Add(new ReportColumn { ColumnName = "Details", Width = 300 });
-
-            var PdfStudentSI = new DataTable();
-
-            PdfStudentSI.Columns.Add("Item", typeof(string));
-            PdfStudentSI.Columns.Add("Details", typeof(string));
-
-
-            var row2 = PdfStudentSI.NewRow();
-            row2["Item"] = "Name:";
-            row2["Details"] = PdfStudentS.FirstOrDefault().Name;
-            PdfStudentSI.Rows.Add(row2);
-
-            var row3 = PdfStudentSI.NewRow();
-            row3["Item"] = "Course:";
-            row3["Details"] = PdfStudentS.FirstOrDefault().Cours;
-            PdfStudentSI.Rows.Add(row3);
-
-            var row4 = PdfStudentSI.NewRow();
-            row4["Item"] = "Batch:";
-            row4["Details"] = PdfStudentS.FirstOrDefault().Batch;
-            PdfStudentSI.Rows.Add(row4);
-
-            var row5 = PdfStudentSI.NewRow();
-            row5["Item"] = "Admission Number:";
-            row5["Details"] = PdfStudentS.FirstOrDefault().AdNumber;
-            PdfStudentSI.Rows.Add(row5);
-
-            var row6 = PdfStudentSI.NewRow();
-            row6["Item"] = "Admission Date";
-            row6["Details"] = PdfStudentS.FirstOrDefault().AdDate;
-            PdfStudentSI.Rows.Add(row6);
-
-            var row7 = PdfStudentSI.NewRow();
-            row7["Item"] = "Date of Birth:";
-            row7["Details"] = PdfStudentS.FirstOrDefault().DOB;
-            PdfStudentSI.Rows.Add(row7);
-
-            var row8 = PdfStudentSI.NewRow();
-            row8["Item"] = "Blood Group:";
-            row8["Details"] = PdfStudentS.FirstOrDefault().Bldg;
-            PdfStudentSI.Rows.Add(row8);
-
-            var row9 = PdfStudentSI.NewRow();
-            row9["Item"] = "Gender:";
-            row9["Details"] = PdfStudentS.FirstOrDefault().Gen;
-            PdfStudentSI.Rows.Add(row9);
-
-            var row10 = PdfStudentSI.NewRow();
-            row10["Item"] = "Nationality:";
-            row10["Details"] = PdfStudentS.FirstOrDefault().nation;
-            PdfStudentSI.Rows.Add(row10);
-
-            var row11 = PdfStudentSI.NewRow();
-            row11["Item"] = "Language:";
-            row11["Details"] = PdfStudentS.FirstOrDefault().lan;
-            PdfStudentSI.Rows.Add(row11);
-
-            var row12 = PdfStudentSI.NewRow();
-            row12["Item"] = "Category:";
-            row12["Details"] = PdfStudentS.FirstOrDefault().cat;
-            PdfStudentSI.Rows.Add(row12);
-
-            var row13 = PdfStudentSI.NewRow();
-            row13["Item"] = "Religion:";
-            row13["Details"] = PdfStudentS.FirstOrDefault().rel;
-            PdfStudentSI.Rows.Add(row13);
-
-            var row14 = PdfStudentSI.NewRow();
-            row14["Item"] = "Address:";
-            row14["Details"] = PdfStudentS.FirstOrDefault().Add;
-            PdfStudentSI.Rows.Add(row14);
-
-            var row15 = PdfStudentSI.NewRow();
-            row15["Item"] = "Phone:";
-            row15["Details"] = PdfStudentS.FirstOrDefault().ph;
-            PdfStudentSI.Rows.Add(row15);
-
-            var row16 = PdfStudentSI.NewRow();
-            row16["Item"] = "Mobile:";
-            row16["Details"] = PdfStudentS.FirstOrDefault().mob;
-            PdfStudentSI.Rows.Add(row16);
-
-            var row17 = PdfStudentSI.NewRow();
-            row17["Item"] = "Group Tutor:";
-            row17["Details"] = PdfStudentS.FirstOrDefault().grpt;
-            PdfStudentSI.Rows.Add(row17);
-
-
-            var stream = report.GetPdf(PdfStudentSI, columns);
-
-            Response.Clear();
-            Response.ContentType = "application/pdf";
-            Response.AddHeader("content-disposition",
-                "attachment;filename=ExampleReport.pdf");
-            Response.Cache.SetCacheability(HttpCacheability.NoCache);
-            Response.BinaryWrite(stream.ToArray());
-            Response.End();*/
-
         }
 
         // GET: Student
@@ -848,63 +732,6 @@ namespace SFSAcademy.Controllers
             }
 
             return View(StudentS);
-            /*var PdfStudentS = (from res in StudentS
-                            select new {LName = res.StudentData.LAST_NAME, FName = res.StudentData.FIRST_NAME, Course = res.CourseData.CODE, Batch = res.BatcheData.NAME, AdDate = res.StudentData.ADMSN_DATE, AdNumber = res.StudentData.ADMSN_NO }).ToList();
-           
-
-            var configuration = new ReportConfiguration();
-            //configuration.PageOrientation = PageSize.LETTER_LANDSCAPE.Rotate();
-            configuration.LogoPath
-                = Server.MapPath(Url.Content("~/Content/images/login/SF_Square_Logo-Small.jpg"));
-            configuration.LogImageScalePercent = 50;
-            configuration.ReportTitle
-                = "S. F. Square Academy Student Report";
-            configuration.ReportSubTitle = "Result of Advanced Search";
-
-            var report = new PdfTabularReport();
-            report.ReportConfiguration = configuration;
-
-            List<ReportColumn> columns = new List<ReportColumn>();
-            columns.Add(new ReportColumn { ColumnName = "Sl. No.", Width = 100 });
-            columns.Add(new ReportColumn { ColumnName = "Last Name", Width = 100 });
-            columns.Add(new ReportColumn { ColumnName = "First Name", Width = 100 });
-            columns.Add(new ReportColumn { ColumnName = "Batch", Width = 100 });
-            columns.Add(new ReportColumn { ColumnName = "Admission Date", Width = 100 });
-            columns.Add(new ReportColumn { ColumnName = "Admission Number", Width = 100 });
-
-            var PdfStudentSI = new DataTable();
-
-            PdfStudentSI.Columns.Add("Sl. No.", typeof(int));
-            PdfStudentSI.Columns.Add("Last Name", typeof(string));
-            PdfStudentSI.Columns.Add("First Name", typeof(string));
-            PdfStudentSI.Columns.Add("Batch", typeof(string));
-            PdfStudentSI.Columns.Add("Admission Date", typeof(string));
-            PdfStudentSI.Columns.Add("Admission Number", typeof(string));
-
-            int i = 1;
-            foreach (var entity in PdfStudentS.ToList())
-            {
-                var row = PdfStudentSI.NewRow();
-                row["Sl. No."] = i;
-                row["Last Name"] = entity.LName;
-                row["First Name"] = entity.FName;
-                row["Batch"] = string.Concat(entity.Course, "-", entity.Batch);
-                row["Admission Date"] = entity.AdDate;
-                row["Admission Number"] = entity.AdNumber;
-                PdfStudentSI.Rows.Add(row);
-                i = i + 1;
-            }
-
-
-            var stream = report.GetPdf(PdfStudentSI, columns);
-
-            Response.Clear();
-            Response.ContentType = "application/pdf";
-            Response.AddHeader("content-disposition",
-                "attachment;filename=ExampleReport.pdf");
-            Response.Cache.SetCacheability(HttpCacheability.NoCache);
-            Response.BinaryWrite(stream.ToArray());
-            Response.End();*/
 
         }
 
@@ -1019,16 +846,95 @@ namespace SFSAcademy.Controllers
                 sTUDENT.IS_DEL = "N";
                 sTUDENT.CREATED_AT = System.DateTime.Now;
                 sTUDENT.UPDATED_AT = System.DateTime.Now;
-                try
+                db.STUDENTs.Add(sTUDENT);
+                try { db.SaveChanges(); }
+                catch (DbEntityValidationException e)
                 {
-                    db.STUDENTs.Add(sTUDENT);
-                    db.SaveChanges();
-                }
-                catch (Exception ex)
-                {
-                    throw ex;
-                }
+                    ViewBag.NewAdmissionNumber = sTUDENT.ADMSN_NO;
+                    DateTime PDate = Convert.ToDateTime(sTUDENT.ADMSN_DATE);
+                    ViewBag.ReturnDate = PDate.ToShortDateString();
+                    ViewBag.CTRY_ID = new SelectList(db.COUNTRies, "ID", "CTRY_NAME", sTUDENT.CTRY_ID);
+                    ViewBag.NTLTY_ID = new SelectList(db.COUNTRies.Where(o => o.NTLTY != " ").ToList(), "ID", "NTLTY", sTUDENT.NTLTY_ID);
+                    ViewBag.STDNT_CAT_ID = new SelectList(db.STUDENT_CATGEORY, "ID", "NAME", sTUDENT.STDNT_CAT_ID);
+                    ///Code to get the Batch along weith Course
+                    var queryCourceBatch = (from cs in db.COURSEs
+                                            join bt in db.BATCHes on cs.ID equals bt.CRS_ID
+                                            where cs.IS_DEL == "N" && bt.IS_DEL == "N"
+                                            select new { CourseData = cs, BatchData = bt })
+                                            .OrderBy(x => x.BatchData.ID).ToList();
 
+
+                    List<SelectListItem> options = new List<SelectListItem>();
+                    foreach (var item in queryCourceBatch)
+                    {
+                        string BatchFullName = string.Concat(item.CourseData.CODE, "-", item.BatchData.NAME);
+                        var result1 = new SelectListItem();
+                        result1.Text = BatchFullName;
+                        result1.Value = item.BatchData.ID.ToString();
+                        result1.Selected = item.BatchData.ID == sTUDENT.BTCH_ID ? true : false;
+                        options.Add(result1);
+                    }
+
+                    options.Insert(0, new SelectListItem() { Value = "-1", Text = "Select Course and Batch" });
+                    ViewBag.BTCH_ID = options;
+                    //End of Code to get batch and Course
+
+                    var configValue = (from C in db.CONFIGURATIONs
+                                       where C.CONFIG_KEY == "AdmissionNumberAutoIncrement"
+                                       select new { CONFIG_VALUE = C.CONFIG_VAL }).FirstOrDefault();
+                    int NewAdmissionNumberNum = Convert.ToInt32(configValue.CONFIG_VALUE.ToString()) + 1;
+                    ViewBag.NewAdmissionNumber = NewAdmissionNumberNum.ToString();
+                    foreach (var eve in e.EntityValidationErrors)
+                    {
+                        //Console.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
+                         //   eve.Entry.Entity.GetType().Name, eve.Entry.State);
+                        foreach (var ve in eve.ValidationErrors)
+                        {
+                            //Console.WriteLine("- Property: \"{0}\", Error: \"{1}\"",
+                            //    ve.PropertyName, ve.ErrorMessage);
+                            ViewBag.ErrorMessage = string.Concat(ViewBag.ErrorMessage, "|", ve.ErrorMessage);
+                        }
+                    }
+                    return View(sTUDENT);
+                }
+                catch (Exception e) {
+                    ViewBag.NewAdmissionNumber = sTUDENT.ADMSN_NO;
+                    DateTime PDate = Convert.ToDateTime(sTUDENT.ADMSN_DATE);
+                    ViewBag.ReturnDate = PDate.ToShortDateString();
+                    ViewBag.CTRY_ID = new SelectList(db.COUNTRies, "ID", "CTRY_NAME", sTUDENT.CTRY_ID);
+                    ViewBag.NTLTY_ID = new SelectList(db.COUNTRies.Where(o => o.NTLTY != " ").ToList(), "ID", "NTLTY", sTUDENT.NTLTY_ID);
+                    ViewBag.STDNT_CAT_ID = new SelectList(db.STUDENT_CATGEORY, "ID", "NAME", sTUDENT.STDNT_CAT_ID);
+                    ///Code to get the Batch along weith Course
+                    var queryCourceBatch = (from cs in db.COURSEs
+                                            join bt in db.BATCHes on cs.ID equals bt.CRS_ID
+                                            where cs.IS_DEL == "N" && bt.IS_DEL == "N"
+                                            select new { CourseData = cs, BatchData = bt })
+                                            .OrderBy(x => x.BatchData.ID).ToList();
+
+
+                    List<SelectListItem> options = new List<SelectListItem>();
+                    foreach (var item in queryCourceBatch)
+                    {
+                        string BatchFullName = string.Concat(item.CourseData.CODE, "-", item.BatchData.NAME);
+                        var result1 = new SelectListItem();
+                        result1.Text = BatchFullName;
+                        result1.Value = item.BatchData.ID.ToString();
+                        result1.Selected = item.BatchData.ID == sTUDENT.BTCH_ID ? true : false;
+                        options.Add(result1);
+                    }
+
+                    options.Insert(0, new SelectListItem() { Value = "-1", Text = "Select Course and Batch" });
+                    ViewBag.BTCH_ID = options;
+                    //End of Code to get batch and Course
+
+                    var configValue = (from C in db.CONFIGURATIONs
+                                       where C.CONFIG_KEY == "AdmissionNumberAutoIncrement"
+                                       select new { CONFIG_VALUE = C.CONFIG_VAL }).FirstOrDefault();
+                    int NewAdmissionNumberNum = Convert.ToInt32(configValue.CONFIG_VALUE.ToString()) + 1;
+                    ViewBag.NewAdmissionNumber = NewAdmissionNumberNum.ToString();
+                    ViewBag.ErrorMessage = string.Concat(ViewBag.ErrorMessage, "|", e.InnerException.InnerException.Message);
+                    return View(sTUDENT);
+                }
 
                 var result = from u in db.CONFIGURATIONs where (u.CONFIG_KEY == "AdmissionNumberAutoIncrement") select u;
                 if (result.Count() != 0)
@@ -1205,11 +1111,14 @@ namespace SFSAcademy.Controllers
                 {
                     STUDENT sTUDENT = db.STUDENTs.Find(item.GuardianList.WARD_ID);
                     sTUDENT.IMMDT_CNTCT_ID = item.GuardianList.ID;
-                    db.SaveChanges();
+                    //db.SaveChanges();
+                    try { db.SaveChanges(); ViewBag.ErrorMessage = string.Concat("Guardian Details added successfully for Studnet Id:", item.GuardianList.WARD_ID, ". Please click on link above to go to Stundet Details Page."); }
+                    catch (Exception e) { Console.WriteLine(e); ViewBag.ErrorMessage = e.InnerException.InnerException.Message; }
                     break;
                 }
             }
-            return RedirectToAction("Index", "Student");
+            //return RedirectToAction("Index", "Student");
+            return View(model);
 
         }
 
@@ -1341,13 +1250,36 @@ namespace SFSAcademy.Controllers
 
                 sTUDENTtOuPDATE.UPDATED_AT = System.DateTime.Now;
                 db.Entry(sTUDENTtOuPDATE).State = EntityState.Modified;
-                try { db.SaveChanges(); }
-                catch (Exception ex)
+                try { db.SaveChanges(); ViewBag.ErrorMessage = "Student's Details updated successfully."; }
+                catch (Exception e) { Console.WriteLine(e); ViewBag.ErrorMessage = e.InnerException.InnerException.Message; }
+
+                ViewBag.NTLTY_ID = new SelectList(db.COUNTRies, "ID", "CTRY_NAME", sTUDENTtOuPDATE.NTLTY_ID);
+                ViewBag.STDNT_CAT_ID = new SelectList(db.STUDENT_CATGEORY, "ID", "NAME", sTUDENTtOuPDATE.STDNT_CAT_ID);
+                ViewBag.USRID = new SelectList(db.USERS, "ID", "USRNAME", sTUDENTtOuPDATE.USRID);
+                ViewBag.CTRY_ID = new SelectList(db.COUNTRies, "ID", "CTRY_NAME", sTUDENTtOuPDATE.CTRY_ID);
+
+                ///Code to get the Batch along weith Course
+                var queryCourceBatch = (from cs in db.COURSEs
+                                        join bt in db.BATCHes on cs.ID equals bt.CRS_ID
+                                        where cs.IS_DEL == "N" && bt.IS_DEL == "N"
+                                        select new { CourseData = cs, BatchData = bt })
+                                        .OrderBy(x => x.BatchData.ID).ToList();
+
+
+                List<SelectListItem> options = new List<SelectListItem>();
+                foreach (var item in queryCourceBatch)
                 {
-                    throw ex; // Oops, something went wrong, handle the exception
+                    string BatchFullName = string.Concat(item.CourseData.CODE, "-", item.BatchData.NAME);
+                    var result = new SelectListItem();
+                    result.Text = BatchFullName;
+                    result.Value = item.BatchData.ID.ToString();
+                    result.Selected = item.BatchData.ID == sTUDENTtOuPDATE.BTCH_ID ? true : false;
+                    options.Add(result);
                 }
 
-                return RedirectToAction("Index");
+                options.Insert(0, new SelectListItem() { Value = "-1", Text = "Select Course and Batch" });
+                ViewBag.BTCH_ID = options;
+                return View(sTUDENTtOuPDATE);
             }
             ViewBag.NTLTY_ID = new SelectList(db.COUNTRies, "ID", "CTRY_NAME", sTUDENT.NTLTY_ID);
             ViewBag.STDNT_CAT_ID = new SelectList(db.STUDENT_CATGEORY, "ID", "NAME", sTUDENT.STDNT_CAT_ID);
@@ -1507,6 +1439,278 @@ namespace SFSAcademy.Controllers
             return View(sTUDENTcATEGORY);
         }
 
+        // GET: Student/Guardian Details
+        public ActionResult Guardians(int? Std_id)
+        {
+            //var parents = db.GUARDIANs.Where(x=>x.WARD_ID == Std_id).ToList();
+
+            var parents = (from st in db.STUDENTs
+                            join b in db.BATCHes on st.BTCH_ID equals b.ID into gi
+                            from subb in gi.DefaultIfEmpty()
+                            join c in db.COURSEs on subb.CRS_ID equals c.ID into gj
+                            from subc in gj.DefaultIfEmpty()
+                            join emp in db.EMPLOYEEs on subb.EMP_ID equals emp.ID into gm
+                            from subemp in gm.DefaultIfEmpty()
+                            join grd in db.GUARDIANs on st.ID equals grd.WARD_ID into gd
+                            from subgrd in gd.DefaultIfEmpty()
+                           where st.ID == Std_id && st.IS_ACT =="Y" && st.IS_DEL == "N"
+                           orderby st.LAST_NAME, subb.NAME
+                            select new Models.StudentsGuardians { StudentData = st, BatchData = (subb == null ? null : subb), CourseData = (subc == null ? null : subc),  EmployeeData = (subemp == null ? null : subemp), GuardianData = (subgrd == null ? null : subgrd) }).Distinct();
+
+            if (parents.FirstOrDefault().GuardianData == null)
+            {
+                ViewBag.GuardianMessage = "No Parents added to this Student yet. Please click on 'Add Parents' button to add parents.";
+            }
+            ViewBag.WARD_ID = Std_id;
+
+            return View(parents.ToList());
+        }
+
+        // GET: Student/Guardian Details
+        public ActionResult Edit_Guardian(int? id)
+        {
+            GUARDIAN parents = db.GUARDIANs.Find(id);
+
+            ViewBag.CTRY_ID = new SelectList(db.COUNTRies, "ID", "CTRY_NAME", parents.CTRY_ID);
+            DateTime SDate = Convert.ToDateTime(parents.DOB);
+            ViewBag.DOB = SDate.ToShortDateString();
+            //var aDMISSIONnUM = db.STUDENTs.Where(x => x.ID == parents.WARD_ID).ToList().FirstOrDefault().ADMSN_NO;
+
+            ViewBag.ReturnDate = System.DateTime.Now;
+            STUDENT sTUDENT = db.STUDENTs.Find(parents.WARD_ID);
+            ViewBag.StudentFullName = String.Format("{0} {1}", sTUDENT.FIRST_NAME.ToString(), sTUDENT.LAST_NAME.ToString());
+            ViewBag.NewAdmissionNumber = sTUDENT.ADMSN_NO.ToString();
+            if (!String.IsNullOrEmpty(sTUDENT.ADDR_LINE1))
+            {
+                ViewBag.AddressLine1 = sTUDENT.ADDR_LINE1.ToString();
+            }
+            if (!String.IsNullOrEmpty(sTUDENT.ADDR_LINE2))
+            {
+                ViewBag.AddressLine2 = sTUDENT.ADDR_LINE2.ToString();
+            }
+            if (!String.IsNullOrEmpty(sTUDENT.CITY))
+            {
+                ViewBag.StudentCity = sTUDENT.CITY.ToString();
+            }
+            if (!String.IsNullOrEmpty(sTUDENT.STATE))
+            {
+                ViewBag.StudentState = sTUDENT.STATE.ToString();
+            }
+            if (!sTUDENT.COUNTRY.Equals(null))
+            {
+                ViewBag.CountryName = sTUDENT.COUNTRY.ToString();
+            }
+            ViewBag.StudentId = parents.WARD_ID;
+            ViewBag.ADMSN_NO = sTUDENT.ADMSN_NO;
+
+            return View(parents);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit_Guardian([Bind(Include = "ID,WARD_ID,FIRST_NAME,LAST_NAME, REL, EML, OFF_PH1, OFF_PH2, MOBL_PH, OFF_ADDR_LINE1, OFF_ADDR_LINE2, CITY, STATE, CTRY_ID, DOB, OCCP, INCM, ED, USRID")] GUARDIAN gUARDIAN, string ADMSN_NO)
+        {
+            if (ModelState.IsValid)
+            {
+                GUARDIAN gUARDIAN_UPD = db.GUARDIANs.Find(gUARDIAN.ID);
+                gUARDIAN_UPD.ID = gUARDIAN.ID;
+                gUARDIAN_UPD.FIRST_NAME = gUARDIAN.FIRST_NAME;
+                gUARDIAN_UPD.LAST_NAME = gUARDIAN.LAST_NAME;
+                gUARDIAN_UPD.REL = gUARDIAN.REL;
+                gUARDIAN_UPD.EML = gUARDIAN.EML;
+                gUARDIAN_UPD.OFF_PH1 = gUARDIAN.OFF_PH1;
+                gUARDIAN_UPD.OFF_PH2 = gUARDIAN.OFF_PH2;
+                gUARDIAN_UPD.MOBL_PH = gUARDIAN.MOBL_PH;
+                gUARDIAN_UPD.OFF_ADDR_LINE1 = gUARDIAN.OFF_ADDR_LINE1;
+                gUARDIAN_UPD.OFF_ADDR_LINE2 = gUARDIAN.OFF_ADDR_LINE2;
+                gUARDIAN_UPD.CITY = gUARDIAN.CITY;
+                gUARDIAN_UPD.STATE = gUARDIAN.STATE;
+                gUARDIAN_UPD.CTRY_ID = gUARDIAN.CTRY_ID;
+                gUARDIAN_UPD.DOB = gUARDIAN.DOB;
+                gUARDIAN_UPD.OCCP = gUARDIAN.OCCP;
+                gUARDIAN_UPD.INCM = gUARDIAN.INCM;
+                gUARDIAN_UPD.ED = gUARDIAN.ED;
+                gUARDIAN_UPD.UPDATED_AT = DateTime.Now;
+                db.Entry(gUARDIAN_UPD).State = EntityState.Modified;
+                try { db.SaveChanges(); ViewBag.GuardianEditMessage = "Guardian Details updated successfully."; }
+                catch (Exception e) { Console.WriteLine(e); ViewBag.GuardianEditMessage = e.InnerException.InnerException.Message; }
+                ViewBag.CTRY_ID = new SelectList(db.COUNTRies, "ID", "CTRY_NAME", gUARDIAN.CTRY_ID);
+                DateTime SDate1 = Convert.ToDateTime(gUARDIAN.DOB);
+                ViewBag.DOB = SDate1.ToShortDateString();
+                //var aDMISSIONnUM1 = db.STUDENTs.Where(x => x.ID == gUARDIAN.WARD_ID).ToList().FirstOrDefault().ADMSN_NO;
+                ViewBag.ADMSN_NO = ADMSN_NO;
+                return View(gUARDIAN);
+            }
+            ViewBag.CTRY_ID = new SelectList(db.COUNTRies, "ID", "CTRY_NAME", gUARDIAN.CTRY_ID);
+            DateTime SDate = Convert.ToDateTime(gUARDIAN.DOB);
+            ViewBag.DOB = SDate.ToShortDateString();
+            //var aDMISSIONnUM = db.STUDENTs.Where(x => x.ID == gUARDIAN.WARD_ID).ToList().FirstOrDefault().ADMSN_NO;
+            ViewBag.ADMSN_NO = ADMSN_NO;
+            return View(gUARDIAN);
+
+        }
+
+        // GET: Student/Delete/5
+        public ActionResult Delete_Guardian(int? id, int? std_id)
+        {
+            GUARDIAN gUARDIAN = db.GUARDIANs.Find(id);
+            db.GUARDIANs.Remove(gUARDIAN);
+            db.SaveChanges();
+            return RedirectToAction("Guardians", new { Std_id = std_id });
+        }
+
+        // GET: Student/Delete/5
+        public ActionResult Add_Guardian(int? std_id)
+        {
+            ViewBag.CTRY_ID = new SelectList(db.COUNTRies, "ID", "CTRY_NAME", "99");
+            
+            ViewBag.ReturnDate = System.DateTime.Now;
+            STUDENT sTUDENT = db.STUDENTs.Find(std_id);
+            ViewBag.StudentFullName = String.Format("{0} {1}", sTUDENT.FIRST_NAME.ToString(), sTUDENT.LAST_NAME.ToString());
+            ViewBag.NewAdmissionNumber = sTUDENT.ADMSN_NO.ToString();
+            if (!String.IsNullOrEmpty(sTUDENT.ADDR_LINE1))
+            {
+                ViewBag.AddressLine1 = sTUDENT.ADDR_LINE1.ToString();
+            }
+            if (!String.IsNullOrEmpty(sTUDENT.ADDR_LINE2))
+            {
+                ViewBag.AddressLine2 = sTUDENT.ADDR_LINE2.ToString();
+            }
+            if (!String.IsNullOrEmpty(sTUDENT.CITY))
+            {
+                ViewBag.StudentCity = sTUDENT.CITY.ToString();
+            }
+            if (!String.IsNullOrEmpty(sTUDENT.STATE))
+            {
+                ViewBag.StudentState = sTUDENT.STATE.ToString();
+            }
+            if (!sTUDENT.COUNTRY.Equals(null))
+            {
+                ViewBag.CountryName = sTUDENT.COUNTRY.ToString();
+            }
+            ViewBag.StudentId = std_id;
+            ViewBag.ADMSN_NO = sTUDENT.ADMSN_NO;
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Add_Guardian([Bind(Include = "ID,WARD_ID,FIRST_NAME,LAST_NAME,REL,EML,OFF_PH1,OFF_PH2,MOBL_PH,OFF_ADDR_LINE1,OFF_ADDR_LINE2,CITY,STATE,CTRY_ID,DOB,OCCP,INCM,ED,CREATED_AT,UPDATED_AT,USRID")] GUARDIAN gUARDIAN, string ADMSN_NO)
+        {
+            if (ModelState.IsValid)
+            {
+                gUARDIAN.CREATED_AT = DateTime.Now;
+                gUARDIAN.UPDATED_AT = DateTime.Now;
+                db.GUARDIANs.Add(gUARDIAN);
+                try { db.SaveChanges(); ViewBag.GuardianAddMessage = "Guardian Added successfully."; }
+                catch (Exception e) { Console.WriteLine(e); ViewBag.GuardianAddMessage = e.InnerException.InnerException.Message; }
+                ViewBag.CTRY_ID = new SelectList(db.COUNTRies, "ID", "CTRY_NAME", "99");
+                //DateTime SDate = Convert.ToDateTime(parents.DOB);
+                //ViewBag.DOB = SDate.ToShortDateString();
+                var aDMISSIONnUM = db.STUDENTs.Where(x => x.ID == gUARDIAN.WARD_ID).ToList().FirstOrDefault().ADMSN_NO;
+                ViewBag.ADMSN_NO = aDMISSIONnUM;
+                return RedirectToAction("admission3_1", new { Std_id = gUARDIAN .WARD_ID});
+            }
+
+            return View(gUARDIAN);
+        }
+
+        // GET: Student/Admission3
+        public ActionResult admission3_1(int? Std_id)
+        {
+            //List<SelectGuardian> Guardian = new List<SelectGuardian>();
+
+            var GuardianVal = (from C in db.GUARDIANs
+                               where C.WARD_ID == Std_id
+                               select new Models.SelectGuardian { GuardianList = C }).ToList();
+            if (GuardianVal.Count().Equals(0))
+            {
+                ViewBag.ErrorMessage = "Any guardian must be added to proceed forward.";
+            }
+            return View(GuardianVal);
+
+        }
+
+        // POST: Student/Create
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        // GET: Student/Admission3
+        public ActionResult admission3_1(IList<SelectGuardian> model)
+        {
+            foreach (SelectGuardian item in model)
+            {
+                if (item.Selected)
+                {
+                    STUDENT sTUDENT = db.STUDENTs.Find(item.GuardianList.WARD_ID);
+                    sTUDENT.IMMDT_CNTCT_ID = item.GuardianList.ID;
+                    //db.SaveChanges();
+                    try { db.SaveChanges(); ViewBag.ErrorMessage = string.Concat("Guardian Details added successfully for Studnet Id:", item.GuardianList.WARD_ID,". Please click on link above to go to Stundet Details Page."); }
+                    catch (Exception e) { Console.WriteLine(e); ViewBag.ErrorMessage = e.InnerException.InnerException.Message; }
+                    break;
+                }
+            }
+            //return RedirectToAction("Index", "Student");
+            return View(model);
+
+        }
+
+        // GET: Student/Guardian Details
+        public ActionResult Add_Existing_Guardian(int? Std_id)
+        {
+            //var parents = db.GUARDIANs.Where(x=>x.WARD_ID == Std_id).ToList();
+
+            var parents = (from st in db.STUDENTs
+                           join b in db.BATCHes on st.BTCH_ID equals b.ID into gi
+                           from subb in gi.DefaultIfEmpty()
+                           join c in db.COURSEs on subb.CRS_ID equals c.ID into gj
+                           from subc in gj.DefaultIfEmpty()
+                           join emp in db.EMPLOYEEs on subb.EMP_ID equals emp.ID into gm
+                           from subemp in gm.DefaultIfEmpty()
+                           join grd in db.GUARDIANs on st.ID equals grd.WARD_ID
+                           where st.IS_DEL == "N"
+                           orderby grd.LAST_NAME, grd.FIRST_NAME
+                           select new Models.StudentsGuardians { StudentData = st, BatchData = (subb == null ? null : subb), CourseData = (subc == null ? null : subc), EmployeeData = (subemp == null ? null : subemp), GuardianData = grd }).Distinct();
+
+            ViewBag.WARD_ID = Std_id;
+
+            return View(parents.ToList());
+        }
+
+        // GET: Student/Guardian Details
+        public ActionResult Add_Existing_Guardian2(int? Std_id, int? Parent_id)
+        {
+            var gUARDIAN = db.GUARDIANs.Find(Parent_id);
+
+            var gUARDIANnEW = new GUARDIAN()
+            {
+                WARD_ID = Std_id,
+                FIRST_NAME = gUARDIAN.FIRST_NAME,
+                LAST_NAME = gUARDIAN.LAST_NAME,
+                REL = gUARDIAN.REL,
+                EML = gUARDIAN.EML,
+                OFF_PH1 = gUARDIAN.OFF_PH1,
+                OFF_PH2 = gUARDIAN.OFF_PH2,
+                MOBL_PH = gUARDIAN.MOBL_PH,
+                OFF_ADDR_LINE1 = gUARDIAN.OFF_ADDR_LINE1,
+                OFF_ADDR_LINE2 = gUARDIAN.OFF_ADDR_LINE2,
+                CITY = gUARDIAN.CITY,
+                STATE = gUARDIAN.STATE,
+                CTRY_ID = gUARDIAN.CTRY_ID,
+                DOB = gUARDIAN.DOB,
+                OCCP = gUARDIAN.OCCP,
+                INCM = gUARDIAN.INCM,
+                ED = gUARDIAN.ED,
+                CREATED_AT = System.DateTime.Now,
+                UPDATED_AT = System.DateTime.Now,
+                USRID = gUARDIAN.USRID
+            };
+            db.GUARDIANs.Add(gUARDIANnEW);
+            try { db.SaveChanges(); ViewBag.GuardianAddMessage = "Guardian Added successfully."; }
+            catch (Exception e) { Console.WriteLine(e); ViewBag.GuardianAddMessage = e.InnerException.InnerException.Message; }
+            return RedirectToAction("Admission2", "Student", new { Std_id = Std_id });
+        }
 
         /////Document Upload related methods////////////////////////////////////////////////////////////////
 
@@ -1597,7 +1801,6 @@ namespace SFSAcademy.Controllers
             type = fileType;
             return fileBytes;
         }
-
 
     }
 }

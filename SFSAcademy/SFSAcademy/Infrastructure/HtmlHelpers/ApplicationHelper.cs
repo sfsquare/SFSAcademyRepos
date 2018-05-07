@@ -163,6 +163,28 @@ namespace SFSAcademy.HtmlHelpers
             return Count;
         }
 
+        public static int Check_ShortageProducts(this HtmlHelper HtmlHelper)
+        {
+
+            SFSAcademyEntities db = new SFSAcademyEntities();
+            HttpContext context = HttpContext.Current;
+            //int UserId = Convert.ToInt32(context.Session["UserId"]);
+            int Count = 0;
+            var ProductS = (from pd in db.STORE_PRODUCTS
+                            join ct in db.STORE_CATEGORY on pd.CATEGORY_ID equals ct.ID
+                            join subcat in db.STORE_SUB_CATEGORY on pd.SUB_CATEGORY_ID equals subcat.ID into gsc
+                            from subgsc in gsc.DefaultIfEmpty()
+                            orderby pd.NAME, ct.NAME
+                            where pd.IS_DEL == "N" && pd.IS_ACT == "Y" && pd.UNIT_LEFT <= 2
+                            select new Models.Products { ProductData = pd, CategoryData = ct, SubCategoryData = (subgsc == null ? null : subgsc) }).Distinct();
+
+            foreach (var entity in ProductS.ToList())
+            {
+                Count = Count + 1;
+            }
+            return Count;
+        }
+
         public static DataTable AutosuggestMenu(this HtmlHelper HtmlHelper)
         {
             var AutoSuggestMenu = new DataTable();

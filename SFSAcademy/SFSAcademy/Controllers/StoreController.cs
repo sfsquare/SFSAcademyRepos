@@ -1360,6 +1360,307 @@ namespace SFSAcademy.Controllers
 
         }
 
+        // GET: Student/Details/5
+        public ActionResult PurchageOrder(string CATEGORY_ID, string SUBCATEGORY_ID, string PRODUCT_ID, string VENDOR_ID, int? ORDER_QUANTITY)
+        {
+            int? searchStringId = null;
+            int? searchStringId2 = null;
+
+            if (!string.IsNullOrEmpty(CATEGORY_ID) && CATEGORY_ID != "-1")
+            {
+                searchStringId = Convert.ToInt32(CATEGORY_ID);
+                ViewBag.IsPostBack = 1;
+            }
+
+            if (!string.IsNullOrEmpty(SUBCATEGORY_ID) && SUBCATEGORY_ID != "-1")
+            {
+                searchStringId2 = Convert.ToInt32(SUBCATEGORY_ID);
+                ViewBag.IsPostBack2 = 1;
+            }
+            ViewBag.ORDER_QUANTITY = ORDER_QUANTITY;
+
+            List<SelectListItem> options = new SelectList(db.STORE_CATEGORY.Where(x => x.IS_DEL == "N" && x.IS_ACT == "Y").OrderBy(x => x.ID), "ID", "NAME", CATEGORY_ID).ToList();
+            // add the 'ALL' option
+            options.Insert(0, new SelectListItem() { Value = "-1", Text = "Select Product Category" });
+            ViewBag.CATEGORY_ID = options;
+
+            List<SelectListItem> options2 = new SelectList(db.STORE_SUB_CATEGORY.Where(x => x.IS_DEL == "N" && x.IS_ACT == "Y" && x.STORE_CATEGORY_ID == searchStringId).OrderBy(x => x.ID), "ID", "NAME", SUBCATEGORY_ID).ToList();
+            // add the 'ALL' option
+            options2.Insert(0, new SelectListItem() { Value = "-1", Text = "Select Sub Category" });
+            ViewBag.SUBCATEGORY_ID = options2;
+
+            List<SelectListItem> options3 = new SelectList(db.STORE_PRODUCTS.Where(x => x.IS_DEL == "N" && x.IS_ACT == "Y" && x.CATEGORY_ID == searchStringId && x.SUB_CATEGORY_ID == searchStringId2).OrderBy(x => x.PRODUCT_ID), "PRODUCT_ID", "NAME", PRODUCT_ID).ToList();
+            // add the 'ALL' option
+            options3.Insert(0, new SelectListItem() { Value = "-1", Text = "Select Product" });
+            ViewBag.PRODUCT_ID = options3;
+
+            List<SelectListItem> options4 = new SelectList(db.STORE_PURCHAGE_VENDOR.Where(x => x.IS_DEL == "N").OrderBy(x => x.ID), "ID", "NAME", VENDOR_ID).ToList();
+            // add the 'ALL' option
+            options4.Insert(0, new SelectListItem() { Value = "-1", Text = "Select Vendor" });
+            ViewBag.VENDOR_ID = options4;
+
+            return View();
+        }
+
+        // GET: Student/Details/5
+        [ChildActionOnly]
+        public ActionResult PurchageOrderList()
+        {
+            // A collection of strings to check against
+            //var Status = new int[] { 1, "String B", "String C" };
+            // Only grab the Actions where your Agent property contains any of the strings in your previous collection
+            //actions = db.Actions.Where(a => search.Any(s => a.Agent.Contains(s)));
+            var pURCHAGEoRDERS = (from po in db.STORE_PURCHAGE_ORDER
+                                  join sps in db.STORE_PURCHAGE_STATUS on po.STATUS_ID equals sps.ID
+                                  join spv in db.STORE_PURCHAGE_VENDOR on po.VENDOR_ID equals spv.ID into gspv
+                                  from subgspv in gspv.DefaultIfEmpty()
+                                  join pd in db.STORE_PRODUCTS on po.PRODUCT_ID equals pd.PRODUCT_ID
+                            join ct in db.STORE_CATEGORY on pd.CATEGORY_ID equals ct.ID
+                            join subcat in db.STORE_SUB_CATEGORY on pd.SUB_CATEGORY_ID equals subcat.ID into gsc
+                            from subgsc in gsc.DefaultIfEmpty()
+                            join usr in db.USERS on po.EMPLOYEE_ID equals usr.ID
+                            orderby pd.NAME, ct.NAME
+                            where sps.NAME == "Pending" || sps.NAME == "Approved"
+                                  select new Models.PurchageOrder { PurchaseOrderData = po,PurchageStatusData = sps, PurchageVendorData= (subgspv == null ? null : subgspv), ProductData = pd, CategoryData = ct, SubCategoryData = (subgsc == null ? null : subgsc), EmployeeData = usr }).ToList();
+
+            //var pURCHAGEoRDERS = db.STORE_PURCHAGE_ORDER.Where(x => x.STATUS == 1 || x.STATUS == 2).ToList();
+            return View(pURCHAGEoRDERS);
+        }
+
+        // GET: Student/Delete/5
+        public ActionResult PurchageOrderDelete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            STORE_PURCHAGE_ORDER sTOREpURCHAGEoRDER = db.STORE_PURCHAGE_ORDER.Find(id);
+            if (sTOREpURCHAGEoRDER == null)
+            {
+                return HttpNotFound();
+            }
+            return View(sTOREpURCHAGEoRDER);
+        }
+
+        // POST: Student/Delete/5
+        [HttpPost, ActionName("PurchageOrderDelete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult PurchageOrderDeleteConfirmed(int id)
+        {
+            STORE_PURCHAGE_ORDER sTOREpURCHAGEoRDER = db.STORE_PURCHAGE_ORDER.Find(id);
+            db.STORE_PURCHAGE_ORDER.Remove(sTOREpURCHAGEoRDER);
+            try { db.SaveChanges(); ViewBag.PODeleteMessage = "Purchage Order deleted successfully."; }
+            catch (Exception e) { Console.WriteLine(e); ViewBag.PODeleteMessage = e.InnerException.InnerException.Message; }
+            return View(sTOREpURCHAGEoRDER);
+        }
+
+        // GET: Student/Edit/5
+        public ActionResult PurchageOrderEdit(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            STORE_PURCHAGE_ORDER sTOREpURCHAGEoRDER = db.STORE_PURCHAGE_ORDER.Find(id);
+
+            sTOREpURCHAGEoRDER.REVISION_NUMBER += 1;
+            DateTime OrdDate = Convert.ToDateTime(System.DateTime.Now);
+            if (sTOREpURCHAGEoRDER.ORDER_DATE != null)
+            {
+                OrdDate = Convert.ToDateTime(sTOREpURCHAGEoRDER.ORDER_DATE);
+            }
+            ViewBag.ORDER_DATE = OrdDate.ToShortDateString();
+            DateTime ShipDate = Convert.ToDateTime(System.DateTime.Now);
+            if (sTOREpURCHAGEoRDER.SHIP_DATE != null)
+            {
+                ShipDate = Convert.ToDateTime(sTOREpURCHAGEoRDER.SHIP_DATE);
+            }
+            ViewBag.SHIP_DATE = ShipDate.ToShortDateString();
+
+            STORE_PRODUCTS prod = db.STORE_PRODUCTS.Find(sTOREpURCHAGEoRDER.PRODUCT_ID);
+            ViewBag.PRODUCT_ID = prod.NAME;
+
+            List<SelectListItem> options2 = new SelectList(db.STORE_PURCHAGE_VENDOR.Where(x => x.IS_DEL == "N").OrderBy(x => x.ID), "ID", "NAME", sTOREpURCHAGEoRDER.VENDOR_ID).ToList();
+            // add the 'ALL' option
+            options2.Insert(0, new SelectListItem() { Value = "-1", Text = "Select Vendor" });
+            ViewBag.VENDOR_ID = options2;
+
+            List<SelectListItem> options3 = new SelectList(db.STORE_PURCHAGE_STATUS.Where(x => x.IS_DEL == "N").OrderBy(x => x.ID), "ID", "NAME", sTOREpURCHAGEoRDER.STATUS_ID).ToList();
+            // add the 'ALL' option
+            options3.Insert(0, new SelectListItem() { Value = "-1", Text = "Select PO Status" });
+            ViewBag.STATUS_ID = options3;
+
+            List<SelectListItem> options4 = new SelectList(db.EMPLOYEEs.OrderBy(x => x.ID), "ID", "EMP_NUM", sTOREpURCHAGEoRDER.EMPLOYEE_ID).ToList();
+            // add the 'ALL' option
+            options4.Insert(0, new SelectListItem() { Value = "-1", Text = "Select Employee" });
+            ViewBag.EMPLOYEE_ID = options4;
+
+            if (sTOREpURCHAGEoRDER == null)
+            {
+                return HttpNotFound();
+            }
+            return View(sTOREpURCHAGEoRDER);
+        }
+
+        // POST: Student/Edit/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult PurchageOrderEdit([Bind(Include = "ID,PO_NUMBER,PRODUCT_ID,REVISION_NUMBER,STATUS_ID, EMPLOYEE_ID, VENDOR_ID, SHIP_METHOD_ID,ORDER_DATE, ORDER_QUANTITY, SHIP_DATE, SUB_TOTAL, TAX_AMT, FREIGHT, TOTAL_DUE")] STORE_PURCHAGE_ORDER sTOREpURCHAGEoRDER)
+        {
+            if (ModelState.IsValid)
+            {
+                STORE_PURCHAGE_ORDER sTOREpURCHAGEoRDER_UPD = db.STORE_PURCHAGE_ORDER.Find(sTOREpURCHAGEoRDER.ID);
+                sTOREpURCHAGEoRDER_UPD.REVISION_NUMBER = sTOREpURCHAGEoRDER.REVISION_NUMBER;
+                sTOREpURCHAGEoRDER_UPD.STATUS_ID = sTOREpURCHAGEoRDER.STATUS_ID;
+                sTOREpURCHAGEoRDER_UPD.EMPLOYEE_ID = sTOREpURCHAGEoRDER.EMPLOYEE_ID;
+                sTOREpURCHAGEoRDER_UPD.VENDOR_ID = sTOREpURCHAGEoRDER.VENDOR_ID;
+                sTOREpURCHAGEoRDER_UPD.SHIP_METHOD_ID = sTOREpURCHAGEoRDER.SHIP_METHOD_ID;
+                sTOREpURCHAGEoRDER_UPD.ORDER_DATE = sTOREpURCHAGEoRDER.ORDER_DATE;
+                sTOREpURCHAGEoRDER_UPD.ORDER_QUANTITY = sTOREpURCHAGEoRDER.ORDER_QUANTITY;
+                sTOREpURCHAGEoRDER_UPD.SHIP_DATE = sTOREpURCHAGEoRDER.SHIP_DATE;
+                sTOREpURCHAGEoRDER_UPD.TOTAL_DUE = sTOREpURCHAGEoRDER.TOTAL_DUE;
+                sTOREpURCHAGEoRDER_UPD.FREIGHT = sTOREpURCHAGEoRDER.FREIGHT;
+                sTOREpURCHAGEoRDER_UPD.TAX_AMT = sTOREpURCHAGEoRDER.TAX_AMT;
+                sTOREpURCHAGEoRDER_UPD.SUB_TOTAL = sTOREpURCHAGEoRDER.SUB_TOTAL;
+                sTOREpURCHAGEoRDER_UPD.UPDATED_AT = System.DateTime.Now;
+                if(sTOREpURCHAGEoRDER_UPD.STATUS_ID == 4 && (sTOREpURCHAGEoRDER_UPD.SHIP_DATE==null || sTOREpURCHAGEoRDER_UPD.TOTAL_DUE==null || sTOREpURCHAGEoRDER_UPD.FREIGHT==null || sTOREpURCHAGEoRDER_UPD.TAX_AMT==null || sTOREpURCHAGEoRDER_UPD.SUB_TOTAL==null))
+                {
+                    ViewBag.POEditMessage = "Ship Date, Total Due, Frieght Cost, Tax Amount and Sub Total Cost is Mandatory to make PO Complete.";
+                }
+                else
+                {
+                    db.Entry(sTOREpURCHAGEoRDER_UPD).State = EntityState.Modified;
+                    try { db.SaveChanges(); ViewBag.POEditMessage = "Purchage Order edited successfully."; }
+                    catch (Exception e) { Console.WriteLine(e); ViewBag.POEditMessage = e.InnerException.InnerException.Message; }
+                    if (sTOREpURCHAGEoRDER_UPD.STATUS_ID == 4)
+                    {
+                        STORE_PRODUCTS NewProd = db.STORE_PRODUCTS.Find(sTOREpURCHAGEoRDER_UPD.PRODUCT_ID);
+
+                        var sTORE_PRODUCTS_UPD = new STORE_PRODUCTS() { NAME = NewProd.NAME, CATEGORY_ID = NewProd.CATEGORY_ID,
+                            SUB_CATEGORY_ID = NewProd.SUB_CATEGORY_ID,
+
+                            //STORE_PRODUCTS sTORE_PRODUCTS_UPD = db.STORE_PRODUCTS.Find(sTOREpURCHAGEoRDER_UPD.PRODUCT_ID);
+                            BRAND = null,
+                        TOTAL_UNIT = sTOREpURCHAGEoRDER_UPD.ORDER_QUANTITY,
+                        TOTAL_COST = Convert.ToInt32(sTOREpURCHAGEoRDER_UPD.SUB_TOTAL),
+                        COST_PER_UNIT = Convert.ToInt32(Convert.ToInt32(sTOREpURCHAGEoRDER_UPD.SUB_TOTAL)/ sTOREpURCHAGEoRDER_UPD.ORDER_QUANTITY),
+                        SELL_PRICE_PER_UNIT = null,
+                        PURCHASED_ON = sTOREpURCHAGEoRDER_UPD.UPDATED_AT,
+                        PURCHASED_THROUGH = null,
+                        PAID_BY = "School",
+                        UNIT_LEFT = NewProd.TOTAL_UNIT + sTOREpURCHAGEoRDER_UPD.ORDER_QUANTITY,
+                        IS_ACT = "Y",
+                        IS_DEL = "N",
+                        CREATED_AT = DateTime.Now,
+                        UPDATED_AT = DateTime.Now
+                        };
+                        db.STORE_PRODUCTS.Add(sTORE_PRODUCTS_UPD);
+                        try { db.SaveChanges();}
+                        catch (Exception e) { Console.WriteLine(e); ViewBag.POEditMessage = e.InnerException.InnerException.Message; }
+
+                        STORE_PRODUCTS sTORE_PRODUCTS_ORG = db.STORE_PRODUCTS.Find(sTOREpURCHAGEoRDER_UPD.PRODUCT_ID);
+                        sTORE_PRODUCTS_ORG.IS_ACT = "N";
+                        sTORE_PRODUCTS_ORG.UPDATED_AT = DateTime.Now;
+                        db.Entry(sTORE_PRODUCTS_ORG).State = EntityState.Modified;
+                        try { db.SaveChanges(); ViewBag.POEditMessage = string.Concat(ViewBag.POEditMessage, "Purchaged Product is added in Product List. Please update further details."); }
+                        catch (Exception e) { Console.WriteLine(e); ViewBag.POEditMessage = string.Concat(ViewBag.POEditMessage, e.InnerException.InnerException.Message); }
+
+                    }
+                }
+                
+                DateTime OrdDate = Convert.ToDateTime(System.DateTime.Now);
+                if (sTOREpURCHAGEoRDER_UPD.ORDER_DATE != null)
+                {
+                    OrdDate = Convert.ToDateTime(sTOREpURCHAGEoRDER_UPD.ORDER_DATE);
+                }
+                ViewBag.ORDER_DATE = OrdDate.ToShortDateString();
+                DateTime ShipDate = Convert.ToDateTime(System.DateTime.Now);
+                if (sTOREpURCHAGEoRDER_UPD.SHIP_DATE != null)
+                {
+                    ShipDate = Convert.ToDateTime(sTOREpURCHAGEoRDER_UPD.SHIP_DATE);
+                }
+                ViewBag.SHIP_DATE = ShipDate.ToShortDateString();
+
+                STORE_PRODUCTS prod = db.STORE_PRODUCTS.Find(sTOREpURCHAGEoRDER_UPD.PRODUCT_ID);
+                ViewBag.PRODUCT_ID = prod.NAME;
+
+                List<SelectListItem> options2 = new SelectList(db.STORE_PURCHAGE_VENDOR.Where(x => x.IS_DEL == "N").OrderBy(x => x.ID), "ID", "NAME", sTOREpURCHAGEoRDER_UPD.VENDOR_ID).ToList();
+                // add the 'ALL' option
+                options2.Insert(0, new SelectListItem() { Value = "-1", Text = "Select Vendor" });
+                ViewBag.VENDOR_ID = options2;
+
+                List<SelectListItem> options3 = new SelectList(db.STORE_PURCHAGE_STATUS.Where(x => x.IS_DEL == "N").OrderBy(x => x.ID), "ID", "NAME", sTOREpURCHAGEoRDER_UPD.STATUS_ID).ToList();
+                // add the 'ALL' option
+                options3.Insert(0, new SelectListItem() { Value = "-1", Text = "Select PO Status" });
+                ViewBag.STATUS_ID = options3;
+
+                List<SelectListItem> options4 = new SelectList(db.EMPLOYEEs.OrderBy(x => x.ID), "ID", "EMP_NUM", sTOREpURCHAGEoRDER_UPD.EMPLOYEE_ID).ToList();
+                // add the 'ALL' option
+                options4.Insert(0, new SelectListItem() { Value = "-1", Text = "Select Employee" });
+                ViewBag.EMPLOYEE_ID = options4;
+
+                return View(sTOREpURCHAGEoRDER_UPD);
+            }
+            return View(sTOREpURCHAGEoRDER);
+        }
+
+        // POST: Student/Create
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult PurchageOrderCreate([Bind(Include = "ID,PO_NUMBER,PRODUCT_ID, VENDOR_ID, ORDER_QUANTITY")] STORE_PURCHAGE_ORDER sTOREpURCHAGEoRDER, string CATEGORY_ID, string SUBCATEGORY_ID, string PRODUCT_ID, string VENDOR_ID)
+        {
+            if (ModelState.IsValid)
+            {
+                if (!string.IsNullOrEmpty(PRODUCT_ID) && PRODUCT_ID != "-1")
+                {
+                    sTOREpURCHAGEoRDER.REVISION_NUMBER = 1;
+                    sTOREpURCHAGEoRDER.PO_NUMBER = string.Concat("PO-", CATEGORY_ID, "-", SUBCATEGORY_ID, "-", PRODUCT_ID);
+                    sTOREpURCHAGEoRDER.STATUS_ID = 1;
+                    sTOREpURCHAGEoRDER.EMPLOYEE_ID = Convert.ToInt32(this.Session["UserId"]);
+                    if (!string.IsNullOrEmpty(VENDOR_ID) && VENDOR_ID != "-1")
+                    {
+                        sTOREpURCHAGEoRDER.VENDOR_ID = Convert.ToInt32(sTOREpURCHAGEoRDER.VENDOR_ID);
+                    }
+                    else { sTOREpURCHAGEoRDER.VENDOR_ID = null; }
+                    sTOREpURCHAGEoRDER.ORDER_DATE = System.DateTime.Now;
+                    sTOREpURCHAGEoRDER.CREATED_AT = System.DateTime.Now;
+                    sTOREpURCHAGEoRDER.UPDATED_AT = System.DateTime.Now;
+                    db.STORE_PURCHAGE_ORDER.Add(sTOREpURCHAGEoRDER);
+                    try { db.SaveChanges(); ViewBag.POCreateMessage = "Purchage Order created successfully."; }
+                    catch (Exception e) { Console.WriteLine(e); ViewBag.POCreateMessage = e.InnerException.InnerException.Message; }
+                    return RedirectToAction("PurchageOrder");
+                }
+                else
+                {
+                    return RedirectToAction("PurchageOrder", new { CATEGORY_ID = CATEGORY_ID, SUBCATEGORY_ID = SUBCATEGORY_ID, PRODUCT_ID = PRODUCT_ID, VENDOR_ID = VENDOR_ID, ORDER_QUANTITY = sTOREpURCHAGEoRDER.ORDER_QUANTITY });
+
+                }
+                
+            }
+
+            return View(sTOREpURCHAGEoRDER);
+        }
+
+        // GET: Store Products
+        public ActionResult ShortageProducts()
+        {
+
+            var ProductS = (from pd in db.STORE_PRODUCTS
+                            join ct in db.STORE_CATEGORY on pd.CATEGORY_ID equals ct.ID
+                            join subcat in db.STORE_SUB_CATEGORY on pd.SUB_CATEGORY_ID equals subcat.ID into gsc
+                            from subgsc in gsc.DefaultIfEmpty()
+                            orderby pd.NAME, ct.NAME
+                            where pd.IS_DEL == "N" && pd.IS_ACT == "Y" && pd.UNIT_LEFT <= 2
+                            select new Models.Products { ProductData = pd, CategoryData = ct, SubCategoryData = (subgsc == null ? null : subgsc) }).Distinct();
+
+            return View(ProductS.ToList());
+        }
+
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)
